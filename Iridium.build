@@ -8,9 +8,13 @@
 	<target name="rebuild" depends="clean,init,compile" />
 
 	<target	name="cruise"
-			depends="clean,init,compile,test" 
+			depends="update,clean,init,compile,test" 
 			description="CruiseControl.NET Task">
 		<nant buildfile="default.build" target="cruise" />
+	</target>
+
+	<target	name="update">
+		<nant buildfile="default.build" target="update" />
 	</target>
 	
 	<target name="clean" description="remove all build products">

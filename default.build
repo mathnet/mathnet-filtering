@@ -6,8 +6,16 @@
 	<target name="rebuild" depends="clean,init,compile" />
 	
 	<target	name="cruise"
-			depends="clean,init,compile,test" 
+			depends="update,clean,init,compile,test" 
 			description="CruiseControl.NET Task">
+	</target>
+
+	<target name="update" description="Gets the latest version from source control">
+		<exec	basedir="tools\subversion\bin"
+				useruntimeengine="false"
+				workingdir="."
+				program="svn.exe"
+				commandline="update" />
 	</target>
 
 	<target name="clean" description="remove all build products">
