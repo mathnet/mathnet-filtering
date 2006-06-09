@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<project name="MathNet.Iridium" default="all">
+
+    <property name="debug" value="false" />
+
+	<target name="all" depends="init,compile,test" />
+	
+	<target name="rebuild" depends="clean,init,compile" />
+	
+	<target name="clean" description="remove all build products">
+		<delete dir="build"  if="${directory::exists('build')}" />
+	</target>
+
+	<target name="init">
+		<mkdir dir="build" />
+	</target>
+
+	<target name="compile" depends="compile.library" description="compiles the application">
+	</target>
+
+	<target name="compile.library" depends="init">
+		<csc target="library" output="build\${project::get-name()}.dll" debug="${debug}">
+			<sources>
+				<include name="src\app\${project::get-name()}\Library\**\*.cs" />
+			</sources>
+		</csc>
+	</target>
+
+	<target name="test.compile" depends="compile" description="compiles the tests">
+		<csc target="library" output="build\${project::get-name()}.Test.dll" debug="${debug}">
+			<sources>
+				<include name="src\test\${project::get-name()}.Test\**\*.cs" />
+				<exclude name="src\test\${project::get-name()}.Test\**\AssemblyInfo.cs" />
+			</sources>
+			<references>
+				<include name="build\${project::get-name()}.dll" />
+				<include name="tools\nunit\bin\nunit.framework.dll" />
+			</references>
+		</csc>
+	</target>
+
+	<target name="test" depends="test.compile">
+		<copy todir="build" flatten="true">
+			<fileset basedir="tools\nunit\bin">
+				<include name="*.dll" />
+			</fileset>
+		</copy>
+
+		<exec basedir="tools\nunit\bin"
+              useruntimeengine="true"
+              workingdir="build"
+              program="nunit-console.exe"
+              commandline="${project::get-name()}.Test.dll /xml=${project::get-name()}.Test-Result.xml" />
+	</target>
+
+</project>

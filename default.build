@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<project name="MathNet.Iridium" default="all">
+
+	<target name="all" depends="init,compile,test" />
+	
+	<target name="rebuild" depends="clean,init,compile" />
+	
+	<target	name="cruise"
+			depends="clean,init,compile,test" 
+			description="CruiseControl.NET Task">
+	</target>
+
+	<target name="clean" description="remove all build products">
+		<delete dir="build"  if="${directory::exists('build')}" />
+	</target>
+
+	<target name="init">
+		<mkdir dir="build" />
+	</target>
+
+	<target name="compile" depends="init,compile.AllInOne,compile.Packages" description="compiles everything">
+	</target>
+
+	<target name="compile.AllInOne" depends="init" description="compiles all packages to one dll and all tests to another dll">
+		<nant buildfile="MathNet.build" target="compile test.compile" />
+	</target>
+
+	<target name="compile.Packages" depends="init" descripton="compiles all packages to seperate dlls">
+		<nant buildfile="Iridium.build" target="compile test.compile" />
+		<nant buildfile="Yttrium.build" target="compile test.compile" />
+	</target>
+
+	<target name="test" depends="compile.AllInOne" description="tests the all-in-one compilation">
+		<nant buildfile="MathNet.build" target="test" />
+	</target>
+
+</project>

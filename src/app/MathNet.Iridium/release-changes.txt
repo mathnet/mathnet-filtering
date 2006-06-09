@@ -1,0 +1,31 @@
+==== MathNET - Numerics library - v0.3 ====
+
+New Features:
+- LinearAlgebra.Sparse package added (rough port of JMP)
+- Collection: small toolbox on ICollection manipulation.
+- BinomialGenerator: generate pseudo-random data according to the binomial distribution.
+
+Changes:
+- PermutationGenerator.Subset: new implementation, 2x faster, smaller memory footprint.
+
+Bug Fixed:
+- PermutationGenerator.Subset: limit case handling fixed.
+
+==== MathNET - Numerics library - v0.2 ====
+
+New Features:
+- Hyperbolic & Trigonometric functions added.
+- PermutationGenerator: Random Subset + NUnit tests 
+- Fourier transformations for up to three dimensions.
+
+
+==== MathNET - Numerics library - v0.1 ====
+
+New Features:
+- statistical accumulator (online mean and variance computation)
+- permutation and combination random generators
+- string conversion and parsing for Double and Complex
+
+Bug Fixed:
+- mismatch CumulativeNormalDistribution and ERF
+- not relying any more on m >= n for the Matrix.SVD

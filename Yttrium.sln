@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium", "src\app\MathNet.Yttrium\Library\Yttrium.csproj", "{CAB86B17-68FA-4081-B687-DB71B74BAF79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Test", "src\test\MathNet.Yttrium.Test\Yttrium.Test.csproj", "{C5F4F488-5A7A-47BB-936C-19E30AFB4FEB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CAB86B17-68FA-4081-B687-DB71B74BAF79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAB86B17-68FA-4081-B687-DB71B74BAF79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAB86B17-68FA-4081-B687-DB71B74BAF79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAB86B17-68FA-4081-B687-DB71B74BAF79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5F4F488-5A7A-47BB-936C-19E30AFB4FEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5F4F488-5A7A-47BB-936C-19E30AFB4FEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5F4F488-5A7A-47BB-936C-19E30AFB4FEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5F4F488-5A7A-47BB-936C-19E30AFB4FEB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

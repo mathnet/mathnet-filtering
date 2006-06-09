@@ -1,0 +1,5 @@
+bin\Debug\Iridium.Test.dll
+bin\Debug\Iridium.Test.pdb
+obj\Debug\ResolveAssemblyReference.cache
+obj\Debug\Iridium.Test.dll
+obj\Debug\Iridium.Test.pdb

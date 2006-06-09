@@ -1,0 +1,102 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{26FC15DE-EFDA-403A-8284-1E2A4AE8A9D8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MathNet.Numerics</RootNamespace>
+    <AssemblyName>MathNet.Iridium</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Collection.cs" />
+    <Compile Include="Combinatorics.cs" />
+    <Compile Include="Complex.cs" />
+    <Compile Include="Distributions\CumulativeNormalDistribution.cs" />
+    <Compile Include="Distributions\InvCumulativeNormalDistribution.cs" />
+    <Compile Include="Distributions\NamespaceDoc.cs" />
+    <Compile Include="Double.cs" />
+    <Compile Include="Equations\NamespaceDoc.cs" />
+    <Compile Include="Equations\ScalarIterator.cs" />
+    <Compile Include="Equations\Solver.cs" />
+    <Compile Include="Generators\BinomialGenerator.cs" />
+    <Compile Include="Generators\CombinationGenerator.cs" />
+    <Compile Include="Generators\DiscreteGenerator.cs" />
+    <Compile Include="Generators\ExponentialGenerator.cs" />
+    <Compile Include="Generators\GammaGenerator.cs" />
+    <Compile Include="Generators\NamespaceDoc.cs" />
+    <Compile Include="Generators\NormalGenerator.cs" />
+    <Compile Include="Generators\PermutationGenerator.cs" />
+    <Compile Include="Generators\PoissonGenerator.cs" />
+    <Compile Include="Generators\ZipfGenerator.cs" />
+    <Compile Include="Interpolation\CubicSplineInterpolationAlgorithm.cs" />
+    <Compile Include="Interpolation\Interpolation1D.cs" />
+    <Compile Include="Interpolation\InterpolationAlgorithm.cs" />
+    <Compile Include="Interpolation\PolynomialInterpolationAlgorithm.cs" />
+    <Compile Include="Interpolation\RationalInterpolationAlgorithm.cs" />
+    <Compile Include="IRealFunction.cs" />
+    <Compile Include="IRealGenerator.cs" />
+    <Compile Include="LinearAlgebra\CholeskyDecomposition.cs" />
+    <Compile Include="LinearAlgebra\EigenvalueDecomposition.cs" />
+    <Compile Include="LinearAlgebra\LinalgTests.cs" />
+    <Compile Include="LinearAlgebra\LUDecomposition.cs" />
+    <Compile Include="LinearAlgebra\Matrix.cs" />
+    <Compile Include="LinearAlgebra\NamespaceDoc.cs" />
+    <Compile Include="LinearAlgebra\QRDecomposition.cs" />
+    <Compile Include="LinearAlgebra\SingularValueDecomposition.cs" />
+    <Compile Include="NamespaceDoc.cs" />
+    <Compile Include="Natural.cs" />
+    <Compile Include="Polynomial.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Quaternion.cs" />
+    <Compile Include="Rational.cs" />
+    <Compile Include="SampleList.cs" />
+    <Compile Include="Set.cs" />
+    <Compile Include="SpecialFunctions.cs" />
+    <Compile Include="Statistics\Accumulator.cs" />
+    <Compile Include="Statistics\Histogram.cs" />
+    <Compile Include="Statistics\NamespaceDoc.cs" />
+    <Compile Include="Transformations\ComplexFourierTransformation.cs" />
+    <Compile Include="Transformations\FourierHelper.cs" />
+    <Compile Include="Transformations\NamespaceDoc.cs" />
+    <Compile Include="Transformations\RealFourierTransformation.cs" />
+    <Compile Include="Transformations\Transformations.cs" />
+    <Compile Include="Trigonometry.cs" />
+    <Compile Include="Tuple.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Integration\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

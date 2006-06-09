@@ -1,0 +1,309 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CAB86B17-68FA-4081-B687-DB71B74BAF79}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MathNet.Symbolics</RootNamespace>
+    <AssemblyName>MathNet.Yttrium</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MathNet.Iridium, Version=2006.6.3.35643, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\MathNet.Iridium\Library\bin\Release\MathNet.Iridium.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Backend\Channels\AbstractChannel.cs" />
+    <Compile Include="Backend\Channels\CommandChannel.cs" />
+    <Compile Include="Backend\Channels\CommandReference.cs" />
+    <Compile Include="Backend\Channels\Commands\AbstractBusCommand.cs" />
+    <Compile Include="Backend\Channels\Commands\AbstractCommand.cs" />
+    <Compile Include="Backend\Channels\Commands\AbstractNewCommand.cs" />
+    <Compile Include="Backend\Channels\Commands\AbstractPortBusCommand.cs" />
+    <Compile Include="Backend\Channels\Commands\AbstractPortBusIndexCommand.cs" />
+    <Compile Include="Backend\Channels\Commands\AbstractPortCommand.cs" />
+    <Compile Include="Backend\Channels\Commands\AbstractPortIndexCommand.cs" />
+    <Compile Include="Backend\Channels\Commands\AbstractPortSignalCommand.cs" />
+    <Compile Include="Backend\Channels\Commands\AbstractPortSignalIndexCommand.cs" />
+    <Compile Include="Backend\Channels\Commands\AbstractSignalCommand.cs" />
+    <Compile Include="Backend\Channels\Commands\BusDrivePortCommand.cs" />
+    <Compile Include="Backend\Channels\Commands\BusUndrivePortCommand.cs" />
+    <Compile Include="Backend\Channels\Commands\CommandBase.cs" />
+    <Compile Include="Backend\Channels\Commands\NewBusCommand.cs" />
+    <Compile Include="Backend\Channels\Commands\NewPortCommand.cs" />
+    <Compile Include="Backend\Channels\Commands\NewSignalCommand.cs" />
+    <Compile Include="Backend\Channels\Commands\PortDriveSignalCommand.cs" />
+    <Compile Include="Backend\Channels\Commands\PortUndriveSignalCommand.cs" />
+    <Compile Include="Backend\Channels\Commands\RemoveBusCommand.cs" />
+    <Compile Include="Backend\Channels\Commands\RemovePortCommand.cs" />
+    <Compile Include="Backend\Channels\Commands\RemoveSignalCommand.cs" />
+    <Compile Include="Backend\Channels\Commands\SignalDrivePortCommand.cs" />
+    <Compile Include="Backend\Channels\Commands\SignalUndrivePortCommand.cs" />
+    <Compile Include="Backend\Channels\Hint.cs" />
+    <Compile Include="Backend\Channels\HintChannel.cs" />
+    <Compile Include="Backend\Channels\HintType.cs" />
+    <Compile Include="Backend\Channels\ICommand.cs" />
+    <Compile Include="Backend\Channels\ISystemObserver.cs" />
+    <Compile Include="Backend\Channels\LogObserver.cs" />
+    <Compile Include="Backend\Channels\Mediator.cs" />
+    <Compile Include="Backend\Containers\ArchitectureTable.cs" />
+    <Compile Include="Backend\Containers\BusSet.cs" />
+    <Compile Include="Backend\Containers\EntityTable.cs" />
+    <Compile Include="Backend\Containers\IdentifierDictionary.cs" />
+    <Compile Include="Backend\Containers\InstanceIdSet.cs" />
+    <Compile Include="Backend\Containers\PortSet.cs" />
+    <Compile Include="Backend\Containers\PropertyProviderTable.cs" />
+    <Compile Include="Backend\Containers\SignalSet.cs" />
+    <Compile Include="Backend\Containers\SignalTable.cs" />
+    <Compile Include="Backend\Containers\TheoremTable.cs" />
+    <Compile Include="Backend\Containers\TransformationTypeTable.cs" />
+    <Compile Include="Backend\Context.cs" />
+    <Compile Include="Backend\Discovery\ArchitectureServerAttribute.cs" />
+    <Compile Include="Backend\Discovery\EntityImplementationAttribute.cs" />
+    <Compile Include="Backend\Discovery\EntityServerAttribute.cs" />
+    <Compile Include="Backend\Discovery\IArchitectureServer.cs" />
+    <Compile Include="Backend\Discovery\IEntityServer.cs" />
+    <Compile Include="Backend\Discovery\IPackageManager.cs" />
+    <Compile Include="Backend\Discovery\IStructureServer.cs" />
+    <Compile Include="Backend\Discovery\ITheoremServer.cs" />
+    <Compile Include="Backend\Discovery\PackageManagerAttribute.cs" />
+    <Compile Include="Backend\Discovery\StructureServerAttribute.cs" />
+    <Compile Include="Backend\Discovery\TheoremServerAttribute.cs" />
+    <Compile Include="Backend\EncapsulationFormat.cs" />
+    <Compile Include="Backend\Events\BusEventArgs.cs" />
+    <Compile Include="Backend\Events\BusPortIndexEventArgs.cs" />
+    <Compile Include="Backend\Events\IndexedSignalEventArgs.cs" />
+    <Compile Include="Backend\Events\PortEventArgs.cs" />
+    <Compile Include="Backend\Events\SignalEventArgs.cs" />
+    <Compile Include="Backend\Events\SignalPortEventArgs.cs" />
+    <Compile Include="Backend\Events\SignalPortIndexEventArgs.cs" />
+    <Compile Include="Backend\Events\SimulationTimeEventArgs.cs" />
+    <Compile Include="Backend\Exceptions\ArchitectureNotAvailableException.cs" />
+    <Compile Include="Backend\Exceptions\CommandException.cs" />
+    <Compile Include="Backend\Exceptions\CyclicSignalsNotSupportedException.cs" />
+    <Compile Include="Backend\Exceptions\DeserializationException.cs" />
+    <Compile Include="Backend\Exceptions\DomainNotAvailableException.cs" />
+    <Compile Include="Backend\Exceptions\EntityNotAvailableException.cs" />
+    <Compile Include="Backend\Exceptions\EntitySignalCountUnexpectedException.cs" />
+    <Compile Include="Backend\Exceptions\EntitySignalMismatchException.cs" />
+    <Compile Include="Backend\Exceptions\GenericEntityPortNotInstantiableException.cs" />
+    <Compile Include="Backend\Exceptions\IncompatibleStructureException.cs" />
+    <Compile Include="Backend\Exceptions\LabelNotAvailableException.cs" />
+    <Compile Include="Backend\Exceptions\MathNetSymbolicsException.cs" />
+    <Compile Include="Backend\Exceptions\MutualExclusiveStrategyAlreadyActiveException.cs" />
+    <Compile Include="Backend\Exceptions\NotFoundException.cs" />
+    <Compile Include="Backend\Exceptions\ParsingException.cs" />
+    <Compile Include="Backend\Exceptions\StructureNotSupportedException.cs" />
+    <Compile Include="Backend\Exceptions\SymbolNotAvailableException.cs" />
+    <Compile Include="Backend\Exceptions\TheoremMismatchException.cs" />
+    <Compile Include="Backend\IContextSensitive.cs" />
+    <Compile Include="Backend\Library.cs" />
+    <Compile Include="Backend\Parsing\EntityStack.cs" />
+    <Compile Include="Backend\Parsing\Int32Stack.cs" />
+    <Compile Include="Backend\Parsing\LexerBuffer.cs" />
+    <Compile Include="Backend\Parsing\LexerMarker.cs" />
+    <Compile Include="Backend\Parsing\LexerScanner.cs" />
+    <Compile Include="Backend\Parsing\LexerToken.cs" />
+    <Compile Include="Backend\Parsing\Parser.cs" />
+    <Compile Include="Backend\Parsing\ParserBuffer.cs" />
+    <Compile Include="Backend\Parsing\ParserMarker.cs" />
+    <Compile Include="Backend\Parsing\ParserScanner.cs" />
+    <Compile Include="Backend\Parsing\SignalStack.cs" />
+    <Compile Include="Backend\Properties\Category.cs" />
+    <Compile Include="Backend\Properties\CategoryMembership.cs" />
+    <Compile Include="Backend\Properties\CategoryMembershipProperty.cs" />
+    <Compile Include="Backend\Properties\Property.cs" />
+    <Compile Include="Backend\Properties\PropertyBag.cs" />
+    <Compile Include="Backend\Simulation\EventTimeline.cs" />
+    <Compile Include="Backend\Simulation\Scheduler.cs" />
+    <Compile Include="Backend\Simulation\SignalDelayedEventTimeline.cs" />
+    <Compile Include="Backend\Simulation\SignalEventItem.cs" />
+    <Compile Include="Backend\SystemBuilder\BuilderStateMachine.cs" />
+    <Compile Include="Backend\SystemBuilder\ExpressionWriter.cs" />
+    <Compile Include="Backend\SystemBuilder\ISystemBuilder.cs" />
+    <Compile Include="Backend\SystemBuilder\Packages.cs" />
+    <Compile Include="Backend\SystemBuilder\SystemReader.cs" />
+    <Compile Include="Backend\SystemBuilder\SystemWriter.cs" />
+    <Compile Include="Backend\SystemBuilder\XmlSystemReader.cs" />
+    <Compile Include="Backend\SystemBuilder\XmlSystemWriter.cs" />
+    <Compile Include="Backend\Templates\CompoundArchitecture.cs" />
+    <Compile Include="Backend\Templates\CompoundProcess.cs" />
+    <Compile Include="Backend\Templates\GenericArchitecture.cs" />
+    <Compile Include="Backend\Templates\GenericArchitectureFactory.cs" />
+    <Compile Include="Backend\Templates\GenericFunctionProcess.cs" />
+    <Compile Include="Backend\Templates\GenericMathOpArchitecture.cs" />
+    <Compile Include="Backend\Templates\GenericParallelProcess.cs" />
+    <Compile Include="Backend\Templates\GenericPropagationTheorem.cs" />
+    <Compile Include="Backend\Templates\GenericSimpleArchitecture.cs" />
+    <Compile Include="Backend\Templates\GenericStdFunctionProcess.cs" />
+    <Compile Include="Backend\Templates\GenericStdParallelProcess.cs" />
+    <Compile Include="Backend\Templates\NaryToOneGenericEntity.cs" />
+    <Compile Include="Backend\Templates\NearlySymmetricGenericEntity.cs" />
+    <Compile Include="Backend\Templates\SymmetricGenericEntity.cs" />
+    <Compile Include="Backend\Theorems\BasicTransformation.cs" />
+    <Compile Include="Backend\Theorems\IPropagationTheorem.cs" />
+    <Compile Include="Backend\Theorems\ITheorem.cs" />
+    <Compile Include="Backend\Theorems\ITransformationTheorem.cs" />
+    <Compile Include="Backend\Theorems\TransformationManipulationVisitor.cs" />
+    <Compile Include="Backend\Traversing\AbstractScanVisitor.cs" />
+    <Compile Include="Backend\Traversing\AllPathsStrategy.cs" />
+    <Compile Include="Backend\Traversing\AllPortsStrategy.cs" />
+    <Compile Include="Backend\Traversing\AllSignalsStrategy.cs" />
+    <Compile Include="Backend\Traversing\AllSpanningTreeStrategy.cs" />
+    <Compile Include="Backend\Traversing\AllStrategy.cs" />
+    <Compile Include="Backend\Traversing\BasicManipulationVisitor.cs" />
+    <Compile Include="Backend\Traversing\BasicScanVisitor.cs" />
+    <Compile Include="Backend\Traversing\CollectVisitor.cs" />
+    <Compile Include="Backend\Traversing\ConditionalCollectVisitor.cs" />
+    <Compile Include="Backend\Traversing\Delegates.cs" />
+    <Compile Include="Backend\Traversing\ExistsPortVisitor.cs" />
+    <Compile Include="Backend\Traversing\ExistsSignalVisitor.cs" />
+    <Compile Include="Backend\Traversing\IManipulationVisitor.cs" />
+    <Compile Include="Backend\Traversing\IScanVisitor.cs" />
+    <Compile Include="Backend\Traversing\ManipulationPlan.cs" />
+    <Compile Include="Backend\Traversing\Manipulator.cs" />
+    <Compile Include="Backend\Traversing\PortActionVisitor.cs" />
+    <Compile Include="Backend\Traversing\PortConditionalActionVisitor.cs" />
+    <Compile Include="Backend\Traversing\PortPathCollectVisitor.cs" />
+    <Compile Include="Backend\Traversing\ScanStrategy.cs" />
+    <Compile Include="Backend\Traversing\SignalActionVisitor.cs" />
+    <Compile Include="Backend\Traversing\SignalConditionalActionVisitor.cs" />
+    <Compile Include="Backend\Traversing\SignalPathCollectVisitor.cs" />
+    <Compile Include="Backend\Traversing\TrueForAllPortsVisitor.cs" />
+    <Compile Include="Backend\Traversing\TrueForAllSignalsVisitor.cs" />
+    <Compile Include="Backend\ValueConversion\ConversionRouter.cs" />
+    <Compile Include="Backend\ValueConversion\StructureConverter.cs" />
+    <Compile Include="Backend\ValueConversion\StructureTable.cs" />
+    <Compile Include="Core\Architecture.cs" />
+    <Compile Include="Core\Bus.cs" />
+    <Compile Include="Core\Entity.cs" />
+    <Compile Include="Core\IArchitectureFactory.cs" />
+    <Compile Include="Core\Identifier.cs" />
+    <Compile Include="Core\Port.cs" />
+    <Compile Include="Core\Process.cs" />
+    <Compile Include="Core\Signal.cs" />
+    <Compile Include="Core\ValueStructure.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="StdPackage\AlgebraicExpressionCategory.cs" />
+    <Compile Include="StdPackage\AlgebraicStructure.cs" />
+    <Compile Include="StdPackage\AlgebraicStructureCategory.cs" />
+    <Compile Include="StdPackage\Algebra\AutoSimplifyArchitecture.cs" />
+    <Compile Include="StdPackage\Algebra\AutoSimplifyTransformation.cs" />
+    <Compile Include="StdPackage\Analysis\AlgebraicDerivativeArchitecture.cs" />
+    <Compile Include="StdPackage\Analysis\DerivativeTransformation.cs" />
+    <Compile Include="StdPackage\Arithmetics\AbsoluteArchitectures.cs" />
+    <Compile Include="StdPackage\Arithmetics\AdditionArchitectures.cs" />
+    <Compile Include="StdPackage\Arithmetics\DivisionArchitectures.cs" />
+    <Compile Include="StdPackage\Arithmetics\ExponentialArchitectures.cs" />
+    <Compile Include="StdPackage\Arithmetics\InvertArchitectures.cs" />
+    <Compile Include="StdPackage\Arithmetics\MultiplicationArchitectures.cs" />
+    <Compile Include="StdPackage\Arithmetics\NaturalLogarithmArchitectures.cs" />
+    <Compile Include="StdPackage\Arithmetics\NegateArchitectures.cs" />
+    <Compile Include="StdPackage\Arithmetics\PowerArchitectures.cs" />
+    <Compile Include="StdPackage\Arithmetics\SelfBuildingExample.cs" />
+    <Compile Include="StdPackage\Arithmetics\SquareArchitectures.cs" />
+    <Compile Include="StdPackage\Arithmetics\SubtractionArchitectures.cs" />
+    <Compile Include="StdPackage\Flow\ClockArchitecture.cs" />
+    <Compile Include="StdPackage\Flow\SyncArchitecture.cs" />
+    <Compile Include="StdPackage\Flow\SystemPipeline.cs" />
+    <Compile Include="StdPackage\Flow\TransportArchitecture.cs" />
+    <Compile Include="StdPackage\Logic\AndArchitectures.cs" />
+    <Compile Include="StdPackage\Logic\NandArchitectures.cs" />
+    <Compile Include="StdPackage\Logic\NorArchitectures.cs" />
+    <Compile Include="StdPackage\Logic\NotArchitectures.cs" />
+    <Compile Include="StdPackage\Logic\OrArchitectures.cs" />
+    <Compile Include="StdPackage\Logic\XnorArchitectures.cs" />
+    <Compile Include="StdPackage\Logic\XorArchitectures.cs" />
+    <Compile Include="StdPackage\Properties\ConstantSignalProperty.cs" />
+    <Compile Include="StdPackage\Properties\IntegerSetProperty.cs" />
+    <Compile Include="StdPackage\Properties\PositiveIntegerSetProperty.cs" />
+    <Compile Include="StdPackage\Properties\RationalSetProperty.cs" />
+    <Compile Include="StdPackage\Properties\RealSetProperty.cs" />
+    <Compile Include="StdPackage\Std.cs" />
+    <Compile Include="StdPackage\StdPackageManager.cs" />
+    <Compile Include="StdPackage\Structures\ComplexInfinitySymbol.cs" />
+    <Compile Include="StdPackage\Structures\ComplexValue.cs" />
+    <Compile Include="StdPackage\Structures\ComplexValueCategory.cs" />
+    <Compile Include="StdPackage\Structures\IntegerValue.cs" />
+    <Compile Include="StdPackage\Structures\IntegerValueCategory.cs" />
+    <Compile Include="StdPackage\Structures\LiteralValue.cs" />
+    <Compile Include="StdPackage\Structures\LogicValue.cs" />
+    <Compile Include="StdPackage\Structures\LogicValueCategory.cs" />
+    <Compile Include="StdPackage\Structures\MatrixValue.cs" />
+    <Compile Include="StdPackage\Structures\NegativeInfinitySymbol.cs" />
+    <Compile Include="StdPackage\Structures\PositiveInfinitySymbol.cs" />
+    <Compile Include="StdPackage\Structures\RationalValue.cs" />
+    <Compile Include="StdPackage\Structures\RationalValueCategory.cs" />
+    <Compile Include="StdPackage\Structures\RealMatrixValue.cs" />
+    <Compile Include="StdPackage\Structures\RealValue.cs" />
+    <Compile Include="StdPackage\Structures\RealValueCategory.cs" />
+    <Compile Include="StdPackage\Structures\ToggleValue.cs" />
+    <Compile Include="StdPackage\Structures\UndefinedSymbol.cs" />
+    <Compile Include="StdPackage\TimeCurves\Curve.cs" />
+    <Compile Include="StdPackage\TimeCurves\CurveSegment.cs" />
+    <Compile Include="StdPackage\Trigonometry\CosecantArchitectures.cs" />
+    <Compile Include="StdPackage\Trigonometry\CosineArchitectures.cs" />
+    <Compile Include="StdPackage\Trigonometry\CotangentArchitectures.cs" />
+    <Compile Include="StdPackage\Trigonometry\HyperbolicCosecantArchitectures.cs" />
+    <Compile Include="StdPackage\Trigonometry\HyperbolicCosineArchitectures.cs" />
+    <Compile Include="StdPackage\Trigonometry\HyperbolicCotangentArchitectures.cs" />
+    <Compile Include="StdPackage\Trigonometry\HyperbolicSecantArchitectures.cs" />
+    <Compile Include="StdPackage\Trigonometry\HyperbolicSineArchitectures.cs" />
+    <Compile Include="StdPackage\Trigonometry\HyperbolicTangentArchitectures.cs" />
+    <Compile Include="StdPackage\Trigonometry\SecantArchitectures.cs" />
+    <Compile Include="StdPackage\Trigonometry\SineArchitectures.cs" />
+    <Compile Include="StdPackage\Trigonometry\TangentArchitectures.cs" />
+    <Compile Include="Workplace\Builder.cs" />
+    <Compile Include="Workplace\MathFunction.cs" />
+    <Compile Include="Workplace\MathSystem.cs" />
+    <Compile Include="Workplace\Project.cs" />
+    <Compile Include="Workplace\Scanner.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="StdPackage\LinearAlgebra\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
