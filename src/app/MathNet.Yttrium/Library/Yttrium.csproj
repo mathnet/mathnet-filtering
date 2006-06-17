@@ -133,6 +133,15 @@
     <Compile Include="Backend\Parsing\ParserMarker.cs" />
     <Compile Include="Backend\Parsing\ParserScanner.cs" />
     <Compile Include="Backend\Parsing\SignalStack.cs" />
+    <Compile Include="Backend\Patterns\AndCondition.cs" />
+    <Compile Include="Backend\Patterns\CombinationMode.cs" />
+    <Compile Include="Backend\Patterns\Condition.cs" />
+    <Compile Include="Backend\Patterns\AlwaysTrueCondition.cs" />
+    <Compile Include="Backend\Patterns\InputSignalsPropertyCondition.cs" />
+    <Compile Include="Backend\Patterns\OutputSignalsPropertyCondition.cs" />
+    <Compile Include="Backend\Patterns\NotCondition.cs" />
+    <Compile Include="Backend\Patterns\OrCondition.cs" />
+    <Compile Include="Backend\Patterns\EntityCondition.cs" />
     <Compile Include="Backend\Patterns\Pattern.cs" />
     <Compile Include="Backend\Patterns\TreePattern.cs" />
     <Compile Include="Backend\Properties\Category.cs" />
