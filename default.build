@@ -15,6 +15,11 @@
 				useruntimeengine="false"
 				workingdir="."
 				program="svn.exe"
+				commandline="cleanup" />
+		<exec	basedir="tools\subversion\bin"
+				useruntimeengine="false"
+				workingdir="."
+				program="svn.exe"
 				commandline="update" />
 	</target>
 
