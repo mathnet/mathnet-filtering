@@ -134,10 +134,13 @@
     <Compile Include="Backend\Parsing\ParserScanner.cs" />
     <Compile Include="Backend\Parsing\SignalStack.cs" />
     <Compile Include="Backend\Patterns\AndCondition.cs" />
+    <Compile Include="Backend\Patterns\CoalescedChildPattern.cs" />
+    <Compile Include="Backend\Patterns\CoalescedTreeNode.cs" />
     <Compile Include="Backend\Patterns\CombinationMode.cs" />
     <Compile Include="Backend\Patterns\Condition.cs" />
     <Compile Include="Backend\Patterns\AlwaysTrueCondition.cs" />
     <Compile Include="Backend\Patterns\InputSignalsPropertyCondition.cs" />
+    <Compile Include="Backend\Patterns\Match.cs" />
     <Compile Include="Backend\Patterns\OutputSignalsPropertyCondition.cs" />
     <Compile Include="Backend\Patterns\NotCondition.cs" />
     <Compile Include="Backend\Patterns\OrCondition.cs" />
