@@ -69,6 +69,58 @@ namespace MathNet.Symbolics.Backend.Patterns
             return res;
         }
 
+        /// <returns>Null, if no match was found.</returns>
+        public Match MatchFirst(Signal output, Port port)
+        {
+            // 1. Trial: Try Local Subscriptions
+            if(_subscriptionAxis.Count > 0)
+            {
+                Match m = new Match(_subscriptionAxis[0]);
+
+                // Check Group Axis
+                string label;
+                if(_groupAxis.TryGetValue(m.PatternId, out label))
+                    m.AppendGroup(label, new Tuple<Signal, Port>(output, port));
+
+                return m;
+            }
+
+            // 2. Trial: Follow Condition Axis
+            foreach(CoalescedTreeNode condition in _conditionAxis)
+            {
+                Match m = condition.MatchFirst(output, port);
+
+                if(m != null)
+                {
+                    // Check Group Axis
+                    string label;
+                    if(_groupAxis.TryGetValue(m.PatternId, out label))
+                        m.AppendGroup(label, new Tuple<Signal, Port>(output, port));
+
+                    return m;
+                }
+            }
+
+            // 3. Trial: Follow Pattern Axis.
+            foreach(CoalescedChildPattern pattern in _patternAxis)
+            {
+                Match m = pattern.MatchFirst(port);
+
+                if(m != null)
+                {
+                    // Check Group Axis
+                    string label;
+                    if(_groupAxis.TryGetValue(m.PatternId, out label))
+                        m.AppendGroup(label, new Tuple<Signal, Port>(output, port));
+
+                    return m;
+                }
+            }
+
+            // No match found
+            return null;
+        }
+
         /// <summary>
         /// Combines Match lists (union, logical OR). Labeled groups are merged.
         /// </summary>
