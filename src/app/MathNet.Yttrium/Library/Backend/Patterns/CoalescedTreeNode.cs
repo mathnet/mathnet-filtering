@@ -34,6 +34,21 @@ namespace MathNet.Symbolics.Backend.Patterns
             get { return _iid; }
         }
 
+        internal Condition Condition
+        {
+            get { return _condition; }
+        }
+
+        internal List<CoalescedTreeNode> ConditionAxis
+        {
+            get { return _conditionAxis; }
+        }
+
+        internal List<CoalescedChildPattern> PatternAxis
+        {
+            get { return _patternAxis; }
+        }
+
         public Dictionary<MathIdentifier, Match> MatchAll(Signal output, Port port)
         {
             // Check Node Condition

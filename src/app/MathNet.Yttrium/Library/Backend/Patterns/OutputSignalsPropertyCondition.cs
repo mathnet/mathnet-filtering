@@ -51,5 +51,13 @@ namespace MathNet.Symbolics.Backend.Patterns
                     throw new NotSupportedException("Pattern Condition doesn't support mode " + _mode.ToString());
             }
         }
+
+        public override bool Equals(Condition other)
+        {
+            OutputSignalsPropertyCondition ot = other as OutputSignalsPropertyCondition;
+            if(ot == null)
+                return false;
+            return _propertyType.Equals(ot._propertyType) && _mode.Equals(ot._mode);
+        }
     }
 }

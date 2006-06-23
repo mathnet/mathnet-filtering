@@ -26,5 +26,10 @@ namespace MathNet.Symbolics.Backend.Patterns
         {
             return true;
         }
+
+        public override bool Equals(Condition other)
+        {
+            return other is AlwaysTrueCondition;
+        }
     }
 }

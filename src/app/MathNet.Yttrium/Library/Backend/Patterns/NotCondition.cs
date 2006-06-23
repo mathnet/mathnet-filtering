@@ -19,5 +19,13 @@ namespace MathNet.Symbolics.Backend.Patterns
         {
             return !_condition.FulfillsCondition(output, port);
         }
+
+        public override bool Equals(Condition other)
+        {
+            NotCondition ot = other as NotCondition;
+            if(ot == null)
+                return false;
+            return _condition.Equals(ot._condition);
+        }
     }
 }

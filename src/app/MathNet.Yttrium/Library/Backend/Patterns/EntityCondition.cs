@@ -24,5 +24,13 @@ namespace MathNet.Symbolics.Backend.Patterns
         {
             return _entityId.Equals(port.Entity.EntityId);
         }
+
+        public override bool Equals(Condition other)
+        {
+            EntityCondition ot = other as EntityCondition;
+            if(ot == null)
+                return false;
+            return _entityId.Equals(ot._entityId);
+        }
     }
 }
