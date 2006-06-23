@@ -405,7 +405,7 @@ namespace MathNet.Symbolics.StdPackage.Structures
         {
             Signal s = new Signal(context, new RealValue(value));
             s.Label = name + "_Constant";
-            s.Properties.AddProperty(Properties.ConstantSignalProperty.Instance);
+            s.AddConstraint(Properties.ConstantSignalProperty.Instance);
             return s;
         }
 

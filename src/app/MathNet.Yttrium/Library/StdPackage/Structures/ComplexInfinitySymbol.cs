@@ -89,7 +89,7 @@ namespace MathNet.Symbolics.StdPackage.Structures
             {
                 ret = new Signal(context, Instance);
                 ret.Label = "ComplexInfinity";
-                ret.Properties.AddProperty(Properties.ConstantSignalProperty.Instance);
+                ret.AddConstraint(Properties.ConstantSignalProperty.Instance);
                 context.SingletonSignals.Add(id, ret);
                 return ret;
             }

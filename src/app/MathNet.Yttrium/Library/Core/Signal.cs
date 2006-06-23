@@ -182,19 +182,18 @@ namespace MathNet.Symbolics.Core
         #region Property Bag
         public PropertyBag Properties
         {
-            get
-            {
-                if(BehavesAsSourceSignal)
-                    return _constraints;
-                else
-                    return _properties;
-            }
+            get { return _properties; }
+        }
+
+        public PropertyBag Constraints
+        {
+            get { return _constraints; }
         }
 
         /// <summary>Checks whether a property is set.</summary>
         public bool HasProperty(MathIdentifier propertyId)
         {
-            return Properties.ContainsProperty(propertyId);
+            return _constraints.ContainsProperty(propertyId) || _properties.ContainsProperty(propertyId);
         }
 
         /// <summary>Updates the property accoring to propagation theorems and checks whether it is (or should be) set.</summary>
@@ -204,6 +203,8 @@ namespace MathNet.Symbolics.Core
         }
         public bool AskForProperty(MathIdentifier propertyType)
         {
+            if(_constraints.ContainsProperty(propertyType))
+                return true;
             PropertyProviderTable table;
             if(_context.Library.Theorems.TryLookupPropertyProvider(propertyType, out table))
                 return table.UpdateProperty(this);

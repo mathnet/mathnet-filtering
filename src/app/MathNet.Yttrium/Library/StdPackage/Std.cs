@@ -611,7 +611,7 @@ namespace MathNet.Symbolics.StdPackage
         //{
         //    Signal s = new Signal(context, value);
         //    s.Label = "Constant_" + value.ToString();
-        //    s.Properties.AddProperty(Properties.ConstantSignalProperty.Instance);
+        //    s.AddConstraint(Properties.ConstantSignalProperty.Instance);
         //    return s;
         //}
 

@@ -237,7 +237,7 @@ namespace MathNet.Symbolics.StdPackage.Structures
         {
             Signal s = new Signal(context, new IntegerValue(value));
             s.Label = s.Value.ToString() + "_Constant";
-            s.Properties.AddProperty(Properties.ConstantSignalProperty.Instance);
+            s.AddConstraint(Properties.ConstantSignalProperty.Instance);
             return s;
         }
 
