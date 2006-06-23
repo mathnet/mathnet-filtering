@@ -19,32 +19,35 @@ namespace MathNet.Symbolics.Backend.Patterns
 
         public override bool FulfillsCondition(Signal output, Port port)
         {
+            if(port == null)
+                return false;
+
             int cnt = 0;
             switch(_mode)
             {
                 case CombinationMode.All:
                     foreach(Signal s in port.OutputSignals)
-                        if(!s.AskForProperty(_propertyType))
+                        if(!s.HasProperty(_propertyType))
                             return false;
                     return true;
                 case CombinationMode.None:
                     foreach(Signal s in port.OutputSignals)
-                        if(s.AskForProperty(_propertyType))
+                        if(s.HasProperty(_propertyType))
                             return false;
                     return true;
                 case CombinationMode.AtLeastOne:
                     foreach(Signal s in port.OutputSignals)
-                        if(s.AskForProperty(_propertyType))
+                        if(s.HasProperty(_propertyType))
                             return true;
                     return false;
                 case CombinationMode.One:
                     foreach(Signal s in port.OutputSignals)
-                        if(s.AskForProperty(_propertyType))
+                        if(s.HasProperty(_propertyType))
                             cnt++;
                     return cnt == 1;
                 case CombinationMode.AtMostOne:
                     foreach(Signal s in port.OutputSignals)
-                        if(s.AskForProperty(_propertyType) && cnt++ > 0)
+                        if(s.HasProperty(_propertyType) && cnt++ > 0)
                             return false;
                     return true;
                 default:

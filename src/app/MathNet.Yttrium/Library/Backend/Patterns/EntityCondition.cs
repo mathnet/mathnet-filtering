@@ -22,6 +22,8 @@ namespace MathNet.Symbolics.Backend.Patterns
 
         public override bool FulfillsCondition(Signal output, Port port)
         {
+            if(port == null)
+                return false;
             return _entityId.Equals(port.Entity.EntityId);
         }
 
