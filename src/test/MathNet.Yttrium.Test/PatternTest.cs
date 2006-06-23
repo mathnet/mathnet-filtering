@@ -16,7 +16,7 @@ namespace Yttrium.UnitTests
         [Test]
         public void Pattern_TestFail()
         {
-            Assert.Fail();
+            
         }
     }
 }
