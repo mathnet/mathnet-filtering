@@ -7,15 +7,15 @@ using MathNet.Symbolics.Core;
 
 namespace MathNet.Symbolics.Backend.Patterns
 {
-    public class Match : IEnumerable<KeyValuePair<string,List<Tuple<Signal, Port>>>>
+    public class Match : IEnumerable<Group>
     {
         private MathIdentifier _patternId;
-        private Dictionary<string, List<Tuple<Signal, Port>>> _groups;
+        private GroupCollection _groups;
 
         public Match(MathIdentifier patternId)
         {
             _patternId = patternId;
-            _groups = new Dictionary<string, List<Tuple<Signal, Port>>>();
+            _groups = new GroupCollection();
         }
 
         public MathIdentifier PatternId
@@ -23,39 +23,36 @@ namespace MathNet.Symbolics.Backend.Patterns
             get { return _patternId; }
         }
 
-        public List<Tuple<Signal, Port>> Groups(string label)
+        public Group this[string groupLabel]
         {
-            return _groups[label];
+            get { return _groups[groupLabel]; }
         }
 
-        public ICollection<string> GroupLabels
+        public int GroupCount
         {
-            get { return _groups.Keys; }
+            get { return _groups.Count; }
+        }
+
+        public GroupCollection Groups
+        {
+            get { return _groups; }
         }
 
         public void AppendGroup(string label, Tuple<Signal, Port> value)
         {
-            List<Tuple<Signal, Port>> list;
-            if(_groups.TryGetValue(label, out list)) // merge label
-                list.Add(value);
-            else // add new label
-            {
-                List<Tuple<Signal, Port>> values = new List<Tuple<Signal,Port>>();
-                values.Add(value);
-                _groups.Add(label, values);
-            }
+            _groups.Append(label, value);
         }
         public void AppendGroup(string label, List<Tuple<Signal, Port>> values)
         {
-            List<Tuple<Signal, Port>> list;
-            if(_groups.TryGetValue(label, out list)) // merge label
-                list.AddRange(values);
-            else // add new label
-                _groups.Add(label, values);
+            _groups.Append(label, values);
+        }
+        public void AppendGroup(Group group)
+        {
+            _groups.Append(group);
         }
 
         #region IEnumerable Members
-        public IEnumerator<KeyValuePair<string, List<Tuple<Signal, Port>>>> GetEnumerator()
+        public IEnumerator<Group> GetEnumerator()
         {
             return _groups.GetEnumerator();
         }

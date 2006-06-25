@@ -122,18 +122,18 @@ namespace Yttrium.UnitTests
 
             Match mA = res[new MathIdentifier("A", "Test")];
             Assert.AreEqual(new MathIdentifier("A", "Test"), mA.PatternId, "C04");
-            Assert.AreEqual(0, mA.GroupLabels.Count, "C05");
+            Assert.AreEqual(0, mA.GroupCount, "C05");
 
             Match mB = res[new MathIdentifier("B", "Test")];
             Assert.AreEqual(new MathIdentifier("B", "Test"), mB.PatternId, "C06");
-            Assert.AreEqual(2, mB.GroupLabels.Count, "C07");
+            Assert.AreEqual(2, mB.GroupCount, "C07");
 
-            List<Tuple<Signal,Port>> mBsqr = mB.Groups("sqr");
+            Group mBsqr = mB["sqr"];
             Assert.AreEqual(1, mBsqr.Count, "C08");
             Assert.AreEqual(x2.InstanceId, mBsqr[0].First.InstanceId, "C09");
             Assert.AreEqual(x2.DrivenByPort.InstanceId, mBsqr[0].Second.InstanceId, "C10");
 
-            List<Tuple<Signal, Port>> mBsin = mB.Groups("sin");
+            Group mBsin = mB["sin"];
             Assert.AreEqual(1, mBsin.Count, "C11");
             Assert.AreEqual(sinx2.InstanceId, mBsin[0].First.InstanceId, "C12");
             Assert.AreEqual(sinx2.DrivenByPort.InstanceId, mBsin[0].Second.InstanceId, "C13");
@@ -209,11 +209,11 @@ namespace Yttrium.UnitTests
 
             Match match = res[new MathIdentifier("SinSqr", "Test")];
             Assert.AreEqual(new MathIdentifier("SinSqr", "Test"), match.PatternId, "D29");
-            Assert.AreEqual(2, match.GroupLabels.Count, "D30");
-            Assert.AreEqual(1, match.Groups("sin").Count, "D31");
-            Assert.AreEqual(sinx2.InstanceId, match.Groups("sin")[0].First.InstanceId, "D32");
-            Assert.AreEqual(1, match.Groups("sqr").Count, "D33");
-            Assert.AreEqual(x2.InstanceId, match.Groups("sqr")[0].First.InstanceId, "D34");
+            Assert.AreEqual(2, match.GroupCount, "D30");
+            Assert.AreEqual(1, match["sin"].Count, "D31");
+            Assert.AreEqual(sinx2.InstanceId, match["sin"][0].First.InstanceId, "D32");
+            Assert.AreEqual(1, match["sqr"].Count, "D33");
+            Assert.AreEqual(x2.InstanceId, match["sqr"][0].First.InstanceId, "D34");
         }
     }
 }

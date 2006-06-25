@@ -44,10 +44,15 @@ namespace MathNet.Symbolics.Backend.Patterns
             {
                 foreach(Match match in matches)
                 {
+                    /*
+                     * If a match was already added by another chid,
+                     * copy over its captured groups to the existing match.
+                     * Otherwise copy over the whole match.
+                     */
                     Match m;
                     if(res.TryGetValue(match.PatternId, out m))
-                        foreach(KeyValuePair<string, List<Tuple<Signal, Port>>> group in match)
-                            m.AppendGroup(group.Key, group.Value);
+                        foreach(Group group in match)
+                            m.AppendGroup(group);
                     else
                         res.Add(match);
                 }
@@ -83,8 +88,8 @@ namespace MathNet.Symbolics.Backend.Patterns
                         break;
                     }
                     // Merge Groups
-                    foreach(KeyValuePair<string, List<Tuple<Signal, Port>>> group in match)
-                        lastMatch.AppendGroup(group.Key, group.Value);
+                    foreach(Group group in match)
+                        lastMatch.AppendGroup(group);
                 }
                 if(suitable)
                     res.Add(lastMatch);
@@ -120,8 +125,8 @@ namespace MathNet.Symbolics.Backend.Patterns
                         break;
                     }
                     // Merge Groups
-                    foreach(KeyValuePair<string, List<Tuple<Signal, Port>>> group in match)
-                        lastMatch.AppendGroup(group.Key, group.Value);
+                    foreach(Group group in match)
+                        lastMatch.AppendGroup(group);
                 }
                 if(suitable)
                     return lastMatch;

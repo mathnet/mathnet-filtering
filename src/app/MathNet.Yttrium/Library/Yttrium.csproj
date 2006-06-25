@@ -139,6 +139,8 @@
     <Compile Include="Backend\Patterns\CombinationMode.cs" />
     <Compile Include="Backend\Patterns\Condition.cs" />
     <Compile Include="Backend\Patterns\AlwaysTrueCondition.cs" />
+    <Compile Include="Backend\Patterns\Group.cs" />
+    <Compile Include="Backend\Patterns\GroupCollection.cs" />
     <Compile Include="Backend\Patterns\InputSignalsPropertyCondition.cs" />
     <Compile Include="Backend\Patterns\Match.cs" />
     <Compile Include="Backend\Patterns\MatchCollection.cs" />
