@@ -80,7 +80,7 @@
     <Compile Include="Backend\Containers\SignalSet.cs" />
     <Compile Include="Backend\Containers\SignalTable.cs" />
     <Compile Include="Backend\Containers\TheoremTable.cs" />
-    <Compile Include="Backend\Containers\TransformationTypeTable.cs" />
+    <Compile Include="Backend\Containers\TransformationTheoremTypeTable.cs" />
     <Compile Include="Backend\Context.cs" />
     <Compile Include="Backend\Discovery\ArchitectureServerAttribute.cs" />
     <Compile Include="Backend\Discovery\EntityImplementationAttribute.cs" />
@@ -139,6 +139,7 @@
     <Compile Include="Backend\Patterns\CombinationMode.cs" />
     <Compile Include="Backend\Patterns\Condition.cs" />
     <Compile Include="Backend\Patterns\AlwaysTrueCondition.cs" />
+    <Compile Include="Backend\Patterns\ArchitectureCondition.cs" />
     <Compile Include="Backend\Patterns\Group.cs" />
     <Compile Include="Backend\Patterns\GroupCollection.cs" />
     <Compile Include="Backend\Patterns\InputSignalsPropertyCondition.cs" />

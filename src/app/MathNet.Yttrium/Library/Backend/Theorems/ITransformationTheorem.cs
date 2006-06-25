@@ -26,12 +26,15 @@ using System.Text;
 using MathNet.Symbolics.Core;
 using MathNet.Symbolics.Backend.Containers;
 using MathNet.Symbolics.Backend.Traversing;
+using MathNet.Symbolics.Backend.Patterns;
 
 namespace MathNet.Symbolics.Backend.Theorems
 {
+    public delegate Pattern CreatePattern();
+
     public interface ITransformationTheorem : ITheorem
     {
-        bool SupportsPort(Port port);
+        Pattern CreatePattern();
         MathIdentifier TransformationTypeId { get; }
         ManipulationPlan EstimatePlan(Port port);
         IEnumerable<Signal> ManipulatePort(Port port, SignalSet manipulatedInputs, bool hasManipulatedInputs);

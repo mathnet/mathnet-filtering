@@ -27,6 +27,7 @@ using MathNet.Symbolics.Core;
 using MathNet.Symbolics.Backend.Containers;
 using MathNet.Symbolics.Backend.Theorems;
 using MathNet.Symbolics.Backend.Traversing;
+using MathNet.Symbolics.Backend.Patterns;
 
 namespace MathNet.Symbolics.StdPackage.Algebra
 {
@@ -36,16 +37,14 @@ namespace MathNet.Symbolics.StdPackage.Algebra
         private readonly MathIdentifier _id;
         private ManipulatePort _simplify;
         private EstimatePlan _plan;
-        private Predicate<Port> _supportsPort;
+        private CreatePattern _pattern;
 
-        public AutoSimplifyTransformation(Entity supportedEntity, EstimatePlan plan, ManipulatePort simplify)
-            : this(supportedEntity.EntityId.DerivePostfix("AutoSimplify"), delegate(Port p) { return supportedEntity.EqualsById(p.Entity); }, plan, simplify) { }
-        public AutoSimplifyTransformation(string label, string domain, Predicate<Port> supportsPort, EstimatePlan plan, ManipulatePort simplify)
-            : this(new MathIdentifier(label, domain), supportsPort, plan, simplify) { }
-        public AutoSimplifyTransformation(MathIdentifier id, Predicate<Port> supportsPort, EstimatePlan plan, ManipulatePort simplify)
+        public AutoSimplifyTransformation(MathIdentifier supportedEntityId, EstimatePlan plan, ManipulatePort simplify)
+            : this(supportedEntityId.DerivePostfix("AutoSimplify"), delegate() { return new Pattern(new EntityCondition(supportedEntityId)); }, plan, simplify) { }
+        public AutoSimplifyTransformation(MathIdentifier id, CreatePattern pattern, EstimatePlan plan, ManipulatePort simplify)
         {
             _id = id;
-            _supportsPort = supportsPort;
+            _pattern = pattern;
             _simplify = simplify;
             _plan = plan;
         }
@@ -63,9 +62,9 @@ namespace MathNet.Symbolics.StdPackage.Algebra
             get { return _id; }
         }
 
-        public bool SupportsPort(Port port)
+        public Pattern CreatePattern()
         {
-            return _supportsPort(port);
+            return _pattern();
         }
 
         public ManipulationPlan EstimatePlan(Port port)
@@ -82,5 +81,6 @@ namespace MathNet.Symbolics.StdPackage.Algebra
         {
             return replacement;
         }
+
     }
 }

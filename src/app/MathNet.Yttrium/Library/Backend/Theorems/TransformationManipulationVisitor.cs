@@ -26,6 +26,7 @@ using System.Text;
 using MathNet.Symbolics.Core;
 using MathNet.Symbolics.Backend.Traversing;
 using MathNet.Symbolics.Backend.Containers;
+using MathNet.Symbolics.Backend.Patterns;
 
 namespace MathNet.Symbolics.Backend.Theorems
 {
@@ -36,14 +37,14 @@ namespace MathNet.Symbolics.Backend.Theorems
     /// </summary>
     public class TransformationManipulationVisitor : IManipulationVisitor
     {
-        TransformationTypeTable _transformations;
+        TransformationTheoremTypeTable _transformations;
         ConfigureTransformation _configure;
 
-        public TransformationManipulationVisitor(TransformationTypeTable transformations)
+        public TransformationManipulationVisitor(TransformationTheoremTypeTable transformations)
         {
             _transformations = transformations;
         }
-        public TransformationManipulationVisitor(TransformationTypeTable transformations, ConfigureTransformation configure)
+        public TransformationManipulationVisitor(TransformationTheoremTypeTable transformations, ConfigureTransformation configure)
         {
             _transformations = transformations;
             _configure = configure;
@@ -52,7 +53,8 @@ namespace MathNet.Symbolics.Backend.Theorems
         public ManipulationPlan EstimatePlan(Port port)
         {
             ITransformationTheorem trans;
-            if(_transformations.TryLookupTheorem(port, out trans))
+            GroupCollection groups;
+            if(_transformations.TryLookupBest(null, port, out trans, out groups))
             {
                 if(_configure != null)
                     _configure(trans);
@@ -65,7 +67,8 @@ namespace MathNet.Symbolics.Backend.Theorems
         public IEnumerable<Signal> ManipulatePort(Port port, SignalSet manipulatedInputs, bool hasManipulatedInputs)
         {
             ITransformationTheorem trans;
-            if(_transformations.TryLookupTheorem(port, out trans))
+            GroupCollection groups;
+            if(_transformations.TryLookupBest(null, port, out trans, out groups))
             {
                 if(_configure != null)
                     _configure(trans);

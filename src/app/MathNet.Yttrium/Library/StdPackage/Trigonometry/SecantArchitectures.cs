@@ -28,6 +28,7 @@ using MathNet.Symbolics.Backend.Containers;
 using MathNet.Symbolics.Backend.Templates;
 using MathNet.Symbolics.Backend.Theorems;
 using MathNet.Symbolics.Backend.Traversing;
+using MathNet.Symbolics.Backend.Patterns;
 using MathNet.Symbolics.StdPackage.Structures;
 using MathNet.Symbolics.Workplace;
 
@@ -57,7 +58,7 @@ namespace MathNet.Symbolics.StdPackage.Trigonometry
         {
             ITheorem[] theorems = new ITheorem[2];
 
-            theorems[0] = new Analysis.DerivativeTransformation(context.Library.LookupEntity(_entityId),
+            theorems[0] = new Analysis.DerivativeTransformation(_entityId,
                 delegate(Port port, SignalSet manipulatedInputs, Signal variable, bool hasManipulatedInputs)
                 {
                     Builder b = context.Builder;
@@ -68,8 +69,8 @@ namespace MathNet.Symbolics.StdPackage.Trigonometry
                     return outputs;
                 });
 
-            theorems[1] = new BasicTransformation("SecantTrigonometricSusbtitute", "Std", "TrigonometricSubstitute", "Std",
-                delegate(Port port) { return port.Entity.EntityId.Equals("Secant", "Std"); },
+            theorems[1] = new BasicTransformation(_entityId.DerivePostfix("TrigonometricSubstitute"), new MathIdentifier("TrigonometricSubstitute", "Std"),
+                delegate() { return new Pattern(new EntityCondition(_entityId)); },
                 delegate(Port port) { return ManipulationPlan.DoAlter; },
                 delegate(Port port, SignalSet transformedInputs, bool hasTransformedInputs)
                 {

@@ -27,6 +27,7 @@ using MathNet.Symbolics.Core;
 using MathNet.Symbolics.Backend.Containers;
 using MathNet.Symbolics.Backend.Theorems;
 using MathNet.Symbolics.Backend.Traversing;
+using MathNet.Symbolics.Backend.Patterns;
 using MathNet.Symbolics.StdPackage.Structures;
 using MathNet.Symbolics.StdPackage.Algebra;
 
@@ -62,10 +63,10 @@ namespace MathNet.Symbolics.Backend.Templates
         {
             ITheorem[] theorems = new ITheorem[1];
 
-            theorems[0] = new AutoSimplifyTransformation("GenericMathOpAutoSimplify", "Std",
-                delegate(Port port)
+            theorems[0] = new AutoSimplifyTransformation(new MathIdentifier("GenericMathOpAutoSimplify", "Std"),
+                delegate()
                 {
-                    return port.HasArchitectureLink && port.CurrentArchitecture.IsMathematicalOperator;
+                    return new Pattern(new ArchitectureCondition(delegate(Architecture a) { return a.IsMathematicalOperator; }));
                 },
                 delegate(Port port)
                 {

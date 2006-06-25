@@ -626,26 +626,26 @@ namespace MathNet.Symbolics.Workplace
         #region Transformation Theorems
         public static Signal Transform(Signal signal, Context context, MathIdentifier transformationTypeId, bool ignoreHold)
         {
-            TransformationTypeTable transTable = context.Library.LookupTransformationTheoremType(transformationTypeId);
+            TransformationTheoremTypeTable transTable = context.Library.LookupTransformationTheoremType(transformationTypeId);
             TransformationManipulationVisitor visitor = new TransformationManipulationVisitor(transTable);
             return Manipulator.Manipulate(signal, visitor, ignoreHold);
         }
         public static Signal Transform(Signal signal, Context context, MathIdentifier transformationTypeId, ConfigureTransformation configure, bool ignoreHold)
         {
-            TransformationTypeTable transTable = context.Library.LookupTransformationTheoremType(transformationTypeId);
+            TransformationTheoremTypeTable transTable = context.Library.LookupTransformationTheoremType(transformationTypeId);
             TransformationManipulationVisitor visitor = new TransformationManipulationVisitor(transTable, configure);
             return Manipulator.Manipulate(signal, visitor, ignoreHold);
         }
 
         public static SignalSet Transform(IEnumerable<Signal> signals, Context context, MathIdentifier transformationTypeId, bool ignoreHold)
         {
-            TransformationTypeTable transTable = context.Library.LookupTransformationTheoremType(transformationTypeId);
+            TransformationTheoremTypeTable transTable = context.Library.LookupTransformationTheoremType(transformationTypeId);
             TransformationManipulationVisitor visitor = new TransformationManipulationVisitor(transTable);
             return Manipulator.Manipulate(signals, visitor, ignoreHold);
         }
         public static SignalSet Transform(IEnumerable<Signal> signals, Context context, MathIdentifier transformationTypeId, ConfigureTransformation configure, bool ignoreHold)
         {
-            TransformationTypeTable transTable = context.Library.LookupTransformationTheoremType(transformationTypeId);
+            TransformationTheoremTypeTable transTable = context.Library.LookupTransformationTheoremType(transformationTypeId);
             TransformationManipulationVisitor visitor = new TransformationManipulationVisitor(transTable, configure);
             return Manipulator.Manipulate(signals, visitor, ignoreHold);
         }

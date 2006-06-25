@@ -27,6 +27,7 @@ using MathNet.Symbolics.Core;
 using MathNet.Symbolics.Backend.Containers;
 using MathNet.Symbolics.Backend.Theorems;
 using MathNet.Symbolics.Backend.Traversing;
+using MathNet.Symbolics.Backend.Patterns;
 
 using MathNet.Symbolics.StdPackage.Structures;
 
@@ -39,19 +40,19 @@ namespace MathNet.Symbolics.StdPackage.Analysis
     {
         private static readonly MathIdentifier _transformationTypeId = new MathIdentifier("Derive", "Std");
         private readonly MathIdentifier _id;
-        private Entity _supportedEntity;
+        private MathIdentifier _supportedEntityId;
         private Derive _derive;
         private EstimateDerivePlan _plan;
         private Signal _variable;
 
-        public DerivativeTransformation(Entity supportedEntity, Derive derive)
-            : this(supportedEntity.EntityId.DerivePostfix("Derivative"), supportedEntity, DefaultEstimate, derive) { }
-        public DerivativeTransformation(Entity supportedEntity, EstimateDerivePlan plan, Derive derive)
-            : this(supportedEntity.EntityId.DerivePostfix("Derivative"), supportedEntity, plan, derive) { }
-        public DerivativeTransformation(MathIdentifier id, Entity supportedEntity, EstimateDerivePlan plan, Derive derive)
+        public DerivativeTransformation(MathIdentifier supportedEntityId, Derive derive)
+            : this(supportedEntityId.DerivePostfix("Derivative"), supportedEntityId, DefaultEstimate, derive) { }
+        public DerivativeTransformation(MathIdentifier supportedEntityId, EstimateDerivePlan plan, Derive derive)
+            : this(supportedEntityId.DerivePostfix("Derivative"), supportedEntityId, plan, derive) { }
+        public DerivativeTransformation(MathIdentifier id, MathIdentifier supportedEntityId, EstimateDerivePlan plan, Derive derive)
         {
             _id = id;
-            _supportedEntity = supportedEntity;
+            _supportedEntityId = supportedEntityId;
             _derive = derive;
             _plan = plan;
         }
@@ -75,9 +76,9 @@ namespace MathNet.Symbolics.StdPackage.Analysis
             get { return _id; }
         }
 
-        public bool SupportsPort(Port port)
+        public Pattern CreatePattern()
         {
-            return _supportedEntity.EqualsById(port.Entity);
+            return new Pattern(new EntityCondition(_supportedEntityId));
         }
 
         public ManipulationPlan EstimatePlan(Port port)

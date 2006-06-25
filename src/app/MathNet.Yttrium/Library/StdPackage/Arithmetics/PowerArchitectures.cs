@@ -87,7 +87,7 @@ namespace MathNet.Symbolics.StdPackage.Arithmetics
             //        return port.OutputSignals[0] * (innerA + innerB);
             //    });
 
-            theorems[0] = new Algebra.AutoSimplifyTransformation(context.Library.LookupEntity(_entityId),
+            theorems[0] = new Algebra.AutoSimplifyTransformation(_entityId,
                 delegate(Port port)
                 {
                     // TODO

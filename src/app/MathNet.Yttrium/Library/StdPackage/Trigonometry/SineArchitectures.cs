@@ -57,7 +57,7 @@ namespace MathNet.Symbolics.StdPackage.Trigonometry
         {
             ITheorem[] theorems = new ITheorem[1];
             
-            theorems[0] = new Analysis.DerivativeTransformation(context.Library.LookupEntity(_entityId),
+            theorems[0] = new Analysis.DerivativeTransformation(_entityId,
                 delegate(Port port, SignalSet manipulatedInputs, Signal variable, bool hasManipulatedInputs)
                 {
                     Builder b = context.Builder;

@@ -72,13 +72,13 @@ namespace MathNet.Symbolics.StdPackage.Flow
         {
             ITheorem[] theorems = new ITheorem[2];
 
-            theorems[0] = new Analysis.DerivativeTransformation(context.Library.LookupEntity(_entityId),
+            theorems[0] = new Analysis.DerivativeTransformation(_entityId,
                 delegate(Port port, SignalSet manipulatedInputs, Signal variable, bool hasManipulatedInputs)
                 {
                     return new SignalSet(manipulatedInputs);
                 });
 
-            theorems[1] = new Algebra.AutoSimplifyTransformation(context.Library.LookupEntity(_entityId),
+            theorems[1] = new Algebra.AutoSimplifyTransformation(_entityId,
                 delegate(Port port)
                 {
                     return ManipulationPlan.DoAlter;

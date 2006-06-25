@@ -84,7 +84,7 @@ namespace MathNet.Symbolics.StdPackage.Arithmetics
         {
             ITheorem[] theorems = new ITheorem[2];
 
-            theorems[0] = new Analysis.DerivativeTransformation(context.Library.LookupEntity(_entityId),
+            theorems[0] = new Analysis.DerivativeTransformation(_entityId,
                 delegate(Port port, SignalSet manipulatedInputs, Signal variable, bool hasManipulatedInputs)
                 {
                     int cnt = manipulatedInputs.Count - 1;
@@ -108,7 +108,7 @@ namespace MathNet.Symbolics.StdPackage.Arithmetics
                     return new SignalSet(b.SubtractSimplified(left, addSignals));
                 });
 
-            theorems[1] = new Algebra.AutoSimplifyTransformation(context.Library.LookupEntity(_entityId),
+            theorems[1] = new Algebra.AutoSimplifyTransformation(_entityId,
                 delegate(Port port)
                 {
                     // TODO

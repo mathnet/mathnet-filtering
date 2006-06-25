@@ -26,6 +26,7 @@ using System.Text;
 using MathNet.Symbolics.Core;
 using MathNet.Symbolics.Backend.Containers;
 using MathNet.Symbolics.Backend.Traversing;
+using MathNet.Symbolics.Backend.Patterns;
 
 namespace MathNet.Symbolics.Backend.Theorems
 {
@@ -35,15 +36,13 @@ namespace MathNet.Symbolics.Backend.Theorems
         private readonly MathIdentifier _transformationTypeId;
         private ManipulatePort _transform;
         private EstimatePlan _plan;
-        private Predicate<Port> _supportsPort;
+        private CreatePattern _pattern;
 
-        public BasicTransformation(string label, string domain, string transTypeLabel, string transTypeDomain, Predicate<Port> supportsPort, EstimatePlan plan, ManipulatePort transform)
-            : this(new MathIdentifier(label, domain), new MathIdentifier(transTypeLabel, transTypeDomain), supportsPort, plan, transform) { }
-        public BasicTransformation(MathIdentifier id, MathIdentifier transformationTypeId, Predicate<Port> supportsPort, EstimatePlan plan, ManipulatePort transform)
+        public BasicTransformation(MathIdentifier id, MathIdentifier transformationTypeId, CreatePattern pattern, EstimatePlan plan, ManipulatePort transform)
         {
             _id = id;
             _transformationTypeId = transformationTypeId;
-            _supportsPort = supportsPort;
+            _pattern = pattern;
             _transform = transform;
             _plan = plan;
         }
@@ -57,9 +56,9 @@ namespace MathNet.Symbolics.Backend.Theorems
             get { return _id; }
         }
 
-        public bool SupportsPort(Port port)
+        public Pattern CreatePattern()
         {
-            return _supportsPort(port);
+            return _pattern();
         }
 
         public ManipulationPlan EstimatePlan(Port port)
