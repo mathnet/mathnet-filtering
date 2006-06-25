@@ -58,7 +58,7 @@ namespace MathNet.Symbolics.Backend.Theorems
             {
                 if(_configure != null)
                     _configure(trans);
-                return trans.EstimatePlan(port);
+                return trans.EstimatePlan(port, groups);
             }
             else
                 return ManipulationPlan.CloneIfChildsAltered;
@@ -72,7 +72,7 @@ namespace MathNet.Symbolics.Backend.Theorems
             {
                 if(_configure != null)
                     _configure(trans);
-                return trans.ManipulatePort(port, manipulatedInputs, hasManipulatedInputs);
+                return trans.ManipulatePort(port, manipulatedInputs, hasManipulatedInputs, groups);
             }
             else
                 throw new MathNet.Symbolics.Backend.Exceptions.TheoremMismatchException();

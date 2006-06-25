@@ -36,8 +36,8 @@ namespace MathNet.Symbolics.Backend.Theorems
     {
         Pattern CreatePattern();
         MathIdentifier TransformationTypeId { get; }
-        ManipulationPlan EstimatePlan(Port port);
-        IEnumerable<Signal> ManipulatePort(Port port, SignalSet manipulatedInputs, bool hasManipulatedInputs);
+        ManipulationPlan EstimatePlan(Port port, GroupCollection groups);
+        IEnumerable<Signal> ManipulatePort(Port port, SignalSet manipulatedInputs, bool hasManipulatedInputs, GroupCollection groups);
         Signal ManipulateSignal(Signal original, Signal replacement, bool isReplaced);
     }
 }

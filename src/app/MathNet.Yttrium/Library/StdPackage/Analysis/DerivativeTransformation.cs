@@ -81,12 +81,12 @@ namespace MathNet.Symbolics.StdPackage.Analysis
             return new Pattern(new EntityCondition(_supportedEntityId));
         }
 
-        public ManipulationPlan EstimatePlan(Port port)
+        public ManipulationPlan EstimatePlan(Port port, GroupCollection groups)
         {
             return _plan(port, _variable);
         }
 
-        public IEnumerable<Signal> ManipulatePort(Port port, SignalSet manipulatedInputs, bool hasManipulatedInputs)
+        public IEnumerable<Signal> ManipulatePort(Port port, SignalSet manipulatedInputs, bool hasManipulatedInputs, GroupCollection groups)
         {
             return _derive(port, manipulatedInputs, _variable, hasManipulatedInputs);
         }

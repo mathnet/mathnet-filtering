@@ -61,12 +61,12 @@ namespace MathNet.Symbolics.Backend.Theorems
             return _pattern();
         }
 
-        public ManipulationPlan EstimatePlan(Port port)
+        public ManipulationPlan EstimatePlan(Port port, GroupCollection groups)
         {
             return _plan(port);
         }
 
-        public IEnumerable<Signal> ManipulatePort(Port port, SignalSet manipulatedInputs, bool hasManipulatedInputs)
+        public IEnumerable<Signal> ManipulatePort(Port port, SignalSet manipulatedInputs, bool hasManipulatedInputs, GroupCollection groups)
         {
             return _transform(port, manipulatedInputs, hasManipulatedInputs);
         }
