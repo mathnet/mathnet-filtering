@@ -31,8 +31,10 @@ namespace MathNet.Symbolics.Backend.Patterns
             get { return _childAxis; }
         }
 
-        public MatchCollection MatchAll(Port port)
+        public MatchCollection MatchAll(Port port, int score)
         {
+            int newScore = score + 3;
+
             ReadOnlySignalSet inputs = port.InputSignals;
             if(_childAxis.Count != inputs.Count)
                 return new MatchCollection();
@@ -40,7 +42,7 @@ namespace MathNet.Symbolics.Backend.Patterns
             // Exact, Ordered Matching
             List<MatchCollection> list = new List<MatchCollection>(_childAxis.Count);
             for(int i = 0; i < _childAxis.Count; i++)
-                list.Add(_childAxis[i].MatchAll(inputs[i], inputs[i].DrivenByPort));
+                list.Add(_childAxis[i].MatchAll(inputs[i], inputs[i].DrivenByPort, newScore));
 
             return MatchCollection.CombineIntersect(list); //CombineAnd(list);
         }
@@ -54,7 +56,7 @@ namespace MathNet.Symbolics.Backend.Patterns
             // Exact, Ordered Matching
             List<MatchCollection> list = new List<MatchCollection>(_childAxis.Count);
             for(int i = 0; i < _childAxis.Count; i++)
-                list.Add(_childAxis[i].MatchAll(inputs[i], inputs[i].DrivenByPort));
+                list.Add(_childAxis[i].MatchAll(inputs[i], inputs[i].DrivenByPort, 3));
 
             return MatchCollection.CombineIntersectFirst(list);
         }

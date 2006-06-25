@@ -11,16 +11,31 @@ namespace MathNet.Symbolics.Backend.Patterns
     {
         private MathIdentifier _patternId;
         private GroupCollection _groups;
+        private int _score;
 
-        public Match(MathIdentifier patternId)
+        public Match(MathIdentifier patternId, int score)
         {
             _patternId = patternId;
             _groups = new GroupCollection();
+            _score = score;
         }
 
         public MathIdentifier PatternId
         {
             get { return _patternId; }
+        }
+
+        public int Score
+        {
+            get { return _score; }
+        }
+
+        public void MergeWithMatch(Match match)
+        {
+            if(match._score > _score)
+                _score = match._score;
+            foreach(Group group in match)
+                AppendGroup(group);
         }
 
         public Group this[string groupLabel]

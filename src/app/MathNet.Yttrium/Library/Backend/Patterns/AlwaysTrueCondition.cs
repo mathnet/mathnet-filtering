@@ -22,6 +22,11 @@ namespace MathNet.Symbolics.Backend.Patterns
             }
         }
 
+        public override int Score
+        {
+            get { return 0; }
+        }
+
         public override bool FulfillsCondition(Signal output, Port port)
         {
             return true;

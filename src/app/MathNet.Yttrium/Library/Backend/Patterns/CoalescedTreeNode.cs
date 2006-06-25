@@ -94,8 +94,10 @@ namespace MathNet.Symbolics.Backend.Patterns
             _groupAxis.Remove(patternId);
         }
 
-        public MatchCollection MatchAll(Signal output, Port port)
+        public MatchCollection MatchAll(Signal output, Port port, int score)
         {
+            int newScore = score + _condition.Score;
+
             // Check Node Condition
             if(!_condition.FulfillsCondition(output, port))
                 return new MatchCollection();
@@ -104,11 +106,11 @@ namespace MathNet.Symbolics.Backend.Patterns
 
             // Follow Condition Axis
             foreach(CoalescedTreeNode condition in _conditionAxis)
-                matches.Add(condition.MatchAll(output, port));
+                matches.Add(condition.MatchAll(output, port, newScore));
 
             // Follow Pattern Axis
             foreach(CoalescedChildPattern pattern in _patternAxis)
-                matches.Add(pattern.MatchAll(port));
+                matches.Add(pattern.MatchAll(port, newScore));
 
             // Combine Matches
             MatchCollection res = MatchCollection.CombineUnion(matches);
@@ -116,7 +118,7 @@ namespace MathNet.Symbolics.Backend.Patterns
             // Check Subscription Axis
             foreach(MathIdentifier id in _subscriptionAxis)
                 if(!res.Contains(id))
-                    res.Add(new Match(id));
+                    res.Add(new Match(id, newScore));
 
             // Check Group Axis
             foreach(KeyValuePair<MathIdentifier, string> group in _groupAxis)
@@ -135,7 +137,7 @@ namespace MathNet.Symbolics.Backend.Patterns
             // 1. Trial: Try Local Subscriptions
             if(_subscriptionAxis.Count > 0)
             {
-                Match m = new Match(_subscriptionAxis[0]);
+                Match m = new Match(_subscriptionAxis[0], 1 + _condition.Score);
 
                 // Check Group Axis
                 string label;

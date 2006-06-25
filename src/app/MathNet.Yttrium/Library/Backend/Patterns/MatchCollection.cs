@@ -51,8 +51,7 @@ namespace MathNet.Symbolics.Backend.Patterns
                      */
                     Match m;
                     if(res.TryGetValue(match.PatternId, out m))
-                        foreach(Group group in match)
-                            m.AppendGroup(group);
+                        m.MergeWithMatch(match);
                     else
                         res.Add(match);
                 }
@@ -88,8 +87,7 @@ namespace MathNet.Symbolics.Backend.Patterns
                         break;
                     }
                     // Merge Groups
-                    foreach(Group group in match)
-                        lastMatch.AppendGroup(group);
+                    lastMatch.MergeWithMatch(match);
                 }
                 if(suitable)
                     res.Add(lastMatch);
@@ -125,8 +123,7 @@ namespace MathNet.Symbolics.Backend.Patterns
                         break;
                     }
                     // Merge Groups
-                    foreach(Group group in match)
-                        lastMatch.AppendGroup(group);
+                    lastMatch.MergeWithMatch(match);
                 }
                 if(suitable)
                     return lastMatch;

@@ -28,6 +28,7 @@ using MathNet.Symbolics.Backend;
 using MathNet.Symbolics.Backend.Containers;
 using MathNet.Symbolics.Backend.Theorems;
 using MathNet.Symbolics.Backend.Traversing;
+using MathNet.Symbolics.Backend.Patterns;
 
 namespace MathNet.Symbolics.Workplace
 {
@@ -693,6 +694,54 @@ namespace MathNet.Symbolics.Workplace
         }
         #endregion
 
+        #endregion
+
+        #region Pattern Matching
+        public static MatchCollection MatchAll(Signal output, Port port, CoalescedTreeNode tree)
+        {
+            return tree.MatchAll(output, port, 1);
+        }
+        public static Match MatchFirst(Signal output, Port port, CoalescedTreeNode tree)
+        {
+            Match res = tree.MatchFirst(output, port);
+            if(res == null)
+                throw new MathNet.Symbolics.Backend.Exceptions.NotFoundException();
+            return res;
+        }
+        public static bool TryMatchFirst(Signal output, Port port, CoalescedTreeNode tree, out Match match)
+        {
+            match = tree.MatchFirst(output, port);
+            return match != null;
+        }
+        public static Match MatchBest(Signal output, Port port, CoalescedTreeNode tree)
+        {
+            MatchCollection res = tree.MatchAll(output, port, 1);
+            Match bestMatch = null;
+            int bestScore = -1;
+            foreach(Match m in res)
+                if(m.Score > bestScore)
+                {
+                    bestMatch = m;
+                    bestScore = m.Score;
+                }
+            if(bestScore == -1)
+                throw new MathNet.Symbolics.Backend.Exceptions.NotFoundException();
+            return bestMatch;
+        }
+        public static bool TryMatchBest(Signal output, Port port, CoalescedTreeNode tree, out Match match)
+        {
+            MatchCollection res = tree.MatchAll(output, port, 1);
+            Match bestMatch = null;
+            int bestScore = -1;
+            foreach(Match m in res)
+                if(m.Score > bestScore)
+                {
+                    bestMatch = m;
+                    bestScore = m.Score;
+                }
+            match = bestMatch;
+            return bestScore != -1;
+        }
         #endregion
     }
 }

@@ -115,7 +115,7 @@ namespace Yttrium.UnitTests
             tan.Subscribe(new MathIdentifier("C", "Test"));
             root.ConditionAxis.Add(tan);
 
-            MatchCollection res = root.MatchAll(sinx2, sinx2.DrivenByPort);
+            MatchCollection res = root.MatchAll(sinx2, sinx2.DrivenByPort, 1);
             Assert.AreEqual(true, res.Contains(new MathIdentifier("A", "Test")), "C01");
             Assert.AreEqual(true, res.Contains(new MathIdentifier("B", "Test")), "C02");
             Assert.AreEqual(false, res.Contains(new MathIdentifier("C", "Test")), "C03");
@@ -203,7 +203,7 @@ namespace Yttrium.UnitTests
             Assert.AreEqual(0, csqr.PatternAxis.Count, "D26");
 
             // test whether the tree works as expected
-            MatchCollection res = root.MatchAll(sinx2, sinx2.DrivenByPort);
+            MatchCollection res = Scanner.MatchAll(sinx2, sinx2.DrivenByPort, root);
             Assert.AreEqual(true, res.Contains(new MathIdentifier("SinSqr", "Test")), "D27");
             Assert.AreEqual(false, res.Contains(new MathIdentifier("SinAdd", "Test")), "D28");
 

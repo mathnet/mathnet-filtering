@@ -40,6 +40,11 @@ namespace MathNet.Symbolics.Backend.Patterns
             children.Add(child);
         }
 
+        public virtual int Score
+        {
+            get { return 1; }
+        }
+
         public bool CouldMergeToCoalescedTree(CoalescedTreeNode node)
         {
             if(node.Condition.Equals(AlwaysTrueCondition.Instance))
