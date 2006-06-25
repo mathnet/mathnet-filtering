@@ -274,11 +274,11 @@ namespace MathNet.Symbolics.Backend
             return theoremTable.LookupTheorem(theoremId);
         }
 
-        public bool TryLookupTransformationTheoremType(MathIdentifier transformationTypeId, out TransformationTypeTable value)
+        public bool TryLookupTransformationTheoremType(MathIdentifier transformationTypeId, out TransformationTheoremTypeTable value)
         {
             return theoremTable.TryLookupTransformationType(transformationTypeId, out value);
         }
-        public TransformationTypeTable LookupTransformationTheoremType(MathIdentifier transformationTypeId)
+        public TransformationTheoremTypeTable LookupTransformationTheoremType(MathIdentifier transformationTypeId)
         {
             return theoremTable.LookupTransformationType(transformationTypeId);
         }

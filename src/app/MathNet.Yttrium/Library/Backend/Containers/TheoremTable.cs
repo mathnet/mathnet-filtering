@@ -34,13 +34,13 @@ namespace MathNet.Symbolics.Backend.Containers
         // TODO: consider a more usable/standardized interface. inherit?
 
         private readonly IdentifierDictionary<ITheorem> _theorems;
-        private readonly IdentifierDictionary<TransformationTypeTable> _transformations;
+        private readonly IdentifierDictionary<TransformationTheoremTypeTable> _transformationTheorems;
         private readonly IdentifierDictionary<PropertyProviderTable> _properties;
 
         public TheoremTable()
         {
             _theorems = new IdentifierDictionary<ITheorem>(4, 32);
-            _transformations = new IdentifierDictionary<TransformationTypeTable>(4, 16);
+            _transformationTheorems = new IdentifierDictionary<TransformationTheoremTypeTable>(4, 16);
             _properties = new IdentifierDictionary<PropertyProviderTable>(4, 8);
         }
 
@@ -51,7 +51,7 @@ namespace MathNet.Symbolics.Backend.Containers
 
         public bool ContainsTransformationType(MathIdentifier transformationType)
         {
-            return _transformations.ContainsId(transformationType);
+            return _transformationTheorems.ContainsId(transformationType);
         }
 
         public bool ContainsPropertyProvider(MathIdentifier propertyType)
@@ -65,9 +65,9 @@ namespace MathNet.Symbolics.Backend.Containers
             return _theorems.GetValue(theoremId);
         }
 
-        public TransformationTypeTable LookupTransformationType(MathIdentifier transformationType)
+        public TransformationTheoremTypeTable LookupTransformationType(MathIdentifier transformationType)
         {
-            return _transformations.GetValue(transformationType);
+            return _transformationTheorems.GetValue(transformationType);
         }
 
         public PropertyProviderTable LookupPropertyProvider(MathIdentifier propertyType)
@@ -81,9 +81,9 @@ namespace MathNet.Symbolics.Backend.Containers
             return _theorems.TryGetValue(theoremId, out value);
         }
 
-        public bool TryLookupTransformationType(MathIdentifier transformationType, out TransformationTypeTable value)
+        public bool TryLookupTransformationType(MathIdentifier transformationType, out TransformationTheoremTypeTable value)
         {
-            return _transformations.TryGetValue(transformationType, out value);
+            return _transformationTheorems.TryGetValue(transformationType, out value);
         }
 
         public bool TryLookupPropertyProvider(MathIdentifier propertyType, out PropertyProviderTable value)
@@ -106,13 +106,13 @@ namespace MathNet.Symbolics.Backend.Containers
             return false;
         }
 
-        private TransformationTypeTable AddTransformationType(MathIdentifier transformationType)
+        private TransformationTheoremTypeTable AddTransformationType(MathIdentifier transformationType)
         {
-            TransformationTypeTable value;
-            if(!_transformations.TryGetValue(transformationType, out value))
+            TransformationTheoremTypeTable value;
+            if(!_transformationTheorems.TryGetValue(transformationType, out value))
             {
-                value = new TransformationTypeTable(transformationType);
-                _transformations.Add(transformationType, value);
+                value = new TransformationTheoremTypeTable(transformationType);
+                _transformationTheorems.Add(transformationType, value);
             }
             return value;
         }
@@ -134,8 +134,8 @@ namespace MathNet.Symbolics.Backend.Containers
             ITransformationTheorem transTheorem = theorem as ITransformationTheorem;
             if(transTheorem != null)
             {
-                TransformationTypeTable table = AddTransformationType(transTheorem.TransformationTypeId);
-                table.Add(transTheorem);
+                TransformationTheoremTypeTable table = AddTransformationType(transTheorem.TransformationTypeId);
+                table.AddTheorem(transTheorem);
             }
             IPropagationTheorem propTheorem = theorem as IPropagationTheorem;
             if(propTheorem != null)
@@ -153,7 +153,7 @@ namespace MathNet.Symbolics.Backend.Containers
         public void AddTransformationTheorem(ITransformationTheorem theorem)
         {
             _theorems.Add(theorem.TheoremId, theorem);
-            AddTransformationType(theorem.TransformationTypeId).Add(theorem);
+            AddTransformationType(theorem.TransformationTypeId).AddTheorem(theorem);
         }
         public void AddTransformationTheorem(IEnumerable<ITransformationTheorem> theorems)
         {
@@ -166,7 +166,7 @@ namespace MathNet.Symbolics.Backend.Containers
             _theorems.Add(theorem.TheoremId, theorem);
             AddPropertyProvider(theorem.PropertyTypeId).AddTheorem(theorem);
         }
-        public void AddTransformationTheorem(IEnumerable<IPropagationTheorem> theorems)
+        public void AddPropagationTheorem(IEnumerable<IPropagationTheorem> theorems)
         {
             foreach(IPropagationTheorem theorem in theorems)
                 AddPropagationTheorem(theorem);
