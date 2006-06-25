@@ -16,7 +16,7 @@ namespace MathNet.Symbolics.Backend.Patterns
     {
         private List<CoalescedTreeNode> _childAxis;
 
-        public CoalescedChildPattern(Guid cid)
+        public CoalescedChildPattern()
         {
             _childAxis = new List<CoalescedTreeNode>(4);
         }
@@ -26,18 +26,23 @@ namespace MathNet.Symbolics.Backend.Patterns
             _childAxis.Add(node);
         }
 
-        public Dictionary<MathIdentifier, Match> MatchAll(Port port)
+        public List<CoalescedTreeNode> ChildrenAxis
+        {
+            get { return _childAxis; }
+        }
+
+        public MatchCollection MatchAll(Port port)
         {
             ReadOnlySignalSet inputs = port.InputSignals;
             if(_childAxis.Count != inputs.Count)
-                return new Dictionary<MathIdentifier, Match>(0);
+                return new MatchCollection();
 
             // Exact, Ordered Matching
-            List<Dictionary<MathIdentifier, Match>> list = new List<Dictionary<MathIdentifier, Match>>(_childAxis.Count);
+            List<MatchCollection> list = new List<MatchCollection>(_childAxis.Count);
             for(int i = 0; i < _childAxis.Count; i++)
                 list.Add(_childAxis[i].MatchAll(inputs[i], inputs[i].DrivenByPort));
 
-            return CombineAnd(list);
+            return MatchCollection.CombineIntersect(list); //CombineAnd(list);
         }
 
         public Match MatchFirst(Port port)
@@ -47,90 +52,11 @@ namespace MathNet.Symbolics.Backend.Patterns
                 return null;
 
             // Exact, Ordered Matching
-            List<Dictionary<MathIdentifier, Match>> list = new List<Dictionary<MathIdentifier, Match>>(_childAxis.Count);
+            List<MatchCollection> list = new List<MatchCollection>(_childAxis.Count);
             for(int i = 0; i < _childAxis.Count; i++)
                 list.Add(_childAxis[i].MatchAll(inputs[i], inputs[i].DrivenByPort));
 
-            return CombineAndFirst(list);
-        }
-
-        /// <summary>
-        /// Combines Match lists from a list of children (inputs). To match the parent node,
-        /// every match must succeed on every single child (intersection, logical AND).
-        /// Labeled groups of the children are merged.
-        /// </summary>
-        private Dictionary<MathIdentifier, Match> CombineAnd(List<Dictionary<MathIdentifier, Match>> matchesList)
-        {
-            if(matchesList.Count == 1)
-                return matchesList[0];
-            Dictionary<MathIdentifier, Match> res = new Dictionary<MathIdentifier, Match>();
-            if(matchesList.Count == 0)
-                return res;
-            Dictionary<MathIdentifier, Match> lastMatches = matchesList[matchesList.Count - 1];
-            matchesList.RemoveAt(matchesList.Count - 1);
-            foreach(KeyValuePair<MathIdentifier, Match> lastPair in lastMatches)
-            {
-                Match lastMatch = lastPair.Value;
-                bool suitable = true;
-                foreach(Dictionary<MathIdentifier, Match> matches in matchesList)
-                {
-                    // Ensure AND
-                    Match match;
-                    if(!matches.TryGetValue(lastMatch.PatternId, out match))
-                    {
-                        suitable = false;
-                        break;
-                    }
-                    // Merge Groups
-                    foreach(KeyValuePair<string, List<Tuple<Signal, Port>>> group in match)
-                        lastMatch.AppendGroup(group.Key, group.Value);
-                }
-                if(suitable)
-                    res.Add(lastMatch.PatternId, lastMatch);
-            }
-            return res;
-        }
-
-        private Match CombineAndFirst(List<Dictionary<MathIdentifier, Match>> matchesList)
-        {
-            if(matchesList.Count == 0)
-                return null;
-            if(matchesList.Count == 1)
-            {
-                Dictionary<MathIdentifier, Match> d = matchesList[0];
-                if(d.Count > 0)
-                {
-                    IEnumerator<KeyValuePair<MathIdentifier, Match>> it = d.GetEnumerator();
-                    it.MoveNext();
-                    return it.Current.Value;
-                }
-                else
-                    return null;
-                
-            }
-            Dictionary<MathIdentifier, Match> lastMatches = matchesList[matchesList.Count - 1];
-            matchesList.RemoveAt(matchesList.Count - 1);
-            foreach(KeyValuePair<MathIdentifier, Match> lastPair in lastMatches)
-            {
-                Match lastMatch = lastPair.Value;
-                bool suitable = true;
-                foreach(Dictionary<MathIdentifier, Match> matches in matchesList)
-                {
-                    // Ensure AND
-                    Match match;
-                    if(!matches.TryGetValue(lastMatch.PatternId, out match))
-                    {
-                        suitable = false;
-                        break;
-                    }
-                    // Merge Groups
-                    foreach(KeyValuePair<string, List<Tuple<Signal, Port>>> group in match)
-                        lastMatch.AppendGroup(group.Key, group.Value);
-                }
-                if(suitable)
-                    return lastMatch;
-            }
-            return null;
+            return MatchCollection.CombineIntersectFirst(list);
         }
     }
 }

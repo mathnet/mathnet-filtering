@@ -20,6 +20,11 @@ namespace MathNet.Symbolics.Backend.Patterns
             _entityId = new MathIdentifier(entityLabel, entityDomain);
         }
 
+        public MathIdentifier EntityId
+        {
+            get { return _entityId; }
+        }
+
         public override bool FulfillsCondition(Signal output, Port port)
         {
             if(port == null)

@@ -28,6 +28,11 @@ namespace MathNet.Symbolics.Backend.Patterns
             return _groups[label];
         }
 
+        public ICollection<string> GroupLabels
+        {
+            get { return _groups.Keys; }
+        }
+
         public void AppendGroup(string label, Tuple<Signal, Port> value)
         {
             List<Tuple<Signal, Port>> list;

@@ -141,6 +141,7 @@
     <Compile Include="Backend\Patterns\AlwaysTrueCondition.cs" />
     <Compile Include="Backend\Patterns\InputSignalsPropertyCondition.cs" />
     <Compile Include="Backend\Patterns\Match.cs" />
+    <Compile Include="Backend\Patterns\MatchCollection.cs" />
     <Compile Include="Backend\Patterns\OutputSignalsPropertyCondition.cs" />
     <Compile Include="Backend\Patterns\NotCondition.cs" />
     <Compile Include="Backend\Patterns\OrCondition.cs" />

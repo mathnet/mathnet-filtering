@@ -35,36 +35,39 @@ namespace MathNet.Symbolics.Backend.Patterns
             return IteratorEquals(_conditions.GetEnumerator(), ot._conditions.GetEnumerator());
         }
 
-        public override List<CoalescedTreeNode> MergeToCoalescedTree(List<CoalescedTreeNode> parents)
+        protected override void MergeToCoalescedTreeNode(CoalescedTreeNode parent, List<CoalescedTreeNode> children)
         {
-            List<CoalescedTreeNode> res = new List<CoalescedTreeNode>();
-            foreach(CoalescedTreeNode parent in parents)
+            List<Condition> conditions = new List<Condition>(_conditions);
+            CoalescedTreeNode localParent = parent;
+            while(conditions.Count > 0)
             {
-                List<Condition> conditions = new List<Condition>(_conditions);
-                CoalescedTreeNode localParent = parent;
-                while(conditions.Count > 0)
+                bool found = false;
+                foreach(CoalescedTreeNode child in localParent.ConditionAxis)
                 {
-                    bool found = false;
-                    foreach(CoalescedTreeNode child in localParent.ConditionAxis)
+                    if(conditions.Contains(child.Condition))
                     {
-                        if(conditions.Contains(child.Condition))
-                        {
-                            conditions.Remove(child.Condition);
-                            localParent = child;
-                            found = true;
-                        }
-                    }
-                    if(!found)
-                    {
-                        CoalescedTreeNode node = new CoalescedTreeNode(conditions[conditions.Count-1]);
-                        conditions.RemoveAt(conditions.Count-1);
-                        localParent.ConditionAxis.Add(node);
-                        localParent = node;
+                        conditions.Remove(child.Condition);
+                        localParent = child;
+                        found = true;
                     }
                 }
-                res.Add(localParent);
+                if(!found)
+                {
+                    CoalescedTreeNode node = new CoalescedTreeNode(conditions[conditions.Count - 1]);
+                    conditions.RemoveAt(conditions.Count - 1);
+                    localParent.ConditionAxis.Add(node);
+                    localParent = node;
+                }
             }
-            return res;
+            children.Add(localParent);
+        }
+
+        protected override bool CouldMergeToCoalescedTreeNode(Condition condition)
+        {
+            foreach(Condition c in _conditions)
+                if(c.Equals(condition))
+                    return true;
+            return false;
         }
     }
 }

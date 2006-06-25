@@ -11,6 +11,7 @@ namespace MathNet.Symbolics.Backend.Patterns
         private static Pattern _alwaysTrueInstance;
 
         private Condition _condition;
+        private string _group;
 
         public Pattern()
         {
@@ -31,9 +32,36 @@ namespace MathNet.Symbolics.Backend.Patterns
             }
         }
 
+        public string Group
+        {
+            get { return _group; }
+            set { _group = value; }
+        }
+
+        public Condition Condition
+        {
+            get { return _condition; }
+            set { _condition = value; }
+        }
+
         public virtual bool Match(Signal output, Port port)
         {
             return _condition.FulfillsCondition(output, port);
+        }
+
+        protected void MergeGroupToCoalescedTree(MathIdentifier patternId, List<CoalescedTreeNode> nodes)
+        {
+            if(!string.IsNullOrEmpty(_group))
+                foreach(CoalescedTreeNode node in nodes)
+                    node.AddGroup(patternId, _group);
+        }
+
+        public virtual void MergeToCoalescedTree(MathIdentifier patternId, List<CoalescedTreeNode> parents)
+        {
+            List<CoalescedTreeNode> nodes = _condition.MergeToCoalescedTree(parents);
+            MergeGroupToCoalescedTree(patternId, nodes);
+            foreach(CoalescedTreeNode node in nodes)
+                node.Subscribe(patternId);
         }
     }
 }

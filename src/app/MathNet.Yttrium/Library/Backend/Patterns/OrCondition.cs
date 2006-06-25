@@ -35,23 +35,23 @@ namespace MathNet.Symbolics.Backend.Patterns
             return IteratorEquals(_conditions.GetEnumerator(), ot._conditions.GetEnumerator());
         }
 
-        public override List<CoalescedTreeNode> MergeToCoalescedTree(List<CoalescedTreeNode> parents)
+        protected override void MergeToCoalescedTreeNode(CoalescedTreeNode parent, List<CoalescedTreeNode> children)
         {
-            List<CoalescedTreeNode> res = new List<CoalescedTreeNode>();
-            foreach(CoalescedTreeNode parent in parents)
+            foreach(Condition condition in _conditions)
             {
-                foreach(Condition condition in _conditions)
+                CoalescedTreeNode child;
+                if(!TryGetExistingNode(parent, condition, out child))
                 {
-                    CoalescedTreeNode child;
-                    if(!TryGetExistingNode(parent, condition, out child))
-                    {
-                        child = new CoalescedTreeNode(condition);
-                        parent.ConditionAxis.Add(child);
-                    }
-                    res.Add(child);
+                    child = new CoalescedTreeNode(condition);
+                    parent.ConditionAxis.Add(child);
                 }
+                children.Add(child);
             }
-            return res;
+        }
+
+        protected override bool CouldMergeToCoalescedTreeNode(Condition condition)
+        {
+            return false;
         }
     }
 }

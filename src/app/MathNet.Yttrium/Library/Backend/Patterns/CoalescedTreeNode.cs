@@ -29,33 +29,78 @@ namespace MathNet.Symbolics.Backend.Patterns
             _patternAxis = new List<CoalescedChildPattern>(4);
         }
 
+        public static List<CoalescedTreeNode> CreateRootTree()
+        {
+            CoalescedTreeNode root = new CoalescedTreeNode(AlwaysTrueCondition.Instance);
+            List<CoalescedTreeNode> list = new List<CoalescedTreeNode>();
+            list.Add(root);
+            return list;
+        }
+        public static List<CoalescedTreeNode> CreateRootTree(out CoalescedTreeNode root)
+        {
+            root = new CoalescedTreeNode(AlwaysTrueCondition.Instance);
+            List<CoalescedTreeNode> list = new List<CoalescedTreeNode>();
+            list.Add(root);
+            return list;
+        }
+
         public Guid InstanceId
         {
             get { return _iid; }
         }
 
-        internal Condition Condition
+        public Condition Condition
         {
             get { return _condition; }
         }
 
-        internal List<CoalescedTreeNode> ConditionAxis
+        public List<CoalescedTreeNode> ConditionAxis
         {
             get { return _conditionAxis; }
         }
 
-        internal List<CoalescedChildPattern> PatternAxis
+        public List<CoalescedChildPattern> PatternAxis
         {
             get { return _patternAxis; }
         }
 
-        public Dictionary<MathIdentifier, Match> MatchAll(Signal output, Port port)
+        public Dictionary<MathIdentifier, string> GroupAxis
+        {
+            get { return _groupAxis; }
+        }
+
+        public List<MathIdentifier> SubscriptionAxis
+        {
+            get { return _subscriptionAxis; }
+        }
+
+        public void Subscribe(MathIdentifier patternId)
+        {
+            _subscriptionAxis.Add(patternId);
+        }
+
+        public void Unsubscribe(MathIdentifier patternId)
+        {
+            _subscriptionAxis.Remove(patternId);
+        }
+
+        public void AddGroup(MathIdentifier patternId, string label)
+        {
+            _groupAxis.Add(patternId, label);
+        }
+
+        public void RemoveGroup(MathIdentifier patternId)
+        {
+            _groupAxis.Remove(patternId);
+        }
+
+        public MatchCollection MatchAll(Signal output, Port port)
         {
             // Check Node Condition
             if(!_condition.FulfillsCondition(output, port))
-                return new Dictionary<MathIdentifier, Match>(0);
+                return new MatchCollection();
 
-            List<Dictionary<MathIdentifier, Match>> matches = new List<Dictionary<MathIdentifier, Match>>();
+            List<MatchCollection> matches = new List<MatchCollection>();
 
             // Follow Condition Axis
             foreach(CoalescedTreeNode condition in _conditionAxis)
@@ -66,12 +111,12 @@ namespace MathNet.Symbolics.Backend.Patterns
                 matches.Add(pattern.MatchAll(port));
 
             // Combine Matches
-            Dictionary<MathIdentifier, Match> res = CombineOr(matches);
+            MatchCollection res = MatchCollection.CombineUnion(matches);
 
             // Check Subscription Axis
             foreach(MathIdentifier id in _subscriptionAxis)
-                if(!res.ContainsKey(id))
-                    res.Add(id, new Match(id));
+                if(!res.Contains(id))
+                    res.Add(new Match(id));
 
             // Check Group Axis
             foreach(KeyValuePair<MathIdentifier, string> group in _groupAxis)
@@ -134,35 +179,6 @@ namespace MathNet.Symbolics.Backend.Patterns
 
             // No match found
             return null;
-        }
-
-        /// <summary>
-        /// Combines Match lists (union, logical OR). Labeled groups are merged.
-        /// </summary>
-        private Dictionary<MathIdentifier, Match> CombineOr(List<Dictionary<MathIdentifier, Match>> matchesList)
-        {
-            if(matchesList.Count == 0)
-                return new Dictionary<MathIdentifier, Match>();
-            if(matchesList.Count == 1)
-                return matchesList[0];
-
-            Dictionary<MathIdentifier, Match> res = matchesList[matchesList.Count - 1];
-            matchesList.RemoveAt(matchesList.Count - 1);
-
-            foreach(Dictionary<MathIdentifier, Match> matches in matchesList)
-            {
-                foreach(KeyValuePair<MathIdentifier, Match> match in matches)
-                {
-                    Match m;
-                    if(res.TryGetValue(match.Key, out m))
-                        foreach(KeyValuePair<string, List<Tuple<Signal, Port>>> group in match.Value)
-                            m.AppendGroup(group.Key, group.Value);
-                    else
-                        res.Add(match.Key, match.Value);
-                }
-            }
-
-            return res;
         }
     }
 }

@@ -31,5 +31,15 @@ namespace MathNet.Symbolics.Backend.Patterns
         {
             return other is AlwaysTrueCondition;
         }
+
+        protected override void MergeToCoalescedTreeNode(CoalescedTreeNode parent, List<CoalescedTreeNode> children)
+        {
+            children.Add(parent);
+        }
+
+        protected override bool CouldMergeToCoalescedTreeNode(Condition condition)
+        {
+            return true;
+        }
     }
 }

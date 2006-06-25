@@ -13,20 +13,43 @@ namespace MathNet.Symbolics.Backend.Patterns
 
         /// <param name="parents">A list of nodes we have to subscribe to for matching the parent condition.</param>
         /// <returns>A list of nodes you'll have to subscribe to for matching this condition.</returns>
-        public virtual List<CoalescedTreeNode> MergeToCoalescedTree(List<CoalescedTreeNode> parents)
+        public List<CoalescedTreeNode> MergeToCoalescedTree(List<CoalescedTreeNode> parents)
         {
             List<CoalescedTreeNode> res = new List<CoalescedTreeNode>();
             foreach(CoalescedTreeNode parent in parents)
-            {
-                CoalescedTreeNode child;
-                if(!TryGetExistingNode(parent, this, out child))
-                {
-                    child = new CoalescedTreeNode(this);
-                    parent.ConditionAxis.Add(child);
-                }
-                res.Add(child);
-            }
+                MergeToCoalescedTreeNode(parent, res);
             return res;
+        }
+
+        public List<CoalescedTreeNode> MergeToCoalescedTree()
+        {
+            List<CoalescedTreeNode> res = new List<CoalescedTreeNode>();
+            CoalescedTreeNode sentinel = new CoalescedTreeNode(AlwaysTrueCondition.Instance);
+            MergeToCoalescedTreeNode(sentinel, res);
+            return res;
+        }
+
+        protected virtual void MergeToCoalescedTreeNode(CoalescedTreeNode parent, List<CoalescedTreeNode> children)
+        {
+            CoalescedTreeNode child;
+            if(!TryGetExistingNode(parent, this, out child))
+            {
+                child = new CoalescedTreeNode(this);
+                parent.ConditionAxis.Add(child);
+            }
+            children.Add(child);
+        }
+
+        public bool CouldMergeToCoalescedTree(CoalescedTreeNode node)
+        {
+            if(node.Condition.Equals(AlwaysTrueCondition.Instance))
+                return true;
+            return CouldMergeToCoalescedTreeNode(node.Condition);
+        }
+
+        protected virtual bool CouldMergeToCoalescedTreeNode(Condition condition)
+        {
+            return Equals(condition);
         }
 
         protected bool IteratorEquals(IEnumerator<Condition> a, IEnumerator<Condition> b)
