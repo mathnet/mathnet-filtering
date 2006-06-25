@@ -12,7 +12,6 @@ namespace MathNet.Symbolics.Backend.Patterns
     /// </summary>
     public class CoalescedTreeNode
     {
-        private Guid _iid;
         private Condition _condition;
         private List<MathIdentifier> _subscriptionAxis;
         private Dictionary<MathIdentifier, string> _groupAxis;
@@ -21,7 +20,6 @@ namespace MathNet.Symbolics.Backend.Patterns
 
         public CoalescedTreeNode(Condition condition)
         {
-            _iid = Guid.NewGuid();
             _condition = condition;
             _subscriptionAxis = new List<MathIdentifier>(4);
             _groupAxis = new Dictionary<MathIdentifier, string>(4);
@@ -42,11 +40,6 @@ namespace MathNet.Symbolics.Backend.Patterns
             List<CoalescedTreeNode> list = new List<CoalescedTreeNode>();
             list.Add(root);
             return list;
-        }
-
-        public Guid InstanceId
-        {
-            get { return _iid; }
         }
 
         public Condition Condition
