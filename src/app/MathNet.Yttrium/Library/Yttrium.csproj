@@ -271,6 +271,7 @@
     <Compile Include="StdPackage\Structures\ComplexInfinitySymbol.cs" />
     <Compile Include="StdPackage\Structures\ComplexValue.cs" />
     <Compile Include="StdPackage\Structures\ComplexValueCategory.cs" />
+    <Compile Include="StdPackage\Structures\VectorValue.cs" />
     <Compile Include="StdPackage\Structures\IntegerValue.cs" />
     <Compile Include="StdPackage\Structures\IntegerValueCategory.cs" />
     <Compile Include="StdPackage\Structures\LiteralValue.cs" />

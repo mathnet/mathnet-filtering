@@ -247,6 +247,9 @@ namespace MathNet.Symbolics.StdPackage
             StdPackage.Structures.NegativeInfinitySymbol.PublishConversionRouteNeighbors(table);
             StdPackage.Structures.PositiveInfinitySymbol.PublishConversionRouteNeighbors(table);
             StdPackage.Structures.ComplexInfinitySymbol.PublishConversionRouteNeighbors(table);
+
+            StdPackage.Structures.VectorValue<StdPackage.Structures.RealValue>.PublishConversionRouteNeighbors(table);
+            StdPackage.Structures.VectorValue<StdPackage.Structures.ComplexValue>.PublishConversionRouteNeighbors(table);
         }
         #endregion
     }
