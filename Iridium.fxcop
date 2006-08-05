@@ -21,7 +21,10 @@
   <DeadlockDetectionTimeout>120</DeadlockDetectionTimeout>
  </ProjectOptions>
  <Targets>
-  <Target Name="$(ProjectDir)/../build/checkout/src/app/MathNet.Iridium/Library/bin/Debug/MathNet.Iridium.dll" Analyze="True">
+  <AssemblyReferenceDirectories>
+   <Directory>$(ProjectDir)/../build/checkout/src/app/MathNet.Iridium/Library/bin/Debug/</Directory>
+  </AssemblyReferenceDirectories>
+  <Target Name="$(ProjectDir)/src/app/MathNet.Iridium/Library/bin/Debug/MathNet.Iridium.dll" Analyze="True">
    <Modules>
     <Module Name="mathnet.iridium.dll" Analyze="True">
      <Namespaces>
@@ -2398,7 +2401,7 @@
    </Namespace>
   </Namespaces>
   <Targets>
-   <Target Name="$(ProjectDir)/../build/checkout/src/app/MathNet.Iridium/Library/bin/Debug/MathNet.Iridium.dll">
+   <Target Name="$(ProjectDir)/src/app/MathNet.Iridium/Library/bin/Debug/MathNet.Iridium.dll">
     <Modules>
      <Module Name="mathnet.iridium.dll">
       <Messages>
