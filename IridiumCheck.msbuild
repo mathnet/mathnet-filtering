@@ -1,0 +1,7 @@
+<Project DefaultTargets="Check" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="Check">
+
+	<Exec Command="tools/FxCop/FxCopCmd.exe /project:Iridium.fxcop /out:../Iridium/artifact/fxcop-result.xml" ContinueOnError="true"/>
+	  
+  </Target>
+</Project>
