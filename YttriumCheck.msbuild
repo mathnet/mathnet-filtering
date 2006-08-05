@@ -3,6 +3,7 @@
 		<NUnitBin Include="tools\nunit\bin\*.dll"/>
 		<NUnitTargetFiles Include="src\test\MathNet.Yttrium.Test\**\Debug\*.dll"/>
 		<NUnitTargetTest Include="src\test\MathNet.Yttrium.Test\**\Debug\*.Test.dll"/>
+		<NCoverTargets Include="src\app\MathNet.Yttrium\**\Debug\*.pdb"/>
 	</ItemGroup>
 
 	<Target Name="Check">
@@ -13,7 +14,8 @@
 
 		<Copy SourceFiles="@(NUnitBin)" DestinationFolder="D:\integration\Math.NET\Yttrium\work" SkipUnchangedFiles="true"/>
 		<Copy SourceFiles="@(NUnitTargetFiles)" DestinationFolder="D:\integration\Math.NET\Yttrium\work"/>
-		<Exec WorkingDirectory="D:\integration\Math.NET\Yttrium\work" Command="..\..\checkout\tools\nunit\bin\nunit-console.exe /nologo /xml=..\artifact\nunit-result.xml %(NUnitTargetTest.Filename).dll" ContinueOnError="false"/>
+		<Copy SourceFiles="@(NCoverTargets)" DestinationFolder="D:\integration\Math.NET\Yttrium\work"/>
+		<Exec WorkingDirectory="..\Yttrium\work" Command="..\..\checkout\tools\ncover\ncover.console.exe &quot;..\..\checkout\tools\nunit\bin\nunit-console.exe&quot; /nologo /noshadow /xml=..\artifact\nunit-result.xml %(NUnitTargetTest.Filename).dll //x ..\artifact\ncover-result.xml //a @(NCoverTargets->'%(filename)',';')" ContinueOnError="false"/>
 		
 	</Target>
 </Project>
