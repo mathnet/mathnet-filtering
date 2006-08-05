@@ -22,9 +22,10 @@
  </ProjectOptions>
  <Targets>
   <AssemblyReferenceDirectories>
+   <Directory>$(ProjectDir)/../build/checkout/src/app/MathNet.Yttrium/Library/bin/Debug/</Directory>
    <Directory>$(ProjectDir)/../build/checkout/src/test/MathNet.Yttrium.Test/bin/Debug/</Directory>
   </AssemblyReferenceDirectories>
-  <Target Name="$(ProjectDir)/../build/checkout/src/app/MathNet.Yttrium/Library/bin/Debug/MathNet.Yttrium.dll" Analyze="True">
+  <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Library/bin/Debug/MathNet.Yttrium.dll" Analyze="True">
    <Modules>
     <Module Name="mathnet.yttrium.dll" Analyze="True">
      <Namespaces>
@@ -8108,7 +8109,7 @@
    </Namespace>
   </Namespaces>
   <Targets>
-   <Target Name="$(ProjectDir)/../build/checkout/src/app/MathNet.Yttrium/Library/bin/Debug/MathNet.Yttrium.dll">
+   <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Library/bin/Debug/MathNet.Yttrium.dll">
     <Modules>
      <Module Name="mathnet.yttrium.dll">
       <Messages>
