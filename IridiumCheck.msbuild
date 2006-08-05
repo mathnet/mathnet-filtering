@@ -1,7 +1,19 @@
 <Project DefaultTargets="Check" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Target Name="Check">
+	<ItemGroup>
+		<NUnitBin Include="tools\nunit\bin\*.dll"/>
+		<NUnitTargetFiles Include="src\test\MathNet.Iridium.Test\**\Debug\*.dll"/>
+		<NUnitTargetTest Include="src\test\MathNet.Iridium.Test\**\Debug\*.Test.dll"/>
+	</ItemGroup>
 
-	<Exec Command="&quot;tools/FxCop/FxCopCmd.exe&quot; /project:Iridium.fxcop /out:../Iridium/artifact/fxcop-result.xml" ContinueOnError="true"/>
-	  
-  </Target>
+	<Target Name="Check">
+
+		<Exec Command="tools\FxCop\FxCopCmd.exe /project:Iridium.fxcop /out:..\Iridium\artifact\fxcop-result.xml" ContinueOnError="true"/>
+
+		<Exec Command="tools\simian\simian.exe -recurse=src\app\MathNet.Iridium\*.cs -formatter=xml:..\Iridium\artifact\simian-result.xml" IgnoreExitCode="true" ContinueOnError="true"/>
+
+		<Copy SourceFiles="@(NUnitBin)" DestinationFolder="D:\integration\Math.NET\Iridium\work" SkipUnchangedFiles="true"/>
+		<Copy SourceFiles="@(NUnitTargetFiles)" DestinationFolder="D:\integration\Math.NET\Iridium\work"/>
+		<Exec WorkingDirectory="D:\integration\Math.NET\Iridium\work" Command="..\..\checkout\tools\nunit\bin\nunit-console.exe /nologo /xml=..\artifact\nunit-result.xml %(NUnitTargetTest.Filename).dll" ContinueOnError="false"/>
+		
+	</Target>
 </Project>

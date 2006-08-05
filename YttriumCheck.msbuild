@@ -1,7 +1,19 @@
 <Project DefaultTargets="Check" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Target Name="Check">
+	<ItemGroup>
+		<NUnitBin Include="tools\nunit\bin\*.dll"/>
+		<NUnitTargetFiles Include="src\test\MathNet.Yttrium.Test\**\Debug\*.dll"/>
+		<NUnitTargetTest Include="src\test\MathNet.Yttrium.Test\**\Debug\*.Test.dll"/>
+	</ItemGroup>
 
-	<Exec Command="&quot;tools/FxCop/FxCopCmd.exe&quot; /project:Yttrium.fxcop /out:../Yttrium/artifact/fxcop-result.xml" ContinueOnError="true"/>
-	  
-  </Target>
+	<Target Name="Check">
+
+		<Exec Command="tools\FxCop\FxCopCmd.exe /project:Yttrium.fxcop /out:..\Yttrium\artifact\fxcop-result.xml" ContinueOnError="true"/>
+
+		<Exec Command="tools\simian\simian.exe -recurse=src\app\MathNet.Yttrium\*.cs -formatter=xml:..\Yttrium\artifact\simian-result.xml" IgnoreExitCode="true" ContinueOnError="true"/>
+
+		<Copy SourceFiles="@(NUnitBin)" DestinationFolder="D:\integration\Math.NET\Yttrium\work" SkipUnchangedFiles="true"/>
+		<Copy SourceFiles="@(NUnitTargetFiles)" DestinationFolder="D:\integration\Math.NET\Yttrium\work"/>
+		<Exec WorkingDirectory="D:\integration\Math.NET\Yttrium\work" Command="..\..\checkout\tools\nunit\bin\nunit-console.exe /nologo /xml=..\artifact\nunit-result.xml %(NUnitTargetTest.Filename).dll" ContinueOnError="false"/>
+		
+	</Target>
 </Project>
