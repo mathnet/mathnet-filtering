@@ -36,6 +36,7 @@
     <Compile Include="Collection.cs" />
     <Compile Include="Combinatorics.cs" />
     <Compile Include="Complex.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="Distributions\CumulativeNormalDistribution.cs" />
     <Compile Include="Distributions\InvCumulativeNormalDistribution.cs" />
     <Compile Include="Distributions\NamespaceDoc.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Rational.cs" />
     <Compile Include="SampleList.cs" />
     <Compile Include="Set.cs" />
+    <Compile Include="SiConstants.cs" />
     <Compile Include="SpecialFunctions.cs" />
     <Compile Include="Statistics\Accumulator.cs" />
     <Compile Include="Statistics\Histogram.cs" />
