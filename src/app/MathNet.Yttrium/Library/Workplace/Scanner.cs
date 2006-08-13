@@ -626,12 +626,18 @@ namespace MathNet.Symbolics.Workplace
         #region Transformation Theorems
         public static Signal Transform(Signal signal, Context context, MathIdentifier transformationTypeId, bool ignoreHold)
         {
+            if(context == null)
+                throw new ArgumentNullException("context");
+
             TransformationTheoremTypeTable transTable = context.Library.LookupTransformationTheoremType(transformationTypeId);
             TransformationManipulationVisitor visitor = new TransformationManipulationVisitor(transTable);
             return Manipulator.Manipulate(signal, visitor, ignoreHold);
         }
         public static Signal Transform(Signal signal, Context context, MathIdentifier transformationTypeId, ConfigureTransformation configure, bool ignoreHold)
         {
+            if(context == null)
+                throw new ArgumentNullException("context");
+
             TransformationTheoremTypeTable transTable = context.Library.LookupTransformationTheoremType(transformationTypeId);
             TransformationManipulationVisitor visitor = new TransformationManipulationVisitor(transTable, configure);
             return Manipulator.Manipulate(signal, visitor, ignoreHold);
@@ -639,12 +645,18 @@ namespace MathNet.Symbolics.Workplace
 
         public static SignalSet Transform(IEnumerable<Signal> signals, Context context, MathIdentifier transformationTypeId, bool ignoreHold)
         {
+            if(context == null)
+                throw new ArgumentNullException("context");
+
             TransformationTheoremTypeTable transTable = context.Library.LookupTransformationTheoremType(transformationTypeId);
             TransformationManipulationVisitor visitor = new TransformationManipulationVisitor(transTable);
             return Manipulator.Manipulate(signals, visitor, ignoreHold);
         }
         public static SignalSet Transform(IEnumerable<Signal> signals, Context context, MathIdentifier transformationTypeId, ConfigureTransformation configure, bool ignoreHold)
         {
+            if(context == null)
+                throw new ArgumentNullException("context");
+
             TransformationTheoremTypeTable transTable = context.Library.LookupTransformationTheoremType(transformationTypeId);
             TransformationManipulationVisitor visitor = new TransformationManipulationVisitor(transTable, configure);
             return Manipulator.Manipulate(signals, visitor, ignoreHold);
@@ -699,10 +711,16 @@ namespace MathNet.Symbolics.Workplace
         #region Pattern Matching
         public static MatchCollection MatchAll(Signal output, Port port, CoalescedTreeNode tree)
         {
+            if(tree == null)
+                throw new ArgumentNullException("tree");
+            
             return tree.MatchAll(output, port, 1);
         }
         public static Match MatchFirst(Signal output, Port port, CoalescedTreeNode tree)
         {
+            if(tree == null)
+                throw new ArgumentNullException("tree");
+
             Match res = tree.MatchFirst(output, port);
             if(res == null)
                 throw new MathNet.Symbolics.Backend.Exceptions.NotFoundException();
@@ -710,11 +728,17 @@ namespace MathNet.Symbolics.Workplace
         }
         public static bool TryMatchFirst(Signal output, Port port, CoalescedTreeNode tree, out Match match)
         {
+            if(tree == null)
+                throw new ArgumentNullException("tree");
+
             match = tree.MatchFirst(output, port);
             return match != null;
         }
         public static Match MatchBest(Signal output, Port port, CoalescedTreeNode tree)
         {
+            if(tree == null)
+                throw new ArgumentNullException("tree");
+
             MatchCollection res = tree.MatchAll(output, port, 1);
             Match bestMatch = null;
             int bestScore = -1;
@@ -730,6 +754,9 @@ namespace MathNet.Symbolics.Workplace
         }
         public static bool TryMatchBest(Signal output, Port port, CoalescedTreeNode tree, out Match match)
         {
+            if(tree == null)
+                throw new ArgumentNullException("tree");
+
             MatchCollection res = tree.MatchAll(output, port, 1);
             Match bestMatch = null;
             int bestScore = -1;

@@ -40,6 +40,9 @@ namespace MathNet.Symbolics.StdPackage.Structures
 
         public override ECategoryMembership IsMember(Signal signal, bool ignoreCache)
         {
+            if(signal == null)
+                throw new ArgumentNullException("signal");
+
             if(signal.Value == null)
                 return ECategoryMembership.Unknown;
             if(signal.Value is RationalValue || signal.Value is IntegerValue)
@@ -49,6 +52,9 @@ namespace MathNet.Symbolics.StdPackage.Structures
 
         public override ECategoryMembership IsMember(Port port)
         {
+            if(port == null)
+                throw new ArgumentNullException("port");
+
             return EvaluateJointChildMembership(port.InputSignals);
         }
 

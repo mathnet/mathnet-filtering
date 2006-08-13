@@ -38,6 +38,15 @@ namespace MathNet.Symbolics.Backend.Templates
 
         protected GenericFunctionProcess(bool[] inInput, bool[] inInternal, bool[] outOutput, bool[] outInternal)
         {
+            if(inInput == null)
+                throw new ArgumentNullException("inInput");
+            if(inInternal == null)
+                throw new ArgumentNullException("inInternal");
+            if(outOutput == null)
+                throw new ArgumentNullException("outOutput");
+            if(outInternal == null)
+                throw new ArgumentNullException("outInternal");
+
             this.inInput = inInput;
             this.inInternal = inInternal;
             this.outOutput = outOutput;

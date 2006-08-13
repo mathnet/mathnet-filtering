@@ -107,6 +107,9 @@ namespace MathNet.Symbolics.Backend.Templates
         }
         public CompoundArchitectureFactory(MathIdentifier architectureId, MathIdentifier entityId, MathSystem system)
         {
+            if(system == null)
+                throw new ArgumentNullException("system");
+
             _architectureId = architectureId;
             _entityId = entityId;
             _inputCnt = system.InputCount;

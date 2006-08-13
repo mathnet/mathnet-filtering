@@ -52,6 +52,9 @@ namespace MathNet.Symbolics.Backend.Parsing
 
         public void Interpret(FileInfo file, MathSystem system)
         {
+            if(file == null)
+                throw new ArgumentNullException("file");
+
             Interpret(file.OpenText(), system);
         }
     }

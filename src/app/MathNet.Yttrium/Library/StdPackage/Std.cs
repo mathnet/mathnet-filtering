@@ -512,6 +512,9 @@ namespace MathNet.Symbolics.StdPackage
         /// </summary>
         public static Signal TrigonometricSubstitute(Signal signal)
         {
+            if(signal == null)
+                throw new ArgumentNullException("signal");
+
             return Scanner.Transform(signal, signal.Context, new MathIdentifier("TrigonometricSubstitute", "Std"), false);
         }
         public static SignalSet TrigonometricSubstitute(IEnumerable<Signal> signals, Context context)
@@ -556,50 +559,86 @@ namespace MathNet.Symbolics.StdPackage
         #region Trigonometric Functions
         public static Signal Sine(Context context, Signal op)
         {
+            if(context == null)
+                throw new ArgumentNullException("context");
+
             return context.Builder.Function(new MathIdentifier("Sine", "Std"), op);
         }
         public static ReadOnlySignalSet Sine(Context context, IList<Signal> op)
         {
+            if(context == null)
+                throw new ArgumentNullException("context");
+
             return context.Builder.Functions(new MathIdentifier("Sine", "Std"), op);
         }
         public static Signal Cosine(Context context, Signal op)
         {
+            if(context == null)
+                throw new ArgumentNullException("context");
+
             return context.Builder.Function(new MathIdentifier("Cosine", "Std"), op);
         }
         public static ReadOnlySignalSet Cosine(Context context, IList<Signal> op)
         {
+            if(context == null)
+                throw new ArgumentNullException("context");
+
             return context.Builder.Functions(new MathIdentifier("Cosine", "Std"), op);
         }
         public static Signal Tangent(Context context, Signal op)
         {
+            if(context == null)
+                throw new ArgumentNullException("context");
+
             return context.Builder.Function(new MathIdentifier("Tangent", "Std"), op);
         }
         public static ReadOnlySignalSet Tangent(Context context, IList<Signal> op)
         {
+            if(context == null)
+                throw new ArgumentNullException("context");
+
             return context.Builder.Functions(new MathIdentifier("Tangent", "Std"), op);
         }
         public static Signal Cotangent(Context context, Signal op)
         {
+            if(context == null)
+                throw new ArgumentNullException("context");
+
             return context.Builder.Function(new MathIdentifier("Cotangent", "Std"), op);
         }
         public static ReadOnlySignalSet Cotangent(Context context, IList<Signal> op)
         {
+            if(context == null)
+                throw new ArgumentNullException("context");
+
             return context.Builder.Functions(new MathIdentifier("Cotangent", "Std"), op);
         }
         public static Signal Secant(Context context, Signal op)
         {
+            if(context == null)
+                throw new ArgumentNullException("context");
+
             return context.Builder.Function(new MathIdentifier("Secant", "Std"), op);
         }
         public static ReadOnlySignalSet Secant(Context context, IList<Signal> op)
         {
+            if(context == null)
+                throw new ArgumentNullException("context");
+
             return context.Builder.Functions(new MathIdentifier("Secant", "Std"), op);
         }
         public static Signal Cosecant(Context context, Signal op)
         {
+            if(context == null)
+                throw new ArgumentNullException("context");
+
             return context.Builder.Function(new MathIdentifier("Cosecant", "Std"), op);
         }
         public static ReadOnlySignalSet Cosecant(Context context, IList<Signal> op)
         {
+            if(context == null)
+                throw new ArgumentNullException("context");
+
             return context.Builder.Functions(new MathIdentifier("Cosecant", "Std"), op);
         }
         #endregion
@@ -622,6 +661,9 @@ namespace MathNet.Symbolics.StdPackage
 
         public static bool IsUndefined(Signal signal)
         {
+            if(signal == null)
+                throw new ArgumentNullException("signal");
+
             return signal.Value is MathNet.Symbolics.StdPackage.Structures.UndefinedSymbol;
         }
         public static bool IsConstantUndefined(Signal signal)
@@ -632,6 +674,9 @@ namespace MathNet.Symbolics.StdPackage
         /// <summary>Evaluates whether the signal is zero (0).</summary>
         public static bool IsAdditiveIdentity(Signal signal)
         {
+            if(signal == null)
+                throw new ArgumentNullException("signal");
+
             IAlgebraicMonoid monoid = signal.Value as IAlgebraicMonoid;
             return monoid != null && monoid.IsAdditiveIdentity;
         }
@@ -644,6 +689,9 @@ namespace MathNet.Symbolics.StdPackage
         /// <summary>Evaluates whether the signal is one (1).</summary>
         public static bool IsMultiplicativeIdentity(Signal signal)
         {
+            if(signal == null)
+                throw new ArgumentNullException("signal");
+
             IAlgebraicRingWithUnity ring = signal.Value as IAlgebraicRingWithUnity;
             return ring != null && ring.IsMultiplicativeIdentity;
         }
@@ -667,6 +715,9 @@ namespace MathNet.Symbolics.StdPackage
         /// </summary>
         public static bool IsAlwaysPositiveInteger(Signal signal)
         {
+            if(signal == null)
+                throw new ArgumentNullException("signal");
+
             return signal.AskForProperty("PositiveIntegerSet", "Std")
                 || IsConstant(signal) && IntegerValue.Converter.CanConvertLosslessFrom(signal.Value) && IntegerValue.ConvertFrom(signal.Value).Value > 0;
         }
@@ -682,18 +733,27 @@ namespace MathNet.Symbolics.StdPackage
         /// </summary>
         public static bool IsAlwaysInteger(Signal signal)
         {
+            if(signal == null)
+                throw new ArgumentNullException("signal");
+
             return signal.AskForProperty("IntegerSet", "Std")
                 || IsConstant(signal) && IntegerValue.Converter.CanConvertLosslessFrom(signal.Value)
                 || IsAlwaysNonnegativeInteger(signal);
         }
         public static bool IsAlwaysRational(Signal signal)
         {
+            if(signal == null)
+                throw new ArgumentNullException("signal");
+
             return signal.AskForProperty("RationalSet", "Std")
                 || IsConstant(signal) && RationalValue.Converter.CanConvertLosslessFrom(signal.Value)
                 || IsAlwaysInteger(signal);
         }
         public static bool IsAlwaysReal(Signal signal)
         {
+            if(signal == null)
+                throw new ArgumentNullException("signal");
+
             return signal.AskForProperty("RealSet", "Std")
                 || IsConstant(signal) && RealValue.Converter.CanConvertLosslessFrom(signal.Value)
                 || IsAlwaysRational(signal);

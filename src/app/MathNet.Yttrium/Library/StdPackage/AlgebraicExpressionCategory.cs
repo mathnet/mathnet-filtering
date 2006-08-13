@@ -44,6 +44,9 @@ namespace MathNet.Symbolics.StdPackage
 
         public override ECategoryMembership IsMember(Signal signal, bool ignoreCache)
         {
+            if(signal == null)
+                throw new ArgumentNullException("signal");
+
             if(signal.IsCyclic)
                 return ECategoryMembership.NotMember;
 

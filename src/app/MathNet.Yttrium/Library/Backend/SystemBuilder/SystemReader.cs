@@ -42,6 +42,9 @@ namespace MathNet.Symbolics.Backend.SystemBuilder
 
         public void ReadSystem(MathSystem system)
         {
+            if(system == null)
+                throw new ArgumentNullException("system");
+
             system.AcceptSystemBuilder(_builder);
         }
     }

@@ -84,10 +84,16 @@ namespace MathNet.Symbolics.StdPackage.Structures
         }
         public RealValue(IntegerValue value)
         {
+            if(value == null)
+                throw new ArgumentNullException("value");
+
             _dataValue = (double)value.Value;
         }
         public RealValue(RationalValue value)
         {
+            if(value == null)
+                throw new ArgumentNullException("value");
+
             _dataValue = (double)value.NumeratorValue / (double)value.DenominatorValue;
         }
         #endregion
@@ -205,10 +211,16 @@ namespace MathNet.Symbolics.StdPackage.Structures
         #region Arithmetic Function
         public RealValue Add(RealValue op)
         {
+            if(op == null)
+                throw new ArgumentNullException("op");
+
             return new RealValue(_dataValue + op._dataValue);
         }
         public RealValue Subtract(RealValue op)
         {
+            if(op == null)
+                throw new ArgumentNullException("op");
+
             return new RealValue(_dataValue - op._dataValue);
         }
         public RealValue Negate()
@@ -217,11 +229,17 @@ namespace MathNet.Symbolics.StdPackage.Structures
         }
         public RealValue Multiply(RealValue op)
         {
+            if(op == null)
+                throw new ArgumentNullException("op");
+
             return new RealValue(_dataValue * op._dataValue);
         }
         public RealValue Divide(RealValue op)
         {
-            return new RealValue(_dataValue / op.Value);
+            if(op == null)
+                throw new ArgumentNullException("op");
+
+            return new RealValue(_dataValue / op._dataValue);
         }
         public RealValue Invert()
         {
@@ -247,11 +265,17 @@ namespace MathNet.Symbolics.StdPackage.Structures
         }
         public RealValue Power(RealValue op)
         {
+            if(op == null)
+                throw new ArgumentNullException("op");
+
             return new RealValue(Math.Pow(_dataValue, op._dataValue));
         }
         public RealValue Root(RealValue op)
         {
-            return new RealValue(Math.Pow(_dataValue, 1 / op.Value));
+            if(op == null)
+                throw new ArgumentNullException("op");
+
+            return new RealValue(Math.Pow(_dataValue, 1 / op._dataValue));
         }
         public RealValue Square()
         {
@@ -395,6 +419,9 @@ namespace MathNet.Symbolics.StdPackage.Structures
         #region Constants
         public static Signal ParseConstant(Context context, string value)
         {
+            if(value == null)
+                throw new ArgumentNullException("value");
+
             return Constant(context, double.Parse(value, Context.NumberFormat), value.Trim());
         }
         public static Signal Constant(Context context, double value)
@@ -411,6 +438,9 @@ namespace MathNet.Symbolics.StdPackage.Structures
 
         public static Signal ConstantPI(Context context)
         {
+            if(context == null)
+                throw new ArgumentNullException("context");
+
             MathIdentifier id = new MathIdentifier("RealValueConstantPI", "Std");
             Signal ret;
             if(context.SingletonSignals.TryGetValue(id, out ret))
@@ -425,6 +455,9 @@ namespace MathNet.Symbolics.StdPackage.Structures
 
         public static Signal ConstantE(Context context)
         {
+            if(context == null)
+                throw new ArgumentNullException("context");
+
             MathIdentifier id = new MathIdentifier("RealValueConstantE", "Std");
             Signal ret;
             if(context.SingletonSignals.TryGetValue(id, out ret))

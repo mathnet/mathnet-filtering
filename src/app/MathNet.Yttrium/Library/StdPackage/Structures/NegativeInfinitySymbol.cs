@@ -75,6 +75,9 @@ namespace MathNet.Symbolics.StdPackage.Structures
 
         public static Signal Constant(Context context)
         {
+            if(context == null)
+                throw new ArgumentNullException("context");
+
             MathIdentifier id = _structureId.DerivePostfix("Constant");
             Signal ret;
             if(context.SingletonSignals.TryGetValue(id, out ret))

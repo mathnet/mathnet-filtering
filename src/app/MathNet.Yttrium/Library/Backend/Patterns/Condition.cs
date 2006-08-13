@@ -47,6 +47,9 @@ namespace MathNet.Symbolics.Backend.Patterns
 
         public bool CouldMergeToCoalescedTree(CoalescedTreeNode node)
         {
+            if(node == null)
+                throw new ArgumentNullException("node");
+
             if(node.Condition.Equals(AlwaysTrueCondition.Instance))
                 return true;
             return CouldMergeToCoalescedTreeNode(node.Condition);

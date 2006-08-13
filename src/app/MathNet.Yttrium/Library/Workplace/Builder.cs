@@ -90,10 +90,16 @@ namespace MathNet.Symbolics.Workplace
         }
         public Signal Function(string symbol, params Signal[] arguments)
         {
+            if(arguments == null)
+                throw new ArgumentNullException("arguments");
+
             return Function(context.Library.LookupEntity(symbol, arguments.Length, 1, 0), arguments);
         }
         public Signal Function(string symbol, IList<Signal> arguments)
         {
+            if(arguments == null)
+                throw new ArgumentNullException("arguments");
+
             return Function(context.Library.LookupEntity(symbol, arguments.Count, 1, 0), arguments);
         }
 
@@ -107,10 +113,16 @@ namespace MathNet.Symbolics.Workplace
         }
         public Signal Function(string symbol, InfixNotation notation, params Signal[] arguments)
         {
+            if(arguments == null)
+                throw new ArgumentNullException("arguments");
+
             return Function(context.Library.LookupEntity(symbol, notation, arguments.Length, 1, 0), arguments);
         }
         public Signal Function(string symbol, InfixNotation notation, IList<Signal> arguments)
         {
+            if(arguments == null)
+                throw new ArgumentNullException("arguments");
+
             return Function(context.Library.LookupEntity(symbol, notation, arguments.Count, 1, 0), arguments);
         }
 

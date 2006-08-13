@@ -37,6 +37,9 @@ namespace MathNet.Symbolics.StdPackage.Structures
 
         public override ECategoryMembership IsMember(Signal signal, bool ignoreCache)
         {
+            if(signal == null)
+                throw new ArgumentNullException("signal");
+
             if(signal.Value == null)
                 return ECategoryMembership.Unknown;
             if(signal.Value is LogicValue)

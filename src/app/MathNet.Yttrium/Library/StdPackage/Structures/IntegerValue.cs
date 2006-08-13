@@ -187,10 +187,16 @@ namespace MathNet.Symbolics.StdPackage.Structures
         #region Arithmetic Operations
         public IntegerValue Add(IntegerValue op)
         {
+            if(op == null)
+                throw new ArgumentNullException("op");
+
             return new IntegerValue(_dataValue + op._dataValue);
         }
         public IntegerValue Subtract(IntegerValue op)
         {
+            if(op == null)
+                throw new ArgumentNullException("op");
+
             return new IntegerValue(_dataValue - op._dataValue);
         }
         public IntegerValue Negate()
@@ -199,6 +205,9 @@ namespace MathNet.Symbolics.StdPackage.Structures
         }
         public IntegerValue Multiply(IntegerValue op)
         {
+            if(op == null)
+                throw new ArgumentNullException("op");
+
             return new IntegerValue(_dataValue * op._dataValue);
         }
         public RationalValue Divide(IntegerValue op)
@@ -211,6 +220,9 @@ namespace MathNet.Symbolics.StdPackage.Structures
         }
         public IntegerValue Power(IntegerValue op)
         {
+            if(op == null)
+                throw new ArgumentNullException("op");
+            
             return new IntegerValue((long)Math.Round(Math.Pow(_dataValue, op._dataValue)));
         }
         public IntegerValue Absolute()
@@ -219,10 +231,16 @@ namespace MathNet.Symbolics.StdPackage.Structures
         }
         public IntegerValue Max(IntegerValue op)
         {
+            if(op == null)
+                throw new ArgumentNullException("op");
+
             return (_dataValue >= op._dataValue) ? this : op;
         }
         public IntegerValue Min(IntegerValue op)
         {
+            if(op == null)
+                throw new ArgumentNullException("op");
+
             return (_dataValue <= op._dataValue) ? this : op;
         }
         #endregion
@@ -243,6 +261,9 @@ namespace MathNet.Symbolics.StdPackage.Structures
 
         public static Signal ConstantZero(Context context)
         {
+            if(context == null)
+                throw new ArgumentNullException("context");
+
             MathIdentifier id = new MathIdentifier("IntegerValueConstantZero", "Std");
             Signal ret;
             if(context.SingletonSignals.TryGetValue(id, out ret))
@@ -257,6 +278,9 @@ namespace MathNet.Symbolics.StdPackage.Structures
 
         public static Signal ConstantOne(Context context)
         {
+            if(context == null)
+                throw new ArgumentNullException("context");
+
             MathIdentifier id = new MathIdentifier("IntegerValueConstantOne", "Std");
             Signal ret;
             if(context.SingletonSignals.TryGetValue(id, out ret))
@@ -271,6 +295,9 @@ namespace MathNet.Symbolics.StdPackage.Structures
 
         public static Signal ConstantTwo(Context context)
         {
+            if(context == null)
+                throw new ArgumentNullException("context");
+
             MathIdentifier id = new MathIdentifier("IntegerValueConstantTwo", "Std");
             Signal ret;
             if(context.SingletonSignals.TryGetValue(id, out ret))
@@ -285,6 +312,9 @@ namespace MathNet.Symbolics.StdPackage.Structures
 
         public static Signal ConstantMinusOne(Context context)
         {
+            if(context == null)
+                throw new ArgumentNullException("context");
+
             MathIdentifier id = new MathIdentifier("IntegerValueConstantMinusOne", "Std");
             Signal ret;
             if(context.SingletonSignals.TryGetValue(id, out ret))

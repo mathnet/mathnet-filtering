@@ -91,6 +91,9 @@ namespace MathNet.Symbolics.StdPackage.Structures
         }
         public RationalValue(IntegerValue value)
         {
+            if(value == null)
+                throw new ArgumentNullException("value");
+
             _numeratorValue = value.Value;
             _denominatorValue = 1;
         }
@@ -271,12 +274,18 @@ namespace MathNet.Symbolics.StdPackage.Structures
         #region Arithmetic Function
         public RationalValue Add(RationalValue op)
         {
+            if(op == null)
+                throw new ArgumentNullException("op");
+
             return new RationalValue(
                 _numeratorValue * op._denominatorValue + _denominatorValue * op._numeratorValue,
                 _denominatorValue * op._denominatorValue);
         }
         public RationalValue Subtract(RationalValue op)
         {
+            if(op == null)
+                throw new ArgumentNullException("op");
+
             return new RationalValue(
                 _numeratorValue * op._denominatorValue - _denominatorValue * op._numeratorValue,
                 _denominatorValue * op._denominatorValue);
@@ -289,24 +298,36 @@ namespace MathNet.Symbolics.StdPackage.Structures
         }
         public RationalValue Multiply(RationalValue op)
         {
+            if(op == null)
+                throw new ArgumentNullException("op");
+
             return new RationalValue(
                 _numeratorValue * op._numeratorValue,
                 _denominatorValue * op._denominatorValue);
         }
         public RationalValue Multiply(IntegerValue op)
         {
+            if(op == null)
+                throw new ArgumentNullException("op");
+
             return new RationalValue(
                 _numeratorValue * op.Value,
                 _denominatorValue);
         }
         public RationalValue Divide(RationalValue op)
         {
+            if(op == null)
+                throw new ArgumentNullException("op");
+
             return new RationalValue(
                 _numeratorValue * op._denominatorValue,
                 _denominatorValue * op._numeratorValue);
         }
         public RationalValue Divide(IntegerValue op)
         {
+            if(op == null)
+                throw new ArgumentNullException("op");
+
             return new RationalValue(
                 _numeratorValue,
                 _denominatorValue * op.Value);
@@ -323,10 +344,16 @@ namespace MathNet.Symbolics.StdPackage.Structures
         }
         public RationalValue Power(IntegerValue op)
         {
+            if(op == null)
+                throw new ArgumentNullException("op");
+
             return new RationalValue((long)Math.Round(Math.Pow(_numeratorValue, op.Value)), (long)Math.Round(Math.Pow(_denominatorValue, op.Value)));
         }
         public RealValue Power(RationalValue op)
         {
+            if(op == null)
+                throw new ArgumentNullException("op");
+
             return new RealValue(Math.Pow(ToDouble(), op.ToDouble()));
         }
         public RationalValue Scale(RationalValue scalar)
@@ -356,6 +383,9 @@ namespace MathNet.Symbolics.StdPackage.Structures
 
         public static Signal ConstantHalf(Context context)
         {
+            if(context == null)
+                throw new ArgumentNullException("context");
+
             MathIdentifier id = new MathIdentifier("RationalValueConstantHalf", "Std");
             Signal ret;
             if(context.SingletonSignals.TryGetValue(id, out ret))

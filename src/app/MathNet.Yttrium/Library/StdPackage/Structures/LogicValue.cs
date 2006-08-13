@@ -332,6 +332,9 @@ namespace MathNet.Symbolics.StdPackage.Structures
         #region Logic Operations
         public LogicValue And(LogicValue op)
         {
+            if(op == null)
+                throw new ArgumentNullException("op");
+
             if(_dataValue == ELogicX01.False || op._dataValue == ELogicX01.False)
                 return LogicValue.False;
             if(_dataValue == ELogicX01.Unknown || op._dataValue == ELogicX01.Unknown)
@@ -341,6 +344,9 @@ namespace MathNet.Symbolics.StdPackage.Structures
         }
         public LogicValue Nand(LogicValue op)
         {
+            if(op == null)
+                throw new ArgumentNullException("op");
+
             if(_dataValue == ELogicX01.False || op._dataValue == ELogicX01.False)
                 return LogicValue.True;
             if(_dataValue == ELogicX01.Unknown || op._dataValue == ELogicX01.Unknown)
@@ -350,6 +356,9 @@ namespace MathNet.Symbolics.StdPackage.Structures
         }
         public LogicValue Or(LogicValue op)
         {
+            if(op == null)
+                throw new ArgumentNullException("op");
+
             if(_dataValue == ELogicX01.True || op._dataValue == ELogicX01.True)
                 return LogicValue.True;
             if(_dataValue == ELogicX01.Unknown || op._dataValue == ELogicX01.Unknown)
@@ -359,6 +368,9 @@ namespace MathNet.Symbolics.StdPackage.Structures
         }
         public LogicValue Nor(LogicValue op)
         {
+            if(op == null)
+                throw new ArgumentNullException("op");
+
             if(_dataValue == ELogicX01.True || op._dataValue == ELogicX01.True)
                 return LogicValue.False;
             if(_dataValue == ELogicX01.Unknown || op._dataValue == ELogicX01.Unknown)
@@ -368,6 +380,9 @@ namespace MathNet.Symbolics.StdPackage.Structures
         }
         public LogicValue Xor(LogicValue op)
         {
+            if(op == null)
+                throw new ArgumentNullException("op");
+
             if(_dataValue == ELogicX01.Unknown || op._dataValue == ELogicX01.Unknown)
                 return LogicValue.Unknown;
             if(_dataValue == op._dataValue)
@@ -377,6 +392,9 @@ namespace MathNet.Symbolics.StdPackage.Structures
         }
         public LogicValue Xnor(LogicValue op)
         {
+            if(op == null)
+                throw new ArgumentNullException("op");
+
             if(_dataValue == ELogicX01.Unknown || op._dataValue == ELogicX01.Unknown)
                 return LogicValue.Unknown;
             if(_dataValue == op._dataValue)

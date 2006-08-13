@@ -298,6 +298,9 @@ namespace MathNet.Symbolics.Workplace
         }
         public void RemoveSignal(Signal signal, bool isolateFromDriver)
         {
+            if(signal == null)
+                throw new ArgumentNullException("signal");
+
             if(isolateFromDriver && signal.IsDriven)
                 signal.DrivenByPort.RemoveOutputSignalBinding(signal.DrivenByPort.OutputSignals.IndexOf(signal));
             if(_allSignals.Contains(signal))
@@ -310,7 +313,9 @@ namespace MathNet.Symbolics.Workplace
         }
         public void AddBusRange(IEnumerable<Bus> buses)
         {
-            System.Diagnostics.Debug.Assert(buses != null);
+            if(buses == null)
+                throw new ArgumentNullException("buses");
+
             foreach(Bus bus in buses)
                 if(!_allBuses.Contains(bus))
                     InternalAddBus(bus);
@@ -620,6 +625,9 @@ namespace MathNet.Symbolics.Workplace
         #region Evaluation - Systems may be used as "Functions"
         public ValueStructure[] Evaluate(params ValueStructure[] inputs)
         {
+            if(inputs == null)
+                throw new ArgumentNullException("inputs");
+
             if(inputs.Length != _inputs.Count)
                 throw new System.ArgumentException("The count of inputs doesn't match the systems count of input signals.", "inputs");
 
@@ -636,6 +644,9 @@ namespace MathNet.Symbolics.Workplace
 
         public double[] Evaluate(params double[] inputs)
         {
+            if(inputs == null)
+                throw new ArgumentNullException("inputs");
+
             if(inputs.Length != _inputs.Count)
                 throw new System.ArgumentException("The count of inputs doesn't match the systems count of input signals.", "inputs");
 
@@ -723,6 +734,9 @@ namespace MathNet.Symbolics.Workplace
         }
         public void WriteXml(FileInfo file)
         {
+            if(file == null)
+                throw new ArgumentNullException("file");
+
             XmlWriter writer = XmlWriter.Create(file.CreateText());
             WriteXml(writer);
             writer.Close();
@@ -744,6 +758,9 @@ namespace MathNet.Symbolics.Workplace
         }
         public static MathSystem ReadXml(FileInfo file, Context context)
         {
+            if(file == null)
+                throw new ArgumentNullException("file");
+
             XmlReader reader = XmlReader.Create(file.OpenText());
             MathSystem sys = ReadXml(reader, context);
             reader.Close();
@@ -798,6 +815,9 @@ namespace MathNet.Symbolics.Workplace
         }
         public static Entity ReadXmlEntity(FileInfo file, MathIdentifier entityId, string symbol)
         {
+            if(file == null)
+                throw new ArgumentNullException("file");
+
             XmlReader reader = XmlReader.Create(file.OpenText());
             Entity entity = ReadXmlEntity(reader, entityId, symbol, InfixNotation.None, -1);
             reader.Close();

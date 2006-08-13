@@ -79,6 +79,9 @@ namespace MathNet.Symbolics.StdPackage
         #region IEntityServer Member
         public void AppendEntities(EntityTable table)
         {
+            if(table == null)
+                throw new ArgumentNullException("table");
+
             #region Arithmetics
             table.Add(new NaryToOneGenericEntity("+", "Add", "Std", InfixNotation.LeftAssociativeInnerOperator, 60));
             table.Add(new NaryToOneGenericEntity("-", "Subtract", "Std", InfixNotation.LeftAssociativeInnerOperator, 60));
@@ -144,6 +147,9 @@ namespace MathNet.Symbolics.StdPackage
         #region IArchitectureServer Member
         public void AppendArchitectures(ArchitectureTable table)
         {
+            if(table == null)
+                throw new ArgumentNullException("table");
+
             #region Arithmetics
             table.AddArchitectureBuilder(new Arithmetics.AdditionArchitectures());
             table.AddArchitectureBuilder(new Arithmetics.SubtractionArchitectures());
@@ -195,6 +201,9 @@ namespace MathNet.Symbolics.StdPackage
         #region ITheoremServer Members
         public void AppendTheorems(TheoremTable table)
         {
+            if(table == null)
+                throw new ArgumentNullException("table");
+
             #region Arithmetics
             table.AddTheorem(Arithmetics.AdditionArchitectures.BuildTheorems(context));
             table.AddTheorem(Arithmetics.SubtractionArchitectures.BuildTheorems(context));

@@ -66,6 +66,9 @@ namespace MathNet.Symbolics.StdPackage
 
         public override ECategoryMembership IsMember(Signal signal, bool ignoreCache)
         {
+            if(signal == null)
+                throw new ArgumentNullException("signal");
+
             ECategoryMembership membership;
             if(ignoreCache)
                 membership = ECategoryMembership.Unknown;
@@ -82,6 +85,9 @@ namespace MathNet.Symbolics.StdPackage
 
         public override ECategoryMembership IsMember(Port port)
         {
+            if(port == null)
+                throw new ArgumentNullException("port");
+
             ECategoryMembership childMembership;
             Entity entity = port.Entity;
 
@@ -130,6 +136,9 @@ namespace MathNet.Symbolics.StdPackage
         }
         protected static AlgebraicStructureCategory InnerDeserialize(Context context, XmlReader reader)
         {
+            if(context == null)
+                throw new ArgumentNullException("context");
+
             EAlgebraicStructure structure = (EAlgebraicStructure)Enum.Parse(typeof(EAlgebraicStructure), reader.ReadElementString("Structure"));
             Entity ae = context.Library.LookupEntity(MathIdentifier.Parse(reader.ReadElementString("AdditiveEntity")));
             if(reader.IsStartElement("MultiplicativeEntity"))

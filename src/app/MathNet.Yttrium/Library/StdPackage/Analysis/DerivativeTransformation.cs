@@ -98,6 +98,9 @@ namespace MathNet.Symbolics.StdPackage.Analysis
 
         public Signal ManipulateSignal(Signal original, Signal replacement, bool isReplaced)
         {
+            if(original == null)
+                throw new ArgumentNullException("original");
+
             if(!isReplaced)
             {
                 if(_variable.Equals(original))

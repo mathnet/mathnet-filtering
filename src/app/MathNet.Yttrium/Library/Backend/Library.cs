@@ -291,6 +291,9 @@ namespace MathNet.Symbolics.Backend
         /// </summary>
         public void LoadAssembly(Assembly assembly)
         {
+            if(assembly == null)
+                throw new ArgumentNullException("assembly");
+
             Type packageManagerType = typeof(PackageManagerAttribute);
             Type architectureServerType = typeof(ArchitectureServerAttribute);
             Type entityServerType = typeof(EntityServerAttribute);
@@ -372,6 +375,9 @@ namespace MathNet.Symbolics.Backend
         /// </summary>
         public void LoadAssemblyManual(Assembly assembly)
         {
+            if(assembly == null)
+                throw new ArgumentNullException("assembly");
+
             Type entityImplementationType = typeof(EntityImplementationAttribute);
 
             foreach(Type t in assembly.GetTypes())

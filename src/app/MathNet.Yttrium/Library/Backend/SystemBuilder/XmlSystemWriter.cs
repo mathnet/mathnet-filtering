@@ -159,6 +159,9 @@ namespace MathNet.Symbolics.Backend.SystemBuilder
 
         public void AppendSignalValue(Guid iid, StructurePack value)
         {
+            if(value == null)
+                throw new ArgumentNullException("value");
+
             _fsm.AdvanceTo(BuilderState.SignalDetails);
             _writer.WriteStartElement("SignalValue", Context.YttriumNamespace);
             _writer.WriteAttributeString("iid", iid.ToString());
@@ -168,6 +171,9 @@ namespace MathNet.Symbolics.Backend.SystemBuilder
 
         public void AppendSignalProperty(Guid iid, PropertyPack property)
         {
+            if(property == null)
+                throw new ArgumentNullException("property");
+
             _fsm.AdvanceTo(BuilderState.SignalDetails);
             _writer.WriteStartElement("SignalProperty", Context.YttriumNamespace);
             _writer.WriteAttributeString("iid", iid.ToString());
@@ -177,6 +183,9 @@ namespace MathNet.Symbolics.Backend.SystemBuilder
 
         public void AppendSignalConstraint(Guid iid, PropertyPack constraint)
         {
+            if(constraint == null)
+                throw new ArgumentNullException("constraint");
+
             _fsm.AdvanceTo(BuilderState.SignalDetails);
             _writer.WriteStartElement("SignalConstraint", Context.YttriumNamespace);
             _writer.WriteAttributeString("iid", iid.ToString());

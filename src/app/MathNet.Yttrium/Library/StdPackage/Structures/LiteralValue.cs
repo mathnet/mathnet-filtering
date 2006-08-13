@@ -89,6 +89,9 @@ namespace MathNet.Symbolics.StdPackage.Structures
         #region Direct Function Implementations
         public LiteralValue Concatenate(LiteralValue op)
         {
+            if(op == null)
+                throw new ArgumentNullException("op");
+
             return new LiteralValue(_dataValue + op._dataValue);
         }
         #endregion
@@ -96,10 +99,16 @@ namespace MathNet.Symbolics.StdPackage.Structures
         #region Constants
         public static Signal ParseConstant(Context context, string value)
         {
+            if(context == null)
+                throw new ArgumentNullException("context");
+
             return Constant(context, value.Trim());
         }
         public static Signal Constant(Context context, string value)
         {
+            if(context == null)
+                throw new ArgumentNullException("context");
+
             Signal s = new Signal(context, new LiteralValue(value));
             s.Label = s.Value.ToString() + "_Constant";
             s.AddConstraint(Properties.ConstantSignalProperty.Instance);
@@ -108,6 +117,9 @@ namespace MathNet.Symbolics.StdPackage.Structures
 
         public static Signal ConstantEmpty(Context context)
         {
+            if(context == null)
+                throw new ArgumentNullException("context");
+
             MathIdentifier id = new MathIdentifier("LiteralValueConstantEmpty", "Std");
             Signal ret;
             if(context.SingletonSignals.TryGetValue(id, out ret))
