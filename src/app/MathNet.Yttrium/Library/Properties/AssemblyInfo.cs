@@ -24,7 +24,7 @@ using System.Runtime.InteropServices;
 using System.Security.Permissions;
 
 [assembly: AssemblyTitle("Math.NET Yttrium: Computer Algebra Library")]
-[assembly: AssemblyDescription("http://www.cdrnet.net/projects/nmath/symbolics/yttrium/")]
+[assembly: AssemblyDescription("http://mathnet.opensourcedotnet.info/")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Math.NET Project")]
 [assembly: AssemblyProduct("Math.NET")]

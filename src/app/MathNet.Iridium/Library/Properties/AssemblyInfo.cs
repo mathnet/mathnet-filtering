@@ -25,7 +25,7 @@ using System.Runtime.InteropServices;
 using System.Security.Permissions;
 
 [assembly: AssemblyTitle("Math.NET Iridium: Scientific Numerical Library")]
-[assembly: AssemblyDescription("http://www.cdrnet.net/projects/nmath/numerics/iridium/")]
+[assembly: AssemblyDescription("http://mathnet.opensourcedotnet.info/")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Math.NET Project")]
 [assembly: AssemblyProduct("Math.NET")]
