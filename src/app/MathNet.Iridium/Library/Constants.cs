@@ -56,5 +56,25 @@ namespace MathNet.Numerics
         public const double InvSqrt2Pi = 0.39894228040143267793994605993438186847585863116492d;
         /// <summary>2/sqrt(pi)</summary>
         public const double TwoInvSqrtPi = 1.1283791670955125738961589031215451716881012586580d;
+
+        /// <summary>(pi)/180</summary>
+        public const double Degree = 0.0174532925199432957692369076848861271344287188854172545609719144017100911460344944368d;
+        /// <summary>(pi)/200</summary>
+        public const double NewDegree = Pi / 200d;
+
+        /// <summary>Catalan constant</summary>
+        /// <remarks>Sum(k=0 -> inf){ (-1)^k/(2*k + 1)2 }</remarks>
+        public const double Catalan = 0.9159655941772190150546035149323841107741493742816721342664981196217630197762547694794d;
+        /// <summary>The Euler-Mascheroni constant</summary>
+        /// <remarks>lim(n -> inf){ Sum(k=1 -> n) { 1/k - log(n) } }</remarks>
+        public const double EulerGamma = 0.5772156649015328606065120900824024310421593359399235988057672348849d;
+        /// <summary>(1+sqrt(5))/2</summary>
+        public const double GoldenRatio = 1.6180339887498948482045868343656381177203091798057628621354486227052604628189024497072d;
+        /// <summary>Glaisher Constant</summary>
+        /// <remarks>e^(1/12 - Zeta(-1))</remarks>
+        public const double Glaisher = 1.2824271291006226368753425688697917277676889273250011920637400217404063088588264611297d;
+        /// <summary>Khinchin constant</summary>
+        /// <remarks>prod(k=1 -> inf){1+1/(k*(k+2))^log(k,2)}</remarks>
+        public const double Khinchin = 2.6854520010653064453097148354817956938203822939944629530511523455572188595371520028011d;
     }
 }
