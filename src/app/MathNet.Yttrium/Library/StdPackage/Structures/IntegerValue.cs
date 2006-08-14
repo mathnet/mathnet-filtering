@@ -212,6 +212,9 @@ namespace MathNet.Symbolics.StdPackage.Structures
         }
         public RationalValue Divide(IntegerValue op)
         {
+            if(op == null)
+                throw new ArgumentNullException("op");
+
             return new RationalValue(_dataValue, op._dataValue);
         }
         public RationalValue Invert()

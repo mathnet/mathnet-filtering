@@ -39,6 +39,9 @@ namespace MathNet.Symbolics.Backend.Properties
         /// <param name="sticky">If true the property will stay attached (but updated) when the membership changes. If false the property will be removed. If the new state is unknown, the property is removed in both cases.</param>
         public CategoryMembershipProperty(Category category, ECategoryMembership categoryMembership, bool sticky)
         {
+            if(category == null)
+                throw new ArgumentNullException("category");
+
             _category = category;
             _categoryMembership = categoryMembership;
             _isSticky = sticky;

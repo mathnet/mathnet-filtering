@@ -60,6 +60,9 @@ namespace MathNet.Symbolics.StdPackage.Properties
 
         public override bool StillValidAfterEvent(Signal signal)
         {
+            if(signal == null)
+                throw new ArgumentNullException("signal");
+
             if(signal.Value == null)
                 return false;
             return IntegerValue.Converter.CanConvertLosslessFrom(signal.Value);

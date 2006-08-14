@@ -40,6 +40,11 @@ namespace MathNet.Symbolics.Backend.Parsing
 
         public ParserScanner(TextReader reader, MathSystem system)
         {
+            if(system == null)
+                throw new ArgumentNullException("system");
+            if(reader == null)
+                throw new ArgumentNullException("reader");
+
             tokenizer = new ParserMarker(reader, system.Context);
             this.system = system;
             this.context = system.Context;
@@ -843,6 +848,11 @@ namespace MathNet.Symbolics.Backend.Parsing
         /// <summary>Clear the buffer. Replace the current stream with a new one.</summary>
         public void Reset(TextReader reader, MathSystem system)
         {
+            if(system == null)
+                throw new ArgumentNullException("system");
+            if(reader == null)
+                throw new ArgumentNullException("reader");
+
             this.system = system;
             this.context = system.Context;
             tokenizer.Reset(reader, context);

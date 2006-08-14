@@ -41,6 +41,9 @@ namespace MathNet.Symbolics.Backend.Containers
 
         public bool ContainsEntity(Entity entity)
         {
+            if(entity == null)
+                throw new ArgumentNullException("entity");
+
             return ContainsEntity(entity.EntityId);
         }
         public bool ContainsEntity(MathIdentifier entityId)
@@ -75,6 +78,9 @@ namespace MathNet.Symbolics.Backend.Containers
         }
         public void AddArchitectureBuilder(Entity entity, IArchitectureFactory factory)
         {
+            if(entity == null)
+                throw new ArgumentNullException("entity");
+
             AddArchitectureBuilder(entity.EntityId, factory);
         }
         public void AddArchitectureBuilder(MathIdentifier entityId, IArchitectureFactory factory)

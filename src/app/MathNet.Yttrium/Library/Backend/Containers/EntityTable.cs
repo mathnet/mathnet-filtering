@@ -85,6 +85,9 @@ namespace MathNet.Symbolics.Backend.Containers
 
         public void Add(Entity value)
         {
+            if(value == null)
+                throw new ArgumentNullException("value");
+
             Add(value.EntityId, value);
         }
         public override void Add(MathIdentifier id, Entity value)
@@ -95,6 +98,9 @@ namespace MathNet.Symbolics.Backend.Containers
 
         public void Remove(Entity entity)
         {
+            if(entity == null)
+                throw new ArgumentNullException("entity");
+
             Remove(entity.EntityId);
         }
         public override void Remove(MathIdentifier id)

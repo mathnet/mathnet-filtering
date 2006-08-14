@@ -88,6 +88,9 @@ namespace MathNet.Symbolics.StdPackage
 
         public static Signal Numerator(Signal signal)
         {
+            if(signal == null)
+                throw new ArgumentNullException("signal");
+
             if(signal.IsDrivenByPortEntity("Divide", "Std"))
                 return signal.DrivenByPort.InputSignals[0];
             return signal;
@@ -117,6 +120,9 @@ namespace MathNet.Symbolics.StdPackage
         /// <remarks><see cref="signal"/> is assumed to be automatic simplified</remarks>
         public static bool IsMonomial(Signal signal, Signal variable)
         {
+            if(signal == null)
+                throw new ArgumentNullException("signal");
+
             if(IsAlwaysRational(signal))
                 return true;
             if(signal.IsDrivenByPortEntity("Multiply", "Std") && signal.DrivenByPort.InputSignalCount == 2 && IsAlwaysRational(signal.DrivenByPort.InputSignals[0]))
@@ -151,6 +157,9 @@ namespace MathNet.Symbolics.StdPackage
         /// <remarks><see cref="signal"/> is assumed to be automatic simplified.</remarks>
         public static bool IsRational(Signal signal, Signal variable)
         {
+            if(signal == null)
+                throw new ArgumentNullException("signal");
+
             if(signal.IsDrivenByPortEntity("Divide", "Std"))
                 return IsPolynomial(Numerator(signal), variable) && IsPolynomial(Denominator(signal), variable);
             else
@@ -168,6 +177,9 @@ namespace MathNet.Symbolics.StdPackage
         /// <remarks><see cref="signal"/> is assumed to be automatic simplified.</remarks>
         public static ValueStructure MonomialDegree(Signal signal, Signal variable)
         {
+            if(signal == null)
+                throw new ArgumentNullException("signal");
+
             if(IsConstantAdditiveIdentity(signal))
                 return NegativeInfinitySymbol.Instance;
             if(IsAlwaysRational(signal))
@@ -197,6 +209,9 @@ namespace MathNet.Symbolics.StdPackage
         /// <remarks><see cref="signal"/> is assumed to be automatic simplified.</remarks>
         public static ValueStructure PolynomialDegree(Signal signal, Signal variable)
         {
+            if(signal == null)
+                throw new ArgumentNullException("signal");
+
             if(signal.IsDrivenByPortEntity("Add", "Std"))
             {
                 IntegerValue d = IntegerValue.Zero;
@@ -226,6 +241,9 @@ namespace MathNet.Symbolics.StdPackage
         /// <remarks><see cref="signal"/> is assumed to be automatic simplified.</remarks>
         public static Signal MonomialCoefficient(Signal signal, Signal variable, out ValueStructure degree)
         {
+            if(signal == null)
+                throw new ArgumentNullException("signal");
+
             if(IsConstantAdditiveIdentity(signal))
             {
                 degree = NegativeInfinitySymbol.Instance;
@@ -300,6 +318,9 @@ namespace MathNet.Symbolics.StdPackage
 
         public static Signal PolynomialLeadingCoefficient(Signal signal, Signal variable)
         {
+            if(signal == null)
+                throw new ArgumentNullException("signal");
+
             ValueStructure degree = PolynomialDegree(signal, variable);
             IntegerValue iv = degree as IntegerValue;
             if(iv != null)
@@ -477,6 +498,9 @@ namespace MathNet.Symbolics.StdPackage
         }
         public static ValueStructure PolynomialDegree(Signal signal, Signal[] generalizedVariables)
         {
+            if(signal == null)
+                throw new ArgumentNullException("signal");
+
             if(signal.IsDrivenByPortEntity("Add", "Std"))
             {
                 IntegerValue d = IntegerValue.Zero;
@@ -656,6 +680,9 @@ namespace MathNet.Symbolics.StdPackage
 
         public static bool IsConstant(Signal signal)
         {
+            if(signal == null)
+                throw new ArgumentNullException("signal");
+
             return signal.AskForProperty("Constant", "Std");
         }
 

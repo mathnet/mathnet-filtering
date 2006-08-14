@@ -60,6 +60,9 @@ namespace MathNet.Symbolics.StdPackage.Flow
 
         public override bool SupportsPort(Port port)
         {
+            if(port == null)
+                throw new ArgumentNullException("port");
+
             return port.BusCount == 0 && port.InputSignalCount == port.OutputSignalCount;
         }
 

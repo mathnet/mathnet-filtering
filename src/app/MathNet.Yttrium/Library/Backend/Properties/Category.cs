@@ -48,6 +48,9 @@ namespace MathNet.Symbolics.Backend.Properties
 
         protected bool TryGetCachedMembership(Signal signal, out ECategoryMembership membership)
         {
+            if(signal == null)
+                throw new ArgumentNullException("signal");
+
             Property p;
             if(signal.Properties.TryLookupProperty(AssociatedPropertyIdentifier, out p))
             {
@@ -93,6 +96,9 @@ namespace MathNet.Symbolics.Backend.Properties
         }
         protected CategoryMembershipProperty TagSignal(Signal signal, ECategoryMembership membership, bool sticky)
         {
+            if(signal == null)
+                throw new ArgumentNullException("signal");
+
             CategoryMembershipProperty property = new CategoryMembershipProperty(this, membership, sticky);
             signal.Properties.AddProperty(property);
             return property;
@@ -107,6 +113,9 @@ namespace MathNet.Symbolics.Backend.Properties
         protected abstract void InnerSerialize(XmlWriter writer);
         public static void Serialize(XmlWriter writer, Category category)
         {
+            if(writer == null)
+                throw new ArgumentNullException("writer");
+
             writer.WriteStartElement("Category", Context.YttriumNamespace);
             writer.WriteAttributeString("type", category.GetType().AssemblyQualifiedName);
             category.InnerSerialize(writer);
@@ -114,6 +123,9 @@ namespace MathNet.Symbolics.Backend.Properties
         }
         public static Category Deserialize(Context context, XmlReader reader)
         {
+            if(reader == null)
+                throw new ArgumentNullException("reader");
+
             reader.ReadStartElement("Category", Context.YttriumNamespace);
             Type type = Type.GetType(reader.GetAttribute("type"), true);
             MethodInfo mi = type.GetMethod("InnerDeserialize", BindingFlags.Static);

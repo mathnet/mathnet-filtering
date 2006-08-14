@@ -41,6 +41,11 @@ namespace MathNet.Symbolics.Backend.Parsing
 
         public LexerScanner(TextReader reader, Context context)
         {
+            if(context == null)
+                throw new ArgumentNullException("context");
+            if(reader == null)
+                throw new ArgumentNullException("reader");
+
             this.lexer = new LexerMarker(reader);
             this.context = context;
 
@@ -431,6 +436,11 @@ namespace MathNet.Symbolics.Backend.Parsing
         /// <summary>Clear the buffer. Replace the current stream with a new one.</summary>
         public void Reset(TextReader reader, Context context)
         {
+            if(context == null)
+                throw new ArgumentNullException("context");
+            if(reader == null)
+                throw new ArgumentNullException("reader");
+
             lexer.Reset(reader);
             this.context = context;
 

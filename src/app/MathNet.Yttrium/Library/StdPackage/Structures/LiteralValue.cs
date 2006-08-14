@@ -101,6 +101,8 @@ namespace MathNet.Symbolics.StdPackage.Structures
         {
             if(context == null)
                 throw new ArgumentNullException("context");
+            if(value == null)
+                throw new ArgumentNullException("value");
 
             return Constant(context, value.Trim());
         }

@@ -74,6 +74,9 @@ namespace MathNet.Symbolics.Backend.Containers
         /// <returns>true if the property is attached to the signal after this call.</returns>
         public bool UpdateProperty(Signal target)
         {
+            if(target == null)
+                throw new ArgumentNullException("target");
+
             if(target.Properties.ContainsProperty(_propertyTypeId))
             {
                 if(WouldBePropagatedTo(target))

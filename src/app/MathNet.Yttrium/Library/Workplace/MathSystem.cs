@@ -332,6 +332,9 @@ namespace MathNet.Symbolics.Workplace
         }
         public void RemovePort(Port port, bool isolate)
         {
+            if(port == null)
+                throw new ArgumentNullException("port");
+
             if(isolate)
                 port.RemoveAllBindings();
             if(_allPorts.Contains(port))
@@ -713,6 +716,9 @@ namespace MathNet.Symbolics.Workplace
         #region Write Xml
         public void WriteXml(XmlWriter writer)
         {
+            if(writer == null)
+                throw new ArgumentNullException("writer");
+
             XmlSystemWriter xwriter = new XmlSystemWriter(_context, writer);
             SystemReader xreader = new SystemReader(xwriter);
             xreader.ReadSystem(this);
@@ -770,6 +776,9 @@ namespace MathNet.Symbolics.Workplace
         #region Read Xml -> Build Entity
         public static Entity ReadXmlEntity(XmlReader reader, MathIdentifier entityId, string symbol, InfixNotation notation, int precedence)
         {
+            if(reader == null)
+                throw new ArgumentNullException("reader");
+
             reader.ReadToFollowing("System", Context.YttriumNamespace);
             int inputCnt = int.Parse(reader.GetAttribute("inputCount"), Context.NumberFormat);
             int outputCnt = int.Parse(reader.GetAttribute("outputCount"), Context.NumberFormat);
@@ -808,6 +817,9 @@ namespace MathNet.Symbolics.Workplace
         }
         public static Entity ReadXmlEntity(FileInfo file, MathIdentifier entityId, string symbol, InfixNotation notation, int precedence)
         {
+            if(file == null)
+                throw new ArgumentNullException("file");
+
             XmlReader reader = XmlReader.Create(file.OpenText());
             Entity entity = ReadXmlEntity(reader, entityId, symbol, notation, precedence);
             reader.Close();
@@ -880,6 +892,9 @@ namespace MathNet.Symbolics.Workplace
         }
         public static void PublishToLibrary(string xml, Library library, MathIdentifier architectureId, MathIdentifier entityId)
         {
+            if(library == null)
+                throw new ArgumentNullException("library");
+
             IArchitectureFactory factory = BuildArchitectureFactory(xml, architectureId, entityId);
             library.Architectures.AddArchitectureBuilder(factory);
         }
@@ -889,6 +904,9 @@ namespace MathNet.Symbolics.Workplace
         }
         public static Entity PublishToLibrary(string xml, Library library, string domain, string architectureLabel, string entityLabel, string entitySymbol)
         {
+            if(library == null)
+                throw new ArgumentNullException("library");
+
             Entity entity = ReadXmlEntity(xml, new MathIdentifier(entityLabel, domain), entitySymbol);
             IArchitectureFactory factory = BuildArchitectureFactory(xml, new MathIdentifier(architectureLabel, domain), entity.EntityId, entity.InputSignals.Length, entity.OutputSignals.Length, entity.Buses.Length);
             library.Entities.Add(entity);
