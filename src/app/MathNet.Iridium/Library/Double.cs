@@ -26,6 +26,8 @@ using System.Globalization;
 
 namespace MathNet.Numerics
 {
+    // TODO: check, maybe merge with Number class
+
 	/// <summary>
 	/// The class <c>Double</c> provides various utilities to handle
 	/// <c>double</c> values.

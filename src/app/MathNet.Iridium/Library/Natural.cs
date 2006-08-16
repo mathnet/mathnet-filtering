@@ -284,7 +284,6 @@ namespace MathNet.Numerics
         /// <summary>
         /// Multiplies this number with the <seealso cref="Radix"/> to the power of the given exponent (fast shifting operation)
         /// </summary>
-        [CLSCompliant(false)]
         private Natural ShiftUp(uint exponent)
         {
             uint len = _bound + exponent;
@@ -299,7 +298,6 @@ namespace MathNet.Numerics
         /// </summary>
         /// <param name="exponent"></param>
         /// <returns></returns>
-        [CLSCompliant(false)]
         private Natural ShiftDown(uint exponent)
         {
             if(exponent >= _bound)
@@ -314,7 +312,6 @@ namespace MathNet.Numerics
         /// <summary>
         /// Set all coefficients of exponents higher than or equal to the given exponent to zero.
         /// </summary>
-        [CLSCompliant(false)]
         private Natural Restrict(uint exponent)
         {
             return new Natural(exponent, _coeff);

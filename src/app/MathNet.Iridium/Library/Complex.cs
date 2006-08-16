@@ -837,25 +837,25 @@ namespace MathNet.Numerics
 
             if(IsNaN) return "NaN";
 
-            if(imag == 0) return Double.ToExactString(real);
+            if(imag == 0) return real.ToString(); //Double.ToExactString(real)
 
             if(real == 0)
             {
                 if(imag == 1) return "I";
                 if(imag == -1) return "-I";
-                if(imag < 0) return "-I*" + Double.ToExactString(-imag);
+                if(imag < 0) return "-I*" + (-imag).ToString(); //Double.ToExactString(-imag)
 
-                return "I*" + Double.ToExactString(imag);
+                return "I*" + imag.ToString(); //Double.ToExactString(imag);
             }
             else
             {
-                if(imag == 1) return Double.ToExactString(real) + "+I";
-                if(imag == -1) return Double.ToExactString(real) + "-I";
-                if(imag < 0) return Double.ToExactString(real) + "-I*"
-                                 + Double.ToExactString(-imag);
+                if(imag == 1) return real.ToString() + "+I"; //Double.ToExactString(real)
+                if(imag == -1) return real.ToString() + "-I";//Double.ToExactString(real)
+                if(imag < 0) return real.ToString() + "-I*" //Double.ToExactString(real)
+                                 + (-imag).ToString(); //Double.ToExactString(-imag)
 
-                return Double.ToExactString(real) + "+I*"
-                    + Double.ToExactString(imag);
+                return real.ToString() + "+I*" //Double.ToExactString(real)
+                    + imag.ToString();//Double.ToExactString(imag);
             }
         }
 
