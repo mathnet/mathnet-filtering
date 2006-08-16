@@ -76,17 +76,18 @@ namespace Iridium.Test
         [Test]
         public void TestEpsilonOf()
         {
-            Assert.AreEqual("1.11022302462516E-16", Number.EpsilonOf(1.0).ToString(), "A");
-            Assert.AreEqual("1.11022302462516E-16", Number.EpsilonOf(-1.0).ToString(), "B");
-            Assert.AreEqual("4.94065645841247E-324", Number.EpsilonOf(0.0).ToString(), "C");
-            Assert.AreEqual("1.94266889222573E+84", Number.EpsilonOf(1.0e+100).ToString(), "D");
-            Assert.AreEqual("1.94266889222573E+84", Number.EpsilonOf(-1.0e+100).ToString(), "E");
-            Assert.AreEqual("1.26897091865782E-116", Number.EpsilonOf(1.0e-100).ToString(), "F");
-            Assert.AreEqual("1.26897091865782E-116", Number.EpsilonOf(-1.0e-100).ToString(), "G");
-            Assert.AreEqual("1.99584030953472E+292", Number.EpsilonOf(double.MaxValue).ToString(), "H");
-            Assert.AreEqual("1.99584030953472E+292", Number.EpsilonOf(double.MinValue).ToString(), "I");
-            Assert.AreEqual("4.94065645841247E-324", Number.EpsilonOf(double.Epsilon).ToString(), "J");
-            Assert.AreEqual("4.94065645841247E-324", Number.EpsilonOf(-double.Epsilon).ToString(), "K");
+            IFormatProvider format = System.Globalization.CultureInfo.InvariantCulture;
+            Assert.AreEqual("1.11022302462516E-16", Number.EpsilonOf(1.0).ToString(format), "A");
+            Assert.AreEqual("1.11022302462516E-16", Number.EpsilonOf(-1.0).ToString(format), "B");
+            Assert.AreEqual("4.94065645841247E-324", Number.EpsilonOf(0.0).ToString(format), "C");
+            Assert.AreEqual("1.94266889222573E+84", Number.EpsilonOf(1.0e+100).ToString(format), "D");
+            Assert.AreEqual("1.94266889222573E+84", Number.EpsilonOf(-1.0e+100).ToString(format), "E");
+            Assert.AreEqual("1.26897091865782E-116", Number.EpsilonOf(1.0e-100).ToString(format), "F");
+            Assert.AreEqual("1.26897091865782E-116", Number.EpsilonOf(-1.0e-100).ToString(format), "G");
+            Assert.AreEqual("1.99584030953472E+292", Number.EpsilonOf(double.MaxValue).ToString(format), "H");
+            Assert.AreEqual("1.99584030953472E+292", Number.EpsilonOf(double.MinValue).ToString(format), "I");
+            Assert.AreEqual("4.94065645841247E-324", Number.EpsilonOf(double.Epsilon).ToString(format), "J");
+            Assert.AreEqual("4.94065645841247E-324", Number.EpsilonOf(-double.Epsilon).ToString(format), "K");
             Assert.IsTrue(double.IsNaN(Number.EpsilonOf(double.NaN)), "L");
             Assert.IsTrue(double.IsNaN(Number.EpsilonOf(double.PositiveInfinity)), "M");
             Assert.IsTrue(double.IsNaN(Number.EpsilonOf(double.NegativeInfinity)), "N");
@@ -154,6 +155,8 @@ namespace Iridium.Test
         [Test]
         public void TestAlmostEqual()
         {
+            IFormatProvider format = System.Globalization.CultureInfo.InvariantCulture;
+
             double max = double.MaxValue;
             double min = double.MinValue;
 
@@ -169,12 +172,12 @@ namespace Iridium.Test
             Assert.IsFalse(Number.AlmostEqual(max, max - 2 * Number.EpsilonOf(max), 1), "H");
             Assert.IsTrue(Number.AlmostEqual(max, max - 2 * Number.EpsilonOf(max), 2), "I");
 
-            Assert.IsTrue(Convert.ToDouble("3.170404") == 3.170404, "J");
-            Assert.IsFalse(Convert.ToDouble("4.170404") == 4.170404, "K");
+            Assert.IsTrue(Convert.ToDouble("3.170404", format) == 3.170404, "J");
+            Assert.IsFalse(Convert.ToDouble("4.170404", format) == 4.170404, "K");
 
-            Assert.IsTrue(Number.AlmostEqual(Convert.ToDouble("3.170404"), 3.170404, 0), "L");
-            Assert.IsFalse(Number.AlmostEqual(Convert.ToDouble("4.170404"), 4.170404, 0), "M");
-            Assert.IsTrue(Number.AlmostEqual(Convert.ToDouble("4.170404"), 4.170404, 1), "N");
+            Assert.IsTrue(Number.AlmostEqual(Convert.ToDouble("3.170404", format), 3.170404, 0), "L");
+            Assert.IsFalse(Number.AlmostEqual(Convert.ToDouble("4.170404", format), 4.170404, 0), "M");
+            Assert.IsTrue(Number.AlmostEqual(Convert.ToDouble("4.170404", format), 4.170404, 1), "N");
 
             Assert.IsFalse(Number.AlmostEqual(double.NaN, double.NaN, 25), "O");
             Assert.IsFalse(Number.AlmostEqual(double.PositiveInfinity, double.NegativeInfinity, 25), "P");
