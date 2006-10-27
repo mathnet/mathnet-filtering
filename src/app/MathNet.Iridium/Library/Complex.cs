@@ -278,6 +278,12 @@ namespace MathNet.Numerics
             get { return imag == 0; }
         }
 
+        /// <summary>Indicates the provided <c>Complex</c> is real and not negative, that is >= 0.</summary>
+        public bool IsRealNonNegative
+        {
+            get { return imag == 0 && real >= 0; }
+        }
+
         /// <summary>Indicates the provided <c>Complex</c> is imaginary.</summary>
         public bool IsImaginary
         {
@@ -782,7 +788,7 @@ namespace MathNet.Numerics
         /// <summary>The Square Root (power 1/2) of this <c>Complex</c></summary>
         public Complex SquareRoot()
         {
-            if(IsReal)
+            if(IsRealNonNegative)
                 return new Complex(Math.Sqrt(real), 0d);
             double mod = Modulus;
             if(imag > 0 || imag == 0 && real < 0)
