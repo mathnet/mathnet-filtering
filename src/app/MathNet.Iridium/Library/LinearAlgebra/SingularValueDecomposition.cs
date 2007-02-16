@@ -109,7 +109,7 @@ namespace MathNet.Numerics.LinearAlgebra
 					s[k] = 0;
 					for (int i = k; i < m; i++)
 					{
-						s[k] = Maths.Hypot(s[k], A[i, k]);
+                        s[k] = Fn.Hypot(s[k], A[i, k]);
 					}
 					if (s[k] != 0.0)
 					{
@@ -169,7 +169,7 @@ namespace MathNet.Numerics.LinearAlgebra
 					e[k] = 0;
 					for (int i = k + 1; i < n; i++)
 					{
-						e[k] = Maths.Hypot(e[k], e[i]);
+                        e[k] = Fn.Hypot(e[k], e[i]);
 					}
 					if (e[k] != 0.0)
 					{
@@ -402,7 +402,7 @@ namespace MathNet.Numerics.LinearAlgebra
 						e[p - 2] = 0.0;
 						for (int j = p - 2; j >= k; j--)
 						{
-							double t = Maths.Hypot(s[j], f);
+                            double t = Fn.Hypot(s[j], f);
 							double cs = s[j] / t;
 							double sn = f / t;
 							s[j] = t;
@@ -433,7 +433,7 @@ namespace MathNet.Numerics.LinearAlgebra
 						e[k - 1] = 0.0;
 						for (int j = k; j < p; j++)
 						{
-							double t = Maths.Hypot(s[j], f);
+                            double t = Fn.Hypot(s[j], f);
 							double cs = s[j] / t;
 							double sn = f / t;
 							s[j] = t;
@@ -484,7 +484,7 @@ namespace MathNet.Numerics.LinearAlgebra
 						
 						for (int j = k; j < p - 1; j++)
 						{
-							double t = Maths.Hypot(f, g);
+                            double t = Fn.Hypot(f, g);
 							double cs = f / t;
 							double sn = g / t;
 							if (j != k)
@@ -504,7 +504,7 @@ namespace MathNet.Numerics.LinearAlgebra
 									V[i, j] = t;
 								}
 							}
-							t = Maths.Hypot(f, g);
+                            t = Fn.Hypot(f, g);
 							cs = f / t;
 							sn = g / t;
 							s[j] = t;

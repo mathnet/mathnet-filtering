@@ -1,10 +1,10 @@
-#region MathNet Numerics, Vermorel, Ruegg
-
-// MathNet Numerics, part of MathNet
+#region Math.NET Iridium (LGPL) by Ruegg, Vermorel
+// Math.NET Iridium, part of the Math.NET Project
+// http://mathnet.opensourcedotnet.info
 //
-// Copyright (c) 2004,	Joannes Vermorel, http://www.vermorel.com
-//						Christoph Ruegg, http://www.cdrnet.net
-//
+// Copyright (c) 2007, Christoph Rüegg,  http://christoph.ruegg.name
+//                     Joannes Vermorel, http://www.vermorel.com
+//						
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +18,6 @@
 // You should have received a copy of the GNU Lesser General Public 
 // License along with this program; if not, write to the Free Software
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-
 #endregion
 
 using System;
@@ -822,46 +821,46 @@ namespace MathNet.Numerics
         /// </remarks>
         public static Complex Parse(string complex)
         {
-            ComplexParser parser = new ComplexParser(complex);
+            return Parse(complex, NumberFormatInfo.CurrentInfo);
+        }
+        /// <summary>Parse a string into a <c>Complex</c>.</summary>
+        public static Complex Parse(string complex, NumberFormatInfo numberFormat)
+        {
+            ComplexParser parser = new ComplexParser(complex, numberFormat);
             return parser.Complex;
         }
 
-        /// <summary>
-        /// Converts this <c>Complex</c> into a <c>string</c>.
-        /// </summary>
-        /// <remarks>
-        /// <p>This method is symmetric to <see cref="Parse"/>.</p>
-        /// <p>The .Net framework may round-up the <c>double</c> values when
-        /// converting them to string. The method <c>Complex.ToExactString</c>
-        /// guarantied that no approximation will be done while converting
-        /// the <see cref="Complex"/> to a <c>string</c>.</p>
-        /// </remarks>
-        /// <seealso cref="Double.ToExactString"/>
+        /// <summary>Formats this <c>Complex</c> into a <c>string</c>.</summary>
         public override string ToString()
+        {
+            return ToString(NumberFormatInfo.CurrentInfo);
+        }
+        /// <summary>Formats this <c>Complex</c> into a <c>string</c>.</summary>
+        public string ToString(NumberFormatInfo numberFormat)
         {
             if(IsInfinity) return "Infinity";
 
-            if(IsNaN) return "NaN";
+            if(IsNaN) return numberFormat.NaNSymbol;
 
-            if(imag == 0) return real.ToString(); //Double.ToExactString(real)
+            if(imag == 0) return real.ToString(numberFormat);
 
+            // note: there's a difference between the negative sign and the subtraction operator!
             if(real == 0)
             {
                 if(imag == 1) return "I";
-                if(imag == -1) return "-I";
-                if(imag < 0) return "-I*" + (-imag).ToString(); //Double.ToExactString(-imag)
+                if(imag == -1) return numberFormat.NegativeSign + "I";
+                if(imag < 0) return numberFormat.NegativeSign + "I*" + (-imag).ToString(numberFormat); 
 
-                return "I*" + imag.ToString(); //Double.ToExactString(imag);
+                return "I*" + imag.ToString(numberFormat);
             }
             else
             {
-                if(imag == 1) return real.ToString() + "+I"; //Double.ToExactString(real)
-                if(imag == -1) return real.ToString() + "-I";//Double.ToExactString(real)
-                if(imag < 0) return real.ToString() + "-I*" //Double.ToExactString(real)
-                                 + (-imag).ToString(); //Double.ToExactString(-imag)
+                if(imag == 1) return real.ToString(numberFormat) + "+I";
+                if(imag == -1) return real.ToString(numberFormat) + "-I";
+                if(imag < 0) return real.ToString(numberFormat) + "-I*"
+                    + (-imag).ToString(numberFormat);
 
-                return real.ToString() + "+I*" //Double.ToExactString(real)
-                    + imag.ToString();//Double.ToExactString(imag);
+                return real.ToString() + "+I*" + imag.ToString(numberFormat);
             }
         }
 
@@ -870,9 +869,11 @@ namespace MathNet.Numerics
             Complex complex;
             int cursor = 0;
             string source;
+            NumberFormatInfo numberFormat;
 
-            public ComplexParser(string complex)
+            public ComplexParser(string complex, NumberFormatInfo numberFormat)
             {
+                this.numberFormat = numberFormat;
                 this.source = complex.ToLower().Trim();
                 this.complex = ScanComplex();
             }
@@ -909,7 +910,7 @@ namespace MathNet.Numerics
             {
                 if(source.Equals("i"))
                     return Complex.I;
-                if(source.Equals("nan"))
+                if(source.Equals(numberFormat.NaNSymbol.ToLower()))
                     return Complex.NaN;
                 if(source.Equals("infinity") || source.Equals("infty"))
                     return Complex.Infinity;
@@ -946,7 +947,7 @@ namespace MathNet.Numerics
                     ScanSkipWhitespace();
                     imaginary = true;
                 }
-                if(!IsNumber(LookAheadCharacterOrNull))
+                if(!IsNumber(LookAheadCharacterOrNull) && !IsSign(LookAheadCharacterOrNull))
                     return new Complex(0d, 1d);
                 double part = ScanNumber();
                 ScanSkipWhitespace();
@@ -977,7 +978,7 @@ namespace MathNet.Numerics
                 if(IsDecimal(LookAheadCharacterOrNull))
                 {
                     Consume();
-                    sb.Append('.');
+                    sb.Append(numberFormat.NumberDecimalSeparator);
                     ScanInteger(sb);
                 }
                 if(IsE(LookAheadCharacterOrNull))
@@ -988,13 +989,17 @@ namespace MathNet.Numerics
                         sb.Append(Consume());
                     ScanInteger(sb);
                 }
-                return double.Parse(sb.ToString(), NumberStyles.AllowDecimalPoint | NumberStyles.AllowExponent | NumberStyles.AllowLeadingSign, CultureInfo.InvariantCulture);
+                return double.Parse(sb.ToString(), NumberStyles.AllowDecimalPoint | NumberStyles.AllowExponent | NumberStyles.AllowLeadingSign, numberFormat);
             }
             private void ScanInteger(StringBuilder sb)
             {
                 sb.Append(Consume());
-                while(IsNumber(LookAheadCharacterOrNull))
-                    sb.Append(Consume());
+                while(IsNumber(LookAheadCharacterOrNull) || IsGroup(LookAheadCharacterOrNull))
+                {
+                    char c = Consume();
+                    if(!IsGroup(c))
+                        sb.Append(c);
+                }
             }
             private void ScanSkipWhitespace()
             {
@@ -1010,11 +1015,16 @@ namespace MathNet.Numerics
             }
             private bool IsNumber(char c)
             {
+                // TODO: consider using numberFormat.NativeDigits
                 return c >= '0' && c <= '9';
             }
             private bool IsDecimal(char c)
             {
-                return c == '.' || c == ',';
+                return numberFormat.NumberDecimalSeparator.Equals(c.ToString());
+            }
+            private bool IsGroup(char c)
+            {
+                return numberFormat.NumberGroupSeparator.Equals(c.ToString());
             }
             private bool IsE(char c)
             {
@@ -1026,11 +1036,11 @@ namespace MathNet.Numerics
             }
             private bool IsSign(char c)
             {
-                return c == '+' || c == '-';
+                return numberFormat.PositiveSign.Equals(c.ToString()) || numberFormat.NegativeSign.Equals(c.ToString());
             }
             private bool IsNegativeSign(char c)
             {
-                return c == '-';
+                return numberFormat.NegativeSign.Equals(c.ToString());
             }
             private bool IsMult(char c)
             {

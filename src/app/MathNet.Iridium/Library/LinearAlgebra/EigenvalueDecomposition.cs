@@ -253,7 +253,7 @@ namespace MathNet.Numerics.LinearAlgebra
 						
 						double g = d[l];
 						double p = (d[l + 1] - g) / (2.0 * e[l]);
-						double r = Maths.Hypot(p, 1.0);
+						double r = Fn.Hypot(p, 1.0);
 						if (p < 0)
 						{
 							r = - r;
@@ -284,7 +284,7 @@ namespace MathNet.Numerics.LinearAlgebra
 							s2 = s;
 							g = c * e[i];
 							h = c * p;
-							r = Maths.Hypot(p, e[i]);
+                            r = Fn.Hypot(p, e[i]);
 							e[i + 1] = s * r;
 							s = e[i] / r;
 							c = p / r;

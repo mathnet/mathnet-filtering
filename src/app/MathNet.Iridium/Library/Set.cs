@@ -35,6 +35,7 @@ namespace MathNet.Numerics
         bool IsSuperset(IEnumerable<T> c);
         bool HasEqualElements(IEnumerable<T> c);
         bool Exists(Predicate<T> match);
+        bool Exists(Predicate<T> match, out T foundItem);
         bool TrueForAll(Predicate<T> match);
         void ForEach(Action<T> action);
         T Find(Predicate<T> match);
@@ -47,6 +48,15 @@ namespace MathNet.Numerics
         int FindLastIndex(int startIndex, int count, Predicate<T> match);
         int LastIndexOf(T item);
         Set<T> FindAll(Predicate<T> match);
+        Set<TOutput> ConvertAll<TOutput>(Converter<T, TOutput> convert) where TOutput : IEquatable<TOutput>;
+
+        void AddRange(IEnumerable<T> range);
+        void AddDistinct(T item);
+        void AddRangeDistinct(IEnumerable<T> range);
+        void RemoveDuplicates();
+        int RemoveAll(Predicate<T> match);
+
+        bool IsReadonly { get;}
     }
 
     public class Set<T> : Collection<T>, ISet<T> where T : IEquatable<T>
@@ -91,6 +101,11 @@ namespace MathNet.Numerics
             return new ReadOnlySet<T>(list);
         }
         #endregion
+
+        public bool IsReadonly
+        {
+            get { return false; }
+        }
 
         public ReadOnlySet<T> AsReadOnly
         {
@@ -543,6 +558,11 @@ namespace MathNet.Numerics
             return new Set<T>();
         }
 
+        public bool IsReadonly
+        {
+            get { return true; }
+        }
+
         #region Subsets
         /// <summary>
         /// Checks whether <c>c</c> is a subset of this set.
@@ -708,6 +728,39 @@ namespace MathNet.Numerics
             return found;
         }
         #endregion
+        #endregion
+
+        #region Not Supported
+        void ISet<T>.AddRange(IEnumerable<T> range)
+        {
+            throw new NotSupportedException();
+        }
+        void ISet<T>.AddDistinct(T item)
+        {
+            throw new NotSupportedException();
+        }
+        void ISet<T>.AddRangeDistinct(IEnumerable<T> range)
+        {
+            throw new NotSupportedException();
+        }
+        void ISet<T>.RemoveDuplicates()
+        {
+            throw new NotSupportedException();
+        }
+        int ISet<T>.RemoveAll(Predicate<T> match)
+        {
+            throw new NotSupportedException();
+        }
+        #endregion
+
+        #region Converter
+        public Set<TOutput> ConvertAll<TOutput>(Converter<T, TOutput> convert) where TOutput : IEquatable<TOutput>
+        {
+            Set<TOutput> ret = new Set<TOutput>();
+            foreach(T item in this)
+                ret.Add(convert(item));
+            return ret;
+        }
         #endregion
     }
 

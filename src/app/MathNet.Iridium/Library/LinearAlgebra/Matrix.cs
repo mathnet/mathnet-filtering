@@ -1,12 +1,12 @@
-#region Copyright ©2000 The MathWorks and NIST, ©2004 Joannes Vermorel
-
-// MathNet Numerics, part of MathNet
+#region Math.NET Iridium (LGPL) by MathWorks, NIST, Vermorel, Ruegg
+// Math.NET Iridium, part of the Math.NET Project
+// http://mathnet.opensourcedotnet.info
 //
-// Copyright (c) 2004,	Joannes Vermorel, http://www.vermorel.com
-//
-//
+// Copyright (c) 2007, Joannes Vermorel, http://www.vermorel.com
+//                     Christoph Rüegg,  http://christoph.ruegg.name
+//						
 // This program is free software; you can redistribute it and/or modify
-// it under the terms of the GNU Lesser General Public License as published
+// it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
 // (at your option) any later version.
 //
@@ -15,10 +15,9 @@
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
 //
-// You should have received a copy of the GNU Lesser General Public
+// You should have received a copy of the GNU Lesser General Public 
 // License along with this program; if not, write to the Free Software
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-
 #endregion
 
 using System;
@@ -26,33 +25,6 @@ using System.Text;
 
 namespace MathNet.Numerics.LinearAlgebra
 {
-
-	#region Internal Maths utility
-	internal class Maths
-	{
-		/// <summary>sqrt(a^2 + b^2) without under/overflow.</summary>
-		public static double Hypot(double a, double b)
-		{
-			double r;
-			if (Math.Abs(a) > Math.Abs(b))
-			{
-				r = b/a;
-				r = Math.Abs(a) * Math.Sqrt(1 + r * r);
-			}
-			else if (b != 0)
-			{
-				r = a/b;
-				r = Math.Abs(b) * Math.Sqrt(1 + r * r);
-			}
-			else
-			{
-				r = 0.0;
-			}
-			return r;
-		}
-	}
-	#endregion   // Internal Maths utility
-
 	/// <summary>Real matrix.</summary>
 	/// <remarks>
 	/// The class <c>Matrix</c> provides the elementary operations
@@ -456,7 +428,7 @@ namespace MathNet.Numerics.LinearAlgebra
 			{
 				for (int j = 0; j < columnCount; j++)
 				{
-					f = Maths.Hypot(f, array[i, j]);
+                    f = Fn.Hypot(f, array[i, j]);
 				}
 			}
 			return f;
@@ -796,6 +768,12 @@ namespace MathNet.Numerics.LinearAlgebra
 			}
 			return X;
 		}
+
+        /// <summary>Multiplication of a matrix by a scalar, C = s*A</summary>
+        public static Matrix operator *(Matrix m, double s)
+        {
+            return s * m;
+        }
 
 		/// <summary>Implicit convertion to a <c>double[,]</c> array.</summary>
 		public static implicit operator double[,] (Matrix m)

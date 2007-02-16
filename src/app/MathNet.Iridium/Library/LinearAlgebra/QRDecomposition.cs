@@ -80,7 +80,7 @@ namespace MathNet.Numerics.LinearAlgebra
 				double nrm = 0;
 				for (int i = k; i < m; i++)
 				{
-					nrm = Maths.Hypot(nrm, QR[i, k]);
+                    nrm = Fn.Hypot(nrm, QR[i, k]);
 				}
 				
 				if (nrm != 0.0)
