@@ -133,6 +133,24 @@ namespace MathNet.Numerics.LinearAlgebra
 			return X;
 		}
 
+        /// <summary>
+        /// Generates an m-by-m matrix filled with 1.
+        /// </summary>
+        /// <param name="m">Number of rows = Number of columns</param>
+        public static Matrix Ones(int m)
+        {
+            return new Matrix(m, m, 1.0);
+        }
+
+        /// <summary>
+        /// Generates an m-by-m matrix filled with 0.
+        /// </summary>
+        /// <param name="m">Number of rows = Number of columns</param>
+        public static Matrix Zeros(int m)
+        {
+            return new Matrix(m, m, 0.0);
+        }
+
 		/// <summary>Generates matrix with random elements</summary>
 		/// <param name="m">Number of rows.</param>
 		/// <param name="n">Number of colums.</param>
@@ -796,6 +814,18 @@ namespace MathNet.Numerics.LinearAlgebra
 
 			return array;
 		}
+
+        /// <summary>
+        /// Excplicit conversion to a <c>double</c> scalar of a single column & row (1-by-1) matrix.
+        /// </summary>
+        /// <param name="m">1-by-1 Matrix</param>
+        public static explicit operator double (Matrix m)
+        {
+            if(m.ColumnCount != 1 || m.rowCount != 1) throw new InvalidOperationException(
+                "Bad dimensions for conversion to double");
+
+            return m[0, 0];
+        }
 
 		#endregion   //Operator Overloading
 
