@@ -1,10 +1,9 @@
-#region MathNet Numerics, Copyright ©2004 Christoph Ruegg, Ben Houston 
-
-// MathNet Numerics, part of MathNet
+#region Math.NET Iridium (LGPL) by Ruegg
+// Math.NET Iridium, part of the Math.NET Project
+// http://mathnet.opensourcedotnet.info
 //
-// Copyright (c) 2004,	Christoph Ruegg, http://www.cdrnet.net,
-// Based on Exocortex.DSP, Copyright Ben Houston, http://www.exocortex.org
-//
+// Copyright (c) 2004-2007, Christoph Rüegg,  http://christoph.ruegg.name
+//						
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +17,6 @@
 // You should have received a copy of the GNU Lesser General Public 
 // License along with this program; if not, write to the Free Software
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-
 #endregion
 
 using System;
@@ -26,77 +24,234 @@ using System;
 namespace MathNet.Numerics.Transformations
 {
 	/// <summary>
-	/// The <c>ComplexFourierTransformation</c> provides algorithms
+	/// <para>The <c>ComplexFourierTransformation</c> provides algorithms
 	/// for one, two and three dimensional fast fourier transformations
-	/// (FFT) on complex vectors.
+    /// (FFT) on complex vectors.</para>
+    /// <para>This class caches precomputations locally, thus consider reusing/caching it.</para>
 	/// </summary>
-	public class ComplexFourierTransformation : ComplexTransformation
+	public class ComplexFourierTransformation
 	{
-		/// <summary>
-		/// Creates a real-value based fast fourier transformation instance
-		/// with the data provided
-		/// </summary>
-		public ComplexFourierTransformation(Complex[] data) : base(data) {}
+        private InternalFFT _fft;
+        private TransformationConvention _convention;
 
-		/// <summary>
-		/// The core transformation implementation for one dimension.
-		/// </summary>
-		/// <param name="forward">Indicates the transformation direction.</param>
-		protected override void TransformCore(bool forward)
-		{
-			int length = viewData.Length;
-			int ln = FourierHelper.Log2(length);
+        public ComplexFourierTransformation()
+        {
+            _fft = new InternalFFT();
+            _convention = TransformationConvention.Default;
+        }
+        public ComplexFourierTransformation(TransformationConvention convention)
+        {
+            _fft = new InternalFFT();
+            _convention = convention;
+        }
 
-			ReorderData();
-			
-			// successive doubling
-			int N = 1;
-			for(int level=1;level<=ln;level++) 
-			{
-				int M = N;
-				N <<= 1;
+        public TransformationConvention Convention
+        {
+            get { return _convention; }
+            set { _convention = value; }
+        }
 
-				double[] realCosine = FourierHelper.RealCosineCoefficients(level,forward);
-				double[] imagSine = FourierHelper.ImaginarySineCoefficients(level,forward); 
+        #region Scales
+        /// <param name="numberOfSamplePairs">The real & complex numbers count together as only one sample.</param>
+        public double[] GenerateTimeScale(double sampleRate, int numberOfSamplePairs)
+        {
+            double[] scale = new double[numberOfSamplePairs];
+            double t = 0, step = 1.0 / sampleRate;
+            for(int i = 0; i < numberOfSamplePairs; i++)
+            {
+                scale[i] = t;
+                t += step;
+            }
+            return scale;
+        }
 
-				for(int j=0;j<M;j++) 
-				{
-					double uR = realCosine[j];
-					double uI = imagSine[j];
+        /// <param name="numberOfSamplePairs">The real & complex numbers count together as only one sample.</param>
+        public double[] GenerateFrequencyScale(double sampleRate, int numberOfSamplePairs)
+        {
+            double[] scale = new double[numberOfSamplePairs];
+            double f = 0, step = sampleRate / numberOfSamplePairs;
+            int secondHalf = (numberOfSamplePairs >> 1) + 1;
+            for(int i = 0; i < secondHalf; i++)
+            {
+                scale[i] = f;
+                f += step;
+            }
+            f = -step * (secondHalf - 2);
+            for(int i = secondHalf; i < numberOfSamplePairs; i++)
+            {
+                scale[i] = f;
+                f += step;
+            }
+            return scale;
+        }
+        #endregion
 
-					for(int even=j;even<length;even+=N) 
-					{
-						int odd	 = even + M;
-						
-						double	r = viewData[odd].Real;
-						double	i = viewData[odd].Imag;
+        #region Dimensions: 1
+        /// <summary>
+        /// Inplace Forward Transformation in one dimension. Size must be Power of Two.
+        /// </summary>
+        /// <param name="samplePairs">Complex samples (even = real, odd = imaginary). Length must be a power of two.</param>
+        public void TransformForward(double[] samplePairs)
+        {
+            if(Fn.CeilingToPowerOf2(samplePairs.Length) != samplePairs.Length)
+                throw new ArgumentException("Size must be a Power of Two.", "samplePairs");
+            _fft.DiscreteFourierTransform(samplePairs, true, _convention);
+        }
 
-						double	odduR = r * uR - i * uI;
-						double	odduI = r * uI + i * uR;
+        /// <summary>
+        /// Inplace Forward Transformation in one dimension. Size must be Power of Two.
+        /// </summary>
+        /// <param name="samples">Complex samples. Length must be a power of two.</param>
+        /// <remarks>
+        /// This method provides a simple shortcut if your data is already available as
+        /// <see cref="Complex"/> type instances. However, if not, consider using the
+        /// overloaded method with double pairs instead, it requires less internal copying.
+        /// </remarks>
+        public void TransformForward(Complex[] samples)
+        {
+            if(Fn.CeilingToPowerOf2(samples.Length) != samples.Length)
+                throw new ArgumentException("Size must be a Power of Two.", "samplePairs");
+            double[] samplePairs = new double[samples.Length << 1];
+            for(int i = 0, j = 0; i < samples.Length; i++, j += 2)
+            {
+                samplePairs[j] = samples[i].Real;
+                samplePairs[j + 1] = samples[i].Imag;
+            }
+            _fft.DiscreteFourierTransform(samplePairs, true, _convention);
+            for(int i = 0, j = 0; i < samples.Length; i++, j += 2)
+            {
+                samples[i].Real = samplePairs[j];
+                samples[i].Imag = samplePairs[j + 1];
+            }
+        }
 
-						r = viewData[even].Real;
-						i = viewData[even].Imag;
-						
-						viewData[even].Real	= r+odduR;
-						viewData[even].Imag = i+odduI;
+        /// <summary>
+        /// Inplace Backward Transformation in one dimension. Size must be Power of Two.
+        /// </summary>
+        /// <param name="samplePairs">Complex samples (even = real, odd = imaginary). Length must be a power of two.</param>
+        public void TransformBackward(double[] samplePairs)
+        {
+            if(Fn.CeilingToPowerOf2(samplePairs.Length) != samplePairs.Length)
+                throw new ArgumentException("Size must be a Power of Two.", "samplePairs");
+            _fft.DiscreteFourierTransform(samplePairs, false, _convention);
+        }
 
-						viewData[odd].Real = r-odduR;
-						viewData[odd].Imag = i-odduI;
-					}
-				}
-			}
-		}
+        /// <summary>
+        /// Inplace Backward Transformation in one dimension. Size must be Power of Two.
+        /// </summary>
+        /// <param name="samples">Complex samples. Length must be a power of two.</param>
+        /// <remarks>
+        /// This method provides a simple shortcut if your data is already available as
+        /// <see cref="Complex"/> type instances. However, if not, consider using the
+        /// overloaded method with double pairs instead, it requires less internal copying.
+        /// </remarks>
+        public void TransformBackward(Complex[] samples)
+        {
+            if(Fn.CeilingToPowerOf2(samples.Length) != samples.Length)
+                throw new ArgumentException("Size must be a Power of Two.", "samplePairs");
+            double[] samplePairs = new double[samples.Length << 1];
+            for(int i = 0, j = 0; i < samples.Length; i++, j += 2)
+            {
+                samplePairs[j] = samples[i].Real;
+                samplePairs[j + 1] = samples[i].Imag;
+            }
+            _fft.DiscreteFourierTransform(samplePairs, false, _convention);
+            for(int i = 0, j = 0; i < samples.Length; i++, j += 2)
+            {
+                samples[i].Real = samplePairs[j];
+                samples[i].Imag = samplePairs[j + 1];
+            }
+        }
+        #endregion
 
-		private void ReorderData() 
-		{
-			int length = viewData.Length;
-            int[] reversedBits = FourierHelper.ReverseBits(FourierHelper.Log2(length));
-			for(int i=0;i<length;i++) 
-			{
-				int swap = reversedBits[i];
-				if(swap > i)
-					SwapViewData(i,swap);
-			}
-		}
-	}
+        #region Dimensions: n
+        /// <summary>
+        /// Inplace Forward Transformation in multiple dimensions.
+        /// Size must be Power of Two in each dimension.
+        /// The Data is expected to be ordered such that the last index changes most rapidly (in 2D this means row-by-row when indexing as [y,x]).
+        /// </summary>
+        /// <param name="samplePairs">Complex samples (even = real, odd = imaginary). Length must be a power of two in each dimension.</param>
+        public void TransformForward(double[] samplePairs, params int[] dimensionLengths)
+        {
+            for(int i=0;i<dimensionLengths.Length;i++)
+                if(Fn.CeilingToPowerOf2(dimensionLengths[i]) != dimensionLengths[i])
+                    throw new ArgumentException("Size must be a Power of Two in every dimension.", "dimensionLengths");
+            _fft.DiscreteFourierTransformMultiDim(samplePairs, dimensionLengths, true, _convention);
+        }
+
+        /// <summary>
+        /// Inplace Forward Transformation in multiple dimensions.
+        /// Size must be Power of Two in each dimension.
+        /// The Data is expected to be ordered such that the last index changes most rapidly (in 2D this means row-by-row when indexing as [y,x]).
+        /// </summary>
+        /// <param name="samples">Complex samples. Length must be a power of two in each dimension.</param>
+        /// <remarks>
+        /// This method provides a simple shortcut if your data is already available as
+        /// <see cref="Complex"/> type instances. However, if not, consider using the
+        /// overloaded method with double pairs instead, it requires less internal copying.
+        /// </remarks>
+        public void TransformForward(Complex[] samples, params int[] dimensionLengths)
+        {
+            for(int i = 0; i < dimensionLengths.Length; i++)
+                if(Fn.CeilingToPowerOf2(dimensionLengths[i]) != dimensionLengths[i])
+                    throw new ArgumentException("Size must be a Power of Two in every dimension.", "dimensionLengths");
+            double[] samplePairs = new double[samples.Length << 1];
+            for(int i = 0, j = 0; i < samples.Length; i++, j += 2)
+            {
+                samplePairs[j] = samples[i].Real;
+                samplePairs[j + 1] = samples[i].Imag;
+            }
+            _fft.DiscreteFourierTransformMultiDim(samplePairs, dimensionLengths, true, _convention);
+            for(int i = 0, j = 0; i < samples.Length; i++, j += 2)
+            {
+                samples[i].Real = samplePairs[j];
+                samples[i].Imag = samplePairs[j + 1];
+            }
+        }
+
+        /// <summary>
+        /// Inplace Backward Transformation in multiple dimensions.
+        /// Size must be Power of Two in each dimension.
+        /// The Data is expected to be ordered such that the last index changes most rapidly (in 2D this means row-by-row when indexing as [y,x]).
+        /// </summary>
+        /// <param name="samplePairs">Complex samples (even = real, odd = imaginary). Length must be a power of two in each dimension.</param>
+        public void TransformBackward(double[] samplePairs, params int[] dimensionLengths)
+        {
+            for(int i = 0; i < dimensionLengths.Length; i++)
+                if(Fn.CeilingToPowerOf2(dimensionLengths[i]) != dimensionLengths[i])
+                    throw new ArgumentException("Size must be a Power of Two in every dimension.", "dimensionLengths");
+            _fft.DiscreteFourierTransformMultiDim(samplePairs, dimensionLengths, false, _convention);
+        }
+
+        /// <summary>
+        /// Inplace Backward Transformation in multiple dimensions.
+        /// Size must be Power of Two in each dimension.
+        /// The Data is expected to be ordered such that the last index changes most rapidly (in 2D this means row-by-row when indexing as [y,x]).
+        /// </summary>
+        /// <param name="samples">Complex samples. Length must be a power of two.</param>
+        /// <remarks>
+        /// This method provides a simple shortcut if your data is already available as
+        /// <see cref="Complex"/> type instances. However, if not, consider using the
+        /// overloaded method with double pairs instead, it requires less internal copying.
+        /// </remarks>
+        public void TransformBackward(Complex[] samples, params int[] dimensionLengths)
+        {
+            for(int i = 0; i < dimensionLengths.Length; i++)
+                if(Fn.CeilingToPowerOf2(dimensionLengths[i]) != dimensionLengths[i])
+                    throw new ArgumentException("Size must be a Power of Two in every dimension.", "dimensionLengths");
+            double[] samplePairs = new double[samples.Length << 1];
+            for(int i = 0, j = 0; i < samples.Length; i++, j += 2)
+            {
+                samplePairs[j] = samples[i].Real;
+                samplePairs[j + 1] = samples[i].Imag;
+            }
+            _fft.DiscreteFourierTransformMultiDim(samplePairs, dimensionLengths, false, _convention);
+            for(int i = 0, j = 0; i < samples.Length; i++, j += 2)
+            {
+                samples[i].Real = samplePairs[j];
+                samples[i].Imag = samplePairs[j + 1];
+            }
+        }
+        #endregion
+    }
 }

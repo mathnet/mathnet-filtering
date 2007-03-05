@@ -157,6 +157,12 @@ namespace MathNet.Numerics
         /// <param name="maxNumbersBetween">The maximum count of numbers between the two numbers plus one ([a,a] -> 0, [a,a+e] -> 1, [a,a+2e] -> 2, ...).</param>
         public static bool AlmostEqual(double a, double b, int maxNumbersBetween)
         {
+            return AlmostEqual(a, b, (ulong)maxNumbersBetween);
+        }
+        
+        /// <param name="maxNumbersBetween">The maximum count of numbers between the two numbers plus one ([a,a] -> 0, [a,a+e] -> 1, [a,a+2e] -> 2, ...).</param>
+        public static bool AlmostEqual(double a, double b, ulong maxNumbersBetween)
+        {
             if(maxNumbersBetween < 0)
                 throw new ArgumentException("maxNumbersBetween must be positive or zero", "maxNumbersBetween");
 
@@ -172,7 +178,7 @@ namespace MathNet.Numerics
                 return false;
 
             ulong between = NumbersBetween(a, b);
-            return between <= (uint)maxNumbersBetween;
+            return between <= maxNumbersBetween;
         }
     }
 }

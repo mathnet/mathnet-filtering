@@ -1,8 +1,8 @@
 ﻿// Math.NET Iridium, part of the Math.NET Project
 // http://mathnet.opensourcedotnet.info
 //
-// Copyright (c) 2007, Christoph Rüegg,  http://christoph.ruegg.name
-//                     Joannes Vermorel, http://www.vermorel.com
+// Copyright (c) 2004-2007, Christoph Rüegg,  http://christoph.ruegg.name
+//                          Joannes Vermorel, http://www.vermorel.com
 //						
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
@@ -36,9 +36,10 @@ using System.Security.Permissions;
 [assembly: CLSCompliant(true)]
 [assembly: ComVisible(false)]
 
-[assembly: SecurityPermission(SecurityAction.RequestRefuse)]
+// Refuse anything except SecurityPermission.Execution and identity permissions:
+[assembly: PermissionSet(SecurityAction.RequestOptional, Name="Execution")]
 
 [assembly: Guid("1386fccc-7816-4311-a04b-25227138e8b3")]
 
-[assembly: AssemblyVersion("2007.2.7.*")]
-[assembly: AssemblyFileVersion("2007.2.7.0")]
+[assembly: AssemblyVersion("2007.3.7.*")] // even = release
+[assembly: AssemblyFileVersion("2007.3.7.0")]
