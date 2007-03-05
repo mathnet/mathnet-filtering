@@ -1,8 +1,10 @@
-#region Math.NET Iridium (LGPL) by Ruegg
+#region Math.NET Iridium (LGPL) by Ruegg + Contributors
 // Math.NET Iridium, part of the Math.NET Project
 // http://mathnet.opensourcedotnet.info
 //
-// Copyright (c) 2007, Christoph Rüegg,  http://christoph.ruegg.name
+// Copyright (c) 2004-2007, Christoph Rüegg,  http://christoph.ruegg.name
+//
+// Contribution: Fn.IntLog2 by Ben Houston, http://www.exocortex.org
 //						
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
@@ -49,6 +51,141 @@ namespace MathNet.Numerics
             else r = 0.0;
 
             return r;
+        }
+
+        /// <summary>
+        /// Raises 2 to the provided integer exponent (0 &lt;= exponent &lt; 31).
+        /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException"/>
+        public static int IntPow2(int exponent)
+        {
+            if(exponent < 0 || exponent >= 31)
+                throw new ArgumentOutOfRangeException("exponent");
+            return 1 << exponent;
+        }
+
+        /// <summary>
+        /// Evaluates the logarithm to base 2 of the provided integer value.
+        /// </summary>
+        public static int IntLog2(int x)
+        {
+            if(x <= 65536)
+            {
+                if(x <= 256)
+                {
+                    if(x <= 16)
+                    {
+                        if(x <= 4)
+                        {
+                            if(x <= 2)
+                            {
+                                if(x <= 1)
+                                    return 0;
+                                return 1;
+                            }
+                            return 2;
+                        }
+                        if(x <= 8)
+                            return 3;
+                        return 4;
+                    }
+                    if(x <= 64)
+                    {
+                        if(x <= 32)
+                            return 5;
+                        return 6;
+                    }
+                    if(x <= 128)
+                        return 7;
+                    return 8;
+                }
+                if(x <= 4096)
+                {
+                    if(x <= 1024)
+                    {
+                        if(x <= 512)
+                            return 9;
+                        return 10;
+                    }
+                    if(x <= 2048)
+                        return 11;
+                    return 12;
+                }
+                if(x <= 16384)
+                {
+                    if(x <= 8192)
+                        return 13;
+                    return 14;
+                }
+                if(x <= 32768)
+                    return 15;
+                return 16;
+            }
+            if(x <= 16777216)
+            {
+                if(x <= 1048576)
+                {
+                    if(x <= 262144)
+                    {
+                        if(x <= 131072)
+                            return 17;
+                        return 18;
+                    }
+                    if(x <= 524288)
+                        return 19;
+                    return 20;
+                }
+                if(x <= 4194304)
+                {
+                    if(x <= 2097152)
+                        return 21;
+                    return 22;
+                }
+                if(x <= 8388608)
+                    return 23;
+                return 24;
+            }
+            if(x <= 268435456)
+            {
+                if(x <= 67108864)
+                {
+                    if(x <= 33554432)
+                        return 25;
+                    return 26;
+                }
+                if(x <= 134217728)
+                    return 27;
+                return 28;
+            }
+            if(x <= 1073741824)
+            {
+                if(x <= 536870912)
+                    return 29;
+                return 30;
+            }
+            //	since int is unsigned it can never be higher than 2,147,483,647
+            //	if( x <= 2147483648 )
+            //		return	31;	
+            //	return	32;	
+            return 31;
+        }
+
+        /// <summary>
+        /// Returns the smallest integer power of two bigger or equal to the value. 
+        /// </summary>
+        public static int CeilingToPowerOf2(int value)
+        {
+            return value <= 0 ? 0 : IntPow2(IntLog2(value));
+        }
+
+        /// <summary>
+        /// Returns the biggest integer power of two smaller or equal to the value. 
+        /// </summary>
+        public static int FloorToPowerOf2(int value)
+        {
+            int log = IntLog2(value);
+            int retHalf = log == 0 ? 0 : IntPow2(log - 1);
+            return retHalf == value >> 1 ? value : retHalf;
         }
 
         /// <summary>
