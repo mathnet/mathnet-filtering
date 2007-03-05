@@ -135,6 +135,8 @@ namespace Iridium.Test
             Assert.AreEqual(0, Number.NumbersBetween(-1.0, -1.0), "C");
             Assert.AreEqual(1, Number.NumbersBetween(0, double.Epsilon), "D");
             Assert.AreEqual(1, Number.NumbersBetween(0, -double.Epsilon), "E");
+            Assert.AreEqual(1, Number.NumbersBetween(double.Epsilon, 0), "D2");
+            Assert.AreEqual(1, Number.NumbersBetween(-double.Epsilon, 0), "E2");
             Assert.AreEqual(2, Number.NumbersBetween(0, 2*double.Epsilon), "F");
             Assert.AreEqual(2, Number.NumbersBetween(0, -2 * double.Epsilon), "G");
             Assert.AreEqual(3, Number.NumbersBetween(-double.Epsilon, 2 * double.Epsilon), "H");
