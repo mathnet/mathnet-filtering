@@ -37,7 +37,7 @@ using System.Security.Permissions;
 [assembly: ComVisible(false)]
 
 // Refuse anything except SecurityPermission.Execution and identity permissions:
-[assembly: PermissionSet(SecurityAction.RequestOptional, Name="Execution")]
+[assembly: PermissionSet(SecurityAction.RequestOptional, Name="LocalIntranet")]
 
 [assembly: Guid("1386fccc-7816-4311-a04b-25227138e8b3")]
 
