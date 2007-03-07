@@ -29,6 +29,7 @@ namespace MathNet.Numerics
     /// Mathematical Constants
     /// </summary>
     /// <seealso cref="SiConstants"/>
+    /// <seealso cref="SiPrefixes"/>
     public static class Constants
     {
         /// <summary>e</summary>

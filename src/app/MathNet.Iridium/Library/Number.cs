@@ -43,6 +43,9 @@ namespace MathNet.Numerics
     /// </summary>
     public static class Number
     {
+        public const double SmallestNumberGreaterThanZero = double.Epsilon;
+        public static readonly double RelativeAccuracy = EpsilonOf(1.0);
+
         /// <summary>
         /// Evaluates the minimum distance to the next distinguishable number near the argument value.
         /// </summary>

@@ -53,6 +53,7 @@ namespace MathNet.Numerics
             return r;
         }
 
+        #region Base 2 Integer Exponentiation
         /// <summary>
         /// Raises 2 to the provided integer exponent (0 &lt;= exponent &lt; 31).
         /// </summary>
@@ -187,7 +188,9 @@ namespace MathNet.Numerics
             int retHalf = log == 0 ? 0 : IntPow2(log - 1);
             return retHalf == value >> 1 ? value : retHalf;
         }
+        #endregion
 
+        #region Number Theory
         /// <summary>
         /// Returns the greatest common divisor of two integers using euclids algorithm.
         /// </summary>
@@ -262,98 +265,226 @@ namespace MathNet.Numerics
                 return 0;
             return Math.Abs(a * b) / Gcd(a, b);
         }
+        #endregion
 
+        #region Factorial, Binomial Coefficient
         /// <summary>
-        /// Returns the natural logarithm of Gamma for a real value > 0
+        /// Returns the natural logarithm of the Factorial for a real value > 0.
         /// </summary>
-        /// <param name="xx">A real value for Gamma calculation</param>
-        /// <returns>A value ln|Gamma(xx))| for xx > 0</returns>
-        public static double GammaLn(double xx)
+        /// <returns>A value ln(value!) for value > 0</returns>
+        public static double FactorialLn(int value)
         {
-            // TODO: check
-            double x, y, ser, temp;
-            double[] coefficient = new double[]{76.18009172947146,-86.50535032941677,
-												   24.01409824083091,-1.231739572450155,0.1208650973866179e-2,-0.5395239384953e-5};
-            int j;
-            y = x = xx;
-            temp = x + 5.5;
-            temp -= ((x + 0.5) * Math.Log(temp));
-            ser = 1.000000000190015;
-            for(j = 0; j <= 5; j++)
-                ser += (coefficient[j] / ++y);
-            return -temp + Math.Log(2.50662827463100005 * ser / x);
+            if(value < 0)
+                throw new ArgumentOutOfRangeException("value", "FactorialLn expects a positive argument");
+            if(value <= 1)
+                return 0.0d;
+            if(value >= FactorialLnCacheSize)
+                return GammaLn(value + 1.0);
+            if(factorialLnCache == null)
+                factorialLnCache = new double[FactorialLnCacheSize];
+            return factorialLnCache[value] != 0.0 ? factorialLnCache[value]
+                : (factorialLnCache[value] = GammaLn(value + 1.0));
         }
+        private static double[] factorialLnCache;
+        private const int FactorialLnCacheSize = 2 * FactorialPrecompSize;
 
         /// <summary>
         /// Returns a factorial of an integer number (n!)
         /// </summary>
-        /// <param name="n">The value to be factorialized</param>
-        /// <returns>The double precision result</returns>
-        public static double Factorial(int n)
+        /// <returns>A value value! for value > 0</returns>
+        public static double Factorial(int value)
         {
-            // TODO: check
-            int ntop = 4;
-            double[] a = new double[32];
-            a[0] = 1.0; a[1] = 1.0; a[2] = 2.0; a[3] = 6.0; a[4] = 24.0;
-            int j;
-            if(n < 0)
-                throw new ArgumentException("Factorial expects a positive argument", "n");
-            if(n > 32)
-                return Math.Exp(GammaLn(n + 1.0));
-            while(ntop < n)
-            {
-                j = ntop++;
-                a[ntop] = a[j] * ntop;
-            }
-            return a[n];
+            if(value < 0)
+                throw new ArgumentOutOfRangeException("value", "Factorial expects a positive argument");
+            if(value >= FactorialPrecompSize)
+                return Math.Exp(GammaLn(value + 1.0));
+            if(factorialPrecomp == null)
+                factorialPrecomp = new double[FactorialPrecompSize] 
+                    {1d, 1d, 2d, 6d, 24d, 120d, 720d, 5040d, 40320d, 362880d, 3628800d,
+                        39916800d, 479001600d, 6227020800d, 87178291200d, 1307674368000d,
+                        20922789888000d, 355687428096000d, 6402373705728000d,
+                        121645100408832000d, 2432902008176640000d, 51090942171709440000d,
+                        1124000727777607680000d, 25852016738884976640000d, 620448401733239439360000d,
+                        15511210043330985984000000d, 403291461126605635584000000d,
+                        10888869450418352160768000000d, 304888344611713860501504000000d,
+                        8841761993739701954543616000000d, 265252859812191058636308480000000d,
+                        8222838654177922817725562880000000d};
+            return factorialPrecomp[value];
         }
+        private static double[] factorialPrecomp;
+        private const int FactorialPrecompSize = 32;
 
         /// <summary>
         /// Returns a binomial coefficient of n and k as a double precision number
         /// </summary>
-        /// <param name="n"></param>
-        /// <param name="k"></param>
-        /// <returns></returns>
         public static double BinomialCoefficient(int n, int k)
         {
             if(k < 0 || k > n)
                 return 0;
             return Math.Floor(0.5 + Math.Exp(FactorialLn(n) - FactorialLn(k) - FactorialLn(n - k)));
         }
+        #endregion
 
+        #region Gamma Functions
         /// <summary>
-        /// 
+        /// Returns the natural logarithm of Gamma for a real value &gt; 0.
         /// </summary>
-        /// <param name="n"></param>
-        /// <returns></returns>
-        public static double FactorialLn(int n)
+        /// <returns>A value ln|Gamma(value))| for value &gt; 0</returns>
+        public static double GammaLn(double value)
         {
-            // TODO: check
-            double[] a = new double[101];
-            if(n < 0)
-                throw new ArgumentException("Factorial expects a positive argument", "n");
-            if(n <= 1)
-                return 0.0d;
-            if(n <= 100)
+            double x, y, ser, temp;
+            double[] coefficient = new double[]{76.18009172947146,-86.50535032941677,
+												   24.01409824083091,-1.231739572450155,0.1208650973866179e-2,-0.5395239384953e-5};
+            y = x = value;
+            temp = x + 5.5;
+            temp -= ((x + 0.5) * Math.Log(temp));
+            ser = 1.000000000190015;
+            for(int j = 0; j <= 5; j++)
+                ser += (coefficient[j] / ++y);
+            return -temp + Math.Log(2.50662827463100005 * ser / x);
+        }
+
+		/// <summary>
+        /// Returns the regularized lower incomplete gamma function P(a,x) = 1/Gamma(a) * int(exp(-t)t^(a-1),t=0..x) for real a &gt; 0, x &gt; 0.
+		/// </summary>
+        public static double IncompleteGammaRegularized(double a, double x)
+        {
+            const int MaxIterations = 100;
+            double eps = Number.RelativeAccuracy;
+            double fpmin = Number.SmallestNumberGreaterThanZero / eps;
+
+            if(a < 0.0 || x < 0.0)
+                throw new ArgumentOutOfRangeException("a, x", "a and x are expected to be positive or zero");
+
+            double gln = GammaLn(a);
+            if(x < a + 1.0)
             {
-                a[n] = GammaLn(n + 1.0d);
-                return (a[n] == 0.0d) ? a[n] : (a[n]); // TODO: historic hulk?
+                // Series Representation
+
+                if(x <= 0.0) // Yes, I know we've already checked for x<0.0
+                    return 0.0;
+                else
+                {
+                    double ap = a;
+                    double del, sum = del = 1.0 / a;
+                    for(int n = 0; n < MaxIterations; n++)
+                    {
+                        ++ap;
+                        del *= x / ap;
+                        sum += del;
+                        if(Math.Abs(del) < Math.Abs(sum) * eps)
+                            return sum * Math.Exp(-x + a * Math.Log(x) - gln);
+                    }
+                }
             }
             else
             {
-                return GammaLn(n + 1.0d);
-            }
-        }
+                // Continued fraction representation
 
+                double b = x + 1.0 - a;
+                double c = 1.0 / fpmin;
+                double d = 1.0 / b;
+                double h = d;
+                for(int i = 1; i <= MaxIterations; i++)
+                {
+                    double an = -i * (i - a);
+                    b += 2.0;
+                    d = an * d + b;
+                    if(Math.Abs(d) < fpmin)
+                        d = fpmin;
+                    c = b + an / c;
+                    if(Math.Abs(c) < fpmin)
+                        c = fpmin;
+                    d = 1.0 / d;
+                    double del = d * c;
+                    h *= del;
+                    if(Math.Abs(del - 1.0) <= eps)
+                        return 1.0 - Math.Exp(-x + a * Math.Log(x) - gln) * h;
+                }
+            }
+            throw new ArgumentException("a is too large for the current iteration limit", "a");
+        }
+        #endregion
+
+        #region Beta Functions
         /// <summary>
-        /// 
+        /// Returns the Euler Beta function of real valued z > 0, w > 0. Beta(z,w) = Beta(w,z).
         /// </summary>
-        /// <param name="z"></param>
-        /// <param name="w"></param>
-        /// <returns></returns>
         public static double Beta(double z, double w)
         {
             return Math.Exp(GammaLn(z) + GammaLn(w) - GammaLn(z + w));
         }
+
+        /// <summary>
+        /// Returns the regularized lower incomplete beta function I_x(a,b) = 1/Beta(a,b) * int(t^(a-1)*(1-t)^(b-1),t=0..x) for real a &gt; 0, b &gt; 0, 1 &gt;= x &gt;= 0.
+        /// </summary>
+        public static double IncompleteBetaRegularized(double a, double b, double x)
+        {
+            if(a < 0.0 || b < 0.0)
+                throw new ArgumentOutOfRangeException("a, b", "a and b are expected to be positive or zero");
+            if(x < 0.0 || x > 1.0)
+                throw new ArgumentOutOfRangeException("x", "x is expected to be between 0.0 and 1.0 (including 0.0 and 1.0)");
+
+            double bt = (x == 0.0 || x == 1.0) ? 0.0 : Math.Exp(GammaLn(a + b) - GammaLn(a) - GammaLn(b) + a * Math.Log(x) + b * Math.Log(1.0 - x));
+            double betacf;
+
+            // Continued fraction representation
+
+            const int MaxIterations = 100;
+            double eps = Number.RelativeAccuracy;
+            double fpmin = Number.SmallestNumberGreaterThanZero / eps;
+
+            double qab = a + b;
+            double qap = a + 1.0;
+            double qam = a - 1.0;
+            double c = 1.0;
+            double d = 1.0 - qab * x / qap;
+            if(Math.Abs(d) < fpmin)
+                d = fpmin;
+            d = 1.0 / d;
+            double h = d;
+            for(int m = 1, m2 = 2; m <= MaxIterations; m++, m2 += 2)
+            {
+                double aa = m * (b - m) * x / ((qam + m2) * (a + m2));
+                d = 1.0 + aa * d;
+                if(Math.Abs(d) < fpmin)
+                    d = fpmin;
+                c = 1.0 + aa / c;
+                if(Math.Abs(c) < fpmin)
+                    c = fpmin;
+                d = 1.0 / d;
+                h *= d * c;
+                aa = -(a + m) * (qab + m) * x / ((a + m2) * (qap + m2));
+                d = 1.0 + aa * d;
+                if(Math.Abs(d) < fpmin)
+                    d = fpmin;
+                c = 1.0 + aa / c;
+                if(Math.Abs(c) < fpmin)
+                    c = fpmin;
+                d = 1.0 / d;
+                double del = d * c;
+                h *= del;
+                if(Math.Abs(del - 1.0) <= eps)
+                {
+                    if(x < (a + 1.0) / (a + b + 2.0))
+                        return bt * h / a;
+                    else
+                        return 1.0 - bt * h / b;
+                }
+            }
+            throw new ArgumentException("a or b is too large for the current iteration limit", "a");
+        }
+        #endregion
+
+        #region Error Functions
+        /// <summary>
+        /// Returns the error function erf(x) = 2/sqrt(pi) * int(exp(-t^2),t=0..x)
+        /// </summary>
+        public static double Erf(double x)
+        {
+            return x < 0.0 ? -IncompleteGammaRegularized(0.5, x * x)
+                : IncompleteGammaRegularized(0.5, x * x);
+        }
+        #endregion
     }
 }
