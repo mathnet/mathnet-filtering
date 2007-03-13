@@ -320,8 +320,15 @@ namespace MathNet.Numerics
         public static double BinomialCoefficient(int n, int k)
         {
             if(k < 0 || k > n)
-                return 0;
+                return 0.0;
             return Math.Floor(0.5 + Math.Exp(FactorialLn(n) - FactorialLn(k) - FactorialLn(n - k)));
+        }
+
+        public static double BinomialCoefficientLn(int n, int k)
+        {
+            if(k < 0 || k > n)
+                return 1.0;
+            return FactorialLn(n) - FactorialLn(k) - FactorialLn(n - k);
         }
         #endregion
 
@@ -413,6 +420,11 @@ namespace MathNet.Numerics
         public static double Beta(double z, double w)
         {
             return Math.Exp(GammaLn(z) + GammaLn(w) - GammaLn(z + w));
+        }
+
+        public static double BetaLn(double z, double w)
+        {
+            return GammaLn(z) + GammaLn(w) - GammaLn(z + w);
         }
 
         /// <summary>
