@@ -59,8 +59,8 @@ namespace MathNet.Numerics.Distributions
 
         #region Construction
         /// <summary>
-        /// Initializes a new instance of the <see cref="DiscreteUniformDistribution"/> class, using a 
-        ///   <see cref="SystemRandomSource"/> as underlying random number generator. 
+        /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
+        /// as underlying random number generator.
         /// </summary>
         public DiscreteUniformDistribution()
             : base()
@@ -69,12 +69,12 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DiscreteUniformDistribution"/> class, using the specified 
-        ///   <see cref="RandomSource"/> as underlying random number generator.
+        /// Initializes a new instance, using the specified <see cref="RandomSource"/>
+        /// as underlying random number generator.
         /// </summary>
         /// <param name="random">A <see cref="RandomSource"/> object.</param>
         /// <exception cref="ArgumentNullException">
-        /// <paramref name="generator"/> is NULL (<see langword="Nothing"/> in Visual Basic).
+        /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
         public DiscreteUniformDistribution(RandomSource random)
             : base(random)
@@ -130,7 +130,7 @@ namespace MathNet.Numerics.Distributions
 
         #region Distribution Properties
         /// <summary>
-        /// Gets the minimum possible value of uniformly distributed random numbers.
+        /// Gets the minimum possible value of generated random numbers.
         /// </summary>
         public override int Minimum
         {
@@ -138,7 +138,7 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Gets the maximum possible value of uniformly distributed random numbers.
+        /// Gets the maximum possible value of generated random numbers.
         /// </summary>
         public override int Maximum
         {
@@ -146,7 +146,7 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Gets the mean value of the uniformly distributed random numbers.
+        /// Gets the mean value of generated random numbers.
         /// </summary>
         public override double Mean
         {
@@ -154,7 +154,7 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Gets the median of uniformly distributed random numbers.
+        /// Gets the median of generated random numbers.
         /// </summary>
         public override int Median
         {
@@ -162,13 +162,16 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Gets the variance of uniformly distributed random numbers.
+        /// Gets the variance of generated random numbers.
         /// </summary>
         public override double Variance
         {
             get { return ((double)_n * _n - 1.0) / 12.0; }
         }
 
+        /// <summary>
+        /// Gets the skewness of generated random numbers.
+        /// </summary>
         public override double Skewness
         {
             get { return 0.0; }

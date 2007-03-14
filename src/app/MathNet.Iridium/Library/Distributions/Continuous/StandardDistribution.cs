@@ -73,7 +73,7 @@ namespace MathNet.Numerics.Distributions
 
         #region Distribution Properties
         /// <summary>
-        /// Gets the minimum possible value of binomial distributed random numbers.
+        /// Gets the minimum possible value of generated random numbers.
         /// </summary>
         public override double Minimum
         {
@@ -81,7 +81,7 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Gets the maximum possible value of binomial distributed random numbers.
+        /// Gets the maximum possible value of generated random numbers.
         /// </summary>
         public override double Maximum
         {
@@ -89,7 +89,7 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Gets the mean value of binomial distributed random numbers.
+        /// Gets the mean value of generated random numbers.
         /// </summary>
         public override double Mean
         {
@@ -97,7 +97,7 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Gets the median of binomial distributed random numbers.
+        /// Gets the median of generated random numbers.
         /// </summary>
         public override double Median
         {
@@ -105,13 +105,16 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Gets the variance of binomial distributed random numbers.
+        /// Gets the variance of generated random numbers.
         /// </summary>
         public override double Variance
         {
             get { return 1.0; }
         }
 
+        /// <summary>
+        /// Gets the skewness of generated random numbers.
+        /// </summary>
         public override double Skewness
         {
             get { return 0.0; }

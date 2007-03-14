@@ -140,10 +140,13 @@ namespace MathNet.Numerics.Distributions
 
         /// <summary>
         /// Gets the mean value of generated random numbers.
+        /// Throws <see cref="NotSupportedException"/> since
+        /// the value is not defined for this distribution.
         /// </summary>
+        /// <exception cref="NotSupportedException">Always.</exception>
         public override double Mean
         {
-            get { throw new NotSupportedException("Cauchy-Distribution Mean"); }
+            get { throw new NotSupportedException(); }
         }
 
         /// <summary>
@@ -156,15 +159,24 @@ namespace MathNet.Numerics.Distributions
 
         /// <summary>
         /// Gets the variance of generated random numbers.
+        /// Throws <see cref="NotSupportedException"/> since
+        /// the value is not defined for this distribution.
         /// </summary>
+        /// <exception cref="NotSupportedException">Always.</exception>
         public override double Variance
         {
-            get { throw new NotSupportedException("Cauchy-Distribution Variance"); }
+            get { throw new NotSupportedException(); }
         }
 
+        /// <summary>
+        /// Gets the skewness of generated random numbers.
+        /// Throws <see cref="NotSupportedException"/> since
+        /// the value is not defined for this distribution.
+        /// </summary>
+        /// <exception cref="NotSupportedException">Always.</exception>
         public override double Skewness
         {
-            get { throw new NotSupportedException("Cauchy-Distribution Skewness"); }
+            get { throw new NotSupportedException(); }
         }
 
         public override double ProbabilityDensity(double x)

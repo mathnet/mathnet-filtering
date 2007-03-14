@@ -156,10 +156,13 @@ namespace MathNet.Numerics.Distributions
 
         /// <summary>
         /// Gets the median of generated random numbers.
+        /// Throws <see cref="NotSupportedException"/> since
+        /// the value is not defined for this distribution.
         /// </summary>
+        /// <exception cref="NotSupportedException">Always.</exception>
         public override double Median
         {
-            get { throw new NotSupportedException("Chi-Distribution Median"); }
+            get { throw new NotSupportedException(); }
         }
 
         /// <summary>
@@ -174,6 +177,9 @@ namespace MathNet.Numerics.Distributions
             }
         }
 
+        /// <summary>
+        /// Gets the skewness of generated random numbers.
+        /// </summary>
         public override double Skewness
         {
             get

@@ -164,6 +164,9 @@ namespace MathNet.Numerics.Distributions
             get { return 2.0 * _degreesOfFreedom; }
         }
 
+        /// <summary>
+        /// Gets the skewness of generated random numbers.
+        /// </summary>
         public override double Skewness
         {
             get { return Math.Sqrt(8.0 / _degreesOfFreedom); }

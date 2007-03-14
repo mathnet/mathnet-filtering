@@ -74,8 +74,8 @@ namespace MathNet.Numerics.Distributions
 
         #region Construction
         /// <summary>
-        /// Initializes a new instance of the <see cref="DiscreteUniformDistribution"/> class, using a 
-        ///   <see cref="SystemRandomSource"/> as underlying random number generator. 
+        /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
+        /// as underlying random number generator.
         /// </summary>
         public TriangularDistribution()
             : base()
@@ -84,12 +84,12 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DiscreteUniformDistribution"/> class, using the specified 
-        ///   <see cref="RandomSource"/> as underlying random number generator.
+        /// Initializes a new instance, using the specified <see cref="RandomSource"/>
+        /// as underlying random number generator.
         /// </summary>
         /// <param name="random">A <see cref="RandomSource"/> object.</param>
         /// <exception cref="ArgumentNullException">
-        /// <paramref name="generator"/> is NULL (<see langword="Nothing"/> in Visual Basic).
+        /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
         public TriangularDistribution(RandomSource random)
             : base(random)
@@ -207,6 +207,9 @@ namespace MathNet.Numerics.Distributions
             get { return (_a * _a + _b * _b + _c * _c - _a * _b - _a * _c - _b * _c) / 18.0; }
         }
 
+        /// <summary>
+        /// Gets the skewness of generated random numbers.
+        /// </summary>
         public override double Skewness
         {
             get

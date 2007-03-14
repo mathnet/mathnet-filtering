@@ -143,7 +143,7 @@ namespace MathNet.Numerics.Distributions
 
         #region Distribution Properties
         /// <summary>
-        /// Gets the minimum possible value of beta distributed random numbers.
+        /// Gets the minimum possible value of generated random numbers.
         /// </summary>
         public override double Minimum
         {
@@ -151,7 +151,7 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Gets the maximum possible value of beta distributed random numbers.
+        /// Gets the maximum possible value of generated random numbers.
         /// </summary>
         public override double Maximum
         {
@@ -159,7 +159,7 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Gets the mean value of exponential beta random numbers.
+        /// Gets the mean value of generated random numbers.
         /// </summary>
         public override double Mean
         {
@@ -167,7 +167,7 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Gets the median of exponential beta random numbers.
+        /// Gets the median of generated random numbers.
         /// </summary>
         public override double Median
         {
@@ -175,7 +175,7 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Gets the variance of exponential beta random numbers.
+        /// Gets the variance of generated random numbers.
         /// </summary>
         public override double Variance
         {
@@ -186,6 +186,9 @@ namespace MathNet.Numerics.Distributions
             }
         }
 
+        /// <summary>
+        /// Gets the skewness of generated random numbers.
+        /// </summary>
         public override double Skewness
         {
             get

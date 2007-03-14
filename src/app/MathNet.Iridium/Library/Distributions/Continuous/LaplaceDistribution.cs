@@ -161,6 +161,9 @@ namespace MathNet.Numerics.Distributions
             get { return 2.0 * _scale * _scale; }
         }
 
+        /// <summary>
+        /// Gets the skewness of generated random numbers.
+        /// </summary>
         public override double Skewness
         {
             get { return 0.0; }

@@ -114,8 +114,8 @@ namespace MathNet.Numerics.Distributions
 
         #region construction
         /// <summary>
-        /// Initializes a new instance of the <see cref="PoissonDistribution"/> class, using a 
-        ///   <see cref="SystemRandomSource"/> as underlying random number generator.
+        /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
+        /// as underlying random number generator.
         /// </summary>
         public PoissonDistribution()
             : base()
@@ -124,8 +124,8 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PoissonDistribution"/> class, using the specified 
-        ///   <see cref="RandomSource"/> as underlying random number generator.
+        /// Initializes a new instance, using the specified <see cref="RandomSource"/>
+        /// as underlying random number generator.
         /// </summary>
         /// <param name="random">A <see cref="RandomSource"/> object.</param>
         /// <exception cref="ArgumentNullException">
@@ -171,7 +171,7 @@ namespace MathNet.Numerics.Distributions
 
         #region Distribution Properties
         /// <summary>
-        /// Gets the minimum possible value of poisson distributed random numbers.
+        /// Gets the minimum possible value of generated random numbers.
         /// </summary>
         public override int Minimum
         {
@@ -179,7 +179,7 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Gets the maximum possible value of poisson distributed random numbers.
+        /// Gets the maximum possible value of generated random numbers.
         /// </summary>
         public override int Maximum
         {
@@ -187,7 +187,7 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Gets the mean value of poisson distributed random numbers. 
+        /// Gets the mean value of generatedd random numbers. 
         /// </summary>
         public override double Mean
         {
@@ -195,7 +195,7 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Gets the median of poisson distributed random numbers.
+        /// Gets the median of generated random numbers.
         /// </summary>
         public override int Median
         { // approximation, see wikipedia
@@ -203,13 +203,16 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Gets the variance of poisson distributed random numbers.
+        /// Gets the variance of generated random numbers.
         /// </summary>
         public override double Variance
         {
             get { return _lambda; }
         }
 
+        /// <summary>
+        /// Gets the skewness of generated random numbers.
+        /// </summary>
         public override double Skewness
         {
             get { return Math.Sqrt(_lambda); }

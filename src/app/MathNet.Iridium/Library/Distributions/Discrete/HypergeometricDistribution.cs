@@ -109,8 +109,8 @@ namespace MathNet.Numerics.Distributions
 
         #region Construction
         /// <summary>
-        /// Initializes a new instance of the <see cref="HypergeometricDistribution"/> class, using a 
-        ///   <see cref="SystemRandomSource"/> as underlying random number generator.
+        /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
+        /// as underlying random number generator.
         /// </summary>
         public HypergeometricDistribution()
             : base()
@@ -119,12 +119,12 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="HypergeometricDistribution"/> class, using the specified 
-        ///   <see cref="RandomSource"/> as underlying random number generator.
+        /// Initializes a new instance, using the specified <see cref="RandomSource"/>
+        /// as underlying random number generator.
         /// </summary>
         /// <param name="random">A <see cref="RandomSource"/> object.</param>
         /// <exception cref="ArgumentNullException">
-        /// <paramref name="generator"/> is NULL (<see langword="Nothing"/> in Visual Basic).
+        /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
         public HypergeometricDistribution(RandomSource random)
             : base(random)
@@ -187,7 +187,7 @@ namespace MathNet.Numerics.Distributions
 
         #region Distribution Properties
         /// <summary>
-        /// Gets the minimum possible value of geometric distributed random numbers.
+        /// Gets the minimum possible value of generated random numbers.
         /// </summary>
         public override int Minimum
         {
@@ -195,7 +195,7 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Gets the maximum possible value of geometric distributed random numbers.
+        /// Gets the maximum possible value of generated random numbers.
         /// </summary>
         public override int Maximum
         {
@@ -203,7 +203,7 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Gets the mean value of geometric distributed random numbers.
+        /// Gets the mean value of generated random numbers.
         /// </summary>
         public override double Mean
         {
@@ -211,21 +211,27 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Gets the median of geometric distributed random numbers.
+        /// Gets the median of generated random numbers.
+        /// Throws <see cref="NotSupportedException"/> since
+        /// the value is not defined for this distribution.
         /// </summary>
+        /// <exception cref="NotSupportedException">Always.</exception>
         public override int Median
         {
-            get { throw new NotImplementedException("Hypergeometric Median"); }
+            get { throw new NotSupportedException(); }
         }
 
         /// <summary>
-        /// Gets the variance of geometric distributed random numbers.
+        /// Gets the variance of generated random numbers.
         /// </summary>
         public override double Variance
         {
             get { return _n * _p * (1.0 - _p) * (_N - _n) / (_N - 1.0); }
         }
 
+        /// <summary>
+        /// Gets the skewness of generated random numbers.
+        /// </summary>
         public override double Skewness
         {
             get

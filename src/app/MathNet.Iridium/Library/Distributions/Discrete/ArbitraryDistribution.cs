@@ -183,7 +183,10 @@ namespace MathNet.Numerics.Distributions
 
         /// <summary>
         /// Gets the median of generated random numbers.
+        /// Throws <see cref="NotSupportedException"/> since
+        /// the value is not defined for this distribution.
         /// </summary>
+        /// <exception cref="NotSupportedException">Always.</exception>
         public override int Median
         {
             get { throw new NotSupportedException(); }
@@ -197,6 +200,9 @@ namespace MathNet.Numerics.Distributions
             get { return _variance; }
         }
 
+        /// <summary>
+        /// Gets the skewness of generated random numbers.
+        /// </summary>
         public override double Skewness
         {
             get { throw new NotSupportedException(); }

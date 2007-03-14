@@ -143,13 +143,14 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Gets the mean value of generated random numbers.
         /// </summary>
+        /// <exception cref="NotSupportedException"/>
         public override double Mean
         {
             get {
                 if(_shape > 1.0)
                     return _location * _shape / (_shape - 1.0);
                 else
-                    throw new NotSupportedException("Pareto-Distribution Mean");
+                    throw new NotSupportedException();
             }
         }
 
@@ -164,6 +165,7 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Gets the variance of generated random numbers.
         /// </summary>
+        /// <exception cref="NotSupportedException"/>
         public override double Variance
         {
             get
@@ -174,10 +176,14 @@ namespace MathNet.Numerics.Distributions
                     return _shape * _location * _location / (a * a * (_shape - 2.0));
                 }
                 else
-                    throw new NotSupportedException("Pareto-Distribution Variance");
+                    throw new NotSupportedException();
             }
         }
 
+        /// <summary>
+        /// Gets the skewness of generated random numbers.
+        /// </summary>
+        /// <exception cref="NotSupportedException"/>
         public override double Skewness
         {
             get
@@ -185,7 +191,7 @@ namespace MathNet.Numerics.Distributions
                 if(_shape > 3.0)
                     return 2.0 * (1.0 + _shape) / (_shape - 3.0) * Math.Sqrt((_shape - 2) / _shape);
                 else
-                    throw new NotSupportedException("Pareto-Distribution Variance");
+                    throw new NotSupportedException();
             }
         }
 

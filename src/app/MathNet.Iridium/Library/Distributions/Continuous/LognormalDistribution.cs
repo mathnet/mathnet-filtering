@@ -191,6 +191,9 @@ namespace MathNet.Numerics.Distributions
             get { return (Math.Exp(_sigma2) - 1.0) * Math.Exp(_mu + _mu + _sigma2); }
         }
 
+        /// <summary>
+        /// Gets the skewness of generated random numbers.
+        /// </summary>
         public override double Skewness
         {
             get
