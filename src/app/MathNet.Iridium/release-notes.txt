@@ -1,5 +1,6 @@
 ==== Math.NET Iridium (Numerics) - r8 2007 MARCH (v2007.3.8) ====
 Author: Christoph Ruegg, Joannes Vermorel
+http://mathnet.opensourcedotnet.info
 
 What's new in release 8?
 - Completely revised FFT implementation
