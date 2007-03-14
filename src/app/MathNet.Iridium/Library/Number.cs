@@ -22,6 +22,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
+using MathNet.Numerics.Properties;
 
 namespace MathNet.Numerics
 {
@@ -122,9 +123,9 @@ namespace MathNet.Numerics
         public static ulong NumbersBetween(double a, double b)
         {
             if(double.IsNaN(a) || double.IsInfinity(a))
-                throw new ArgumentException("The argument a may neither be infinity nor NaN.", "a");
+                throw new ArgumentException(Resources.ArgumentNotInfinityNaN, "a");
             if(double.IsNaN(b) || double.IsInfinity(b))
-                throw new ArgumentException("The argument b may neither be infinity nor NaN.", "b");
+                throw new ArgumentException(Resources.ArgumentNotInfinityNaN, "b");
 
             ulong ua = ToLexicographicalOrderedUInt64(a);
             ulong ub = ToLexicographicalOrderedUInt64(b);
@@ -167,7 +168,7 @@ namespace MathNet.Numerics
         public static bool AlmostEqual(double a, double b, ulong maxNumbersBetween)
         {
             if(maxNumbersBetween < 0)
-                throw new ArgumentException("maxNumbersBetween must be positive or zero", "maxNumbersBetween");
+                throw new ArgumentException(Resources.ArgumentNotNegative, "maxNumbersBetween");
 
             // NaN's should never equal to anything
             if(double.IsNaN(a) || double.IsNaN(b)) //(a != a || b != b)

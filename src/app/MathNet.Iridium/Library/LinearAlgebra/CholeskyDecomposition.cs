@@ -22,6 +22,7 @@
 #endregion
 
 using System;
+using MathNet.Numerics.Properties;
 
 namespace MathNet.Numerics.LinearAlgebra
 {
@@ -118,13 +119,9 @@ namespace MathNet.Numerics.LinearAlgebra
 		public Matrix Solve(Matrix B)
 		{
 			if (B.RowCount != n)
-			{
-				throw new System.ArgumentException("Matrix row dimensions must agree.");
-			}
+				throw new ArgumentException(Resources.ArgumentMatrixSameRowDimension, "B");
 			if (!isspd)
-			{
-				throw new System.SystemException("Matrix is not symmetric positive definite.");
-			}
+				throw new InvalidOperationException(Resources.ArgumentMatrixSymetricPositiveDefinite);
 			
 			// Copy right hand side.
 			double[,] X = B.Clone();

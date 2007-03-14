@@ -53,7 +53,7 @@ namespace MathNet.Numerics
 
         private Natural(uint bound)
         {
-            _bound = 0; //bound;
+            //_bound = 0; //bound;
             _coeff = new uint[bound];
         }
         private Natural(uint[] coeff)

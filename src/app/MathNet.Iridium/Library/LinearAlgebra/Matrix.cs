@@ -22,6 +22,7 @@
 
 using System;
 using System.Text;
+using MathNet.Numerics.Properties;
 
 namespace MathNet.Numerics.LinearAlgebra
 {
@@ -836,7 +837,7 @@ namespace MathNet.Numerics.LinearAlgebra
 		{
 			if (B.rowCount != rowCount || B.columnCount != columnCount)
 			{
-				throw new System.ArgumentException("Matrix dimensions must agree.");
+				throw new System.ArgumentException(Resources.ArgumentMatrixSimeDimensions);
 			}
 		}
 		#endregion //  Private Methods

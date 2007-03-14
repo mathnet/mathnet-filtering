@@ -46,31 +46,31 @@ namespace MathNet.Numerics.Interpolation
 		public InterpolationSingleDimension(SampleList samples)
 		{
 			this.samples = samples;
-			this.samples.SampleAltered += new SampleList.SampleAlteredEventHandler(samples_SampleAltered);
+			this.samples.SampleAltered += samples_SampleAltered;
 			this.algorithm = new PolynomialInterpolationAlgorithm(4);
 		}
 		public InterpolationSingleDimension(IDictionary samples)
 		{
 			this.samples = new SampleList(samples);
-			this.samples.SampleAltered += new SampleList.SampleAlteredEventHandler(samples_SampleAltered);
+			this.samples.SampleAltered += samples_SampleAltered;
 			this.algorithm = new PolynomialInterpolationAlgorithm(4);
 		}
 		public InterpolationSingleDimension(SampleList samples, InterpolationMode mode)
 		{
 			this.samples = samples;
-			this.samples.SampleAltered += new SampleList.SampleAlteredEventHandler(samples_SampleAltered);
+			this.samples.SampleAltered += samples_SampleAltered;
 			this.algorithm = SelectAlgorithm(mode,4);
 		}
 		public InterpolationSingleDimension(SampleList samples, InterpolationMode mode, int order)
 		{
 			this.samples = samples;
-			this.samples.SampleAltered += new SampleList.SampleAlteredEventHandler(samples_SampleAltered);
+			this.samples.SampleAltered += samples_SampleAltered;
 			this.algorithm = SelectAlgorithm(mode,order);
 		}
 		public InterpolationSingleDimension(SampleList samples, IInterpolationAlgorithm algorithm)
 		{
 			this.samples = samples;
-			this.samples.SampleAltered += new SampleList.SampleAlteredEventHandler(samples_SampleAltered);
+			this.samples.SampleAltered += samples_SampleAltered;
 			this.algorithm = algorithm;
 		}
 

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Diagnostics;
+using System.Text;
 
 namespace MathNet.Numerics.Statistics
 {
@@ -132,11 +133,11 @@ namespace MathNet.Numerics.Statistics
         /// <summary>Prints the buckets contained in the <see cref="Histogram"/>.</summary>
         public override string ToString()
         {
-            String str = "";
+            StringBuilder sb = new StringBuilder();
             foreach (Bucket b in buckets)
-                str += b.ToString();
+                sb.Append(b.ToString());
 
-            return str;
+            return sb.ToString();
         }
 
 
@@ -520,7 +521,7 @@ namespace MathNet.Numerics.Statistics
 
             this.lowerBound = lowerBound;
             this.upperBound = upperBound;
-            depth = 0;
+            //depth = 0;
         }
 
         /// <summary>Full constructor.</summary>

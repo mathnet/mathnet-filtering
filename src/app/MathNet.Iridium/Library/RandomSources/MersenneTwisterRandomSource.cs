@@ -202,7 +202,7 @@ namespace MathNet.Numerics.RandomSources
         {
             _mt = new uint[N];
             _seed = seed;
-            _seedArray = null;
+            //_seedArray = null;
             this.ResetGenerator();
         }
 

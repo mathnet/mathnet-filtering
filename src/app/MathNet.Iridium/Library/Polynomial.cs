@@ -22,6 +22,7 @@
 
 using System;
 using System.Text;
+using MathNet.Numerics.Properties;
 
 namespace MathNet.Numerics
 {
@@ -115,9 +116,8 @@ namespace MathNet.Numerics
 		}
 		public override bool Equals(Object obj)
 		{
-			if (obj == null || !(obj is Polynomial))
-				return false;
-			return Equals((Polynomial)obj);
+            Polynomial p = obj as Polynomial;
+            return p == null ? false : Equals(p);
 		}
 		public bool Equals(Polynomial polynomial)
 		{
@@ -210,7 +210,7 @@ namespace MathNet.Numerics
 			get
 			{
 				if(power < 0)
-					throw new ArgumentOutOfRangeException("power",power,"Power must not be negative.");
+					throw new ArgumentOutOfRangeException("power",power,Resources.ArgumentNotNegative);
 				if(power > order)
 					return 0d;
 				else
@@ -219,7 +219,7 @@ namespace MathNet.Numerics
 			set
 			{
 				if(power < 0)
-					throw new ArgumentOutOfRangeException("power",power,"Power must not be negative.");
+					throw new ArgumentOutOfRangeException("power",power,Resources.ArgumentNotNegative);
 				if(power > order)
 					EnsureSupportForOrder(power);
 				coefficients[power] = value;
@@ -436,7 +436,7 @@ namespace MathNet.Numerics
 		public void MultiplyShiftInplace(int n)
 		{
 			if(n <= 0)
-				throw new ArgumentOutOfRangeException("n",n,"n must be positive.");
+				throw new ArgumentOutOfRangeException("n",n,Resources.ArgumentPositive);
 			EnsureSupportForOrder(order+n);
 			order+=n;
 			for(int i=order;i>=n;i--)
@@ -500,7 +500,7 @@ namespace MathNet.Numerics
 		public void DivideShiftInplace(int n, out double[] reminder)
 		{
 			if(n <= 0)
-				throw new ArgumentOutOfRangeException("n",n,"n must be positive.");
+				throw new ArgumentOutOfRangeException("n",n,Resources.ArgumentPositive);
 			reminder = new double[n];
 			for(int i=0;i<n;i++)
 				reminder[i] = coefficients[i];

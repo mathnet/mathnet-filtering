@@ -20,6 +20,7 @@
 #endregion
 
 using System;
+using MathNet.Numerics.Properties;
 
 namespace MathNet.Numerics.Transformations
 {
@@ -95,9 +96,9 @@ namespace MathNet.Numerics.Transformations
             out double[] fftReal1, out double[] fftImag1, out double[] fftReal2, out double[] fftImag2)
         {
             if(samples1.Length != samples2.Length)
-                throw new ArgumentException("Both sample vectors must have the same size", "samples2");
+                throw new ArgumentException(Resources.ArgumentVectorsSameLengths, "samples2");
             if(Fn.CeilingToPowerOf2(samples1.Length) != samples1.Length)
-                throw new ArgumentException("Size must be a Power of Two.", "samples1");
+                throw new ArgumentException(Resources.ArgumentPowerOfTwo, "samples1");
 
             int numSamples = samples1.Length;
             int length = numSamples << 1;
@@ -158,9 +159,9 @@ namespace MathNet.Numerics.Transformations
             out double[] samples1, out double[] samples2)
         {
             if(fftReal1.Length != fftImag1.Length || fftReal2.Length != fftImag2.Length || fftReal1.Length != fftReal2.Length)
-                throw new ArgumentException("All fft vectors must have the same size");
+                throw new ArgumentException(Resources.ArgumentVectorsSameLengths);
             if(Fn.CeilingToPowerOf2(fftReal1.Length) != fftReal1.Length)
-                throw new ArgumentException("Size must be a Power of Two.", "fftReal1");
+                throw new ArgumentException(Resources.ArgumentPowerOfTwo, "fftReal1");
 
             int numSamples = fftReal1.Length;
             int length = numSamples << 1;
@@ -200,7 +201,7 @@ namespace MathNet.Numerics.Transformations
         public void TransformForward(double[] samples, out double[] fftReal, out double[] fftImag)
         {
             if(Fn.CeilingToPowerOf2(samples.Length) != samples.Length)
-                throw new ArgumentException("Size must be a Power of Two.", "samples");
+                throw new ArgumentException(Resources.ArgumentPowerOfTwo, "samples");
 
             int length = samples.Length;
             int numSamples = length >> 1;
@@ -263,9 +264,9 @@ namespace MathNet.Numerics.Transformations
         public void TransformBackward(double[] fftReal, double[] fftImag, out double[] samples)
         {
             if(fftReal.Length != fftImag.Length)
-                throw new ArgumentException("All fft vectors must have the same size");
+                throw new ArgumentException(Resources.ArgumentVectorsSameLengths);
             if(Fn.CeilingToPowerOf2(fftReal.Length) != fftReal.Length)
-                throw new ArgumentException("Size must be a Power of Two.", "samples");
+                throw new ArgumentException(Resources.ArgumentPowerOfTwo, "samples");
 
             int length = fftReal.Length;
             int numSamples = length >> 1;
@@ -319,7 +320,7 @@ namespace MathNet.Numerics.Transformations
         {
             for(int i = 0; i < dimensionLengths.Length; i++)
                 if(Fn.CeilingToPowerOf2(dimensionLengths[i]) != dimensionLengths[i])
-                    throw new ArgumentException("Size must be a Power of Two in every dimension.", "dimensionLengths");
+                    throw new ArgumentException(Resources.ArgumentPowerOfTwoEveryDimension, "dimensionLengths");
             
             // TODO: Implement real version (at the moment this is just a wrapper to the complex version)!
 
@@ -349,10 +350,10 @@ namespace MathNet.Numerics.Transformations
         public void TransformBackward(double[] fftReal, double[] fftImag, out double[] samples, params int[] dimensionLengths)
         {
             if(fftReal.Length != fftImag.Length)
-                throw new ArgumentException("All fft vectors must have the same size");
+                throw new ArgumentException(Resources.ArgumentVectorsSameLengths);
             for(int i = 0; i < dimensionLengths.Length; i++)
                 if(Fn.CeilingToPowerOf2(dimensionLengths[i]) != dimensionLengths[i])
-                    throw new ArgumentException("Size must be a Power of Two in every dimension.", "dimensionLengths");
+                    throw new ArgumentException(Resources.ArgumentPowerOfTwoEveryDimension, "dimensionLengths");
 
             // TODO: Implement real version (at the moment this is just a wrapper to the complex version)!
 

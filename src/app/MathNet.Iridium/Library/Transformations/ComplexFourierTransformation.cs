@@ -20,6 +20,7 @@
 #endregion
 
 using System;
+using MathNet.Numerics.Properties;
 
 namespace MathNet.Numerics.Transformations
 {
@@ -94,7 +95,7 @@ namespace MathNet.Numerics.Transformations
         public void TransformForward(double[] samplePairs)
         {
             if(Fn.CeilingToPowerOf2(samplePairs.Length) != samplePairs.Length)
-                throw new ArgumentException("Size must be a Power of Two.", "samplePairs");
+                throw new ArgumentException(Resources.ArgumentPowerOfTwo, "samplePairs");
             _fft.DiscreteFourierTransform(samplePairs, true, _convention);
         }
 
@@ -110,7 +111,7 @@ namespace MathNet.Numerics.Transformations
         public void TransformForward(Complex[] samples)
         {
             if(Fn.CeilingToPowerOf2(samples.Length) != samples.Length)
-                throw new ArgumentException("Size must be a Power of Two.", "samplePairs");
+                throw new ArgumentException(Resources.ArgumentPowerOfTwo, "samples");
             double[] samplePairs = new double[samples.Length << 1];
             for(int i = 0, j = 0; i < samples.Length; i++, j += 2)
             {
@@ -132,7 +133,7 @@ namespace MathNet.Numerics.Transformations
         public void TransformBackward(double[] samplePairs)
         {
             if(Fn.CeilingToPowerOf2(samplePairs.Length) != samplePairs.Length)
-                throw new ArgumentException("Size must be a Power of Two.", "samplePairs");
+                throw new ArgumentException(Resources.ArgumentPowerOfTwo, "samplePairs");
             _fft.DiscreteFourierTransform(samplePairs, false, _convention);
         }
 
@@ -148,7 +149,7 @@ namespace MathNet.Numerics.Transformations
         public void TransformBackward(Complex[] samples)
         {
             if(Fn.CeilingToPowerOf2(samples.Length) != samples.Length)
-                throw new ArgumentException("Size must be a Power of Two.", "samplePairs");
+                throw new ArgumentException(Resources.ArgumentPowerOfTwo, "samplePairs");
             double[] samplePairs = new double[samples.Length << 1];
             for(int i = 0, j = 0; i < samples.Length; i++, j += 2)
             {
@@ -175,7 +176,7 @@ namespace MathNet.Numerics.Transformations
         {
             for(int i=0;i<dimensionLengths.Length;i++)
                 if(Fn.CeilingToPowerOf2(dimensionLengths[i]) != dimensionLengths[i])
-                    throw new ArgumentException("Size must be a Power of Two in every dimension.", "dimensionLengths");
+                    throw new ArgumentException(Resources.ArgumentPowerOfTwoEveryDimension, "dimensionLengths");
             _fft.DiscreteFourierTransformMultiDim(samplePairs, dimensionLengths, true, _convention);
         }
 
@@ -194,7 +195,7 @@ namespace MathNet.Numerics.Transformations
         {
             for(int i = 0; i < dimensionLengths.Length; i++)
                 if(Fn.CeilingToPowerOf2(dimensionLengths[i]) != dimensionLengths[i])
-                    throw new ArgumentException("Size must be a Power of Two in every dimension.", "dimensionLengths");
+                    throw new ArgumentException(Resources.ArgumentPowerOfTwoEveryDimension, "dimensionLengths");
             double[] samplePairs = new double[samples.Length << 1];
             for(int i = 0, j = 0; i < samples.Length; i++, j += 2)
             {
@@ -219,7 +220,7 @@ namespace MathNet.Numerics.Transformations
         {
             for(int i = 0; i < dimensionLengths.Length; i++)
                 if(Fn.CeilingToPowerOf2(dimensionLengths[i]) != dimensionLengths[i])
-                    throw new ArgumentException("Size must be a Power of Two in every dimension.", "dimensionLengths");
+                    throw new ArgumentException(Resources.ArgumentPowerOfTwoEveryDimension, "dimensionLengths");
             _fft.DiscreteFourierTransformMultiDim(samplePairs, dimensionLengths, false, _convention);
         }
 
@@ -238,7 +239,7 @@ namespace MathNet.Numerics.Transformations
         {
             for(int i = 0; i < dimensionLengths.Length; i++)
                 if(Fn.CeilingToPowerOf2(dimensionLengths[i]) != dimensionLengths[i])
-                    throw new ArgumentException("Size must be a Power of Two in every dimension.", "dimensionLengths");
+                    throw new ArgumentException(Resources.ArgumentPowerOfTwoEveryDimension, "dimensionLengths");
             double[] samplePairs = new double[samples.Length << 1];
             for(int i = 0, j = 0; i < samples.Length; i++, j += 2)
             {

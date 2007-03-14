@@ -22,6 +22,7 @@
 #endregion
 
 using System;
+using MathNet.Numerics.Properties;
 
 namespace MathNet.Numerics.LinearAlgebra
 {
@@ -244,13 +245,9 @@ namespace MathNet.Numerics.LinearAlgebra
 		public Matrix Solve(Matrix B)
 		{
 			if (B.RowCount != m)
-			{
-				throw new System.ArgumentException("Matrix row dimensions must agree.");
-			}
+				throw new ArgumentException(Resources.ArgumentMatrixSameRowDimension, "B");
 			if (!this.FullRank)
-			{
-				throw new System.SystemException("Matrix is rank deficient.");
-			}
+				throw new InvalidOperationException(Resources.ArgumentMatrixNotRankDeficient);
 			
 			// Copy right hand side
 			int nx = B.ColumnCount;

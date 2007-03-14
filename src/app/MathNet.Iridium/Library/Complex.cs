@@ -24,6 +24,7 @@ using System;
 using System.Text;
 using System.Globalization;  
 using System.Collections;
+using MathNet.Numerics.Properties;
 
 namespace MathNet.Numerics
 {
@@ -196,7 +197,7 @@ namespace MathNet.Numerics
         public static Complex FromModulusArgument(double modulus, double argument)
         {
             if(modulus < 0d) throw new ArgumentOutOfRangeException("modulus", modulus,
-                                 "A complex modulus must be non-negative.");
+                                 Resources.ArgumentNotNegative);
 
             return new Complex(modulus * Math.Cos(argument), modulus * Math.Sin(argument));
         }
@@ -320,7 +321,7 @@ namespace MathNet.Numerics
             set
             {
                 if(value < 0d) throw new ArgumentOutOfRangeException("value", value,
-                                   "A complex modulus must be non-negative.");
+                                   Resources.ArgumentNotNegative);
 
                 if(double.IsInfinity(value))
                 {
@@ -355,7 +356,7 @@ namespace MathNet.Numerics
             set
             {
                 if(value < 0d) throw new ArgumentOutOfRangeException("value", value,
-                                   "A complex squared modulus must be non-negative.");
+                                   Resources.ArgumentNotNegative);
 
                 if(double.IsInfinity(value))
                 {
@@ -867,7 +868,7 @@ namespace MathNet.Numerics
         private class ComplexParser
         {
             Complex complex;
-            int cursor = 0;
+            int cursor; // = 0;
             string source;
             NumberFormatInfo numberFormat;
 

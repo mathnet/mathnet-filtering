@@ -22,7 +22,8 @@
 
 using System;
 using MathNet.Numerics.RandomSources;
-namespace MathNet.Numerics.Distributions.Discrete
+
+namespace MathNet.Numerics.Distributions
 {
     /// <summary>
     /// Non-uniform discrete random distribution.

@@ -22,6 +22,7 @@
 #endregion
 
 using System;
+using MathNet.Numerics.Properties;
 
 namespace MathNet.Numerics.LinearAlgebra
 {
@@ -268,9 +269,8 @@ namespace MathNet.Numerics.LinearAlgebra
 		public double Determinant()
 		{
 			if (m != n)
-			{
-				throw new System.ArgumentException("Matrix must be square.");
-			}
+				throw new System.ArgumentException(Resources.ArgumentMatrixSquare);
+
 			double d = (double) pivsign;
 			for (int j = 0; j < n; j++)
 			{
@@ -286,14 +286,10 @@ namespace MathNet.Numerics.LinearAlgebra
 		/// <exception cref="System.SystemException">Matrix is singular.</exception>
 		public Matrix Solve(Matrix B)
 		{
-			if (B.RowCount != m)
-			{
-				throw new System.ArgumentException("Matrix row dimensions must agree.");
-			}
+            if(B.RowCount != m)
+                throw new ArgumentException(Resources.ArgumentMatrixSameRowDimension, "B");
 			if (!this.IsNonSingular)
-			{
-				throw new System.SystemException("Matrix is singular.");
-			}
+				throw new InvalidOperationException(Resources.ArgumentMatrixNotSingular);
 			
 			// Copy right hand side with pivoting
 			int nx = B.ColumnCount;

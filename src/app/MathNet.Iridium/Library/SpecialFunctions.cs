@@ -24,6 +24,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using MathNet.Numerics.Properties;
 
 namespace MathNet.Numerics
 {
@@ -275,7 +276,7 @@ namespace MathNet.Numerics
         public static double FactorialLn(int value)
         {
             if(value < 0)
-                throw new ArgumentOutOfRangeException("value", "FactorialLn expects a positive argument");
+                throw new ArgumentOutOfRangeException("value", Resources.ArgumentPositive);
             if(value <= 1)
                 return 0.0d;
             if(value >= FactorialLnCacheSize)
@@ -295,7 +296,7 @@ namespace MathNet.Numerics
         public static double Factorial(int value)
         {
             if(value < 0)
-                throw new ArgumentOutOfRangeException("value", "Factorial expects a positive argument");
+                throw new ArgumentOutOfRangeException("value", Resources.ArgumentPositive);
             if(value >= FactorialPrecompSize)
                 return Math.Exp(GammaLn(value + 1.0));
             if(factorialPrecomp == null)
@@ -361,7 +362,7 @@ namespace MathNet.Numerics
             double fpmin = Number.SmallestNumberGreaterThanZero / eps;
 
             if(a < 0.0 || x < 0.0)
-                throw new ArgumentOutOfRangeException("a, x", "a and x are expected to be positive or zero");
+                throw new ArgumentOutOfRangeException("a,x", Resources.ArgumentNotNegative);
 
             double gln = GammaLn(a);
             if(x < a + 1.0)
@@ -409,7 +410,7 @@ namespace MathNet.Numerics
                         return 1.0 - Math.Exp(-x + a * Math.Log(x) - gln) * h;
                 }
             }
-            throw new ArgumentException("a is too large for the current iteration limit", "a");
+            throw new ArgumentException(Resources.ArgumentTooLargeForIterationLimit, "a");
         }
         #endregion
 
@@ -433,9 +434,9 @@ namespace MathNet.Numerics
         public static double IncompleteBetaRegularized(double a, double b, double x)
         {
             if(a < 0.0 || b < 0.0)
-                throw new ArgumentOutOfRangeException("a, b", "a and b are expected to be positive or zero");
+                throw new ArgumentOutOfRangeException("a,b", Resources.ArgumentNotNegative);
             if(x < 0.0 || x > 1.0)
-                throw new ArgumentOutOfRangeException("x", "x is expected to be between 0.0 and 1.0 (including 0.0 and 1.0)");
+                throw new ArgumentOutOfRangeException("x", String.Format(Resources.ArgumentInIntervalXYInclusive,"0.0","1.0"));
 
             double bt = (x == 0.0 || x == 1.0) ? 0.0 : Math.Exp(GammaLn(a + b) - GammaLn(a) - GammaLn(b) + a * Math.Log(x) + b * Math.Log(1.0 - x));
             double betacf;
@@ -484,7 +485,7 @@ namespace MathNet.Numerics
                         return 1.0 - bt * h / b;
                 }
             }
-            throw new ArgumentException("a or b is too large for the current iteration limit", "a");
+            throw new ArgumentException(Resources.ArgumentTooLargeForIterationLimit, "a,b");
         }
         #endregion
 
@@ -512,7 +513,7 @@ namespace MathNet.Numerics
         public static double ErfInverse(double x)
         {
             if(x < -1.0 || x > 1.0) throw new ArgumentOutOfRangeException(
-                "p", x, "x be comprised in [-1, 1].");
+                "p", x, String.Format(Resources.ArgumentInIntervalXYInclusive,"-1.0","1.0"));
 
             x = 0.5 * (x + 1.0);
 

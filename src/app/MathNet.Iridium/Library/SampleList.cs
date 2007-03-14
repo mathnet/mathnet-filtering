@@ -21,6 +21,7 @@
 
 using System;
 using System.Collections;
+using MathNet.Numerics.Properties;
 
 namespace MathNet.Numerics
 {
@@ -40,7 +41,7 @@ namespace MathNet.Numerics
 		private SampleList.KeyList keyList;
 		private SampleList.ValueList valueList;
 
-		public event SampleAlteredEventHandler SampleAltered;
+		public event EventHandler<SampleAlteredEventArgs> SampleAltered;
 		
 		#region Construction
 		public SampleList()
@@ -48,7 +49,7 @@ namespace MathNet.Numerics
 			sampleCount = new int[16];
 			sampleT = new double[16];
 			sampleX = new double[16];
-			size = 0;
+			//size = 0;
 		}
 		/// <param name="capacity">initial capacity</param>
 		public SampleList(int capacity)
@@ -58,7 +59,7 @@ namespace MathNet.Numerics
 			sampleCount = new int[capacity];
 			sampleT = new double[capacity];
 			sampleX = new double[capacity];
-			size = 0;
+			//size = 0;
 		}
 		public SampleList(IDictionary d) : this((d != null) ? d.Count : 16)
 		{
@@ -413,10 +414,8 @@ namespace MathNet.Numerics
 
 		void ICollection.CopyTo(Array array, int index)
 		{
-			if(array == null)
-				throw new ArgumentNullException("array");
-			if(array.Rank != 1)
-				throw new ArgumentException("array","Only single dimension arrays supported");
+			if(array == null || array.Rank != 1)
+				throw new ArgumentException("array", Resources.ArgumentSingleDimensionArray);
 			if(index < 0 || (array.Length - index) < size)
 				throw new ArgumentOutOfRangeException("index");
 			for(int i=0;i<size;i++)
@@ -527,7 +526,7 @@ namespace MathNet.Numerics
 			public virtual void CopyTo(Array array, int index)
 			{
 				if(array == null || array.Rank != 1)
-					throw new ArgumentException();
+					throw new ArgumentException(Resources.ArgumentSingleDimensionArray, "array");
 				Array.Copy(sampleList.sampleT,0,array,index,sampleList.Count);
 			}
 			public virtual IEnumerator GetEnumerator()
@@ -686,7 +685,7 @@ namespace MathNet.Numerics
 				this.startIndex = index;
 				this.endIndex = index + count;
 				this.mode = mode;
-				this.current = false;
+				//this.current = false;
 			}
 			public object Clone()
 			{
@@ -759,10 +758,6 @@ namespace MathNet.Numerics
 		#endregion
 
 		#region Event Handler
-		/// <summary>
-		/// Event Handler for <see cref="SampleList.SampleAltered"/> Event.
-		/// </summary>
-		public delegate void SampleAlteredEventHandler(object sender, SampleAlteredEventArgs e);
 		/// <summary>
 		/// Event Argument for <see cref="SampleList.SampleAltered"/> Event.
 		/// </summary>

@@ -61,6 +61,96 @@ namespace MathNet.Numerics.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Value is expected to be between {0} and {1} (including {0} and {1})..
+        /// </summary>
+        internal static string ArgumentInIntervalXYInclusive {
+            get {
+                return ResourceManager.GetString("ArgumentInIntervalXYInclusive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Matrix must not be rank deficient..
+        /// </summary>
+        internal static string ArgumentMatrixNotRankDeficient {
+            get {
+                return ResourceManager.GetString("ArgumentMatrixNotRankDeficient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Matrix must not be singular..
+        /// </summary>
+        internal static string ArgumentMatrixNotSingular {
+            get {
+                return ResourceManager.GetString("ArgumentMatrixNotSingular", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Matrix column dimensions must agree..
+        /// </summary>
+        internal static string ArgumentMatrixSameColumnDimension {
+            get {
+                return ResourceManager.GetString("ArgumentMatrixSameColumnDimension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Matrix row dimensions must agree..
+        /// </summary>
+        internal static string ArgumentMatrixSameRowDimension {
+            get {
+                return ResourceManager.GetString("ArgumentMatrixSameRowDimension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Matrix dimensions must agree..
+        /// </summary>
+        internal static string ArgumentMatrixSimeDimensions {
+            get {
+                return ResourceManager.GetString("ArgumentMatrixSimeDimensions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Matrix must be square..
+        /// </summary>
+        internal static string ArgumentMatrixSquare {
+            get {
+                return ResourceManager.GetString("ArgumentMatrixSquare", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Matrix must be symmetric positive definite..
+        /// </summary>
+        internal static string ArgumentMatrixSymetricPositiveDefinite {
+            get {
+                return ResourceManager.GetString("ArgumentMatrixSymetricPositiveDefinite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value must neither be infinite nor NaN..
+        /// </summary>
+        internal static string ArgumentNotInfinityNaN {
+            get {
+                return ResourceManager.GetString("ArgumentNotInfinityNaN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value must not be negative (zero is ok)..
+        /// </summary>
+        internal static string ArgumentNotNegative {
+            get {
+                return ResourceManager.GetString("ArgumentNotNegative", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} is a null reference (Nothing in Visual Basic)..
         /// </summary>
         internal static string ArgumentNull {
@@ -79,11 +169,74 @@ namespace MathNet.Numerics.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Value must be positive (and not zero)..
+        /// </summary>
+        internal static string ArgumentPositive {
+            get {
+                return ResourceManager.GetString("ArgumentPositive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size must be a Power of Two..
+        /// </summary>
+        internal static string ArgumentPowerOfTwo {
+            get {
+                return ResourceManager.GetString("ArgumentPowerOfTwo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size must be a Power of Two in every dimension..
+        /// </summary>
+        internal static string ArgumentPowerOfTwoEveryDimension {
+            get {
+                return ResourceManager.GetString("ArgumentPowerOfTwoEveryDimension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The range between {0} and {1} must be less than or equal to {2}..
         /// </summary>
         internal static string ArgumentRangeLessEqual {
             get {
                 return ResourceManager.GetString("ArgumentRangeLessEqual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Array must have exactly one dimension (and not be null)..
+        /// </summary>
+        internal static string ArgumentSingleDimensionArray {
+            get {
+                return ResourceManager.GetString("ArgumentSingleDimensionArray", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value is too large..
+        /// </summary>
+        internal static string ArgumentTooLarge {
+            get {
+                return ResourceManager.GetString("ArgumentTooLarge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value is too large for the current iteration limit..
+        /// </summary>
+        internal static string ArgumentTooLargeForIterationLimit {
+            get {
+                return ResourceManager.GetString("ArgumentTooLargeForIterationLimit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All vectors must have the same length..
+        /// </summary>
+        internal static string ArgumentVectorsSameLengths {
+            get {
+                return ResourceManager.GetString("ArgumentVectorsSameLengths", resourceCulture);
             }
         }
     }

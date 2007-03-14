@@ -117,13 +117,64 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ArgumentInIntervalXYInclusive" xml:space="preserve">
+    <value>Value is expected to be between {0} and {1} (including {0} and {1}).</value>
+  </data>
+  <data name="ArgumentMatrixNotRankDeficient" xml:space="preserve">
+    <value>Matrix must not be rank deficient.</value>
+  </data>
+  <data name="ArgumentMatrixNotSingular" xml:space="preserve">
+    <value>Matrix must not be singular.</value>
+  </data>
+  <data name="ArgumentMatrixSameColumnDimension" xml:space="preserve">
+    <value>Matrix column dimensions must agree.</value>
+  </data>
+  <data name="ArgumentMatrixSameRowDimension" xml:space="preserve">
+    <value>Matrix row dimensions must agree.</value>
+  </data>
+  <data name="ArgumentMatrixSimeDimensions" xml:space="preserve">
+    <value>Matrix dimensions must agree.</value>
+  </data>
+  <data name="ArgumentMatrixSquare" xml:space="preserve">
+    <value>Matrix must be square.</value>
+  </data>
+  <data name="ArgumentMatrixSymetricPositiveDefinite" xml:space="preserve">
+    <value>Matrix must be symmetric positive definite.</value>
+  </data>
+  <data name="ArgumentNotInfinityNaN" xml:space="preserve">
+    <value>Value must neither be infinite nor NaN.</value>
+  </data>
+  <data name="ArgumentNotNegative" xml:space="preserve">
+    <value>Value must not be negative (zero is ok).</value>
+  </data>
   <data name="ArgumentNull" xml:space="preserve">
     <value>{0} is a null reference (Nothing in Visual Basic).</value>
   </data>
   <data name="ArgumentOutOfRangeGreaterEqual" xml:space="preserve">
     <value>{0} must be greater than or equal to {1}.</value>
   </data>
+  <data name="ArgumentPositive" xml:space="preserve">
+    <value>Value must be positive (and not zero).</value>
+  </data>
+  <data name="ArgumentPowerOfTwo" xml:space="preserve">
+    <value>Size must be a Power of Two.</value>
+  </data>
+  <data name="ArgumentPowerOfTwoEveryDimension" xml:space="preserve">
+    <value>Size must be a Power of Two in every dimension.</value>
+  </data>
   <data name="ArgumentRangeLessEqual" xml:space="preserve">
     <value>The range between {0} and {1} must be less than or equal to {2}.</value>
+  </data>
+  <data name="ArgumentSingleDimensionArray" xml:space="preserve">
+    <value>Array must have exactly one dimension (and not be null).</value>
+  </data>
+  <data name="ArgumentTooLarge" xml:space="preserve">
+    <value>Value is too large.</value>
+  </data>
+  <data name="ArgumentTooLargeForIterationLimit" xml:space="preserve">
+    <value>Value is too large for the current iteration limit.</value>
+  </data>
+  <data name="ArgumentVectorsSameLengths" xml:space="preserve">
+    <value>All vectors must have the same length.</value>
   </data>
 </root>
