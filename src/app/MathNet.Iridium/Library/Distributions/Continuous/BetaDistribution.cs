@@ -86,6 +86,18 @@ namespace MathNet.Numerics.Distributions
             _gammaAlpha = new GammaDistribution(random);
             _gammaBeta = new GammaDistribution(random);
         }
+
+        /// <summary>
+        /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
+        /// as underlying random number generator.
+        /// </summary>
+        public BetaDistribution(double alpha, double beta)
+            : base()
+        {
+            SetDistributionParameters(alpha, beta);
+            _gammaAlpha = new GammaDistribution(this.RandomSource);
+            _gammaBeta = new GammaDistribution(this.RandomSource);
+        }
         #endregion
 
         public override RandomSource RandomSource

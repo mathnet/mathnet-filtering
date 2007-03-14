@@ -79,6 +79,16 @@ namespace MathNet.Numerics.Distributions
         {
             SetDistributionParameters(0, 1.0);
         }
+
+        /// <summary>
+        /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
+        /// as underlying random number generator.
+        /// </summary>
+        public ArbitraryDistribution(int offset, params double[] probabilityMass)
+            : base()
+        {
+            SetDistributionParameters(offset, probabilityMass);
+        }
         #endregion
 
         #region Distribution Parameters

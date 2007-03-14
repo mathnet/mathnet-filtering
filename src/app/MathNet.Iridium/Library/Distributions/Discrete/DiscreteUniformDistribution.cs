@@ -81,6 +81,16 @@ namespace MathNet.Numerics.Distributions
         {
             SetDistributionParameters(0, 1);
         }
+
+        /// <summary>
+        /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
+        /// as underlying random number generator.
+        /// </summary>
+        public DiscreteUniformDistribution(int lowerLimit, int upperLimit)
+            : base()
+        {
+            SetDistributionParameters(lowerLimit, upperLimit);
+        }
         #endregion
 
         #region Distribution Parameters

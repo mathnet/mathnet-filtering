@@ -80,6 +80,16 @@ namespace MathNet.Numerics.Distributions
         {
             SetDistributionParameters(1, 1.0);
         }
+
+        /// <summary>
+        /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
+        /// as underlying random number generator.
+        /// </summary>
+        public ErlangDistribution(int shape, double rate)
+            : base()
+        {
+            SetDistributionParameters(shape, rate);
+        }
         #endregion
 
         #region Distribution Parameters

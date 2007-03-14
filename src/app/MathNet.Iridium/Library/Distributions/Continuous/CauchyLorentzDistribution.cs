@@ -79,6 +79,16 @@ namespace MathNet.Numerics.Distributions
         {
             SetDistributionParameters(0.0, 1.0);
         }
+
+        /// <summary>
+        /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
+        /// as underlying random number generator.
+        /// </summary>
+        public CauchyLorentzDistribution(double location, double scale)
+            : base()
+        {
+            SetDistributionParameters(location, scale);
+        }
         #endregion
 
         #region Distribution Parameters

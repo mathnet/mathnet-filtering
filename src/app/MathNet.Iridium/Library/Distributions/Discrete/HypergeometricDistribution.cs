@@ -131,6 +131,16 @@ namespace MathNet.Numerics.Distributions
         {
             SetDistributionParameters(2, 1, 1);
         }
+
+        /// <summary>
+        /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
+        /// as underlying random number generator.
+        /// </summary>
+        public HypergeometricDistribution(int populationSize, int favoredItems, int numberOfSamples)
+            : base()
+        {
+            SetDistributionParameters(populationSize, favoredItems, numberOfSamples);
+        }
         #endregion
 
         #region Distribution Parameters

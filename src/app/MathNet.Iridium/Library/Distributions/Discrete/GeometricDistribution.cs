@@ -130,6 +130,16 @@ namespace MathNet.Numerics.Distributions
         {
             SetDistributionParameters(0.5);
         }
+
+        /// <summary>
+        /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
+        /// as underlying random number generator.
+        /// </summary>
+        public GeometricDistribution(double probabilityOfSuccess)
+            : base()
+        {
+            SetDistributionParameters(probabilityOfSuccess);
+        }
         #endregion
 
         #region Distribution Parameters

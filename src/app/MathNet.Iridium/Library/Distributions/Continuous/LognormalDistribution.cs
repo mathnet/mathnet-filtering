@@ -98,6 +98,17 @@ namespace MathNet.Numerics.Distributions
             SetDistributionParameters(0.0, 1.0);
             _standard = new StandardDistribution(random);
         }
+
+        /// <summary>
+        /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
+        /// as underlying random number generator.
+        /// </summary>
+        public LognormalDistribution(double mu, double sigma)
+            : base()
+        {
+            SetDistributionParameters(mu, sigma);
+            _standard = new StandardDistribution(this.RandomSource);
+        }
         #endregion
 
         public override RandomSource RandomSource

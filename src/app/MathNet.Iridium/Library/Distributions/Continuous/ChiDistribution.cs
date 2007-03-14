@@ -82,6 +82,17 @@ namespace MathNet.Numerics.Distributions
             SetDistributionParameters(1);
             _standard = new StandardDistribution(random);
         }
+
+        /// <summary>
+        /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
+        /// as underlying random number generator.
+        /// </summary>
+        public ChiDistribution(int degreesOfFreedom)
+            : base()
+        {
+            SetDistributionParameters(degreesOfFreedom);
+            _standard = new StandardDistribution(this.RandomSource);
+        }
         #endregion
 
         public override RandomSource RandomSource

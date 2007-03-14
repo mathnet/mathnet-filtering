@@ -79,6 +79,16 @@ namespace MathNet.Numerics.Distributions
         {
             SetDistributionParameters(0.5, 1);
         }
+
+        /// <summary>
+        /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
+        /// as underlying random number generator.
+        /// </summary>
+        public BinomialDistribution(double probabilityOfSuccess, int numberOfTrials)
+            : base()
+        {
+            SetDistributionParameters(probabilityOfSuccess, numberOfTrials);
+        }
         #endregion
 
         #region Distribution Parameters

@@ -96,6 +96,16 @@ namespace MathNet.Numerics.Distributions
         {
             SetDistributionParameters(0.0, 1.0, 0.5);
         }
+
+        /// <summary>
+        /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
+        /// as underlying random number generator.
+        /// </summary>
+        public TriangularDistribution(double lowerLimit, double upperLimit, double center)
+            : base()
+        {
+            SetDistributionParameters(lowerLimit, upperLimit, center);
+        }
         #endregion
 
         #region Distribution Parameters
