@@ -33,6 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -40,23 +41,47 @@
     <Compile Include="Combinatorics.cs" />
     <Compile Include="Complex.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="Distributions\CumulativeNormalDistribution.cs" />
-    <Compile Include="Distributions\InvCumulativeNormalDistribution.cs" />
+    <Compile Include="Distributions\Continuous\BetaDistribution.cs" />
+    <Compile Include="Distributions\Continuous\CauchyLorentzDistribution.cs" />
+    <Compile Include="Distributions\Continuous\ChiSquareDistribution.cs" />
+    <Compile Include="Distributions\Continuous\ContinuousUniformDistribution.cs" />
+    <Compile Include="Distributions\Continuous\ChiDistribution.cs" />
+    <Compile Include="Distributions\Continuous\ErlangDistribution.cs" />
+    <Compile Include="Distributions\Continuous\ExponentialDistribution.cs" />
+    <Compile Include="Distributions\Continuous\GammaDistribution.cs" />
+    <Compile Include="Distributions\Continuous\LaplaceDistribution.cs" />
+    <Compile Include="Distributions\Continuous\LognormalDistribution.cs" />
+    <Compile Include="Distributions\Continuous\NormalDistribution.cs" />
+    <Compile Include="Distributions\Continuous\ParetoDistribution.cs" />
+    <Compile Include="Distributions\Continuous\StandardDistribution.cs" />
+    <Compile Include="Distributions\Continuous\TriangularDistribution.cs" />
+    <Compile Include="Distributions\DiscreteDistribution.cs" />
+    <Compile Include="Distributions\Discrete\ArbitraryDistribution.cs" />
+    <Compile Include="Distributions\Discrete\BernoulliDistribution.cs" />
+    <Compile Include="Distributions\Discrete\BinomialDistribution.cs" />
+    <Compile Include="Distributions\Discrete\HypergeometricDistribution.cs" />
+    <Compile Include="Distributions\Discrete\DiscreteUniformDistribution.cs" />
+    <Compile Include="Distributions\Discrete\GeometricDistribution.cs" />
+    <Compile Include="Distributions\Discrete\PoissonDistribution.cs" />
+    <Compile Include="Distributions\Discrete\ZipfDistribution.cs" />
+    <Compile Include="Distributions\IDiscreteGenerator.cs" />
+    <Compile Include="Distributions\IContinuousGenerator.cs" />
+    <Compile Include="Distributions\IContinuousProbabilityDistribution.cs" />
+    <Compile Include="Distributions\ContinuousDistribution.cs" />
+    <Compile Include="Distributions\IDiscreteProbabilityDistribution.cs" />
     <Compile Include="Distributions\NamespaceDoc.cs" />
     <Compile Include="Double.cs" />
     <Compile Include="Equations\NamespaceDoc.cs" />
     <Compile Include="Equations\ScalarIterator.cs" />
     <Compile Include="Equations\Solver.cs" />
-    <Compile Include="Generators\BinomialGenerator.cs" />
-    <Compile Include="Generators\CombinationGenerator.cs" />
-    <Compile Include="Generators\DiscreteGenerator.cs" />
-    <Compile Include="Generators\ExponentialGenerator.cs" />
-    <Compile Include="Generators\GammaGenerator.cs" />
-    <Compile Include="Generators\NamespaceDoc.cs" />
-    <Compile Include="Generators\NormalGenerator.cs" />
-    <Compile Include="Generators\PermutationGenerator.cs" />
-    <Compile Include="Generators\PoissonGenerator.cs" />
-    <Compile Include="Generators\ZipfGenerator.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="RandomSources\AdditiveLaggedFibonacciRandomSource.cs" />
+    <Compile Include="RandomSources\MersenneTwisterRandomSource.cs" />
+    <Compile Include="RandomSources\RandomSource.cs" />
     <Compile Include="Interpolation\CubicSplineInterpolationAlgorithm.cs" />
     <Compile Include="Interpolation\Interpolation1D.cs" />
     <Compile Include="Interpolation\InterpolationAlgorithm.cs" />
@@ -78,10 +103,13 @@
     <Compile Include="Polynomial.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quaternion.cs" />
+    <Compile Include="RandomSources\SystemRandomSource.cs" />
+    <Compile Include="RandomSources\XorShiftRandomSource.cs" />
     <Compile Include="Rational.cs" />
     <Compile Include="SampleList.cs" />
     <Compile Include="Set.cs" />
     <Compile Include="SiConstants.cs" />
+    <Compile Include="SiPrefixes.cs" />
     <Compile Include="SpecialFunctions.cs" />
     <Compile Include="Statistics\Accumulator.cs" />
     <Compile Include="Statistics\Histogram.cs" />
@@ -93,6 +121,22 @@
     <Compile Include="Transformations\TransformationConvention.cs" />
     <Compile Include="Trigonometry.cs" />
     <Compile Include="Tuple.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.es.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.fr.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.de.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Integration\" />

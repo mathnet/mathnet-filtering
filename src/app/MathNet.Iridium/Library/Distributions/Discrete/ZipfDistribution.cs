@@ -22,61 +22,65 @@
 #endregion
 
 using System;
+using MathNet.Numerics.RandomSources;
 
-namespace MathNet.Numerics.Generators
+namespace MathNet.Numerics.Distributions
 {
-	// TODO: NUnit test for ZipfGenerator
-	/* Note: ZipfGenerator seems to returns value that are really
-	 * big, must check the validity of the formula in use. */
+    // TODO: NUnit test for ZipfGenerator
+    /* Note: ZipfGenerator seems to returns value that are really
+     * big, must check the validity of the formula in use. */
 
-	/// <summary>
-	/// Pseudo-random generator of Zipf distributed deviates.
-	/// </summary>
-	/// <remarks>
-	/// <p>The density of the continuous zipf distribution is defined
-	/// on <c>[1, +infinty)</c>, the density is proportional to
-	/// <c>x^s</c> where <c>s &gt; 1</c> is the <i>skew</i>.</p>
-	/// 
-	/// <p>See the <a href="http://en.wikipedia.org/wiki/Zipfs_law">Wikipedia</a>
-	/// for more information about Zipf distribution.</p>
-	/// </remarks>
-	public class ZipfGenerator : IRealGenerator
-	{
-		Random random;
+    // TODO: Integrate into iridium's distribution pattern/approach
+    // (e.g. includes providing pmf & cdf, inheriting from superclass etc.)
+
+    /// <summary>
+    /// Pseudo-random generator of Zipf distributed deviates.
+    /// </summary>
+    /// <remarks>
+    /// <p>The density of the continuous zipf distribution is defined
+    /// on <c>[1, +infinty)</c>, the density is proportional to
+    /// <c>x^s</c> where <c>s &gt; 1</c> is the <i>skew</i>.</p>
+    /// 
+    /// <p>See the <a href="http://en.wikipedia.org/wiki/Zipfs_law">Wikipedia</a>
+    /// for more information about Zipf distribution.</p>
+    /// </remarks>
+    public sealed class ZipfDistribution
+    {
+        RandomSource random;
 
 		private double skew;
 
 		/// <summary>Zipfian generator with a default 
 		/// <c>skew</c> equal to <c>2</c>.</summary>
-		public ZipfGenerator()
+		public ZipfDistribution()
 		{
 			this.skew = 2d;
-            random = new Random();
+            random = new SystemRandomSource();
 		}
 
-        public ZipfGenerator(Random random)
+        public ZipfDistribution(RandomSource random)
         {
             this.skew = 2d;
             this.random = random;
         }
 
 		/// <summary>Zipfian generator with the provided <c>skew</c>.</summary>
-		public ZipfGenerator(double skew)
+		public ZipfDistribution(double skew)
 		{
 			if(skew <= 1d) throw new ArgumentOutOfRangeException("skew", skew,
 				"The skew should be greater than 1.0.");
 
 			this.skew = skew;
-            random = new Random();
+            random = new SystemRandomSource();
 		}
 
-        public ZipfGenerator(double skew, int seed)
+        public ZipfDistribution(double skew, int seed)
         {
             if (skew <= 1d) throw new ArgumentOutOfRangeException("skew", skew,
                  "The skew should be greater than 1.0.");
 
             this.skew = skew;
-            random = new Random(seed);
+            random = new SystemRandomSource(seed);
         }
 
 		/// <summary>Gets or sets the skew of the zipfian distribution.</summary>
@@ -100,5 +104,5 @@ namespace MathNet.Numerics.Generators
 			double p = random.NextDouble();
 			return Math.Pow(1d - p, 1d / (1d - skew));
 		}
-	}
+    }
 }

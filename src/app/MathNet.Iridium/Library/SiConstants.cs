@@ -26,55 +26,12 @@ using System.Text;
 namespace MathNet.Numerics
 {
     /// <summary>
-    /// Science Constants
+    /// Scientific Constants
     /// </summary>
     /// <seealso cref="Constants"/>
+    /// <seealso cref="SiPrefixes"/>
     public static class SiConstants
     {
-        #region SI Prefixes
-        /// <summary>1 000 000 000 000 000 000 000 000</summary>
-        public const double yotta = 1e24;
-        /// <summary>1 000 000 000 000 000 000 000</summary>
-        public const double zetta = 1e21;
-        /// <summary>1 000 000 000 000 000 000</summary>
-        public const double exa = 1e18;
-        /// <summary>1 000 000 000 000 000</summary>
-        public const double peta = 1e15;
-        /// <summary>1 000 000 000 000</summary>
-        public const double tera = 1e12;
-        /// <summary>1 000 000 000</summary>
-        public const double giga = 1e9;
-        /// <summary>1 000 000</summary>
-        public const double mega = 1e6;
-        /// <summary>1 000</summary>
-        public const double kilo = 1e3;
-        /// <summary>100</summary>
-        public const double hecto = 1e2;
-        /// <summary>10</summary>
-        public const double deca = 1e1;
-        /// <summary>0.1</summary>
-        public const double deci = 1e-1;
-        /// <summary>0.01</summary>
-        public const double centi = 1e-2;
-        /// <summary>0.001</summary>
-        public const double milli = 1e-3;
-        /// <summary>0.000 001</summary>
-        public const double micro = 1e-6;
-        /// <summary>0.000 000 001</summary>
-        public const double nano = 1e-9;
-        /// <summary>0.000 000 000 001</summary>
-        public const double pico = 1e-12;
-        /// <summary>0.000 000 000 000 001</summary>
-        public const double femto = 1e-15;
-        /// <summary>0.000 000 000 000 000 001</summary>
-        public const double atto = 1e-18;
-        /// <summary>0.000 000 000 000 000 000 001</summary>
-        public const double zepto = 1e-21;
-        /// <summary>0.000 000 000 000 000 000 000 001</summary>
-        public const double yocto = 1e-24;
-        #endregion
-
-        #region Physical Constants
         /// <summary>Speed of Light in Vacuum: c_0 = 2.99792458e8 [m s^-1] (defined, exact; 2002 CODATA)</summary>
         public const double SpeedOfLight = 2.99792458e8;
         /// <summary>Magnetic Permeability in Vacuum: mu_0 = 4*Pi * 10^-7 [N A^-2 = kg m A^-2 s^-2] (defined, exact; 2002 CODATA)</summary>
@@ -170,7 +127,5 @@ namespace MathNet.Numerics
         //public const double  = ;
         //public const double  = ;
         //public const double  = ;
-        
-        #endregion
     }
 }

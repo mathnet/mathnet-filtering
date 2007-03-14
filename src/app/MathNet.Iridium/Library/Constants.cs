@@ -52,7 +52,7 @@ namespace MathNet.Numerics
 
         /// <summary>sqrt(2)</summary>
         public const double Sqrt2 = 1.4142135623730950488016887242096980785696718753769d;
-        /// <summary>sqrt(1/2)</summary>
+        /// <summary>sqrt(1/2) = 1/sqrt(2) = sqrt(2)/2</summary>
         public const double Sqrt1_2 = 0.70710678118654752440084436210484903928483593768845d;
         /// <summary>sqrt(3)/2</summary>
         public const double HalfSqrt3 = 0.86602540378443864676372317075293618347140262690520d;
