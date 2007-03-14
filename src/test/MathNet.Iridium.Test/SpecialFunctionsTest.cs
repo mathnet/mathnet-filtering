@@ -109,6 +109,8 @@ namespace Iridium.Test
             Assert.AreEqual(3.766562582, Fn.ErfInverse(0.9999999), 0.000001, "B12");
             Assert.AreEqual(-.2724627147, Fn.ErfInverse(-0.3), 0.000001, "B13");
             Assert.AreEqual(-.9061938024, Fn.ErfInverse(-0.8), 0.000001, "B14");
+            Assert.AreEqual(.8862271575e-3, Fn.ErfInverse(0.001), 0.000001, "B15");
+            Assert.AreEqual(.4431163629e-2, Fn.ErfInverse(0.005), 0.000001, "B16");
         }
     }
 }
