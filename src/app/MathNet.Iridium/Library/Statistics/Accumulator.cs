@@ -32,7 +32,7 @@ namespace MathNet.Numerics.Statistics
 	/// </summary>
 	/// <remarks>
 	/// <p>The <c>Accumulator</c> provides memory efficient online algorithms
-	/// to compute the first statisticals moments (mean, variance) and their
+	/// to compute the first statistical moments (mean, variance) and their
 	/// derivatives (sigma, error estimate).</p>
 	/// <p>The memory required by the accumulator is <c>O(1)</c> independent
 	/// from the distribution size. All methods are executed in a <c>O(1)</c>
@@ -44,7 +44,7 @@ namespace MathNet.Numerics.Statistics
 	{
 		/* Design note (joannes):
 		 * The Min/Max have not been included on purpose. It usually clearer
-		 * (because being trivial) to manage explicitely in the client the Min/Max 
+		 * (because being trivial) to manage explicitly in the client the Min/Max 
 		 * than using a library to do so.
 		 * 
 		 * The skewness and kurtosis have not been included because I never heard of
@@ -268,7 +268,7 @@ namespace MathNet.Numerics.Statistics
 					"#E00 No variance available. The accumulator is empty.");
 
 				double mean = this.Mean;
-				return (squaredSum / count - mean * mean);
+                return (squaredSum - mean * mean * count) / (count - 1);
 			}
 		}
 

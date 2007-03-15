@@ -42,5 +42,5 @@ using System.Security.Permissions;
 
 [assembly: Guid("1386fccc-7816-4311-a04b-25227138e8b3")]
 
-[assembly: AssemblyVersion("2007.3.8.*")] // even = release
-[assembly: AssemblyFileVersion("2007.3.8.0")]
+[assembly: AssemblyVersion("2007.3.9.*")] // even = release
+[assembly: AssemblyFileVersion("2007.3.9.0")]
