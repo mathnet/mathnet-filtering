@@ -497,10 +497,33 @@ namespace MathNet.Numerics.LinearAlgebra
 			}
 		}
 
+        /// <summary>In place linear algebraic matrix multiplication, D * A where
+        /// D is the diagonal matrix.</summary>
+        /// <param name="diagonal">Diagonal values of D.</param>
+        /// <exception cref="ArgumentNullException"><c>diagonal</c> must not be null.</exception>
+        /// <exception cref="ArgumentException">Matrix inner dimensions must agree.</exception>
+        public virtual void Multiply(double[] diagonal)
+        {
+            if (diagonal == null) throw new ArgumentNullException("diagonal", "diagonal must be not be null.");
+            if (diagonal.Length != RowCount) throw new ArgumentException("Matrix inner dimensions must agree.");
+
+            for (int i = 0; i < RowCount; i++)
+            {
+                double d = diagonal[i];
+                for (int j = 0; j < ColumnCount; j++)
+                {
+                    array[i, j] *= d;
+                }
+            }
+        }
+
         /// <summary>Linear algebraic matrix multiplication, A * B</summary>
+        /// <exception cref="ArgumentNullException">B must not be null.</exception>
         /// <exception cref="ArgumentException">Matrix inner dimensions must agree.</exception>
         public Matrix Multiply(Matrix B)
         {
+            if (B == null) throw new ArgumentNullException("B", "B must not be null.");
+
             if (B.RowCount != this.ColumnCount)
             {
                 throw new ArgumentException("Matrix inner dimensions must agree.");

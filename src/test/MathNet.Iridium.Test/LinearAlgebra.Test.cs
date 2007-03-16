@@ -29,12 +29,32 @@ namespace Iridium.Test
     [TestFixture]
     public class LinearAlgebraTests
     {
-        // TODO: rewrite AllTests in a more NUnit style
-
         private static Random random = new Random();
 
         [Test]
-        public void Multiply()
+        public void MultiplyByDiagonal()
+        {
+            Matrix A = new Matrix(
+                new double[3, 4] {
+                    {1, 2, 3, 4},
+                    {3, 4, 5, 6},
+                    {5, 6, 7, 8}
+                    });
+
+            double[] diagonal = new double[3] { 0, 1, 2 };
+
+            A.Multiply(diagonal);
+
+            Assert.AreEqual(0, A[0, 0], "#A00");
+            Assert.AreEqual(0, A[0, 1], "#A01");
+            Assert.AreEqual(3, A[1, 0], "#A02");
+            Assert.AreEqual(4, A[1, 1], "#A03");
+            Assert.AreEqual(10, A[2, 0], "#A04");
+            Assert.AreEqual(12, A[2, 1], "#A05");
+        }
+
+        [Test]
+        public void MultiplyByMatrix()
         {
             
             Matrix A = new Matrix(
@@ -152,6 +172,8 @@ namespace Iridium.Test
                         Assertion.AssertEquals("#A00", matrix[i, j], product[i, j], 1e-6);
             }
         }
+
+        // TODO: rewrite AllTests in a more NUnit style
 
         /// <summary>An exception is thrown at the end of the process, 
         /// if any error is encountered.</summary>
