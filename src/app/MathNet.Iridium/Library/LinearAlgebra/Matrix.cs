@@ -56,21 +56,33 @@ namespace MathNet.Numerics.LinearAlgebra
 			get { return array.GetLength(1); }
 		}
 		
-		#region Constructors and static construtive methods
+		#region Constructors and static constructive methods
 		
 		/// <summary>Construct an m-by-n matrix of zeros. </summary>
 		/// <param name="m">Number of rows.</param>
-		/// <param name="n">Number of colums.</param>
+		/// <param name="n">Number of columns.</param>
 		public Matrix(int m, int n)
 		{
 			array = new double[m, n];
 		}
-		
-		/// <summary>Construct an m-by-n constant matrix.</summary>
-		/// <param name="m">Number of rows.</param>
-		/// <param name="n">Number of colums.</param>
-		/// <param name="s">Fill the matrix with this scalar value.</param>
-		public Matrix(int m, int n, double s)
+
+        /// <summary>Constructs a m-by-m square matrix.</summary>
+        /// <param name="m">Size of the square matrix.</param>
+        /// <param name="s">Diagonal value.</param>
+        public Matrix(int m, double s)
+        {
+            array = new double[m, m];
+            for (int i = 0; i < m; i++)
+            {
+                array[i, i] = s;
+            }
+        }
+
+        /// <summary>Construct an m-by-n constant matrix.</summary>
+        /// <param name="m">Number of rows.</param>
+        /// <param name="n">Number of columns.</param>
+        /// <param name="s">Fill the matrix with this scalar value.</param>
+        public Matrix(int m, int n, double s)
 		{
 			array = new double[m, n];
 			for (int i = 0; i < m; i++)
@@ -154,7 +166,7 @@ namespace MathNet.Numerics.LinearAlgebra
 
 		/// <summary>Generates matrix with random elements</summary>
 		/// <param name="m">Number of rows.</param>
-		/// <param name="n">Number of colums.</param>
+		/// <param name="n">Number of columns.</param>
 		/// <returns>An m-by-n matrix with uniformly distributed
 		/// random elements in <c>[0, 1)</c> interval.</returns>
 		public static Matrix Random(int m, int n)
@@ -484,6 +496,42 @@ namespace MathNet.Numerics.LinearAlgebra
 				}
 			}
 		}
+
+        /// <summary>Linear algebraic matrix multiplication, A * B</summary>
+        /// <exception cref="ArgumentException">Matrix inner dimensions must agree.</exception>
+        public Matrix Multiply(Matrix B)
+        {
+            if (B.RowCount != this.ColumnCount)
+            {
+                throw new ArgumentException("Matrix inner dimensions must agree.");
+            }
+
+            Matrix X = new Matrix(this.RowCount, B.ColumnCount);
+
+            for (int j = 0; j < B.ColumnCount; j++)
+            {
+                // caching the column for performance
+                double[] columnB = new double[this.ColumnCount];
+                for (int k = 0; k < this.ColumnCount; k++)
+                {
+                    columnB[k] = B.array[k,j];
+                }
+
+                // making the line-to-column product
+                for (int i = 0; i < this.RowCount; i++)
+                {
+                    double s = 0;
+
+                    for (int k = 0; k < this.ColumnCount; k++)
+                    {
+                        s += this.array[i, k] * columnB[k];
+                    }
+                    X.array[i, j] = s;
+                }
+            }
+
+            return X;
+        }
 		
 		/// <summary>In place substraction of <c>m</c> to this <c>Matrix</c>.</summary>
 		/// <seealso cref="operator - (Matrix, Matrix)"/>
@@ -649,18 +697,68 @@ namespace MathNet.Numerics.LinearAlgebra
 
 		#endregion
 		
-		/// <summary>Solve A*X = B</summary>
+		/// <summary>Solve A*X = B against a Least Square (L2) criterion.</summary>
 		/// <param name="B">right hand side</param>
 		/// <returns>solution if A is square, least squares solution otherwise.</returns>
 		public virtual Matrix Solve(Matrix B)
 		{
-			return (rowCount == columnCount ? (new LUDecomposition(this)).Solve(B):(new QRDecomposition(this)).Solve(B));
+			return (RowCount == ColumnCount ? (new LUDecomposition(this)).Solve(B):(new QRDecomposition(this)).Solve(B));
 		}
-		
-		/// <summary>Solve X*A = B, which is also A'*X' = B'</summary>
-		/// <param name="B">right hand side</param>
-		/// <returns>solution if A is square, least squares solution otherwise.</returns>
-		public virtual Matrix SolveTranspose(Matrix B)
+
+        /// <summary>Solve A*X = B against a Least Absolute Deviation (L1) criterion.</summary>
+        /// <param name="B">right hand side</param>
+        /// <returns>The implementation relies on the IRLS (iterated Re-weighted Least Square) algorithm.</returns>
+        public virtual Matrix SolveRobust(Matrix B)
+        {
+            if (RowCount == ColumnCount)
+            {
+                return ((new LUDecomposition(this)).Solve(B));
+            }
+
+            double eta = 1.0e-12; // cut-off value to avoid instabilities in the IRLS convergence
+            double epsilon = 1.0e-6; // convergence threshold to stop the iteration
+            int maxIteration = 100;
+
+            Matrix A = this;
+            Matrix tA = this.Clone(); tA.Transpose();
+            Matrix X = null;
+            Matrix G = new Matrix(A.RowCount, 1.0); // identity matrix
+
+            double maxChange = double.MaxValue;
+            for (int k = 0; k < maxIteration && maxChange > epsilon; k++)
+            {
+                Matrix Ak = tA.Multiply(G.Multiply(A));
+                Matrix Bk = tA.Multiply(G.Multiply(B));
+
+                Matrix Xk = Ak.Solve(Bk);
+                if (X != null)
+                {
+                    maxChange = double.MinValue;
+                    for (int i = 0; i < X.RowCount; i++)
+                    {
+                        maxChange = Math.Max(maxChange, Math.Abs(X[i, 0] - Xk[i, 0]));
+                    }
+                }
+                X = Xk;
+
+                Matrix Rk = A.Multiply(Xk); Rk.UnaryMinus(); Rk.Add(B);
+
+                // updating the weighting matrix
+                for (int i = 0; i < B.RowCount; i++)
+                {
+                    double r = Math.Abs(Rk[i, 0]);
+                    if (r < eta) r = eta;
+                    G[i, i] = 1.0 / r; 
+                }
+            }
+
+            return X;
+        }
+
+        /// <summary>Solve X*A = B, which is also A'*X' = B'</summary>
+        /// <param name="B">right hand side</param>
+        /// <returns>solution if A is square, least squares solution otherwise.</returns>
+        public virtual Matrix SolveTranspose(Matrix B)
 		{
 			return Transpose(this).Solve(Transpose(B));
 		}
@@ -856,6 +954,7 @@ namespace MathNet.Numerics.LinearAlgebra
 			}
 			return X;
 		}
+
 		object ICloneable.Clone()
 		{
 			return Clone();

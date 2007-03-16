@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ComplexTest.cs" />
+    <Compile Include="LinearAlgebra.Test.cs" />
     <Compile Include="SpecialFunctionsTest.cs" />
     <Compile Include="FftTest.cs" />
     <Compile Include="NumberTest.cs" />

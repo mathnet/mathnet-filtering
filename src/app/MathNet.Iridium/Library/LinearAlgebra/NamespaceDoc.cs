@@ -23,6 +23,16 @@
 
 namespace MathNet.Numerics.LinearAlgebra
 {
+    // web links for further improvement of the package
+    // 
+    // http://citeseer.ist.psu.edu/gundersen02data.html
+    // Data Structures in Java for Matrix Computations (2002)
+    //
+    // http://citeseer.ist.psu.edu/baryamureeba00properties.html
+    // On the Properties of Preconditioners for Robust Linear Regression (2000)
+    //
+    //
+
 	/// <summary>
 	/// <p>This namespace is a port of the 
 	/// <a href="http://math.nist.gov/javanumerics/jama/">JAMA library</a>.</p>

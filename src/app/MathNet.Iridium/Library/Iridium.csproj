@@ -91,7 +91,6 @@
     <Compile Include="IRealGenerator.cs" />
     <Compile Include="LinearAlgebra\CholeskyDecomposition.cs" />
     <Compile Include="LinearAlgebra\EigenvalueDecomposition.cs" />
-    <Compile Include="LinearAlgebra\LinalgTests.cs" />
     <Compile Include="LinearAlgebra\LUDecomposition.cs" />
     <Compile Include="LinearAlgebra\Matrix.cs" />
     <Compile Include="LinearAlgebra\NamespaceDoc.cs" />

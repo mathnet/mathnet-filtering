@@ -31,9 +31,9 @@ namespace MathNet.Numerics.LinearAlgebra
 	/// <remarks>
 	/// For an m-by-n matrix A with m >= n, the LU decomposition is an m-by-n
 	/// unit lower triangular matrix L, an n-by-n upper triangular matrix U,
-	/// and a permutation vector piv of length m so that A(piv,:) = L*U.
+	/// and a permutation vector pivot of length m so that A(piv,:) = L*U.
 	/// <c> If m &lt; n, then L is m-by-m and U is m-by-n. </c>
-	/// The LU decompostion with pivoting always exists, even if the matrix is
+	/// The LU decomposition with pivoting always exists, even if the matrix is
 	/// singular, so the constructor will never fail.  The primary use of the
 	/// LU decomposition is in the solution of square systems of simultaneous
 	/// linear equations.  This will fail if IsNonSingular() returns false.
@@ -69,13 +69,12 @@ namespace MathNet.Numerics.LinearAlgebra
 		#region Constructor
 		
 		/// <summary>LU Decomposition</summary>
-		/// <param name="A">  Rectangular matrix
-		/// </param>
-		/// <returns>     Structure to access L, U and piv.
-		/// </returns>
-		
+		/// <param name="A">Rectangular matrix</param>
+		/// <returns>Structure to access L, U and piv.</returns>
 		public LUDecomposition(Matrix A)
 		{
+            // TODO: it is usually considered as a poor practice to execute algorithms within a constructor.
+
 			// Use a "left-looking", dot-product, Crout/Doolittle algorithm.
 			
 			LU = (Matrix) A.Clone();

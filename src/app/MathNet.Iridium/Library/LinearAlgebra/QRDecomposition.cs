@@ -32,9 +32,9 @@ namespace MathNet.Numerics.LinearAlgebra
 	/// orthogonal matrix Q and an n-by-n upper triangular matrix R so that
 	/// A = Q*R.<br/>
 	/// 
-	/// The QR decompostion always exists, even if the matrix does not have
+	/// The QR decomposition always exists, even if the matrix does not have
 	/// full rank, so the constructor will never fail.  The primary use of the
-	/// QR decomposition is in the least squares solution of nonsquare systems
+	/// QR decomposition is in the least squares solution of non-square systems
 	/// of simultaneous linear equations.  This will fail if <c>IsFullRank()</c>
 	/// returns false.
 	/// </remarks>
@@ -70,6 +70,8 @@ namespace MathNet.Numerics.LinearAlgebra
 		/// <param name="A">Rectangular matrix</param>
 		public QRDecomposition(Matrix A)
 		{
+            // TODO: it is usually considered as a poor practice to execute algorithms within a constructor.
+
 			// Initialize.
 			QR = (Matrix) A.Clone();
 			Rdiag = new double[n];
