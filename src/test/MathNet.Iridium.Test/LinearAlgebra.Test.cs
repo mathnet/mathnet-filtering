@@ -149,6 +149,43 @@ namespace Iridium.Test
             Assert.AreEqual(0.667, X2[0, 0], 1.0e-3, "#A02 Unexpected robust regression result.");
             Assert.AreEqual(1.0, X2[1, 0], 1.0e-3, "#A03 Unexpected robust regression result.");
             Assert.AreEqual(-0.167, X2[2, 0], 1.0e-3, "#A04 Unexpected robust regression result.");
+
+
+            Matrix A3 = new Matrix(
+                new double[10, 4] {
+                    {-8, -29, 95, 11},
+                    {-47, 40, -81, 91},
+                    {-10, 31, -51, 77},
+                    {1, 1, 55, -28},
+                    {30, -27, -15, -59},
+                    {72, -87, 47, -90},
+                    {92, -91, -88, -48},
+                    {-28, 5, 13, -10},
+                    {71, 16, 83, 9 },
+                    {-83, 98, -48, -19}
+                    });
+
+            Matrix B3 = new Matrix(
+                new double[10, 1] {
+                    {-49},
+                    {68},
+                    {95},
+                    {16},
+                    {-96},
+                    {43},
+                    {53},
+                    {-82},
+                    {-60},
+                    {62}
+                    });
+
+            Matrix X3 = A3.SolveRobust(B3);
+
+            // [vermorel] Values have been computed with LAD function of Systat 12
+            Assert.AreEqual(-0.104, X3[0, 0], 1.0e-3, "#A05 Unexpected robust regression result.");
+            Assert.AreEqual(-0.216, X3[1, 0], 1.0e-3, "#A06 Unexpected robust regression result.");
+            Assert.AreEqual(-0.618, X3[2, 0], 1.0e-3, "#A07 Unexpected robust regression result.");
+            Assert.AreEqual(0.238, X3[3, 0], 1.0e-3, "#A08 Unexpected robust regression result.");
         }
 
         /// <summary>
