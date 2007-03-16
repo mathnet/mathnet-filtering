@@ -745,13 +745,20 @@ namespace MathNet.Numerics.LinearAlgebra
             Matrix A = this;
             Matrix tA = this.Clone(); tA.Transpose();
             Matrix X = null;
-            Matrix G = new Matrix(A.RowCount, 1.0); // identity matrix
 
+            // G is a diagonal matrix - G is initialized as the identity matrix
+            double[] G = new double[A.RowCount]; 
+            for (int i = 0; i < G.Length; i++) G[i] = 1;
+
+            //IRLS loop
             double maxChange = double.MaxValue;
             for (int k = 0; k < maxIteration && maxChange > epsilon; k++)
             {
-                Matrix Ak = tA.Multiply(G.Multiply(A));
-                Matrix Bk = tA.Multiply(G.Multiply(B));
+                Matrix GA = this.Clone(); GA.Multiply(G);
+                Matrix GB = B.Clone(); GB.Multiply(G);
+
+                Matrix Ak = tA.Multiply(GA);
+                Matrix Bk = tA.Multiply(GB);
 
                 Matrix Xk = Ak.Solve(Bk);
                 if (X != null)
@@ -771,7 +778,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     double r = Math.Abs(Rk[i, 0]);
                     if (r < eta) r = eta;
-                    G[i, i] = 1.0 / r; 
+                    G[i] = 1.0 / r; 
                 }
             }
 
@@ -968,6 +975,7 @@ namespace MathNet.Numerics.LinearAlgebra
 		public Matrix Clone()
 		{
 			Matrix X = new Matrix(rowCount, columnCount);
+
 			for (int i = 0; i < rowCount; i++)
 			{
 				for (int j = 0; j < columnCount; j++)
