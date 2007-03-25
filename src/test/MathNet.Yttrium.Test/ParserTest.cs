@@ -1,18 +1,38 @@
-﻿//using Microsoft.VisualStudio.QualityTools.UnitTesting.Framework;
+﻿#region Math.NET Yttrium (GPL) by Christoph Ruegg
+// Math.NET Yttrium, part of the Math.NET Project
+// http://mathnet.opensourcedotnet.info
+//
+// Copyright (c) 2001-2007, Christoph Rüegg,  http://christoph.ruegg.name
+//						
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#endregion
+
+//using Microsoft.VisualStudio.QualityTools.UnitTesting.Framework;
 using NUnit.Framework;
 
 using System;
 using System.Collections.Generic;
 
-using MathNet.Symbolics.Workplace;
-using MathNet.Symbolics.Core;
-using MathNet.Symbolics.Backend;
-using MathNet.Symbolics.Backend.Parsing;
-using MathNet.Symbolics.Backend.Channels;
-using MathNet.Symbolics.StdPackage;
-using MathNet.Symbolics.StdPackage.Structures;
-using MathNet.Symbolics.StdPackage.Properties;
 using MathNet.Numerics;
+using MathNet.Symbolics;
+using MathNet.Symbolics.Workplace;
+using MathNet.Symbolics.Backend;
+using MathNet.Symbolics.Interpreter;
+using MathNet.Symbolics.Backend.Channels;
+using MathNet.Symbolics.Packages.Standard.Structures;
+using MathNet.Symbolics.Library;
 
 namespace Yttrium.UnitTests
 {
@@ -25,8 +45,9 @@ namespace Yttrium.UnitTests
         public void Parser_SimpleExpressions()
         {
             Project p = new Project();
-            LogObserver lo = new LogObserver(new TextLogWriter(Console.Out));
-            p.AttachLocalObserver(lo);
+            // TODO: UNCOMMENT
+            //LogObserver lo = new LogObserver(new TextLogWriter(Console.Out));
+            //p.AttachLocalObserver(lo);
             MathSystem s = p.CurrentSystem;
 
             Assert.AreEqual(0, s.SignalCount, "0");
@@ -62,13 +83,14 @@ namespace Yttrium.UnitTests
         public void Parser_StructuralExpressions()
         {
             Project p = new Project();
+            ILibrary l = Service<ILibrary>.Instance;
             MathSystem s = p.CurrentSystem;
             s.AddNamedSignal("w", new RealValue(0.1));
             p.SimulateInstant();
 
             p.Interpret("define entity Test \"test\" function in x,c out y;");
-            Assert.IsTrue(p.Context.Library.ContainsEntity(new MathIdentifier("Test", "Work")),"01");
-            Assert.AreEqual("Work.Test", p.Context.Library.LookupEntity("test", 2).EntityId.ToString());
+            Assert.IsTrue(l.ContainsEntity(new MathIdentifier("Test", "Work")),"01");
+            Assert.AreEqual("Work.Test", l.LookupEntity("test", 2).EntityId.ToString());
 
             p.Interpret("instantiate Work.Test in x->a,c->a*b out res1;\nres2 <- test(a*b,b);");
             Assert.AreEqual("Work.Test", s.LookupNamedSignal("res1").DrivenByPort.Entity.EntityId.ToString(),"02");
@@ -77,15 +99,15 @@ namespace Yttrium.UnitTests
             Assert.AreEqual("Std.Multiply", s.LookupNamedSignal("res2").DrivenByPort.InputSignals[0].DrivenByPort.Entity.EntityId.ToString(),"05");
 
             p.Interpret("define architecture TestArch Test { y <- x * sin(c) +w; };");
-            Assert.IsTrue(p.Context.Library.Architectures.ContainsEntity(new MathIdentifier("Test", "Work")),"06");
+            Assert.IsTrue(l.ContainsEntity(new MathIdentifier("Test", "Work")),"06");
 
             s.LookupNamedSignal("a").PostNewValue(new RealValue(0.25));
             s.LookupNamedSignal("b").PostNewValue(new RealValue(0.75));
             p.SimulateInstant();
             Signal res1 = s.LookupNamedSignal("res1");
             Signal res2 = s.LookupNamedSignal("res2");
-            Assert.AreEqual("Work.TestArch", res1.DrivenByPort.CurrentArchitecture.Identifier.ToString());
-            Assert.AreEqual("Work.TestArch", res2.DrivenByPort.CurrentArchitecture.Identifier.ToString());
+            Assert.AreEqual("Work.TestArch", res1.DrivenByPort.CurrentArchitecture.ArchitectureId.ToString());
+            Assert.AreEqual("Work.TestArch", res2.DrivenByPort.CurrentArchitecture.ArchitectureId.ToString());
             Assert.AreEqual(0.1466, Math.Round(RealValue.ConvertFrom(res1.Value).Value, 4));
             Assert.AreEqual(0.2278, Math.Round(RealValue.ConvertFrom(res2.Value).Value, 4));
         }

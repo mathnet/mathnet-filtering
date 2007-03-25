@@ -1,17 +1,39 @@
-﻿//using Microsoft.VisualStudio.QualityTools.UnitTesting.Framework;
+﻿#region Math.NET Yttrium (GPL) by Christoph Ruegg
+// Math.NET Yttrium, part of the Math.NET Project
+// http://mathnet.opensourcedotnet.info
+//
+// Copyright (c) 2001-2007, Christoph Rüegg,  http://christoph.ruegg.name
+//						
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#endregion
+
+//using Microsoft.VisualStudio.QualityTools.UnitTesting.Framework;
 using NUnit.Framework;
 
 using System;
 using System.Collections.Generic;
 
 using MathNet.Numerics;
+using MathNet.Symbolics;
 using MathNet.Symbolics.Workplace;
-using MathNet.Symbolics.Core;
 using MathNet.Symbolics.Backend;
-using MathNet.Symbolics.Backend.Patterns;
-using MathNet.Symbolics.StdPackage;
-using MathNet.Symbolics.StdPackage.Structures;
-using MathNet.Symbolics.StdPackage.Properties;
+using MathNet.Symbolics.Patterns;
+using MathNet.Symbolics.Packages.Standard.Properties;
+using MathNet.Symbolics.Packages.Standard.Structures;
+using MathNet.Symbolics.Packages.Standard;
+using MathNet.Symbolics.Patterns.Toolkit;
 
 namespace Yttrium.UnitTests
 {
@@ -23,14 +45,12 @@ namespace Yttrium.UnitTests
         {
             Project p = new Project();
             MathSystem s = p.CurrentSystem;
-            Builder b = p.Builder;
-            Context c = p.Context;
 
             // sin(x^2)
-            Signal x = new Signal(c); x.Label = "x";
+            Signal x = Binder.CreateSignal(); x.Label = "x";
             x.AddConstraint(RealSetProperty.Instance);
-            Signal x2 = b.Power(x, IntegerValue.ConstantTwo(c)); x2.Label = "x2";
-            Signal sinx2 = Std.Sine(c, x2); sinx2.Label = "sinx2";
+            Signal x2 = StdBuilder.Power(x, IntegerValue.ConstantTwo); x2.Label = "x2";
+            Signal sinx2 = StdBuilder.Sine(x2); sinx2.Label = "sinx2";
 
             AlwaysTrueCondition ctrue = AlwaysTrueCondition.Instance;
             Assert.AreEqual(true, ctrue.FulfillsCondition(x, x.DrivenByPort), "A01");
@@ -58,14 +78,12 @@ namespace Yttrium.UnitTests
         {
             Project p = new Project();
             MathSystem s = p.CurrentSystem;
-            Builder b = p.Builder;
-            Context c = p.Context;
 
             // sin(x^2)
-            Signal x = new Signal(c); x.Label = "x";
+            Signal x = Binder.CreateSignal(); x.Label = "x";
             x.AddConstraint(RealSetProperty.Instance);
-            Signal x2 = b.Square(x); x2.Label = "x2";
-            Signal sinx2 = Std.Sine(c, x2); sinx2.Label = "sinx2";
+            Signal x2 = StdBuilder.Square(x); x2.Label = "x2";
+            Signal sinx2 = StdBuilder.Sine(x2); sinx2.Label = "sinx2";
 
             Pattern psimp = new Pattern(new EntityCondition(new MathIdentifier("Sine", "Std")));
             Assert.AreEqual(true, psimp.Match(sinx2, sinx2.DrivenByPort), "B01");
@@ -87,14 +105,12 @@ namespace Yttrium.UnitTests
         {
             Project p = new Project();
             MathSystem s = p.CurrentSystem;
-            Builder b = p.Builder;
-            Context c = p.Context;
 
             // sin(x^2)
-            Signal x = new Signal(c); x.Label = "x";
+            Signal x = Binder.CreateSignal(); x.Label = "x";
             x.AddConstraint(RealSetProperty.Instance);
-            Signal x2 = b.Square(x); x2.Label = "x2";
-            Signal sinx2 = Std.Sine(c, x2); sinx2.Label = "sinx2";
+            Signal x2 = StdBuilder.Square(x); x2.Label = "x2";
+            Signal sinx2 = StdBuilder.Sine(x2); sinx2.Label = "sinx2";
 
             CoalescedTreeNode root = new CoalescedTreeNode(AlwaysTrueCondition.Instance);
             root.Subscribe(new MathIdentifier("A", "Test"));
@@ -144,14 +160,12 @@ namespace Yttrium.UnitTests
         {
             Project p = new Project();
             MathSystem s = p.CurrentSystem;
-            Builder b = p.Builder;
-            Context c = p.Context;
 
             // sin(x^2)
-            Signal x = new Signal(c); x.Label = "x";
+            Signal x = Binder.CreateSignal(); x.Label = "x";
             x.AddConstraint(RealSetProperty.Instance);
-            Signal x2 = b.Square(x); x2.Label = "x2";
-            Signal sinx2 = Std.Sine(c, x2); sinx2.Label = "sinx2";
+            Signal x2 = StdBuilder.Square(x); x2.Label = "x2";
+            Signal sinx2 = StdBuilder.Sine(x2); sinx2.Label = "sinx2";
 
             TreePattern psinadd = new TreePattern(new EntityCondition(new MathIdentifier("Sine", "Std")));
             Pattern psinadd_add = new Pattern(new EntityCondition(new MathIdentifier("Add", "Std")));
@@ -203,7 +217,7 @@ namespace Yttrium.UnitTests
             Assert.AreEqual(0, csqr.PatternAxis.Count, "D26");
 
             // test whether the tree works as expected
-            MatchCollection res = Scanner.MatchAll(sinx2, sinx2.DrivenByPort, root);
+            MatchCollection res = Match.MatchAll(sinx2, sinx2.DrivenByPort, root);
             Assert.AreEqual(true, res.Contains(new MathIdentifier("SinSqr", "Test")), "D27");
             Assert.AreEqual(false, res.Contains(new MathIdentifier("SinAdd", "Test")), "D28");
 

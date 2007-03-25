@@ -1,16 +1,37 @@
-﻿//using Microsoft.VisualStudio.QualityTools.UnitTesting.Framework;
+﻿#region Math.NET Yttrium (GPL) by Christoph Ruegg
+// Math.NET Yttrium, part of the Math.NET Project
+// http://mathnet.opensourcedotnet.info
+//
+// Copyright (c) 2001-2007, Christoph Rüegg,  http://christoph.ruegg.name
+//						
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#endregion
+
+//using Microsoft.VisualStudio.QualityTools.UnitTesting.Framework;
 using NUnit.Framework;
 
 using System;
 using System.Collections.Generic;
 
-using MathNet.Symbolics.Workplace;
-using MathNet.Symbolics.Core;
-using MathNet.Symbolics.Backend;
-using MathNet.Symbolics.StdPackage;
-using MathNet.Symbolics.StdPackage.Structures;
-using MathNet.Symbolics.StdPackage.Properties;
 using MathNet.Numerics;
+using MathNet.Symbolics;
+using MathNet.Symbolics.Workplace;
+using MathNet.Symbolics.Backend;
+using MathNet.Symbolics.Packages.Standard;
+using MathNet.Symbolics.Packages.Standard.Properties;
+using MathNet.Symbolics.Packages.Standard.Structures;
 
 namespace Yttrium.UnitTests
 {
@@ -27,13 +48,11 @@ namespace Yttrium.UnitTests
             Project p = new Project();
             p.KeepTrack = true;
             MathSystem s = p.CurrentSystem;
-            Builder b = p.Builder;
-            Context c = p.Context;
 
-            Signal x = new Signal(c);
+            Signal x = Binder.CreateSignal();
             x.AddConstraint(RealSetProperty.Instance);
-            Signal x2 = b.Square(x);
-            Signal sinx2 = Std.Sine(c,x2);
+            Signal x2 = StdBuilder.Square(x);
+            Signal sinx2 = StdBuilder.Sine(x2);
 
             Assert.AreEqual(0, s.InputCount, "Input Signal Count A");
             Assert.AreEqual(0, s.OutputCount, "Output Signal Count A");
@@ -65,21 +84,19 @@ namespace Yttrium.UnitTests
             Project p = new Project();
             p.KeepTrack = true;
             MathSystem s = p.CurrentSystem;
-            Builder b = p.Builder;
-            Context c = p.Context;
 
-            Signal x = new Signal(c);
-            Signal x2 = b.Square(x);
-            Signal secx2 = Std.Secant(c, x2);
-            Signal diff = Std.Derive(c, secx2, x);
+            Signal x = Binder.CreateSignal(); x.Label = "x";
+            Signal x2 = StdBuilder.Square(x); x2.Label = "x2";
+            Signal secx2 = StdBuilder.Secant(x2); secx2.Label = "secx2";
+            Signal diff = Std.Derive(secx2, x); diff.Label = "diff1";
 
             Assert.AreEqual(0, s.InputCount, "Input Signal Count A");
             Assert.AreEqual(0, s.OutputCount, "Output Signal Count A");
             Assert.AreEqual(0, s.BusCount, "Bus Count A");
-            Assert.AreEqual(8, s.SignalCount, "Signal Count A");
+            Assert.AreEqual(7, s.SignalCount, "Signal Count A");
             Assert.AreEqual(5, s.PortCount, "Port Count A");
 
-            Signal diff2 = Std.AutoSimplify(c, diff);
+            Signal diff2 = Std.AutoSimplify(diff);
             s.PromoteAsInput(x);
             s.PromoteAsOutput(diff2);
             s.RemoveUnusedObjects();
@@ -90,7 +107,7 @@ namespace Yttrium.UnitTests
             Assert.AreEqual(7, s.SignalCount, "Signal Count B");
             Assert.AreEqual(5, s.PortCount, "Port Count B");
 
-            ValueStructure vs = s.Evaluate(ComplexValue.I)[0];
+            IValueStructure vs = s.Evaluate(ComplexValue.I)[0];
             Assert.IsInstanceOfType(typeof(ComplexValue), vs, "Result is complex.");
             ComplexValue cv = (ComplexValue)vs;
 
@@ -104,24 +121,22 @@ namespace Yttrium.UnitTests
         {
             Project p = new Project();
             MathSystem s = p.CurrentSystem;
-            Builder b = p.Builder;
-            Context c = p.Context;
 
-            Signal x = new Signal(c);
+            Signal x = Binder.CreateSignal();
             x.AddConstraint(RealSetProperty.Instance);
-            Signal x2 = b.Square(x);
-            Signal sinx2 = Std.Sine(c, x2);
+            Signal x2 = StdBuilder.Square(x);
+            Signal sinx2 = StdBuilder.Sine(x2);
 
             s.AddSignalTree(sinx2, true, true);
             s.RemoveUnusedObjects();
 
             s.PublishToLibrary("SineOfSquaredX", "sinx2");
 
-            Signal y = new Signal(c);
+            Signal y = Binder.CreateSignal();
             y.PostNewValue(RealValue.E);
-            Signal z = p.Builder.Function("sinx2", y);
+            Signal z = Service<IBuilder>.Instance.Function("sinx2", y);
             p.SimulateInstant();  //.SimulateFor(new TimeSpan(1)); 
-            ValueStructure res = z.Value;
+            IValueStructure res = z.Value;
             RealValue resReal = RealValue.ConvertFrom(res);
             Assert.AreEqual(0.8939, Math.Round(resReal.Value, 4));
         }

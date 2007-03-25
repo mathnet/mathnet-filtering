@@ -1,3 +1,24 @@
+#region Math.NET Yttrium (GPL) by Christoph Ruegg
+// Math.NET Yttrium, part of the Math.NET Project
+// http://mathnet.opensourcedotnet.info
+//
+// Copyright (c) 2001-2007, Christoph Rüegg,  http://christoph.ruegg.name
+//						
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#endregion
+
 using NUnit.Framework;
 
 using System;
@@ -6,14 +27,14 @@ using System.Xml;
 using System.IO;
 using System.Collections.Generic;
 
-using MathNet.Symbolics.Workplace;
-using MathNet.Symbolics.Core;
-using MathNet.Symbolics.Backend;
-using MathNet.Symbolics.Backend.SystemBuilder;
-using MathNet.Symbolics.StdPackage;
-using MathNet.Symbolics.StdPackage.Structures;
-using MathNet.Symbolics.StdPackage.Properties;
 using MathNet.Numerics;
+using MathNet.Symbolics;
+using MathNet.Symbolics.Workplace;
+using MathNet.Symbolics.Backend;
+using MathNet.Symbolics.Packages.Standard;
+using MathNet.Symbolics.Packages.Standard.Properties;
+using MathNet.Symbolics.Packages.Standard.Structures;
+using MathNet.Symbolics.SystemBuilder.Toolkit;
 
 namespace Yttrium.UnitTests
 {
@@ -25,15 +46,13 @@ namespace Yttrium.UnitTests
         {
             Project p = new Project();
             MathSystem s1 = p.CurrentSystem;
-            Builder b = p.Builder;
-            Context c = p.Context;
 
             // BUILD SYSTEM 1: sin(x^2)
-            Signal x = new Signal(c); x.Label = "x";
+            Signal x = Binder.CreateSignal(); x.Label = "x";
             x.AddConstraint(RealSetProperty.Instance);
-            Signal x2 = b.Square(x); x2.Label = "x2";
-            Signal sinx2 = Std.Sine(c, x2); sinx2.Label = "sinx2";
-            Signal sinx2t2 = sinx2 * IntegerValue.ConstantTwo(c);
+            Signal x2 = StdBuilder.Square(x); x2.Label = "x2";
+            Signal sinx2 = StdBuilder.Sine(x2); sinx2.Label = "sinx2";
+            Signal sinx2t2 = sinx2 * IntegerValue.ConstantTwo;
             s1.AddSignalTree(sinx2t2, true, true);
 
             // EVALUATE SYSTEM 1 FOR x=1.5
@@ -49,10 +68,10 @@ namespace Yttrium.UnitTests
              * HINT: would be simpler to just call:
              * MathSystem s2 = s1.Clone();
              */
-            SystemWriter writer = new SystemWriter(c);
+            SystemWriter writer = new SystemWriter();
             SystemReader reader = new SystemReader(writer);
             reader.ReadSystem(s1);
-            MathSystem s2 = writer.WrittenSystems.Dequeue();
+            IMathSystem s2 = writer.WrittenSystems.Dequeue();
 
             Assert.AreEqual(0, s2.BusCount, "B0");
             Assert.AreEqual(5, s2.SignalCount, "B1");
@@ -74,15 +93,13 @@ namespace Yttrium.UnitTests
         {
             Project p = new Project();
             MathSystem s1 = p.CurrentSystem;
-            Builder b = p.Builder;
-            Context c = p.Context;
 
             // BUILD SYSTEM 1: sin(x^2)*2
-            Signal x = new Signal(c); x.Label = "x";
+            Signal x = Binder.CreateSignal(); x.Label = "x";
             x.AddConstraint(RealSetProperty.Instance);
-            Signal x2 = b.Square(x); x2.Label = "x2";
-            Signal sinx2 = Std.Sine(c, x2); sinx2.Label = "sinx2";
-            Signal sinx2t2 = sinx2 * IntegerValue.ConstantTwo(c);
+            Signal x2 = StdBuilder.Square(x); x2.Label = "x2";
+            Signal sinx2 = StdBuilder.Sine(x2); sinx2.Label = "sinx2";
+            Signal sinx2t2 = sinx2 * IntegerValue.ConstantTwo;
             s1.AddSignalTree(sinx2t2, true, true);
 
             // EVALUATE SYSTEM 1 FOR x=1.5
@@ -105,10 +122,10 @@ namespace Yttrium.UnitTests
                 settings.OmitXmlDeclaration = false;
                 settings.Indent = true;
                 settings.NewLineHandling = NewLineHandling.Entitize;
-                settings.Encoding = Context.DefaultEncoding;
+                settings.Encoding = Config.InternalEncoding;
                 XmlWriter xwriter = XmlWriter.Create(sb, settings);
                 xwriter.WriteStartElement("Systems");
-                XmlSystemWriter writer = new XmlSystemWriter(c, xwriter);
+                XmlSystemWriter writer = new XmlSystemWriter(xwriter);
                 SystemReader reader = new SystemReader(writer);
                 reader.ReadSystem(s1);
                 xwriter.WriteEndElement();
@@ -123,13 +140,13 @@ namespace Yttrium.UnitTests
              * HINT: would be simpler to just call:
              * MathSystem s2 = MathSystem.ReadXml(s2xml, c);
              */
-            MathSystem s2;
+            IMathSystem s2;
             {
                 StringReader sr = new StringReader(s2xml);
                 XmlReader xreader = XmlReader.Create(sr);
                 xreader.ReadToFollowing("Systems");
                 xreader.Read();
-                SystemWriter writer = new SystemWriter(c);
+                SystemWriter writer = new SystemWriter();
                 XmlSystemReader reader = new XmlSystemReader(writer);
                 reader.ReadSystems(xreader, false);
                 xreader.ReadEndElement();
@@ -152,15 +169,13 @@ namespace Yttrium.UnitTests
         {
             Project p = new Project();
             MathSystem s1 = p.CurrentSystem;
-            Builder b = p.Builder;
-            Context c = p.Context;
 
             // BUILD SYSTEM 1: sin(x^2)*2
-            Signal x = new Signal(c); x.Label = "x";
+            Signal x = Binder.CreateSignal(); x.Label = "x";
             x.AddConstraint(RealSetProperty.Instance);
-            Signal x2 = b.Square(x); x2.Label = "x2";
-            Signal sinx2 = Std.Sine(c, x2); sinx2.Label = "sinx2";
-            Signal sinx2t2 = sinx2 * IntegerValue.ConstantTwo(c);
+            Signal x2 = StdBuilder.Square(x); x2.Label = "x2";
+            Signal sinx2 = StdBuilder.Sine(x2); sinx2.Label = "sinx2";
+            Signal sinx2t2 = sinx2 * IntegerValue.ConstantTwo;
             s1.AddSignalTree(sinx2t2, true, true);
 
             // EVALUATE SYSTEM 1 FOR x=1.5
