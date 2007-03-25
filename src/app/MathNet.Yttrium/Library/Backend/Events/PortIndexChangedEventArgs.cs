@@ -25,18 +25,22 @@ using System.Text;
 
 namespace MathNet.Symbolics.Events
 {
-    public sealed class SignalPortEventArgs : EventArgs
+    public sealed class PortIndexChangedEventArgs : EventArgs
     {
-        public SignalPortEventArgs(Signal signal, Port port)
+        public PortIndexChangedEventArgs(Port port, int indexBefore, int indexAfter)
         {
-            this.signal = signal;
             this.port = port;
+            this.indexBefore = indexBefore;
+            this.indexAfter = indexAfter;
         }
-
-        private readonly Signal signal;
-        public Signal Signal { get { return signal; } }
 
         private readonly Port port;
         public Port Port { get { return port; } }
+
+        private readonly int indexBefore;
+        public int IndexBefore { get { return indexBefore; } }
+
+        private readonly int indexAfter;
+        public int IndexAfter { get { return indexAfter; } }
     }
 }

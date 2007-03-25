@@ -25,18 +25,18 @@ using System.Text;
 
 namespace MathNet.Symbolics.Events
 {
-    public sealed class SignalPortEventArgs : EventArgs
+    public class ValueNodeEventArgs : EventArgs
     {
-        public SignalPortEventArgs(Signal signal, Port port)
+        private readonly ValueNode _node;
+
+        public ValueNodeEventArgs(ValueNode node)
         {
-            this.signal = signal;
-            this.port = port;
+            _node = node;
         }
 
-        private readonly Signal signal;
-        public Signal Signal { get { return signal; } }
-
-        private readonly Port port;
-        public Port Port { get { return port; } }
+        public ValueNode ValueNode
+        {
+            get { return _node; }
+        }
     }
 }
