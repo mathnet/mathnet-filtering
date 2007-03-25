@@ -1,9 +1,11 @@
 <Project DefaultTargets="Check" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	<ItemGroup>
-		<NUnitBin Include="tools\nunit\bin\*.dll"/>
+		<NUnitBin Include="tools\nunit\bin\*.*"/>
+		<NCoverBin Include="tools\ncover\*.*"/>
 		<NUnitTargetFiles Include="src\test\MathNet.Yttrium.Test\**\Debug\*.dll"/>
 		<NUnitTargetTest Include="src\test\MathNet.Yttrium.Test\**\Debug\*.Test.dll"/>
 		<NCoverTargets Include="src\app\MathNet.Yttrium\**\Debug\*.pdb"/>
+		<ConfigFiles Include="**\bin\**\*.config"/>
 	</ItemGroup>
 
 	<Target Name="Check">
@@ -13,9 +15,13 @@
 		<Exec Command="tools\simian\simian.exe -recurse=src\app\MathNet.Yttrium\*.cs -formatter=xml:..\Yttrium\artifact\simian-result.xml" IgnoreExitCode="true" ContinueOnError="true"/>
 
 		<Copy SourceFiles="@(NUnitBin)" DestinationFolder="D:\integration\Math.NET\Yttrium\work" SkipUnchangedFiles="true"/>
+		<Copy SourceFiles="@(NCoverBin)" DestinationFolder="D:\integration\Math.NET\Yttrium\work" SkipUnchangedFiles="true"/>
 		<Copy SourceFiles="@(NUnitTargetFiles)" DestinationFolder="D:\integration\Math.NET\Yttrium\work"/>
 		<Copy SourceFiles="@(NCoverTargets)" DestinationFolder="D:\integration\Math.NET\Yttrium\work"/>
-		<Exec WorkingDirectory="..\Yttrium\work" Command="..\..\checkout\tools\ncover\ncover.console.exe &quot;..\..\checkout\tools\nunit\bin\nunit-console.exe&quot; /nologo /noshadow /xml=..\artifact\nunit-result.xml %(NUnitTargetTest.Filename).dll //x ..\artifact\ncover-result.xml //a @(NCoverTargets->'%(filename)',';')" ContinueOnError="false"/>
+		<Copy SourceFiles="@(ConfigFiles)" DestinationFolder="D:\integration\Math.NET\Yttrium\work"/>
+		
+		//<Exec WorkingDirectory="..\Yttrium\work" Command="ncover.console.exe &quot;nunit-console.exe&quot; /nologo /noshadow /xml=..\artifact\nunit-result.xml %(NUnitTargetTest.Filename).dll //x ..\artifact\ncover-result.xml //a @(NCoverTargets->'%(filename)',';')" ContinueOnError="false"/>
+		<Exec WorkingDirectory="..\Yttrium\work" Command="ncover.console.exe &quot;nunit-console.exe&quot; /nologo /noshadow /xml=..\artifact\nunit-result.xml Yttrium.Test.dll //x ..\artifact\ncover-result.xml //a @(NCoverTargets->'%(filename)',';')" ContinueOnError="false"/>
 		
 	</Target>
 </Project>
