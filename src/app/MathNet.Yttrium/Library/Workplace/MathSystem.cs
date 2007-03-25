@@ -1,22 +1,22 @@
-#region Copyright 2001-2006 Christoph Daniel Rüegg [GPL]
-//Math.NET Symbolics: Yttrium, part of Math.NET
-//Copyright (c) 2001-2006, Christoph Daniel Rueegg, http://cdrnet.net/.
-//All rights reserved.
-//This Math.NET package is available under the terms of the GPL.
-
-//This program is free software; you can redistribute it and/or modify
-//it under the terms of the GNU General Public License as published by
-//the Free Software Foundation; either version 2 of the License, or
-//(at your option) any later version.
-
-//This program is distributed in the hope that it will be useful,
-//but WITHOUT ANY WARRANTY; without even the implied warranty of
-//MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//GNU General Public License for more details.
-
-//You should have received a copy of the GNU General Public License
-//along with this program; if not, write to the Free Software
-//Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#region Math.NET Yttrium (GPL) by Christoph Ruegg
+// Math.NET Yttrium, part of the Math.NET Project
+// http://mathnet.opensourcedotnet.info
+//
+// Copyright (c) 2001-2007, Christoph Rüegg,  http://christoph.ruegg.name
+//						
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
 
 using System;
@@ -28,21 +28,24 @@ using System.Xml;
 using System.Xml.XPath;
 using System.Xml.Serialization;
 
-using MathNet.Symbolics.Core;
 using MathNet.Symbolics.Backend;
-using MathNet.Symbolics.Backend.Events;
 using MathNet.Symbolics.Backend.Templates;
-using MathNet.Symbolics.Backend.SystemBuilder;
 using MathNet.Symbolics.Backend.Containers;
 using MathNet.Symbolics.Backend.Channels;
-using MathNet.Symbolics.StdPackage.Structures;
+using MathNet.Symbolics.Traversing;
+using MathNet.Symbolics.Library;
+using MathNet.Symbolics.Packages.Standard.Structures;
+using MathNet.Symbolics.Packages.Standard;
+using MathNet.Symbolics.Simulation;
+using MathNet.Symbolics.Mediator;
+using MathNet.Symbolics.Events;
+using MathNet.Symbolics.SystemBuilder.Toolkit;
 
 namespace MathNet.Symbolics.Workplace
 {
-    public class MathSystem : IContextSensitive
+    public class MathSystem : IMathSystem
     {
         private readonly Guid _iid;
-        private readonly Context _context;
 
         private readonly SignalSet _inputs;
         private readonly SignalSet _outputs;
@@ -54,15 +57,13 @@ namespace MathNet.Symbolics.Workplace
         private Dictionary<string, Signal> _namedSignals;
         private Dictionary<string, Bus> _namedBuses;
 
-        private Mediator _mediator;
+        private ISystemMediator _systemMediator;
 
         public event EventHandler<IndexedSignalEventArgs> OutputValueChanged;
 
-        public MathSystem(Context context)
+        public MathSystem()
         {
-            if(context == null) throw new ArgumentNullException("context");
-            _context = context;
-            _iid = _context.GenerateInstanceId();
+            _iid = Config.GenerateInstanceId();
 
             _inputs = new SignalSet();
             _outputs = new SignalSet();
@@ -72,25 +73,20 @@ namespace MathNet.Symbolics.Workplace
         }
 
         #region Properties
-        public Context Context
+        public bool HasSystemMediator
         {
-            get { return _context; }
+            get { return _systemMediator != null; }
         }
-
-        public bool HasMediator
+        public ISystemMediator SystemMediator
         {
-            get { return _mediator != null; }
-        }
-        public Mediator Mediator
-        {
-            get { return _mediator; }
+            get { return _systemMediator; }
             set
             {
-                if(_mediator != null)
-                    _mediator.UnsubscribeSystem(this);
-                _mediator = value;
+                if(_systemMediator != null)
+                    _systemMediator.UnsubscribeSystem(this);
+                _systemMediator = value;
                 if(value != null)
-                    _mediator.SubscribeSystem(this);
+                    _systemMediator.SubscribeSystem(this);
             }
         }
 
@@ -183,7 +179,7 @@ namespace MathNet.Symbolics.Workplace
         #endregion
         public ReadOnlySignalSet GetAllLeafSignals()
         {
-            return (ReadOnlySignalSet)_allSignals.FindAll(delegate(Signal signal) { return signal.BehavesAsSourceSignal; }).AsReadOnly; // && !inputSignals.Exists(delegate(Signal s) { return signal.DependsOn(s); }); }).AsReadOnly();
+            return new ReadOnlySignalSet(_allSignals.FindAll(delegate(Signal signal) { return signal.BehavesAsSourceSignal; })); // && !inputSignals.Exists(delegate(Signal s) { return signal.DependsOn(s); }); }).AsReadOnly();
         }
         #endregion
 
@@ -192,8 +188,8 @@ namespace MathNet.Symbolics.Workplace
         {
             int idx = _allSignals.Count;
             _allSignals.Add(signal);
-            if(_mediator != null)
-                _mediator.OnSignalAdded(signal, idx);
+            if(_systemMediator != null)
+                _systemMediator.NotifySignalAdded(signal, idx);
         }
         private void InternalRemoveSignal(Signal signal)
         {
@@ -203,83 +199,83 @@ namespace MathNet.Symbolics.Workplace
                 InternalRemoveOutput(signal);
             int idx = _allSignals.IndexOf(signal);
             _allSignals.RemoveAt(idx);
-            if(_mediator != null)
+            if(_systemMediator != null)
             {
-                _mediator.OnSignalRemoved(signal, idx);
+                _systemMediator.NotifySignalRemoved(signal, idx);
                 for(int i = idx; i < _allSignals.Count; i++)
-                    _mediator.OnSignalMoved(_allSignals[i], idx + 1, idx);
+                    _systemMediator.NotifySignalMoved(_allSignals[i], idx + 1, idx);
             }
         }
         private void InternalAddBus(Bus bus)
         {
             int idx = _allBuses.Count;
             _allBuses.Add(bus);
-            if(_mediator != null)
-                _mediator.OnBusAdded(bus, idx);
+            if(_systemMediator != null)
+                _systemMediator.NotifyBusAdded(bus, idx);
         }
         private void InternalRemoveBus(Bus bus)
         {
             int idx = _allBuses.IndexOf(bus);
             _allBuses.RemoveAt(idx);
-            if(_mediator != null)
+            if(_systemMediator != null)
             {
-                _mediator.OnBusRemoved(bus, idx);
+                _systemMediator.NotifyBusRemoved(bus, idx);
                 for(int i = idx; i < _allBuses.Count; i++)
-                    _mediator.OnBusMoved(_allBuses[i], idx + 1, idx);
+                    _systemMediator.NotifyBusMoved(_allBuses[i], idx + 1, idx);
             }
         }
         private void InternalAddPort(Port port)
         {
             int idx = _allPorts.Count;
             _allPorts.Add(port);
-            if(_mediator != null)
-                _mediator.OnPortAdded(port, idx);
+            if(_systemMediator != null)
+                _systemMediator.NotifyPortAdded(port, idx);
         }
         private void InternalRemovePort(Port port)
         {
             int idx = _allPorts.IndexOf(port);
             _allPorts.RemoveAt(idx);
-            if(_mediator != null)
+            if(_systemMediator != null)
             {
-                _mediator.OnPortRemoved(port, idx);
+                _systemMediator.NotifyPortRemoved(port, idx);
                 for(int i = idx; i < _allPorts.Count; i++)
-                    _mediator.OnPortMoved(_allPorts[i], idx + 1, idx);
+                    _systemMediator.NotifyPortMoved(_allPorts[i], idx + 1, idx);
             }
         }
         private void InternalAddInput(Signal signal)
         {
             int idx = _inputs.Count;
             _inputs.Add(signal);
-            if(_mediator != null)
-                _mediator.OnInputAdded(signal, idx);
+            if(_systemMediator != null)
+                _systemMediator.NotifyInputAdded(signal, idx);
         }
         private void InternalRemoveInput(Signal signal)
         {
             int idx = _inputs.IndexOf(signal);
             _inputs.RemoveAt(idx);
-            if(_mediator != null)
+            if(_systemMediator != null)
             {
-                _mediator.OnInputRemoved(signal, idx);
+                _systemMediator.NotifyInputRemoved(signal, idx);
                 for(int i = idx; i < _inputs.Count; i++)
-                    _mediator.OnInputMoved(_inputs[i], idx + 1, idx);
+                    _systemMediator.NotifyInputMoved(_inputs[i], idx + 1, idx);
             }
         }
         private void InternalAddOutput(Signal signal)
         {
             int idx = _outputs.Count;
             _outputs.Add(signal);
-            if(_mediator != null)
-                _mediator.OnOutputAdded(signal, idx);
+            if(_systemMediator != null)
+                _systemMediator.NotifyOutputAdded(signal, idx);
         }
         private void InternalRemoveOutput(Signal signal)
         {
             int idx = _outputs.IndexOf(signal);
             _outputs.RemoveAt(idx);
-            if(_mediator != null)
+            if(_systemMediator != null)
             {
-                _mediator.OnOutputRemoved(signal, idx);
+                _systemMediator.NotifyOutputRemoved(signal, idx);
                 for(int i = idx; i < _outputs.Count; i++)
-                    _mediator.OnOutputMoved(_outputs[i], idx + 1, idx);
+                    _systemMediator.NotifyOutputMoved(_outputs[i], idx + 1, idx);
             }
         }
         #endregion
@@ -349,12 +345,12 @@ namespace MathNet.Symbolics.Workplace
             if(setAsOutput)
                 PromoteAsOutput(signal);
 
-            Scanner.ForEachSignal(signal, delegate(Signal s)
+            Service<IScanner>.Instance.ForEachSignal(signal, delegate(Signal s)
             {
                 if(!_allSignals.Contains(s))
                 {
                     InternalAddSignal(s);
-                    if(autoAddInputs && !s.IsDriven && !StdPackage.Std.IsConstant(s))
+                    if(autoAddInputs && !s.IsDriven && !Std.IsConstant(s))
                         InternalAddInput(s);
                 }
                 return true;
@@ -382,12 +378,12 @@ namespace MathNet.Symbolics.Workplace
             if(setAsOutput)
                 PromoteAsOutput(signal);
 
-            Scanner.ForEachSignal(signal, delegate(Signal s)
+            Service<IScanner>.Instance.ForEachSignal(signal, delegate(Signal s)
             {
                 if(!_allSignals.Contains(s))
                 {
                     InternalAddSignal(s);
-                    if(autoAddInputs && !s.IsDriven && !StdPackage.Std.IsConstant(s))
+                    if(autoAddInputs && !s.IsDriven && !Std.IsConstant(s))
                         InternalAddInput(s);
                 }
                 if(border.Contains(s))
@@ -465,7 +461,7 @@ namespace MathNet.Symbolics.Workplace
         #region Named Signals
         public Signal CreateNamedSignal(string name)
         {
-            Signal s = new Signal(_context);
+            Signal s = Binder.CreateSignal();
             AddNamedSignal(name, s);
             return s;
         }
@@ -478,11 +474,11 @@ namespace MathNet.Symbolics.Workplace
             _namedSignals.Add(name, signal);
             return signal;
         }
-        public Signal AddNamedSignal(string name, ValueStructure value)
+        public Signal AddNamedSignal(string name, IValueStructure value)
         {
             if(_namedSignals == null)
                 _namedSignals = new Dictionary<string, Signal>();
-            Signal signal = new Signal(_context, value);
+            Signal signal = Binder.CreateSignal(value);
             AddSignal(signal);
             signal.Label = name;
             _namedSignals.Add(name, signal);
@@ -519,7 +515,7 @@ namespace MathNet.Symbolics.Workplace
         #region Named Buses
         public Bus CreateNamedBus(string name)
         {
-            Bus b = new Bus(_context);
+            Bus b = Binder.CreateBus();
             AddNamedBus(name, b);
             return b;
         }
@@ -562,24 +558,24 @@ namespace MathNet.Symbolics.Workplace
 
         #region Value Forwarding
         #region Input Signals
-        public void PushInputValue(int inputIndex, ValueStructure value)
+        public void PushInputValue(int inputIndex, IValueStructure value)
         {
             _inputs[inputIndex].PostNewValue(value);
         }
-        public void PushInputValue(int inputIndex, ValueStructure value, TimeSpan delay)
+        public void PushInputValue(int inputIndex, IValueStructure value, TimeSpan delay)
         {
             _inputs[inputIndex].PostNewValue(value, delay);
         }
-        public void PushInputValueRange(IEnumerable<ValueStructure> values)
+        public void PushInputValueRange(IEnumerable<IValueStructure> values)
         {
             int idx = 0;
-            foreach(ValueStructure value in values)
+            foreach(IValueStructure value in values)
                 _inputs[idx++].PostNewValue(value);
         }
-        public void PushInputValueRange(IEnumerable<ValueStructure> values, TimeSpan delay)
+        public void PushInputValueRange(IEnumerable<IValueStructure> values, TimeSpan delay)
         {
             int idx = 0;
-            foreach(ValueStructure value in values)
+            foreach(IValueStructure value in values)
                 _inputs[idx++].PostNewValue(value, delay);
         }
         public void PushInputValueRange(IEnumerable<Signal> signalsWithValues)
@@ -598,7 +594,7 @@ namespace MathNet.Symbolics.Workplace
         #region Output Signals
         private void RegisterOutputSignal(Signal s)
         {
-            s.SignalValueChanged += s_SignalValueChanged;
+            s.ValueChanged += s_SignalValueChanged;
         }
         //private void RegisterOutputSignalRange(IEnumerable<Signal> signals)
         //{
@@ -608,7 +604,7 @@ namespace MathNet.Symbolics.Workplace
 
         private void UnregisterOutputSignal(Signal s)
         {
-            s.SignalValueChanged -= s_SignalValueChanged;
+            s.ValueChanged -= s_SignalValueChanged;
         }
         //private void UnregisterOutputSignalRange(IEnumerable<Signal> signals)
         //{
@@ -616,17 +612,17 @@ namespace MathNet.Symbolics.Workplace
         //        UnregisterOutputSignal(s);
         //}
 
-        void s_SignalValueChanged(object sender, SignalEventArgs e)
+        void s_SignalValueChanged(object sender, ValueNodeEventArgs e)
         {
             EventHandler<IndexedSignalEventArgs> handler = OutputValueChanged;
-            if(handler != null && _outputs.Contains(e.Signal))
-                handler(this, new IndexedSignalEventArgs(e.Signal, _outputs.IndexOf(e.Signal)));
+            if(handler != null && _outputs.Contains((Signal)e.ValueNode))
+                handler(this, new IndexedSignalEventArgs((Signal)e.ValueNode, _outputs.IndexOf((Signal)e.ValueNode)));
         }
         #endregion
         #endregion
 
         #region Evaluation - Systems may be used as "Functions"
-        public ValueStructure[] Evaluate(params ValueStructure[] inputs)
+        public IValueStructure[] Evaluate(params IValueStructure[] inputs)
         {
             if(inputs == null)
                 throw new ArgumentNullException("inputs");
@@ -637,9 +633,9 @@ namespace MathNet.Symbolics.Workplace
             for(int i = 0; i < inputs.Length; i++)
                 _inputs[i].PostNewValue(inputs[i]);
 
-            _context.Scheduler.SimulateInstant();
+            Service<ISimulationMediator>.Instance.SimulateInstant();
 
-            ValueStructure[] outputs = new ValueStructure[_outputs.Count];
+            IValueStructure[] outputs = new IValueStructure[_outputs.Count];
             for(int i = 0; i < outputs.Length; i++)
                 outputs[i] = _outputs[i].Value;
             return outputs;
@@ -656,7 +652,7 @@ namespace MathNet.Symbolics.Workplace
             for(int i = 0; i < inputs.Length; i++)
                 _inputs[i].PostNewValue(new RealValue(inputs[i]));
 
-            _context.Scheduler.SimulateInstant();
+            Service<ISimulationMediator>.Instance.SimulateInstant();
 
             double[] outputs = new double[_outputs.Count];
             for(int i = 0; i < outputs.Length; i++)
@@ -666,7 +662,7 @@ namespace MathNet.Symbolics.Workplace
         #endregion
 
         #region System Builder
-        internal void AcceptSystemBuilder(ISystemBuilder builder)
+        public void AcceptSystemBuilder(ISystemBuilder builder)
         {
             Dictionary<Guid, Guid> signalMappings = new Dictionary<Guid, Guid>();
             Dictionary<Guid, Guid> busMappings = new Dictionary<Guid, Guid>();
@@ -675,15 +671,15 @@ namespace MathNet.Symbolics.Workplace
 
             // Before
             foreach(Signal s in _allSignals)
-                signalMappings.Add(s.InstanceId, s.AcceptSystemBuilderBefore(builder));
+                signalMappings.Add(s.InstanceId, ((ISignal_BuilderAdapter)s).AcceptSystemBuilderBefore(builder));
             foreach(Bus b in _allBuses)
-                busMappings.Add(b.InstanceId, b.AcceptSystemBuilderBefore(builder));
+                busMappings.Add(b.InstanceId, ((IBus_BuilderAdapter)b).AcceptSystemBuilderBefore(builder));
             foreach(Port p in _allPorts)
-                p.AcceptSystemBuilder(builder, signalMappings, busMappings);
+                ((IPort_BuilderAdapter)p).AcceptSystemBuilder(builder, signalMappings, busMappings);
 
             // After
             foreach(Signal s in _allSignals)
-                s.AcceptSystemBuilderAfter(builder, signalMappings, busMappings);
+                ((ISignal_BuilderAdapter)s).AcceptSystemBuilderAfter(builder, signalMappings, busMappings);
 
             // System Interface
             foreach(Signal si in _inputs)
@@ -705,9 +701,9 @@ namespace MathNet.Symbolics.Workplace
 
         #region System Builder Templates: Cloning, Xml IO, Serialization
         #region Clone
-        public MathSystem Clone()
+        public IMathSystem Clone()
         {
-            SystemWriter writer = new SystemWriter(_context);
+            SystemWriter writer = new SystemWriter();
             SystemReader reader = new SystemReader(writer);
             reader.ReadSystem(this);
             return writer.WrittenSystems.Dequeue();
@@ -719,7 +715,7 @@ namespace MathNet.Symbolics.Workplace
             if(writer == null)
                 throw new ArgumentNullException("writer");
 
-            XmlSystemWriter xwriter = new XmlSystemWriter(_context, writer);
+            XmlSystemWriter xwriter = new XmlSystemWriter(writer);
             SystemReader xreader = new SystemReader(xwriter);
             xreader.ReadSystem(this);
             writer.Flush();
@@ -732,7 +728,7 @@ namespace MathNet.Symbolics.Workplace
             settings.OmitXmlDeclaration = xmlFragmentOnly;
             settings.Indent = true;
             settings.NewLineHandling = NewLineHandling.Entitize;
-            settings.Encoding = Context.DefaultEncoding;
+            settings.Encoding = Config.InternalEncoding;
             XmlWriter writer = XmlWriter.Create(sb, settings);
             WriteXml(writer);
             writer.Close();
@@ -749,89 +745,89 @@ namespace MathNet.Symbolics.Workplace
         }
         #endregion
         #region Read Xml
-        public static MathSystem ReadXml(XmlReader reader, Context context)
+        public static IMathSystem ReadXml(XmlReader reader)
         {
-            SystemWriter xwriter = new SystemWriter(context);
+            SystemWriter xwriter = new SystemWriter();
             XmlSystemReader xreader = new XmlSystemReader(xwriter);
             xreader.ReadSystems(reader, false);
             return xwriter.WrittenSystems.Dequeue();
         }
-        public static MathSystem ReadXml(string xml, Context context)
+        public static IMathSystem ReadXml(string xml)
         {
             StringReader sr = new StringReader(xml);
             XmlReader reader = XmlReader.Create(sr);
-            return ReadXml(reader, context);
+            return ReadXml(reader);
         }
-        public static MathSystem ReadXml(FileInfo file, Context context)
+        public static IMathSystem ReadXml(FileInfo file)
         {
             if(file == null)
                 throw new ArgumentNullException("file");
 
             XmlReader reader = XmlReader.Create(file.OpenText());
-            MathSystem sys = ReadXml(reader, context);
+            IMathSystem sys = ReadXml(reader);
             reader.Close();
             return sys;
         }
         #endregion
         #region Read Xml -> Build Entity
-        public static Entity ReadXmlEntity(XmlReader reader, MathIdentifier entityId, string symbol, InfixNotation notation, int precedence)
+        public static IEntity ReadXmlEntity(XmlReader reader, MathIdentifier entityId, string symbol, InfixNotation notation, int precedence)
         {
             if(reader == null)
                 throw new ArgumentNullException("reader");
 
-            reader.ReadToFollowing("System", Context.YttriumNamespace);
-            int inputCnt = int.Parse(reader.GetAttribute("inputCount"), Context.NumberFormat);
-            int outputCnt = int.Parse(reader.GetAttribute("outputCount"), Context.NumberFormat);
-            int busCnt = int.Parse(reader.GetAttribute("busCount"), Context.NumberFormat);
+            reader.ReadToFollowing("System", Config.YttriumNamespace);
+            int inputCnt = int.Parse(reader.GetAttribute("inputCount"), Config.InternalNumberFormat);
+            int outputCnt = int.Parse(reader.GetAttribute("outputCount"), Config.InternalNumberFormat);
+            int busCnt = int.Parse(reader.GetAttribute("busCount"), Config.InternalNumberFormat);
             reader.Close();
 
             string[] inputSignalLabels = new string[inputCnt];
             for(int i = 0; i < inputCnt; i++)
-                inputSignalLabels[i] = "In_" + i.ToString(Context.NumberFormat);
+                inputSignalLabels[i] = "In_" + i.ToString(Config.InternalNumberFormat);
 
             string[] outputSignalLabels = new string[outputCnt];
             for(int i = 0; i < outputCnt; i++)
-                outputSignalLabels[i] = "Out_" + i.ToString(Context.NumberFormat);
+                outputSignalLabels[i] = "Out_" + i.ToString(Config.InternalNumberFormat);
 
             string[] busLabels = new string[busCnt];
             for(int i = 0; i < busCnt; i++)
-                busLabels[i] = "Bus_" + i.ToString(Context.NumberFormat);
+                busLabels[i] = "Bus_" + i.ToString(Config.InternalNumberFormat);
 
-            return new Entity(symbol, entityId.Label, entityId.Domain, notation, precedence, inputSignalLabels, outputSignalLabels, busLabels);
+            return new Core.Entity(symbol, entityId.Label, entityId.Domain, notation, precedence, inputSignalLabels, outputSignalLabels, busLabels);
         }
-        public static Entity ReadXmlEntity(XmlReader reader, MathIdentifier entityId, string symbol)
+        public static IEntity ReadXmlEntity(XmlReader reader, MathIdentifier entityId, string symbol)
         {
             return ReadXmlEntity(reader, entityId, symbol, InfixNotation.None, -1);
         }
-        public static Entity ReadXmlEntity(string xml, MathIdentifier entityId, string symbol, InfixNotation notation, int precedence)
+        public static IEntity ReadXmlEntity(string xml, MathIdentifier entityId, string symbol, InfixNotation notation, int precedence)
         {
             StringReader sr = new StringReader(xml);
             XmlReader reader = XmlReader.Create(sr);
             return ReadXmlEntity(reader, entityId, symbol, notation, precedence);
         }
-        public static Entity ReadXmlEntity(string xml, MathIdentifier entityId, string symbol)
+        public static IEntity ReadXmlEntity(string xml, MathIdentifier entityId, string symbol)
         {
             StringReader sr = new StringReader(xml);
             XmlReader reader = XmlReader.Create(sr);
             return ReadXmlEntity(reader, entityId, symbol, InfixNotation.None, -1);
         }
-        public static Entity ReadXmlEntity(FileInfo file, MathIdentifier entityId, string symbol, InfixNotation notation, int precedence)
+        public static IEntity ReadXmlEntity(FileInfo file, MathIdentifier entityId, string symbol, InfixNotation notation, int precedence)
         {
             if(file == null)
                 throw new ArgumentNullException("file");
 
             XmlReader reader = XmlReader.Create(file.OpenText());
-            Entity entity = ReadXmlEntity(reader, entityId, symbol, notation, precedence);
+            IEntity entity = ReadXmlEntity(reader, entityId, symbol, notation, precedence);
             reader.Close();
             return entity;
         }
-        public static Entity ReadXmlEntity(FileInfo file, MathIdentifier entityId, string symbol)
+        public static IEntity ReadXmlEntity(FileInfo file, MathIdentifier entityId, string symbol)
         {
             if(file == null)
                 throw new ArgumentNullException("file");
 
             XmlReader reader = XmlReader.Create(file.OpenText());
-            Entity entity = ReadXmlEntity(reader, entityId, symbol, InfixNotation.None, -1);
+            IEntity entity = ReadXmlEntity(reader, entityId, symbol, InfixNotation.None, -1);
             reader.Close();
             return entity;
         }
@@ -852,73 +848,74 @@ namespace MathNet.Symbolics.Workplace
             return new CompoundArchitectureFactory(architectureId, entityId, xml, inputCount, outputCount, busCount);
         }
 
-        public Entity BuildEntity(MathIdentifier entityId, string symbol)
+        public IEntity BuildEntity(MathIdentifier entityId, string symbol)
         {
             return BuildEntity(entityId, symbol, InfixNotation.None, -1);
         }
-        public Entity BuildEntity(MathIdentifier entityId, string symbol, InfixNotation notation, int precedence)
+        public IEntity BuildEntity(MathIdentifier entityId, string symbol, InfixNotation notation, int precedence)
         {
             string[] inputSignalLabels = new string[_inputs.Count];
             for(int i = 0; i < inputSignalLabels.Length; i++)
-                inputSignalLabels[i] = string.IsNullOrEmpty(_inputs[i].Label) ? "In_" + i.ToString(Context.NumberFormat) : _inputs[i].Label;
+                inputSignalLabels[i] = string.IsNullOrEmpty(_inputs[i].Label) ? "In_" + i.ToString(Config.InternalNumberFormat) : _inputs[i].Label;
 
             string[] outputSignalLabels = new string[_outputs.Count];
             for(int i = 0; i < outputSignalLabels.Length; i++)
-                outputSignalLabels[i] = string.IsNullOrEmpty(_outputs[i].Label) ? "Out_" + i.ToString(Context.NumberFormat) : _outputs[i].Label;
+                outputSignalLabels[i] = string.IsNullOrEmpty(_outputs[i].Label) ? "Out_" + i.ToString(Config.InternalNumberFormat) : _outputs[i].Label;
 
             string[] busLabels = new string[_allBuses.Count];
             for(int i = 0; i < busLabels.Length; i++)
-                busLabels[i] = string.IsNullOrEmpty(_allBuses[i].Label) ? "Bus_" + i.ToString(Context.NumberFormat) : _allBuses[i].Label;
+                busLabels[i] = string.IsNullOrEmpty(_allBuses[i].Label) ? "Bus_" + i.ToString(Config.InternalNumberFormat) : _allBuses[i].Label;
 
-            return new Entity(symbol, entityId.Label, entityId.Domain, notation, precedence, inputSignalLabels, outputSignalLabels, busLabels);
+            return new Core.Entity(symbol, entityId.Label, entityId.Domain, notation, precedence, inputSignalLabels, outputSignalLabels, busLabels);
         }
 
         public void PublishToLibrary(MathIdentifier architectureId, MathIdentifier entityId)
         {
             IArchitectureFactory factory = BuildArchitectureFactory(architectureId, entityId);
-            _context.Library.Architectures.AddArchitectureBuilder(factory);
+            Service<ILibrary>.Instance.AddArchitecture(factory);
         }
-        public Entity PublishToLibrary(string label, string symbol)
+        public IEntity PublishToLibrary(string label, string symbol)
         {
             return this.PublishToLibrary("Work", label + "Compound", label, symbol);
         }
-        public Entity PublishToLibrary(string domain, string architectureLabel, string entityLabel, string entitySymbol)
+        public IEntity PublishToLibrary(string domain, string architectureLabel, string entityLabel, string entitySymbol)
         {
-            Entity entity = BuildEntity(new MathIdentifier(entityLabel, domain), entitySymbol);
+            IEntity entity = BuildEntity(new MathIdentifier(entityLabel, domain), entitySymbol);
             IArchitectureFactory factory = BuildArchitectureFactory(new MathIdentifier(architectureLabel, domain), entity.EntityId);
-            _context.Library.Entities.Add(entity);
-            _context.Library.Architectures.AddArchitectureBuilder(factory);
+            ILibrary lib = Service<ILibrary>.Instance;
+            lib.AddEntity(entity);
+            lib.AddArchitecture(factory);
             return entity;
         }
-        public static void PublishToLibrary(string xml, Library library, MathIdentifier architectureId, MathIdentifier entityId)
+        public static void PublishToLibrary(string xml, ILibrary library, MathIdentifier architectureId, MathIdentifier entityId)
         {
             if(library == null)
                 throw new ArgumentNullException("library");
 
             IArchitectureFactory factory = BuildArchitectureFactory(xml, architectureId, entityId);
-            library.Architectures.AddArchitectureBuilder(factory);
+            library.AddArchitecture(factory);
         }
-        public static Entity PublishToLibrary(string xml, Library library, string label, string symbol)
+        public static IEntity PublishToLibrary(string xml, ILibrary library, string label, string symbol)
         {
             return PublishToLibrary(xml, library, "Work", label + "Compound", label, symbol);
         }
-        public static Entity PublishToLibrary(string xml, Library library, string domain, string architectureLabel, string entityLabel, string entitySymbol)
+        public static IEntity PublishToLibrary(string xml, ILibrary library, string domain, string architectureLabel, string entityLabel, string entitySymbol)
         {
             if(library == null)
                 throw new ArgumentNullException("library");
 
-            Entity entity = ReadXmlEntity(xml, new MathIdentifier(entityLabel, domain), entitySymbol);
+            IEntity entity = ReadXmlEntity(xml, new MathIdentifier(entityLabel, domain), entitySymbol);
             IArchitectureFactory factory = BuildArchitectureFactory(xml, new MathIdentifier(architectureLabel, domain), entity.EntityId, entity.InputSignals.Length, entity.OutputSignals.Length, entity.Buses.Length);
-            library.Entities.Add(entity);
-            library.Architectures.AddArchitectureBuilder(factory);
+            library.AddEntity(entity);
+            library.AddArchitecture(factory);
             return entity;
         }
 
-        public Entity PublishToLibraryAnonymous()
+        public IEntity PublishToLibraryAnonymous()
         {
             return this.PublishToLibrary("Anonymous_" + Guid.NewGuid().ToString("N"), "anonymous");
         }
-        public static Entity PublishToLibraryAnonymous(string xml, Library library)
+        public static IEntity PublishToLibraryAnonymous(string xml, ILibrary library)
         {
             return PublishToLibrary(xml, library, "Anonymous_" + Guid.NewGuid().ToString("N"), "anonymous");
         }
@@ -928,9 +925,9 @@ namespace MathNet.Symbolics.Workplace
         /// <returns>True if some objects where removed.</returns>
         public bool RemoveUnusedObjects()
         {
-            SignalSet signals;
-            PortSet ports;
-            Scanner.FindAll(_outputs, false, out signals, out ports);
+            IList<Signal> signals;
+            IList<Port> ports;
+            Service<IScanner>.Instance.FindAll(_outputs, false, out signals, out ports);
             bool ret = false;
             for(int i = _allPorts.Count - 1; i >= 0; i--)
             {

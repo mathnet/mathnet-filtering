@@ -1,11 +1,32 @@
+#region Math.NET Yttrium (GPL) by Christoph Ruegg
+// Math.NET Yttrium, part of the Math.NET Project
+// http://mathnet.opensourcedotnet.info
+//
+// Copyright (c) 2001-2007, Christoph Rüegg,  http://christoph.ruegg.name
+//						
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#endregion
+
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
 
-using MathNet.Symbolics.Core;
 using MathNet.Symbolics.Workplace;
 using MathNet.Symbolics.Backend.Channels;
+using MathNet.Symbolics.Mediator;
 
 namespace MathNet.Symbolics.Backend.Channels
 {
@@ -77,13 +98,13 @@ namespace MathNet.Symbolics.Backend.Channels
             get { return true; }
         }
 
-        public void AttachedToSystem(MathSystem system)
+        public void AttachedToSystem(IMathSystem system)
         {
             _currentSysId = system.InstanceId;
             _writer.WriteEntry(DateTime.Now, _currentSysId, LogAction.SystemChanged, _emptyGuid, _emptyGuid, _emptyGuid, _emptyId, -1);
         }
 
-        public void DetachedFromSystem(MathSystem system)
+        public void DetachedFromSystem(IMathSystem system)
         {
         }
 
@@ -192,9 +213,17 @@ namespace MathNet.Symbolics.Backend.Channels
             _writer.WriteEntry(DateTime.Now, _currentSysId, LogAction.BusAttachedToPort, port.InstanceId, _emptyGuid, bus.InstanceId, port.Entity.EntityId.ToString(), busIndex);
         }
 
-        public void OnBusAttachedToPortNoLonger(Bus bus, Port port, int busIndex)
+        public void OnBusDetachedFromPort(Bus bus, Port port, int busIndex)
         {
             _writer.WriteEntry(DateTime.Now, _currentSysId, LogAction.BusDetachedFromPort, port.InstanceId, _emptyGuid, bus.InstanceId, port.Entity.EntityId.ToString(), busIndex);
+        }
+
+        public void OnSignalValueChanged(Signal signal)
+        {
+        }
+
+        public void OnBusValueChanged(Bus bus)
+        {
         }
     }
 }

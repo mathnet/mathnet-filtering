@@ -25,21 +25,21 @@ using System.Text;
 
 using MathNet.Symbolics.Core;
 using MathNet.Symbolics.Backend;
-using MathNet.Symbolics.Backend.Theorems;
 
 namespace MathNet.Symbolics.Backend.Containers
 {
     [Serializable]
-    public class IdentifierDictionary<T> : Dictionary<string, Dictionary<string, T>>, IEnumerable<T>
+    public class IdentifierDictionary<T> : Dictionary<string, Dictionary<string, T>>, IIdentifierDictionary<T>, IEnumerable<T>
     {
         private readonly int _labelCapacity;
 
-        public IdentifierDictionary(int domainCapacity, int labelCapacity) : base(domainCapacity, Context.IdentifierComparer)
+        public IdentifierDictionary(int domainCapacity, int labelCapacity)
+            : base(domainCapacity, Config.IdentifierComparer)
         {
             _labelCapacity = labelCapacity;
         }
 
-        public bool ContainsId(MathIdentifier id)
+        public bool ContainsKey(MathIdentifier id)
         {
             Dictionary<string, T> inner;
             if(!base.TryGetValue(id.Domain, out inner))
@@ -54,7 +54,7 @@ namespace MathNet.Symbolics.Backend.Containers
             if(TryGetValue(id, out value))
                 return value;
             else
-                throw new MathNet.Symbolics.Backend.Exceptions.NotFoundException();
+                throw new MathNet.Symbolics.Exceptions.NotFoundException();
         }
         public bool TryGetValue(MathIdentifier id, out T value)
         {
@@ -87,7 +87,7 @@ namespace MathNet.Symbolics.Backend.Containers
             if(TryFindValue(match, out value))
                 return value;
             else
-                throw new MathNet.Symbolics.Backend.Exceptions.NotFoundException();
+                throw new MathNet.Symbolics.Exceptions.NotFoundException();
         }
         public bool TryFindValue(Predicate<T> match, out T value)
         {
@@ -107,7 +107,7 @@ namespace MathNet.Symbolics.Backend.Containers
             if(TryFindDomainOfLabel(label, out domain))
                 return domain;
             else
-                throw new MathNet.Symbolics.Backend.Exceptions.NotFoundException();
+                throw new MathNet.Symbolics.Exceptions.NotFoundException();
         }
         public bool TryFindDomainOfLabel(string label, out string domain)
         {
@@ -137,7 +137,7 @@ namespace MathNet.Symbolics.Backend.Containers
             Dictionary<string, T> inner;
             if(!base.TryGetValue(id.Domain, out inner))
             {
-                inner = new Dictionary<string, T>(_labelCapacity, Context.IdentifierComparer);
+                inner = new Dictionary<string, T>(_labelCapacity, Config.IdentifierComparer);
                 Add(id.Domain, inner);
             }
             inner.Add(id.Label, value);

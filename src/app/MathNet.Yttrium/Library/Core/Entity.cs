@@ -1,22 +1,22 @@
-#region Copyright 2001-2006 Christoph Daniel Rüegg [GPL]
-//Math.NET Symbolics: Yttrium, part of Math.NET
-//Copyright (c) 2001-2006, Christoph Daniel Rueegg, http://cdrnet.net/.
-//All rights reserved.
-//This Math.NET package is available under the terms of the GPL.
-
-//This program is free software; you can redistribute it and/or modify
-//it under the terms of the GNU General Public License as published by
-//the Free Software Foundation; either version 2 of the License, or
-//(at your option) any later version.
-
-//This program is distributed in the hope that it will be useful,
-//but WITHOUT ANY WARRANTY; without even the implied warranty of
-//MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//GNU General Public License for more details.
-
-//You should have received a copy of the GNU General Public License
-//along with this program; if not, write to the Free Software
-//Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#region Math.NET Yttrium (GPL) by Christoph Ruegg
+// Math.NET Yttrium, part of the Math.NET Project
+// http://mathnet.opensourcedotnet.info
+//
+// Copyright (c) 2001-2007, Christoph Rüegg,  http://christoph.ruegg.name
+//						
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
 
 using System;
@@ -28,17 +28,17 @@ using MathNet.Symbolics.Backend;
 
 namespace MathNet.Symbolics.Core
 {
-    public enum InfixNotation : int
-    {
-        None = 0,
-        LeftAssociativeInnerOperator = 1,
-        RightAssociativeInnerOperator = 2,
-        PreOperator = 3,
-        PostOperator = 4
-    }
+    //public enum InfixNotation : int
+    //{
+    //    None = 0,
+    //    LeftAssociativeInnerOperator = 1,
+    //    RightAssociativeInnerOperator = 2,
+    //    PreOperator = 3,
+    //    PostOperator = 4
+    //}
 
     [Serializable]
-    public class Entity : IEquatable<Entity>
+    public class Entity : IEntity, IEquatable<Entity>
     {
         private readonly string _symbol;
         private readonly MathIdentifier _id;
@@ -123,45 +123,45 @@ namespace MathNet.Symbolics.Core
             get { return _busLabels; }
         }
 
-        public virtual Entity CompileGenericEntity(int inputSignalsCount, int busesCount)
+        public virtual IEntity CompileGenericEntity(int inputSignalsCount, int busesCount)
         {
             return this;
         }
 
-        public Port InstantiatePort(Context context, params Signal[] inputSignals)
+        public MathNet.Symbolics.Port InstantiatePort(params MathNet.Symbolics.Signal[] inputSignals)
         {
-            return InstantiatePort(context, inputSignals, null, null);
+            return InstantiatePort(inputSignals, null, null);
         }
-        public Port InstantiatePort(Context context, IList<Signal> inputSignals)
+        public MathNet.Symbolics.Port InstantiatePort(IList<MathNet.Symbolics.Signal> inputSignals)
         {
-            return InstantiatePort(context, inputSignals, null, null);
+            return InstantiatePort(inputSignals, null, null);
         }
-        public Port InstantiatePort(Context context, IList<Signal> inputSignals, IEnumerable<Signal> outputSignals)
+        public MathNet.Symbolics.Port InstantiatePort(IList<MathNet.Symbolics.Signal> inputSignals, IEnumerable<MathNet.Symbolics.Signal> outputSignals)
         {
-            return InstantiatePort(context, inputSignals, outputSignals, null);
+            return InstantiatePort(inputSignals, outputSignals, null);
         }
-        public virtual Port InstantiatePort(Context context, IList<Signal> inputSignals, IEnumerable<Signal> outputSignals, IList<Bus> buses)
+        public virtual MathNet.Symbolics.Port InstantiatePort(IList<MathNet.Symbolics.Signal> inputSignals, IEnumerable<MathNet.Symbolics.Signal> outputSignals, IList<MathNet.Symbolics.Bus> buses)
         {
-            Entity entity = this;
+            IEntity entity = this;
 
             if(_isGeneric)
             {
                 if(inputSignals == null)
-                    throw new MathNet.Symbolics.Backend.Exceptions.GenericEntityPortNotInstantiableException();
+                    throw new MathNet.Symbolics.Exceptions.GenericEntityPortNotInstantiableException();
                 entity = CompileGenericEntity(inputSignals.Count, buses != null ? buses.Count : 0);
             }
 
             if(entity.IsGeneric)
-                throw new MathNet.Symbolics.Backend.Exceptions.GenericEntityPortNotInstantiableException();
+                throw new MathNet.Symbolics.Exceptions.GenericEntityPortNotInstantiableException();
 
-            if((inputSignals != null && inputSignals.Count != entity._inputSignalLabels.Length) || (buses != null && buses.Count != entity._busLabels.Length))
-                throw new MathNet.Symbolics.Backend.Exceptions.EntitySignalMismatchException();
+            if((inputSignals != null && inputSignals.Count != entity.InputSignals.Length) || (buses != null && buses.Count != entity.Buses.Length))
+                throw new MathNet.Symbolics.Exceptions.EntitySignalMismatchException();
 
-            Port port;
+            MathNet.Symbolics.Port port;
             if(outputSignals == null)
-                port = new Port(context, entity);
+                port = new Port(entity);
             else
-                port = new Port(context, entity, outputSignals);
+                port = new Port(entity, outputSignals);
             if(inputSignals != null)
                 port.BindInputSignals(inputSignals);
             if(buses != null && buses.Count > 0)
@@ -170,9 +170,9 @@ namespace MathNet.Symbolics.Core
 
             return port;
         }
-        public Port InstantiateUnboundPort(Context context)
+        public MathNet.Symbolics.Port InstantiateUnboundPort()
         {
-            return InstantiatePort(context, null, null, new Bus[] { });
+            return InstantiatePort(null, null, new MathNet.Symbolics.Bus[] { });
         }
 
         public override int GetHashCode()
@@ -185,9 +185,15 @@ namespace MathNet.Symbolics.Core
             return EntityId.ToString() + ": '" + _symbol + "'";
         }
 
+        public bool Equals(IEntity other)
+        {
+            return other != null && EntityId.Equals(other.EntityId) && _symbol == other.Symbol; // && isGeneric == other.isGeneric
+            //&& inputSignalLabels.Length == other.inputSignalLabels.Length && outputSignalLabels.Length == other.outputSignalLabels.Length && busLabels.Length == other.busLabels.Length;
+        }
+        [Obsolete]
         public bool Equals(Entity other)
         {
-            return other != null && EntityId.Equals(other.EntityId) && _symbol == other._symbol; // && isGeneric == other.isGeneric
+            return other != null && EntityId.Equals(other.EntityId) && _symbol == other.Symbol; // && isGeneric == other.isGeneric
             //&& inputSignalLabels.Length == other.inputSignalLabels.Length && outputSignalLabels.Length == other.outputSignalLabels.Length && busLabels.Length == other.busLabels.Length;
         }
         public override bool Equals(object obj)
@@ -195,7 +201,7 @@ namespace MathNet.Symbolics.Core
             Entity entity = obj as Entity;
             return entity != null && Equals(entity);
         }
-        public bool EqualsById(Entity other)
+        public bool EqualsById(IEntity other)
         {
             return other != null && EntityId.Equals(other.EntityId);
         }

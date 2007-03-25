@@ -32,22 +32,15 @@ namespace MathNet.Symbolics.Backend.Properties
 {
     // TODO: Redesign (inherit?)
 
-    public class PropertyBag : IContextSensitive, IEnumerable<Property>
+    public class PropertyBag : IEnumerable<IProperty>
     {
-        private readonly List<Property> _table;
-        private readonly IdentifierDictionary<Property> _properties;
-        private readonly Context _context;
+        private readonly List<IProperty> _table;
+        private readonly IdentifierDictionary<IProperty> _properties;
 
-        public PropertyBag(Context context)
+        public PropertyBag()
         {
-            _context = context;
-            _table = new List<Property>(8);
-            _properties = new IdentifierDictionary<Property>(4, 8);
-        }
-
-        public Context Context
-        {
-            get { return _context; }
+            _table = new List<IProperty>(8);
+            _properties = new IdentifierDictionary<IProperty>(4, 8);
         }
 
         public int Count
@@ -55,51 +48,51 @@ namespace MathNet.Symbolics.Backend.Properties
             get { return _table.Count; }
         }
 
-        public Property this[int index]
+        public IProperty this[int index]
         {
             get { return _table[index]; }
         }
 
         public bool ContainsProperty(MathIdentifier propertyId)
         {
-            return _properties.ContainsId(propertyId);
+            return _properties.ContainsKey(propertyId);
         }
 
-        public Property LookupProperty(MathIdentifier propertyId)
+        public IProperty LookupProperty(MathIdentifier propertyId)
         {
             return _properties.GetValue(propertyId);
         }
 
-        public bool TryLookupProperty(MathIdentifier propertyId, out Property value)
+        public bool TryLookupProperty(MathIdentifier propertyId, out IProperty value)
         {
             return _properties.TryGetValue(propertyId, out value);
         }
         
-        public bool TryLookupProperty<T>(MathIdentifier propertyId, out T value) where T : Property
+        public bool TryLookupProperty<T>(MathIdentifier propertyId, out T value) where T : IProperty
         {
             return _properties.TryGetValue<T>(propertyId, out value);
         }
 
-        public void AddProperty(Property property)
+        public void AddProperty(IProperty property)
         {
-            _properties.Add(property.PropertyId, property);
+            _properties.Add(property.TypeId, property);
             _table.Add(property);
         }
-        public void AddPropertyRange(IEnumerable<Property> properties)
+        public void AddPropertyRange(IEnumerable<IProperty> properties)
         {
-            foreach(Property property in properties)
+            foreach(IProperty property in properties)
                 AddProperty(property);
         }
 
-        public void RemoveProperty(Property property)
+        public void RemoveProperty(IProperty property)
         {
-            _properties.Remove(property.PropertyId);
+            _properties.Remove(property.TypeId);
             _table.Remove(property);
         }
         public void RemoveProperty(MathIdentifier propertyId)
         {
-            Property property = _properties.GetValue(propertyId);
-            _properties.Remove(property.PropertyId);
+            IProperty property = _properties.GetValue(propertyId);
+            _properties.Remove(property.TypeId);
             _table.Remove(property);
         }
 
@@ -113,7 +106,7 @@ namespace MathNet.Symbolics.Backend.Properties
         {
             for(int i = _table.Count - 1; i >= 0; i--)
             {
-                Property property = _table[i];
+                IProperty property = _table[i];
                 if(!property.StillValidAfterEvent(signal))
                     RemoveProperty(property);
             }
@@ -123,7 +116,7 @@ namespace MathNet.Symbolics.Backend.Properties
         {
             for(int i = _table.Count - 1; i >= 0; i--)
             {
-                Property property = _table[i];
+                IProperty property = _table[i];
                 if(!property.StillValidAfterDrive(signal))
                     RemoveProperty(property);
             }
@@ -133,14 +126,14 @@ namespace MathNet.Symbolics.Backend.Properties
         {
             for(int i = _table.Count - 1; i >= 0; i--)
             {
-                Property property = _table[i];
+                IProperty property = _table[i];
                 if(!property.StillValidAfterUndrive(signal))
                     RemoveProperty(property);
             }
         }
 
         #region Enumeration
-        public IEnumerator<Property> GetEnumerator()
+        public IEnumerator<IProperty> GetEnumerator()
         {
             return _table.GetEnumerator();
         }

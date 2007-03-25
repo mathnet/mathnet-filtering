@@ -1,22 +1,22 @@
-#region Copyright 2001-2006 Christoph Daniel Rüegg [GPL]
-//Math.NET Symbolics: Yttrium, part of Math.NET
-//Copyright (c) 2001-2006, Christoph Daniel Rueegg, http://cdrnet.net/.
-//All rights reserved.
-//This Math.NET package is available under the terms of the GPL.
-
-//This program is free software; you can redistribute it and/or modify
-//it under the terms of the GNU General Public License as published by
-//the Free Software Foundation; either version 2 of the License, or
-//(at your option) any later version.
-
-//This program is distributed in the hope that it will be useful,
-//but WITHOUT ANY WARRANTY; without even the implied warranty of
-//MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//GNU General Public License for more details.
-
-//You should have received a copy of the GNU General Public License
-//along with this program; if not, write to the Free Software
-//Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#region Math.NET Yttrium (GPL) by Christoph Ruegg
+// Math.NET Yttrium, part of the Math.NET Project
+// http://mathnet.opensourcedotnet.info
+//
+// Copyright (c) 2001-2007, Christoph Rüegg,  http://christoph.ruegg.name
+//						
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
 
 using System;
@@ -24,67 +24,100 @@ using System.Collections.Generic;
 using System.Xml;
 
 using MathNet.Symbolics.Backend;
-using MathNet.Symbolics.Backend.SystemBuilder;
+using MathNet.Symbolics.Simulation;
+using MathNet.Symbolics.Mediator;
 
 namespace MathNet.Symbolics.Core
 {
-    public class Bus : IEquatable<Bus>
+    public class Bus : MathNet.Symbolics.Bus, ISchedulable, IBus_BuilderAdapter
     {
-        private readonly Guid _iid;
-        private readonly Context _context;
-        private string _label = string.Empty;
-
-        internal Bus(Context context)
+        internal Bus()
+            : base()
         {
-            _context = context;
-            _iid = _context.GenerateInstanceId();
-            context.NotifyNewBusConstructed(this);
+            Service<IMediator>.Instance.NotifyNewBusCreated(this);
         }
 
-        public Guid InstanceId
+        internal Bus(IValueStructure value)
+            : base(value)
         {
-            get { return _iid; }
+            Service<IMediator>.Instance.NotifyNewBusCreated(this);
         }
 
-        public Context Context
+        #region Value & Scheduling
+        /// <summary>
+        /// Request the scheduler to set a new value to this signal in the next delta-timestep.
+        /// </summary>
+        /// <remarks>The value is not set immediately. To propagate it to the <see cref="Value"/> property
+        /// you need to simulate the model for at least one cycle or a time instant, by calling
+        /// <see cref="Scheduler.SimulateInstant"/> or <see cref="Scheduler.SimulateFor"/>.</remarks>
+        public override void PostNewValue(IValueStructure newValue)
         {
-            get { return _context; }
+            throw new NotImplementedException();
         }
 
-        public string Label
+        /// <summary>
+        /// Request the scheduler to set a new value to this signal with a specified simulation-time delay.
+        /// </summary>
+        /// <remarks>The value is not set immediately, To propagate it to the <see cref="Value"/> property
+        /// you need to simulate the model for at least at least the specified delay, by calling
+        /// <see cref="Scheduler.SimulateFor"/>.</remarks>
+        /// <param name="delay">The simulation-time delay.</param>
+        public override void PostNewValue(IValueStructure newValue, TimeSpan delay)
         {
-            get { return _label; }
-            set { _label = value; }
+            throw new NotImplementedException();
         }
+
+        // TODO: Implement Value Handling
+        #endregion
 
         #region System Builder
-        internal Guid AcceptSystemBuilderBefore(ISystemBuilder builder)
+        Guid IBus_BuilderAdapter.AcceptSystemBuilderBefore(ISystemBuilder builder)
         {
-            return builder.BuildBus(_label);
+            return builder.BuildBus(Label);
         }
-        internal void AcceptSystemBuilderAfter(ISystemBuilder builder, Dictionary<Guid, Guid> signalMappings, Dictionary<Guid, Guid> busMappings)
+        void IBus_BuilderAdapter.AcceptSystemBuilderAfter(ISystemBuilder builder, Dictionary<Guid, Guid> signalMappings, Dictionary<Guid, Guid> busMappings)
         {
         }
         #endregion
 
-        #region Instance Equality
-        /// <remarks>Two buses are equal only if they are the same instance.</remarks>
-        public bool Equals(Bus other)
+        //#region Instance Equality
+        ///// <remarks>Two buses are equal only if they are the same instance.</remarks>
+        //public bool Equals(Bus other)
+        //{
+        //    return other != null && _iid.Equals(other.InstanceId);
+        //}
+        ///// <remarks>Two buses are equal only if they are the same instance.</remarks>
+        //public override bool Equals(object obj)
+        //{
+        //    Bus other = obj as Bus;
+        //    if(other == null)
+        //        return false;
+        //    else
+        //        return _iid.Equals(other._iid);
+        //}
+        //public override int GetHashCode()
+        //{
+        //    return _iid.GetHashCode();
+        //}
+        //#endregion
+
+        #region ISchedulable Members
+
+        bool ISchedulable.HasEvent
         {
-            return other != null && _iid.Equals(other._iid);
+            get { return HasEvent; }
+            set { base.SetHasEvent(value); }
         }
-        /// <remarks>Two buses are equal only if they are the same instance.</remarks>
-        public override bool Equals(object obj)
+
+        IValueStructure ISchedulable.CurrentValue
         {
-            Bus other = obj as Bus;
-            if(other == null)
-                return false;
-            else
-                return _iid.Equals(other._iid);
+            get { return Value; }
+            set { base.SetPresentValue(value); }
         }
-        public override int GetHashCode()
+
+        void ISchedulable.NotifyOutputsNewValue()
         {
-            return _iid.GetHashCode();
+            OnValueChanged();
         }
         #endregion
     }

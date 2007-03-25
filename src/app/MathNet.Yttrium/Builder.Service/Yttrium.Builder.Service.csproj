@@ -1,0 +1,86 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{55E44945-2BB3-4BDB-8E2D-934C334D73ED}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MathNet.Symbolics</RootNamespace>
+    <AssemblyName>MathNet.Yttrium.Builder.Service</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MathNet.Iridium, Version=2006.6.3.19463, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\MathNet.Iridium\Library\bin\Release\MathNet.Iridium.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BuilderFactory.cs" />
+    <Compile Include="Builder\Builder.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Contracts\Yttrium.Contracts.csproj">
+      <Project>{8966E2C5-B1C9-44BE-8751-45DCCA3D268F}</Project>
+      <Name>Yttrium.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Library.Contracts\Yttrium.Library.Contracts.csproj">
+      <Project>{70E79678-387A-4AF6-8F64-4271CFE914BE}</Project>
+      <Name>Yttrium.Library.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Microkernel\Yttrium.Microkernel.csproj">
+      <Project>{D03B156A-D6F3-4F46-AC59-7156681F69B7}</Project>
+      <Name>Yttrium.Microkernel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Packages.Helper\Yttrium.Packages.Helper.csproj">
+      <Project>{F1B95DE1-5170-4C65-92A4-CFE69256D6E1}</Project>
+      <Name>Yttrium.Packages.Helper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Packages.Standard\Yttrium.Packages.Standard.csproj">
+      <Project>{7D33EAA2-C873-4BC0-88C5-FA350CB4B67A}</Project>
+      <Name>Yttrium.Packages.Standard</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

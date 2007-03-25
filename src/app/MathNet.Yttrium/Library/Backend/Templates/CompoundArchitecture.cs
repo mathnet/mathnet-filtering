@@ -1,22 +1,22 @@
-#region Copyright 2001-2006 Christoph Daniel Rüegg [GPL]
-//Math.NET Symbolics: Yttrium, part of Math.NET
-//Copyright (c) 2001-2006, Christoph Daniel Rueegg, http://cdrnet.net/.
-//All rights reserved.
-//This Math.NET package is available under the terms of the GPL.
-
-//This program is free software; you can redistribute it and/or modify
-//it under the terms of the GNU General Public License as published by
-//the Free Software Foundation; either version 2 of the License, or
-//(at your option) any later version.
-
-//This program is distributed in the hope that it will be useful,
-//but WITHOUT ANY WARRANTY; without even the implied warranty of
-//MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//GNU General Public License for more details.
-
-//You should have received a copy of the GNU General Public License
-//along with this program; if not, write to the Free Software
-//Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#region Math.NET Yttrium (GPL) by Christoph Ruegg
+// Math.NET Yttrium, part of the Math.NET Project
+// http://mathnet.opensourcedotnet.info
+//
+// Copyright (c) 2001-2007, Christoph Rüegg,  http://christoph.ruegg.name
+//						
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
 
 using System;
@@ -24,15 +24,16 @@ using System;
 using MathNet.Symbolics.Core;
 using MathNet.Symbolics.Backend.Containers;
 using MathNet.Symbolics.Workplace;
+using MathNet.Symbolics.Events;
 
 namespace MathNet.Symbolics.Backend.Templates
 {
     public class CompoundArchitecture : Architecture
     {
-        private MathSystem system;
-        private ISignalSet inputSignals, outputSignals;
+        private IMathSystem system;
+        private ReadOnlySignalSet inputSignals, outputSignals;
 
-        public CompoundArchitecture(MathIdentifier id, MathIdentifier entityId, Port port, MathSystem system)
+        public CompoundArchitecture(MathIdentifier id, MathIdentifier entityId, Port port, IMathSystem system)
             : base(id, entityId, false)
         {
             this.inputSignals = port.InputSignals;
@@ -43,17 +44,17 @@ namespace MathNet.Symbolics.Backend.Templates
             SetPort(port);
 
             for(int i = 0; i < inputSignals.Count; i++)
-                inputSignals[i].SignalValueChanged += CompoundArchitecture_SignalValueChanged;
+                inputSignals[i].ValueChanged += CompoundArchitecture_SignalValueChanged;
             system.PushInputValueRange(inputSignals);
         }
 
-        void CompoundArchitecture_SignalValueChanged(object sender, MathNet.Symbolics.Backend.Events.SignalEventArgs e)
+        void CompoundArchitecture_SignalValueChanged(object sender, ValueNodeEventArgs e)
         {
-            int idx = inputSignals.IndexOf(e.Signal);
+            int idx = inputSignals.IndexOf((Signal)e.ValueNode);
             system.PushInputValue(idx, inputSignals[idx].Value);
         }
 
-        void system_OutputValueChanged(object sender, MathNet.Symbolics.Backend.Events.IndexedSignalEventArgs e)
+        void system_OutputValueChanged(object sender, IndexedSignalEventArgs e)
         {
             outputSignals[e.Index].PostNewValue(e.Signal.Value);
         }
@@ -66,7 +67,7 @@ namespace MathNet.Symbolics.Backend.Templates
         public override void UnregisterArchitecture()
         {
             foreach(Signal s in inputSignals)
-                s.SignalValueChanged -= CompoundArchitecture_SignalValueChanged;
+                s.ValueChanged -= CompoundArchitecture_SignalValueChanged;
         }
 
         protected override void ReregisterArchitecture(Port oldPort, Port newPort)
@@ -74,7 +75,7 @@ namespace MathNet.Symbolics.Backend.Templates
             this.inputSignals = newPort.InputSignals;
             this.outputSignals = newPort.OutputSignals;
             for(int i = 0; i < inputSignals.Count; i++)
-                inputSignals[i].SignalValueChanged += CompoundArchitecture_SignalValueChanged;
+                inputSignals[i].ValueChanged += CompoundArchitecture_SignalValueChanged;
             system.PushInputValueRange(inputSignals);
         }
     }
@@ -100,7 +101,7 @@ namespace MathNet.Symbolics.Backend.Templates
             _architectureId = architectureId;
             _entityId = entityId;
             _xml = xml;
-            Entity dummy = MathSystem.ReadXmlEntity(xml, new MathIdentifier("Dummy", "Temp"), string.Empty);
+            IEntity dummy = MathSystem.ReadXmlEntity(xml, new MathIdentifier("Dummy", "Temp"), string.Empty);
             _inputCnt = dummy.InputSignals.Length;
             _outputCnt = dummy.OutputSignals.Length;
             _busCnt = dummy.Buses.Length;
@@ -128,10 +129,10 @@ namespace MathNet.Symbolics.Backend.Templates
             return port != null && port.InputSignalCount == _inputCnt && port.OutputSignalCount == _outputCnt && port.BusCount == _busCnt;
         }
 
-        public Architecture InstantiateToPort(Port port)
+        public IArchitecture InstantiateToPort(Port port)
         {
             if(port == null) throw new ArgumentNullException("port");
-            MathSystem system = MathSystem.ReadXml(_xml, port.Context);
+            IMathSystem system = MathSystem.ReadXml(_xml);
             return new CompoundArchitecture(_architectureId, _entityId, port, system);
         }
     }

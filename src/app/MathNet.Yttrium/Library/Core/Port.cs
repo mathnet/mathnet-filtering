@@ -1,22 +1,22 @@
-#region Copyright 2001-2006 Christoph Daniel Rüegg [GPL]
-//Math.NET Symbolics: Yttrium, part of Math.NET
-//Copyright (c) 2001-2006, Christoph Daniel Rueegg, http://cdrnet.net/.
-//All rights reserved.
-//This Math.NET package is available under the terms of the GPL.
-
-//This program is free software; you can redistribute it and/or modify
-//it under the terms of the GNU General Public License as published by
-//the Free Software Foundation; either version 2 of the License, or
-//(at your option) any later version.
-
-//This program is distributed in the hope that it will be useful,
-//but WITHOUT ANY WARRANTY; without even the implied warranty of
-//MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//GNU General Public License for more details.
-
-//You should have received a copy of the GNU General Public License
-//along with this program; if not, write to the Free Software
-//Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#region Math.NET Yttrium (GPL) by Christoph Ruegg
+// Math.NET Yttrium, part of the Math.NET Project
+// http://mathnet.opensourcedotnet.info
+//
+// Copyright (c) 2001-2007, Christoph Rüegg,  http://christoph.ruegg.name
+//						
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
 
 using System;
@@ -25,9 +25,11 @@ using System.Xml;
 
 using MathNet.Symbolics.Workplace;
 using MathNet.Symbolics.Backend;
-using MathNet.Symbolics.Backend.SystemBuilder;
 using MathNet.Symbolics.Backend.Containers;
-using MathNet.Symbolics.Backend.Traversing;
+using MathNet.Symbolics.Library;
+using MathNet.Symbolics.Traversing;
+using MathNet.Symbolics.Mediator;
+using MathNet.Symbolics.Events;
 
 namespace MathNet.Symbolics.Core
 {
@@ -35,24 +37,19 @@ namespace MathNet.Symbolics.Core
     /// Represents an Yttrium Port. Ports connect signals by operations defined
     /// in interchangeable architectures. 
     /// </summary>
-    public class Port : IContextSensitive, IEquatable<Port>
+    public class Port : MathNet.Symbolics.Port, IPort_BuilderAdapter, IPort_CycleAnalysis
     {
-        private readonly Guid _iid;
-        private readonly Context _context;
-
         private SignalSet _inputSignalSet;
         private SignalSet _outputSignalSet;
         private BusSet _busSet;
 
-        private readonly Entity _entity;
-        private Architecture _currentArchitecture;
+        private readonly IEntity _entity;
+        private IArchitecture _currentArchitecture;
         private int _tag;
         private bool _completelyConnected;
 
-        internal Port(Context context, Entity entity)
+        internal Port(IEntity entity)
         {
-            _context = context;
-            _iid = _context.GenerateInstanceId();
             _entity = entity;
 
             _inputSignalSet = new SignalSet(entity.InputSignals.Length);
@@ -61,18 +58,16 @@ namespace MathNet.Symbolics.Core
 
             _completelyConnected = _inputSignalSet.Count == 0 && _busSet.Count == 0;
 
-            context.NotifyNewPortConstructed(this);
+            Service<IMediator>.Instance.NotifyNewPortCreated(this);
 
             for(int i = 0; i < _outputSignalSet.Count; i++)
             {
-                _outputSignalSet[i] = new Signal(context);
-                _outputSignalSet[i].DriveSignal(this, i);
+                _outputSignalSet[i] = new Signal();
+                ((ISignal_Drive)_outputSignalSet[i]).DriveSignal(this, i);
             }
         }
-        internal Port(Context context, Entity entity, IEnumerable<Signal> outputSignals)
+        internal Port(IEntity entity, IEnumerable<MathNet.Symbolics.Signal> outputSignals)
         {
-            _context = context;
-            _iid = _context.GenerateInstanceId();
             _entity = entity;
 
             _inputSignalSet = new SignalSet(entity.InputSignals.Length);
@@ -81,13 +76,13 @@ namespace MathNet.Symbolics.Core
 
             System.Diagnostics.Debug.Assert(_outputSignalSet.Count == entity.OutputSignals.Length);
 
-            context.NotifyNewPortConstructed(this);
+            Service<IMediator>.Instance.NotifyNewPortCreated(this);
 
             _completelyConnected = true;
 
             for(int i = 0; i < _outputSignalSet.Count; i++)
                 if(_outputSignalSet[i] != null)
-                    _outputSignalSet[i].DriveSignal(this, i);
+                    ((ISignal_Drive)_outputSignalSet[i]).DriveSignal(this, i);
                 else
                     _completelyConnected = false;
 
@@ -97,25 +92,9 @@ namespace MathNet.Symbolics.Core
         }
 
         /// <summary>
-        /// Unique identifier of this port (and class instance).
-        /// </summary>
-        public Guid InstanceId
-        {
-            get { return _iid; }
-        }
-
-        /// <summary>
-        /// The context in which this port is defined and used.
-        /// </summary>
-        public Context Context
-        {
-            get { return _context; }
-        }
-
-        /// <summary>
         /// The entity defining this port's interface and (indirectly) its operation.
         /// </summary>
-        public Entity Entity
+        public override IEntity Entity
         {
             get { return _entity; }
         }
@@ -124,44 +103,44 @@ namespace MathNet.Symbolics.Core
         /// The architecture currently attached to this port. Architectures are
         /// interchangeable as long as they implement this port's entity.
         /// </summary>
-        public Architecture CurrentArchitecture
+        public override IArchitecture CurrentArchitecture
         {
             get { return _currentArchitecture; }
         }
 
         #region Signal Access
-        public Signal this[int outputIndex]
+        public override MathNet.Symbolics.Signal this[int outputIndex]
         {
             get { return _outputSignalSet[outputIndex]; }
         }
 
-        public int InputSignalCount
+        public override int InputSignalCount
         {
             get { return _inputSignalSet.Count; }
         }
-        public int OutputSignalCount
+        public override int OutputSignalCount
         {
             get { return _outputSignalSet.Count; }
         }
-        public int BusCount
+        public override int BusCount
         {
             get { return _busSet.Count; }
         }
 
-        public ReadOnlySignalSet InputSignals
+        public override ReadOnlySignalSet InputSignals
         {
             get { return _inputSignalSet.AsReadOnly; }
         }
-        public ReadOnlySignalSet OutputSignals
+        public override ReadOnlySignalSet OutputSignals
         {
             get { return _outputSignalSet.AsReadOnly; }
         }
-        public ReadOnlyBusSet Buses
+        public override ReadOnlyBusSet Buses
         {
             get { return _busSet.AsReadOnly; }
         }
 
-        public int IndexOfOutputSignal(Signal signal)
+        public override int IndexOfOutputSignal(MathNet.Symbolics.Signal signal)
         {
             for(int i = 0; i < _outputSignalSet.Count; i++)
                 if(_outputSignalSet[i] == signal)
@@ -171,7 +150,7 @@ namespace MathNet.Symbolics.Core
         #endregion
 
         #region Connected Signals Management
-        public bool IsCompletelyConnected
+        public override bool IsCompletelyConnected
         {
             get { return _completelyConnected; }
         }
@@ -188,14 +167,14 @@ namespace MathNet.Symbolics.Core
             return _completelyConnected;
         }
 
-        public void AddInputSignalBinding(int index, Signal signal)
+        public override void AddInputSignalBinding(int index, MathNet.Symbolics.Signal signal)
         {
             if(_inputSignalSet[index] == null)
             {
                 _inputSignalSet[index] = signal;
                 for(int i = 0; i < _outputSignalSet.Count; i++)
                     if(_outputSignalSet[i] != null)
-                        _inputSignalSet[index].AddCycles(_outputSignalSet[i], _context.GenerateTag());
+                        ((ISignal_CycleAnalysis)_inputSignalSet[index]).AddCycles(_outputSignalSet[i], Config.GenerateTag());
                 if(UpdateIsCompletelyConnected())
                     LookupAndLinkNewArchitecture();
             }
@@ -204,15 +183,16 @@ namespace MathNet.Symbolics.Core
                 _inputSignalSet[index] = signal;
                 for(int i = 0; i < _outputSignalSet.Count; i++)
                     if(_outputSignalSet[i] != null)
-                        _inputSignalSet[index].AddCycles(_outputSignalSet[i], _context.GenerateTag());
+                        ((ISignal_CycleAnalysis)_inputSignalSet[index]).AddCycles(_outputSignalSet[i], Config.GenerateTag());
                 if(_completelyConnected && _currentArchitecture != null && !_currentArchitecture.RebindToPortIfSupported(this))
                     LookupAndLinkNewArchitecture();
             }
-            _context.NotifySignalDrivesPort(signal, this, index);
+
+            Service<IMediator>.Instance.NotifySignalDrivesPort(signal, this, index);
         }
-        public void RemoveInputSignalBinding(int index)
+        public override void RemoveInputSignalBinding(int index)
         {
-            Signal signal = _inputSignalSet[index];
+            MathNet.Symbolics.Signal signal = _inputSignalSet[index];
             _inputSignalSet[index] = null;
             _completelyConnected = false;
             RemoveLinkedArchitecture();
@@ -220,18 +200,19 @@ namespace MathNet.Symbolics.Core
             {
                 for(int i = 0; i < _outputSignalSet.Count; i++)
                     if(_outputSignalSet[i] != null)
-                        signal.RemoveCycles(_outputSignalSet[i], _context.GenerateTag());
-                _context.NotifySignalNoLongerDrivesPort(signal, this, index);
+                        ((ISignal_CycleAnalysis)signal).RemoveCycles(_outputSignalSet[i], Config.GenerateTag());
+
+                Service<IMediator>.Instance.NotifySignalDrivesPortNoLonger(signal, this, index);
             }
         }
-        public void ReplaceInputSignalBinding(int index, Signal replacement)
+        public override void ReplaceInputSignalBinding(int index, MathNet.Symbolics.Signal replacement)
         {
             // TODO: could be optimized...
             RemoveInputSignalBinding(index);
             AddInputSignalBinding(index, replacement);
         }
 
-        public void AddOutputSignalBinding(int index, Signal signal)
+        public override void AddOutputSignalBinding(int index, MathNet.Symbolics.Signal signal)
         {
             if(signal == null) throw new ArgumentNullException("signal");
             if(_outputSignalSet[index] == null)
@@ -239,7 +220,7 @@ namespace MathNet.Symbolics.Core
                 _outputSignalSet[index] = signal;
                 for(int i = 0; i < _inputSignalSet.Count; i++)
                     if(_inputSignalSet[i] != null)
-                        _inputSignalSet[i].AddCycles(_outputSignalSet[index], _context.GenerateTag());
+                        ((ISignal_CycleAnalysis)_inputSignalSet[i]).AddCycles(_outputSignalSet[index], Config.GenerateTag());
                 if(UpdateIsCompletelyConnected())
                     LookupAndLinkNewArchitecture();
             }
@@ -248,15 +229,15 @@ namespace MathNet.Symbolics.Core
                 _outputSignalSet[index] = signal;
                 for(int i = 0; i < _inputSignalSet.Count; i++)
                     if(_inputSignalSet[i] != null)
-                        _inputSignalSet[i].AddCycles(_outputSignalSet[index], _context.GenerateTag());
+                        ((ISignal_CycleAnalysis)_inputSignalSet[i]).AddCycles(_outputSignalSet[index], Config.GenerateTag());
                 if(_completelyConnected && _currentArchitecture != null && !_currentArchitecture.RebindToPortIfSupported(this))
                     LookupAndLinkNewArchitecture();
             }
-            signal.DriveSignal(this, index);
+            ((ISignal_Drive)signal).DriveSignal(this, index);
         }
-        public void RemoveOutputSignalBinding(int index)
+        public override void RemoveOutputSignalBinding(int index)
         {
-            Signal signal = _outputSignalSet[index];
+            MathNet.Symbolics.Signal signal = _outputSignalSet[index];
             _outputSignalSet[index] = null;
             _completelyConnected = false;
             RemoveLinkedArchitecture();
@@ -264,18 +245,18 @@ namespace MathNet.Symbolics.Core
             {
                 for(int i = 0; i < _inputSignalSet.Count; i++)
                     if(_inputSignalSet[i] != null)
-                        _inputSignalSet[i].RemoveCycles(signal, _context.GenerateTag());
-                signal.UndriveSignal(index);
+                        ((ISignal_CycleAnalysis)_inputSignalSet[i]).RemoveCycles(signal, Config.GenerateTag());
+                ((ISignal_Drive)signal).UndriveSignal(index);
             }
         }
-        public void ReplaceOutputSignalBinding(int index, Signal replacement)
+        public override void ReplaceOutputSignalBinding(int index, MathNet.Symbolics.Signal replacement)
         {
             // TODO: could be optimized...
             RemoveOutputSignalBinding(index);
             AddOutputSignalBinding(index, replacement);
         }
 
-        public void AddBusBinding(int index, Bus bus)
+        public override void AddBusBinding(int index, MathNet.Symbolics.Bus bus)
         {
             if(_busSet[index] == null)
             {
@@ -289,25 +270,27 @@ namespace MathNet.Symbolics.Core
                 if(_completelyConnected && _currentArchitecture != null && !_currentArchitecture.RebindToPortIfSupported(this))
                     LookupAndLinkNewArchitecture();
             }
-            _context.NotifyBusAttachedToPort(bus, this, index);
+
+            Service<IMediator>.Instance.NotifyBusAttachedToPort(bus, this, index);
         }
-        public void RemoveBusBinding(int index)
+        public override void RemoveBusBinding(int index)
         {
-            Bus bus = _busSet[index];
+            MathNet.Symbolics.Bus bus = _busSet[index];
             _busSet[index] = null;
             _completelyConnected = false;
             RemoveLinkedArchitecture();
+
             if(bus != null)
-                _context.NotifyBusNoLongerAttachedToPort(bus, this, index);
+                Service<IMediator>.Instance.NotifyBusDetachedFromPort(bus, this, index);
         }
-        public void ReplaceBusBinding(int index, Bus replacement)
+        public override void ReplaceBusBinding(int index, MathNet.Symbolics.Bus replacement)
         {
             // TODO: could be optimized...
             RemoveBusBinding(index);
             AddBusBinding(index, replacement);
         }
 
-        public void RemoveAllBindings()
+        public override void RemoveAllBindings()
         {
             for(int i = 0; i < _inputSignalSet.Count; i++)
                 if(_inputSignalSet[i] != null)
@@ -323,16 +306,16 @@ namespace MathNet.Symbolics.Core
 
         #region Signal Binding
 
-        public void BindInputSignals(IEnumerable<Signal> inputSignals)
+        public override void BindInputSignals(IEnumerable<MathNet.Symbolics.Signal> inputSignals)
         {
             for(int i = 0; i < _inputSignalSet.Count; i++)
                 if(_inputSignalSet[i] != null)
                 {
-                    _context.NotifySignalNoLongerDrivesPort(_inputSignalSet[i], this, i);
+                    Service<IMediator>.Instance.NotifySignalDrivesPortNoLonger(_inputSignalSet[i], this, i);
 
-                    _inputSignalSet[i].SignalValueChanged -= Port_SignalValueChanged;
+                    _inputSignalSet[i].ValueChanged -= Port_SignalValueChanged;
                     for(int j = 0; j < _outputSignalSet.Count; j++)
-                        _inputSignalSet[i].RemoveCycles(_outputSignalSet[j], _context.GenerateTag());
+                        ((ISignal_CycleAnalysis)_inputSignalSet[i]).RemoveCycles(_outputSignalSet[j], Config.GenerateTag());
                 }
 
             _inputSignalSet.ReplaceRange(inputSignals);
@@ -340,32 +323,32 @@ namespace MathNet.Symbolics.Core
             for(int i = 0; i < _inputSignalSet.Count; i++)
                 if(_inputSignalSet[i] != null)
                 {
-                    _inputSignalSet[i].SignalValueChanged += Port_SignalValueChanged;
+                    _inputSignalSet[i].ValueChanged += Port_SignalValueChanged;
                     for(int j = 0; j < _outputSignalSet.Count; j++)
-                        _inputSignalSet[i].AddCycles(_outputSignalSet[j], _context.GenerateTag());
+                        ((ISignal_CycleAnalysis)_inputSignalSet[i]).AddCycles(_outputSignalSet[j], Config.GenerateTag());
 
-                    _context.NotifySignalDrivesPort(_inputSignalSet[i], this, i);
+                    Service<IMediator>.Instance.NotifySignalDrivesPort(_inputSignalSet[i], this, i);
                 }
 
             if(UpdateIsCompletelyConnected() && _currentArchitecture != null && !_currentArchitecture.RebindToPortIfSupported(this))
                 LookupAndLinkNewArchitecture();
         }
 
-        public void BindBuses(IEnumerable<Bus> buses)
+        public override void BindBuses(IEnumerable<MathNet.Symbolics.Bus> buses)
         {
             for(int i = 0; i < _busSet.Count; i++)
-                _context.NotifyBusNoLongerAttachedToPort(_busSet[i], this, i);
+                Service<IMediator>.Instance.NotifyBusDetachedFromPort(_busSet[i], this, i);
 
             _busSet.ReplaceRange(buses);
 
             for(int i = 0; i < _busSet.Count; i++)
-                _context.NotifyBusAttachedToPort(_busSet[i], this, i);
+                Service<IMediator>.Instance.NotifyBusAttachedToPort(_busSet[i], this, i);
 
             if(UpdateIsCompletelyConnected() && _currentArchitecture != null && !_currentArchitecture.RebindToPortIfSupported(this))
                 LookupAndLinkNewArchitecture();
         }
 
-        private void Port_SignalValueChanged(object sender, EventArgs e)
+        private void Port_SignalValueChanged(object sender, ValueNodeEventArgs e)
         {
             EnsureArchitectureLink();
         }
@@ -373,7 +356,7 @@ namespace MathNet.Symbolics.Core
 
         #region Architecture Link
 
-        public bool HasArchitectureLink
+        public override bool HasArchitectureLink
         {
             get { return _currentArchitecture != null; }
         }
@@ -383,20 +366,21 @@ namespace MathNet.Symbolics.Core
         /// and tries to find a matching architecture if not.
         /// </summary>
         /// <returns>True if there's a matching architecture linked after the call.</returns>
-        public bool EnsureArchitectureLink()
+        public override bool EnsureArchitectureLink()
         {
             bool ok = false;
+            ILibrary lib = Service<ILibrary>.Instance;
 
             if(_currentArchitecture != null && _currentArchitecture.SupportsPort(this))
                 ok = true;
-            else if(_completelyConnected && _context.Library.ContainsArchitecture(this))
+            else if(_completelyConnected && lib.ContainsArchitecture(this))
             {
                 if(_currentArchitecture != null)
                 {
                     _currentArchitecture.UnregisterArchitecture();
                     _currentArchitecture = null;
                 }
-                _currentArchitecture = _context.Library.LookupArchitecture(this).InstantiateToPort(this);
+                _currentArchitecture = lib.LookupArchitecture(this).InstantiateToPort(this);
                 ok = true;
             }
 
@@ -405,17 +389,19 @@ namespace MathNet.Symbolics.Core
 
         private bool LookupAndLinkNewArchitecture()
         {
-            if(_context.Library.ContainsArchitecture(this))
+            ILibrary lib = Service<ILibrary>.Instance;
+
+            if(lib.ContainsArchitecture(this))
             {
                 RemoveLinkedArchitecture();
-                _currentArchitecture = _context.Library.LookupArchitecture(this).InstantiateToPort(this);
+                _currentArchitecture = lib.LookupArchitecture(this).InstantiateToPort(this);
                 return true;
             }
             else
                 return false;
         }
 
-        public void RemoveLinkedArchitecture()
+        public override void RemoveLinkedArchitecture()
         {
             if(_currentArchitecture != null)
             {
@@ -426,17 +412,17 @@ namespace MathNet.Symbolics.Core
         #endregion
 
         #region Dependency Analysis
-        public bool DependsOn(Signal signal)
+        public override bool DependsOn(MathNet.Symbolics.Signal signal)
         {
-            return Scanner.ExistsSignal(this, signal.Equals, true);
+            return Service<IScanner>.Instance.ExistsSignal(this, signal.Equals, true);
         }
-        public bool DependsOn(Port port)
+        public override bool DependsOn(MathNet.Symbolics.Port port)
         {
-            return Scanner.ExistsPort(this, port.Equals, true);
+            return Service<IScanner>.Instance.ExistsPort(this, port.Equals, true);
         }
-        public bool DependsOn(MathIdentifier portEntity)
+        public override bool DependsOn(MathIdentifier portEntity)
         {
-            return Scanner.ExistsPort(this, delegate(Port p) { return p.Entity.EntityId.Equals(portEntity); }, true);
+            return Service<IScanner>.Instance.ExistsPort(this, delegate(MathNet.Symbolics.Port p) { return p.Entity.EntityId.Equals(portEntity); }, true);
         }
         #endregion
 
@@ -446,7 +432,7 @@ namespace MathNet.Symbolics.Core
 
         /// <summary>Set the tag.</summary>
         /// <returns>True if it was already tagged with this tag.</returns>
-        internal bool TagWasTagged(int tag)
+        bool IPort_CycleAnalysis.TagWasTagged(int tag)
         {
             if(_tag == tag)
                 return true;
@@ -454,42 +440,37 @@ namespace MathNet.Symbolics.Core
             return false;
         }
         /// <summary>Remove the tag.</summary>
-        internal void DeTag(int tag)
+        void IPort_CycleAnalysis.DeTag(int tag)
         {
             if(_tag == tag)
                 _tag++;
         }
         #endregion
 
-        public Port CloneWithNewInputs(IList<Signal> newInputs)
+        public override MathNet.Symbolics.Port CloneWithNewInputs(IList<MathNet.Symbolics.Signal> newInputs)
         {
-            return _entity.InstantiatePort(_context, newInputs);
+            return _entity.InstantiatePort(newInputs);
         }
 
         #region System Builder
-        internal Guid AcceptSystemBuilder(ISystemBuilder builder, Dictionary<Guid, Guid> signalMappings, Dictionary<Guid, Guid> busMappings)
+        Guid IPort_BuilderAdapter.AcceptSystemBuilder(ISystemBuilder builder, Dictionary<Guid, Guid> signalMappings, Dictionary<Guid, Guid> busMappings)
         {
             return builder.BuildPort(_entity.EntityId,
-                MapSignals(_inputSignalSet, signalMappings),
-                MapSignals(_outputSignalSet, signalMappings),
-                MapBuses(_busSet, busMappings));
+                BuilderMapSignals(_inputSignalSet, signalMappings),
+                BuilderMapSignals(_outputSignalSet, signalMappings),
+                BuilderMapBuses(_busSet, busMappings));
         }
-        private InstanceIdSet MapSignals(SignalSet signals, Dictionary<Guid, Guid> signalMappings)
+        private InstanceIdSet BuilderMapSignals(SignalSet signals, Dictionary<Guid, Guid> signalMappings)
         {
-            return signals.ConvertAllToInstanceIds(delegate(Signal s) { return signalMappings[s.InstanceId]; });
+            return signals.ConvertAllToInstanceIds(delegate(MathNet.Symbolics.Signal s) { return signalMappings[s.InstanceId]; });
         }
-        private InstanceIdSet MapBuses(BusSet buses, Dictionary<Guid, Guid> busMappings)
+        private InstanceIdSet BuilderMapBuses(BusSet buses, Dictionary<Guid, Guid> busMappings)
         {
-            return buses.ConvertAllToInstanceIds(delegate(Bus b) { return busMappings[b.InstanceId]; });
+            return buses.ConvertAllToInstanceIds(delegate(MathNet.Symbolics.Bus b) { return busMappings[b.InstanceId]; });
         }
         #endregion
 
         #region Instance Equality
-        /// <remarks>Two ports are equal only if they are the same instance.</remarks>
-        public bool Equals(Port other)
-        {
-            return other != null && _iid.Equals(other._iid);
-        }
         /// <remarks>Two ports are equal only if they are the same instance.</remarks>
         public override bool Equals(object obj)
         {
@@ -497,11 +478,11 @@ namespace MathNet.Symbolics.Core
             if(other == null)
                 return false;
             else
-                return _iid.Equals(other._iid);
+                return InstanceId.Equals(other.InstanceId);
         }
         public override int GetHashCode()
         {
-            return _iid.GetHashCode();
+            return InstanceId.GetHashCode();
         }
         #endregion
 

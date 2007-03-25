@@ -1,0 +1,77 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B273E022-E5DC-4FEE-8B70-FD9AF6A9BF6C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MathNet.Symbolics</RootNamespace>
+    <AssemblyName>MathNet.Yttrium.Manipulation.Contracts</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MathNet.Iridium, Version=2006.6.3.19463, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\MathNet.Iridium\Library\bin\Release\MathNet.Iridium.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Manipulation\BasicManipulationVisitor.cs" />
+    <Compile Include="Manipulation\BasicTransformation.cs" />
+    <Compile Include="Manipulation\Delegates.cs" />
+    <Compile Include="Manipulation\IManipulationVisitor.cs" />
+    <Compile Include="Manipulation\IManipulator.cs" />
+    <Compile Include="Manipulation\ITransformationTheorem.cs" />
+    <Compile Include="Manipulation\ITransformationTheoremProvider.cs" />
+    <Compile Include="Manipulation\ITransformer.cs" />
+    <Compile Include="Manipulation\ManipulationPlan.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Contracts\Yttrium.Contracts.csproj">
+      <Project>{8966E2C5-B1C9-44BE-8751-45DCCA3D268F}</Project>
+      <Name>Yttrium.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Library.Contracts\Yttrium.Library.Contracts.csproj">
+      <Project>{70E79678-387A-4AF6-8F64-4271CFE914BE}</Project>
+      <Name>Yttrium.Library.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Patterns.Toolkit\Yttrium.Patterns.Toolkit.csproj">
+      <Project>{6AAA89AE-90D5-496B-9EBD-5274C662C147}</Project>
+      <Name>Yttrium.Patterns.Toolkit</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Traversing.Contracts\Yttrium.Traversing.Contracts.csproj">
+      <Project>{191C1DF6-DDD9-4CFB-B459-3FA3FC421AC8}</Project>
+      <Name>Yttrium.Traversing.Contracts</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

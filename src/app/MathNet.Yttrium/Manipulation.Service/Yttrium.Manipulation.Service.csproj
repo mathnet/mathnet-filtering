@@ -1,0 +1,81 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4927027C-5A8B-41ED-B680-84C656A98031}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MathNet.Symbolics</RootNamespace>
+    <AssemblyName>MathNet.Yttrium.Manipulation.Service</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MathNet.Iridium, Version=2006.6.3.19463, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\MathNet.Iridium\Library\bin\Release\MathNet.Iridium.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Manipulation\Manipulator.cs" />
+    <Compile Include="Manipulation\TransformationManipulationVisitor.cs" />
+    <Compile Include="Manipulation\TransformationTheoremProvider.cs" />
+    <Compile Include="ManipulationFactory.cs" />
+    <Compile Include="Manipulation\Transformer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Contracts\Yttrium.Contracts.csproj">
+      <Project>{8966E2C5-B1C9-44BE-8751-45DCCA3D268F}</Project>
+      <Name>Yttrium.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Library.Contracts\Yttrium.Library.Contracts.csproj">
+      <Project>{70E79678-387A-4AF6-8F64-4271CFE914BE}</Project>
+      <Name>Yttrium.Library.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Manipulation.Contracts\Yttrium.Manipulation.Contracts.csproj">
+      <Project>{B273E022-E5DC-4FEE-8B70-FD9AF6A9BF6C}</Project>
+      <Name>Yttrium.Manipulation.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Microkernel\Yttrium.Microkernel.csproj">
+      <Project>{D03B156A-D6F3-4F46-AC59-7156681F69B7}</Project>
+      <Name>Yttrium.Microkernel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Patterns.Toolkit\Yttrium.Patterns.Toolkit.csproj">
+      <Project>{6AAA89AE-90D5-496B-9EBD-5274C662C147}</Project>
+      <Name>Yttrium.Patterns.Toolkit</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Traversing.Contracts\Yttrium.Traversing.Contracts.csproj">
+      <Project>{191C1DF6-DDD9-4CFB-B459-3FA3FC421AC8}</Project>
+      <Name>Yttrium.Traversing.Contracts</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

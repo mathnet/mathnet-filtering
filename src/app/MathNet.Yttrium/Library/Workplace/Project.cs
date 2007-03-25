@@ -1,22 +1,22 @@
-#region Copyright 2001-2006 Christoph Daniel Rüegg [GPL]
-//Math.NET Symbolics: Yttrium, part of Math.NET
-//Copyright (c) 2001-2006, Christoph Daniel Rueegg, http://cdrnet.net/.
-//All rights reserved.
-//This Math.NET package is available under the terms of the GPL.
-
-//This program is free software; you can redistribute it and/or modify
-//it under the terms of the GNU General Public License as published by
-//the Free Software Foundation; either version 2 of the License, or
-//(at your option) any later version.
-
-//This program is distributed in the hope that it will be useful,
-//but WITHOUT ANY WARRANTY; without even the implied warranty of
-//MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//GNU General Public License for more details.
-
-//You should have received a copy of the GNU General Public License
-//along with this program; if not, write to the Free Software
-//Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#region Math.NET Yttrium (GPL) by Christoph Ruegg
+// Math.NET Yttrium, part of the Math.NET Project
+// http://mathnet.opensourcedotnet.info
+//
+// Copyright (c) 2001-2007, Christoph Rüegg,  http://christoph.ruegg.name
+//						
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+// 
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
 
 using System;
@@ -25,54 +25,43 @@ using System.Reflection;
 
 using MathNet.Symbolics.Core;
 using MathNet.Symbolics.Backend;
-using MathNet.Symbolics.Backend.Discovery;
-using MathNet.Symbolics.Backend.Events;
-using MathNet.Symbolics.Backend.Parsing;
-using MathNet.Symbolics.Backend.Channels;
+using MathNet.Symbolics.Interpreter;
+using MathNet.Symbolics.Library;
+using MathNet.Symbolics.Mediator;
+using MathNet.Symbolics.Events;
+using MathNet.Symbolics.Simulation;
 
 namespace MathNet.Symbolics.Workplace
 {
-    public class Project : IContextSensitive
+    public class Project : IObserver
     {
-        private readonly Context _context;
         private bool _keepTrack; // = false;
         private MathSystem _currentSystem;
         private Dictionary<Guid, MathSystem> _namedSystems;
         private List<ISystemObserver> _localObservers;
-        private Parser _parser;
+        private IParser _parser;
+        private IMediator _mediator;
 
         public event EventHandler SystemLoaded;
 
-        public Project() : this(new Context()) { }
-        public Project(Context context)
+        public Project()
         {
-            _context = context;
-            _context.Library.LoadPackageManager(new MathNet.Symbolics.StdPackage.StdPackageManager(context));
+            Service<IPackageLoader>.Instance.LoadDefaultPackages();
 
             _namedSystems = new Dictionary<Guid, MathSystem>();
             _localObservers = new List<ISystemObserver>();
-            _parser = new Parser();
+            _parser = Service<IParser>.Instance;
+            _mediator = Service<IMediator>.Instance;
             MathSystem sys = AddSystem();
             LoadSystem(sys.InstanceId);
         }
 
         #region Properties
-        public Context Context
-        {
-            get { return _context; }
-        }
-
-        public Builder Builder
-        {
-            get { return _context.Builder; }
-        }
-
-        public Parser Parser
+        public IParser Parser
         {
             get { return _parser; }
         }
 
-        [Obsolete]
         public bool KeepTrack
         {
             get { return _keepTrack; }
@@ -80,29 +69,13 @@ namespace MathNet.Symbolics.Workplace
             {
                 if(value && !_keepTrack)
                 {
-                    _context.OnNewSignalConstructed += context_OnNewSignalConstructed;
-                    _context.OnNewPortConstructed += context_OnNewPortConstructed;
-                    _context.OnNewBusConstructed += context_OnNewBusConstructed;
-                    _context.OnSignalDrivenByPort += context_OnSignalDrivenByPort;
-                    _context.OnSignalDrivesPort += context_OnSignalDrivesPort;
-                    _context.OnSignalNoLongerDrivenByPort += context_OnSignalNoLongerDrivenByPort;
-                    _context.OnSignalNoLongerDrivesPort += context_OnSignalNoLongerDrivesPort;
-                    _context.OnBusAttachedToPort += context_OnBusAttachedToPort;
-                    _context.OnBusNoLongerAttachedToPort += context_OnBusNoLongerAttachedToPort;
+                    _mediator.AttachObserver(this);
                     _keepTrack = true;
                 }
                 else if(!value && _keepTrack)
                 {
                     _keepTrack = false;
-                    _context.OnNewSignalConstructed -= context_OnNewSignalConstructed;
-                    _context.OnNewPortConstructed -= context_OnNewPortConstructed;
-                    _context.OnNewBusConstructed -= context_OnNewBusConstructed;
-                    _context.OnSignalDrivenByPort -= context_OnSignalDrivenByPort;
-                    _context.OnSignalDrivesPort -= context_OnSignalDrivesPort;
-                    _context.OnSignalNoLongerDrivenByPort -= context_OnSignalNoLongerDrivenByPort;
-                    _context.OnSignalNoLongerDrivesPort -= context_OnSignalNoLongerDrivesPort;
-                    _context.OnBusAttachedToPort -= context_OnBusAttachedToPort;
-                    _context.OnBusNoLongerAttachedToPort -= context_OnBusNoLongerAttachedToPort;
+                    _mediator.DetachObserver(this);
                 }
             }
         }
@@ -117,14 +90,14 @@ namespace MathNet.Symbolics.Workplace
         #region System Management
         public void ImportSystem(MathSystem system)
         {
-            if(!system.HasMediator)
-                system.Mediator = new Mediator();
+            if(!system.HasSystemMediator)
+                system.SystemMediator = Binder.GetInstance<ISystemMediator>();
             _namedSystems.Add(system.InstanceId, system);
         }
         public MathSystem AddSystem()
         {
-            MathSystem system = new MathSystem(_context);
-            system.Mediator = new Mediator();
+            MathSystem system = new MathSystem();
+            system.SystemMediator = Binder.GetInstance<ISystemMediator>();
             _namedSystems.Add(system.InstanceId, system);
             return system;
         }
@@ -141,11 +114,11 @@ namespace MathNet.Symbolics.Workplace
         {
             _currentSystem = system;
 
-            if(!system.HasMediator)
-                system.Mediator = new Mediator();
+            if(!system.HasSystemMediator)
+                system.SystemMediator = Binder.GetInstance<ISystemMediator>();
 
             foreach(ISystemObserver observer in _localObservers)
-                system.Mediator.AttachObserver(observer);
+                system.SystemMediator.AttachObserver(observer);
 
             if(SystemLoaded != null)
                 SystemLoaded(this, EventArgs.Empty);
@@ -156,7 +129,7 @@ namespace MathNet.Symbolics.Workplace
                 return;
 
             foreach(ISystemObserver observer in _localObservers)
-                _currentSystem.Mediator.DetachObserver(observer);
+                _currentSystem.SystemMediator.DetachObserver(observer);
 
             _currentSystem = null;
         }
@@ -171,29 +144,30 @@ namespace MathNet.Symbolics.Workplace
         {
             _localObservers.Add(observer);
             if(_currentSystem != null)
-                _currentSystem.Mediator.AttachObserver(observer);
+                _currentSystem.SystemMediator.AttachObserver(observer);
         }
         public void DetachLocalObserver(ISystemObserver observer)
         {
             _localObservers.Remove(observer);
             if(_currentSystem != null)
-                _currentSystem.Mediator.DetachObserver(observer);
+                _currentSystem.SystemMediator.DetachObserver(observer);
         }
         #endregion
 
-        public void PostCommand(ICommand command)
-        {
-            _currentSystem.Mediator.PostCommand(command);
-        }
+        //public void PostCommand(MathNet.Symbolics.Backend.Channels.ICommand command)
+        //{
+        //    // TODO: UNCOMMENT
+        //    //_currentSystem.SystemMediator.PostCommand(command);
+        //}
 
-        public void LoadPackage(Assembly assembly)
-        {
-            _context.Library.LoadAssembly(assembly);
-        }
-        public void LoadPackage(IPackageManager manager)
-        {
-            _context.Library.LoadPackageManager(manager);
-        }
+        //public void LoadPackage(Assembly assembly)
+        //{
+        //    _context.Library.LoadAssembly(assembly);
+        //}
+        //public void LoadPackage(IPackageManager manager)
+        //{
+        //    ((Library)_context.Library).LoadPackageManager(manager);
+        //}
 
         #region Interpreter
         public void Interpret(string expressions)
@@ -214,7 +188,7 @@ namespace MathNet.Symbolics.Workplace
         /// <returns>True if there were any events available.</returns>
         public bool SimulateInstant()
         {
-            return _context.Scheduler.SimulateInstant();
+            return Service<ISimulationMediator>.Instance.SimulateInstant();
         }
         /// <param name="timespan">The time (in simulation time space) to simulate.</param>
         /// <returns>
@@ -223,61 +197,72 @@ namespace MathNet.Symbolics.Workplace
         /// </returns>
         public TimeSpan SimulateFor(TimeSpan timespan)
         {
-            return _context.Scheduler.SimulateFor(timespan);
+            return Service<ISimulationMediator>.Instance.SimulateFor(timespan);
         }
         /// <param name="cycles">The number of cycles to simulate.</param>
         /// <returns>Simulated time.</returns>
         public TimeSpan SimulateFor(int cycles)
         {
-            return _context.Scheduler.SimulateFor(cycles);
+            return Service<ISimulationMediator>.Instance.SimulateFor(cycles);
         }
         #endregion
 
-        #region Tracking (Obsolete, to be removed!)
-        void context_OnNewPortConstructed(object sender, PortEventArgs e)
+        #region IObserver Members
+
+        void IObserver.OnNewSignalCreated(Signal signal)
+        {
+            _currentSystem.AddSignal(signal);
+        }
+
+        void IObserver.OnNewPortCreated(Port port)
+        {
+            _currentSystem.AddPort(port);
+        }
+
+        void IObserver.OnNewBusCreated(Bus bus)
+        {
+            _currentSystem.AddBus(bus);
+        }
+
+        void IObserver.OnPortDrivesSignal(Signal signal, Port port, int outputIndex)
+        {
+            _currentSystem.AddSignalTree(signal, false, true);
+            _currentSystem.UnpromoteAsInput(signal);
+        }
+
+        void IObserver.OnPortDrivesSignalNoLonger(Signal signal, Port port, int outputIndex)
+        {
+            _currentSystem.PromoteAsInput(signal);
+        }
+
+        void IObserver.OnSignalDrivesPort(Signal signal, Port port, int inputIndex)
+        {
+            _currentSystem.AddSignal(signal);
+            _currentSystem.AddPortTree(port, false, true);
+        }
+
+        void IObserver.OnSignalDrivesPortNoLonger(Signal signal, Port port, int inputIndex)
         {
         }
 
-        void context_OnNewSignalConstructed(object sender, SignalEventArgs e)
+        void IObserver.OnBusAttachedToPort(Bus bus, Port port, int busIndex)
         {
-            _currentSystem.AddSignal(e.Signal);
+            _currentSystem.AddBus(bus);
+            _currentSystem.AddPortTree(port, false, true);
         }
 
-        void context_OnNewBusConstructed(object sender, BusEventArgs e)
-        {
-            _currentSystem.AddBus(e.Bus);
-        }
-
-        void context_OnBusNoLongerAttachedToPort(object sender, BusPortIndexEventArgs e)
+        void IObserver.OnBusDetachedFromPort(Bus bus, Port port, int busIndex)
         {
         }
 
-        void context_OnBusAttachedToPort(object sender, BusPortIndexEventArgs e)
-        {
-            _currentSystem.AddBus(e.Bus);
-            _currentSystem.AddPortTree(e.Port, false, true);
-        }
-
-        void context_OnSignalNoLongerDrivesPort(object sender, SignalPortIndexEventArgs e)
+        void IObserver.OnSignalValueChanged(Signal signal)
         {
         }
 
-        void context_OnSignalNoLongerDrivenByPort(object sender, SignalPortIndexEventArgs e)
+        void IObserver.OnBusValueChanged(Bus bus)
         {
-            _currentSystem.PromoteAsInput(e.Signal);
         }
 
-        void context_OnSignalDrivesPort(object sender, SignalPortIndexEventArgs e)
-        {
-            _currentSystem.AddSignal(e.Signal);
-            _currentSystem.AddPortTree(e.Port, false, true);
-        }
-
-        void context_OnSignalDrivenByPort(object sender, SignalPortIndexEventArgs e)
-        {
-            _currentSystem.AddSignalTree(e.Signal, false, true);
-            _currentSystem.UnpromoteAsInput(e.Signal);
-        }
         #endregion
     }
 }
