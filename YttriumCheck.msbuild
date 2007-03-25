@@ -21,7 +21,8 @@
 		<Copy SourceFiles="@(ConfigFiles)" DestinationFolder="D:\integration\Math.NET\Yttrium\work"/>
 		
 		<!--<Exec WorkingDirectory="..\Yttrium\work" Command="ncover.console.exe &quot;nunit-console.exe&quot; /nologo /noshadow /xml=..\artifact\nunit-result.xml %(NUnitTargetTest.Filename).dll //x ..\artifact\ncover-result.xml //a @(NCoverTargets->'%(filename)',';')" ContinueOnError="false"/>-->
-		<Exec WorkingDirectory="..\Yttrium\work" Command="ncover.console.exe &quot;nunit-console.exe&quot; /nologo /noshadow /xml=..\artifact\nunit-result.xml Yttrium.Test.dll //x ..\artifact\ncover-result.xml //a @(NCoverTargets->'%(filename)',';')" ContinueOnError="false"/>
+		<!--<Exec WorkingDirectory="..\Yttrium\work" Command="ncover.console.exe &quot;nunit-console.exe&quot; /nologo /noshadow /xml=..\artifact\nunit-result.xml Yttrium.Test.dll //x ..\artifact\ncover-result.xml //a @(NCoverTargets->'%(filename)',';')" ContinueOnError="false"/>-->
+		<Exec WorkingDirectory="..\Yttrium\work" Command="nunit-console.exe /nologo /noshadow /xml=..\artifact\nunit-result.xml Yttrium.Test.dll" ContinueOnError="false"/>
 		
 	</Target>
 </Project>
