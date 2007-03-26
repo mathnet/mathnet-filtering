@@ -35,11 +35,11 @@ namespace MathNet.Symbolics
     {
         //private static ILog log;
 
-        static Config()
-        {
-            //log4net.Config.XmlConfigurator.Configure();
-            //log = LogManager.GetLogger("yttrium");
-        }
+        //static Config()
+        //{
+        //    //log4net.Config.XmlConfigurator.Configure();
+        //    //log = LogManager.GetLogger("yttrium");
+        //}
 
         public static string YttriumNamespace
         {
@@ -54,6 +54,11 @@ namespace MathNet.Symbolics
         public static Encoding InternalEncoding
         {
             get { return Encoding.Unicode; }
+        }
+
+        public static CultureInfo UserCulture
+        {
+            get { return CultureInfo.CurrentCulture; }
         }
 
         public static CultureInfo InternalCulture
@@ -80,7 +85,7 @@ namespace MathNet.Symbolics
 
 
         private static Random _random = new Random();
-        [Obsolete] 
+        [Obsolete("Any tagging algorithm should be replaced with something that doesn't involve tagging. Consider using the Traversing Module instead.")] 
         public static int GenerateTag()
         {
             // TODO: Get rid of the outdated tagging subsystem

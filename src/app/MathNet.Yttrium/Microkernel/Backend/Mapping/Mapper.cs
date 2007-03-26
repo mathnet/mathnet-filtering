@@ -25,6 +25,7 @@ using System.Text;
 using System.Reflection;
 
 using MathNet.Symbolics.Exceptions;
+using MathNet.Symbolics.Properties;
 
 namespace MathNet.Symbolics.Backend.Mapping
 {
@@ -45,7 +46,8 @@ namespace MathNet.Symbolics.Backend.Mapping
             object factory;
 
             if(!_factoryByType.TryGetValue(typeName, out factory))
-                throw new MicrokernelException("Unknown binding type '" + typeName + "'. Can't get a factory.");
+                throw new MicrokernelException(
+                    string.Format(Config.UserCulture, Resources.BindingUnknownType, typeName));
 
             return factory;
         }
@@ -55,7 +57,8 @@ namespace MathNet.Symbolics.Backend.Mapping
             object factory;
 
             if(!_factoryById.TryGetValue(id, out factory))
-                throw new MicrokernelException("Unknown binding id '" + id.ToString() + "'. Can't get a factory.");
+                throw new MicrokernelException(
+                    string.Format(Config.UserCulture, Resources.BindingUnknownId, id.ToString()));
 
             return factory;
         }
@@ -88,56 +91,64 @@ namespace MathNet.Symbolics.Backend.Mapping
         {
             IFactory<T, T1> factory = LookupFactory(typeof(T)) as IFactory<T, T1>;
             if(factory == null)
-                throw new MicrokernelException("Wrong parameter types. Can't get a factory for " + typeof(T).FullName);
+                throw new MicrokernelException(
+                    string.Format(Config.UserCulture, Resources.BindingWrongTypeParameters, typeof(T).FullName));
             return factory;
         }
         public IFactory<T, T1, T2> GetFactory<T, T1, T2>()
         {
             IFactory<T, T1, T2> factory = LookupFactory(typeof(T)) as IFactory<T, T1, T2>;
             if(factory == null)
-                throw new MicrokernelException("Wrong parameter types. Can't get a factory for " + typeof(T).FullName);
+                throw new MicrokernelException(
+                    string.Format(Config.UserCulture, Resources.BindingWrongTypeParameters, typeof(T).FullName));
             return factory;
         }
         public IFactory<T, T1, T2, T3> GetFactory<T, T1, T2, T3>()
         {
             IFactory<T, T1, T2, T3> factory = LookupFactory(typeof(T)) as IFactory<T, T1, T2, T3>;
             if(factory == null)
-                throw new MicrokernelException("Wrong parameter types. Can't get a factory for " + typeof(T).FullName);
+                throw new MicrokernelException(
+                    string.Format(Config.UserCulture, Resources.BindingWrongTypeParameters, typeof(T).FullName));
             return factory;
         }
         public IFactory<T, T1, T2, T3, T4> GetFactory<T, T1, T2, T3, T4>()
         {
             IFactory<T, T1, T2, T3, T4> factory = LookupFactory(typeof(T)) as IFactory<T, T1, T2, T3, T4>;
             if(factory == null)
-                throw new MicrokernelException("Wrong parameter types. Can't get a factory for " + typeof(T).FullName);
+                throw new MicrokernelException(
+                    string.Format(Config.UserCulture, Resources.BindingWrongTypeParameters, typeof(T).FullName));
             return factory;
         }
         public IFactory<T, T1, T2, T3, T4, T5> GetFactory<T, T1, T2, T3, T4, T5>()
         {
             IFactory<T, T1, T2, T3, T4, T5> factory = LookupFactory(typeof(T)) as IFactory<T, T1, T2, T3, T4, T5>;
             if(factory == null)
-                throw new MicrokernelException("Wrong parameter types. Can't get a factory for " + typeof(T).FullName);
+                throw new MicrokernelException(
+                    string.Format(Config.UserCulture, Resources.BindingWrongTypeParameters, typeof(T).FullName));
             return factory;
         }
         public IFactory<T, T1, T2, T3, T4, T5, T6> GetFactory<T, T1, T2, T3, T4, T5, T6>()
         {
             IFactory<T, T1, T2, T3, T4, T5, T6> factory = LookupFactory(typeof(T)) as IFactory<T, T1, T2, T3, T4, T5, T6>;
             if(factory == null)
-                throw new MicrokernelException("Wrong parameter types. Can't get a factory for " + typeof(T).FullName);
+                throw new MicrokernelException(
+                    string.Format(Config.UserCulture, Resources.BindingWrongTypeParameters, typeof(T).FullName));
             return factory;
         }
         public IFactory<T, T1, T2, T3, T4, T5, T6, T7> GetFactory<T, T1, T2, T3, T4, T5, T6, T7>()
         {
             IFactory<T, T1, T2, T3, T4, T5, T6, T7> factory = LookupFactory(typeof(T)) as IFactory<T, T1, T2, T3, T4, T5, T6, T7>;
             if(factory == null)
-                throw new MicrokernelException("Wrong parameter types. Can't get a factory for " + typeof(T).FullName);
+                throw new MicrokernelException(
+                    string.Format(Config.UserCulture, Resources.BindingWrongTypeParameters, typeof(T).FullName));
             return factory;
         }
         public IFactory<T, T1, T2, T3, T4, T5, T6, T7, T8> GetFactory<T, T1, T2, T3, T4, T5, T6, T7, T8>()
         {
             IFactory<T, T1, T2, T3, T4, T5, T6, T7, T8> factory = LookupFactory(typeof(T)) as IFactory<T, T1, T2, T3, T4, T5, T6, T7, T8>;
             if(factory == null)
-                throw new MicrokernelException("Wrong parameter types. Can't get a factory for " + typeof(T).FullName);
+                throw new MicrokernelException(
+                    string.Format(Config.UserCulture, Resources.BindingWrongTypeParameters, typeof(T).FullName));
             return factory;
         }
 
@@ -145,56 +156,64 @@ namespace MathNet.Symbolics.Backend.Mapping
         {
             IFactory<T, T1> factory = LookupFactory(id) as IFactory<T, T1>;
             if(factory == null)
-                throw new MicrokernelException("Wrong parameter types. Can't get a factory for " + typeof(T).FullName);
+                throw new MicrokernelException(
+                    string.Format(Config.UserCulture, Resources.BindingWrongTypeParameters, typeof(T).FullName));
             return factory;
         }
         public IFactory<T, T1, T2> GetFactory<T, T1, T2>(MathIdentifier id)
         {
             IFactory<T, T1, T2> factory = LookupFactory(id) as IFactory<T, T1, T2>;
             if(factory == null)
-                throw new MicrokernelException("Wrong parameter types. Can't get a factory for " + typeof(T).FullName);
+                throw new MicrokernelException(
+                    string.Format(Config.UserCulture, Resources.BindingWrongTypeParameters, typeof(T).FullName));
             return factory;
         }
         public IFactory<T, T1, T2, T3> GetFactory<T, T1, T2, T3>(MathIdentifier id)
         {
             IFactory<T, T1, T2, T3> factory = LookupFactory(id) as IFactory<T, T1, T2, T3>;
             if(factory == null)
-                throw new MicrokernelException("Wrong parameter types. Can't get a factory for " + typeof(T).FullName);
+                throw new MicrokernelException(
+                    string.Format(Config.UserCulture, Resources.BindingWrongTypeParameters, typeof(T).FullName));
             return factory;
         }
         public IFactory<T, T1, T2, T3, T4> GetFactory<T, T1, T2, T3, T4>(MathIdentifier id)
         {
             IFactory<T, T1, T2, T3, T4> factory = LookupFactory(id) as IFactory<T, T1, T2, T3, T4>;
             if(factory == null)
-                throw new MicrokernelException("Wrong parameter types. Can't get a factory for " + typeof(T).FullName);
+                throw new MicrokernelException(
+                    string.Format(Config.UserCulture, Resources.BindingWrongTypeParameters, typeof(T).FullName));
             return factory;
         }
         public IFactory<T, T1, T2, T3, T4, T5> GetFactory<T, T1, T2, T3, T4, T5>(MathIdentifier id)
         {
             IFactory<T, T1, T2, T3, T4, T5> factory = LookupFactory(id) as IFactory<T, T1, T2, T3, T4, T5>;
             if(factory == null)
-                throw new MicrokernelException("Wrong parameter types. Can't get a factory for " + typeof(T).FullName);
+                throw new MicrokernelException(
+                    string.Format(Config.UserCulture, Resources.BindingWrongTypeParameters, typeof(T).FullName));
             return factory;
         }
         public IFactory<T, T1, T2, T3, T4, T5, T6> GetFactory<T, T1, T2, T3, T4, T5, T6>(MathIdentifier id)
         {
             IFactory<T, T1, T2, T3, T4, T5, T6> factory = LookupFactory(id) as IFactory<T, T1, T2, T3, T4, T5, T6>;
             if(factory == null)
-                throw new MicrokernelException("Wrong parameter types. Can't get a factory for " + typeof(T).FullName);
+                throw new MicrokernelException(
+                    string.Format(Config.UserCulture, Resources.BindingWrongTypeParameters, typeof(T).FullName));
             return factory;
         }
         public IFactory<T, T1, T2, T3, T4, T5, T6, T7> GetFactory<T, T1, T2, T3, T4, T5, T6, T7>(MathIdentifier id)
         {
             IFactory<T, T1, T2, T3, T4, T5, T6, T7> factory = LookupFactory(id) as IFactory<T, T1, T2, T3, T4, T5, T6, T7>;
             if(factory == null)
-                throw new MicrokernelException("Wrong parameter types. Can't get a factory for " + typeof(T).FullName);
+                throw new MicrokernelException(
+                    string.Format(Config.UserCulture, Resources.BindingWrongTypeParameters, typeof(T).FullName));
             return factory;
         }
         public IFactory<T, T1, T2, T3, T4, T5, T6, T7, T8> GetFactory<T, T1, T2, T3, T4, T5, T6, T7, T8>(MathIdentifier id)
         {
             IFactory<T, T1, T2, T3, T4, T5, T6, T7, T8> factory = LookupFactory(id) as IFactory<T, T1, T2, T3, T4, T5, T6, T7, T8>;
             if(factory == null)
-                throw new MicrokernelException("Wrong parameter types. Can't get a factory for " + typeof(T).FullName);
+                throw new MicrokernelException(
+                    string.Format(Config.UserCulture, Resources.BindingWrongTypeParameters, typeof(T).FullName));
             return factory;
         }
         #endregion
@@ -227,7 +246,7 @@ namespace MathNet.Symbolics.Backend.Mapping
                 {// usually a bad practice to repack exceptions,
                     // but since TypeLoadException isn't that helpful, this will help the users more:
                     throw new MicrokernelException(
-                        string.Format("Failed to load the contract for the Math.NET Yttrium module {0} ({1}). It was expected at: '{2}'. You may want to check the mapping configuration file (usually yttrium.mapping.config).", binding.comment, binding.id, binding.contractType), e);
+                        string.Format(Config.UserCulture, Resources.BindingContractLoadFailed, binding.comment, binding.id, binding.contractType), e);
                 }
                 object factory;
                 if(!factoryCache.TryGetValue(binding.factoryType, out factory))
@@ -242,7 +261,7 @@ namespace MathNet.Symbolics.Backend.Mapping
                         // usually a bad practice to repack exceptions,
                         // but since TypeLoadException isn't that helpful, this will help the users more:
                         throw new MicrokernelException(
-                            string.Format("Failed to load the factory for the Math.NET Yttrium module {0} ({1}). It was expected at: '{2}'. You may want to check the mapping configuration file (usually yttrium.mapping.config).", binding.comment, binding.id, binding.factoryType), e);
+                            string.Format(Config.UserCulture, Resources.BindingFactoryLoadFailed, binding.comment, binding.id, binding.factoryType), e);
                     }
                     //if(factoryType == null)
                     //    continue;

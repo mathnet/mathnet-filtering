@@ -70,10 +70,10 @@ namespace MathNet.Symbolics
             if(bindings != null)
                 _mapper.ImportBindings(bindings);
         }
-        public static void LoadBindings(string sourceFilename)
+        public static void LoadBindings(string sourceFileName)
         {
             XmlMappingAdapter xma = new XmlMappingAdapter();
-            IList<RawBinding> bindings = xma.Load(sourceFilename);
+            IList<RawBinding> bindings = xma.Load(sourceFileName);
             if(bindings != null)
                 _mapper.ImportBindings(bindings);
         }

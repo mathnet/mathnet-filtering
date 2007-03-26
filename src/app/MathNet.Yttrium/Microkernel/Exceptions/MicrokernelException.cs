@@ -20,20 +20,30 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Runtime.Serialization;
 
 namespace MathNet.Symbolics.Exceptions
 {
+    [Serializable]
     public class MicrokernelException : YttriumException
     {
-        internal MicrokernelException(string message)
+        public MicrokernelException()
+            : base()
+        {
+        }
+
+        public MicrokernelException(string message)
             : base(message)
         {
         }
 
         public MicrokernelException(string message, Exception innerException)
             : base(message, innerException)
+        {
+        }
+
+        protected MicrokernelException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
     }

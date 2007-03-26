@@ -26,7 +26,7 @@ using System.Threading;
 
 namespace MathNet.Symbolics.Backend.Utils
 {
-    public class EmptyIterator<T> : IEnumerable<T>, IEnumerator<T>
+    public sealed class EmptyIterator<T> : IEnumerable<T>, IEnumerator<T>
     {
         public EmptyIterator()
         {
@@ -61,6 +61,7 @@ namespace MathNet.Symbolics.Backend.Utils
 
         public void Dispose()
         {
+            GC.SuppressFinalize(this);
         }
     }
 }

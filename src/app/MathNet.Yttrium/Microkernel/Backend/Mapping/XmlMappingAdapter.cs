@@ -70,7 +70,7 @@ namespace MathNet.Symbolics.Backend.Mapping
             {
                 return node.Attributes[attributeName].Value;
             }
-            catch
+            catch(ArgumentOutOfRangeException)
             {
                 return defaultValue;
             }

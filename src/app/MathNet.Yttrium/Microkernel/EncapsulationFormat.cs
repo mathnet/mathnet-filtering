@@ -26,7 +26,7 @@ using System.Text;
 namespace MathNet.Symbolics
 {
     [Serializable]
-    public struct EncapsulationFormat
+    public struct EncapsulationFormat : IEquatable<EncapsulationFormat>
     {
         private readonly char prefix, postfix;
         private readonly bool distinguishable;
@@ -50,5 +50,34 @@ namespace MathNet.Symbolics
         {
             get { return distinguishable; }
         }
+
+        #region IEquatable<EncapsulationFormat> Members
+        public bool Equals(EncapsulationFormat other)
+        {
+            return prefix == other.prefix && postfix == other.postfix;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(!(obj is EncapsulationFormat))
+                throw new ArgumentException();
+            return Equals((EncapsulationFormat)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return prefix.GetHashCode() ^ postfix.GetHashCode();
+        }
+
+        public static bool operator ==(EncapsulationFormat x, EncapsulationFormat y)
+        {
+            return x.Equals(y);
+        }
+
+        public static bool operator !=(EncapsulationFormat x, EncapsulationFormat y)
+        {
+            return !x.Equals(y);
+        }
+        #endregion
     }
 }

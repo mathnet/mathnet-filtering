@@ -23,6 +23,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
+using MathNet.Symbolics.Properties;
 
 namespace MathNet.Symbolics
 {
@@ -109,21 +110,30 @@ namespace MathNet.Symbolics
             _iid = Guid.NewGuid();
         }
 
-        void IDisposable.Dispose()
+        protected virtual void Dispose(bool disposing)
         {
-            if(_root == null)
-                return; // root context
-            bool valid;
-            lock(_table)
+            if(disposing) // we only clean up managed resources
             {
-                MathContext ctx = _stack.Pop();
-                valid = ctx._iid.Equals(_iid);
+                if(_root == null)
+                    return; // root context
+                bool valid;
+                lock(_table)
+                {
+                    MathContext ctx = _stack.Pop();
+                    valid = ctx._iid.Equals(_iid);
+                }
+                if(!valid)
+                    throw new Exceptions.MicrokernelException(Resources.ContextIllegalState);
+                EventHandler<Events.MathContextEventArgs> handler = ContextExpired;
+                if(handler != null)
+                    handler(null, new Events.MathContextEventArgs(_iid));
             }
-            if(!valid)
-                throw new Exceptions.MicrokernelException("MathContext stack in illegal state. This indicates a programming error, please report.");
-            EventHandler<Events.MathContextEventArgs> handler = ContextExpired;
-            if(handler != null)
-                handler(null, new Events.MathContextEventArgs(_iid));
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         public Guid InstanceId

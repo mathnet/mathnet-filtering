@@ -186,6 +186,8 @@ namespace MathNet.Symbolics.Backend.Persistence
 
         public static string TypeToDescription(Type type)
         {
+            if(type == null)
+                throw new ArgumentNullException("type");
             return type.AssemblyQualifiedName;
         }
 
