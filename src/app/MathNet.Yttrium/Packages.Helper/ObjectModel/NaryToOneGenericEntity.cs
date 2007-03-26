@@ -33,10 +33,13 @@ namespace MathNet.Symbolics.Packages.ObjectModel
             : base(symbol, label, domain, notation, precedence, true) { }
 
         //protected override Entity CompileGenericEntity(Signal[] inputSignals, Bus[] buses)
-        public override IEntity CompileGenericEntity(int inputSignalsCount, int busesCount)
+        public override IEntity CompileGenericEntity(int inputSignalsCount, int busesCount, int? outputSignalsCount)
         {
             string lbl = EntityId.Label;
             string prefixIn = lbl + "_in_";
+
+            if(outputSignalsCount.HasValue && !outputSignalsCount.Value.Equals(1))
+                throw new ArgumentException("Unexpected argument value", "outputSignalsCount");
 
             string[] newInputLabels = new string[inputSignalsCount];
             string[] newOutputLabels = new string[] { lbl + "_out" };

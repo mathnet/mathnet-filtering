@@ -102,7 +102,7 @@ namespace MathNet.Symbolics.Workplace
             {
                 IEntity localEntity = entity;
                 if(entity.IsGeneric)
-                    localEntity = entity.CompileGenericEntity(1,0);
+                    localEntity = entity.CompileGenericEntity(1,0,null);
                 Signal[] inputs = new Signal[localEntity.InputSignals.Length];
                 ReadOnlySignalSet outputs = Service<IBuilder>.Instance.Functions(localEntity, inputs);
                 system = new MathSystem();

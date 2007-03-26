@@ -25,27 +25,26 @@ using System.Xml;
 namespace MathNet.Symbolics.Packages.ObjectModel
 {
     [Serializable]
-    public class SymmetricGenericEntity : EntityBase
+    public class ArbitraryGenericEntity : EntityBase
     {
-        public SymmetricGenericEntity(string symbol, string label, string domain)
+        public ArbitraryGenericEntity(string symbol, string label, string domain)
             : base(symbol, label, domain, InfixNotation.None, -1, true) { }
-        public SymmetricGenericEntity(string symbol, string label, string domain, InfixNotation notation, int precedence)
+        public ArbitraryGenericEntity(string symbol, string label, string domain, InfixNotation notation, int precedence)
             : base(symbol, label, domain, notation, precedence, true) { }
 
-        public SymmetricGenericEntity(string symbol, string label, string domain, string[] buses)
+        public ArbitraryGenericEntity(string symbol, string label, string domain, string[] buses)
             : base(symbol, label, domain, InfixNotation.None, -1, true, buses) { }
-        public SymmetricGenericEntity(string symbol, string label, string domain, InfixNotation notation, int precedence, string[] buses)
+        public ArbitraryGenericEntity(string symbol, string label, string domain, InfixNotation notation, int precedence, string[] buses)
             : base(symbol, label, domain, notation, precedence, true, buses) { }
 
-        //protected override Entity CompileGenericEntity(Signal[] inputSignals, Bus[] buses)
         public override IEntity CompileGenericEntity(int inputSignalsCount, int busesCount, int? outputSignalsCount)
         {
             string lbl = EntityId.Label;
             string prefixIn = lbl + "_in_";
             string prefixOut = lbl + "_out_";
 
-            if(outputSignalsCount.HasValue && !outputSignalsCount.Value.Equals(inputSignalsCount))
-                throw new ArgumentException("Unexpected argument value", "outputSignalsCount");
+            if(!outputSignalsCount.HasValue)
+                throw new ArgumentNullException("outputSignalsCount");
 
             string[] newInputLabels = new string[inputSignalsCount];
             string[] newOutputLabels = new string[inputSignalsCount];
@@ -56,13 +55,8 @@ namespace MathNet.Symbolics.Packages.ObjectModel
                 newInputLabels[i] = prefixIn + nr;
                 newOutputLabels[i] = prefixOut + nr;
             }
-
+            
             return new EntityBase(Symbol, EntityId, Notation, PrecedenceGroup, newInputLabels, newOutputLabels, Buses);
         }
-
-        //public override bool Equals(Entity other)
-        //{
-        //    return base.Equals(other) && other is SymmetricGenericEntity;
-        //}
     }
 }

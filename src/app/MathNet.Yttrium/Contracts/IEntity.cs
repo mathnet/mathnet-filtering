@@ -49,12 +49,12 @@ namespace MathNet.Symbolics
         string[] OutputSignals { get; }
         string[] Buses { get; }
 
-        IEntity CompileGenericEntity(int inputSignalsCount, int busesCount);
+        IEntity CompileGenericEntity(int inputSignalsCount, int busesCount, int? outputSignalsCount);
 
-        Port InstantiatePort(System.Collections.Generic.IList<Signal> inputSignals, System.Collections.Generic.IEnumerable<Signal> outputSignals);
-        Port InstantiatePort(System.Collections.Generic.IList<Signal> inputSignals, System.Collections.Generic.IEnumerable<Signal> outputSignals, System.Collections.Generic.IList<Bus> buses);
+        Port InstantiatePort(IList<Signal> inputSignals, IList<Signal> outputSignals);
+        Port InstantiatePort(IList<Signal> inputSignals, IList<Signal> outputSignals, IList<Bus> buses);
         Port InstantiatePort(params Signal[] inputSignals);
-        Port InstantiatePort(System.Collections.Generic.IList<Signal> inputSignals);
+        Port InstantiatePort(IList<Signal> inputSignals);
         Port InstantiateUnboundPort();
     }
 }

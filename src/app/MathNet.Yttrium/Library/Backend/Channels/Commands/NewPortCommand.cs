@@ -37,6 +37,7 @@ namespace MathNet.Symbolics.Backend.Channels.Commands
     {
         private MathIdentifier _entityId;
         private int _inputCnt, _busCnt;
+        private int? _outputCnt;
 
         public NewPortCommand() { }
 
@@ -55,13 +56,18 @@ namespace MathNet.Symbolics.Backend.Channels.Commands
             get { return _busCnt; }
             set { _busCnt = value; }
         }
+        public int? NumberOfOutputs
+        {
+            get { return _outputCnt; }
+            set { _outputCnt = value; }
+        }
 
         protected override CommandReference Action()
         {
             int idx = System.PortCount;
             IEntity e =  Service<ILibrary>.Instance.LookupEntity(_entityId);
             if(e.IsGeneric)
-                e = e.CompileGenericEntity(_inputCnt, _busCnt);
+                e = e.CompileGenericEntity(_inputCnt, _busCnt, _outputCnt);
             Port p = e.InstantiateUnboundPort();
             Guid iid = p.InstanceId;
             System.AddPort(p);

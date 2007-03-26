@@ -48,10 +48,13 @@ namespace MathNet.Symbolics.Packages.ObjectModel
         }
 
         //protected override Entity CompileGenericEntity(Signal[] inputSignals, Bus[] buses)
-        public override IEntity CompileGenericEntity(int inputSignalsCount, int busesCount)
+        public override IEntity CompileGenericEntity(int inputSignalsCount, int busesCount, int? outputSignalsCnt)
         {
             int signalCnt = inputSignalsCount - additionalInputs;
             int outputSignalsCount = signalCnt + additionalOutputs;
+
+            if(outputSignalsCnt.HasValue && !outputSignalsCnt.Value.Equals(outputSignalsCount))
+                throw new ArgumentException("Unexpected argument value", "outputSignalsCnt");
 
             string[] newInputLabels = new string[inputSignalsCount];
             string[] newOutputLabels = new string[outputSignalsCount];

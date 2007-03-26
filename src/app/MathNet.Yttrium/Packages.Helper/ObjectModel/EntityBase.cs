@@ -123,7 +123,7 @@ namespace MathNet.Symbolics.Packages.ObjectModel
             get { return _busLabels; }
         }
 
-        public virtual IEntity CompileGenericEntity(int inputSignalsCount, int busesCount)
+        public virtual IEntity CompileGenericEntity(int inputSignalsCount, int busesCount, int? outputSignalsCount)
         {
             return this;
         }
@@ -136,26 +136,26 @@ namespace MathNet.Symbolics.Packages.ObjectModel
         {
             return InstantiatePort(inputSignals, null, null);
         }
-        public Port InstantiatePort(IList<Signal> inputSignals, IEnumerable<Signal> outputSignals)
+        public Port InstantiatePort(IList<Signal> inputSignals, IList<Signal> outputSignals)
         {
             return InstantiatePort(inputSignals, outputSignals, null);
         }
-        public virtual Port InstantiatePort(IList<Signal> inputSignals, IEnumerable<Signal> outputSignals, IList<Bus> buses)
+        public virtual Port InstantiatePort(IList<Signal> inputSignals, IList<Signal> outputSignals, IList<Bus> buses)
         {
             IEntity entity = this;
 
             if(_isGeneric)
             {
                 if(inputSignals == null)
-                    throw new MathNet.Symbolics.Exceptions.GenericEntityPortNotInstantiableException();
-                entity = CompileGenericEntity(inputSignals.Count, buses != null ? buses.Count : 0);
+                    throw new Exceptions.GenericEntityPortNotInstantiableException();
+                entity = CompileGenericEntity(inputSignals.Count, buses != null ? buses.Count : 0, outputSignals != null ? (int?)outputSignals.Count : null);
             }
 
             if(entity.IsGeneric)
-                throw new MathNet.Symbolics.Exceptions.GenericEntityPortNotInstantiableException();
+                throw new Exceptions.GenericEntityPortNotInstantiableException();
 
             if((inputSignals != null && inputSignals.Count != entity.InputSignals.Length) || (buses != null && buses.Count != entity.Buses.Length))
-                throw new MathNet.Symbolics.Exceptions.EntitySignalMismatchException();
+                throw new Exceptions.EntitySignalMismatchException();
 
             Port port;
             if(outputSignals == null)

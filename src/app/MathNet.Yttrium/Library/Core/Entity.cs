@@ -123,7 +123,7 @@ namespace MathNet.Symbolics.Core
             get { return _busLabels; }
         }
 
-        public virtual IEntity CompileGenericEntity(int inputSignalsCount, int busesCount)
+        public virtual IEntity CompileGenericEntity(int inputSignalsCount, int busesCount, int? outputSignalsCount)
         {
             return this;
         }
@@ -136,11 +136,11 @@ namespace MathNet.Symbolics.Core
         {
             return InstantiatePort(inputSignals, null, null);
         }
-        public MathNet.Symbolics.Port InstantiatePort(IList<MathNet.Symbolics.Signal> inputSignals, IEnumerable<MathNet.Symbolics.Signal> outputSignals)
+        public MathNet.Symbolics.Port InstantiatePort(IList<MathNet.Symbolics.Signal> inputSignals, IList<MathNet.Symbolics.Signal> outputSignals)
         {
             return InstantiatePort(inputSignals, outputSignals, null);
         }
-        public virtual MathNet.Symbolics.Port InstantiatePort(IList<MathNet.Symbolics.Signal> inputSignals, IEnumerable<MathNet.Symbolics.Signal> outputSignals, IList<MathNet.Symbolics.Bus> buses)
+        public virtual MathNet.Symbolics.Port InstantiatePort(IList<MathNet.Symbolics.Signal> inputSignals, IList<MathNet.Symbolics.Signal> outputSignals, IList<MathNet.Symbolics.Bus> buses)
         {
             IEntity entity = this;
 
@@ -148,7 +148,7 @@ namespace MathNet.Symbolics.Core
             {
                 if(inputSignals == null)
                     throw new MathNet.Symbolics.Exceptions.GenericEntityPortNotInstantiableException();
-                entity = CompileGenericEntity(inputSignals.Count, buses != null ? buses.Count : 0);
+                entity = CompileGenericEntity(inputSignals.Count, buses != null ? buses.Count : 0, outputSignals != null ? (int?)outputSignals.Count : null);
             }
 
             if(entity.IsGeneric)
