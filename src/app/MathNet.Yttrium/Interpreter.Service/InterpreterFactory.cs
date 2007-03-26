@@ -29,8 +29,6 @@ namespace MathNet.Symbolics
 {
     internal class InterpreterFactory : IFactory<IParser>
     {
-        private InterpreterFactory() { }
-
         IParser IFactory<IParser>.GetInstance()
         {
             return new Parser();

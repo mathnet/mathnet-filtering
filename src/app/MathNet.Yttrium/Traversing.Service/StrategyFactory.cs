@@ -30,8 +30,6 @@ namespace MathNet.Symbolics
 {
     internal class AllStrategyFactory : IFactory<IScanStrategy>
     {
-        private AllStrategyFactory() { }
-
         IScanStrategy IFactory<IScanStrategy>.GetInstance()
         {
             return AllStrategy.Instance;
@@ -40,8 +38,6 @@ namespace MathNet.Symbolics
 
     internal class AllSignalsStrategyFactory : IFactory<IScanStrategy>
     {
-        private AllSignalsStrategyFactory() { }
-
         IScanStrategy IFactory<IScanStrategy>.GetInstance()
         {
             return AllSignalsStrategy.Instance;
@@ -50,8 +46,6 @@ namespace MathNet.Symbolics
 
     internal class AllPortsStrategyFactory : IFactory<IScanStrategy>
     {
-        private AllPortsStrategyFactory() { }
-
         IScanStrategy IFactory<IScanStrategy>.GetInstance()
         {
             return AllPortsStrategy.Instance;
@@ -60,8 +54,6 @@ namespace MathNet.Symbolics
 
     internal class AllSpanningTreeStrategyFactory : IFactory<IScanStrategy>
     {
-        private AllSpanningTreeStrategyFactory() { }
-
         IScanStrategy IFactory<IScanStrategy>.GetInstance()
         {
             return AllSpanningTreeStrategy.Instance;
@@ -70,8 +62,6 @@ namespace MathNet.Symbolics
 
     internal class AllPathsStrategyFactory : IFactory<IScanStrategy>
     {
-        private AllPathsStrategyFactory() { }
-
         IScanStrategy IFactory<IScanStrategy>.GetInstance()
         {
             return AllPathsStrategy.Instance;

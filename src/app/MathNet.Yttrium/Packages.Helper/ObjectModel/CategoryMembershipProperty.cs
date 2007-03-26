@@ -23,7 +23,6 @@ using System;
 using System.Xml;
 using System.Reflection;
 using System.Collections.Generic;
-using MathNet.Symbolics.Backend.Persistence;
 
 namespace MathNet.Symbolics.Packages.ObjectModel
 {
@@ -144,14 +143,14 @@ namespace MathNet.Symbolics.Packages.ObjectModel
         {
             writer.WriteElementString("Sticky", _isSticky.ToString());
             writer.WriteElementString("Membership", _categoryMembership.ToString());
-            Serializer.Serialize(_category, writer, signalMappings, busMappings);
+            Persistence.Serializer.Serialize(_category, writer, signalMappings, busMappings);
             //Category.Serialize(writer, _category);
         }
         private static CategoryMembershipProperty Deserialize(XmlReader reader, IDictionary<Guid, Signal> signals, IDictionary<Guid, Bus> buses)
         {
             bool sticky = bool.Parse(reader.ReadElementString("Sticky"));
             CategoryMembershipLevel membership = (CategoryMembershipLevel)Enum.Parse(typeof(CategoryMembershipLevel), reader.ReadElementString("Membership"));
-            ICategory category = Serializer.Deserialize<ICategory>(reader, signals, buses);
+            ICategory category = Persistence.Serializer.Deserialize<ICategory>(reader, signals, buses);
             //Category.Deserialize(context, reader);
             return new CategoryMembershipProperty(category, membership, sticky);
         }

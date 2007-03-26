@@ -24,9 +24,6 @@ using System.Collections.Generic;
 using System.Xml;
 using System.Reflection;
 
-using MathNet.Symbolics.Backend;
-using MathNet.Symbolics.Backend.Utils;
-
 namespace MathNet.Symbolics.Core
 {
     public abstract class ValueStructure : IValueStructure
@@ -94,11 +91,13 @@ namespace MathNet.Symbolics.Core
 
         public virtual IEnumerable<MathNet.Symbolics.Signal> CollectSignals()
         {
-            return SingletonProvider<EmptyIterator<MathNet.Symbolics.Signal>>.Instance;
+            yield break;
+            //return SingletonProvider<EmptyIterator<MathNet.Symbolics.Signal>>.Instance;
         }
         public virtual IEnumerable<MathNet.Symbolics.Bus> CollectBuses()
         {
-            return SingletonProvider<EmptyIterator<MathNet.Symbolics.Bus>>.Instance;
+            yield break;
+            //return SingletonProvider<EmptyIterator<MathNet.Symbolics.Bus>>.Instance;
         }
         #endregion
     }

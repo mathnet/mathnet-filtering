@@ -31,8 +31,6 @@ namespace MathNet.Symbolics
         IFactory<IConversionRouter,MathIdentifier>,
         IFactory<IConversionRouter,Type>
     {
-        private ConversionFactory() { }
-
         IConversionRouter IFactory<IConversionRouter>.GetInstance()
         {
             throw new NotSupportedException("expected parameters: MathIdentifier");

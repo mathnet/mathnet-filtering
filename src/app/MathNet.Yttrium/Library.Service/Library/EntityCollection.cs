@@ -24,8 +24,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 using MathNet.Symbolics;
-using MathNet.Symbolics.Backend;
-using MathNet.Symbolics.Backend.Utils;
 
 namespace MathNet.Symbolics.Library
 {

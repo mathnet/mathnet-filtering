@@ -31,8 +31,6 @@ namespace MathNet.Symbolics
         IFactory<IManipulator>, IFactory<ITransformer>,
         IFactory<ITransformationTheoremProvider, MathIdentifier>
     {
-        private ManipulationFactory() { }
-
         IManipulator IFactory<IManipulator>.GetInstance()
         {
             return new Manipulator();

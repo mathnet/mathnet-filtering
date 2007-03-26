@@ -28,7 +28,6 @@ using System.Xml.XPath;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
 using System.Security.Permissions;
-using MathNet.Symbolics.Backend.Persistence;
 
 namespace MathNet.Symbolics.SystemBuilder.Toolkit
 {
@@ -53,7 +52,7 @@ namespace MathNet.Symbolics.SystemBuilder.Toolkit
 
         public static CustomDataPack<T> Pack(T property, IDictionary<Guid, Guid> signalMappings, IDictionary<Guid, Guid> busMappings)
         {
-            string xml = Serializer.SerializeToString(property, signalMappings, busMappings);
+            string xml = Persistence.Serializer.SerializeToString(property, signalMappings, busMappings);
             return new CustomDataPack<T>(xml);
         }
 
@@ -69,7 +68,7 @@ namespace MathNet.Symbolics.SystemBuilder.Toolkit
 
         public T Unpack(IDictionary<Guid, Signal> signals, IDictionary<Guid, Bus> buses)
         {
-            return Serializer.DeserializeFromString<T>(_serializedXmlFragment, signals, buses);
+            return Persistence.Serializer.DeserializeFromString<T>(_serializedXmlFragment, signals, buses);
         }
 
         #region Serialization

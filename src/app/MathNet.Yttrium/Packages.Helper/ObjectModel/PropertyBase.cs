@@ -24,8 +24,6 @@ using System.Collections.Generic;
 using System.Xml;
 using System.Reflection;
 
-using MathNet.Symbolics.Backend.Utils;
-
 namespace MathNet.Symbolics.Packages.ObjectModel
 {
     public abstract class PropertyBase : IProperty

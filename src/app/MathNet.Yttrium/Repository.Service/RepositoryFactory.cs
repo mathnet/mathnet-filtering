@@ -29,8 +29,6 @@ namespace MathNet.Symbolics
 {
     internal class RepositoryFactory : IFactory<ISignalCache>
     {
-        private RepositoryFactory() { }
-
         // SIGNAL CACHE
         ISignalCache IFactory<ISignalCache>.GetInstance()
         {

@@ -27,8 +27,6 @@ namespace MathNet.Symbolics
 {
     internal class LibraryFactory : IFactory<Library.ILibrary>, IFactory<Library.IPackageLoader>
     {
-        private LibraryFactory() { }
-
         private static Library.ILibrary _lib = new Library.Library();
 
         Library.ILibrary IFactory<Library.ILibrary>.GetInstance()

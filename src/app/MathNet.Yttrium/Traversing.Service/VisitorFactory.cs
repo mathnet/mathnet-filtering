@@ -47,8 +47,6 @@ namespace MathNet.Symbolics
         IFactory<IScanVisitor, ActionContinue<Port>, Predicate<Port>>,
         IFactory<IScanVisitor, ProcessSignal, ProcessSignal, ProcessPort, ProcessPort, ProcessLeafSignal, ProcessLeafPort, ProcessLeafBus, ProcessCycle>
     {
-        private VisitorFactory() { }
-
         // SCANNER
         IScanner IFactory<IScanner>.GetInstance()
         {

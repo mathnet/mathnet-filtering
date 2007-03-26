@@ -29,8 +29,6 @@ namespace MathNet.Symbolics
 {
     internal class MediatorFactory : IFactory<IMediator>, IFactory<ISystemMediator>
     {
-        private MediatorFactory() { }
-
         //private static IMediator _mediator = new Mediator.Mediator();
 
         IMediator IFactory<IMediator>.GetInstance()

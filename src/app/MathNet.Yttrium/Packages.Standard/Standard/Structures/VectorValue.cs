@@ -27,7 +27,6 @@ using System.Text;
 using MathNet.Numerics;
 using MathNet.Symbolics.Backend;
 using MathNet.Symbolics.Packages.Standard.Trigonometry;
-using MathNet.Symbolics.Backend.Persistence;
 using MathNet.Symbolics.Packages.ObjectModel;
 using MathNet.Symbolics.Conversion;
 using MathNet.Symbolics.Library;
@@ -265,11 +264,11 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
         //}
         public override void Serialize(XmlWriter writer, IDictionary<Guid, Guid> signalMappings, IDictionary<Guid, Guid> busMappings)
         {
-            Serializer.SerializeList<TScalar>(_dataValue, writer, signalMappings, busMappings, "Components");
+            Persistence.Serializer.SerializeList<TScalar>(_dataValue, writer, signalMappings, busMappings, "Components");
         }
         private static VectorValue<TScalar> Deserialize(XmlReader reader, IDictionary<Guid, Signal> signals, IDictionary<Guid, Bus> buses)
         {
-            List<TScalar> values = Serializer.DeserializeList<TScalar>(reader, signals, buses, "Components");
+            List<TScalar> values = Persistence.Serializer.DeserializeList<TScalar>(reader, signals, buses, "Components");
             return new VectorValue<TScalar>(values);
         }
         #endregion
