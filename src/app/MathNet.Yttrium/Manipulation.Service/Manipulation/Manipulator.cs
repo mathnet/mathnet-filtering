@@ -50,7 +50,7 @@ namespace MathNet.Symbolics.Manipulation
 
             public override IScanStrategy DefaultStrategy
             {
-                get { throw new Exception("The method or operation is not implemented."); }
+                get { throw new NotImplementedException("The method or operation is not implemented."); }
             }
 
             public override bool EnterPort(Port port, Signal parent, bool again, bool root)
@@ -117,7 +117,7 @@ namespace MathNet.Symbolics.Manipulation
 
             public override IScanStrategy DefaultStrategy
             {
-                get { throw new Exception("The method or operation is not implemented."); }
+                get { throw new NotImplementedException("The method or operation is not implemented."); }
             }
 
             public override bool EnterSignal(Signal signal, Port parent, bool again, bool root)

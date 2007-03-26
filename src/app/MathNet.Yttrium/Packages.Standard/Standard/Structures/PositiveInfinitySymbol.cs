@@ -42,11 +42,11 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
         {
             library.AddCustomDataType<PositiveInfinitySymbol>(Instance);
         }
-        public static PositiveInfinitySymbol ConvertFrom(IValueStructure value)
-        {
-            return Instance;
-        }
-        public static bool CanConvertLosslessFrom(IValueStructure value)
+        //public static PositiveInfinitySymbol ConvertFrom(IValueStructure value)
+        //{
+        //    return Instance;
+        //}
+        public static bool CanConvertLosslessFrom(ICustomData value)
         {
             return ValueConverter<PositiveInfinitySymbol>.Router.CanConvertLosslessFrom(value);
         }

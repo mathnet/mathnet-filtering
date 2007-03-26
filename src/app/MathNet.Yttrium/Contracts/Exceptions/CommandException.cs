@@ -26,11 +26,26 @@ using System.Security.Permissions;
 namespace MathNet.Symbolics.Exceptions
 {
     [Serializable]
-    public class CommandException : MathNetSymbolicsException
+    public class CommandException : YttriumException
     {
-        public CommandException(string message) : base(message) { }
+        public CommandException()
+            : base()
+        {
+        }
+
+        public CommandException(string message)
+            : base(message)
+        {
+        }
+
+        public CommandException(string message, Exception innerException)
+            : base(message, innerException)
+        {
+        }
 
         protected CommandException(SerializationInfo info, StreamingContext context)
-            : base(info, context) { }
+            : base(info, context)
+        {
+        }
     }
 }

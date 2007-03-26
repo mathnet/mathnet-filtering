@@ -26,11 +26,26 @@ using System.Security.Permissions;
 namespace MathNet.Symbolics.Exceptions
 {
     [Serializable]
-    public class ParsingException : MathNetSymbolicsException
+    public class ParsingException : YttriumException
     {
-        public ParsingException(string message) : base(message) { }
+        public ParsingException()
+            : base()
+        {
+        }
+
+        public ParsingException(string message)
+            : base(message)
+        {
+        }
+
+        public ParsingException(string message, Exception innerException)
+            : base(message, innerException)
+        {
+        }
 
         protected ParsingException(SerializationInfo info, StreamingContext context)
-            : base(info, context) { }
+            : base(info, context)
+        {
+        }
     }
 }

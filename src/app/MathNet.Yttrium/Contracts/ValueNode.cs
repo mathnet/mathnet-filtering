@@ -72,8 +72,8 @@ namespace MathNet.Symbolics
 
         protected void SetPresentValue(IValueStructure value)
         {
-            bool different = !(value == null && _presentStructure == null)
-               && !(_presentStructure != null && value != null && _presentStructure.Equals(value));
+            //bool different = !(value == null && _presentStructure == null)
+            //   && !(_presentStructure != null && value != null && _presentStructure.Equals(value));
             _presentStructure = value;
             //_properties.ValidatePropertiesAfterEvent(this);
         }

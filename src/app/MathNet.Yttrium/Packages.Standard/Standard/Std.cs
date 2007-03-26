@@ -727,7 +727,7 @@ namespace MathNet.Symbolics.Packages.Standard
             return signal.AskForProperty("Constant", "Std");
         }
 
-        public static bool IsUndefined(Signal signal)
+        public static bool IsUndefined(ValueNode signal)
         {
             if(signal == null)
                 throw new ArgumentNullException("signal");
@@ -740,7 +740,7 @@ namespace MathNet.Symbolics.Packages.Standard
         }
 
         /// <summary>Evaluates whether the signal is zero (0).</summary>
-        public static bool IsAdditiveIdentity(Signal signal)
+        public static bool IsAdditiveIdentity(ValueNode signal)
         {
             if(signal == null)
                 throw new ArgumentNullException("signal");
@@ -755,7 +755,7 @@ namespace MathNet.Symbolics.Packages.Standard
         }
 
         /// <summary>Evaluates whether the signal is one (1).</summary>
-        public static bool IsMultiplicativeIdentity(Signal signal)
+        public static bool IsMultiplicativeIdentity(ValueNode signal)
         {
             if(signal == null)
                 throw new ArgumentNullException("signal");

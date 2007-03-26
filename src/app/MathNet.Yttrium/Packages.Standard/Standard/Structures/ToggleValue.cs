@@ -46,12 +46,12 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
             ValueConverter<ToggleValue>.AddConverterTo(ValueConverter<IntegerValue>.Router, true,
                 delegate(ICustomData value) { return ((ToggleValue)value)._dataValue ? IntegerValue.Zero : IntegerValue.One; });
         }
-        
-        public static ToggleValue ConvertFrom(IValueStructure value)
+
+        public static ToggleValue ConvertFrom(ICustomData value)
         {
             return (ToggleValue)ValueConverter<ToggleValue>.ConvertFrom(value);
         }
-        public static bool CanConvertLosslessFrom(IValueStructure value)
+        public static bool CanConvertLosslessFrom(ICustomData value)
         {
             return ValueConverter<ToggleValue>.Router.CanConvertLosslessFrom(value);
         }        

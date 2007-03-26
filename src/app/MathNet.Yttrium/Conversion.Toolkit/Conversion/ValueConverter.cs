@@ -64,7 +64,7 @@ namespace MathNet.Symbolics.Conversion
             _router.AddSourceNeighbor(ValueConverter<TSource>.Router, lossless, delegate(ICustomData value) { return directConvert((TSource)value); });
         }
 
-        public static void AddConverterTo<TDestination>(IConversionRouter destinationRouter, bool lossless, Converter<TTarget, TDestination> directConvert)
+        public static void AddConverterTo<TDestination>(bool lossless, Converter<TTarget, TDestination> directConvert)
             where TDestination : ICustomData
         {
             // TODO: Modify conversion core to operate directly on typed converters

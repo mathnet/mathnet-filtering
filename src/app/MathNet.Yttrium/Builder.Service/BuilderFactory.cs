@@ -27,6 +27,8 @@ namespace MathNet.Symbolics
 {
     internal class BuilderFactory : IFactory<IBuilder>
     {
+        private BuilderFactory() { }
+
         IBuilder IFactory<IBuilder>.GetInstance()
         {
             return new Builder.Builder();

@@ -26,22 +26,26 @@ using System.Security.Permissions;
 namespace MathNet.Symbolics.Exceptions
 {
     [Serializable]
-    public class TheoremMismatchException : MathNetSymbolicsException
+    public class TheoremMismatchException : YttriumException
     {
         public TheoremMismatchException()
             : base(MathNet.Symbolics.Properties.Resources.ex_Theorem_Mismatch)
         {
         }
 
-        protected TheoremMismatchException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
+        public TheoremMismatchException(string message)
+            : base(message)
         {
         }
 
-        [SecurityPermissionAttribute(SecurityAction.Demand, SerializationFormatter = true)]
-        public override void GetObjectData(SerializationInfo info, StreamingContext context)
+        public TheoremMismatchException(string message, Exception innerException)
+            : base(message, innerException)
         {
-            base.GetObjectData(info, context);
+        }
+
+        protected TheoremMismatchException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
+        {
         }
     }
 }

@@ -22,16 +22,33 @@
 using System;
 using System.Runtime.Serialization;
 using System.Security.Permissions;
+using MathNet.Symbolics.Properties;
+using System.Globalization;
 
 namespace MathNet.Symbolics.Exceptions
 {
     [Serializable]
-    public class ArchitectureNotAvailableException : MathNetSymbolicsException
+    public class ArchitectureNotAvailableException : YttriumException
     {
         Port _port;
 
+        public ArchitectureNotAvailableException()
+            : base()
+        {
+        }
+
+        public ArchitectureNotAvailableException(string message)
+            : base(message)
+        {
+        }
+
+        public ArchitectureNotAvailableException(string message, Exception innerException)
+            : base(message, innerException)
+        {
+        }
+
         public ArchitectureNotAvailableException(Port port)
-            : base(string.Format(MathNet.Symbolics.Properties.Resources.ex_NotAvailable_Architecture, (port == null ? "N/A" : port.Entity.ToString())))
+            : base(string.Format(CultureInfo.CurrentCulture, Resources.ex_NotAvailable_Architecture, (port == null ? "N/A" : port.Entity.ToString())))
         {
             _port = port;
         }

@@ -21,13 +21,17 @@
 
 using System;
 using System.Runtime.Serialization;
-using System.Security.Permissions;
 
 namespace MathNet.Symbolics.Exceptions
 {
     [Serializable]
     public class YttriumException : Exception
     {
+        public YttriumException()
+            : base()
+        {
+        }
+
         public YttriumException(string message)
             : base(message)
         {

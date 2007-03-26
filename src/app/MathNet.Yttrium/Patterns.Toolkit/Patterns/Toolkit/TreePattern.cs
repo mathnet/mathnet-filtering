@@ -114,7 +114,7 @@ namespace MathNet.Symbolics.Patterns.Toolkit
                 MergeGroupToCoalescedTree(patternId, nodes);
                 
                 // children: find matching pattern or create one
-                AlwaysTrueCondition atc = AlwaysTrueCondition.Instance;
+                //AlwaysTrueCondition atc = AlwaysTrueCondition.Instance;
                 foreach(CoalescedTreeNode node in nodes)
                 {
                     // check all patterns the current node already has

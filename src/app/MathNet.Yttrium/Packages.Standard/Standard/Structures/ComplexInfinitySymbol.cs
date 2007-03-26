@@ -44,15 +44,15 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
             ValueConverter<ComplexInfinitySymbol>.AddConverterFrom<NegativeInfinitySymbol>(false, ConvertFrom);
             ValueConverter<ComplexInfinitySymbol>.AddConverterFrom<PositiveInfinitySymbol>(false, ConvertFrom);
         }
-        public static ComplexInfinitySymbol ConvertFrom(IValueStructure value)
-        {
-            return Instance;
-        }
+        //public static ComplexInfinitySymbol ConvertFrom(IValueStructure value)
+        //{
+        //    return Instance;
+        //}
         public static ComplexInfinitySymbol ConvertFrom(NegativeInfinitySymbol value) { return Instance; }
         public static explicit operator ComplexInfinitySymbol(NegativeInfinitySymbol value) { return Instance; }
         public static ComplexInfinitySymbol ConvertFrom(PositiveInfinitySymbol value) { return Instance; }
         public static explicit operator ComplexInfinitySymbol(PositiveInfinitySymbol value) { return Instance; }
-        public static bool CanConvertLosslessFrom(IValueStructure value)
+        public static bool CanConvertLosslessFrom(ICustomData value)
         {
             return ValueConverter<ComplexInfinitySymbol>.Router.CanConvertLosslessFrom(value);
         }        

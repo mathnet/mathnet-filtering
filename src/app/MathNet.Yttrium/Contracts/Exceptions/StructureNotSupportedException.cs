@@ -26,11 +26,27 @@ using System.Security.Permissions;
 namespace MathNet.Symbolics.Exceptions
 {
     [Serializable]
-    public class StructureNotSupportedException : MathNetSymbolicsException
+    public class StructureNotSupportedException : YttriumException
     {
         IValueStructure structure;
 
+        public StructureNotSupportedException()
+            : base()
+        {
+        }
+
+        public StructureNotSupportedException(string message)
+            : base(message)
+        {
+        }
+
+        public StructureNotSupportedException(string message, Exception innerException)
+            : base(message, innerException)
+        {
+        }
+
         public StructureNotSupportedException(IValueStructure structure)
+            : base()
         {
             this.structure = structure;
         }

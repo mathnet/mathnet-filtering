@@ -45,14 +45,14 @@ namespace MathNet.Symbolics.SystemBuilder.Toolkit
             public StateMachine()
             {
             }
-            public StateMachine(XmlReader reader)
-            {
-                _reader = reader;
-            }
+            //public StateMachine(XmlReader reader)
+            //{
+            //    _reader = reader;
+            //}
 
             public XmlReader Reader
             {
-                get { return _reader; }
+                //get { return _reader; }
                 set { _reader = value; }
             }
 

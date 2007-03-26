@@ -48,7 +48,7 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
             ValueConverter<ComplexValue>.AddConverterTo(ValueConverter<RealValue>.Router, false,
                 delegate(ICustomData value) { return new RealValue(((ComplexValue)value).RealValue); });
         }
-        public static ComplexValue ConvertFrom(IValueStructure value)
+        public static ComplexValue ConvertFrom(ICustomData value)
         {
             return (ComplexValue)ValueConverter<ComplexValue>.ConvertFrom(value);
         }
@@ -58,7 +58,7 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
         public static explicit operator ComplexValue(RationalValue value) { return new ComplexValue(value); }
         public static ComplexValue ConvertFrom(RealValue value) { return new ComplexValue(value); }
         public static explicit operator ComplexValue(RealValue value) { return new ComplexValue(value); }
-        public static bool CanConvertLosslessFrom(IValueStructure value)
+        public static bool CanConvertLosslessFrom(ICustomData value)
         {
             return ValueConverter<ComplexValue>.Router.CanConvertLosslessFrom(value);
         }        

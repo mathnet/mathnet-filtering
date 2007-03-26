@@ -79,7 +79,7 @@ namespace MathNet.Symbolics.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Faile to deserialize an item, due to an invalid data file or a usage error. Expected &apos;{0}&apos; but got &apos;{1}&apos; instead. Check the data file for errors and report to the developer..
+        ///   Looks up a localized string similar to Failed to deserialize an item, due to an invalid data file or a usage error. Expected &apos;{0}&apos; but got &apos;{1}&apos; instead. Check the data file for errors and report to the developer..
         /// </summary>
         internal static string ex_Deserialize_Failed_UnexpectedPosition {
             get {

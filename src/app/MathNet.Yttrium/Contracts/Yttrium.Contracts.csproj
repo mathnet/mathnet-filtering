@@ -71,7 +71,6 @@
     <Compile Include="Exceptions\GenericEntityPortNotInstantiableException.cs" />
     <Compile Include="Exceptions\IncompatibleStructureException.cs" />
     <Compile Include="Exceptions\LabelNotAvailableException.cs" />
-    <Compile Include="Exceptions\MathNetSymbolicsException.cs" />
     <Compile Include="Exceptions\MutualExclusiveStrategyAlreadyActiveException.cs" />
     <Compile Include="Exceptions\NotFoundException.cs" />
     <Compile Include="Exceptions\StructureNotSupportedException.cs" />

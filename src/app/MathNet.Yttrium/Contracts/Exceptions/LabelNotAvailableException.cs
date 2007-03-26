@@ -26,11 +26,27 @@ using System.Security.Permissions;
 namespace MathNet.Symbolics.Exceptions
 {
     [Serializable]
-    public class LabelNotAvailableException : MathNetSymbolicsException
+    public class LabelNotAvailableException : YttriumException
     {
         private string domain, label;
 
+        public LabelNotAvailableException()
+            : base()
+        {
+        }
+
+        public LabelNotAvailableException(string message)
+            : base(message)
+        {
+        }
+
+        public LabelNotAvailableException(string message, Exception innerException)
+            : base(message, innerException)
+        {
+        }
+
         public LabelNotAvailableException(string label, string domain)
+            : base()
         {
             this.domain = domain;
             this.label = label;

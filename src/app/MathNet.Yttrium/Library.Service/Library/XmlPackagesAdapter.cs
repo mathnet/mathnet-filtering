@@ -70,7 +70,7 @@ namespace MathNet.Symbolics.Library
             {
                 return node.Attributes[attributeName].Value;
             }
-            catch
+            catch(IndexOutOfRangeException)
             {
                 return defaultValue;
             }

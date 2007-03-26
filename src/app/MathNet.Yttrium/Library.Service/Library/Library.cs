@@ -199,7 +199,7 @@ namespace MathNet.Symbolics.Library
         {
             MathIdentifier id;
             if(!_entities.TryFindDomainOfLabel(label, out id))
-                throw new Exception("No matching entity found.");
+                throw new Exceptions.NotFoundException();
             return id;
             // TODO: better exception
         }

@@ -44,13 +44,13 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
             //library.AddCustomDataType(new CustomDataRef(typeof(LiteralValue), ValueConverter<LiteralValue>.Router));
             ValueConverter<LiteralValue>.AddConverterFrom<IntegerValue>(true, ConvertFrom);
         }
-        public static LiteralValue ConvertFrom(IValueStructure value)
+        public static LiteralValue ConvertFrom(ICustomData value)
         {
             return (LiteralValue)ValueConverter<LiteralValue>.ConvertFrom(value);
         }
         public static LiteralValue ConvertFrom(IntegerValue value) { return new LiteralValue(value.ToString()); }
         public static explicit operator LiteralValue(IntegerValue value) { return new LiteralValue(value.ToString()); }
-        public static bool CanConvertLosslessFrom(IValueStructure value)
+        public static bool CanConvertLosslessFrom(ICustomData value)
         {
             return ValueConverter<LiteralValue>.Router.CanConvertLosslessFrom(value);
         }        

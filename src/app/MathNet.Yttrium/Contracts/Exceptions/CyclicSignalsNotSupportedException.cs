@@ -22,16 +22,33 @@
 using System;
 using System.Runtime.Serialization;
 using System.Security.Permissions;
+using System.Globalization;
 
 namespace MathNet.Symbolics.Exceptions
 {
     [Serializable]
-    public class CyclicSignalsNotSupportedException : MathNetSymbolicsException
+    public class CyclicSignalsNotSupportedException : YttriumException
     {
         Signal _signal;
 
+        public CyclicSignalsNotSupportedException()
+            : base()
+        {
+        }
+
+        public CyclicSignalsNotSupportedException(string message)
+            : base(message)
+        {
+        }
+
+        public CyclicSignalsNotSupportedException(string message, Exception innerException)
+            : base(message, innerException)
+        {
+        }
+
+
         public CyclicSignalsNotSupportedException(Signal signal, string operation)
-            : base(string.Format(MathNet.Symbolics.Properties.Resources.ex_CyclicSignalsNotSupportes, operation))
+            : base(string.Format(CultureInfo.CurrentCulture, MathNet.Symbolics.Properties.Resources.ex_CyclicSignalsNotSupportes, operation))
         {
             _signal = signal;
         }

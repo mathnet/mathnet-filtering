@@ -42,11 +42,11 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
             library.AddCustomDataType<UndefinedSymbol>(Instance);
             //library.AddCustomDataType(new CustomDataRef(typeof(UndefinedSymbol), ValueConverter<UndefinedSymbol>.Router, Instance));
         }
-        public static UndefinedSymbol ConvertFrom(IValueStructure value)
-        {
-            return Instance;
-        }
-        public static bool CanConvertLosslessFrom(IValueStructure value)
+        //public static UndefinedSymbol ConvertFrom(IValueStructure value)
+        //{
+        //    return Instance;
+        //}
+        public static bool CanConvertLosslessFrom(ICustomData value)
         {
             return ValueConverter<UndefinedSymbol>.Router.CanConvertLosslessFrom(value);
         }

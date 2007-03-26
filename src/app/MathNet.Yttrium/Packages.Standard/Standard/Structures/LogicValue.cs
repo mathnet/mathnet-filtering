@@ -63,11 +63,11 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
             ValueConverter<LogicValue>.AddConverterFrom(ValueConverter<IntegerValue>.Router, false,
                 delegate(ICustomData value) { return new LogicValue(((IntegerValue)value).Value == 0 ? ELogicX01.False : ELogicX01.True); });
         }
-        public static LogicValue ConvertFrom(IValueStructure value)
+        public static LogicValue ConvertFrom(ICustomData value)
         {
             return (LogicValue)ValueConverter<LogicValue>.ConvertFrom(value);
         }
-        public static bool CanConvertLosslessFrom(IValueStructure value)
+        public static bool CanConvertLosslessFrom(ICustomData value)
         {
             return ValueConverter<LogicValue>.Router.CanConvertLosslessFrom(value);
         }        

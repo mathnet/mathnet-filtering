@@ -48,7 +48,7 @@ namespace MathNet.Symbolics.SystemBuilder.Toolkit
 
             public XmlWriter Writer
             {
-                get { return _writer; }
+                //get { return _writer; }
                 set { _writer = value; }
             }
 

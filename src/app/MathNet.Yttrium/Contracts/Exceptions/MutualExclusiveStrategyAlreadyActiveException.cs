@@ -26,10 +26,20 @@ using System.Security.Permissions;
 namespace MathNet.Symbolics.Exceptions
 {
     [Serializable]
-    public class MutualExclusiveStrategyAlreadyActiveException : MathNetSymbolicsException
+    public class MutualExclusiveStrategyAlreadyActiveException : YttriumException
     {
         public MutualExclusiveStrategyAlreadyActiveException()
             : base(MathNet.Symbolics.Properties.Resources.ex_Traversing_Failed_ReserveMutex)
+        {
+        }
+
+        public MutualExclusiveStrategyAlreadyActiveException(string message)
+            : base(message)
+        {
+        }
+
+        public MutualExclusiveStrategyAlreadyActiveException(string message, Exception innerException)
+            : base(message, innerException)
         {
         }
 

@@ -61,19 +61,22 @@ namespace MathNet.Symbolics.Interpreter
         public void Match(TokenTypes expected)
         {
             if(!buffer.ElementAt(consumeOffset).IsType(expected))
-                throw new MathNet.Symbolics.Exceptions.ParsingException(string.Format(MathNet.Symbolics.Properties.Resources.ex_Parsing_Failed_TokenMismatch, expected.ToString(), buffer.ElementAt(consumeOffset).Text, CurrentTokenNeighbourhood()));
+                throw new Exceptions.ParsingException(string.Format(
+                    Config.UserCulture, Properties.Resources.ex_Parsing_Failed_TokenMismatch, expected.ToString(), buffer.ElementAt(consumeOffset).Text, CurrentTokenNeighbourhood()));
             Consume();
         }
         public void Match(TokenTypes expected, string content)
         {
             if(!buffer.ElementAt(consumeOffset).IsType(expected) || !buffer.ElementAt(consumeOffset).Text.Equals(content))
-                throw new MathNet.Symbolics.Exceptions.ParsingException(string.Format(MathNet.Symbolics.Properties.Resources.ex_Parsing_Failed_TokenMismatchEx, expected.ToString(), buffer.ElementAt(consumeOffset).Text, CurrentTokenNeighbourhood(), content));
+                throw new Exceptions.ParsingException(string.Format(
+                    Config.UserCulture, Properties.Resources.ex_Parsing_Failed_TokenMismatchEx, expected.ToString(), buffer.ElementAt(consumeOffset).Text, CurrentTokenNeighbourhood(), content));
             Consume();
         }
         public void Match(string content)
         {
             if(!buffer.ElementAt(consumeOffset).Text.Equals(content))
-                throw new MathNet.Symbolics.Exceptions.ParsingException(string.Format(MathNet.Symbolics.Properties.Resources.ex_Parsing_Failed_TokenMismatch, content, buffer.ElementAt(consumeOffset).Text, CurrentTokenNeighbourhood()));
+                throw new Exceptions.ParsingException(string.Format(
+                    Config.UserCulture, Properties.Resources.ex_Parsing_Failed_TokenMismatch, content, buffer.ElementAt(consumeOffset).Text, CurrentTokenNeighbourhood()));
             Consume();
         }
 
@@ -81,7 +84,8 @@ namespace MathNet.Symbolics.Interpreter
         {
             LexerToken t = buffer.ElementAt(consumeOffset);
             if(!t.IsType(expected))
-                throw new MathNet.Symbolics.Exceptions.ParsingException(string.Format(MathNet.Symbolics.Properties.Resources.ex_Parsing_Failed_TokenMismatch, expected.ToString(), t.Text, CurrentTokenNeighbourhood()));
+                throw new Exceptions.ParsingException(string.Format(
+                    Config.UserCulture, Properties.Resources.ex_Parsing_Failed_TokenMismatch, expected.ToString(), t.Text, CurrentTokenNeighbourhood()));
             Consume();
             return t;
         }

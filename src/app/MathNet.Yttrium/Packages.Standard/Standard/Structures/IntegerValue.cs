@@ -42,11 +42,11 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
             library.AddCustomDataType<IntegerValue>();
             //library.AddCustomDataType(new CustomDataRef(typeof(IntegerValue), ValueConverter<IntegerValue>.Router));
         }
-        public static IntegerValue ConvertFrom(IValueStructure value)
+        public static IntegerValue ConvertFrom(ICustomData value)
         {
             return (IntegerValue)ValueConverter<IntegerValue>.ConvertFrom(value);
         }
-        public static bool CanConvertLosslessFrom(IValueStructure value)
+        public static bool CanConvertLosslessFrom(ICustomData value)
         {
             return ValueConverter<IntegerValue>.Router.CanConvertLosslessFrom(value);
         }
@@ -64,7 +64,7 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
         #endregion
 
         #region Basic Operation Processes
-        public class AddProcess : GenericFunctionProcess
+        internal class AddProcess : GenericFunctionProcess
         {
             public AddProcess(bool[] summandInput, bool[] summandInternal, bool[] outOutput, bool[] outInternal)
                 : base(summandInput, summandInternal, outOutput, outInternal) { }
@@ -87,7 +87,7 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
                 }
             }
         }
-        public class SubtractProcess : GenericFunctionProcess
+        internal class SubtractProcess : GenericFunctionProcess
         {
             public SubtractProcess(bool[] summandInput, bool[] summandInternal, bool[] outOutput, bool[] outInternal)
                 : base(summandInput, summandInternal, outOutput, outInternal) { }
@@ -110,7 +110,7 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
                 }
             }
         }
-        public class MultiplyProcess : GenericFunctionProcess
+        internal class MultiplyProcess : GenericFunctionProcess
         {
             public MultiplyProcess(bool[] summandInput, bool[] summandInternal, bool[] outOutput, bool[] outInternal)
                 : base(summandInput, summandInternal, outOutput, outInternal) { }
@@ -133,7 +133,7 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
                 }
             }
         }
-        public class DivideProcess : GenericFunctionProcess
+        internal class DivideProcess : GenericFunctionProcess
         {
             public DivideProcess(bool[] summandInput, bool[] summandInternal, bool[] outOutput, bool[] outInternal)
                 : base(summandInput, summandInternal, outOutput, outInternal) { }

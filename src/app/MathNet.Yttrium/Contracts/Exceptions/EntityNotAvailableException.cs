@@ -22,18 +22,34 @@
 using System;
 using System.Runtime.Serialization;
 using System.Security.Permissions;
+using System.Globalization;
 
 namespace MathNet.Symbolics.Exceptions
 {
     [Serializable]
-    public class EntityNotAvailableException : MathNetSymbolicsException
+    public class EntityNotAvailableException : YttriumException
     {
         IEntity _entity;
 
+        public EntityNotAvailableException()
+            : base()
+        {
+        }
+
+        public EntityNotAvailableException(string message)
+            : base(message)
+        {
+        }
+
         public EntityNotAvailableException(IEntity entity)
-            : base(string.Format(MathNet.Symbolics.Properties.Resources.ex_NotAvailable_Entity, (entity == null ? "N/A" : entity.ToString())))
+            : base(string.Format(CultureInfo.CurrentCulture, MathNet.Symbolics.Properties.Resources.ex_NotAvailable_Entity, (entity == null ? "N/A" : entity.ToString())))
         {
             _entity = entity;
+        }
+
+        public EntityNotAvailableException(string message, Exception innerException)
+            : base(message, innerException)
+        {
         }
 
         protected EntityNotAvailableException(SerializationInfo info, StreamingContext context)

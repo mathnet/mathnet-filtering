@@ -26,22 +26,26 @@ using System.Security.Permissions;
 namespace MathNet.Symbolics.Exceptions
 {
     [Serializable]
-    public class NotFoundException : MathNetSymbolicsException
+    public class NotFoundException : YttriumException
     {
         public NotFoundException()
             : base(MathNet.Symbolics.Properties.Resources.ex_NotFound)
         {
         }
 
-        protected NotFoundException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
+        public NotFoundException(string message)
+            : base(message)
         {
         }
 
-        [SecurityPermissionAttribute(SecurityAction.Demand, SerializationFormatter = true)]
-        public override void GetObjectData(SerializationInfo info, StreamingContext context)
+        public NotFoundException(string message, Exception innerException)
+            : base(message, innerException)
         {
-            base.GetObjectData(info, context);
+        }
+
+        protected NotFoundException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
+        {
         }
     }
 }

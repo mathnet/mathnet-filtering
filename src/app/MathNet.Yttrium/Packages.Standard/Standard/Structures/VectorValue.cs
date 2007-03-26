@@ -47,11 +47,11 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
             library.AddCustomDataType<VectorValue<TScalar>>();
             //library.AddCustomDataType(new CustomDataRef(typeof(VectorValue<TScalar>), ValueConverter<VectorValue<TScalar>>.Router));
         }
-        public static VectorValue<TScalar> ConvertFrom(IValueStructure value)
+        public static VectorValue<TScalar> ConvertFrom(ICustomData value)
         {
             return (VectorValue<TScalar>)ValueConverter<VectorValue<TScalar>>.ConvertFrom(value);
         }
-        public static bool CanConvertLosslessFrom(IValueStructure value)
+        public static bool CanConvertLosslessFrom(ICustomData value)
         {
             return ValueConverter<VectorValue<TScalar>>.Router.CanConvertLosslessFrom(value);
         }        
@@ -265,22 +265,12 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
         //}
         public override void Serialize(XmlWriter writer, IDictionary<Guid, Guid> signalMappings, IDictionary<Guid, Guid> busMappings)
         {
-            writer.WriteElementString("Count", _dataValue.Length.ToString());
             Serializer.SerializeList<TScalar>(_dataValue, writer, signalMappings, busMappings, "Components");
-            
-            //for(int i = 0; i < _dataValue.Length; i++)
-            //    ValueStructure.Serialize(writer,_dataValue[i]);
         }
         private static VectorValue<TScalar> Deserialize(XmlReader reader, IDictionary<Guid, Signal> signals, IDictionary<Guid, Bus> buses)
         {
-            int cnt = int.Parse(reader.ReadElementString("Count"));
             List<TScalar> values = Serializer.DeserializeList<TScalar>(reader, signals, buses, "Components");
             return new VectorValue<TScalar>(values);
-
-            //TScalar[] values = new TScalar[cnt];
-            //for(int i = 0; i < cnt; i++)
-            //    values[i] = (TScalar)ValueStructure.Deserialize((Context)context, reader);
-            //return new VectorValue<TScalar>(values);
         }
         #endregion
     }

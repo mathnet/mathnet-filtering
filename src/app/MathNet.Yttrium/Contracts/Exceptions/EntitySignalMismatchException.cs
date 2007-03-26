@@ -26,11 +26,26 @@ using System.Security.Permissions;
 namespace MathNet.Symbolics.Exceptions
 {
     [Serializable]
-    public class EntitySignalMismatchException : MathNetSymbolicsException
+    public class EntitySignalMismatchException : YttriumException
     {
-        public EntitySignalMismatchException() { }
+        public EntitySignalMismatchException()
+            : base()
+        {
+        }
+
+        public EntitySignalMismatchException(string message)
+            : base(message)
+        {
+        }
+
+        public EntitySignalMismatchException(string message, Exception innerException)
+            : base(message, innerException)
+        {
+        }
 
         protected EntitySignalMismatchException(SerializationInfo info, StreamingContext context)
-            : base(info, context) { }
+            : base(info, context)
+        {
+        }
     }
 }

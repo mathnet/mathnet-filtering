@@ -26,11 +26,26 @@ using System.Security.Permissions;
 namespace MathNet.Symbolics.Exceptions
 {
     [Serializable]
-    public class GenericEntityPortNotInstantiableException : MathNetSymbolicsException
+    public class GenericEntityPortNotInstantiableException : YttriumException
     {
-        public GenericEntityPortNotInstantiableException() { }
+        public GenericEntityPortNotInstantiableException()
+            : base()
+        {
+        }
+
+        public GenericEntityPortNotInstantiableException(string message)
+            : base(message)
+        {
+        }
+
+        public GenericEntityPortNotInstantiableException(string message, Exception innerException)
+            : base(message, innerException)
+        {
+        }
 
         protected GenericEntityPortNotInstantiableException(SerializationInfo info, StreamingContext context)
-            : base(info, context) { }
+            : base(info, context)
+        {
+        }
     }
 }

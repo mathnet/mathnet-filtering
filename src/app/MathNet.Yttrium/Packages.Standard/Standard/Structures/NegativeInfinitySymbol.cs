@@ -42,11 +42,11 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
             library.AddCustomDataType<NegativeInfinitySymbol>(Instance);
             //library.AddCustomDataType(new CustomDataRef(typeof(NegativeInfinitySymbol), ValueConverter<NegativeInfinitySymbol>.Router, Instance));
         }
-        public static NegativeInfinitySymbol ConvertFrom(IValueStructure value)
-        {
-            return Instance;
-        }
-        public static bool CanConvertLosslessFrom(IValueStructure value)
+        //public static NegativeInfinitySymbol ConvertFrom(IValueStructure value)
+        //{
+        //    return Instance;
+        //}
+        public static bool CanConvertLosslessFrom(ICustomData value)
         {
             return ValueConverter<NegativeInfinitySymbol>.Router.CanConvertLosslessFrom(value);
         }

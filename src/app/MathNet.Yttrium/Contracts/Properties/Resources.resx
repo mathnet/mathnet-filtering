@@ -124,7 +124,7 @@
     <value>Failed to deserialize the entity {0}.{1}: entity is generic but no extension is attached.</value>
   </data>
   <data name="ex_Deserialize_Failed_UnexpectedPosition" xml:space="preserve">
-    <value>Faile to deserialize an item, due to an invalid data file or a usage error. Expected '{0}' but got '{1}' instead. Check the data file for errors and report to the developer.</value>
+    <value>Failed to deserialize an item, due to an invalid data file or a usage error. Expected '{0}' but got '{1}' instead. Check the data file for errors and report to the developer.</value>
   </data>
   <data name="ex_Deserialize_Failed_UnsupportedCategory" xml:space="preserve">
     <value>No proper category deserialization method found.</value>

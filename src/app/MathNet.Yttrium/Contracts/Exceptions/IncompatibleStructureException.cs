@@ -26,11 +26,27 @@ using System.Security.Permissions;
 namespace MathNet.Symbolics.Exceptions
 {
     [Serializable]
-    public class IncompatibleStructureException : MathNetSymbolicsException
+    public class IncompatibleStructureException : YttriumException
     {
         private string domain, label;
 
+        public IncompatibleStructureException()
+            : base()
+        {
+        }
+
+        public IncompatibleStructureException(string message)
+            : base(message)
+        {
+        }
+
+        public IncompatibleStructureException(string message, Exception innerException)
+            : base(message, innerException)
+        {
+        }
+
         public IncompatibleStructureException(string label, string domain)
+            : base()
         {
             this.domain = domain;
             this.label = label;

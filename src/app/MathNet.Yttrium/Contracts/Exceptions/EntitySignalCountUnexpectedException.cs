@@ -21,16 +21,37 @@
 
 using System;
 using System.Runtime.Serialization;
+using System.Globalization;
+using MathNet.Symbolics.Properties;
 
 namespace MathNet.Symbolics.Exceptions
 {
     [Serializable]
-    public class EntitySignalCountUnexpectedException : MathNetSymbolicsException
+    public class EntitySignalCountUnexpectedException : YttriumException
     {
+        public EntitySignalCountUnexpectedException()
+            : base()
+        {
+        }
+
+        public EntitySignalCountUnexpectedException(string message)
+            : base(message)
+        {
+        }
+
+        public EntitySignalCountUnexpectedException(string message, Exception innerException)
+            : base(message, innerException)
+        {
+        }
+
         public EntitySignalCountUnexpectedException(string expected, string got)
-            : base(string.Format(MathNet.Symbolics.Properties.Resources.ex_Entity_Unexpected_SignalCount, expected, got)) { }
+            : base(string.Format(CultureInfo.CurrentCulture, MathNet.Symbolics.Properties.Resources.ex_Entity_Unexpected_SignalCount, expected, got))
+        {
+        }
 
         protected EntitySignalCountUnexpectedException(SerializationInfo info, StreamingContext context)
-            : base(info, context) { }
+            : base(info, context)
+        {
+        }
     }
 }

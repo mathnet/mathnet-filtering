@@ -36,6 +36,8 @@ namespace MathNet.Symbolics
         IFactory<Port, IEntity, IEnumerable<Signal>>,
         IFactory<IMathSystem>
     {
+        private CoreFactory() { }
+
         // Signal
         Signal IFactory<Signal>.GetInstance()
         {

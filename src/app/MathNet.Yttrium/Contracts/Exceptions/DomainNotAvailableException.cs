@@ -22,18 +22,29 @@
 using System;
 using System.Runtime.Serialization;
 using System.Security.Permissions;
+using System.Globalization;
 
 namespace MathNet.Symbolics.Exceptions
 {
     [Serializable]
-    public class DomainNotAvailableException : MathNetSymbolicsException
+    public class DomainNotAvailableException : YttriumException
     {
         string domain;
 
+        public DomainNotAvailableException()
+            : base()
+        {
+        }
+
         public DomainNotAvailableException(string domain)
-            : base(string.Format(MathNet.Symbolics.Properties.Resources.ex_NotAvailable_Domain,domain))
+            : base(string.Format(CultureInfo.CurrentCulture, MathNet.Symbolics.Properties.Resources.ex_NotAvailable_Domain, domain))
         {
             this.domain = domain;
+        }
+
+        public DomainNotAvailableException(string message, Exception innerException)
+            : base(message, innerException)
+        {
         }
 
         protected DomainNotAvailableException(SerializationInfo info, StreamingContext context)

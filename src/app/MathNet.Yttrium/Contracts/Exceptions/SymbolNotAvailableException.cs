@@ -26,11 +26,22 @@ using System.Security.Permissions;
 namespace MathNet.Symbolics.Exceptions
 {
     [Serializable]
-    public class SymbolNotAvailableException : MathNetSymbolicsException
+    public class SymbolNotAvailableException : YttriumException
     {
         private string symbol;
 
+        public SymbolNotAvailableException()
+            : base()
+        {
+        }
+
+        public SymbolNotAvailableException(string message, Exception innerException)
+            : base(message, innerException)
+        {
+        }
+
         public SymbolNotAvailableException(string symbol)
+            : base()
         {
             this.symbol = symbol;
         }
