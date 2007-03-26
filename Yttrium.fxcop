@@ -645,10 +645,15 @@
         <Types>
          <Type Name="BuilderFactory">
           <Messages>
-           <Message TypeName="AvoidUninstantiatedInternalClasses" Category="Microsoft.Performance" CheckId="CA1812" Created="2007-03-25 19:46:45Z">
+           <Message TypeName="AvoidUninstantiatedInternalClasses" Category="Microsoft.Performance" CheckId="CA1812" Status="Excluded" Created="2007-03-25 19:46:45Z">
             <Issue>
              <Item>MathNet.Symbolics.BuilderFactory</Item>
             </Issue>
+            <Notes>
+             <User Name="Christoph">
+              <Note Id="9" />
+             </User>
+            </Notes>
            </Message>
           </Messages>
          </Type>
@@ -858,64 +863,99 @@
          </Type>
          <Type Name="IFactory`3">
           <Messages>
-           <Message TypeName="AvoidExcessiveParametersOnGenericTypes" Category="Microsoft.Design" CheckId="CA1005" Created="2007-03-25 19:46:45Z">
+           <Message TypeName="AvoidExcessiveParametersOnGenericTypes" Category="Microsoft.Design" CheckId="CA1005" Status="Excluded" Created="2007-03-25 19:46:45Z">
             <Issue>
              <Item>MathNet.Symbolics.IFactory`3</Item>
             </Issue>
+            <Notes>
+             <User Name="Christoph">
+              <Note Id="3" />
+             </User>
+            </Notes>
            </Message>
           </Messages>
          </Type>
          <Type Name="IFactory`4">
           <Messages>
-           <Message TypeName="AvoidExcessiveParametersOnGenericTypes" Category="Microsoft.Design" CheckId="CA1005" Created="2007-03-25 19:46:45Z">
+           <Message TypeName="AvoidExcessiveParametersOnGenericTypes" Category="Microsoft.Design" CheckId="CA1005" Status="Excluded" Created="2007-03-25 19:46:45Z">
             <Issue>
              <Item>MathNet.Symbolics.IFactory`4</Item>
             </Issue>
+            <Notes>
+             <User Name="Christoph">
+              <Note Id="3" />
+             </User>
+            </Notes>
            </Message>
           </Messages>
          </Type>
          <Type Name="IFactory`5">
           <Messages>
-           <Message TypeName="AvoidExcessiveParametersOnGenericTypes" Category="Microsoft.Design" CheckId="CA1005" Created="2007-03-25 19:46:45Z">
+           <Message TypeName="AvoidExcessiveParametersOnGenericTypes" Category="Microsoft.Design" CheckId="CA1005" Status="Excluded" Created="2007-03-25 19:46:45Z">
             <Issue>
              <Item>MathNet.Symbolics.IFactory`5</Item>
             </Issue>
+            <Notes>
+             <User Name="Christoph">
+              <Note Id="3" />
+             </User>
+            </Notes>
            </Message>
           </Messages>
          </Type>
          <Type Name="IFactory`6">
           <Messages>
-           <Message TypeName="AvoidExcessiveParametersOnGenericTypes" Category="Microsoft.Design" CheckId="CA1005" Created="2007-03-25 19:46:45Z">
+           <Message TypeName="AvoidExcessiveParametersOnGenericTypes" Category="Microsoft.Design" CheckId="CA1005" Status="Excluded" Created="2007-03-25 19:46:45Z">
             <Issue>
              <Item>MathNet.Symbolics.IFactory`6</Item>
             </Issue>
+            <Notes>
+             <User Name="Christoph">
+              <Note Id="3" />
+             </User>
+            </Notes>
            </Message>
           </Messages>
          </Type>
          <Type Name="IFactory`7">
           <Messages>
-           <Message TypeName="AvoidExcessiveParametersOnGenericTypes" Category="Microsoft.Design" CheckId="CA1005" Created="2007-03-25 19:46:45Z">
+           <Message TypeName="AvoidExcessiveParametersOnGenericTypes" Category="Microsoft.Design" CheckId="CA1005" Status="Excluded" Created="2007-03-25 19:46:45Z">
             <Issue>
              <Item>MathNet.Symbolics.IFactory`7</Item>
             </Issue>
+            <Notes>
+             <User Name="Christoph">
+              <Note Id="3" />
+             </User>
+            </Notes>
            </Message>
           </Messages>
          </Type>
          <Type Name="IFactory`8">
           <Messages>
-           <Message TypeName="AvoidExcessiveParametersOnGenericTypes" Category="Microsoft.Design" CheckId="CA1005" Created="2007-03-25 19:46:45Z">
+           <Message TypeName="AvoidExcessiveParametersOnGenericTypes" Category="Microsoft.Design" CheckId="CA1005" Status="Excluded" Created="2007-03-25 19:46:45Z">
             <Issue>
              <Item>MathNet.Symbolics.IFactory`8</Item>
             </Issue>
+            <Notes>
+             <User Name="Christoph">
+              <Note Id="3" />
+             </User>
+            </Notes>
            </Message>
           </Messages>
          </Type>
          <Type Name="IFactory`9">
           <Messages>
-           <Message TypeName="AvoidExcessiveParametersOnGenericTypes" Category="Microsoft.Design" CheckId="CA1005" Created="2007-03-25 19:46:45Z">
+           <Message TypeName="AvoidExcessiveParametersOnGenericTypes" Category="Microsoft.Design" CheckId="CA1005" Status="Excluded" Created="2007-03-25 19:46:45Z">
             <Issue>
              <Item>MathNet.Symbolics.IFactory`9</Item>
             </Issue>
+            <Notes>
+             <User Name="Christoph">
+              <Note Id="3" />
+             </User>
+            </Notes>
            </Message>
           </Messages>
          </Type>
@@ -1166,11 +1206,16 @@
           <Members>
            <Member Name="Equals(MathNet.Symbolics.Node):System.Boolean">
             <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-25 19:46:45Z">
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Status="Excluded" Created="2007-03-25 19:46:45Z">
               <Issue>
                <Item>'other'</Item>
                <Item>Node.Equals(Node):Boolean</Item>
               </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="5" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
@@ -1180,88 +1225,103 @@
           <Members>
            <Member Name="op_Addition(MathNet.Symbolics.Signal,MathNet.Symbolics.Signal):MathNet.Symbolics.Signal">
             <Messages>
-             <Message TypeName="OperatorOverloadsHaveNamedAlternates" Category="Microsoft.Usage" CheckId="CA2225" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>Add</Item>
-               <Item>Signal.op_Addition(Signal, Signal):Signal</Item>
-              </Issue>
-             </Message>
              <Message TypeName="OverloadOperatorEqualsOnOverloadingAddAndSubtract" Category="Microsoft.Design" CheckId="CA1013" Created="2007-03-25 19:46:45Z">
               <Issue>
                <Item>Signal</Item>
                <Item>Signal.op_Addition(Signal, Signal):Signal</Item>
               </Issue>
+             </Message>
+             <Message TypeName="OperatorOverloadsHaveNamedAlternates" Category="Microsoft.Usage" CheckId="CA2225" Status="Excluded" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>Add</Item>
+               <Item>Signal.op_Addition(Signal, Signal):Signal</Item>
+              </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="4" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
            <Member Name="op_Division(MathNet.Symbolics.Signal,MathNet.Symbolics.Signal):MathNet.Symbolics.Signal">
             <Messages>
-             <Message TypeName="OperatorOverloadsHaveNamedAlternates" Category="Microsoft.Usage" CheckId="CA2225" Created="2007-03-25 19:46:45Z">
+             <Message TypeName="OperatorOverloadsHaveNamedAlternates" Category="Microsoft.Usage" CheckId="CA2225" Status="Excluded" Created="2007-03-25 19:46:45Z">
               <Issue>
                <Item>Divide</Item>
                <Item>Signal.op_Division(Signal, Signal):Signal</Item>
               </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="4" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
            <Member Name="op_Multiply(MathNet.Symbolics.Signal,MathNet.Symbolics.Signal):MathNet.Symbolics.Signal">
             <Messages>
-             <Message TypeName="OperatorOverloadsHaveNamedAlternates" Category="Microsoft.Usage" CheckId="CA2225" Created="2007-03-25 19:46:45Z">
+             <Message TypeName="OperatorOverloadsHaveNamedAlternates" Category="Microsoft.Usage" CheckId="CA2225" Status="Excluded" Created="2007-03-25 19:46:45Z">
               <Issue>
                <Item>Multiply</Item>
                <Item>Signal.op_Multiply(Signal, Signal):Signal</Item>
               </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="4" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
            <Member Name="op_Subtraction(MathNet.Symbolics.Signal,MathNet.Symbolics.Signal):MathNet.Symbolics.Signal">
             <Messages>
-             <Message TypeName="OperatorOverloadsHaveNamedAlternates" Category="Microsoft.Usage" CheckId="CA2225" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>Subtract</Item>
-               <Item>Signal.op_Subtraction(Signal, Signal):Signal</Item>
-              </Issue>
-             </Message>
              <Message TypeName="OverloadOperatorEqualsOnOverloadingAddAndSubtract" Category="Microsoft.Design" CheckId="CA1013" Created="2007-03-25 19:46:45Z">
               <Issue>
                <Item>Signal</Item>
                <Item>Signal.op_Subtraction(Signal, Signal):Signal</Item>
               </Issue>
              </Message>
+             <Message TypeName="OperatorOverloadsHaveNamedAlternates" Category="Microsoft.Usage" CheckId="CA2225" Status="Excluded" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>Subtract</Item>
+               <Item>Signal.op_Subtraction(Signal, Signal):Signal</Item>
+              </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="4" />
+               </User>
+              </Notes>
+             </Message>
             </Messages>
            </Member>
            <Member Name="op_UnaryNegation(MathNet.Symbolics.Signal):MathNet.Symbolics.Signal">
             <Messages>
-             <Message TypeName="OperatorOverloadsHaveNamedAlternates" Category="Microsoft.Usage" CheckId="CA2225" Created="2007-03-25 19:46:45Z">
+             <Message TypeName="OperatorOverloadsHaveNamedAlternates" Category="Microsoft.Usage" CheckId="CA2225" Status="Excluded" Created="2007-03-25 19:46:45Z">
               <Issue>
                <Item>Negate</Item>
                <Item>Signal.op_UnaryNegation(Signal):Signal</Item>
               </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="4" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
            <Member Name="op_UnaryPlus(MathNet.Symbolics.Signal):MathNet.Symbolics.Signal">
             <Messages>
-             <Message TypeName="OperatorOverloadsHaveNamedAlternates" Category="Microsoft.Usage" CheckId="CA2225" Created="2007-03-25 19:46:45Z">
+             <Message TypeName="OperatorOverloadsHaveNamedAlternates" Category="Microsoft.Usage" CheckId="CA2225" Status="Excluded" Created="2007-03-25 19:46:45Z">
               <Issue>
                <Item>Plus</Item>
                <Item>Signal.op_UnaryPlus(Signal):Signal</Item>
               </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="ValueNode">
-          <Members>
-           <Member Name="SetPresentValue(MathNet.Symbolics.IValueStructure):System.Void">
-            <Messages>
-             <Message Id="different" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>ValueNode.SetPresentValue(IValueStructure):Void</Item>
-               <Item>different</Item>
-               <Item>System.Boolean</Item>
-              </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="4" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
@@ -1396,277 +1456,140 @@
        <Namespace Name="MathNet.Symbolics.Exceptions">
         <Types>
          <Type Name="ArchitectureNotAvailableException">
-          <Messages>
-           <Message TypeName="ImplementStandardExceptionConstructors" Category="Microsoft.Design" CheckId="CA1032" Created="2007-03-25 19:46:45Z">
-            <Issue>
-             <Item>MathNet.Symbolics.Exceptions.ArchitectureNotAvailableException</Item>
-             <Item>public ArchitectureNotAvailableException()</Item>
-            </Issue>
-            <Issue>
-             <Item>MathNet.Symbolics.Exceptions.ArchitectureNotAvailableException</Item>
-             <Item>public ArchitectureNotAvailableException(String)</Item>
-            </Issue>
-            <Issue>
-             <Item>MathNet.Symbolics.Exceptions.ArchitectureNotAvailableException</Item>
-             <Item>public ArchitectureNotAvailableException(String, Exception)</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
-           <Member Name=".ctor(MathNet.Symbolics.Port)">
-            <Messages>
-             <Message Id="System.String.Format(System.String,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>ArchitectureNotAvailableException.ArchitectureNotAvailableException(Port)</Item>
-               <Item>System.String.Format(System.String,System.Object)</Item>
-               <Item>System.String.Format(System.IFormatProvider,System.String,System.Object[])</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name=".ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-25 19:46:45Z">
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Status="Excluded" Created="2007-03-25 19:46:45Z">
               <Issue>
                <Item>'info'</Item>
                <Item>ArchitectureNotAvailableException.ArchitectureNotAvailableException(SerializationInfo, StreamingContext)</Item>
               </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="5" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
            <Member Name="GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext):System.Void">
             <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-25 19:46:45Z">
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Status="Excluded" Created="2007-03-25 19:46:45Z">
               <Issue>
                <Item>'info'</Item>
                <Item>ArchitectureNotAvailableException.GetObjectData(SerializationInfo, StreamingContext):Void</Item>
               </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="5" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
           </Members>
          </Type>
-         <Type Name="CommandException">
-          <Messages>
-           <Message TypeName="ImplementStandardExceptionConstructors" Category="Microsoft.Design" CheckId="CA1032" Created="2007-03-25 19:46:45Z">
-            <Issue>
-             <Item>MathNet.Symbolics.Exceptions.CommandException</Item>
-             <Item>public CommandException()</Item>
-            </Issue>
-            <Issue>
-             <Item>MathNet.Symbolics.Exceptions.CommandException</Item>
-             <Item>public CommandException(String, Exception)</Item>
-            </Issue>
-           </Message>
-          </Messages>
-         </Type>
          <Type Name="CyclicSignalsNotSupportedException">
-          <Messages>
-           <Message TypeName="ImplementStandardExceptionConstructors" Category="Microsoft.Design" CheckId="CA1032" Created="2007-03-25 19:46:45Z">
-            <Issue>
-             <Item>MathNet.Symbolics.Exceptions.CyclicSignalsNotSupportedException</Item>
-             <Item>public CyclicSignalsNotSupportedException()</Item>
-            </Issue>
-            <Issue>
-             <Item>MathNet.Symbolics.Exceptions.CyclicSignalsNotSupportedException</Item>
-             <Item>public CyclicSignalsNotSupportedException(String)</Item>
-            </Issue>
-            <Issue>
-             <Item>MathNet.Symbolics.Exceptions.CyclicSignalsNotSupportedException</Item>
-             <Item>public CyclicSignalsNotSupportedException(String, Exception)</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
-           <Member Name=".ctor(MathNet.Symbolics.Signal,System.String)">
-            <Messages>
-             <Message Id="System.String.Format(System.String,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>CyclicSignalsNotSupportedException.CyclicSignalsNotSupportedException(Signal, String)</Item>
-               <Item>System.String.Format(System.String,System.Object)</Item>
-               <Item>System.String.Format(System.IFormatProvider,System.String,System.Object[])</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name=".ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-25 19:46:45Z">
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Status="Excluded" Created="2007-03-25 19:46:45Z">
               <Issue>
                <Item>'info'</Item>
                <Item>CyclicSignalsNotSupportedException.CyclicSignalsNotSupportedException(SerializationInfo, StreamingContext)</Item>
               </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="5" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
            <Member Name="GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext):System.Void">
             <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-25 19:46:45Z">
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Status="Excluded" Created="2007-03-25 19:46:45Z">
               <Issue>
                <Item>'info'</Item>
                <Item>CyclicSignalsNotSupportedException.GetObjectData(SerializationInfo, StreamingContext):Void</Item>
               </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="5" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
           </Members>
          </Type>
-         <Type Name="DeserializationException">
-          <Messages>
-           <Message TypeName="ImplementStandardExceptionConstructors" Category="Microsoft.Design" CheckId="CA1032" Created="2007-03-25 19:46:45Z">
-            <Issue>
-             <Item>MathNet.Symbolics.Exceptions.DeserializationException</Item>
-             <Item>public DeserializationException()</Item>
-            </Issue>
-            <Issue>
-             <Item>MathNet.Symbolics.Exceptions.DeserializationException</Item>
-             <Item>public DeserializationException(String, Exception)</Item>
-            </Issue>
-           </Message>
-          </Messages>
-         </Type>
          <Type Name="DomainNotAvailableException">
-          <Messages>
-           <Message TypeName="ImplementStandardExceptionConstructors" Category="Microsoft.Design" CheckId="CA1032" Created="2007-03-25 19:46:45Z">
-            <Issue>
-             <Item>MathNet.Symbolics.Exceptions.DomainNotAvailableException</Item>
-             <Item>public DomainNotAvailableException()</Item>
-            </Issue>
-            <Issue>
-             <Item>MathNet.Symbolics.Exceptions.DomainNotAvailableException</Item>
-             <Item>public DomainNotAvailableException(String, Exception)</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
            <Member Name=".ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-25 19:46:45Z">
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Status="Excluded" Created="2007-03-25 19:46:45Z">
               <Issue>
                <Item>'info'</Item>
                <Item>DomainNotAvailableException.DomainNotAvailableException(SerializationInfo, StreamingContext)</Item>
               </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name=".ctor(System.String)">
-            <Messages>
-             <Message Id="System.String.Format(System.String,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>DomainNotAvailableException.DomainNotAvailableException(String)</Item>
-               <Item>System.String.Format(System.String,System.Object)</Item>
-               <Item>System.String.Format(System.IFormatProvider,System.String,System.Object[])</Item>
-              </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="5" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
            <Member Name="GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext):System.Void">
             <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-25 19:46:45Z">
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Status="Excluded" Created="2007-03-25 19:46:45Z">
               <Issue>
                <Item>'info'</Item>
                <Item>DomainNotAvailableException.GetObjectData(SerializationInfo, StreamingContext):Void</Item>
               </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="5" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
           </Members>
          </Type>
          <Type Name="EntityNotAvailableException">
-          <Messages>
-           <Message TypeName="ImplementStandardExceptionConstructors" Category="Microsoft.Design" CheckId="CA1032" Created="2007-03-25 19:46:45Z">
-            <Issue>
-             <Item>MathNet.Symbolics.Exceptions.EntityNotAvailableException</Item>
-             <Item>public EntityNotAvailableException()</Item>
-            </Issue>
-            <Issue>
-             <Item>MathNet.Symbolics.Exceptions.EntityNotAvailableException</Item>
-             <Item>public EntityNotAvailableException(String)</Item>
-            </Issue>
-            <Issue>
-             <Item>MathNet.Symbolics.Exceptions.EntityNotAvailableException</Item>
-             <Item>public EntityNotAvailableException(String, Exception)</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
-           <Member Name=".ctor(MathNet.Symbolics.IEntity)">
-            <Messages>
-             <Message Id="System.String.Format(System.String,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>EntityNotAvailableException.EntityNotAvailableException(IEntity)</Item>
-               <Item>System.String.Format(System.String,System.Object)</Item>
-               <Item>System.String.Format(System.IFormatProvider,System.String,System.Object[])</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name=".ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-25 19:46:45Z">
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Status="Excluded" Created="2007-03-25 19:46:45Z">
               <Issue>
                <Item>'info'</Item>
                <Item>EntityNotAvailableException.EntityNotAvailableException(SerializationInfo, StreamingContext)</Item>
               </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="5" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
            <Member Name="GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext):System.Void">
             <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-25 19:46:45Z">
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Status="Excluded" Created="2007-03-25 19:46:45Z">
               <Issue>
                <Item>'info'</Item>
                <Item>EntityNotAvailableException.GetObjectData(SerializationInfo, StreamingContext):Void</Item>
               </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="5" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
           </Members>
-         </Type>
-         <Type Name="EntitySignalCountUnexpectedException">
-          <Messages>
-           <Message TypeName="ImplementStandardExceptionConstructors" Category="Microsoft.Design" CheckId="CA1032" Created="2007-03-25 19:46:45Z">
-            <Issue>
-             <Item>MathNet.Symbolics.Exceptions.EntitySignalCountUnexpectedException</Item>
-             <Item>public EntitySignalCountUnexpectedException()</Item>
-            </Issue>
-            <Issue>
-             <Item>MathNet.Symbolics.Exceptions.EntitySignalCountUnexpectedException</Item>
-             <Item>public EntitySignalCountUnexpectedException(String)</Item>
-            </Issue>
-            <Issue>
-             <Item>MathNet.Symbolics.Exceptions.EntitySignalCountUnexpectedException</Item>
-             <Item>public EntitySignalCountUnexpectedException(String, Exception)</Item>
-            </Issue>
-           </Message>
-          </Messages>
-          <Members>
-           <Member Name=".ctor(System.String,System.String)">
-            <Messages>
-             <Message Id="System.String.Format(System.String,System.Object,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>EntitySignalCountUnexpectedException.EntitySignalCountUnexpectedException(String, String)</Item>
-               <Item>System.String.Format(System.String,System.Object,System.Object)</Item>
-               <Item>System.String.Format(System.IFormatProvider,System.String,System.Object[])</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="EntitySignalMismatchException">
-          <Messages>
-           <Message TypeName="ImplementStandardExceptionConstructors" Category="Microsoft.Design" CheckId="CA1032" Created="2007-03-25 19:46:45Z">
-            <Issue>
-             <Item>MathNet.Symbolics.Exceptions.EntitySignalMismatchException</Item>
-             <Item>public EntitySignalMismatchException(String)</Item>
-            </Issue>
-            <Issue>
-             <Item>MathNet.Symbolics.Exceptions.EntitySignalMismatchException</Item>
-             <Item>public EntitySignalMismatchException(String, Exception)</Item>
-            </Issue>
-           </Message>
-          </Messages>
          </Type>
          <Type Name="GenericEntityPortNotInstantiableException">
           <Messages>
@@ -1676,243 +1599,147 @@
              <Item>MathNet.Symbolics.Exceptions.GenericEntityPortNotInstantiableException</Item>
             </Issue>
            </Message>
-           <Message TypeName="ImplementStandardExceptionConstructors" Category="Microsoft.Design" CheckId="CA1032" Created="2007-03-25 19:46:45Z">
-            <Issue>
-             <Item>MathNet.Symbolics.Exceptions.GenericEntityPortNotInstantiableException</Item>
-             <Item>public GenericEntityPortNotInstantiableException(String)</Item>
-            </Issue>
-            <Issue>
-             <Item>MathNet.Symbolics.Exceptions.GenericEntityPortNotInstantiableException</Item>
-             <Item>public GenericEntityPortNotInstantiableException(String, Exception)</Item>
-            </Issue>
-           </Message>
           </Messages>
          </Type>
          <Type Name="IncompatibleStructureException">
-          <Messages>
-           <Message TypeName="ImplementStandardExceptionConstructors" Category="Microsoft.Design" CheckId="CA1032" Created="2007-03-25 19:46:45Z">
-            <Issue>
-             <Item>MathNet.Symbolics.Exceptions.IncompatibleStructureException</Item>
-             <Item>public IncompatibleStructureException()</Item>
-            </Issue>
-            <Issue>
-             <Item>MathNet.Symbolics.Exceptions.IncompatibleStructureException</Item>
-             <Item>public IncompatibleStructureException(String)</Item>
-            </Issue>
-            <Issue>
-             <Item>MathNet.Symbolics.Exceptions.IncompatibleStructureException</Item>
-             <Item>public IncompatibleStructureException(String, Exception)</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
            <Member Name=".ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-25 19:46:45Z">
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Status="Excluded" Created="2007-03-25 19:46:45Z">
               <Issue>
                <Item>'info'</Item>
                <Item>IncompatibleStructureException.IncompatibleStructureException(SerializationInfo, StreamingContext)</Item>
               </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="5" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
            <Member Name="GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext):System.Void">
             <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-25 19:46:45Z">
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Status="Excluded" Created="2007-03-25 19:46:45Z">
               <Issue>
                <Item>'info'</Item>
                <Item>IncompatibleStructureException.GetObjectData(SerializationInfo, StreamingContext):Void</Item>
               </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="5" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
           </Members>
          </Type>
          <Type Name="LabelNotAvailableException">
-          <Messages>
-           <Message TypeName="ImplementStandardExceptionConstructors" Category="Microsoft.Design" CheckId="CA1032" Created="2007-03-25 19:46:45Z">
-            <Issue>
-             <Item>MathNet.Symbolics.Exceptions.LabelNotAvailableException</Item>
-             <Item>public LabelNotAvailableException()</Item>
-            </Issue>
-            <Issue>
-             <Item>MathNet.Symbolics.Exceptions.LabelNotAvailableException</Item>
-             <Item>public LabelNotAvailableException(String)</Item>
-            </Issue>
-            <Issue>
-             <Item>MathNet.Symbolics.Exceptions.LabelNotAvailableException</Item>
-             <Item>public LabelNotAvailableException(String, Exception)</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
            <Member Name=".ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-25 19:46:45Z">
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Status="Excluded" Created="2007-03-25 19:46:45Z">
               <Issue>
                <Item>'info'</Item>
                <Item>LabelNotAvailableException.LabelNotAvailableException(SerializationInfo, StreamingContext)</Item>
               </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="5" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
            <Member Name="GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext):System.Void">
             <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-25 19:46:45Z">
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Status="Excluded" Created="2007-03-25 19:46:45Z">
               <Issue>
                <Item>'info'</Item>
                <Item>LabelNotAvailableException.GetObjectData(SerializationInfo, StreamingContext):Void</Item>
               </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="5" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
           </Members>
          </Type>
-         <Type Name="MathNetSymbolicsException">
-          <Messages>
-           <Message Id="Symbolics" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2007-03-25 19:46:45Z">
-            <Issue Name="Type">
-             <Item>Symbolics</Item>
-             <Item>MathNet.Symbolics.Exceptions.MathNetSymbolicsException</Item>
-            </Issue>
-           </Message>
-          </Messages>
-         </Type>
-         <Type Name="MutualExclusiveStrategyAlreadyActiveException">
-          <Messages>
-           <Message TypeName="ImplementStandardExceptionConstructors" Category="Microsoft.Design" CheckId="CA1032" Created="2007-03-25 19:46:45Z">
-            <Issue>
-             <Item>MathNet.Symbolics.Exceptions.MutualExclusiveStrategyAlreadyActiveException</Item>
-             <Item>public MutualExclusiveStrategyAlreadyActiveException(String)</Item>
-            </Issue>
-            <Issue>
-             <Item>MathNet.Symbolics.Exceptions.MutualExclusiveStrategyAlreadyActiveException</Item>
-             <Item>public MutualExclusiveStrategyAlreadyActiveException(String, Exception)</Item>
-            </Issue>
-           </Message>
-          </Messages>
-         </Type>
-         <Type Name="NotFoundException">
-          <Messages>
-           <Message TypeName="ImplementStandardExceptionConstructors" Category="Microsoft.Design" CheckId="CA1032" Created="2007-03-25 19:46:45Z">
-            <Issue>
-             <Item>MathNet.Symbolics.Exceptions.NotFoundException</Item>
-             <Item>public NotFoundException(String)</Item>
-            </Issue>
-            <Issue>
-             <Item>MathNet.Symbolics.Exceptions.NotFoundException</Item>
-             <Item>public NotFoundException(String, Exception)</Item>
-            </Issue>
-           </Message>
-          </Messages>
-         </Type>
          <Type Name="StructureNotSupportedException">
-          <Messages>
-           <Message TypeName="ImplementStandardExceptionConstructors" Category="Microsoft.Design" CheckId="CA1032" Created="2007-03-25 19:46:45Z">
-            <Issue>
-             <Item>MathNet.Symbolics.Exceptions.StructureNotSupportedException</Item>
-             <Item>public StructureNotSupportedException()</Item>
-            </Issue>
-            <Issue>
-             <Item>MathNet.Symbolics.Exceptions.StructureNotSupportedException</Item>
-             <Item>public StructureNotSupportedException(String)</Item>
-            </Issue>
-            <Issue>
-             <Item>MathNet.Symbolics.Exceptions.StructureNotSupportedException</Item>
-             <Item>public StructureNotSupportedException(String, Exception)</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
            <Member Name=".ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-25 19:46:45Z">
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Status="Excluded" Created="2007-03-25 19:46:45Z">
               <Issue>
                <Item>'info'</Item>
                <Item>StructureNotSupportedException.StructureNotSupportedException(SerializationInfo, StreamingContext)</Item>
               </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="5" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
            <Member Name="GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext):System.Void">
             <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-25 19:46:45Z">
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Status="Excluded" Created="2007-03-25 19:46:45Z">
               <Issue>
                <Item>'info'</Item>
                <Item>StructureNotSupportedException.GetObjectData(SerializationInfo, StreamingContext):Void</Item>
               </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="5" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
           </Members>
          </Type>
          <Type Name="SymbolNotAvailableException">
-          <Messages>
-           <Message TypeName="ImplementStandardExceptionConstructors" Category="Microsoft.Design" CheckId="CA1032" Created="2007-03-25 19:46:45Z">
-            <Issue>
-             <Item>MathNet.Symbolics.Exceptions.SymbolNotAvailableException</Item>
-             <Item>public SymbolNotAvailableException()</Item>
-            </Issue>
-            <Issue>
-             <Item>MathNet.Symbolics.Exceptions.SymbolNotAvailableException</Item>
-             <Item>public SymbolNotAvailableException(String, Exception)</Item>
-            </Issue>
-           </Message>
-          </Messages>
           <Members>
            <Member Name=".ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-25 19:46:45Z">
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Status="Excluded" Created="2007-03-25 19:46:45Z">
               <Issue>
                <Item>'info'</Item>
                <Item>SymbolNotAvailableException.SymbolNotAvailableException(SerializationInfo, StreamingContext)</Item>
               </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="5" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
            <Member Name="GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext):System.Void">
             <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-25 19:46:45Z">
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Status="Excluded" Created="2007-03-25 19:46:45Z">
               <Issue>
                <Item>'info'</Item>
                <Item>SymbolNotAvailableException.GetObjectData(SerializationInfo, StreamingContext):Void</Item>
               </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="5" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
           </Members>
          </Type>
-         <Type Name="TheoremMismatchException">
-          <Messages>
-           <Message TypeName="ImplementStandardExceptionConstructors" Category="Microsoft.Design" CheckId="CA1032" Created="2007-03-25 19:46:45Z">
-            <Issue>
-             <Item>MathNet.Symbolics.Exceptions.TheoremMismatchException</Item>
-             <Item>public TheoremMismatchException(String)</Item>
-            </Issue>
-            <Issue>
-             <Item>MathNet.Symbolics.Exceptions.TheoremMismatchException</Item>
-             <Item>public TheoremMismatchException(String, Exception)</Item>
-            </Issue>
-           </Message>
-          </Messages>
-         </Type>
         </Types>
        </Namespace>
       </Namespaces>
-      <Resources>
-       <Resource Name="MathNet.Symbolics.Properties.Resources.resources">
-        <Messages>
-         <Message Id="Faile" TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703" Created="2007-03-25 19:46:45Z">
-          <Issue>
-           <Item>Faile</Item>
-           <Item>ex_Deserialize_Failed_UnexpectedPosition</Item>
-           <Item>Faile to deserialize an item, due to an invalid data file or a usage error. Expected '{0}' but got '{1}' instead. Check the data file for errors and report to the developer.</Item>
-           <Item>MathNet.Symbolics.Properties.Resources.resources</Item>
-          </Issue>
-         </Message>
-        </Messages>
-       </Resource>
-      </Resources>
      </Module>
     </Modules>
    </Target>
@@ -1920,7 +1747,7 @@
     <Modules>
      <Module Name="mathnet.yttrium.conversion.contracts.dll">
       <Messages>
-       <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Created="2007-03-25 19:46:45Z">
+       <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Created="2007-03-26 12:08:22Z">
         <Issue Name="NoStrongName">
          <Item>MathNet.Yttrium.Conversion.Contracts</Item>
         </Issue>
@@ -1933,7 +1760,7 @@
           <Members>
            <Member Name="AddSourceNeighbor(MathNet.Symbolics.Conversion.IConversionRouter,System.Boolean,System.Converter`2&lt;MathNet.Symbolics.ICustomData,MathNet.Symbolics.ICustomData&gt;):System.Void">
             <Messages>
-             <Message Id="0#" TypeName="ShortAcronymsShouldBeUppercase" Category="Microsoft.Naming" CheckId="CA1706" Created="2007-03-25 19:46:45Z">
+             <Message Id="0#" TypeName="ShortAcronymsShouldBeUppercase" Category="Microsoft.Naming" CheckId="CA1706" Created="2007-03-26 12:08:22Z">
               <Issue Name="Parameter">
                <Item>We</Item>
                <Item>routerWeCanConvertFrom</Item>
@@ -1943,7 +1770,7 @@
            </Member>
            <Member Name="AddTargetNeighbor(MathNet.Symbolics.Conversion.IConversionRouter):System.Void">
             <Messages>
-             <Message Id="0#" TypeName="ShortAcronymsShouldBeUppercase" Category="Microsoft.Naming" CheckId="CA1706" Created="2007-03-25 19:46:45Z">
+             <Message Id="0#" TypeName="ShortAcronymsShouldBeUppercase" Category="Microsoft.Naming" CheckId="CA1706" Created="2007-03-26 12:08:22Z">
               <Issue Name="Parameter">
                <Item>We</Item>
                <Item>routerWeCanConvertTo</Item>
@@ -1953,7 +1780,7 @@
            </Member>
            <Member Name="Propose(System.Collections.Generic.Dictionary`2&lt;MathNet.Symbolics.MathIdentifier,MathNet.Symbolics.Conversion.IRouteDistance&gt;,MathNet.Symbolics.Conversion.IConversionRouter):System.Void">
             <Messages>
-             <Message Id="0#vec" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2007-03-25 19:46:45Z">
+             <Message Id="0#vec" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2007-03-26 12:08:22Z">
               <Issue Name="Parameter">
                <Item>IConversionRouter.Propose(Dictionary`2&lt;MathNet.Symbolics.MathIdentifier,MathNet.Symbolics.Conversion.IRouteDistance&gt;, IConversionRouter):Void</Item>
                <Item>vec</Item>
@@ -1968,7 +1795,7 @@
           <Members>
            <Member Name="CanConvertLossyFrom(MathNet.Symbolics.ICustomData):System.Boolean">
             <Messages>
-             <Message Id="Lossy" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2007-03-25 19:46:45Z">
+             <Message Id="Lossy" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2007-03-26 12:08:22Z">
               <Issue Name="Member">
                <Item>Lossy</Item>
                <Item>IValueConverter.CanConvertLossyFrom(ICustomData):Boolean</Item>
@@ -1999,10 +1826,15 @@
         <Types>
          <Type Name="ConversionFactory">
           <Messages>
-           <Message TypeName="AvoidUninstantiatedInternalClasses" Category="Microsoft.Performance" CheckId="CA1812" Created="2007-03-25 19:46:45Z">
+           <Message TypeName="AvoidUninstantiatedInternalClasses" Category="Microsoft.Performance" CheckId="CA1812" Status="Excluded" Created="2007-03-25 19:46:45Z">
             <Issue>
              <Item>MathNet.Symbolics.ConversionFactory</Item>
             </Issue>
+            <Notes>
+             <User Name="Christoph">
+              <Note Id="9" />
+             </User>
+            </Notes>
            </Message>
           </Messages>
          </Type>
@@ -2057,18 +1889,12 @@
              </Message>
             </Messages>
            </Member>
-           <Member Name="AddConverterTo(MathNet.Symbolics.Conversion.IConversionRouter,System.Boolean,System.Converter`2&lt;TTarget,TDestination&gt;):System.Void">
+           <Member Name="AddConverterTo(System.Boolean,System.Converter`2&lt;TTarget,TDestination&gt;):System.Void">
             <Messages>
-             <Message TypeName="DoNotDeclareStaticMembersOnGenericTypes" Category="Microsoft.Design" CheckId="CA1000" Created="2007-03-25 19:46:45Z">
+             <Message TypeName="DoNotDeclareStaticMembersOnGenericTypes" Category="Microsoft.Design" CheckId="CA1000" Created="2007-03-26 12:58:01Z">
               <Issue>
-               <Item>ValueConverter`1.AddConverterTo(IConversionRouter, Boolean, Converter`2&lt;TTarget,TDestination&gt;):Void</Item>
+               <Item>ValueConverter`1.AddConverterTo(Boolean, Converter`2&lt;TTarget,TDestination&gt;):Void</Item>
                <Item>MathNet.Symbolics.Conversion.ValueConverter`1</Item>
-              </Issue>
-             </Message>
-             <Message Id="destinationRouter" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Created="2007-03-25 19:46:45Z" FixCategory="Breaking">
-              <Issue>
-               <Item>destinationRouter</Item>
-               <Item>ValueConverter`1.AddConverterTo(IConversionRouter, Boolean, Converter`2&lt;TTarget,TDestination&gt;):Void</Item>
               </Issue>
              </Message>
             </Messages>
@@ -2111,26 +1937,6 @@
         </Issue>
        </Message>
       </Messages>
-      <Namespaces>
-       <Namespace Name="MathNet.Symbolics.Exceptions">
-        <Types>
-         <Type Name="ParsingException">
-          <Messages>
-           <Message TypeName="ImplementStandardExceptionConstructors" Category="Microsoft.Design" CheckId="CA1032" Created="2007-03-25 19:46:45Z">
-            <Issue>
-             <Item>MathNet.Symbolics.Exceptions.ParsingException</Item>
-             <Item>public ParsingException()</Item>
-            </Issue>
-            <Issue>
-             <Item>MathNet.Symbolics.Exceptions.ParsingException</Item>
-             <Item>public ParsingException(String, Exception)</Item>
-            </Issue>
-           </Message>
-          </Messages>
-         </Type>
-        </Types>
-       </Namespace>
-      </Namespaces>
      </Module>
     </Modules>
    </Target>
@@ -2149,10 +1955,15 @@
         <Types>
          <Type Name="InterpreterFactory">
           <Messages>
-           <Message TypeName="AvoidUninstantiatedInternalClasses" Category="Microsoft.Performance" CheckId="CA1812" Created="2007-03-25 19:46:45Z">
+           <Message TypeName="AvoidUninstantiatedInternalClasses" Category="Microsoft.Performance" CheckId="CA1812" Status="Excluded" Created="2007-03-25 19:46:45Z">
             <Issue>
              <Item>MathNet.Symbolics.InterpreterFactory</Item>
             </Issue>
+            <Notes>
+             <User Name="Christoph">
+              <Note Id="9" />
+             </User>
+            </Notes>
            </Message>
           </Messages>
          </Type>
@@ -2505,50 +2316,6 @@
              </Message>
             </Messages>
            </Member>
-           <Member Name="Match(MathNet.Symbolics.Interpreter.TokenTypes):System.Void">
-            <Messages>
-             <Message Id="System.String.Format(System.String,System.Object,System.Object,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>ParserMarker.Match(TokenTypes):Void</Item>
-               <Item>System.String.Format(System.String,System.Object,System.Object,System.Object)</Item>
-               <Item>System.String.Format(System.IFormatProvider,System.String,System.Object[])</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="Match(MathNet.Symbolics.Interpreter.TokenTypes,System.String):System.Void">
-            <Messages>
-             <Message Id="System.String.Format(System.String,System.Object[])" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>ParserMarker.Match(TokenTypes, String):Void</Item>
-               <Item>System.String.Format(System.String,System.Object[])</Item>
-               <Item>System.String.Format(System.IFormatProvider,System.String,System.Object[])</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="Match(System.String):System.Void">
-            <Messages>
-             <Message Id="System.String.Format(System.String,System.Object,System.Object,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>ParserMarker.Match(String):Void</Item>
-               <Item>System.String.Format(System.String,System.Object,System.Object,System.Object)</Item>
-               <Item>System.String.Format(System.IFormatProvider,System.String,System.Object[])</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="MatchGet(MathNet.Symbolics.Interpreter.TokenTypes):MathNet.Symbolics.Interpreter.LexerToken">
-            <Messages>
-             <Message Id="System.String.Format(System.String,System.Object,System.Object,System.Object)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>ParserMarker.MatchGet(TokenTypes):LexerToken</Item>
-               <Item>System.String.Format(System.String,System.Object,System.Object,System.Object)</Item>
-               <Item>System.String.Format(System.IFormatProvider,System.String,System.Object[])</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name="RollbackMark():System.Void">
             <Messages>
              <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
@@ -2751,10 +2518,15 @@
         <Types>
          <Type Name="LibraryFactory">
           <Messages>
-           <Message TypeName="AvoidUninstantiatedInternalClasses" Category="Microsoft.Performance" CheckId="CA1812" Created="2007-03-25 19:46:45Z">
+           <Message TypeName="AvoidUninstantiatedInternalClasses" Category="Microsoft.Performance" CheckId="CA1812" Status="Excluded" Created="2007-03-25 19:46:45Z">
             <Issue>
              <Item>MathNet.Symbolics.LibraryFactory</Item>
             </Issue>
+            <Notes>
+             <User Name="Christoph">
+              <Note Id="9" />
+             </User>
+            </Notes>
            </Message>
           </Messages>
          </Type>
@@ -2827,24 +2599,6 @@
              </Message>
             </Messages>
            </Member>
-           <Member Name="FindEntityByLabel(System.String):MathNet.Symbolics.MathIdentifier">
-            <Messages>
-             <Message Id="System.Exception.#ctor(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>Library.FindEntityByLabel(String):MathIdentifier</Item>
-               <Item>1</Item>
-               <Item>Exception.Exception(String)</Item>
-               <Item>No matching entity found.</Item>
-              </Issue>
-             </Message>
-             <Message TypeName="DoNotRaiseReservedExceptionTypes" Category="Microsoft.Usage" CheckId="CA2201" Created="2007-03-25 19:46:45Z">
-              <Issue Name="TooGeneric">
-               <Item>Library.FindEntityByLabel(String):MathIdentifier</Item>
-               <Item>System.Exception</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name="LookupArchitecture(MathNet.Symbolics.Port):MathNet.Symbolics.IArchitectureFactory">
             <Messages>
              <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-25 19:46:45Z">
@@ -2909,12 +2663,6 @@
           <Members>
            <Member Name="GetXmlAttribute(System.Xml.XmlNode,System.String,System.String):System.String">
             <Messages>
-             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>XmlPackagesAdapter.GetXmlAttribute(XmlNode, String, String):String</Item>
-               <Item>System.Object</Item>
-              </Issue>
-             </Message>
              <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2007-03-25 19:46:45Z" FixCategory="NonBreaking">
               <Issue>
                <Item>XmlPackagesAdapter.GetXmlAttribute(XmlNode, String, String):String</Item>
@@ -2945,10 +2693,15 @@
         <Types>
          <Type Name="CoreFactory">
           <Messages>
-           <Message TypeName="AvoidUninstantiatedInternalClasses" Category="Microsoft.Performance" CheckId="CA1812" Created="2007-03-25 19:46:45Z">
+           <Message TypeName="AvoidUninstantiatedInternalClasses" Category="Microsoft.Performance" CheckId="CA1812" Status="Excluded" Created="2007-03-25 19:46:45Z">
             <Issue>
              <Item>MathNet.Symbolics.CoreFactory</Item>
             </Issue>
+            <Notes>
+             <User Name="Christoph">
+              <Note Id="9" />
+             </User>
+            </Notes>
            </Message>
           </Messages>
          </Type>
@@ -4367,20 +4120,6 @@
         </Types>
        </Namespace>
       </Namespaces>
-      <Resources>
-       <Resource Name="MathNet.Symbolics.Properties.Resources.resources">
-        <Messages>
-         <Message Id="Faile" TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703" Created="2006-08-14 12:24:04Z">
-          <Issue>
-           <Item>Faile</Item>
-           <Item>ex_Deserialize_Failed_UnexpectedPosition</Item>
-           <Item>Faile to deserialize an item, due to an invalid data file or a usage error. Expected '{0}' but got '{1}' instead. Check the data file for errors and report to the developer.</Item>
-           <Item>MathNet.Symbolics.Properties.Resources.resources</Item>
-          </Issue>
-         </Message>
-        </Messages>
-       </Resource>
-      </Resources>
      </Module>
     </Modules>
    </Target>
@@ -4481,10 +4220,15 @@
         <Types>
          <Type Name="ManipulationFactory">
           <Messages>
-           <Message TypeName="AvoidUninstantiatedInternalClasses" Category="Microsoft.Performance" CheckId="CA1812" Created="2007-03-25 19:46:45Z">
+           <Message TypeName="AvoidUninstantiatedInternalClasses" Category="Microsoft.Performance" CheckId="CA1812" Status="Excluded" Created="2007-03-25 19:46:45Z">
             <Issue>
              <Item>MathNet.Symbolics.ManipulationFactory</Item>
             </Issue>
+            <Notes>
+             <User Name="Christoph">
+              <Note Id="9" />
+             </User>
+            </Notes>
            </Message>
           </Messages>
          </Type>
@@ -4520,18 +4264,12 @@
             <Accessors>
              <Accessor Name="get_DefaultStrategy():MathNet.Symbolics.Traversing.IScanStrategy">
               <Messages>
-               <Message Id="System.Exception.#ctor(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2007-03-25 19:46:45Z">
+               <Message Id="System.NotImplementedException.#ctor(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2007-03-26 12:58:01Z">
                 <Issue>
                  <Item>ManipulatorPlanExecutor.get_DefaultStrategy():IScanStrategy</Item>
                  <Item>1</Item>
-                 <Item>Exception.Exception(String)</Item>
+                 <Item>NotImplementedException.NotImplementedException(String)</Item>
                  <Item>The method or operation is not implemented.</Item>
-                </Issue>
-               </Message>
-               <Message TypeName="DoNotRaiseReservedExceptionTypes" Category="Microsoft.Usage" CheckId="CA2201" Created="2007-03-25 19:46:45Z">
-                <Issue Name="TooGeneric">
-                 <Item>ManipulatorPlanExecutor.get_DefaultStrategy():IScanStrategy</Item>
-                 <Item>System.Exception</Item>
                 </Issue>
                </Message>
               </Messages>
@@ -4546,18 +4284,12 @@
             <Accessors>
              <Accessor Name="get_DefaultStrategy():MathNet.Symbolics.Traversing.IScanStrategy">
               <Messages>
-               <Message Id="System.Exception.#ctor(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2007-03-25 19:46:45Z">
+               <Message Id="System.NotImplementedException.#ctor(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2007-03-26 12:58:01Z">
                 <Issue>
                  <Item>ManipulatorPlanReducer.get_DefaultStrategy():IScanStrategy</Item>
                  <Item>1</Item>
-                 <Item>Exception.Exception(String)</Item>
+                 <Item>NotImplementedException.NotImplementedException(String)</Item>
                  <Item>The method or operation is not implemented.</Item>
-                </Issue>
-               </Message>
-               <Message TypeName="DoNotRaiseReservedExceptionTypes" Category="Microsoft.Usage" CheckId="CA2201" Created="2007-03-25 19:46:45Z">
-                <Issue Name="TooGeneric">
-                 <Item>ManipulatorPlanReducer.get_DefaultStrategy():IScanStrategy</Item>
-                 <Item>System.Exception</Item>
                 </Issue>
                </Message>
               </Messages>
@@ -4630,10 +4362,15 @@
         <Types>
          <Type Name="MediatorFactory">
           <Messages>
-           <Message TypeName="AvoidUninstantiatedInternalClasses" Category="Microsoft.Performance" CheckId="CA1812" Created="2007-03-25 19:46:45Z">
+           <Message TypeName="AvoidUninstantiatedInternalClasses" Category="Microsoft.Performance" CheckId="CA1812" Status="Excluded" Created="2007-03-25 19:46:45Z">
             <Issue>
              <Item>MathNet.Symbolics.MediatorFactory</Item>
             </Issue>
+            <Notes>
+             <User Name="Christoph">
+              <Note Id="9" />
+             </User>
+            </Notes>
            </Message>
           </Messages>
          </Type>
@@ -4655,111 +4392,166 @@
           <Members>
            <Member Name="MathNet.Symbolics.Mediator.IObserver.OnBusAttachedToPort(MathNet.Symbolics.Bus,MathNet.Symbolics.Port,System.Int32):System.Void">
             <Messages>
-             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-25 19:46:45Z">
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Status="Excluded" Created="2007-03-25 19:46:45Z">
               <Issue>
                <Item>SystemMediator</Item>
                <Item>IObserver.OnBusAttachedToPort(Bus, Port, Int32):Void</Item>
               </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="8" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
            <Member Name="MathNet.Symbolics.Mediator.IObserver.OnBusDetachedFromPort(MathNet.Symbolics.Bus,MathNet.Symbolics.Port,System.Int32):System.Void">
             <Messages>
-             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-25 19:46:45Z">
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Status="Excluded" Created="2007-03-25 19:46:45Z">
               <Issue>
                <Item>SystemMediator</Item>
                <Item>IObserver.OnBusDetachedFromPort(Bus, Port, Int32):Void</Item>
               </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="8" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
            <Member Name="MathNet.Symbolics.Mediator.IObserver.OnBusValueChanged(MathNet.Symbolics.Bus):System.Void">
             <Messages>
-             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-25 19:46:45Z">
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Status="Excluded" Created="2007-03-25 19:46:45Z">
               <Issue>
                <Item>SystemMediator</Item>
                <Item>IObserver.OnBusValueChanged(Bus):Void</Item>
               </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="8" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
            <Member Name="MathNet.Symbolics.Mediator.IObserver.OnNewBusCreated(MathNet.Symbolics.Bus):System.Void">
             <Messages>
-             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-25 19:46:45Z">
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Status="Excluded" Created="2007-03-25 19:46:45Z">
               <Issue>
                <Item>SystemMediator</Item>
                <Item>IObserver.OnNewBusCreated(Bus):Void</Item>
               </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="8" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
            <Member Name="MathNet.Symbolics.Mediator.IObserver.OnNewPortCreated(MathNet.Symbolics.Port):System.Void">
             <Messages>
-             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-25 19:46:45Z">
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Status="Excluded" Created="2007-03-25 19:46:45Z">
               <Issue>
                <Item>SystemMediator</Item>
                <Item>IObserver.OnNewPortCreated(Port):Void</Item>
               </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="8" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
            <Member Name="MathNet.Symbolics.Mediator.IObserver.OnNewSignalCreated(MathNet.Symbolics.Signal):System.Void">
             <Messages>
-             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-25 19:46:45Z">
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Status="Excluded" Created="2007-03-25 19:46:45Z">
               <Issue>
                <Item>SystemMediator</Item>
                <Item>IObserver.OnNewSignalCreated(Signal):Void</Item>
               </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="8" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
            <Member Name="MathNet.Symbolics.Mediator.IObserver.OnPortDrivesSignal(MathNet.Symbolics.Signal,MathNet.Symbolics.Port,System.Int32):System.Void">
             <Messages>
-             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-25 19:46:45Z">
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Status="Excluded" Created="2007-03-25 19:46:45Z">
               <Issue>
                <Item>SystemMediator</Item>
                <Item>IObserver.OnPortDrivesSignal(Signal, Port, Int32):Void</Item>
               </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="8" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
            <Member Name="MathNet.Symbolics.Mediator.IObserver.OnPortDrivesSignalNoLonger(MathNet.Symbolics.Signal,MathNet.Symbolics.Port,System.Int32):System.Void">
             <Messages>
-             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-25 19:46:45Z">
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Status="Excluded" Created="2007-03-25 19:46:45Z">
               <Issue>
                <Item>SystemMediator</Item>
                <Item>IObserver.OnPortDrivesSignalNoLonger(Signal, Port, Int32):Void</Item>
               </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="8" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
            <Member Name="MathNet.Symbolics.Mediator.IObserver.OnSignalDrivesPort(MathNet.Symbolics.Signal,MathNet.Symbolics.Port,System.Int32):System.Void">
             <Messages>
-             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-25 19:46:45Z">
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Status="Excluded" Created="2007-03-25 19:46:45Z">
               <Issue>
                <Item>SystemMediator</Item>
                <Item>IObserver.OnSignalDrivesPort(Signal, Port, Int32):Void</Item>
               </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="8" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
            <Member Name="MathNet.Symbolics.Mediator.IObserver.OnSignalDrivesPortNoLonger(MathNet.Symbolics.Signal,MathNet.Symbolics.Port,System.Int32):System.Void">
             <Messages>
-             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-25 19:46:45Z">
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Status="Excluded" Created="2007-03-25 19:46:45Z">
               <Issue>
                <Item>SystemMediator</Item>
                <Item>IObserver.OnSignalDrivesPortNoLonger(Signal, Port, Int32):Void</Item>
               </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="8" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
            <Member Name="MathNet.Symbolics.Mediator.IObserver.OnSignalValueChanged(MathNet.Symbolics.Signal):System.Void">
             <Messages>
-             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-25 19:46:45Z">
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Status="Excluded" Created="2007-03-25 19:46:45Z">
               <Issue>
                <Item>SystemMediator</Item>
                <Item>IObserver.OnSignalValueChanged(Signal):Void</Item>
               </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="8" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
@@ -5169,11 +4961,11 @@
          </Type>
          <Type Name="XmlMappingAdapter">
           <Members>
-           <Member Name="CompileFromXml(System.Xml.XmlNode):System.Collections.Generic.IList`1&lt;MathNet.Symbolics.Backend.Mapping.RawBinding&gt;">
+           <Member Name="GetXmlAttribute(System.Xml.XmlNode,System.String,System.String):System.String">
             <Messages>
-             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2007-03-26 09:55:04Z" FixCategory="NonBreaking">
+             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2007-03-26 11:44:21Z" FixCategory="NonBreaking">
               <Issue>
-               <Item>XmlMappingAdapter.CompileFromXml(XmlNode):IList`1&lt;MathNet.Symbolics.Backend.Mapping.RawBinding&gt;</Item>
+               <Item>XmlMappingAdapter.GetXmlAttribute(XmlNode, String, String):String</Item>
               </Issue>
              </Message>
             </Messages>
@@ -5499,11 +5291,6 @@
           <Members>
            <Member Name="Deserialize(System.Xml.XmlReader,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):MathNet.Symbolics.Packages.Standard.AlgebraicExpressionCategory">
             <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>AlgebraicExpressionCategory.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):AlgebraicExpressionCategory</Item>
-              </Issue>
-             </Message>
              <Message Id="buses" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Created="2007-03-25 19:46:45Z" FixCategory="NonBreaking">
               <Issue>
                <Item>buses</Item>
@@ -5521,6 +5308,16 @@
                <Item>signals</Item>
                <Item>AlgebraicExpressionCategory.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):AlgebraicExpressionCategory</Item>
               </Issue>
+             </Message>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Status="Excluded" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>AlgebraicExpressionCategory.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):AlgebraicExpressionCategory</Item>
+              </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="7" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
@@ -5554,11 +5351,6 @@
            </Member>
            <Member Name="Deserialize(System.Xml.XmlReader,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):MathNet.Symbolics.Packages.Standard.AlgebraicStructureCategory">
             <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>AlgebraicStructureCategory.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):AlgebraicStructureCategory</Item>
-              </Issue>
-             </Message>
              <Message Id="buses" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Created="2007-03-25 19:46:45Z" FixCategory="NonBreaking">
               <Issue>
                <Item>buses</Item>
@@ -5570,6 +5362,16 @@
                <Item>signals</Item>
                <Item>AlgebraicStructureCategory.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):AlgebraicStructureCategory</Item>
               </Issue>
+             </Message>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Status="Excluded" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>AlgebraicStructureCategory.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):AlgebraicStructureCategory</Item>
+              </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="7" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
@@ -5700,42 +5502,6 @@
          </Type>
          <Type Name="Std">
           <Members>
-           <Member Name="IsAdditiveIdentity(MathNet.Symbolics.Signal):System.Boolean">
-            <Messages>
-             <Message TypeName="ConsiderPassingBaseTypesAsParameters" Category="Microsoft.Design" CheckId="CA1011" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>signal</Item>
-               <Item>Std.IsAdditiveIdentity(Signal):Boolean</Item>
-               <Item>MathNet.Symbolics.Signal</Item>
-               <Item>MathNet.Symbolics.ValueNode</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="IsMultiplicativeIdentity(MathNet.Symbolics.Signal):System.Boolean">
-            <Messages>
-             <Message TypeName="ConsiderPassingBaseTypesAsParameters" Category="Microsoft.Design" CheckId="CA1011" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>signal</Item>
-               <Item>Std.IsMultiplicativeIdentity(Signal):Boolean</Item>
-               <Item>MathNet.Symbolics.Signal</Item>
-               <Item>MathNet.Symbolics.ValueNode</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="IsUndefined(MathNet.Symbolics.Signal):System.Boolean">
-            <Messages>
-             <Message TypeName="ConsiderPassingBaseTypesAsParameters" Category="Microsoft.Design" CheckId="CA1011" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>signal</Item>
-               <Item>Std.IsUndefined(Signal):Boolean</Item>
-               <Item>MathNet.Symbolics.Signal</Item>
-               <Item>MathNet.Symbolics.ValueNode</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name="MonomialCoefficient(MathNet.Symbolics.Signal,MathNet.Symbolics.Signal,MathNet.Symbolics.IValueStructure&amp;):MathNet.Symbolics.Signal">
             <Messages>
              <Message Id="2#" TypeName="AvoidOutParameters" Category="Microsoft.Design" CheckId="CA1021" Created="2007-03-25 19:46:45Z">
@@ -6029,11 +5795,6 @@
           <Members>
            <Member Name="Deserialize(System.Xml.XmlReader,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):MathNet.Symbolics.Packages.Standard.Properties.ConstantSignalProperty">
             <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>ConstantSignalProperty.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):ConstantSignalProperty</Item>
-              </Issue>
-             </Message>
              <Message Id="buses" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Created="2007-03-25 19:46:45Z" FixCategory="NonBreaking">
               <Issue>
                <Item>buses</Item>
@@ -6051,6 +5812,16 @@
                <Item>signals</Item>
                <Item>ConstantSignalProperty.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):ConstantSignalProperty</Item>
               </Issue>
+             </Message>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Status="Excluded" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>ConstantSignalProperty.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):ConstantSignalProperty</Item>
+              </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="7" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
@@ -6060,11 +5831,6 @@
           <Members>
            <Member Name="Deserialize(System.Xml.XmlReader,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):MathNet.Symbolics.Packages.Standard.Properties.IntegerSetProperty">
             <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>IntegerSetProperty.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):IntegerSetProperty</Item>
-              </Issue>
-             </Message>
              <Message Id="buses" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Created="2007-03-25 19:46:45Z" FixCategory="NonBreaking">
               <Issue>
                <Item>buses</Item>
@@ -6082,6 +5848,16 @@
                <Item>signals</Item>
                <Item>IntegerSetProperty.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):IntegerSetProperty</Item>
               </Issue>
+             </Message>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Status="Excluded" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>IntegerSetProperty.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):IntegerSetProperty</Item>
+              </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="7" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
@@ -6091,11 +5867,6 @@
           <Members>
            <Member Name="Deserialize(System.Xml.XmlReader,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):MathNet.Symbolics.Packages.Standard.Properties.PositiveIntegerSetProperty">
             <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>PositiveIntegerSetProperty.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):PositiveIntegerSetProperty</Item>
-              </Issue>
-             </Message>
              <Message Id="buses" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Created="2007-03-25 19:46:45Z" FixCategory="NonBreaking">
               <Issue>
                <Item>buses</Item>
@@ -6113,6 +5884,16 @@
                <Item>signals</Item>
                <Item>PositiveIntegerSetProperty.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):PositiveIntegerSetProperty</Item>
               </Issue>
+             </Message>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Status="Excluded" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>PositiveIntegerSetProperty.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):PositiveIntegerSetProperty</Item>
+              </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="7" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
@@ -6122,11 +5903,6 @@
           <Members>
            <Member Name="Deserialize(System.Xml.XmlReader,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):MathNet.Symbolics.Packages.Standard.Properties.RationalSetProperty">
             <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>RationalSetProperty.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):RationalSetProperty</Item>
-              </Issue>
-             </Message>
              <Message Id="buses" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Created="2007-03-25 19:46:45Z" FixCategory="NonBreaking">
               <Issue>
                <Item>buses</Item>
@@ -6144,6 +5920,16 @@
                <Item>signals</Item>
                <Item>RationalSetProperty.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):RationalSetProperty</Item>
               </Issue>
+             </Message>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Status="Excluded" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>RationalSetProperty.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):RationalSetProperty</Item>
+              </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="7" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
@@ -6153,11 +5939,6 @@
           <Members>
            <Member Name="Deserialize(System.Xml.XmlReader,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):MathNet.Symbolics.Packages.Standard.Properties.RealSetProperty">
             <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>RealSetProperty.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):RealSetProperty</Item>
-              </Issue>
-             </Message>
              <Message Id="buses" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Created="2007-03-25 19:46:45Z" FixCategory="NonBreaking">
               <Issue>
                <Item>buses</Item>
@@ -6175,6 +5956,16 @@
                <Item>signals</Item>
                <Item>RealSetProperty.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):RealSetProperty</Item>
               </Issue>
+             </Message>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Status="Excluded" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>RealSetProperty.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):RealSetProperty</Item>
+              </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="7" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
@@ -6186,35 +5977,8 @@
         <Types>
          <Type Name="ComplexInfinitySymbol">
           <Members>
-           <Member Name="CanConvertLosslessFrom(MathNet.Symbolics.IValueStructure):System.Boolean">
-            <Messages>
-             <Message TypeName="ConsiderPassingBaseTypesAsParameters" Category="Microsoft.Design" CheckId="CA1011" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>value</Item>
-               <Item>ComplexInfinitySymbol.CanConvertLosslessFrom(IValueStructure):Boolean</Item>
-               <Item>MathNet.Symbolics.IValueStructure</Item>
-               <Item>MathNet.Symbolics.ICustomData</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="ConvertFrom(MathNet.Symbolics.IValueStructure):MathNet.Symbolics.Packages.Standard.Structures.ComplexInfinitySymbol">
-            <Messages>
-             <Message Id="value" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Created="2007-03-25 19:46:45Z" FixCategory="Breaking">
-              <Issue>
-               <Item>value</Item>
-               <Item>ComplexInfinitySymbol.ConvertFrom(IValueStructure):ComplexInfinitySymbol</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name="Deserialize(System.Xml.XmlReader,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):MathNet.Symbolics.Packages.Standard.Structures.ComplexInfinitySymbol">
             <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>ComplexInfinitySymbol.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):ComplexInfinitySymbol</Item>
-              </Issue>
-             </Message>
              <Message Id="buses" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Created="2007-03-25 19:46:45Z" FixCategory="NonBreaking">
               <Issue>
                <Item>buses</Item>
@@ -6232,6 +5996,16 @@
                <Item>signals</Item>
                <Item>ComplexInfinitySymbol.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):ComplexInfinitySymbol</Item>
               </Issue>
+             </Message>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Status="Excluded" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>ComplexInfinitySymbol.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):ComplexInfinitySymbol</Item>
+              </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="7" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
@@ -6373,18 +6147,6 @@
              </Message>
             </Messages>
            </Member>
-           <Member Name="CanConvertLosslessFrom(MathNet.Symbolics.IValueStructure):System.Boolean">
-            <Messages>
-             <Message TypeName="ConsiderPassingBaseTypesAsParameters" Category="Microsoft.Design" CheckId="CA1011" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>value</Item>
-               <Item>ComplexValue.CanConvertLosslessFrom(IValueStructure):Boolean</Item>
-               <Item>MathNet.Symbolics.IValueStructure</Item>
-               <Item>MathNet.Symbolics.ICustomData</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name="CompareTo(MathNet.Symbolics.Packages.Standard.Structures.ComplexValue):System.Int32">
             <Messages>
              <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-25 19:46:45Z">
@@ -6405,25 +6167,8 @@
              </Message>
             </Messages>
            </Member>
-           <Member Name="ConvertFrom(MathNet.Symbolics.IValueStructure):MathNet.Symbolics.Packages.Standard.Structures.ComplexValue">
-            <Messages>
-             <Message TypeName="ConsiderPassingBaseTypesAsParameters" Category="Microsoft.Design" CheckId="CA1011" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>value</Item>
-               <Item>ComplexValue.ConvertFrom(IValueStructure):ComplexValue</Item>
-               <Item>MathNet.Symbolics.IValueStructure</Item>
-               <Item>MathNet.Symbolics.ICustomData</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name="Deserialize(System.Xml.XmlReader,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):MathNet.Symbolics.Packages.Standard.Structures.ComplexValue">
             <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>ComplexValue.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):ComplexValue</Item>
-              </Issue>
-             </Message>
              <Message Id="buses" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Created="2007-03-25 19:46:45Z" FixCategory="NonBreaking">
               <Issue>
                <Item>buses</Item>
@@ -6435,6 +6180,16 @@
                <Item>signals</Item>
                <Item>ComplexValue.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):ComplexValue</Item>
               </Issue>
+             </Message>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Status="Excluded" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>ComplexValue.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):ComplexValue</Item>
+              </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="7" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
@@ -6662,11 +6417,6 @@
           <Members>
            <Member Name="Deserialize(System.Xml.XmlReader,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):MathNet.Symbolics.Packages.Standard.Structures.ComplexValueCategory">
             <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>ComplexValueCategory.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):ComplexValueCategory</Item>
-              </Issue>
-             </Message>
              <Message Id="buses" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Created="2007-03-25 19:46:45Z" FixCategory="NonBreaking">
               <Issue>
                <Item>buses</Item>
@@ -6684,6 +6434,16 @@
                <Item>signals</Item>
                <Item>ComplexValueCategory.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):ComplexValueCategory</Item>
               </Issue>
+             </Message>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Status="Excluded" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>ComplexValueCategory.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):ComplexValueCategory</Item>
+              </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="7" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
@@ -6703,18 +6463,6 @@
              </Message>
             </Messages>
            </Member>
-           <Member Name="CanConvertLosslessFrom(MathNet.Symbolics.IValueStructure):System.Boolean">
-            <Messages>
-             <Message TypeName="ConsiderPassingBaseTypesAsParameters" Category="Microsoft.Design" CheckId="CA1011" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>value</Item>
-               <Item>IntegerValue.CanConvertLosslessFrom(IValueStructure):Boolean</Item>
-               <Item>MathNet.Symbolics.IValueStructure</Item>
-               <Item>MathNet.Symbolics.ICustomData</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name="CompareTo(MathNet.Symbolics.Packages.Standard.Structures.IntegerValue):System.Int32">
             <Messages>
              <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-25 19:46:45Z">
@@ -6725,25 +6473,8 @@
              </Message>
             </Messages>
            </Member>
-           <Member Name="ConvertFrom(MathNet.Symbolics.IValueStructure):MathNet.Symbolics.Packages.Standard.Structures.IntegerValue">
-            <Messages>
-             <Message TypeName="ConsiderPassingBaseTypesAsParameters" Category="Microsoft.Design" CheckId="CA1011" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>value</Item>
-               <Item>IntegerValue.ConvertFrom(IValueStructure):IntegerValue</Item>
-               <Item>MathNet.Symbolics.IValueStructure</Item>
-               <Item>MathNet.Symbolics.ICustomData</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name="Deserialize(System.Xml.XmlReader,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):MathNet.Symbolics.Packages.Standard.Structures.IntegerValue">
             <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>IntegerValue.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):IntegerValue</Item>
-              </Issue>
-             </Message>
              <Message Id="buses" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Created="2007-03-25 19:46:45Z" FixCategory="NonBreaking">
               <Issue>
                <Item>buses</Item>
@@ -6755,6 +6486,16 @@
                <Item>signals</Item>
                <Item>IntegerValue.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):IntegerValue</Item>
               </Issue>
+             </Message>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Status="Excluded" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>IntegerValue.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):IntegerValue</Item>
+              </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="7" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
@@ -6811,50 +6552,61 @@
           </Members>
          </Type>
          <Type Name="IntegerValue+AddProcess">
-          <Messages>
-           <Message TypeName="NestedTypesShouldNotBeVisible" Category="Microsoft.Design" CheckId="CA1034" Created="2007-03-25 19:46:45Z">
-            <Issue>
-             <Item>MathNet.Symbolics.Packages.Standard.Structures.IntegerValue+AddProcess</Item>
-            </Issue>
-           </Message>
-          </Messages>
+          <Members>
+           <Member Name=".ctor(System.Boolean[],System.Boolean[],System.Boolean[],System.Boolean[])">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-26 12:58:01Z">
+              <Issue>
+               <Item>AddProcess.AddProcess(Boolean[], Boolean[], Boolean[], Boolean[])</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
          </Type>
          <Type Name="IntegerValue+DivideProcess">
-          <Messages>
-           <Message TypeName="NestedTypesShouldNotBeVisible" Category="Microsoft.Design" CheckId="CA1034" Created="2007-03-25 19:46:45Z">
-            <Issue>
-             <Item>MathNet.Symbolics.Packages.Standard.Structures.IntegerValue+DivideProcess</Item>
-            </Issue>
-           </Message>
-          </Messages>
+          <Members>
+           <Member Name=".ctor(System.Boolean[],System.Boolean[],System.Boolean[],System.Boolean[])">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-26 12:58:01Z">
+              <Issue>
+               <Item>DivideProcess.DivideProcess(Boolean[], Boolean[], Boolean[], Boolean[])</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
          </Type>
          <Type Name="IntegerValue+MultiplyProcess">
-          <Messages>
-           <Message TypeName="NestedTypesShouldNotBeVisible" Category="Microsoft.Design" CheckId="CA1034" Created="2007-03-25 19:46:45Z">
-            <Issue>
-             <Item>MathNet.Symbolics.Packages.Standard.Structures.IntegerValue+MultiplyProcess</Item>
-            </Issue>
-           </Message>
-          </Messages>
+          <Members>
+           <Member Name=".ctor(System.Boolean[],System.Boolean[],System.Boolean[],System.Boolean[])">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-26 12:58:01Z">
+              <Issue>
+               <Item>MultiplyProcess.MultiplyProcess(Boolean[], Boolean[], Boolean[], Boolean[])</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
          </Type>
          <Type Name="IntegerValue+SubtractProcess">
-          <Messages>
-           <Message TypeName="NestedTypesShouldNotBeVisible" Category="Microsoft.Design" CheckId="CA1034" Created="2007-03-25 19:46:45Z">
-            <Issue>
-             <Item>MathNet.Symbolics.Packages.Standard.Structures.IntegerValue+SubtractProcess</Item>
-            </Issue>
-           </Message>
-          </Messages>
+          <Members>
+           <Member Name=".ctor(System.Boolean[],System.Boolean[],System.Boolean[],System.Boolean[])">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-26 12:58:01Z">
+              <Issue>
+               <Item>SubtractProcess.SubtractProcess(Boolean[], Boolean[], Boolean[], Boolean[])</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
          </Type>
          <Type Name="IntegerValueCategory">
           <Members>
            <Member Name="Deserialize(System.Xml.XmlReader,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):MathNet.Symbolics.Packages.Standard.Structures.IntegerValueCategory">
             <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>IntegerValueCategory.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):IntegerValueCategory</Item>
-              </Issue>
-             </Message>
              <Message Id="buses" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Created="2007-03-25 19:46:45Z" FixCategory="NonBreaking">
               <Issue>
                <Item>buses</Item>
@@ -6873,42 +6625,28 @@
                <Item>IntegerValueCategory.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):IntegerValueCategory</Item>
               </Issue>
              </Message>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Status="Excluded" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>IntegerValueCategory.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):IntegerValueCategory</Item>
+              </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="7" />
+               </User>
+              </Notes>
+             </Message>
             </Messages>
            </Member>
           </Members>
          </Type>
          <Type Name="LiteralValue">
           <Members>
-           <Member Name="CanConvertLosslessFrom(MathNet.Symbolics.IValueStructure):System.Boolean">
-            <Messages>
-             <Message TypeName="ConsiderPassingBaseTypesAsParameters" Category="Microsoft.Design" CheckId="CA1011" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>value</Item>
-               <Item>LiteralValue.CanConvertLosslessFrom(IValueStructure):Boolean</Item>
-               <Item>MathNet.Symbolics.IValueStructure</Item>
-               <Item>MathNet.Symbolics.ICustomData</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name="CompareTo(MathNet.Symbolics.Packages.Standard.Structures.LiteralValue):System.Int32">
             <Messages>
              <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-25 19:46:45Z">
               <Issue>
                <Item>'other'</Item>
                <Item>LiteralValue.CompareTo(LiteralValue):Int32</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="ConvertFrom(MathNet.Symbolics.IValueStructure):MathNet.Symbolics.Packages.Standard.Structures.LiteralValue">
-            <Messages>
-             <Message TypeName="ConsiderPassingBaseTypesAsParameters" Category="Microsoft.Design" CheckId="CA1011" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>value</Item>
-               <Item>LiteralValue.ConvertFrom(IValueStructure):LiteralValue</Item>
-               <Item>MathNet.Symbolics.IValueStructure</Item>
-               <Item>MathNet.Symbolics.ICustomData</Item>
               </Issue>
              </Message>
             </Messages>
@@ -6925,11 +6663,6 @@
            </Member>
            <Member Name="Deserialize(System.Xml.XmlReader,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):MathNet.Symbolics.Packages.Standard.Structures.LiteralValue">
             <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>LiteralValue.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):LiteralValue</Item>
-              </Issue>
-             </Message>
              <Message Id="buses" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Created="2007-03-25 19:46:45Z" FixCategory="NonBreaking">
               <Issue>
                <Item>buses</Item>
@@ -6941,6 +6674,16 @@
                <Item>signals</Item>
                <Item>LiteralValue.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):LiteralValue</Item>
               </Issue>
+             </Message>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Status="Excluded" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>LiteralValue.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):LiteralValue</Item>
+              </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="7" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
@@ -6980,36 +6723,12 @@
              </Message>
             </Messages>
            </Member>
-           <Member Name="CanConvertLosslessFrom(MathNet.Symbolics.IValueStructure):System.Boolean">
-            <Messages>
-             <Message TypeName="ConsiderPassingBaseTypesAsParameters" Category="Microsoft.Design" CheckId="CA1011" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>value</Item>
-               <Item>LogicValue.CanConvertLosslessFrom(IValueStructure):Boolean</Item>
-               <Item>MathNet.Symbolics.IValueStructure</Item>
-               <Item>MathNet.Symbolics.ICustomData</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name="CompareTo(MathNet.Symbolics.Packages.Standard.Structures.LogicValue):System.Int32">
             <Messages>
              <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-25 19:46:45Z">
               <Issue>
                <Item>'other'</Item>
                <Item>LogicValue.CompareTo(LogicValue):Int32</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="ConvertFrom(MathNet.Symbolics.IValueStructure):MathNet.Symbolics.Packages.Standard.Structures.LogicValue">
-            <Messages>
-             <Message TypeName="ConsiderPassingBaseTypesAsParameters" Category="Microsoft.Design" CheckId="CA1011" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>value</Item>
-               <Item>LogicValue.ConvertFrom(IValueStructure):LogicValue</Item>
-               <Item>MathNet.Symbolics.IValueStructure</Item>
-               <Item>MathNet.Symbolics.ICustomData</Item>
               </Issue>
              </Message>
             </Messages>
@@ -7056,11 +6775,6 @@
            </Member>
            <Member Name="Deserialize(System.Xml.XmlReader,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):MathNet.Symbolics.Packages.Standard.Structures.LogicValue">
             <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>LogicValue.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):LogicValue</Item>
-              </Issue>
-             </Message>
              <Message Id="buses" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Created="2007-03-25 19:46:45Z" FixCategory="NonBreaking">
               <Issue>
                <Item>buses</Item>
@@ -7072,6 +6786,16 @@
                <Item>signals</Item>
                <Item>LogicValue.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):LogicValue</Item>
               </Issue>
+             </Message>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Status="Excluded" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>LogicValue.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):LogicValue</Item>
+              </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="7" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
@@ -7123,11 +6847,6 @@
           <Members>
            <Member Name="Deserialize(System.Xml.XmlReader,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):MathNet.Symbolics.Packages.Standard.Structures.LogicValueCategory">
             <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>LogicValueCategory.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):LogicValueCategory</Item>
-              </Issue>
-             </Message>
              <Message Id="buses" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Created="2007-03-25 19:46:45Z" FixCategory="NonBreaking">
               <Issue>
                <Item>buses</Item>
@@ -7145,6 +6864,16 @@
                <Item>signals</Item>
                <Item>LogicValueCategory.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):LogicValueCategory</Item>
               </Issue>
+             </Message>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Status="Excluded" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>LogicValueCategory.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):LogicValueCategory</Item>
+              </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="7" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
@@ -7152,35 +6881,8 @@
          </Type>
          <Type Name="NegativeInfinitySymbol">
           <Members>
-           <Member Name="CanConvertLosslessFrom(MathNet.Symbolics.IValueStructure):System.Boolean">
-            <Messages>
-             <Message TypeName="ConsiderPassingBaseTypesAsParameters" Category="Microsoft.Design" CheckId="CA1011" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>value</Item>
-               <Item>NegativeInfinitySymbol.CanConvertLosslessFrom(IValueStructure):Boolean</Item>
-               <Item>MathNet.Symbolics.IValueStructure</Item>
-               <Item>MathNet.Symbolics.ICustomData</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="ConvertFrom(MathNet.Symbolics.IValueStructure):MathNet.Symbolics.Packages.Standard.Structures.NegativeInfinitySymbol">
-            <Messages>
-             <Message Id="value" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Created="2007-03-25 19:46:45Z" FixCategory="Breaking">
-              <Issue>
-               <Item>value</Item>
-               <Item>NegativeInfinitySymbol.ConvertFrom(IValueStructure):NegativeInfinitySymbol</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name="Deserialize(System.Xml.XmlReader,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):MathNet.Symbolics.Packages.Standard.Structures.NegativeInfinitySymbol">
             <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>NegativeInfinitySymbol.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):NegativeInfinitySymbol</Item>
-              </Issue>
-             </Message>
              <Message Id="buses" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Created="2007-03-25 19:46:45Z" FixCategory="NonBreaking">
               <Issue>
                <Item>buses</Item>
@@ -7198,6 +6900,16 @@
                <Item>signals</Item>
                <Item>NegativeInfinitySymbol.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):NegativeInfinitySymbol</Item>
               </Issue>
+             </Message>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Status="Excluded" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>NegativeInfinitySymbol.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):NegativeInfinitySymbol</Item>
+              </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="7" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
@@ -7205,35 +6917,8 @@
          </Type>
          <Type Name="PositiveInfinitySymbol">
           <Members>
-           <Member Name="CanConvertLosslessFrom(MathNet.Symbolics.IValueStructure):System.Boolean">
-            <Messages>
-             <Message TypeName="ConsiderPassingBaseTypesAsParameters" Category="Microsoft.Design" CheckId="CA1011" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>value</Item>
-               <Item>PositiveInfinitySymbol.CanConvertLosslessFrom(IValueStructure):Boolean</Item>
-               <Item>MathNet.Symbolics.IValueStructure</Item>
-               <Item>MathNet.Symbolics.ICustomData</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="ConvertFrom(MathNet.Symbolics.IValueStructure):MathNet.Symbolics.Packages.Standard.Structures.PositiveInfinitySymbol">
-            <Messages>
-             <Message Id="value" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Created="2007-03-25 19:46:45Z" FixCategory="Breaking">
-              <Issue>
-               <Item>value</Item>
-               <Item>PositiveInfinitySymbol.ConvertFrom(IValueStructure):PositiveInfinitySymbol</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name="Deserialize(System.Xml.XmlReader,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):MathNet.Symbolics.Packages.Standard.Structures.PositiveInfinitySymbol">
             <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>PositiveInfinitySymbol.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):PositiveInfinitySymbol</Item>
-              </Issue>
-             </Message>
              <Message Id="buses" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Created="2007-03-25 19:46:45Z" FixCategory="NonBreaking">
               <Issue>
                <Item>buses</Item>
@@ -7251,6 +6936,16 @@
                <Item>signals</Item>
                <Item>PositiveInfinitySymbol.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):PositiveInfinitySymbol</Item>
               </Issue>
+             </Message>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Status="Excluded" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>PositiveInfinitySymbol.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):PositiveInfinitySymbol</Item>
+              </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="7" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
@@ -7270,18 +6965,6 @@
              </Message>
             </Messages>
            </Member>
-           <Member Name="CanConvertLosslessFrom(MathNet.Symbolics.IValueStructure):System.Boolean">
-            <Messages>
-             <Message TypeName="ConsiderPassingBaseTypesAsParameters" Category="Microsoft.Design" CheckId="CA1011" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>value</Item>
-               <Item>RationalValue.CanConvertLosslessFrom(IValueStructure):Boolean</Item>
-               <Item>MathNet.Symbolics.IValueStructure</Item>
-               <Item>MathNet.Symbolics.ICustomData</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name="CompareTo(MathNet.Symbolics.Packages.Standard.Structures.RationalValue):System.Int32">
             <Messages>
              <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-25 19:46:45Z">
@@ -7292,25 +6975,8 @@
              </Message>
             </Messages>
            </Member>
-           <Member Name="ConvertFrom(MathNet.Symbolics.IValueStructure):MathNet.Symbolics.Packages.Standard.Structures.RationalValue">
-            <Messages>
-             <Message TypeName="ConsiderPassingBaseTypesAsParameters" Category="Microsoft.Design" CheckId="CA1011" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>value</Item>
-               <Item>RationalValue.ConvertFrom(IValueStructure):RationalValue</Item>
-               <Item>MathNet.Symbolics.IValueStructure</Item>
-               <Item>MathNet.Symbolics.ICustomData</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name="Deserialize(System.Xml.XmlReader,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):MathNet.Symbolics.Packages.Standard.Structures.RationalValue">
             <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>RationalValue.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):RationalValue</Item>
-              </Issue>
-             </Message>
              <Message Id="buses" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Created="2007-03-25 19:46:45Z" FixCategory="NonBreaking">
               <Issue>
                <Item>buses</Item>
@@ -7322,6 +6988,16 @@
                <Item>signals</Item>
                <Item>RationalValue.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):RationalValue</Item>
               </Issue>
+             </Message>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Status="Excluded" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>RationalValue.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):RationalValue</Item>
+              </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="7" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
@@ -7402,50 +7078,61 @@
           </Members>
          </Type>
          <Type Name="RationalValue+AddProcess">
-          <Messages>
-           <Message TypeName="NestedTypesShouldNotBeVisible" Category="Microsoft.Design" CheckId="CA1034" Created="2007-03-25 19:46:45Z">
-            <Issue>
-             <Item>MathNet.Symbolics.Packages.Standard.Structures.RationalValue+AddProcess</Item>
-            </Issue>
-           </Message>
-          </Messages>
+          <Members>
+           <Member Name=".ctor(System.Boolean[],System.Boolean[],System.Boolean[],System.Boolean[])">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-26 12:58:01Z">
+              <Issue>
+               <Item>AddProcess.AddProcess(Boolean[], Boolean[], Boolean[], Boolean[])</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
          </Type>
          <Type Name="RationalValue+DivideProcess">
-          <Messages>
-           <Message TypeName="NestedTypesShouldNotBeVisible" Category="Microsoft.Design" CheckId="CA1034" Created="2007-03-25 19:46:45Z">
-            <Issue>
-             <Item>MathNet.Symbolics.Packages.Standard.Structures.RationalValue+DivideProcess</Item>
-            </Issue>
-           </Message>
-          </Messages>
+          <Members>
+           <Member Name=".ctor(System.Boolean[],System.Boolean[],System.Boolean[],System.Boolean[])">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-26 12:58:01Z">
+              <Issue>
+               <Item>DivideProcess.DivideProcess(Boolean[], Boolean[], Boolean[], Boolean[])</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
          </Type>
          <Type Name="RationalValue+MultiplyProcess">
-          <Messages>
-           <Message TypeName="NestedTypesShouldNotBeVisible" Category="Microsoft.Design" CheckId="CA1034" Created="2007-03-25 19:46:45Z">
-            <Issue>
-             <Item>MathNet.Symbolics.Packages.Standard.Structures.RationalValue+MultiplyProcess</Item>
-            </Issue>
-           </Message>
-          </Messages>
+          <Members>
+           <Member Name=".ctor(System.Boolean[],System.Boolean[],System.Boolean[],System.Boolean[])">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-26 12:58:01Z">
+              <Issue>
+               <Item>MultiplyProcess.MultiplyProcess(Boolean[], Boolean[], Boolean[], Boolean[])</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
          </Type>
          <Type Name="RationalValue+SubtractProcess">
-          <Messages>
-           <Message TypeName="NestedTypesShouldNotBeVisible" Category="Microsoft.Design" CheckId="CA1034" Created="2007-03-25 19:46:45Z">
-            <Issue>
-             <Item>MathNet.Symbolics.Packages.Standard.Structures.RationalValue+SubtractProcess</Item>
-            </Issue>
-           </Message>
-          </Messages>
+          <Members>
+           <Member Name=".ctor(System.Boolean[],System.Boolean[],System.Boolean[],System.Boolean[])">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-26 12:58:01Z">
+              <Issue>
+               <Item>SubtractProcess.SubtractProcess(Boolean[], Boolean[], Boolean[], Boolean[])</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
          </Type>
          <Type Name="RationalValueCategory">
           <Members>
            <Member Name="Deserialize(System.Xml.XmlReader,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):MathNet.Symbolics.Packages.Standard.Structures.RationalValueCategory">
             <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>RationalValueCategory.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):RationalValueCategory</Item>
-              </Issue>
-             </Message>
              <Message Id="buses" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Created="2007-03-25 19:46:45Z" FixCategory="NonBreaking">
               <Issue>
                <Item>buses</Item>
@@ -7463,6 +7150,16 @@
                <Item>signals</Item>
                <Item>RationalValueCategory.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):RationalValueCategory</Item>
               </Issue>
+             </Message>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Status="Excluded" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>RationalValueCategory.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):RationalValueCategory</Item>
+              </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="7" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
@@ -7482,18 +7179,6 @@
              </Message>
             </Messages>
            </Member>
-           <Member Name="CanConvertLosslessFrom(MathNet.Symbolics.IValueStructure):System.Boolean">
-            <Messages>
-             <Message TypeName="ConsiderPassingBaseTypesAsParameters" Category="Microsoft.Design" CheckId="CA1011" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>value</Item>
-               <Item>RealValue.CanConvertLosslessFrom(IValueStructure):Boolean</Item>
-               <Item>MathNet.Symbolics.IValueStructure</Item>
-               <Item>MathNet.Symbolics.ICustomData</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name="CompareTo(MathNet.Symbolics.Packages.Standard.Structures.RealValue):System.Int32">
             <Messages>
              <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-25 19:46:45Z">
@@ -7504,25 +7189,8 @@
              </Message>
             </Messages>
            </Member>
-           <Member Name="ConvertFrom(MathNet.Symbolics.IValueStructure):MathNet.Symbolics.Packages.Standard.Structures.RealValue">
-            <Messages>
-             <Message TypeName="ConsiderPassingBaseTypesAsParameters" Category="Microsoft.Design" CheckId="CA1011" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>value</Item>
-               <Item>RealValue.ConvertFrom(IValueStructure):RealValue</Item>
-               <Item>MathNet.Symbolics.IValueStructure</Item>
-               <Item>MathNet.Symbolics.ICustomData</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name="Deserialize(System.Xml.XmlReader,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):MathNet.Symbolics.Packages.Standard.Structures.RealValue">
             <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>RealValue.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):RealValue</Item>
-              </Issue>
-             </Message>
              <Message Id="buses" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Created="2007-03-25 19:46:45Z" FixCategory="NonBreaking">
               <Issue>
                <Item>buses</Item>
@@ -7534,6 +7202,16 @@
                <Item>signals</Item>
                <Item>RealValue.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):RealValue</Item>
               </Issue>
+             </Message>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Status="Excluded" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>RealValue.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):RealValue</Item>
+              </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="7" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
@@ -7596,50 +7274,61 @@
           </Members>
          </Type>
          <Type Name="RealValue+AddProcess">
-          <Messages>
-           <Message TypeName="NestedTypesShouldNotBeVisible" Category="Microsoft.Design" CheckId="CA1034" Created="2007-03-25 19:46:45Z">
-            <Issue>
-             <Item>MathNet.Symbolics.Packages.Standard.Structures.RealValue+AddProcess</Item>
-            </Issue>
-           </Message>
-          </Messages>
+          <Members>
+           <Member Name=".ctor(System.Boolean[],System.Boolean[],System.Boolean[],System.Boolean[])">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-26 12:58:01Z">
+              <Issue>
+               <Item>AddProcess.AddProcess(Boolean[], Boolean[], Boolean[], Boolean[])</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
          </Type>
          <Type Name="RealValue+DivideProcess">
-          <Messages>
-           <Message TypeName="NestedTypesShouldNotBeVisible" Category="Microsoft.Design" CheckId="CA1034" Created="2007-03-25 19:46:45Z">
-            <Issue>
-             <Item>MathNet.Symbolics.Packages.Standard.Structures.RealValue+DivideProcess</Item>
-            </Issue>
-           </Message>
-          </Messages>
+          <Members>
+           <Member Name=".ctor(System.Boolean[],System.Boolean[],System.Boolean[],System.Boolean[])">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-26 12:58:01Z">
+              <Issue>
+               <Item>DivideProcess.DivideProcess(Boolean[], Boolean[], Boolean[], Boolean[])</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
          </Type>
          <Type Name="RealValue+MultiplyProcess">
-          <Messages>
-           <Message TypeName="NestedTypesShouldNotBeVisible" Category="Microsoft.Design" CheckId="CA1034" Created="2007-03-25 19:46:45Z">
-            <Issue>
-             <Item>MathNet.Symbolics.Packages.Standard.Structures.RealValue+MultiplyProcess</Item>
-            </Issue>
-           </Message>
-          </Messages>
+          <Members>
+           <Member Name=".ctor(System.Boolean[],System.Boolean[],System.Boolean[],System.Boolean[])">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-26 12:58:01Z">
+              <Issue>
+               <Item>MultiplyProcess.MultiplyProcess(Boolean[], Boolean[], Boolean[], Boolean[])</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
          </Type>
          <Type Name="RealValue+SubtractProcess">
-          <Messages>
-           <Message TypeName="NestedTypesShouldNotBeVisible" Category="Microsoft.Design" CheckId="CA1034" Created="2007-03-25 19:46:45Z">
-            <Issue>
-             <Item>MathNet.Symbolics.Packages.Standard.Structures.RealValue+SubtractProcess</Item>
-            </Issue>
-           </Message>
-          </Messages>
+          <Members>
+           <Member Name=".ctor(System.Boolean[],System.Boolean[],System.Boolean[],System.Boolean[])">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-26 12:58:01Z">
+              <Issue>
+               <Item>SubtractProcess.SubtractProcess(Boolean[], Boolean[], Boolean[], Boolean[])</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
          </Type>
          <Type Name="RealValueCategory">
           <Members>
            <Member Name="Deserialize(System.Xml.XmlReader,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):MathNet.Symbolics.Packages.Standard.Structures.RealValueCategory">
             <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>RealValueCategory.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):RealValueCategory</Item>
-              </Issue>
-             </Message>
              <Message Id="buses" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Created="2007-03-25 19:46:45Z" FixCategory="NonBreaking">
               <Issue>
                <Item>buses</Item>
@@ -7658,24 +7347,22 @@
                <Item>RealValueCategory.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):RealValueCategory</Item>
               </Issue>
              </Message>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Status="Excluded" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>RealValueCategory.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):RealValueCategory</Item>
+              </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="7" />
+               </User>
+              </Notes>
+             </Message>
             </Messages>
            </Member>
           </Members>
          </Type>
          <Type Name="ToggleValue">
           <Members>
-           <Member Name="CanConvertLosslessFrom(MathNet.Symbolics.IValueStructure):System.Boolean">
-            <Messages>
-             <Message TypeName="ConsiderPassingBaseTypesAsParameters" Category="Microsoft.Design" CheckId="CA1011" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>value</Item>
-               <Item>ToggleValue.CanConvertLosslessFrom(IValueStructure):Boolean</Item>
-               <Item>MathNet.Symbolics.IValueStructure</Item>
-               <Item>MathNet.Symbolics.ICustomData</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name="CompareTo(MathNet.Symbolics.Packages.Standard.Structures.ToggleValue):System.Int32">
             <Messages>
              <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-25 19:46:45Z">
@@ -7686,25 +7373,8 @@
              </Message>
             </Messages>
            </Member>
-           <Member Name="ConvertFrom(MathNet.Symbolics.IValueStructure):MathNet.Symbolics.Packages.Standard.Structures.ToggleValue">
-            <Messages>
-             <Message TypeName="ConsiderPassingBaseTypesAsParameters" Category="Microsoft.Design" CheckId="CA1011" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>value</Item>
-               <Item>ToggleValue.ConvertFrom(IValueStructure):ToggleValue</Item>
-               <Item>MathNet.Symbolics.IValueStructure</Item>
-               <Item>MathNet.Symbolics.ICustomData</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name="Deserialize(System.Xml.XmlReader,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):MathNet.Symbolics.Packages.Standard.Structures.ToggleValue">
             <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>ToggleValue.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):ToggleValue</Item>
-              </Issue>
-             </Message>
              <Message Id="buses" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Created="2007-03-25 19:46:45Z" FixCategory="NonBreaking">
               <Issue>
                <Item>buses</Item>
@@ -7716,6 +7386,16 @@
                <Item>signals</Item>
                <Item>ToggleValue.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):ToggleValue</Item>
               </Issue>
+             </Message>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Status="Excluded" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>ToggleValue.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):ToggleValue</Item>
+              </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="7" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
@@ -7737,35 +7417,8 @@
          </Type>
          <Type Name="UndefinedSymbol">
           <Members>
-           <Member Name="CanConvertLosslessFrom(MathNet.Symbolics.IValueStructure):System.Boolean">
-            <Messages>
-             <Message TypeName="ConsiderPassingBaseTypesAsParameters" Category="Microsoft.Design" CheckId="CA1011" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>value</Item>
-               <Item>UndefinedSymbol.CanConvertLosslessFrom(IValueStructure):Boolean</Item>
-               <Item>MathNet.Symbolics.IValueStructure</Item>
-               <Item>MathNet.Symbolics.ICustomData</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="ConvertFrom(MathNet.Symbolics.IValueStructure):MathNet.Symbolics.Packages.Standard.Structures.UndefinedSymbol">
-            <Messages>
-             <Message Id="value" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Created="2007-03-25 19:46:45Z" FixCategory="Breaking">
-              <Issue>
-               <Item>value</Item>
-               <Item>UndefinedSymbol.ConvertFrom(IValueStructure):UndefinedSymbol</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
            <Member Name="Deserialize(System.Xml.XmlReader,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):MathNet.Symbolics.Packages.Standard.Structures.UndefinedSymbol">
             <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>UndefinedSymbol.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):UndefinedSymbol</Item>
-              </Issue>
-             </Message>
              <Message Id="buses" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Created="2007-03-25 19:46:45Z" FixCategory="NonBreaking">
               <Issue>
                <Item>buses</Item>
@@ -7783,6 +7436,16 @@
                <Item>signals</Item>
                <Item>UndefinedSymbol.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):UndefinedSymbol</Item>
               </Issue>
+             </Message>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Status="Excluded" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>UndefinedSymbol.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):UndefinedSymbol</Item>
+              </Issue>
+              <Notes>
+               <User Name="Christoph">
+                <Note Id="7" />
+               </User>
+              </Notes>
              </Message>
             </Messages>
            </Member>
@@ -7822,19 +7485,11 @@
              </Message>
             </Messages>
            </Member>
-           <Member Name="CanConvertLosslessFrom(MathNet.Symbolics.IValueStructure):System.Boolean">
+           <Member Name="CanConvertLosslessFrom(MathNet.Symbolics.ICustomData):System.Boolean">
             <Messages>
-             <Message TypeName="ConsiderPassingBaseTypesAsParameters" Category="Microsoft.Design" CheckId="CA1011" Created="2007-03-25 19:46:45Z">
+             <Message TypeName="DoNotDeclareStaticMembersOnGenericTypes" Category="Microsoft.Design" CheckId="CA1000" Created="2007-03-26 12:58:01Z">
               <Issue>
-               <Item>value</Item>
-               <Item>VectorValue`1.CanConvertLosslessFrom(IValueStructure):Boolean</Item>
-               <Item>MathNet.Symbolics.IValueStructure</Item>
-               <Item>MathNet.Symbolics.ICustomData</Item>
-              </Issue>
-             </Message>
-             <Message TypeName="DoNotDeclareStaticMembersOnGenericTypes" Category="Microsoft.Design" CheckId="CA1000" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>VectorValue`1.CanConvertLosslessFrom(IValueStructure):Boolean</Item>
+               <Item>VectorValue`1.CanConvertLosslessFrom(ICustomData):Boolean</Item>
                <Item>MathNet.Symbolics.Packages.Standard.Structures.VectorValue`1</Item>
               </Issue>
              </Message>
@@ -7860,38 +7515,12 @@
              </Message>
             </Messages>
            </Member>
-           <Member Name="ConvertFrom(MathNet.Symbolics.IValueStructure):MathNet.Symbolics.Packages.Standard.Structures.VectorValue`1&lt;TScalar&gt;">
+           <Member Name="ConvertFrom(MathNet.Symbolics.ICustomData):MathNet.Symbolics.Packages.Standard.Structures.VectorValue`1&lt;TScalar&gt;">
             <Messages>
-             <Message TypeName="ConsiderPassingBaseTypesAsParameters" Category="Microsoft.Design" CheckId="CA1011" Created="2007-03-25 19:46:45Z">
+             <Message TypeName="DoNotDeclareStaticMembersOnGenericTypes" Category="Microsoft.Design" CheckId="CA1000" Created="2007-03-26 12:58:01Z">
               <Issue>
-               <Item>value</Item>
-               <Item>VectorValue`1.ConvertFrom(IValueStructure):VectorValue`1&lt;TScalar&gt;</Item>
-               <Item>MathNet.Symbolics.IValueStructure</Item>
-               <Item>MathNet.Symbolics.ICustomData</Item>
-              </Issue>
-             </Message>
-             <Message TypeName="DoNotDeclareStaticMembersOnGenericTypes" Category="Microsoft.Design" CheckId="CA1000" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>VectorValue`1.ConvertFrom(IValueStructure):VectorValue`1&lt;TScalar&gt;</Item>
+               <Item>VectorValue`1.ConvertFrom(ICustomData):VectorValue`1&lt;TScalar&gt;</Item>
                <Item>MathNet.Symbolics.Packages.Standard.Structures.VectorValue`1</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="Deserialize(System.Xml.XmlReader,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):MathNet.Symbolics.Packages.Standard.Structures.VectorValue`1&lt;TScalar&gt;">
-            <Messages>
-             <Message Id="cnt" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>VectorValue`1.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):VectorValue`1&lt;TScalar&gt;</Item>
-               <Item>cnt</Item>
-               <Item>System.Int32</Item>
-              </Issue>
-             </Message>
-             <Message Id="System.Int32.Parse(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>VectorValue`1.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):VectorValue`1&lt;TScalar&gt;</Item>
-               <Item>System.Int32.Parse(System.String)</Item>
-               <Item>System.Int32.Parse(System.String,System.IFormatProvider)</Item>
               </Issue>
              </Message>
             </Messages>
@@ -7912,17 +7541,6 @@
               <Issue>
                <Item>VectorValue`1.Register(ILibrary):Void</Item>
                <Item>MathNet.Symbolics.Packages.Standard.Structures.VectorValue`1</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="Serialize(System.Xml.XmlWriter,System.Collections.Generic.IDictionary`2&lt;System.Guid,System.Guid&gt;,System.Collections.Generic.IDictionary`2&lt;System.Guid,System.Guid&gt;):System.Void">
-            <Messages>
-             <Message Id="System.Int32.ToString" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>VectorValue`1.Serialize(XmlWriter, IDictionary`2&lt;System.Guid,System.Guid&gt;, IDictionary`2&lt;System.Guid,System.Guid&gt;):Void</Item>
-               <Item>System.Int32.ToString</Item>
-               <Item>System.Int32.ToString(System.IFormatProvider)</Item>
               </Issue>
              </Message>
             </Messages>
@@ -7986,10 +7604,15 @@
         <Types>
          <Type Name="Curve+CurveSegment">
           <Messages>
-           <Message TypeName="AvoidUninstantiatedInternalClasses" Category="Microsoft.Performance" CheckId="CA1812" Created="2007-03-25 19:46:45Z">
+           <Message TypeName="AvoidUninstantiatedInternalClasses" Category="Microsoft.Performance" CheckId="CA1812" Status="Excluded" Created="2007-03-25 19:46:45Z">
             <Issue>
              <Item>MathNet.Symbolics.Packages.Standard.TimeCurves.Curve+CurveSegment</Item>
             </Issue>
+            <Notes>
+             <User Name="Christoph">
+              <Note Id="9" />
+             </User>
+            </Notes>
            </Message>
           </Messages>
           <Members>
@@ -8383,21 +8006,6 @@
            </Member>
           </Members>
          </Type>
-         <Type Name="TreePattern">
-          <Members>
-           <Member Name="MergeToCoalescedTree(MathNet.Symbolics.MathIdentifier,System.Collections.Generic.IList`1&lt;MathNet.Symbolics.Patterns.Toolkit.CoalescedTreeNode&gt;):System.Void">
-            <Messages>
-             <Message Id="atc" TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>TreePattern.MergeToCoalescedTree(MathIdentifier, IList`1&lt;MathNet.Symbolics.Patterns.Toolkit.CoalescedTreeNode&gt;):Void</Item>
-               <Item>atc</Item>
-               <Item>MathNet.Symbolics.Patterns.Toolkit.AlwaysTrueCondition</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
         </Types>
        </Namespace>
       </Namespaces>
@@ -8432,10 +8040,15 @@
         <Types>
          <Type Name="RepositoryFactory">
           <Messages>
-           <Message TypeName="AvoidUninstantiatedInternalClasses" Category="Microsoft.Performance" CheckId="CA1812" Created="2007-03-25 19:46:45Z">
+           <Message TypeName="AvoidUninstantiatedInternalClasses" Category="Microsoft.Performance" CheckId="CA1812" Status="Excluded" Created="2007-03-25 19:46:45Z">
             <Issue>
              <Item>MathNet.Symbolics.RepositoryFactory</Item>
             </Issue>
+            <Notes>
+             <User Name="Christoph">
+              <Note Id="9" />
+             </User>
+            </Notes>
            </Message>
           </Messages>
          </Type>
@@ -8547,10 +8160,15 @@
         <Types>
          <Type Name="SimulationFactory">
           <Messages>
-           <Message TypeName="AvoidUninstantiatedInternalClasses" Category="Microsoft.Performance" CheckId="CA1812" Created="2007-03-25 19:46:45Z">
+           <Message TypeName="AvoidUninstantiatedInternalClasses" Category="Microsoft.Performance" CheckId="CA1812" Status="Excluded" Created="2007-03-25 19:46:45Z">
             <Issue>
              <Item>MathNet.Symbolics.SimulationFactory</Item>
             </Issue>
+            <Notes>
+             <User Name="Christoph">
+              <Note Id="9" />
+             </User>
+            </Notes>
            </Message>
           </Messages>
          </Type>
@@ -8678,49 +8296,6 @@
               </Issue>
              </Message>
             </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="XmlSystemReader+StateMachine">
-          <Members>
-           <Member Name=".ctor(System.Xml.XmlReader)">
-            <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>StateMachine.StateMachine(XmlReader)</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="Reader">
-            <Accessors>
-             <Accessor Name="get_Reader():System.Xml.XmlReader">
-              <Messages>
-               <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-                <Issue>
-                 <Item>StateMachine.get_Reader():XmlReader</Item>
-                </Issue>
-               </Message>
-              </Messages>
-             </Accessor>
-            </Accessors>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="XmlSystemWriter+StateMachine">
-          <Members>
-           <Member Name="Writer">
-            <Accessors>
-             <Accessor Name="get_Writer():System.Xml.XmlWriter">
-              <Messages>
-               <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-                <Issue>
-                 <Item>StateMachine.get_Writer():XmlWriter</Item>
-                </Issue>
-               </Message>
-              </Messages>
-             </Accessor>
-            </Accessors>
            </Member>
           </Members>
          </Type>
@@ -9128,55 +8703,85 @@
         <Types>
          <Type Name="AllPathsStrategyFactory">
           <Messages>
-           <Message TypeName="AvoidUninstantiatedInternalClasses" Category="Microsoft.Performance" CheckId="CA1812" Created="2007-03-25 19:46:45Z">
+           <Message TypeName="AvoidUninstantiatedInternalClasses" Category="Microsoft.Performance" CheckId="CA1812" Status="Excluded" Created="2007-03-25 19:46:45Z">
             <Issue>
              <Item>MathNet.Symbolics.AllPathsStrategyFactory</Item>
             </Issue>
+            <Notes>
+             <User Name="Christoph">
+              <Note Id="9" />
+             </User>
+            </Notes>
            </Message>
           </Messages>
          </Type>
          <Type Name="AllPortsStrategyFactory">
           <Messages>
-           <Message TypeName="AvoidUninstantiatedInternalClasses" Category="Microsoft.Performance" CheckId="CA1812" Created="2007-03-25 19:46:45Z">
+           <Message TypeName="AvoidUninstantiatedInternalClasses" Category="Microsoft.Performance" CheckId="CA1812" Status="Excluded" Created="2007-03-25 19:46:45Z">
             <Issue>
              <Item>MathNet.Symbolics.AllPortsStrategyFactory</Item>
             </Issue>
+            <Notes>
+             <User Name="Christoph">
+              <Note Id="9" />
+             </User>
+            </Notes>
            </Message>
           </Messages>
          </Type>
          <Type Name="AllSignalsStrategyFactory">
           <Messages>
-           <Message TypeName="AvoidUninstantiatedInternalClasses" Category="Microsoft.Performance" CheckId="CA1812" Created="2007-03-25 19:46:45Z">
+           <Message TypeName="AvoidUninstantiatedInternalClasses" Category="Microsoft.Performance" CheckId="CA1812" Status="Excluded" Created="2007-03-25 19:46:45Z">
             <Issue>
              <Item>MathNet.Symbolics.AllSignalsStrategyFactory</Item>
             </Issue>
+            <Notes>
+             <User Name="Christoph">
+              <Note Id="9" />
+             </User>
+            </Notes>
            </Message>
           </Messages>
          </Type>
          <Type Name="AllSpanningTreeStrategyFactory">
           <Messages>
-           <Message TypeName="AvoidUninstantiatedInternalClasses" Category="Microsoft.Performance" CheckId="CA1812" Created="2007-03-25 19:46:45Z">
+           <Message TypeName="AvoidUninstantiatedInternalClasses" Category="Microsoft.Performance" CheckId="CA1812" Status="Excluded" Created="2007-03-25 19:46:45Z">
             <Issue>
              <Item>MathNet.Symbolics.AllSpanningTreeStrategyFactory</Item>
             </Issue>
+            <Notes>
+             <User Name="Christoph">
+              <Note Id="9" />
+             </User>
+            </Notes>
            </Message>
           </Messages>
          </Type>
          <Type Name="AllStrategyFactory">
           <Messages>
-           <Message TypeName="AvoidUninstantiatedInternalClasses" Category="Microsoft.Performance" CheckId="CA1812" Created="2007-03-25 19:46:45Z">
+           <Message TypeName="AvoidUninstantiatedInternalClasses" Category="Microsoft.Performance" CheckId="CA1812" Status="Excluded" Created="2007-03-25 19:46:45Z">
             <Issue>
              <Item>MathNet.Symbolics.AllStrategyFactory</Item>
             </Issue>
+            <Notes>
+             <User Name="Christoph">
+              <Note Id="9" />
+             </User>
+            </Notes>
            </Message>
           </Messages>
          </Type>
          <Type Name="VisitorFactory">
           <Messages>
-           <Message TypeName="AvoidUninstantiatedInternalClasses" Category="Microsoft.Performance" CheckId="CA1812" Created="2007-03-25 19:46:45Z">
+           <Message TypeName="AvoidUninstantiatedInternalClasses" Category="Microsoft.Performance" CheckId="CA1812" Status="Excluded" Created="2007-03-25 19:46:45Z">
             <Issue>
              <Item>MathNet.Symbolics.VisitorFactory</Item>
             </Issue>
+            <Notes>
+             <User Name="Christoph">
+              <Note Id="9" />
+             </User>
+            </Notes>
            </Message>
           </Messages>
          </Type>
@@ -9322,6 +8927,12 @@
     <Note Id="0" Modified="2007-03-26 10:00:25Z">typed factory; active design decision</Note>
     <Note Id="1" Modified="2007-03-26 10:02:57Z">typed singleton provider; active design decision</Note>
     <Note Id="2" Modified="2007-03-26 10:03:20Z">active design decision</Note>
+    <Note Id="3" Modified="2007-03-26 11:10:58Z">active design decision</Note>
+    <Note Id="4" Modified="2007-03-26 11:47:35Z">No, use the Std.xy or StdBinder.xy of the standard package instead. The operators are only there as shortcuts for convenience.</Note>
+    <Note Id="5" Modified="2007-03-26 11:54:53Z">only BCL malfunction would pass null there, so it's acceptable</Note>
+    <Note Id="7" Modified="2007-03-26 12:36:53Z">called by reflection</Note>
+    <Note Id="8" Modified="2007-03-26 12:42:20Z">ok here</Note>
+    <Note Id="9" Modified="2007-03-26 12:59:42Z">instantiated by reflection</Note>
    </User>
   </Notes>
   <Rules>
@@ -9353,17 +8964,11 @@
     <Resolution Name="ShouldBeCompoundWord">The discrete term '{0}' in {1} '{2}' should be expressed as a compound term, '{3}'.</Resolution>
     <Resolution Name="ShouldBeDiscreteTerm">The compound word '{0}' in {1} '{2}' exists as a discrete term. If your usage is intended to be single word, case it as '{3}'.</Resolution>
    </Rule>
-   <Rule TypeName="ConsiderPassingBaseTypesAsParameters" Category="Microsoft.Design" CheckId="CA1011">
-    <Resolution Name="Default">Consider changing the type of parameter '{0}' in {1} from {2} to its base type {3}. This method appears to only require base class members in its implementation. Suppress this violation if there is a compelling reason to require the more derived type in the method signature.</Resolution>
-   </Rule>
    <Rule TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214">
     <Resolution Name="Default">'{0}' contains a call chain that results in a call to a virtual method defined by the class. Review the following call stack for unintended consequences: {1}</Resolution>
    </Rule>
    <Rule TypeName="DoNotCastUnnecessarily" Category="Microsoft.Performance" CheckId="CA1800">
     <Resolution Name="Local">'{0}', a local, is cast to type '{1}' multiple times in method {2}. Cache the result of the 'as' operator or direct cast in order to eliminate the redundant {3} instruction.</Resolution>
-   </Rule>
-   <Rule TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031">
-    <Resolution Name="Default">Modify '{0}' to catch a more specific exception than '{1}' or rethrow the exception.</Resolution>
    </Rule>
    <Rule TypeName="DoNotDeclareStaticMembersOnGenericTypes" Category="Microsoft.Design" CheckId="CA1000">
     <Resolution Name="Default">Remove {0} from '{1}' or make it an instance member.</Resolution>
@@ -9382,9 +8987,6 @@
    </Rule>
    <Rule TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303">
     <Resolution Name="Default">{0} passes a literal as parameter {1} of a call to {2}. Retrieve the following string argument from a resource table instead: '{3}'</Resolution>
-   </Rule>
-   <Rule TypeName="DoNotRaiseReservedExceptionTypes" Category="Microsoft.Usage" CheckId="CA2201">
-    <Resolution Name="TooGeneric">{0} creates an exception of type '{1}', an exception type that is not sufficiently specific and should never be raised by user code. If this exception instance might be thrown, use a different exception type.</Resolution>
    </Rule>
    <Rule TypeName="EnumsShouldHaveZeroValue" Category="Microsoft.Design" CheckId="CA1008">
     <Resolution Name="FlagsRename">In enum '{0}', change the name of '{1}' to 'None'.</Resolution>
@@ -9436,9 +9038,6 @@
    <Rule TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822">
     <Resolution Name="Default">The 'this' parameter (or 'Me' in VB) of {0} is never used. Mark the member as static (or Shared in VB) or use 'this'/'Me' in the method body or at least one property accessor, if appropriate.</Resolution>
    </Rule>
-   <Rule TypeName="NestedTypesShouldNotBeVisible" Category="Microsoft.Design" CheckId="CA1034">
-    <Resolution Name="Default">Do not nest type '{0}'. Alternatively, change its accessibility so that it is not externally visible.</Resolution>
-   </Rule>
    <Rule TypeName="OperationsShouldNotOverflow" Category="Microsoft.Usage" CheckId="CA2233">
     <Resolution Name="Default">Correct the potential overflow in the operation '{0}' in '{1}'.</Resolution>
    </Rule>
@@ -9464,12 +9063,6 @@
    </Rule>
    <Rule TypeName="ProvideObsoleteAttributeMessage" Category="Microsoft.Design" CheckId="CA1041">
     <Resolution Name="Default">Provide a message for the ObsoleteAttribute that marks '{0}'.</Resolution>
-   </Rule>
-   <Rule TypeName="RemoveUnusedLocals" Category="Microsoft.Performance" CheckId="CA1804">
-    <Resolution Name="Default">{0} declares a local, '{1}', of type {2}, which is never used or is only assigned to. Use this local or remove it.</Resolution>
-   </Rule>
-   <Rule TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703">
-    <Resolution Name="Default">Correct the spelling of '{0}' in '{1}' == '{2}' contained in resource stream '{3}'.</Resolution>
    </Rule>
    <Rule TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801">
     <Resolution Name="Default">Parameter '{0}' of {1} is never used. Remove the parameter or use it in the method body.</Resolution>
