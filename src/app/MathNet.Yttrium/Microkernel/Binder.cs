@@ -25,7 +25,7 @@ using System.Text;
 using System.IO;
 using System.Configuration;
 
-using MathNet.Symbolics.Backend.Mapping;
+using MathNet.Symbolics.Kernel;
 
 namespace MathNet.Symbolics
 {

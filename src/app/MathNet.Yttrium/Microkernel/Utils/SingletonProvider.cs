@@ -22,46 +22,26 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Threading;
 
-namespace MathNet.Symbolics.Backend.Utils
+namespace MathNet.Symbolics.Utils
 {
-    public sealed class EmptyIterator<T> : IEnumerable<T>, IEnumerator<T>
+    public static class SingletonProvider<T> where T : new()
     {
-        public EmptyIterator()
+        //lazy initialization, since there are no other field members
+        private static readonly T _instance = new T();
+
+        // Explicit static constructor to tell C# compiler
+        // not to mark type as beforefieldinit
+        static SingletonProvider()
         {
         }
 
-        public IEnumerator<T> GetEnumerator()
+        public static T Instance
         {
-            return this;
-        }
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return this;
-        }
-
-        public bool MoveNext()
-        {
-            return false;
-        }
-
-        public T Current
-        {
-            get { return default(T); }
-        }
-        object System.Collections.IEnumerator.Current
-        {
-            get { return null; }
-        }
-
-        public void Reset()
-        {
-        }
-
-        public void Dispose()
-        {
-            GC.SuppressFinalize(this);
+            get
+            {
+                return _instance;
+            }
         }
     }
 }

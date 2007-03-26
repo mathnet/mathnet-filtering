@@ -23,16 +23,16 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MathNet.Symbolics.Backend.Utils
+namespace MathNet.Symbolics.Utils
 {
-    public static class SingletonProvider<T> where T : new()
+    public static class BindingSingletonProvider<T>
     {
         //lazy initialization, since there are no other field members
-        private static readonly T _instance = new T();
+        private static readonly T _instance = Binder.GetInstance<T>();
 
         // Explicit static constructor to tell C# compiler
         // not to mark type as beforefieldinit
-        static SingletonProvider()
+        static BindingSingletonProvider()
         {
         }
 

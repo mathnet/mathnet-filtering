@@ -20,19 +20,48 @@
 #endregion
 
 using System;
-using System.Xml;
 using System.Collections.Generic;
 using System.Text;
-using System.Configuration;
+using System.Threading;
 
-namespace MathNet.Symbolics.Backend.Mapping
+namespace MathNet.Symbolics.Utils
 {
-    public sealed class MappingsSectionHandler : IConfigurationSectionHandler
+    public sealed class EmptyIterator<T> : IEnumerable<T>, IEnumerator<T>
     {
-        public object Create(object parent, object configContext, XmlNode section)
+        public EmptyIterator()
         {
-            XmlMappingAdapter xma = new XmlMappingAdapter();
-            return xma.CompileFromXml(section);
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            return this;
+        }
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            return this;
+        }
+
+        public bool MoveNext()
+        {
+            return false;
+        }
+
+        public T Current
+        {
+            get { return default(T); }
+        }
+        object System.Collections.IEnumerator.Current
+        {
+            get { return null; }
+        }
+
+        public void Reset()
+        {
+        }
+
+        public void Dispose()
+        {
+            GC.SuppressFinalize(this);
         }
     }
 }

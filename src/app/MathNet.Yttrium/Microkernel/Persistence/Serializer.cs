@@ -26,7 +26,7 @@ using System.Xml;
 using System.Reflection;
 using System.IO;
 
-namespace MathNet.Symbolics.Backend.Persistence
+namespace MathNet.Symbolics.Persistence
 {
     public static class Serializer
     {

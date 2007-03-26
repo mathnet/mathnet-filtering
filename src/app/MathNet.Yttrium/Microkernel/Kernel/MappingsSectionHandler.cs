@@ -20,24 +20,19 @@
 #endregion
 
 using System;
+using System.Xml;
 using System.Collections.Generic;
 using System.Text;
+using System.Configuration;
 
-namespace MathNet.Symbolics.Backend.Mapping
+namespace MathNet.Symbolics.Kernel
 {
-    internal sealed class RawBinding
+    public sealed class MappingsSectionHandler : IConfigurationSectionHandler
     {
-        internal string id;
-        internal string contractType;
-        internal string factoryType;
-        internal string comment;
-
-        public RawBinding(string id, string contractType, string factoryType, string comment)
+        public object Create(object parent, object configContext, XmlNode section)
         {
-            this.id = id;
-            this.contractType = contractType;
-            this.factoryType = factoryType;
-            this.comment = comment;
+            XmlMappingAdapter xma = new XmlMappingAdapter();
+            return xma.CompileFromXml(section);
         }
     }
 }

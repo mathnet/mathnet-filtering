@@ -23,25 +23,21 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MathNet.Symbolics.Backend.Utils
+namespace MathNet.Symbolics.Kernel
 {
-    public static class BindingSingletonProvider<T>
+    internal sealed class RawBinding
     {
-        //lazy initialization, since there are no other field members
-        private static readonly T _instance = Binder.GetInstance<T>();
+        internal string id;
+        internal string contractType;
+        internal string factoryType;
+        internal string comment;
 
-        // Explicit static constructor to tell C# compiler
-        // not to mark type as beforefieldinit
-        static BindingSingletonProvider()
+        public RawBinding(string id, string contractType, string factoryType, string comment)
         {
-        }
-
-        public static T Instance
-        {
-            get
-            {
-                return _instance;
-            }
+            this.id = id;
+            this.contractType = contractType;
+            this.factoryType = factoryType;
+            this.comment = comment;
         }
     }
 }

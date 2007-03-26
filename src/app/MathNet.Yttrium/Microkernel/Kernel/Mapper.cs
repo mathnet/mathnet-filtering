@@ -27,7 +27,7 @@ using System.Reflection;
 using MathNet.Symbolics.Exceptions;
 using MathNet.Symbolics.Properties;
 
-namespace MathNet.Symbolics.Backend.Mapping
+namespace MathNet.Symbolics.Kernel
 {
     internal sealed class Mapper
     {

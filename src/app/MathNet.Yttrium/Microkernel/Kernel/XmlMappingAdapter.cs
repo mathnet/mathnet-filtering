@@ -25,7 +25,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Configuration;
 
-namespace MathNet.Symbolics.Backend.Mapping
+namespace MathNet.Symbolics.Kernel
 {
     internal sealed class XmlMappingAdapter
     {
