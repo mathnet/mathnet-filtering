@@ -32,7 +32,7 @@ using MathNet.Symbolics.Workplace;
 using MathNet.Symbolics.Backend;
 using MathNet.Symbolics.Backend.Properties;
 
-using MathNet.Symbolics.Backend.Persistence;
+using MathNet.Symbolics.Persistence;
 using MathNet.Symbolics.Packages.Standard.Structures;
 
 namespace Yttrium.UnitTests
