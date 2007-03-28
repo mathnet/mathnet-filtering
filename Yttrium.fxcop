@@ -79,11 +79,9 @@
         <Type Name="Service`1" Analyze="True" AnalyzeAllChildren="True" />
        </Types>
       </Namespace>
-      <Namespace Name="MathNet.Symbolics.Backend.Mapping" Analyze="True" AnalyzeAllChildren="True" />
-      <Namespace Name="MathNet.Symbolics.Backend.Persistence" Analyze="True" AnalyzeAllChildren="True" />
-      <Namespace Name="MathNet.Symbolics.Backend.Utils" Analyze="True" AnalyzeAllChildren="True" />
       <Namespace Name="MathNet.Symbolics.Events" Analyze="True" AnalyzeAllChildren="True" />
       <Namespace Name="MathNet.Symbolics.Exceptions" Analyze="True" AnalyzeAllChildren="True" />
+      <Namespace Name="MathNet.Symbolics.Persistence" Analyze="True" AnalyzeAllChildren="True" />
       <Namespace Name="MathNet.Symbolics.Properties" Analyze="True" AnalyzeAllChildren="False">
        <Types AnalyzeAllChildren="False">
         <Type Name="Resources" Analyze="True" AnalyzeAllChildren="False">
@@ -196,52 +194,6 @@
      </Message>
     </Messages>
    </Namespace>
-   <Namespace Name="MathNet.Symbolics.Backend.Mapping">
-    <Messages>
-     <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Created="2007-03-25 19:46:45Z">
-      <Issue>
-       <Item>MathNet.Symbolics.Backend.Mapping</Item>
-      </Issue>
-     </Message>
-     <Message Id="Backend" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Created="2007-03-25 19:46:45Z">
-      <Issue Name="ShouldBeCompoundWord">
-       <Item>Backend</Item>
-       <Item>namespace</Item>
-       <Item>MathNet.Symbolics.Backend.Mapping</Item>
-       <Item>BackEnd</Item>
-      </Issue>
-     </Message>
-     <Message Id="Symbolics" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2007-03-25 19:46:45Z">
-      <Issue Name="Namespace">
-       <Item>Symbolics</Item>
-       <Item>MathNet.Symbolics.Backend.Mapping</Item>
-      </Issue>
-     </Message>
-    </Messages>
-   </Namespace>
-   <Namespace Name="MathNet.Symbolics.Backend.Persistence">
-    <Messages>
-     <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Created="2007-03-25 19:46:45Z">
-      <Issue>
-       <Item>MathNet.Symbolics.Backend.Persistence</Item>
-      </Issue>
-     </Message>
-     <Message Id="Backend" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Created="2007-03-25 19:46:45Z">
-      <Issue Name="ShouldBeCompoundWord">
-       <Item>Backend</Item>
-       <Item>namespace</Item>
-       <Item>MathNet.Symbolics.Backend.Persistence</Item>
-       <Item>BackEnd</Item>
-      </Issue>
-     </Message>
-     <Message Id="Symbolics" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2007-03-25 19:46:45Z">
-      <Issue Name="Namespace">
-       <Item>Symbolics</Item>
-       <Item>MathNet.Symbolics.Backend.Persistence</Item>
-      </Issue>
-     </Message>
-    </Messages>
-   </Namespace>
    <Namespace Name="MathNet.Symbolics.Backend.Properties">
     <Messages>
      <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Created="2007-03-25 19:46:45Z">
@@ -284,35 +236,6 @@
       <Issue Name="Namespace">
        <Item>Symbolics</Item>
        <Item>MathNet.Symbolics.Backend.Templates</Item>
-      </Issue>
-     </Message>
-    </Messages>
-   </Namespace>
-   <Namespace Name="MathNet.Symbolics.Backend.Utils">
-    <Messages>
-     <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Created="2007-03-25 19:46:45Z">
-      <Issue>
-       <Item>MathNet.Symbolics.Backend.Utils</Item>
-      </Issue>
-     </Message>
-     <Message Id="Backend" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Created="2007-03-25 19:46:45Z">
-      <Issue Name="ShouldBeCompoundWord">
-       <Item>Backend</Item>
-       <Item>namespace</Item>
-       <Item>MathNet.Symbolics.Backend.Utils</Item>
-       <Item>BackEnd</Item>
-      </Issue>
-     </Message>
-     <Message Id="Symbolics" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2007-03-25 19:46:45Z">
-      <Issue Name="Namespace">
-       <Item>Symbolics</Item>
-       <Item>MathNet.Symbolics.Backend.Utils</Item>
-      </Issue>
-     </Message>
-     <Message Id="Utils" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2007-03-25 19:46:45Z">
-      <Issue Name="Namespace">
-       <Item>Utils</Item>
-       <Item>MathNet.Symbolics.Backend.Utils</Item>
       </Issue>
      </Message>
     </Messages>
@@ -4931,176 +4854,6 @@
               <Issue>
                <Item>Service`1.Instance:T</Item>
                <Item>MathNet.Symbolics.Service`1</Item>
-              </Issue>
-              <Notes>
-               <User Name="Christoph">
-                <Note Id="1" />
-               </User>
-              </Notes>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-        </Types>
-       </Namespace>
-       <Namespace Name="MathNet.Symbolics.Backend.Mapping">
-        <Types>
-         <Type Name="Mapper">
-          <Members>
-           <Member Name="AddBinding(MathNet.Symbolics.IFactory`1&lt;T&gt;,MathNet.Symbolics.MathIdentifier):System.Void">
-            <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>Mapper.AddBinding(IFactory`1&lt;T&gt;, MathIdentifier):Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="XmlMappingAdapter">
-          <Members>
-           <Member Name="GetXmlAttribute(System.Xml.XmlNode,System.String,System.String):System.String">
-            <Messages>
-             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2007-03-26 11:44:21Z" FixCategory="NonBreaking">
-              <Issue>
-               <Item>XmlMappingAdapter.GetXmlAttribute(XmlNode, String, String):String</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-        </Types>
-       </Namespace>
-       <Namespace Name="MathNet.Symbolics.Backend.Persistence">
-        <Types>
-         <Type Name="Serializer">
-          <Members>
-           <Member Name="Deserialize(System.Xml.XmlReader,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):T">
-            <Messages>
-             <Message TypeName="GenericMethodsShouldProvideTypeParameter" Category="Microsoft.Design" CheckId="CA1004" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>Serializer.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):T</Item>
-               <Item>T</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="DeserializeFromString(System.String,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):T">
-            <Messages>
-             <Message TypeName="GenericMethodsShouldProvideTypeParameter" Category="Microsoft.Design" CheckId="CA1004" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>Serializer.DeserializeFromString(String, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):T</Item>
-               <Item>T</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="DeserializeList(System.Xml.XmlReader,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;,System.String):System.Collections.Generic.List`1&lt;T&gt;">
-            <Messages>
-             <Message TypeName="DoNotExposeGenericLists" Category="Microsoft.Design" CheckId="CA1002" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>System.Collections.Generic.List`1&lt;T&gt;</Item>
-               <Item>Serializer.DeserializeList(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;, String):List`1&lt;T&gt;</Item>
-              </Issue>
-             </Message>
-             <Message TypeName="GenericMethodsShouldProvideTypeParameter" Category="Microsoft.Design" CheckId="CA1004" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>Serializer.DeserializeList(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;, String):List`1&lt;T&gt;</Item>
-               <Item>T</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="DeserializeListFromString(System.String,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;,System.String):System.Collections.Generic.List`1&lt;T&gt;">
-            <Messages>
-             <Message TypeName="DoNotExposeGenericLists" Category="Microsoft.Design" CheckId="CA1002" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>System.Collections.Generic.List`1&lt;T&gt;</Item>
-               <Item>Serializer.DeserializeListFromString(String, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;, String):List`1&lt;T&gt;</Item>
-              </Issue>
-             </Message>
-             <Message TypeName="GenericMethodsShouldProvideTypeParameter" Category="Microsoft.Design" CheckId="CA1004" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>Serializer.DeserializeListFromString(String, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;, String):List`1&lt;T&gt;</Item>
-               <Item>T</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-        </Types>
-       </Namespace>
-       <Namespace Name="MathNet.Symbolics.Backend.Utils">
-        <Types>
-         <Type Name="BindingSingletonProvider`1">
-          <Members>
-           <Member Name=".cctor()">
-            <Messages>
-             <Message TypeName="InitializeReferenceTypeStaticFieldsInline" Category="Microsoft.Performance" CheckId="CA1810" Status="Excluded" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>MathNet.Symbolics.Backend.Utils.BindingSingletonProvider`1</Item>
-              </Issue>
-              <Notes>
-               <User Name="Christoph">
-                <Note Id="2" />
-               </User>
-              </Notes>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="Instance">
-            <Messages>
-             <Message TypeName="DoNotDeclareStaticMembersOnGenericTypes" Category="Microsoft.Design" CheckId="CA1000" Status="Excluded" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>BindingSingletonProvider`1.Instance:T</Item>
-               <Item>MathNet.Symbolics.Backend.Utils.BindingSingletonProvider`1</Item>
-              </Issue>
-              <Notes>
-               <User Name="Christoph">
-                <Note Id="1" />
-               </User>
-              </Notes>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="EmptyIterator`1">
-          <Messages>
-           <Message TypeName="IdentifiersShouldHaveCorrectSuffix" Category="Microsoft.Naming" CheckId="CA1710" Created="2007-03-25 19:46:45Z">
-            <Issue>
-             <Item>MathNet.Symbolics.Backend.Utils.EmptyIterator`1</Item>
-             <Item>Collection</Item>
-            </Issue>
-           </Message>
-          </Messages>
-         </Type>
-         <Type Name="SingletonProvider`1">
-          <Members>
-           <Member Name=".cctor()">
-            <Messages>
-             <Message TypeName="InitializeReferenceTypeStaticFieldsInline" Category="Microsoft.Performance" CheckId="CA1810" Status="Excluded" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>MathNet.Symbolics.Backend.Utils.SingletonProvider`1</Item>
-              </Issue>
-              <Notes>
-               <User Name="Christoph">
-                <Note Id="2" />
-               </User>
-              </Notes>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="Instance">
-            <Messages>
-             <Message TypeName="DoNotDeclareStaticMembersOnGenericTypes" Category="Microsoft.Design" CheckId="CA1000" Status="Excluded" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>SingletonProvider`1.Instance:T</Item>
-               <Item>MathNet.Symbolics.Backend.Utils.SingletonProvider`1</Item>
               </Issue>
               <Notes>
                <User Name="Christoph">
