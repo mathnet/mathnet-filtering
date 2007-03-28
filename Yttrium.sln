@@ -53,6 +53,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Mediator.Contracts"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Mediator.Service", "src\app\MathNet.Yttrium\Mediator.Service\Yttrium.Mediator.Service.csproj", "{5ADA1A0C-25A8-4B09-8956-AF0C94575D22}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Packages", "Packages", "{F75A5EAF-5C00-4F8C-AA9D-0745AA7E210D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Packages.PetriNet", "src\app\MathNet.Yttrium\Packages\Yttrium.Packages.PetriNet\Yttrium.Packages.PetriNet.csproj", "{5D5C5661-1B83-4C25-AC7A-C7AED7FFC9DD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{DA91D993-09E5-43F2-B99E-298D0DB2F07A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Presentation", "src\app\MathNet.Yttrium\Tools\Presentation\Yttrium.Presentation.csproj", "{80FC18B6-13DC-4D8F-8007-8D2CD08D1B5B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Mediator.Toolkit", "src\app\MathNet.Yttrium\Mediator.Toolkit\Yttrium.Mediator.Toolkit.csproj", "{334D8A1D-1004-4097-ACEE-8B954F911EB2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Whiteboard", "src\app\MathNet.Yttrium\Tools\WhiteBoard\Yttrium.Whiteboard.csproj", "{20419F60-1DA7-478F-B77C-1EC2BC36DE53}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -163,8 +175,29 @@ Global
 		{5ADA1A0C-25A8-4B09-8956-AF0C94575D22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5ADA1A0C-25A8-4B09-8956-AF0C94575D22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5ADA1A0C-25A8-4B09-8956-AF0C94575D22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D5C5661-1B83-4C25-AC7A-C7AED7FFC9DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D5C5661-1B83-4C25-AC7A-C7AED7FFC9DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D5C5661-1B83-4C25-AC7A-C7AED7FFC9DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D5C5661-1B83-4C25-AC7A-C7AED7FFC9DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80FC18B6-13DC-4D8F-8007-8D2CD08D1B5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80FC18B6-13DC-4D8F-8007-8D2CD08D1B5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80FC18B6-13DC-4D8F-8007-8D2CD08D1B5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80FC18B6-13DC-4D8F-8007-8D2CD08D1B5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{334D8A1D-1004-4097-ACEE-8B954F911EB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{334D8A1D-1004-4097-ACEE-8B954F911EB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{334D8A1D-1004-4097-ACEE-8B954F911EB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{334D8A1D-1004-4097-ACEE-8B954F911EB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20419F60-1DA7-478F-B77C-1EC2BC36DE53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20419F60-1DA7-478F-B77C-1EC2BC36DE53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20419F60-1DA7-478F-B77C-1EC2BC36DE53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20419F60-1DA7-478F-B77C-1EC2BC36DE53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5D5C5661-1B83-4C25-AC7A-C7AED7FFC9DD} = {F75A5EAF-5C00-4F8C-AA9D-0745AA7E210D}
+		{80FC18B6-13DC-4D8F-8007-8D2CD08D1B5B} = {DA91D993-09E5-43F2-B99E-298D0DB2F07A}
+		{20419F60-1DA7-478F-B77C-1EC2BC36DE53} = {DA91D993-09E5-43F2-B99E-298D0DB2F07A}
 	EndGlobalSection
 EndGlobal
