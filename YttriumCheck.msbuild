@@ -2,18 +2,18 @@
 	<ItemGroup>
 		<NUnitBin Include="tools\nunit\bin\*.*"/>
 		<NCoverBin Include="tools\ncover\*.*"/>
-		<NUnitTargetFiles Include="src\test\MathNet.Yttrium.Test\**\Debug\*.dll"/>
-		<NUnitTargetTest Include="src\test\MathNet.Yttrium.Test\**\Debug\*.Test.dll"/>
-		<NCoverTargets Include="src\app\MathNet.Yttrium\**\Debug\*.pdb"/>
+		<NUnitTargetFiles Include="build\Debug\*.dll"/>
+		<NUnitTargetTest Include="build\Debug\*.Test.dll"/>
+		<NCoverTargets Include="build\Debug\*.pdb"/>
 		<ConfigFiles Include="**\bin\**\*.config"/>
 	</ItemGroup>
 
 	<Target Name="Check">
 
 		<Exec Command="tools\FxCop\FxCopCmd.exe /project:Yttrium.fxcop /out:..\Yttrium\artifact\fxcop-result.xml" ContinueOnError="true"/>
-
+		
 		<Exec Command="tools\simian\simian.exe -recurse=src\app\MathNet.Yttrium\*.cs -formatter=xml:..\Yttrium\artifact\simian-result.xml" IgnoreExitCode="true" ContinueOnError="true"/>
-
+		
 		<Copy SourceFiles="@(NUnitBin)" DestinationFolder="D:\integration\Math.NET\Yttrium\work" SkipUnchangedFiles="true"/>
 		<Copy SourceFiles="@(NCoverBin)" DestinationFolder="D:\integration\Math.NET\Yttrium\work" SkipUnchangedFiles="true"/>
 		<Copy SourceFiles="@(NUnitTargetFiles)" DestinationFolder="D:\integration\Math.NET\Yttrium\work"/>
