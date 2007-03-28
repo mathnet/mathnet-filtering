@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MathNet.Symbolics.Packages.PetriNet</RootNamespace>
-    <AssemblyName>Yttrium.Packages.PetriNet</AssemblyName>
+    <AssemblyName>MathNet.Yttrium.Packages.PetriNet</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

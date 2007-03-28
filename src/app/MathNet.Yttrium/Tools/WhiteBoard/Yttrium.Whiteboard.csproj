@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MathNet.Symbolics.Whiteboard</RootNamespace>
-    <AssemblyName>MathNet.Symbolics.Whiteboard-Yttrium</AssemblyName>
+    <AssemblyName>MathNet.Yttrium.Whiteboard</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

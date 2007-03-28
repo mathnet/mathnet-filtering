@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MathNet.Symbolics.Presentation</RootNamespace>
-    <AssemblyName>MathNet.Symbolics.Presentation-Yttrium</AssemblyName>
+    <AssemblyName>MathNet.Yttrium.Presentation</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
