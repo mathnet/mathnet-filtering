@@ -24,6 +24,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Globalization;
 using System.Configuration;
+using MathNet.Numerics.RandomSources;
 
 //using log4net;
 
@@ -40,6 +41,8 @@ namespace MathNet.Symbolics
         //    //log4net.Config.XmlConfigurator.Configure();
         //    //log = LogManager.GetLogger("yttrium");
         //}
+
+        private static RandomSource _randomSource = new SystemRandomSource();
 
         public static string YttriumNamespace
         {
@@ -83,13 +86,9 @@ namespace MathNet.Symbolics
         //    return ConfigurationManager.OpenMappedExeConfiguration(mappingFileMap, ConfigurationUserLevel.None);
         //}
 
-
-        private static Random _random = new Random();
-        [Obsolete("Any tagging algorithm should be replaced with something that doesn't involve tagging. Consider using the Traversing Module instead.")] 
-        public static int GenerateTag()
+        public static RandomSource Random
         {
-            // TODO: Get rid of the outdated tagging subsystem
-            return _random.Next();
+            get { return _randomSource; }
         }
 
         #region Format Settings

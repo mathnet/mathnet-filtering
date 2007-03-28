@@ -77,6 +77,8 @@ namespace MathNet.Symbolics.Library
 
         MathIdentifier FindEntityByLabel(string label);
         bool TryFindEntityByLabel(string label, out MathIdentifier id);
+
+        ReadOnlyCollection<IEntity> GetAllEntities();
         #endregion
 
         #region Architecture Library

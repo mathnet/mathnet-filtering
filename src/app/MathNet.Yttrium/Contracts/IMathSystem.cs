@@ -104,6 +104,9 @@ namespace MathNet.Symbolics
 
         void AcceptSystemBuilder(ISystemBuilder builder);
 
+        //bool HasSystemMediator;
+        //void LoadDefaultSystemMediator();
+
         void PublishToLibrary(MathIdentifier architectureId, MathIdentifier entityId);
         IEntity PublishToLibrary(string label, string symbol);
         IEntity PublishToLibraryAnonymous();

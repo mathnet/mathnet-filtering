@@ -97,7 +97,8 @@ namespace MathNet.Symbolics.Workplace
         public MathSystem AddSystem()
         {
             MathSystem system = new MathSystem();
-            system.SystemMediator = Binder.GetInstance<ISystemMediator>();
+            Binder.GetInstance<ISystemMediator, IMathSystem>(system);
+            //system.SystemMediator = Binder.GetInstance<ISystemMediator>();
             _namedSystems.Add(system.InstanceId, system);
             return system;
         }

@@ -14,7 +14,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\..\..\build\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -22,7 +22,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\..\..\..\build\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -37,36 +37,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Backend\Channels\AbstractChannel.cs" />
-    <Compile Include="Backend\Channels\CommandChannel.cs" />
-    <Compile Include="Backend\Channels\CommandReference.cs" />
-    <Compile Include="Backend\Channels\Commands\AbstractBusCommand.cs" />
-    <Compile Include="Backend\Channels\Commands\AbstractCommand.cs" />
-    <Compile Include="Backend\Channels\Commands\AbstractNewCommand.cs" />
-    <Compile Include="Backend\Channels\Commands\AbstractPortBusCommand.cs" />
-    <Compile Include="Backend\Channels\Commands\AbstractPortBusIndexCommand.cs" />
-    <Compile Include="Backend\Channels\Commands\AbstractPortCommand.cs" />
-    <Compile Include="Backend\Channels\Commands\AbstractPortIndexCommand.cs" />
-    <Compile Include="Backend\Channels\Commands\AbstractPortSignalCommand.cs" />
-    <Compile Include="Backend\Channels\Commands\AbstractPortSignalIndexCommand.cs" />
-    <Compile Include="Backend\Channels\Commands\AbstractSignalCommand.cs" />
-    <Compile Include="Backend\Channels\Commands\BusDrivePortCommand.cs" />
-    <Compile Include="Backend\Channels\Commands\BusUndrivePortCommand.cs" />
-    <Compile Include="Backend\Channels\Commands\CommandBase.cs" />
-    <Compile Include="Backend\Channels\Commands\NewBusCommand.cs" />
-    <Compile Include="Backend\Channels\Commands\NewPortCommand.cs" />
-    <Compile Include="Backend\Channels\Commands\NewSignalCommand.cs" />
-    <Compile Include="Backend\Channels\Commands\PortDriveSignalCommand.cs" />
-    <Compile Include="Backend\Channels\Commands\PortUndriveSignalCommand.cs" />
-    <Compile Include="Backend\Channels\Commands\RemoveBusCommand.cs" />
-    <Compile Include="Backend\Channels\Commands\RemovePortCommand.cs" />
-    <Compile Include="Backend\Channels\Commands\RemoveSignalCommand.cs" />
-    <Compile Include="Backend\Channels\Commands\SignalDrivePortCommand.cs" />
-    <Compile Include="Backend\Channels\Commands\SignalUndrivePortCommand.cs" />
     <Compile Include="Backend\Channels\Hint.cs" />
     <Compile Include="Backend\Channels\HintChannel.cs" />
     <Compile Include="Backend\Channels\HintType.cs" />
-    <Compile Include="Backend\Channels\ICommand.cs" />
     <Compile Include="Backend\Channels\LogObserver.cs" />
     <Compile Include="Backend\Containers\IdentifierDictionary.cs" />
     <Compile Include="Backend\Properties\PropertyBag.cs" />

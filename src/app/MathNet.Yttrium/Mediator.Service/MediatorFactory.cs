@@ -27,7 +27,10 @@ using MathNet.Symbolics.Mediator;
 
 namespace MathNet.Symbolics
 {
-    internal class MediatorFactory : IFactory<IMediator>, IFactory<ISystemMediator>
+    internal class MediatorFactory :
+        IFactory<IMediator>,
+        IFactory<ISystemMediator>,
+        IFactory<ISystemMediator, IMathSystem>
     {
         //private static IMediator _mediator = new Mediator.Mediator();
 
@@ -39,7 +42,27 @@ namespace MathNet.Symbolics
 
         public ISystemMediator GetInstance()
         {
-            return new Mediator.SystemMediator();
+            return new SystemMediator();
+        }
+
+        public ISystemMediator GetInstance(IMathSystem p1)
+        {
+            ISystemMediatorSource source = p1 as ISystemMediatorSource;
+            if(source == null)
+            {
+                SystemMediator sm = new SystemMediator();
+                sm.SubscribeSystem(p1);
+                return sm;
+            }
+            if(source.HasSystemMediator)
+                return source.SystemMediator;
+            else
+            {
+                SystemMediator sm = new SystemMediator();
+                source.SystemMediator = sm;
+                sm.SubscribeSystem(p1); // probably redundant, but doesn't matter (subscribe is robust).
+                return sm;
+            }
         }
     }
 }

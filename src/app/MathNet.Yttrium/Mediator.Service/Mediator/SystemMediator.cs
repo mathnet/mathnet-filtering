@@ -31,17 +31,23 @@ namespace MathNet.Symbolics.Mediator
     {
         private List<ISystemObserver> _observers;
         private IMathSystem _system;
+        private Channel<ICommand> _commands;
 
         public event EventHandler SystemChanged;
 
         public SystemMediator()
         {
+            _commands = new Channel<ICommand>();
+            _commands.EntryAvailable += EntryAvailableHandler;
+            _commands.Enabled = true;
             _observers = new List<ISystemObserver>();
         }
 
         #region Observer Infrastructure
         public void AttachObserver(ISystemObserver observer)
         {
+            if(_observers.Contains(observer))
+                return;
             _observers.Add(observer);
             if(_system != null)
             {
@@ -52,6 +58,8 @@ namespace MathNet.Symbolics.Mediator
         }
         public void DetachObserver(ISystemObserver observer)
         {
+            if(!_observers.Contains(observer))
+                return;
             _observers.Remove(observer);
             if(_system != null)
                 observer.DetachedFromSystem(_system);
@@ -106,8 +114,14 @@ namespace MathNet.Symbolics.Mediator
         #endregion
 
         #region System Subscription
+        public IMathSystem CurrentSystem
+        {
+            get { return _system; }
+        }
         public void SubscribeSystem(IMathSystem system)
         {
+            if(_system != null && _system.InstanceId == system.InstanceId)
+                return; // already subscribed
             if(_system != null)
                 throw new InvalidOperationException("There's already a system subscribed.");
             _system = system;
@@ -125,7 +139,8 @@ namespace MathNet.Symbolics.Mediator
         public void UnsubscribeSystem(IMathSystem system)
         {
             if(_system == null)
-                throw new InvalidOperationException("There's no system subscribed.");
+                return; // wasn't registered, no matter (might be programming error, but doesn't help anyone to throw; more robust this way.
+                //throw new InvalidOperationException("There's no system subscribed.");
             Mediator.Instance.DetachObserver(this);
             for(int i = _observers.Count - 1; i >= 0; i--)
             {
@@ -440,6 +455,28 @@ namespace MathNet.Symbolics.Mediator
                 NotifyBusValueChanged(bus);
         }
 
+        #endregion
+
+        #region Command Infrastructure
+        //public CommandChannel Commands
+        //{
+        //    get { return _commands; }
+        //}
+
+        public void PostCommand(ICommand command)
+        {
+            _commands.PushEntry(command);
+        }
+
+        private void EntryAvailableHandler(object sender, EventArgs e)
+        {
+            while(_commands.HasEntries)
+            {
+                ICommand cmd = _commands.PopEntry();
+                cmd.System = _system;
+                cmd.Execute();
+            }
+        }
         #endregion
     }
 }

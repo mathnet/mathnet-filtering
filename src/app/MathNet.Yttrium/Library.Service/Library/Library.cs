@@ -23,6 +23,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using MathNet.Symbolics.Conversion;
+using System.Collections.ObjectModel;
 
 namespace MathNet.Symbolics.Library
 {
@@ -206,6 +207,11 @@ namespace MathNet.Symbolics.Library
         public bool TryFindEntityByLabel(string label, out MathIdentifier id)
         {
             return _entities.TryFindDomainOfLabel(label, out id);
+        }
+
+        public ReadOnlyCollection<IEntity> GetAllEntities()
+        {
+            return new ReadOnlyCollection<IEntity>(_entities);
         }
         #endregion
 

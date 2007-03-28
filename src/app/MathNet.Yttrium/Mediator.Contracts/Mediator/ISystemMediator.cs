@@ -34,6 +34,9 @@ namespace MathNet.Symbolics.Mediator
 
         void SubscribeSystem(IMathSystem system);
         void UnsubscribeSystem(IMathSystem system);
+        IMathSystem CurrentSystem { get; }
+
+        void PostCommand(ICommand command);
 
         void NotifySignalAdded(Signal signal, int index);
         event EventHandler<SignalIndexEventArgs> SignalAdded;
@@ -70,17 +73,17 @@ namespace MathNet.Symbolics.Mediator
         void NotifyOutputMoved(Signal signal, int indexBefore, int indexAfter);
         event EventHandler<SignalIndexChangedEventArgs> OutputMoved;
 
-        //void NotifyPortDrivesSignal(Signal signal, Port port, int outputIndex);
+        void NotifyPortDrivesSignal(Signal signal, Port port, int outputIndex);
         event EventHandler<SignalPortIndexEventArgs> PortDrivesSignal;
-        //void NotifyPortDrivesSignalNoLonger(Signal signal, Port port, int outputIndex);
+        void NotifyPortDrivesSignalNoLonger(Signal signal, Port port, int outputIndex);
         event EventHandler<SignalPortIndexEventArgs> PortDrivesSignalNoLonger;
-        //void NotifySignalDrivesPort(Signal signal, Port port, int inputIndex);
+        void NotifySignalDrivesPort(Signal signal, Port port, int inputIndex);
         event EventHandler<SignalPortIndexEventArgs> SignalDrivesPort;
-        //void NotifySignalDrivesPortNoLonger(Signal signal, Port port, int inputIndex);
+        void NotifySignalDrivesPortNoLonger(Signal signal, Port port, int inputIndex);
         event EventHandler<SignalPortIndexEventArgs> SignalDrivesPortNoLonger;
-        //void NotifyBusAttachedToPort(Bus bus, Port port, int busIndex);
+        void NotifyBusAttachedToPort(Bus bus, Port port, int busIndex);
         event EventHandler<BusPortIndexEventArgs> BusAttachedToPort;
-        //void NotifyBusDetachedFromPort(Bus bus, Port port, int busIndex);
+        void NotifyBusDetachedFromPort(Bus bus, Port port, int busIndex);
         event EventHandler<BusPortIndexEventArgs> BusDetachedFromPort;
 
         //void NotifySignalValueChanged(Signal signal);

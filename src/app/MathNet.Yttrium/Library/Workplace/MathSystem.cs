@@ -43,7 +43,7 @@ using MathNet.Symbolics.SystemBuilder.Toolkit;
 
 namespace MathNet.Symbolics.Workplace
 {
-    public class MathSystem : IMathSystem
+    public class MathSystem : IMathSystem, ISystemMediatorSource
     {
         private readonly Guid _iid;
 
@@ -229,7 +229,21 @@ namespace MathNet.Symbolics.Workplace
             int idx = _allPorts.Count;
             _allPorts.Add(port);
             if(_systemMediator != null)
+            {
                 _systemMediator.NotifyPortAdded(port, idx);
+                idx = 0;
+                foreach(Signal s in port.InputSignals)
+                    if(_allSignals.Contains(s))
+                        _systemMediator.NotifySignalDrivesPort(s, port, idx++);
+                idx = 0;
+                foreach(Signal s in port.OutputSignals)
+                    if(_allSignals.Contains(s))
+                        _systemMediator.NotifyPortDrivesSignal(s, port, idx++);
+                idx = 0;
+                foreach(Bus b in port.Buses)
+                    if(_allBuses.Contains(b))
+                        _systemMediator.NotifyBusAttachedToPort(b, port, idx++);
+            }
         }
         private void InternalRemovePort(Port port)
         {
@@ -363,8 +377,8 @@ namespace MathNet.Symbolics.Workplace
                     Port p = s.DrivenByPort;
                     if(!_allPorts.Contains(p))
                     {
-                        InternalAddPort(p);
                         AddBusRange(p.Buses);
+                        InternalAddPort(p);
                     }
                 }
             }
@@ -401,8 +415,8 @@ namespace MathNet.Symbolics.Workplace
                     Port p = s.DrivenByPort;
                     if(!_allPorts.Contains(p))
                     {
-                        InternalAddPort(p);
                         AddBusRange(p.Buses);
+                        InternalAddPort(p);
                     }
                 }
             }

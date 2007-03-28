@@ -1,0 +1,85 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{80FC18B6-13DC-4D8F-8007-8D2CD08D1B5B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MathNet.Symbolics.Presentation</RootNamespace>
+    <AssemblyName>MathNet.Symbolics.Presentation-Yttrium</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\..\..\build\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\..\..\build\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MathNet.Iridium, Version=2007.3.9.24894, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\MathNet.Iridium\Library\bin\Release\MathNet.Iridium.dll</HintPath>
+    </Reference>
+    <Reference Include="Netron.NetronLight, Version=2.8.2313.25507, Culture=neutral, PublicKeyToken=9c4817ccfa6cd2b1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\lib\netron\Netron.NetronLight.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ControllerBase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shapes\BusShape.cs" />
+    <Compile Include="Shapes\PortShape.cs" />
+    <Compile Include="Shapes\SignalShape.cs" />
+    <Compile Include="WinDiagram\NetronController.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Contracts\Yttrium.Contracts.csproj">
+      <Project>{8966E2C5-B1C9-44BE-8751-45DCCA3D268F}</Project>
+      <Name>Yttrium.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Library.Contracts\Yttrium.Library.Contracts.csproj">
+      <Project>{70E79678-387A-4AF6-8F64-4271CFE914BE}</Project>
+      <Name>Yttrium.Library.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Mediator.Contracts\Yttrium.Mediator.Contracts.csproj">
+      <Project>{E623ED40-9B92-40CA-9080-0FC78F668FFE}</Project>
+      <Name>Yttrium.Mediator.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Mediator.Toolkit\Yttrium.Mediator.Toolkit.csproj">
+      <Project>{334D8A1D-1004-4097-ACEE-8B954F911EB2}</Project>
+      <Name>Yttrium.Mediator.Toolkit</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Microkernel\Yttrium.Microkernel.csproj">
+      <Project>{D03B156A-D6F3-4F46-AC59-7156681F69B7}</Project>
+      <Name>Yttrium.Microkernel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

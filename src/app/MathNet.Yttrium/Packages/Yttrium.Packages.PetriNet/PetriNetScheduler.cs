@@ -149,7 +149,7 @@ namespace MathNet.Symbolics.Packages.PetriNet
                 }
             }
 
-            while(_deltaEvents.Count > 0)
+            if(_deltaEvents.Count > 0)
             {
                 int index = _random.Next(_deltaEvents.Count);
                 SchedulerEventItem item = _deltaEvents[index];

@@ -174,7 +174,7 @@ namespace MathNet.Symbolics.Core
                 _inputSignalSet[index] = signal;
                 for(int i = 0; i < _outputSignalSet.Count; i++)
                     if(_outputSignalSet[i] != null)
-                        ((ISignal_CycleAnalysis)_inputSignalSet[index]).AddCycles(_outputSignalSet[i], Config.GenerateTag());
+                        ((ISignal_CycleAnalysis)_inputSignalSet[index]).AddCycles(_outputSignalSet[i], Config.Random.Next());
                 if(UpdateIsCompletelyConnected())
                     LookupAndLinkNewArchitecture();
             }
@@ -183,7 +183,7 @@ namespace MathNet.Symbolics.Core
                 _inputSignalSet[index] = signal;
                 for(int i = 0; i < _outputSignalSet.Count; i++)
                     if(_outputSignalSet[i] != null)
-                        ((ISignal_CycleAnalysis)_inputSignalSet[index]).AddCycles(_outputSignalSet[i], Config.GenerateTag());
+                        ((ISignal_CycleAnalysis)_inputSignalSet[index]).AddCycles(_outputSignalSet[i], Config.Random.Next());
                 if(_completelyConnected && _currentArchitecture != null && !_currentArchitecture.RebindToPortIfSupported(this))
                     LookupAndLinkNewArchitecture();
             }
@@ -200,7 +200,7 @@ namespace MathNet.Symbolics.Core
             {
                 for(int i = 0; i < _outputSignalSet.Count; i++)
                     if(_outputSignalSet[i] != null)
-                        ((ISignal_CycleAnalysis)signal).RemoveCycles(_outputSignalSet[i], Config.GenerateTag());
+                        ((ISignal_CycleAnalysis)signal).RemoveCycles(_outputSignalSet[i], Config.Random.Next());
 
                 Service<IMediator>.Instance.NotifySignalDrivesPortNoLonger(signal, this, index);
             }
@@ -220,7 +220,7 @@ namespace MathNet.Symbolics.Core
                 _outputSignalSet[index] = signal;
                 for(int i = 0; i < _inputSignalSet.Count; i++)
                     if(_inputSignalSet[i] != null)
-                        ((ISignal_CycleAnalysis)_inputSignalSet[i]).AddCycles(_outputSignalSet[index], Config.GenerateTag());
+                        ((ISignal_CycleAnalysis)_inputSignalSet[i]).AddCycles(_outputSignalSet[index], Config.Random.Next());
                 if(UpdateIsCompletelyConnected())
                     LookupAndLinkNewArchitecture();
             }
@@ -229,7 +229,7 @@ namespace MathNet.Symbolics.Core
                 _outputSignalSet[index] = signal;
                 for(int i = 0; i < _inputSignalSet.Count; i++)
                     if(_inputSignalSet[i] != null)
-                        ((ISignal_CycleAnalysis)_inputSignalSet[i]).AddCycles(_outputSignalSet[index], Config.GenerateTag());
+                        ((ISignal_CycleAnalysis)_inputSignalSet[i]).AddCycles(_outputSignalSet[index], Config.Random.Next());
                 if(_completelyConnected && _currentArchitecture != null && !_currentArchitecture.RebindToPortIfSupported(this))
                     LookupAndLinkNewArchitecture();
             }
@@ -245,7 +245,7 @@ namespace MathNet.Symbolics.Core
             {
                 for(int i = 0; i < _inputSignalSet.Count; i++)
                     if(_inputSignalSet[i] != null)
-                        ((ISignal_CycleAnalysis)_inputSignalSet[i]).RemoveCycles(signal, Config.GenerateTag());
+                        ((ISignal_CycleAnalysis)_inputSignalSet[i]).RemoveCycles(signal, Config.Random.Next());
                 ((ISignal_Drive)signal).UndriveSignal(index);
             }
         }
@@ -315,7 +315,7 @@ namespace MathNet.Symbolics.Core
 
                     _inputSignalSet[i].ValueChanged -= Port_SignalValueChanged;
                     for(int j = 0; j < _outputSignalSet.Count; j++)
-                        ((ISignal_CycleAnalysis)_inputSignalSet[i]).RemoveCycles(_outputSignalSet[j], Config.GenerateTag());
+                        ((ISignal_CycleAnalysis)_inputSignalSet[i]).RemoveCycles(_outputSignalSet[j], Config.Random.Next());
                 }
 
             _inputSignalSet.ReplaceRange(inputSignals);
@@ -325,7 +325,7 @@ namespace MathNet.Symbolics.Core
                 {
                     _inputSignalSet[i].ValueChanged += Port_SignalValueChanged;
                     for(int j = 0; j < _outputSignalSet.Count; j++)
-                        ((ISignal_CycleAnalysis)_inputSignalSet[i]).AddCycles(_outputSignalSet[j], Config.GenerateTag());
+                        ((ISignal_CycleAnalysis)_inputSignalSet[i]).AddCycles(_outputSignalSet[j], Config.Random.Next());
 
                     Service<IMediator>.Instance.NotifySignalDrivesPort(_inputSignalSet[i], this, i);
                 }
