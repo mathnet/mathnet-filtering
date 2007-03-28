@@ -25,21 +25,22 @@
    <Directory>$(ProjectDir)/../build/checkout/src/app/MathNet.Yttrium/Library/bin/Debug/</Directory>
    <Directory>$(ProjectDir)/../build/checkout/src/test/MathNet.Yttrium.Test/bin/Debug/</Directory>
   </AssemblyReferenceDirectories>
-  <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Builder.Service/bin/Debug/MathNet.Yttrium.Builder.Service.dll" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Contracts/bin/Debug/MathNet.Yttrium.Contracts.dll" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Conversion.Contracts/bin/Debug/MathNet.Yttrium.Conversion.Contracts.dll" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Conversion.Service/bin/Debug/MathNet.Yttrium.Conversion.Service.dll" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Conversion.Toolkit/bin/Debug/MathNet.Yttrium.Conversion.Toolkit.dll" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Interpreter.Contracts/bin/Debug/MathNet.Yttrium.Interpreter.Contracts.dll" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Interpreter.Service/bin/Debug/MathNet.Yttrium.Interpreter.Service.dll" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Library.Contracts/bin/Debug/MathNet.Yttrium.Library.Contracts.dll" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Library.Service/bin/Debug/MathNet.Yttrium.Library.Service.dll" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Library/bin/Debug/MathNet.Yttrium.dll" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Manipulation.Contracts/bin/Debug/MathNet.Yttrium.Manipulation.Contracts.dll" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Manipulation.Service/bin/Debug/MathNet.Yttrium.Manipulation.Service.dll" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Mediator.Contracts/bin/Debug/MathNet.Yttrium.Mediator.Contracts.dll" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Mediator.Service/bin/Debug/MathNet.Yttrium.Mediator.Service.dll" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Microkernel/bin/Debug/MathNet.Yttrium.Microkernel.dll" Analyze="True" AnalyzeAllChildren="False">
+  <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Builder.Service.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Contracts.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Conversion.Contracts.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Conversion.Service.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Conversion.Toolkit.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Interpreter.Contracts.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Interpreter.Service.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Library.Contracts.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Library.Service.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Manipulation.Contracts.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Manipulation.Service.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Mediator.Contracts.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Mediator.Service.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Mediator.Toolkit.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Microkernel.dll" Analyze="True" AnalyzeAllChildren="False">
    <Modules AnalyzeAllChildren="False">
     <Module Name="mathnet.yttrium.microkernel.dll" Analyze="True" AnalyzeAllChildren="False">
      <Namespaces AnalyzeAllChildren="False">
@@ -50,11 +51,9 @@
         <Type Name="Config" Analyze="True" AnalyzeAllChildren="False">
          <Members AnalyzeAllChildren="False">
           <Member Name=".cctor()" Analyze="True" />
-          <Member Name="_random" Analyze="True" />
           <Member Name="executorCharacter" Analyze="True" />
           <Member Name="ExecutorCharacter" Analyze="True" AnalyzeAllChildren="True" />
           <Member Name="GenerateInstanceId():System.Guid" Analyze="True" />
-          <Member Name="GenerateTag():System.Int32" Analyze="True" />
           <Member Name="IdentifierComparer" Analyze="True" AnalyzeAllChildren="True" />
           <Member Name="InternalCulture" Analyze="True" AnalyzeAllChildren="True" />
           <Member Name="InternalEncoding" Analyze="True" AnalyzeAllChildren="True" />
@@ -102,16 +101,18 @@
     </Module>
    </Modules>
   </Target>
-  <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Packages.Helper/bin/Debug/MathNet.Yttrium.Packages.Helper.dll" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Packages.Standard/bin/Debug/MathNet.Yttrium.Packages.Standard.dll" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Patterns.Toolkit/bin/Debug/MathNet.Yttrium.Patterns.Toolkit.dll" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Repository.Contracts/bin/Debug/MathNet.Yttrium.Repository.Contracts.dll" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Repository.Service/bin/Debug/MathNet.Yttrium.Repository.Service.dll" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Simulation.Contracts/bin/Debug/MathNet.Yttrium.Simulation.Contracts.dll" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Simulation.Service/bin/Debug/MathNet.Yttrium.Simulation.Service.dll" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/SystemBuilder.Toolkit/bin/Debug/MathNet.Yttrium.SystemBuilder.Toolkit.dll" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Traversing.Contracts/bin/Debug/MathNet.Yttrium.Traversing.Contracts.dll" Analyze="True" AnalyzeAllChildren="True" />
-  <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Traversing.Service/bin/Debug/MathNet.Yttrium.Traversing.Service.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Packages.Helper.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Packages.PetriNet.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Packages.Standard.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Patterns.Toolkit.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Presentation.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Repository.Contracts.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Repository.Service.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Simulation.Contracts.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Simulation.Service.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.SystemBuilder.Toolkit.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Traversing.Contracts.dll" Analyze="True" AnalyzeAllChildren="True" />
+  <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Traversing.Service.dll" Analyze="True" AnalyzeAllChildren="True" />
  </Targets>
  <Rules>
   <RuleFiles>
@@ -154,24 +155,6 @@
       <Issue Name="Namespace">
        <Item>Symbolics</Item>
        <Item>MathNet.Symbolics.Backend.Channels</Item>
-      </Issue>
-     </Message>
-    </Messages>
-   </Namespace>
-   <Namespace Name="MathNet.Symbolics.Backend.Channels.Commands">
-    <Messages>
-     <Message Id="Backend" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Created="2006-08-14 12:24:04Z">
-      <Issue Name="ShouldBeCompoundWord">
-       <Item>Backend</Item>
-       <Item>namespace</Item>
-       <Item>MathNet.Symbolics.Backend.Channels.Commands</Item>
-       <Item>BackEnd</Item>
-      </Issue>
-     </Message>
-     <Message Id="Symbolics" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2006-08-14 12:24:04Z">
-      <Issue Name="Namespace">
-       <Item>Symbolics</Item>
-       <Item>MathNet.Symbolics.Backend.Channels.Commands</Item>
       </Issue>
      </Message>
     </Messages>
@@ -553,7 +536,7 @@
    </Namespace>
   </Namespaces>
   <Targets>
-   <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Builder.Service/bin/Debug/MathNet.Yttrium.Builder.Service.dll">
+   <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Builder.Service.dll">
     <Modules>
      <Module Name="mathnet.yttrium.builder.service.dll">
       <Messages>
@@ -690,7 +673,7 @@
      </Module>
     </Modules>
    </Target>
-   <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Contracts/bin/Debug/MathNet.Yttrium.Contracts.dll">
+   <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Contracts.dll">
     <Modules>
      <Module Name="mathnet.yttrium.contracts.dll">
       <Messages>
@@ -1666,7 +1649,7 @@
      </Module>
     </Modules>
    </Target>
-   <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Conversion.Contracts/bin/Debug/MathNet.Yttrium.Conversion.Contracts.dll">
+   <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Conversion.Contracts.dll">
     <Modules>
      <Module Name="mathnet.yttrium.conversion.contracts.dll">
       <Messages>
@@ -1734,7 +1717,7 @@
      </Module>
     </Modules>
    </Target>
-   <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Conversion.Service/bin/Debug/MathNet.Yttrium.Conversion.Service.dll">
+   <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Conversion.Service.dll">
     <Modules>
      <Module Name="mathnet.yttrium.conversion.service.dll">
       <Messages>
@@ -1767,7 +1750,7 @@
      </Module>
     </Modules>
    </Target>
-   <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Conversion.Toolkit/bin/Debug/MathNet.Yttrium.Conversion.Toolkit.dll">
+   <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Conversion.Toolkit.dll">
     <Modules>
      <Module Name="mathnet.yttrium.conversion.toolkit.dll">
       <Messages>
@@ -1850,758 +1833,7 @@
      </Module>
     </Modules>
    </Target>
-   <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Interpreter.Contracts/bin/Debug/MathNet.Yttrium.Interpreter.Contracts.dll">
-    <Modules>
-     <Module Name="mathnet.yttrium.interpreter.contracts.dll">
-      <Messages>
-       <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Created="2007-03-25 19:46:45Z">
-        <Issue Name="NoStrongName">
-         <Item>MathNet.Yttrium.Interpreter.Contracts</Item>
-        </Issue>
-       </Message>
-      </Messages>
-     </Module>
-    </Modules>
-   </Target>
-   <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Interpreter.Service/bin/Debug/MathNet.Yttrium.Interpreter.Service.dll">
-    <Modules>
-     <Module Name="mathnet.yttrium.interpreter.service.dll">
-      <Messages>
-       <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Created="2007-03-25 19:46:45Z">
-        <Issue Name="NoStrongName">
-         <Item>MathNet.Yttrium.Interpreter.Service</Item>
-        </Issue>
-       </Message>
-      </Messages>
-      <Namespaces>
-       <Namespace Name="MathNet.Symbolics">
-        <Types>
-         <Type Name="InterpreterFactory">
-          <Messages>
-           <Message TypeName="AvoidUninstantiatedInternalClasses" Category="Microsoft.Performance" CheckId="CA1812" Status="Excluded" Created="2007-03-25 19:46:45Z">
-            <Issue>
-             <Item>MathNet.Symbolics.InterpreterFactory</Item>
-            </Issue>
-            <Notes>
-             <User Name="Christoph">
-              <Note Id="9" />
-             </User>
-            </Notes>
-           </Message>
-          </Messages>
-         </Type>
-        </Types>
-       </Namespace>
-       <Namespace Name="MathNet.Symbolics.Interpreter">
-        <Types>
-         <Type Name="EntityStack">
-          <Messages>
-           <Message TypeName="IdentifiersShouldNotHaveIncorrectSuffix" Category="Microsoft.Naming" CheckId="CA1711" Created="2007-03-25 19:46:45Z">
-            <Issue>
-             <Item>MathNet.Symbolics.Interpreter.EntityStack</Item>
-             <Item>Stack</Item>
-            </Issue>
-           </Message>
-          </Messages>
-          <Members>
-           <Member Name="Expand():System.Void">
-            <Messages>
-             <Message Id="MathNet.Symbolics.Exceptions.ParsingException.#ctor(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>EntityStack.Expand():Void</Item>
-               <Item>1</Item>
-               <Item>ParsingException.ParsingException(String)</Item>
-               <Item>Parsing failed. Maximum token stack size exceeded.</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="Int32Stack">
-          <Members>
-           <Member Name="Count">
-            <Accessors>
-             <Accessor Name="get_Count():System.Int32">
-              <Messages>
-               <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-                <Issue>
-                 <Item>Int32Stack.get_Count():Int32</Item>
-                </Issue>
-               </Message>
-              </Messages>
-             </Accessor>
-            </Accessors>
-           </Member>
-           <Member Name="Expand():System.Void">
-            <Messages>
-             <Message Id="MathNet.Symbolics.Exceptions.ParsingException.#ctor(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>Int32Stack.Expand():Void</Item>
-               <Item>1</Item>
-               <Item>ParsingException.ParsingException(String)</Item>
-               <Item>Parsing failed. Maximum marker stack size exceeded.</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="Item[System.Int32]">
-            <Accessors>
-             <Accessor Name="get_Item(System.Int32):System.Int32">
-              <Messages>
-               <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-                <Issue>
-                 <Item>Int32Stack.get_Item(Int32):Int32</Item>
-                </Issue>
-               </Message>
-              </Messages>
-             </Accessor>
-            </Accessors>
-           </Member>
-           <Member Name="Peek():System.Int32">
-            <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>Int32Stack.Peek():Int32</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="Remove():System.Void">
-            <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>Int32Stack.Remove():Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="Size">
-            <Accessors>
-             <Accessor Name="get_Size():System.Int32">
-              <Messages>
-               <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-                <Issue>
-                 <Item>Int32Stack.get_Size():Int32</Item>
-                </Issue>
-               </Message>
-              </Messages>
-             </Accessor>
-            </Accessors>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="LexerBuffer">
-          <Members>
-           <Member Name="Append(System.Char):System.Void">
-            <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>LexerBuffer.Append(Char):Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="Count">
-            <Accessors>
-             <Accessor Name="get_Count():System.Int32">
-              <Messages>
-               <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-                <Issue>
-                 <Item>LexerBuffer.get_Count():Int32</Item>
-                </Issue>
-               </Message>
-              </Messages>
-             </Accessor>
-            </Accessors>
-           </Member>
-           <Member Name="Expand():System.Void">
-            <Messages>
-             <Message Id="MathNet.Symbolics.Exceptions.ParsingException.#ctor(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>LexerBuffer.Expand():Void</Item>
-               <Item>1</Item>
-               <Item>ParsingException.ParsingException(String)</Item>
-               <Item>Parsing failed. Maximum lexer buffer size exceeded.</Item>
-              </Issue>
-             </Message>
-             <Message Id="lexer" TypeName="LiteralsShouldBeSpelledCorrectly" Category="Microsoft.Usage" CheckId="CA2204" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>lexer</Item>
-               <Item>Parsing failed. Maximum lexer buffer size exceeded.</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="RemoveFirst():System.Void">
-            <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>LexerBuffer.RemoveFirst():Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="LexerMarker">
-          <Members>
-           <Member Name="markerOffset">
-            <Messages>
-             <Message TypeName="AvoidUnusedPrivateFields" Category="Microsoft.Performance" CheckId="CA1823" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>LexerMarker.markerOffset</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="LexerScanner">
-          <Messages>
-           <Message Id="Lexer" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2007-03-25 19:46:45Z">
-            <Issue Name="Type">
-             <Item>Lexer</Item>
-             <Item>MathNet.Symbolics.Interpreter.LexerScanner</Item>
-            </Issue>
-           </Message>
-          </Messages>
-          <Members>
-           <Member Name="NextToken():MathNet.Symbolics.Interpreter.LexerToken">
-            <Messages>
-             <Message Id="MathNet.Symbolics.Exceptions.ParsingException.#ctor(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>LexerScanner.NextToken():LexerToken</Item>
-               <Item>1</Item>
-               <Item>ParsingException.ParsingException(String)</Item>
-               <Item>Parsing failed. Lexer Scanner detected unexpected token '____'</Item>
-              </Issue>
-             </Message>
-             <Message Id="Lexer" TypeName="LiteralsShouldBeSpelledCorrectly" Category="Microsoft.Usage" CheckId="CA2204" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>Lexer</Item>
-               <Item>Parsing failed. Lexer Scanner detected unexpected token '____'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="ScanClosingPunctuation():MathNet.Symbolics.Interpreter.LexerToken">
-            <Messages>
-             <Message Id="MathNet.Symbolics.Interpreter.LexerToken.#ctor(System.String,MathNet.Symbolics.Interpreter.TokenTypes)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>LexerScanner.ScanClosingPunctuation():LexerToken</Item>
-               <Item>1</Item>
-               <Item>LexerToken.LexerToken(String, TokenTypes)</Item>
-               <Item>-&gt;</Item>
-              </Issue>
-              <Issue>
-               <Item>LexerScanner.ScanClosingPunctuation():LexerToken</Item>
-               <Item>1</Item>
-               <Item>LexerToken.LexerToken(String, TokenTypes)</Item>
-               <Item>&lt;-</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="ScanLiteral():MathNet.Symbolics.Interpreter.LexerToken">
-            <Messages>
-             <Message Id="MathNet.Symbolics.Exceptions.ParsingException.#ctor(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>LexerScanner.ScanLiteral():LexerToken</Item>
-               <Item>1</Item>
-               <Item>ParsingException.ParsingException(String)</Item>
-               <Item>Parsing failed. Unexpected end of file. Did you forget to close a literal encapsulation?</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="ScanOpeningPunctuation():MathNet.Symbolics.Interpreter.LexerToken">
-            <Messages>
-             <Message Id="MathNet.Symbolics.Interpreter.LexerToken.#ctor(System.String,MathNet.Symbolics.Interpreter.TokenTypes)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>LexerScanner.ScanOpeningPunctuation():LexerToken</Item>
-               <Item>1</Item>
-               <Item>LexerToken.LexerToken(String, TokenTypes)</Item>
-               <Item>-&gt;</Item>
-              </Issue>
-              <Issue>
-               <Item>LexerScanner.ScanOpeningPunctuation():LexerToken</Item>
-               <Item>1</Item>
-               <Item>LexerToken.LexerToken(String, TokenTypes)</Item>
-               <Item>&lt;-</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="ScanSymbolIdentifier():MathNet.Symbolics.Interpreter.LexerToken">
-            <Messages>
-             <Message Id="MathNet.Symbolics.Interpreter.LexerToken.#ctor(System.String,MathNet.Symbolics.Interpreter.TokenTypes)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>LexerScanner.ScanSymbolIdentifier():LexerToken</Item>
-               <Item>1</Item>
-               <Item>LexerToken.LexerToken(String, TokenTypes)</Item>
-               <Item>-&gt;</Item>
-              </Issue>
-              <Issue>
-               <Item>LexerScanner.ScanSymbolIdentifier():LexerToken</Item>
-               <Item>1</Item>
-               <Item>LexerToken.LexerToken(String, TokenTypes)</Item>
-               <Item>&lt;-</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="LexerToken">
-          <Messages>
-           <Message Id="Lexer" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2007-03-25 19:46:45Z">
-            <Issue Name="Type">
-             <Item>Lexer</Item>
-             <Item>MathNet.Symbolics.Interpreter.LexerToken</Item>
-            </Issue>
-           </Message>
-          </Messages>
-         </Type>
-         <Type Name="ParserBuffer">
-          <Members>
-           <Member Name="Append(MathNet.Symbolics.Interpreter.LexerToken):System.Void">
-            <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>ParserBuffer.Append(LexerToken):Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="Count">
-            <Accessors>
-             <Accessor Name="get_Count():System.Int32">
-              <Messages>
-               <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-                <Issue>
-                 <Item>ParserBuffer.get_Count():Int32</Item>
-                </Issue>
-               </Message>
-              </Messages>
-             </Accessor>
-            </Accessors>
-           </Member>
-           <Member Name="Expand():System.Void">
-            <Messages>
-             <Message Id="MathNet.Symbolics.Exceptions.ParsingException.#ctor(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>ParserBuffer.Expand():Void</Item>
-               <Item>1</Item>
-               <Item>ParsingException.ParsingException(String)</Item>
-               <Item>Parsing failed. Maximum parser buffer size exceeded.</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="RemoveFirst():System.Void">
-            <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>ParserBuffer.RemoveFirst():Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="ParserMarker">
-          <Members>
-           <Member Name="CommitMark():System.Void">
-            <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>ParserMarker.CommitMark():Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="Mark():System.Void">
-            <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>ParserMarker.Mark():Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="markerOffset">
-            <Messages>
-             <Message TypeName="AvoidUnusedPrivateFields" Category="Microsoft.Performance" CheckId="CA1823" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>ParserMarker.markerOffset</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="RollbackMark():System.Void">
-            <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>ParserMarker.RollbackMark():Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="ParserScanner">
-          <Members>
-           <Member Name="IsBinary(MathNet.Symbolics.Interpreter.LexerToken):System.Boolean">
-            <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>ParserScanner.IsBinary(LexerToken):Boolean</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="ScanDefine():System.Void">
-            <Messages>
-             <Message Id="MathNet.Symbolics.Exceptions.ParsingException.#ctor(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>ParserScanner.ScanDefine():Void</Item>
-               <Item>1</Item>
-               <Item>ParsingException.ParsingException(String)</Item>
-               <Item>Parsing failed. Parser Scanner detected unexpected definition token '____'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="ScanEntitySymbol():System.String">
-            <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>ParserScanner.ScanEntitySymbol():String</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="ScanEntitySymbolLiteral():System.String">
-            <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>ParserScanner.ScanEntitySymbolLiteral():String</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="ScanLiteralList():System.Collections.Generic.List`1&lt;System.String&gt;">
-            <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>ParserScanner.ScanLiteralList():List`1&lt;System.String&gt;</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="ScanMathIdentifier():MathNet.Symbolics.MathIdentifier">
-            <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>ParserScanner.ScanMathIdentifier():MathIdentifier</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="ScanOperandPart():MathNet.Symbolics.Signal">
-            <Messages>
-             <Message Id="MathNet.Symbolics.Exceptions.ParsingException.#ctor(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>ParserScanner.ScanOperandPart():Signal</Item>
-               <Item>1</Item>
-               <Item>ParsingException.ParsingException(String)</Item>
-               <Item>Parsing failed. Parser Scanner detected unexpected operand part token '____'</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="SignalStack">
-          <Messages>
-           <Message TypeName="IdentifiersShouldNotHaveIncorrectSuffix" Category="Microsoft.Naming" CheckId="CA1711" Created="2007-03-25 19:46:45Z">
-            <Issue>
-             <Item>MathNet.Symbolics.Interpreter.SignalStack</Item>
-             <Item>Stack</Item>
-            </Issue>
-           </Message>
-          </Messages>
-          <Members>
-           <Member Name="Expand():System.Void">
-            <Messages>
-             <Message Id="MathNet.Symbolics.Exceptions.ParsingException.#ctor(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>SignalStack.Expand():Void</Item>
-               <Item>1</Item>
-               <Item>ParsingException.ParsingException(String)</Item>
-               <Item>Parsing failed. Maximum expression stack size exceeded.</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="TokenTypes">
-          <Messages>
-           <Message TypeName="DoNotMarkEnumsWithFlags" Category="Microsoft.Usage" CheckId="CA2217" Created="2007-03-25 19:46:45Z">
-            <Issue>
-             <Item>MathNet.Symbolics.Interpreter.TokenTypes</Item>
-             <Item>0x100000, 0x200000, 0x400000, 0x800000, 0x10000000, 0x20000000</Item>
-            </Issue>
-           </Message>
-           <Message TypeName="EnumsShouldHaveZeroValue" Category="Microsoft.Design" CheckId="CA1008" Created="2007-03-25 19:46:45Z" FixCategory="Breaking">
-            <Issue Name="FlagsRename">
-             <Item>MathNet.Symbolics.Interpreter.TokenTypes</Item>
-             <Item>TokenTypes.Unknown</Item>
-            </Issue>
-           </Message>
-          </Messages>
-         </Type>
-        </Types>
-       </Namespace>
-      </Namespaces>
-     </Module>
-    </Modules>
-   </Target>
-   <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Library.Contracts/bin/Debug/MathNet.Yttrium.Library.Contracts.dll">
-    <Modules>
-     <Module Name="mathnet.yttrium.library.contracts.dll">
-      <Messages>
-       <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Created="2007-03-25 19:46:45Z">
-        <Issue Name="NoStrongName">
-         <Item>MathNet.Yttrium.Library.Contracts</Item>
-        </Issue>
-       </Message>
-      </Messages>
-      <Namespaces>
-       <Namespace Name="MathNet.Symbolics.Library">
-        <Types>
-         <Type Name="CustomDataRef">
-          <Members>
-           <Member Name=".ctor(System.Type,MathNet.Symbolics.Conversion.IConversionRouter)">
-            <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>'router'</Item>
-               <Item>CustomDataRef.CustomDataRef(Type, IConversionRouter)</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name=".ctor(System.Type,MathNet.Symbolics.Conversion.IConversionRouter,MathNet.Symbolics.ICustomData)">
-            <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>'router'</Item>
-               <Item>CustomDataRef.CustomDataRef(Type, IConversionRouter, ICustomData)</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="ILibrary">
-          <Members>
-           <Member Name="AddCustomDataType():System.Void">
-            <Messages>
-             <Message TypeName="GenericMethodsShouldProvideTypeParameter" Category="Microsoft.Design" CheckId="CA1004" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>ILibrary.AddCustomDataType():Void</Item>
-               <Item>TCustomType</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-        </Types>
-       </Namespace>
-      </Namespaces>
-     </Module>
-    </Modules>
-   </Target>
-   <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Library.Service/bin/Debug/MathNet.Yttrium.Library.Service.dll">
-    <Modules>
-     <Module Name="mathnet.yttrium.library.service.dll">
-      <Messages>
-       <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Created="2007-03-25 19:46:45Z">
-        <Issue Name="NoStrongName">
-         <Item>MathNet.Yttrium.Library.Service</Item>
-        </Issue>
-       </Message>
-      </Messages>
-      <Namespaces>
-       <Namespace Name="MathNet.Symbolics">
-        <Types>
-         <Type Name="LibraryFactory">
-          <Messages>
-           <Message TypeName="AvoidUninstantiatedInternalClasses" Category="Microsoft.Performance" CheckId="CA1812" Status="Excluded" Created="2007-03-25 19:46:45Z">
-            <Issue>
-             <Item>MathNet.Symbolics.LibraryFactory</Item>
-            </Issue>
-            <Notes>
-             <User Name="Christoph">
-              <Note Id="9" />
-             </User>
-            </Notes>
-           </Message>
-          </Messages>
-         </Type>
-        </Types>
-       </Namespace>
-       <Namespace Name="MathNet.Symbolics.Library">
-        <Types>
-         <Type Name="ArchitectureFactoryCollection">
-          <Members>
-           <Member Name="Contains(MathNet.Symbolics.IEntity):System.Boolean">
-            <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>ArchitectureFactoryCollection.Contains(IEntity):Boolean</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="Remove(MathNet.Symbolics.IArchitectureFactory):System.Void">
-            <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>ArchitectureFactoryCollection.Remove(IArchitectureFactory):Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="EntityArchitecturesRelation">
-          <Members>
-           <Member Name="LookupArchitecturesFor(MathNet.Symbolics.Port):System.Collections.Generic.IList`1&lt;MathNet.Symbolics.IArchitectureFactory&gt;">
-            <Messages>
-             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>EntityArchitecturesRelation.LookupArchitecturesFor(Port):IList`1&lt;MathNet.Symbolics.IArchitectureFactory&gt;</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="Library">
-          <Messages>
-           <Message TypeName="TypeNamesShouldNotMatchNamespaces" Category="Microsoft.Naming" CheckId="CA1724" Created="2007-03-25 19:46:45Z">
-            <Issue>
-             <Item>Library</Item>
-             <Item>MathNet.Symbolics.Library</Item>
-            </Issue>
-           </Message>
-          </Messages>
-          <Members>
-           <Member Name="AddCustomDataType():System.Void">
-            <Messages>
-             <Message TypeName="GenericMethodsShouldProvideTypeParameter" Category="Microsoft.Design" CheckId="CA1004" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>Library.AddCustomDataType():Void</Item>
-               <Item>TCustomType</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="ContainsArchitecture(MathNet.Symbolics.Port):System.Boolean">
-            <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>'port'</Item>
-               <Item>Library.ContainsArchitecture(Port):Boolean</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="LookupArchitecture(MathNet.Symbolics.Port):MathNet.Symbolics.IArchitectureFactory">
-            <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>'port'</Item>
-               <Item>Library.LookupArchitecture(Port):IArchitectureFactory</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="TryLookupArchitecture(MathNet.Symbolics.Port,MathNet.Symbolics.IArchitectureFactory&amp;):System.Boolean">
-            <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>'port'</Item>
-               <Item>Library.TryLookupArchitecture(Port, IArchitectureFactory&amp;):Boolean</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="PackageInfo">
-          <Members>
-           <Member Name="comment">
-            <Messages>
-             <Message TypeName="AvoidUnusedPrivateFields" Category="Microsoft.Performance" CheckId="CA1823" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>PackageInfo.comment</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="PackageLoader">
-          <Members>
-           <Member Name=".cctor()">
-            <Messages>
-             <Message TypeName="InitializeReferenceTypeStaticFieldsInline" Category="Microsoft.Performance" CheckId="CA1810" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>MathNet.Symbolics.Library.PackageLoader</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="LoadPackageInfo(System.String):System.Void">
-            <Messages>
-             <Message Id="Filename" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Created="2007-03-25 19:46:45Z">
-              <Issue Name="ShouldBeCompoundWord">
-               <Item>Filename</Item>
-               <Item>parameter</Item>
-               <Item>sourceFilename</Item>
-               <Item>FileName</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="XmlPackagesAdapter">
-          <Members>
-           <Member Name="GetXmlAttribute(System.Xml.XmlNode,System.String,System.String):System.String">
-            <Messages>
-             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2007-03-25 19:46:45Z" FixCategory="NonBreaking">
-              <Issue>
-               <Item>XmlPackagesAdapter.GetXmlAttribute(XmlNode, String, String):String</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-        </Types>
-       </Namespace>
-      </Namespaces>
-     </Module>
-    </Modules>
-   </Target>
-   <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Library/bin/Debug/MathNet.Yttrium.dll">
+   <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.dll">
     <Modules>
      <Module Name="mathnet.yttrium.dll">
       <Messages>
@@ -2632,92 +1864,6 @@
        </Namespace>
        <Namespace Name="MathNet.Symbolics.Backend.Channels">
         <Types>
-         <Type Name="CommandReference">
-          <Messages>
-           <Message TypeName="OverrideEqualsAndOperatorEqualsOnValueTypes" Category="Microsoft.Performance" CheckId="CA1815" Created="2006-08-05 09:39:03Z">
-            <Issue Name="Equals">
-             <Item>MathNet.Symbolics.Backend.Channels.CommandReference</Item>
-            </Issue>
-            <Issue Name="op_Equality">
-             <Item>MathNet.Symbolics.Backend.Channels.CommandReference</Item>
-            </Issue>
-           </Message>
-          </Messages>
-          <Members>
-           <Member Name="Deserialize(System.String,System.Runtime.Serialization.SerializationInfo):MathNet.Symbolics.Backend.Channels.CommandReference">
-            <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>'info'</Item>
-               <Item>CommandReference.Deserialize(String, SerializationInfo):CommandReference</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="Deserialize(System.String,System.Xml.XmlReader):MathNet.Symbolics.Backend.Channels.CommandReference">
-            <Messages>
-             <Message Id="System.Int32.Parse(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>CommandReference.Deserialize(String, XmlReader):CommandReference</Item>
-               <Item>System.Int32.Parse(System.String)</Item>
-               <Item>System.Int32.Parse(System.String,System.IFormatProvider)</Item>
-              </Issue>
-             </Message>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>'reader'</Item>
-               <Item>CommandReference.Deserialize(String, XmlReader):CommandReference</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="Index">
-            <Messages>
-             <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>Index</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="InstanceId">
-            <Messages>
-             <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>InstanceId</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="Serialize(System.String,System.Runtime.Serialization.SerializationInfo):System.Void">
-            <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>'info'</Item>
-               <Item>CommandReference.Serialize(String, SerializationInfo):Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="Serialize(System.String,System.Xml.XmlWriter):System.Void">
-            <Messages>
-             <Message Id="System.Int32.ToString" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>CommandReference.Serialize(String, XmlWriter):Void</Item>
-               <Item>System.Int32.ToString</Item>
-               <Item>System.Int32.ToString(System.IFormatProvider)</Item>
-              </Issue>
-             </Message>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>'writer'</Item>
-               <Item>CommandReference.Serialize(String, XmlWriter):Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
          <Type Name="LogAction">
           <Members>
            <Member Name="PortUndrivesSignal">
@@ -2939,544 +2085,6 @@
             </Messages>
            </Member>
           </Members>
-         </Type>
-        </Types>
-       </Namespace>
-       <Namespace Name="MathNet.Symbolics.Backend.Channels.Commands">
-        <Types>
-         <Type Name="AbstractBusCommand">
-          <Members>
-           <Member Name="ReadXml(System.Xml.XmlReader):System.Void">
-            <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>'reader'</Item>
-               <Item>AbstractBusCommand.ReadXml(XmlReader):Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="WriteXml(System.Xml.XmlWriter):System.Void">
-            <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>'writer'</Item>
-               <Item>AbstractBusCommand.WriteXml(XmlWriter):Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="AbstractNewCommand">
-          <Members>
-           <Member Name="ReadXml(System.Xml.XmlReader):System.Void">
-            <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>'reader'</Item>
-               <Item>AbstractNewCommand.ReadXml(XmlReader):Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="WriteXml(System.Xml.XmlWriter):System.Void">
-            <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>'writer'</Item>
-               <Item>AbstractNewCommand.WriteXml(XmlWriter):Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="AbstractPortBusCommand">
-          <Members>
-           <Member Name="ReadXml(System.Xml.XmlReader):System.Void">
-            <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>'reader'</Item>
-               <Item>AbstractPortBusCommand.ReadXml(XmlReader):Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="WriteXml(System.Xml.XmlWriter):System.Void">
-            <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>'writer'</Item>
-               <Item>AbstractPortBusCommand.WriteXml(XmlWriter):Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="AbstractPortBusIndexCommand">
-          <Members>
-           <Member Name=".ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>'info'</Item>
-               <Item>AbstractPortBusIndexCommand.AbstractPortBusIndexCommand(SerializationInfo, StreamingContext)</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext):System.Void">
-            <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>'info'</Item>
-               <Item>AbstractPortBusIndexCommand.GetObjectData(SerializationInfo, StreamingContext):Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="ReadXml(System.Xml.XmlReader):System.Void">
-            <Messages>
-             <Message Id="System.Int32.Parse(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>AbstractPortBusIndexCommand.ReadXml(XmlReader):Void</Item>
-               <Item>System.Int32.Parse(System.String)</Item>
-               <Item>System.Int32.Parse(System.String,System.IFormatProvider)</Item>
-              </Issue>
-             </Message>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>'reader'</Item>
-               <Item>AbstractPortBusIndexCommand.ReadXml(XmlReader):Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="WriteXml(System.Xml.XmlWriter):System.Void">
-            <Messages>
-             <Message Id="System.Int32.ToString" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>AbstractPortBusIndexCommand.WriteXml(XmlWriter):Void</Item>
-               <Item>System.Int32.ToString</Item>
-               <Item>System.Int32.ToString(System.IFormatProvider)</Item>
-              </Issue>
-             </Message>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>'writer'</Item>
-               <Item>AbstractPortBusIndexCommand.WriteXml(XmlWriter):Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="AbstractPortCommand">
-          <Members>
-           <Member Name="ReadXml(System.Xml.XmlReader):System.Void">
-            <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>'reader'</Item>
-               <Item>AbstractPortCommand.ReadXml(XmlReader):Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="WriteXml(System.Xml.XmlWriter):System.Void">
-            <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>'writer'</Item>
-               <Item>AbstractPortCommand.WriteXml(XmlWriter):Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="AbstractPortIndexCommand">
-          <Members>
-           <Member Name=".ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>'info'</Item>
-               <Item>AbstractPortIndexCommand.AbstractPortIndexCommand(SerializationInfo, StreamingContext)</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext):System.Void">
-            <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>'info'</Item>
-               <Item>AbstractPortIndexCommand.GetObjectData(SerializationInfo, StreamingContext):Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="ReadXml(System.Xml.XmlReader):System.Void">
-            <Messages>
-             <Message Id="System.Int32.Parse(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>AbstractPortIndexCommand.ReadXml(XmlReader):Void</Item>
-               <Item>System.Int32.Parse(System.String)</Item>
-               <Item>System.Int32.Parse(System.String,System.IFormatProvider)</Item>
-              </Issue>
-             </Message>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>'reader'</Item>
-               <Item>AbstractPortIndexCommand.ReadXml(XmlReader):Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="WriteXml(System.Xml.XmlWriter):System.Void">
-            <Messages>
-             <Message Id="System.Int32.ToString" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>AbstractPortIndexCommand.WriteXml(XmlWriter):Void</Item>
-               <Item>System.Int32.ToString</Item>
-               <Item>System.Int32.ToString(System.IFormatProvider)</Item>
-              </Issue>
-             </Message>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>'writer'</Item>
-               <Item>AbstractPortIndexCommand.WriteXml(XmlWriter):Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="AbstractPortSignalCommand">
-          <Members>
-           <Member Name="ReadXml(System.Xml.XmlReader):System.Void">
-            <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>'reader'</Item>
-               <Item>AbstractPortSignalCommand.ReadXml(XmlReader):Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="WriteXml(System.Xml.XmlWriter):System.Void">
-            <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>'writer'</Item>
-               <Item>AbstractPortSignalCommand.WriteXml(XmlWriter):Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="AbstractPortSignalIndexCommand">
-          <Members>
-           <Member Name=".ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>'info'</Item>
-               <Item>AbstractPortSignalIndexCommand.AbstractPortSignalIndexCommand(SerializationInfo, StreamingContext)</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext):System.Void">
-            <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>'info'</Item>
-               <Item>AbstractPortSignalIndexCommand.GetObjectData(SerializationInfo, StreamingContext):Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="ReadXml(System.Xml.XmlReader):System.Void">
-            <Messages>
-             <Message Id="System.Int32.Parse(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>AbstractPortSignalIndexCommand.ReadXml(XmlReader):Void</Item>
-               <Item>System.Int32.Parse(System.String)</Item>
-               <Item>System.Int32.Parse(System.String,System.IFormatProvider)</Item>
-              </Issue>
-             </Message>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>'reader'</Item>
-               <Item>AbstractPortSignalIndexCommand.ReadXml(XmlReader):Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="WriteXml(System.Xml.XmlWriter):System.Void">
-            <Messages>
-             <Message Id="System.Int32.ToString" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>AbstractPortSignalIndexCommand.WriteXml(XmlWriter):Void</Item>
-               <Item>System.Int32.ToString</Item>
-               <Item>System.Int32.ToString(System.IFormatProvider)</Item>
-              </Issue>
-             </Message>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>'writer'</Item>
-               <Item>AbstractPortSignalIndexCommand.WriteXml(XmlWriter):Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="AbstractSignalCommand">
-          <Members>
-           <Member Name="ReadXml(System.Xml.XmlReader):System.Void">
-            <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>'reader'</Item>
-               <Item>AbstractSignalCommand.ReadXml(XmlReader):Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="WriteXml(System.Xml.XmlWriter):System.Void">
-            <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>'writer'</Item>
-               <Item>AbstractSignalCommand.WriteXml(XmlWriter):Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="BusUnrivePortCommand">
-          <Messages>
-           <Message Id="Unrive" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2006-08-14 12:24:04Z">
-            <Issue Name="Type">
-             <Item>Unrive</Item>
-             <Item>MathNet.Symbolics.Backend.Channels.Commands.BusUnrivePortCommand</Item>
-            </Issue>
-           </Message>
-          </Messages>
-         </Type>
-         <Type Name="CommandBase">
-          <Members>
-           <Member Name="GetSchema():System.Xml.Schema.XmlSchema">
-            <Messages>
-             <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Created="2006-08-05 09:39:03Z">
-              <Issue Certainty="50">
-               <Item>GetSchema</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="LazyVerify(System.Guid,System.Guid):System.Void">
-            <Messages>
-             <Message Id="MathNet.Symbolics.Exceptions.CommandException.#ctor(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2007-03-25 19:46:45Z">
-              <Issue>
-               <Item>CommandBase.LazyVerify(Guid, Guid):Void</Item>
-               <Item>1</Item>
-               <Item>CommandException.CommandException(String)</Item>
-               <Item>Command Failed: InstanceId mismatch.</Item>
-              </Issue>
-             </Message>
-             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2006-08-05 09:39:03Z" FixCategory="Breaking">
-              <Issue>
-               <Item>CommandBase.LazyVerify(Guid, Guid):Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="NewPortCommand">
-          <Members>
-           <Member Name=".ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>'info'</Item>
-               <Item>NewPortCommand.NewPortCommand(SerializationInfo, StreamingContext)</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext):System.Void">
-            <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>'info'</Item>
-               <Item>NewPortCommand.GetObjectData(SerializationInfo, StreamingContext):Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="ReadXml(System.Xml.XmlReader):System.Void">
-            <Messages>
-             <Message Id="System.Int32.Parse(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>NewPortCommand.ReadXml(XmlReader):Void</Item>
-               <Item>System.Int32.Parse(System.String)</Item>
-               <Item>System.Int32.Parse(System.String,System.IFormatProvider)</Item>
-              </Issue>
-              <Issue>
-               <Item>NewPortCommand.ReadXml(XmlReader):Void</Item>
-               <Item>System.Int32.Parse(System.String)</Item>
-               <Item>System.Int32.Parse(System.String,System.IFormatProvider)</Item>
-              </Issue>
-             </Message>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>'reader'</Item>
-               <Item>NewPortCommand.ReadXml(XmlReader):Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="WriteXml(System.Xml.XmlWriter):System.Void">
-            <Messages>
-             <Message Id="System.Int32.ToString" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>NewPortCommand.WriteXml(XmlWriter):Void</Item>
-               <Item>System.Int32.ToString</Item>
-               <Item>System.Int32.ToString(System.IFormatProvider)</Item>
-              </Issue>
-              <Issue>
-               <Item>NewPortCommand.WriteXml(XmlWriter):Void</Item>
-               <Item>System.Int32.ToString</Item>
-               <Item>System.Int32.ToString(System.IFormatProvider)</Item>
-              </Issue>
-             </Message>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>'writer'</Item>
-               <Item>NewPortCommand.WriteXml(XmlWriter):Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="PortUndriveSignalCommand">
-          <Messages>
-           <Message Id="Undrive" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2006-08-14 12:24:04Z">
-            <Issue Name="Type">
-             <Item>Undrive</Item>
-             <Item>MathNet.Symbolics.Backend.Channels.Commands.PortUndriveSignalCommand</Item>
-            </Issue>
-           </Message>
-          </Messages>
-         </Type>
-         <Type Name="RemovePortCommand">
-          <Members>
-           <Member Name=".ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>'info'</Item>
-               <Item>RemovePortCommand.RemovePortCommand(SerializationInfo, StreamingContext)</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext):System.Void">
-            <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>'info'</Item>
-               <Item>RemovePortCommand.GetObjectData(SerializationInfo, StreamingContext):Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="ReadXml(System.Xml.XmlReader):System.Void">
-            <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>'reader'</Item>
-               <Item>RemovePortCommand.ReadXml(XmlReader):Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="WriteXml(System.Xml.XmlWriter):System.Void">
-            <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>'writer'</Item>
-               <Item>RemovePortCommand.WriteXml(XmlWriter):Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="RemoveSignalCommand">
-          <Members>
-           <Member Name=".ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>'info'</Item>
-               <Item>RemoveSignalCommand.RemoveSignalCommand(SerializationInfo, StreamingContext)</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext):System.Void">
-            <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>'info'</Item>
-               <Item>RemoveSignalCommand.GetObjectData(SerializationInfo, StreamingContext):Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="ReadXml(System.Xml.XmlReader):System.Void">
-            <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>'reader'</Item>
-               <Item>RemoveSignalCommand.ReadXml(XmlReader):Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-           <Member Name="WriteXml(System.Xml.XmlWriter):System.Void">
-            <Messages>
-             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2006-08-05 09:39:03Z">
-              <Issue>
-               <Item>'writer'</Item>
-               <Item>RemoveSignalCommand.WriteXml(XmlWriter):Void</Item>
-              </Issue>
-             </Message>
-            </Messages>
-           </Member>
-          </Members>
-         </Type>
-         <Type Name="SignalUnrivePortCommand">
-          <Messages>
-           <Message Id="Unrive" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2006-08-14 12:24:04Z">
-            <Issue Name="Type">
-             <Item>Unrive</Item>
-             <Item>MathNet.Symbolics.Backend.Channels.Commands.SignalUnrivePortCommand</Item>
-            </Issue>
-           </Message>
-          </Messages>
          </Type>
         </Types>
        </Namespace>
@@ -4046,7 +2654,758 @@
      </Module>
     </Modules>
    </Target>
-   <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Manipulation.Contracts/bin/Debug/MathNet.Yttrium.Manipulation.Contracts.dll">
+   <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Interpreter.Contracts.dll">
+    <Modules>
+     <Module Name="mathnet.yttrium.interpreter.contracts.dll">
+      <Messages>
+       <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Created="2007-03-25 19:46:45Z">
+        <Issue Name="NoStrongName">
+         <Item>MathNet.Yttrium.Interpreter.Contracts</Item>
+        </Issue>
+       </Message>
+      </Messages>
+     </Module>
+    </Modules>
+   </Target>
+   <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Interpreter.Service.dll">
+    <Modules>
+     <Module Name="mathnet.yttrium.interpreter.service.dll">
+      <Messages>
+       <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Created="2007-03-25 19:46:45Z">
+        <Issue Name="NoStrongName">
+         <Item>MathNet.Yttrium.Interpreter.Service</Item>
+        </Issue>
+       </Message>
+      </Messages>
+      <Namespaces>
+       <Namespace Name="MathNet.Symbolics">
+        <Types>
+         <Type Name="InterpreterFactory">
+          <Messages>
+           <Message TypeName="AvoidUninstantiatedInternalClasses" Category="Microsoft.Performance" CheckId="CA1812" Status="Excluded" Created="2007-03-25 19:46:45Z">
+            <Issue>
+             <Item>MathNet.Symbolics.InterpreterFactory</Item>
+            </Issue>
+            <Notes>
+             <User Name="Christoph">
+              <Note Id="9" />
+             </User>
+            </Notes>
+           </Message>
+          </Messages>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="MathNet.Symbolics.Interpreter">
+        <Types>
+         <Type Name="EntityStack">
+          <Messages>
+           <Message TypeName="IdentifiersShouldNotHaveIncorrectSuffix" Category="Microsoft.Naming" CheckId="CA1711" Created="2007-03-25 19:46:45Z">
+            <Issue>
+             <Item>MathNet.Symbolics.Interpreter.EntityStack</Item>
+             <Item>Stack</Item>
+            </Issue>
+           </Message>
+          </Messages>
+          <Members>
+           <Member Name="Expand():System.Void">
+            <Messages>
+             <Message Id="MathNet.Symbolics.Exceptions.ParsingException.#ctor(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>EntityStack.Expand():Void</Item>
+               <Item>1</Item>
+               <Item>ParsingException.ParsingException(String)</Item>
+               <Item>Parsing failed. Maximum token stack size exceeded.</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Int32Stack">
+          <Members>
+           <Member Name="Count">
+            <Accessors>
+             <Accessor Name="get_Count():System.Int32">
+              <Messages>
+               <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
+                <Issue>
+                 <Item>Int32Stack.get_Count():Int32</Item>
+                </Issue>
+               </Message>
+              </Messages>
+             </Accessor>
+            </Accessors>
+           </Member>
+           <Member Name="Expand():System.Void">
+            <Messages>
+             <Message Id="MathNet.Symbolics.Exceptions.ParsingException.#ctor(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>Int32Stack.Expand():Void</Item>
+               <Item>1</Item>
+               <Item>ParsingException.ParsingException(String)</Item>
+               <Item>Parsing failed. Maximum marker stack size exceeded.</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="Item[System.Int32]">
+            <Accessors>
+             <Accessor Name="get_Item(System.Int32):System.Int32">
+              <Messages>
+               <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
+                <Issue>
+                 <Item>Int32Stack.get_Item(Int32):Int32</Item>
+                </Issue>
+               </Message>
+              </Messages>
+             </Accessor>
+            </Accessors>
+           </Member>
+           <Member Name="Peek():System.Int32">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>Int32Stack.Peek():Int32</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="Remove():System.Void">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>Int32Stack.Remove():Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="Size">
+            <Accessors>
+             <Accessor Name="get_Size():System.Int32">
+              <Messages>
+               <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
+                <Issue>
+                 <Item>Int32Stack.get_Size():Int32</Item>
+                </Issue>
+               </Message>
+              </Messages>
+             </Accessor>
+            </Accessors>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="LexerBuffer">
+          <Members>
+           <Member Name="Append(System.Char):System.Void">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>LexerBuffer.Append(Char):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="Count">
+            <Accessors>
+             <Accessor Name="get_Count():System.Int32">
+              <Messages>
+               <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
+                <Issue>
+                 <Item>LexerBuffer.get_Count():Int32</Item>
+                </Issue>
+               </Message>
+              </Messages>
+             </Accessor>
+            </Accessors>
+           </Member>
+           <Member Name="Expand():System.Void">
+            <Messages>
+             <Message Id="MathNet.Symbolics.Exceptions.ParsingException.#ctor(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>LexerBuffer.Expand():Void</Item>
+               <Item>1</Item>
+               <Item>ParsingException.ParsingException(String)</Item>
+               <Item>Parsing failed. Maximum lexer buffer size exceeded.</Item>
+              </Issue>
+             </Message>
+             <Message Id="lexer" TypeName="LiteralsShouldBeSpelledCorrectly" Category="Microsoft.Usage" CheckId="CA2204" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>lexer</Item>
+               <Item>Parsing failed. Maximum lexer buffer size exceeded.</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="RemoveFirst():System.Void">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>LexerBuffer.RemoveFirst():Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="LexerMarker">
+          <Members>
+           <Member Name="markerOffset">
+            <Messages>
+             <Message TypeName="AvoidUnusedPrivateFields" Category="Microsoft.Performance" CheckId="CA1823" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>LexerMarker.markerOffset</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="LexerScanner">
+          <Messages>
+           <Message Id="Lexer" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2007-03-25 19:46:45Z">
+            <Issue Name="Type">
+             <Item>Lexer</Item>
+             <Item>MathNet.Symbolics.Interpreter.LexerScanner</Item>
+            </Issue>
+           </Message>
+          </Messages>
+          <Members>
+           <Member Name="NextToken():MathNet.Symbolics.Interpreter.LexerToken">
+            <Messages>
+             <Message Id="MathNet.Symbolics.Exceptions.ParsingException.#ctor(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>LexerScanner.NextToken():LexerToken</Item>
+               <Item>1</Item>
+               <Item>ParsingException.ParsingException(String)</Item>
+               <Item>Parsing failed. Lexer Scanner detected unexpected token '____'</Item>
+              </Issue>
+             </Message>
+             <Message Id="Lexer" TypeName="LiteralsShouldBeSpelledCorrectly" Category="Microsoft.Usage" CheckId="CA2204" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>Lexer</Item>
+               <Item>Parsing failed. Lexer Scanner detected unexpected token '____'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="ScanClosingPunctuation():MathNet.Symbolics.Interpreter.LexerToken">
+            <Messages>
+             <Message Id="MathNet.Symbolics.Interpreter.LexerToken.#ctor(System.String,MathNet.Symbolics.Interpreter.TokenTypes)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>LexerScanner.ScanClosingPunctuation():LexerToken</Item>
+               <Item>1</Item>
+               <Item>LexerToken.LexerToken(String, TokenTypes)</Item>
+               <Item>-&gt;</Item>
+              </Issue>
+              <Issue>
+               <Item>LexerScanner.ScanClosingPunctuation():LexerToken</Item>
+               <Item>1</Item>
+               <Item>LexerToken.LexerToken(String, TokenTypes)</Item>
+               <Item>&lt;-</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="ScanLiteral():MathNet.Symbolics.Interpreter.LexerToken">
+            <Messages>
+             <Message Id="MathNet.Symbolics.Exceptions.ParsingException.#ctor(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>LexerScanner.ScanLiteral():LexerToken</Item>
+               <Item>1</Item>
+               <Item>ParsingException.ParsingException(String)</Item>
+               <Item>Parsing failed. Unexpected end of file. Did you forget to close a literal encapsulation?</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="ScanOpeningPunctuation():MathNet.Symbolics.Interpreter.LexerToken">
+            <Messages>
+             <Message Id="MathNet.Symbolics.Interpreter.LexerToken.#ctor(System.String,MathNet.Symbolics.Interpreter.TokenTypes)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>LexerScanner.ScanOpeningPunctuation():LexerToken</Item>
+               <Item>1</Item>
+               <Item>LexerToken.LexerToken(String, TokenTypes)</Item>
+               <Item>-&gt;</Item>
+              </Issue>
+              <Issue>
+               <Item>LexerScanner.ScanOpeningPunctuation():LexerToken</Item>
+               <Item>1</Item>
+               <Item>LexerToken.LexerToken(String, TokenTypes)</Item>
+               <Item>&lt;-</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="ScanSymbolIdentifier():MathNet.Symbolics.Interpreter.LexerToken">
+            <Messages>
+             <Message Id="MathNet.Symbolics.Interpreter.LexerToken.#ctor(System.String,MathNet.Symbolics.Interpreter.TokenTypes)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>LexerScanner.ScanSymbolIdentifier():LexerToken</Item>
+               <Item>1</Item>
+               <Item>LexerToken.LexerToken(String, TokenTypes)</Item>
+               <Item>-&gt;</Item>
+              </Issue>
+              <Issue>
+               <Item>LexerScanner.ScanSymbolIdentifier():LexerToken</Item>
+               <Item>1</Item>
+               <Item>LexerToken.LexerToken(String, TokenTypes)</Item>
+               <Item>&lt;-</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="LexerToken">
+          <Messages>
+           <Message Id="Lexer" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2007-03-25 19:46:45Z">
+            <Issue Name="Type">
+             <Item>Lexer</Item>
+             <Item>MathNet.Symbolics.Interpreter.LexerToken</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+         <Type Name="ParserBuffer">
+          <Members>
+           <Member Name="Append(MathNet.Symbolics.Interpreter.LexerToken):System.Void">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>ParserBuffer.Append(LexerToken):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="Count">
+            <Accessors>
+             <Accessor Name="get_Count():System.Int32">
+              <Messages>
+               <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
+                <Issue>
+                 <Item>ParserBuffer.get_Count():Int32</Item>
+                </Issue>
+               </Message>
+              </Messages>
+             </Accessor>
+            </Accessors>
+           </Member>
+           <Member Name="Expand():System.Void">
+            <Messages>
+             <Message Id="MathNet.Symbolics.Exceptions.ParsingException.#ctor(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>ParserBuffer.Expand():Void</Item>
+               <Item>1</Item>
+               <Item>ParsingException.ParsingException(String)</Item>
+               <Item>Parsing failed. Maximum parser buffer size exceeded.</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="RemoveFirst():System.Void">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>ParserBuffer.RemoveFirst():Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="ParserMarker">
+          <Members>
+           <Member Name="CommitMark():System.Void">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>ParserMarker.CommitMark():Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="Mark():System.Void">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>ParserMarker.Mark():Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="markerOffset">
+            <Messages>
+             <Message TypeName="AvoidUnusedPrivateFields" Category="Microsoft.Performance" CheckId="CA1823" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>ParserMarker.markerOffset</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="RollbackMark():System.Void">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>ParserMarker.RollbackMark():Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="ParserScanner">
+          <Members>
+           <Member Name="IsBinary(MathNet.Symbolics.Interpreter.LexerToken):System.Boolean">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>ParserScanner.IsBinary(LexerToken):Boolean</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="ScanDefine():System.Void">
+            <Messages>
+             <Message Id="MathNet.Symbolics.Exceptions.ParsingException.#ctor(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>ParserScanner.ScanDefine():Void</Item>
+               <Item>1</Item>
+               <Item>ParsingException.ParsingException(String)</Item>
+               <Item>Parsing failed. Parser Scanner detected unexpected definition token '____'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="ScanEntitySymbol():System.String">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>ParserScanner.ScanEntitySymbol():String</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="ScanEntitySymbolLiteral():System.String">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>ParserScanner.ScanEntitySymbolLiteral():String</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="ScanLiteralList():System.Collections.Generic.List`1&lt;System.String&gt;">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>ParserScanner.ScanLiteralList():List`1&lt;System.String&gt;</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="ScanMathIdentifier():MathNet.Symbolics.MathIdentifier">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>ParserScanner.ScanMathIdentifier():MathIdentifier</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="ScanOperandPart():MathNet.Symbolics.Signal">
+            <Messages>
+             <Message Id="MathNet.Symbolics.Exceptions.ParsingException.#ctor(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>ParserScanner.ScanOperandPart():Signal</Item>
+               <Item>1</Item>
+               <Item>ParsingException.ParsingException(String)</Item>
+               <Item>Parsing failed. Parser Scanner detected unexpected operand part token '____'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="SignalStack">
+          <Messages>
+           <Message TypeName="IdentifiersShouldNotHaveIncorrectSuffix" Category="Microsoft.Naming" CheckId="CA1711" Created="2007-03-25 19:46:45Z">
+            <Issue>
+             <Item>MathNet.Symbolics.Interpreter.SignalStack</Item>
+             <Item>Stack</Item>
+            </Issue>
+           </Message>
+          </Messages>
+          <Members>
+           <Member Name="Expand():System.Void">
+            <Messages>
+             <Message Id="MathNet.Symbolics.Exceptions.ParsingException.#ctor(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>SignalStack.Expand():Void</Item>
+               <Item>1</Item>
+               <Item>ParsingException.ParsingException(String)</Item>
+               <Item>Parsing failed. Maximum expression stack size exceeded.</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="TokenTypes">
+          <Messages>
+           <Message TypeName="DoNotMarkEnumsWithFlags" Category="Microsoft.Usage" CheckId="CA2217" Created="2007-03-25 19:46:45Z">
+            <Issue>
+             <Item>MathNet.Symbolics.Interpreter.TokenTypes</Item>
+             <Item>0x100000, 0x200000, 0x400000, 0x800000, 0x10000000, 0x20000000</Item>
+            </Issue>
+           </Message>
+           <Message TypeName="EnumsShouldHaveZeroValue" Category="Microsoft.Design" CheckId="CA1008" Created="2007-03-25 19:46:45Z" FixCategory="Breaking">
+            <Issue Name="FlagsRename">
+             <Item>MathNet.Symbolics.Interpreter.TokenTypes</Item>
+             <Item>TokenTypes.Unknown</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+        </Types>
+       </Namespace>
+      </Namespaces>
+     </Module>
+    </Modules>
+   </Target>
+   <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Library.Contracts.dll">
+    <Modules>
+     <Module Name="mathnet.yttrium.library.contracts.dll">
+      <Messages>
+       <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Created="2007-03-25 19:46:45Z">
+        <Issue Name="NoStrongName">
+         <Item>MathNet.Yttrium.Library.Contracts</Item>
+        </Issue>
+       </Message>
+      </Messages>
+      <Namespaces>
+       <Namespace Name="MathNet.Symbolics.Library">
+        <Types>
+         <Type Name="CustomDataRef">
+          <Members>
+           <Member Name=".ctor(System.Type,MathNet.Symbolics.Conversion.IConversionRouter)">
+            <Messages>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>'router'</Item>
+               <Item>CustomDataRef.CustomDataRef(Type, IConversionRouter)</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name=".ctor(System.Type,MathNet.Symbolics.Conversion.IConversionRouter,MathNet.Symbolics.ICustomData)">
+            <Messages>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>'router'</Item>
+               <Item>CustomDataRef.CustomDataRef(Type, IConversionRouter, ICustomData)</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="ILibrary">
+          <Members>
+           <Member Name="AddCustomDataType():System.Void">
+            <Messages>
+             <Message TypeName="GenericMethodsShouldProvideTypeParameter" Category="Microsoft.Design" CheckId="CA1004" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>ILibrary.AddCustomDataType():Void</Item>
+               <Item>TCustomType</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+      </Namespaces>
+     </Module>
+    </Modules>
+   </Target>
+   <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Library.Service.dll">
+    <Modules>
+     <Module Name="mathnet.yttrium.library.service.dll">
+      <Messages>
+       <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Created="2007-03-25 19:46:45Z">
+        <Issue Name="NoStrongName">
+         <Item>MathNet.Yttrium.Library.Service</Item>
+        </Issue>
+       </Message>
+      </Messages>
+      <Namespaces>
+       <Namespace Name="MathNet.Symbolics">
+        <Types>
+         <Type Name="LibraryFactory">
+          <Messages>
+           <Message TypeName="AvoidUninstantiatedInternalClasses" Category="Microsoft.Performance" CheckId="CA1812" Status="Excluded" Created="2007-03-25 19:46:45Z">
+            <Issue>
+             <Item>MathNet.Symbolics.LibraryFactory</Item>
+            </Issue>
+            <Notes>
+             <User Name="Christoph">
+              <Note Id="9" />
+             </User>
+            </Notes>
+           </Message>
+          </Messages>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="MathNet.Symbolics.Library">
+        <Types>
+         <Type Name="ArchitectureFactoryCollection">
+          <Members>
+           <Member Name="Contains(MathNet.Symbolics.IEntity):System.Boolean">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>ArchitectureFactoryCollection.Contains(IEntity):Boolean</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="Remove(MathNet.Symbolics.IArchitectureFactory):System.Void">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>ArchitectureFactoryCollection.Remove(IArchitectureFactory):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="EntityArchitecturesRelation">
+          <Members>
+           <Member Name="LookupArchitecturesFor(MathNet.Symbolics.Port):System.Collections.Generic.IList`1&lt;MathNet.Symbolics.IArchitectureFactory&gt;">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>EntityArchitecturesRelation.LookupArchitecturesFor(Port):IList`1&lt;MathNet.Symbolics.IArchitectureFactory&gt;</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="Library">
+          <Messages>
+           <Message TypeName="TypeNamesShouldNotMatchNamespaces" Category="Microsoft.Naming" CheckId="CA1724" Created="2007-03-25 19:46:45Z">
+            <Issue>
+             <Item>Library</Item>
+             <Item>MathNet.Symbolics.Library</Item>
+            </Issue>
+           </Message>
+          </Messages>
+          <Members>
+           <Member Name="AddCustomDataType():System.Void">
+            <Messages>
+             <Message TypeName="GenericMethodsShouldProvideTypeParameter" Category="Microsoft.Design" CheckId="CA1004" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>Library.AddCustomDataType():Void</Item>
+               <Item>TCustomType</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="ContainsArchitecture(MathNet.Symbolics.Port):System.Boolean">
+            <Messages>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>'port'</Item>
+               <Item>Library.ContainsArchitecture(Port):Boolean</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="LookupArchitecture(MathNet.Symbolics.Port):MathNet.Symbolics.IArchitectureFactory">
+            <Messages>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>'port'</Item>
+               <Item>Library.LookupArchitecture(Port):IArchitectureFactory</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="TryLookupArchitecture(MathNet.Symbolics.Port,MathNet.Symbolics.IArchitectureFactory&amp;):System.Boolean">
+            <Messages>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>'port'</Item>
+               <Item>Library.TryLookupArchitecture(Port, IArchitectureFactory&amp;):Boolean</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="PackageInfo">
+          <Members>
+           <Member Name="comment">
+            <Messages>
+             <Message TypeName="AvoidUnusedPrivateFields" Category="Microsoft.Performance" CheckId="CA1823" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>PackageInfo.comment</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="PackageLoader">
+          <Members>
+           <Member Name=".cctor()">
+            <Messages>
+             <Message TypeName="InitializeReferenceTypeStaticFieldsInline" Category="Microsoft.Performance" CheckId="CA1810" Created="2007-03-25 19:46:45Z">
+              <Issue>
+               <Item>MathNet.Symbolics.Library.PackageLoader</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="LoadPackageInfo(System.String):System.Void">
+            <Messages>
+             <Message Id="Filename" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Created="2007-03-25 19:46:45Z">
+              <Issue Name="ShouldBeCompoundWord">
+               <Item>Filename</Item>
+               <Item>parameter</Item>
+               <Item>sourceFilename</Item>
+               <Item>FileName</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="XmlPackagesAdapter">
+          <Members>
+           <Member Name="GetXmlAttribute(System.Xml.XmlNode,System.String,System.String):System.String">
+            <Messages>
+             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2007-03-25 19:46:45Z" FixCategory="NonBreaking">
+              <Issue>
+               <Item>XmlPackagesAdapter.GetXmlAttribute(XmlNode, String, String):String</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+      </Namespaces>
+     </Module>
+    </Modules>
+   </Target>
+   <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Manipulation.Contracts.dll">
     <Modules>
      <Module Name="mathnet.yttrium.manipulation.contracts.dll">
       <Messages>
@@ -4128,7 +3487,7 @@
      </Module>
     </Modules>
    </Target>
-   <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Manipulation.Service/bin/Debug/MathNet.Yttrium.Manipulation.Service.dll">
+   <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Manipulation.Service.dll">
     <Modules>
      <Module Name="mathnet.yttrium.manipulation.service.dll">
       <Messages>
@@ -4257,7 +3616,7 @@
      </Module>
     </Modules>
    </Target>
-   <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Mediator.Contracts/bin/Debug/MathNet.Yttrium.Mediator.Contracts.dll">
+   <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Mediator.Contracts.dll">
     <Modules>
      <Module Name="mathnet.yttrium.mediator.contracts.dll">
       <Messages>
@@ -4270,7 +3629,7 @@
      </Module>
     </Modules>
    </Target>
-   <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Mediator.Service/bin/Debug/MathNet.Yttrium.Mediator.Service.dll">
+   <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Mediator.Service.dll">
     <Modules>
      <Module Name="mathnet.yttrium.mediator.service.dll">
       <Messages>
@@ -4486,7 +3845,7 @@
      </Module>
     </Modules>
    </Target>
-   <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Microkernel/bin/Debug/MathNet.Yttrium.Microkernel.dll">
+   <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Microkernel.dll">
     <Modules>
      <Module Name="mathnet.yttrium.microkernel.dll">
       <Messages>
@@ -4871,7 +4230,7 @@
      </Module>
     </Modules>
    </Target>
-   <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Packages.Helper/bin/Debug/MathNet.Yttrium.Packages.Helper.dll">
+   <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Packages.Helper.dll">
     <Modules>
      <Module Name="mathnet.yttrium.packages.helper.dll">
       <Messages>
@@ -5027,7 +4386,7 @@
      </Module>
     </Modules>
    </Target>
-   <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Packages.Standard/bin/Debug/MathNet.Yttrium.Packages.Standard.dll">
+   <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Packages.Standard.dll">
     <Modules>
      <Module Name="mathnet.yttrium.packages.standard.dll">
       <Messages>
@@ -7546,7 +6905,7 @@
      </Module>
     </Modules>
    </Target>
-   <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Patterns.Toolkit/bin/Debug/MathNet.Yttrium.Patterns.Toolkit.dll">
+   <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Patterns.Toolkit.dll">
     <Modules>
      <Module Name="mathnet.yttrium.patterns.toolkit.dll">
       <Messages>
@@ -7765,7 +7124,7 @@
      </Module>
     </Modules>
    </Target>
-   <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Repository.Contracts/bin/Debug/MathNet.Yttrium.Repository.Contracts.dll">
+   <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Repository.Contracts.dll">
     <Modules>
      <Module Name="mathnet.yttrium.repository.contracts.dll">
       <Messages>
@@ -7778,7 +7137,7 @@
      </Module>
     </Modules>
    </Target>
-   <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Repository.Service/bin/Debug/MathNet.Yttrium.Repository.Service.dll">
+   <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Repository.Service.dll">
     <Modules>
      <Module Name="mathnet.yttrium.repository.service.dll">
       <Messages>
@@ -7830,7 +7189,7 @@
      </Module>
     </Modules>
    </Target>
-   <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Simulation.Contracts/bin/Debug/MathNet.Yttrium.Simulation.Contracts.dll">
+   <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Simulation.Contracts.dll">
     <Modules>
      <Module Name="mathnet.yttrium.simulation.contracts.dll">
       <Messages>
@@ -7898,7 +7257,7 @@
      </Module>
     </Modules>
    </Target>
-   <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Simulation.Service/bin/Debug/MathNet.Yttrium.Simulation.Service.dll">
+   <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Simulation.Service.dll">
     <Modules>
      <Module Name="mathnet.yttrium.simulation.service.dll">
       <Messages>
@@ -7999,7 +7358,7 @@
      </Module>
     </Modules>
    </Target>
-   <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/SystemBuilder.Toolkit/bin/Debug/MathNet.Yttrium.SystemBuilder.Toolkit.dll">
+   <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.SystemBuilder.Toolkit.dll">
     <Modules>
      <Module Name="mathnet.yttrium.systembuilder.toolkit.dll">
       <Messages>
@@ -8058,7 +7417,7 @@
      </Module>
     </Modules>
    </Target>
-   <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Traversing.Contracts/bin/Debug/MathNet.Yttrium.Traversing.Contracts.dll">
+   <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Traversing.Contracts.dll">
     <Modules>
      <Module Name="mathnet.yttrium.traversing.contracts.dll">
       <Messages>
@@ -8441,7 +7800,7 @@
      </Module>
     </Modules>
    </Target>
-   <Target Name="$(ProjectDir)/src/app/MathNet.Yttrium/Traversing.Service/bin/Debug/MathNet.Yttrium.Traversing.Service.dll">
+   <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Traversing.Service.dll">
     <Modules>
      <Module Name="mathnet.yttrium.traversing.service.dll">
       <Messages>
@@ -8726,9 +8085,6 @@
    <Rule TypeName="DoNotDeclareStaticMembersOnGenericTypes" Category="Microsoft.Design" CheckId="CA1000">
     <Resolution Name="Default">Remove {0} from '{1}' or make it an instance member.</Resolution>
    </Rule>
-   <Rule TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051">
-    <Resolution Name="Default">Make '{0}' private or internal (Friend in VB, public private in C++) and provide a public or protected property to access it.</Resolution>
-   </Rule>
    <Rule TypeName="DoNotExposeGenericLists" Category="Microsoft.Design" CheckId="CA1002">
     <Resolution Name="Default">Change '{0}' in {1} to use Collection&lt;T&gt;, ReadOnlyCollection&lt;T&gt; or KeyedCollection&lt;K,V&gt;</Resolution>
    </Rule>
@@ -8823,9 +8179,6 @@
    <Rule TypeName="ShortAcronymsShouldBeUppercase" Category="Microsoft.Naming" CheckId="CA1706">
     <Resolution Name="Parameter">Correct the capitalization of '{0}' in parameter name '{1}'.</Resolution>
     <Resolution Name="Type">Correct the capitalization of '{0}' in type name '{1}'.</Resolution>
-   </Rule>
-   <Rule TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305">
-    <Resolution Name="Default">{0} makes a call to {1} that does not explicitly provide an IFormatProvider. This should be replaced with a call to {2}.</Resolution>
    </Rule>
    <Rule TypeName="TypeNamesShouldNotMatchNamespaces" Category="Microsoft.Naming" CheckId="CA1724">
     <Resolution Name="Default">The type name '{0}' conflicts in whole or in part with the namespace name '{1}'. Change either name to eliminate the conflict.</Resolution>
