@@ -143,6 +143,11 @@
    </Namespace>
    <Namespace Name="MathNet.Symbolics.Backend.Channels">
     <Messages>
+     <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Created="2007-03-28 20:14:01Z">
+      <Issue>
+       <Item>MathNet.Symbolics.Backend.Channels</Item>
+      </Issue>
+     </Message>
      <Message Id="Backend" TypeName="CompoundWordsShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1702" Created="2006-08-14 12:24:04Z">
       <Issue Name="ShouldBeCompoundWord">
        <Item>Backend</Item>
@@ -313,12 +318,37 @@
      </Message>
     </Messages>
    </Namespace>
+   <Namespace Name="MathNet.Symbolics.Mediator.ObjectModel">
+    <Messages>
+     <Message Id="Symbolics" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2007-03-28 20:14:01Z">
+      <Issue Name="Namespace">
+       <Item>Symbolics</Item>
+       <Item>MathNet.Symbolics.Mediator.ObjectModel</Item>
+      </Issue>
+     </Message>
+    </Messages>
+   </Namespace>
    <Namespace Name="MathNet.Symbolics.Packages.ObjectModel">
     <Messages>
      <Message Id="Symbolics" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2007-03-25 19:46:45Z">
       <Issue Name="Namespace">
        <Item>Symbolics</Item>
        <Item>MathNet.Symbolics.Packages.ObjectModel</Item>
+      </Issue>
+     </Message>
+    </Messages>
+   </Namespace>
+   <Namespace Name="MathNet.Symbolics.Packages.PetriNet">
+    <Messages>
+     <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Created="2007-03-28 20:14:01Z">
+      <Issue>
+       <Item>MathNet.Symbolics.Packages.PetriNet</Item>
+      </Issue>
+     </Message>
+     <Message Id="Symbolics" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2007-03-28 20:14:01Z">
+      <Issue Name="Namespace">
+       <Item>Symbolics</Item>
+       <Item>MathNet.Symbolics.Packages.PetriNet</Item>
       </Issue>
      </Message>
     </Messages>
@@ -455,6 +485,66 @@
       <Issue Name="Namespace">
        <Item>Symbolics</Item>
        <Item>MathNet.Symbolics.Patterns.Toolkit</Item>
+      </Issue>
+     </Message>
+    </Messages>
+   </Namespace>
+   <Namespace Name="MathNet.Symbolics.Persistence">
+    <Messages>
+     <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Created="2007-03-28 20:14:01Z">
+      <Issue>
+       <Item>MathNet.Symbolics.Persistence</Item>
+      </Issue>
+     </Message>
+     <Message Id="Symbolics" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2007-03-28 20:14:01Z">
+      <Issue Name="Namespace">
+       <Item>Symbolics</Item>
+       <Item>MathNet.Symbolics.Persistence</Item>
+      </Issue>
+     </Message>
+    </Messages>
+   </Namespace>
+   <Namespace Name="MathNet.Symbolics.Presentation">
+    <Messages>
+     <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Created="2007-03-28 20:14:01Z">
+      <Issue>
+       <Item>MathNet.Symbolics.Presentation</Item>
+      </Issue>
+     </Message>
+     <Message Id="Symbolics" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2007-03-28 20:14:01Z">
+      <Issue Name="Namespace">
+       <Item>Symbolics</Item>
+       <Item>MathNet.Symbolics.Presentation</Item>
+      </Issue>
+     </Message>
+    </Messages>
+   </Namespace>
+   <Namespace Name="MathNet.Symbolics.Presentation.Shapes">
+    <Messages>
+     <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Created="2007-03-28 20:14:01Z">
+      <Issue>
+       <Item>MathNet.Symbolics.Presentation.Shapes</Item>
+      </Issue>
+     </Message>
+     <Message Id="Symbolics" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2007-03-28 20:14:01Z">
+      <Issue Name="Namespace">
+       <Item>Symbolics</Item>
+       <Item>MathNet.Symbolics.Presentation.Shapes</Item>
+      </Issue>
+     </Message>
+    </Messages>
+   </Namespace>
+   <Namespace Name="MathNet.Symbolics.Presentation.WinDiagram">
+    <Messages>
+     <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Created="2007-03-28 20:14:01Z">
+      <Issue>
+       <Item>MathNet.Symbolics.Presentation.WinDiagram</Item>
+      </Issue>
+     </Message>
+     <Message Id="Symbolics" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2007-03-28 20:14:01Z">
+      <Issue Name="Namespace">
+       <Item>Symbolics</Item>
+       <Item>MathNet.Symbolics.Presentation.WinDiagram</Item>
       </Issue>
      </Message>
     </Messages>
@@ -3222,6 +3312,15 @@
              </Message>
             </Messages>
            </Member>
+           <Member Name="GetAllEntities():System.Collections.ObjectModel.ReadOnlyCollection`1&lt;MathNet.Symbolics.IEntity&gt;">
+            <Messages>
+             <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Created="2007-03-28 20:14:01Z">
+              <Issue Certainty="50">
+               <Item>GetAllEntities</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
           </Members>
          </Type>
         </Types>
@@ -3626,6 +3725,152 @@
         </Issue>
        </Message>
       </Messages>
+      <Namespaces>
+       <Namespace Name="MathNet.Symbolics.Mediator">
+        <Types>
+         <Type Name="CommandReference">
+          <Messages>
+           <Message TypeName="OverrideGetHashCodeOnOverridingEquals" Category="Microsoft.Usage" CheckId="CA2218" Created="2007-03-28 20:14:01Z">
+            <Issue>
+             <Item>MathNet.Symbolics.Mediator.CommandReference</Item>
+            </Issue>
+           </Message>
+          </Messages>
+          <Members>
+           <Member Name="Deserialize(System.String,System.Runtime.Serialization.SerializationInfo):MathNet.Symbolics.Mediator.CommandReference">
+            <Messages>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'info'</Item>
+               <Item>CommandReference.Deserialize(String, SerializationInfo):CommandReference</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="Deserialize(System.String,System.Xml.XmlReader):MathNet.Symbolics.Mediator.CommandReference">
+            <Messages>
+             <Message Id="System.Int32.Parse(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>CommandReference.Deserialize(String, XmlReader):CommandReference</Item>
+               <Item>System.Int32.Parse(System.String)</Item>
+               <Item>System.Int32.Parse(System.String,System.IFormatProvider)</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'reader'</Item>
+               <Item>CommandReference.Deserialize(String, XmlReader):CommandReference</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="Equals(System.Object):System.Boolean">
+            <Messages>
+             <Message TypeName="InstantiateArgumentExceptionsCorrectly" Category="Microsoft.Usage" CheckId="CA2208" Created="2007-03-28 20:14:01Z">
+              <Issue Name="NoArguments">
+               <Item>System.ArgumentException</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext):System.Void">
+            <Messages>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'info'</Item>
+               <Item>CommandReference.GetObjectData(SerializationInfo, StreamingContext):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="op_Equality(MathNet.Symbolics.Mediator.CommandReference,MathNet.Symbolics.Mediator.CommandReference):System.Boolean">
+            <Messages>
+             <Message Id="0#a" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2007-03-28 20:14:01Z">
+              <Issue Name="ParameterOneLetter">
+               <Item>CommandReference.op_Equality(CommandReference, CommandReference):Boolean</Item>
+               <Item>a</Item>
+              </Issue>
+             </Message>
+             <Message Id="1#b" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2007-03-28 20:14:01Z">
+              <Issue Name="ParameterOneLetter">
+               <Item>CommandReference.op_Equality(CommandReference, CommandReference):Boolean</Item>
+               <Item>b</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="op_Inequality(MathNet.Symbolics.Mediator.CommandReference,MathNet.Symbolics.Mediator.CommandReference):System.Boolean">
+            <Messages>
+             <Message Id="0#a" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2007-03-28 20:14:01Z">
+              <Issue Name="ParameterOneLetter">
+               <Item>CommandReference.op_Inequality(CommandReference, CommandReference):Boolean</Item>
+               <Item>a</Item>
+              </Issue>
+             </Message>
+             <Message Id="1#b" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2007-03-28 20:14:01Z">
+              <Issue Name="ParameterOneLetter">
+               <Item>CommandReference.op_Inequality(CommandReference, CommandReference):Boolean</Item>
+               <Item>b</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="Serialize(System.String,System.Runtime.Serialization.SerializationInfo):System.Void">
+            <Messages>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'info'</Item>
+               <Item>CommandReference.Serialize(String, SerializationInfo):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="Serialize(System.String,System.Xml.XmlWriter):System.Void">
+            <Messages>
+             <Message Id="System.Int32.ToString" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>CommandReference.Serialize(String, XmlWriter):Void</Item>
+               <Item>System.Int32.ToString</Item>
+               <Item>System.Int32.ToString(System.IFormatProvider)</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'writer'</Item>
+               <Item>CommandReference.Serialize(String, XmlWriter):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="LogAction">
+          <Members>
+           <Member Name="PortUndrivesSignal">
+            <Messages>
+             <Message Id="Undrives" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2007-03-28 20:14:01Z">
+              <Issue Name="Member">
+               <Item>Undrives</Item>
+               <Item>LogAction.PortUndrivesSignal</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="SignalUndrivesPort">
+            <Messages>
+             <Message Id="Undrives" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2007-03-28 20:14:01Z">
+              <Issue Name="Member">
+               <Item>Undrives</Item>
+               <Item>LogAction.SignalUndrivesPort</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+      </Namespaces>
      </Module>
     </Modules>
    </Target>
@@ -3834,6 +4079,931 @@
                 <Note Id="8" />
                </User>
               </Notes>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+      </Namespaces>
+     </Module>
+    </Modules>
+   </Target>
+   <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Mediator.Toolkit.dll">
+    <Modules>
+     <Module Name="mathnet.yttrium.mediator.toolkit.dll">
+      <Messages>
+       <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Created="2007-03-28 20:14:01Z">
+        <Issue Name="NoStrongName">
+         <Item>MathNet.Yttrium.Mediator.Toolkit</Item>
+        </Issue>
+       </Message>
+      </Messages>
+      <Namespaces>
+       <Namespace Name="MathNet.Symbolics.Mediator">
+        <Types>
+         <Type Name="BusUnrivePortCommand">
+          <Messages>
+           <Message Id="Unrive" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2007-03-28 20:14:01Z">
+            <Issue Name="Type">
+             <Item>Unrive</Item>
+             <Item>MathNet.Symbolics.Mediator.BusUnrivePortCommand</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+         <Type Name="LogObserver">
+          <Members>
+           <Member Name="MathNet.Symbolics.Mediator.IObserver.OnBusAttachedToPort(MathNet.Symbolics.Bus,MathNet.Symbolics.Port,System.Int32):System.Void">
+            <Messages>
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>LogObserver</Item>
+               <Item>IObserver.OnBusAttachedToPort(Bus, Port, Int32):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="MathNet.Symbolics.Mediator.IObserver.OnBusDetachedFromPort(MathNet.Symbolics.Bus,MathNet.Symbolics.Port,System.Int32):System.Void">
+            <Messages>
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>LogObserver</Item>
+               <Item>IObserver.OnBusDetachedFromPort(Bus, Port, Int32):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="MathNet.Symbolics.Mediator.IObserver.OnBusValueChanged(MathNet.Symbolics.Bus):System.Void">
+            <Messages>
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>LogObserver</Item>
+               <Item>IObserver.OnBusValueChanged(Bus):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="MathNet.Symbolics.Mediator.IObserver.OnNewBusCreated(MathNet.Symbolics.Bus):System.Void">
+            <Messages>
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>LogObserver</Item>
+               <Item>IObserver.OnNewBusCreated(Bus):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="MathNet.Symbolics.Mediator.IObserver.OnNewPortCreated(MathNet.Symbolics.Port):System.Void">
+            <Messages>
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>LogObserver</Item>
+               <Item>IObserver.OnNewPortCreated(Port):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="MathNet.Symbolics.Mediator.IObserver.OnNewSignalCreated(MathNet.Symbolics.Signal):System.Void">
+            <Messages>
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>LogObserver</Item>
+               <Item>IObserver.OnNewSignalCreated(Signal):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="MathNet.Symbolics.Mediator.IObserver.OnPortDrivesSignal(MathNet.Symbolics.Signal,MathNet.Symbolics.Port,System.Int32):System.Void">
+            <Messages>
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>LogObserver</Item>
+               <Item>IObserver.OnPortDrivesSignal(Signal, Port, Int32):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="MathNet.Symbolics.Mediator.IObserver.OnPortDrivesSignalNoLonger(MathNet.Symbolics.Signal,MathNet.Symbolics.Port,System.Int32):System.Void">
+            <Messages>
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>LogObserver</Item>
+               <Item>IObserver.OnPortDrivesSignalNoLonger(Signal, Port, Int32):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="MathNet.Symbolics.Mediator.IObserver.OnSignalDrivesPort(MathNet.Symbolics.Signal,MathNet.Symbolics.Port,System.Int32):System.Void">
+            <Messages>
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>LogObserver</Item>
+               <Item>IObserver.OnSignalDrivesPort(Signal, Port, Int32):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="MathNet.Symbolics.Mediator.IObserver.OnSignalDrivesPortNoLonger(MathNet.Symbolics.Signal,MathNet.Symbolics.Port,System.Int32):System.Void">
+            <Messages>
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>LogObserver</Item>
+               <Item>IObserver.OnSignalDrivesPortNoLonger(Signal, Port, Int32):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="MathNet.Symbolics.Mediator.IObserver.OnSignalValueChanged(MathNet.Symbolics.Signal):System.Void">
+            <Messages>
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>LogObserver</Item>
+               <Item>IObserver.OnSignalValueChanged(Signal):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="LogSystemObserver">
+          <Members>
+           <Member Name="MathNet.Symbolics.Mediator.ISystemObserver.BeginInitialize():System.Void">
+            <Messages>
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>LogSystemObserver</Item>
+               <Item>ISystemObserver.BeginInitialize():Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="MathNet.Symbolics.Mediator.ISystemObserver.EndInitialize():System.Void">
+            <Messages>
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>LogSystemObserver</Item>
+               <Item>ISystemObserver.EndInitialize():Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="MathNet.Symbolics.Mediator.ISystemObserver.OnBusAdded(MathNet.Symbolics.Bus,System.Int32):System.Void">
+            <Messages>
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>LogSystemObserver</Item>
+               <Item>ISystemObserver.OnBusAdded(Bus, Int32):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="MathNet.Symbolics.Mediator.ISystemObserver.OnBusAttachedToPort(MathNet.Symbolics.Bus,MathNet.Symbolics.Port,System.Int32):System.Void">
+            <Messages>
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>LogSystemObserver</Item>
+               <Item>ISystemObserver.OnBusAttachedToPort(Bus, Port, Int32):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="MathNet.Symbolics.Mediator.ISystemObserver.OnBusDetachedFromPort(MathNet.Symbolics.Bus,MathNet.Symbolics.Port,System.Int32):System.Void">
+            <Messages>
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>LogSystemObserver</Item>
+               <Item>ISystemObserver.OnBusDetachedFromPort(Bus, Port, Int32):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="MathNet.Symbolics.Mediator.ISystemObserver.OnBusMoved(MathNet.Symbolics.Bus,System.Int32,System.Int32):System.Void">
+            <Messages>
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>LogSystemObserver</Item>
+               <Item>ISystemObserver.OnBusMoved(Bus, Int32, Int32):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="MathNet.Symbolics.Mediator.ISystemObserver.OnBusRemoved(MathNet.Symbolics.Bus,System.Int32):System.Void">
+            <Messages>
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>LogSystemObserver</Item>
+               <Item>ISystemObserver.OnBusRemoved(Bus, Int32):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="MathNet.Symbolics.Mediator.ISystemObserver.OnBusValueChanged(MathNet.Symbolics.Bus):System.Void">
+            <Messages>
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>LogSystemObserver</Item>
+               <Item>ISystemObserver.OnBusValueChanged(Bus):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="MathNet.Symbolics.Mediator.ISystemObserver.OnInputAdded(MathNet.Symbolics.Signal,System.Int32):System.Void">
+            <Messages>
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>LogSystemObserver</Item>
+               <Item>ISystemObserver.OnInputAdded(Signal, Int32):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="MathNet.Symbolics.Mediator.ISystemObserver.OnInputMoved(MathNet.Symbolics.Signal,System.Int32,System.Int32):System.Void">
+            <Messages>
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>LogSystemObserver</Item>
+               <Item>ISystemObserver.OnInputMoved(Signal, Int32, Int32):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="MathNet.Symbolics.Mediator.ISystemObserver.OnInputRemoved(MathNet.Symbolics.Signal,System.Int32):System.Void">
+            <Messages>
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>LogSystemObserver</Item>
+               <Item>ISystemObserver.OnInputRemoved(Signal, Int32):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="MathNet.Symbolics.Mediator.ISystemObserver.OnOutputAdded(MathNet.Symbolics.Signal,System.Int32):System.Void">
+            <Messages>
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>LogSystemObserver</Item>
+               <Item>ISystemObserver.OnOutputAdded(Signal, Int32):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="MathNet.Symbolics.Mediator.ISystemObserver.OnOutputMoved(MathNet.Symbolics.Signal,System.Int32,System.Int32):System.Void">
+            <Messages>
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>LogSystemObserver</Item>
+               <Item>ISystemObserver.OnOutputMoved(Signal, Int32, Int32):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="MathNet.Symbolics.Mediator.ISystemObserver.OnOutputRemoved(MathNet.Symbolics.Signal,System.Int32):System.Void">
+            <Messages>
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>LogSystemObserver</Item>
+               <Item>ISystemObserver.OnOutputRemoved(Signal, Int32):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="MathNet.Symbolics.Mediator.ISystemObserver.OnPortAdded(MathNet.Symbolics.Port,System.Int32):System.Void">
+            <Messages>
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>LogSystemObserver</Item>
+               <Item>ISystemObserver.OnPortAdded(Port, Int32):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="MathNet.Symbolics.Mediator.ISystemObserver.OnPortDrivesSignal(MathNet.Symbolics.Signal,MathNet.Symbolics.Port,System.Int32):System.Void">
+            <Messages>
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>LogSystemObserver</Item>
+               <Item>ISystemObserver.OnPortDrivesSignal(Signal, Port, Int32):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="MathNet.Symbolics.Mediator.ISystemObserver.OnPortDrivesSignalNoLonger(MathNet.Symbolics.Signal,MathNet.Symbolics.Port,System.Int32):System.Void">
+            <Messages>
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>LogSystemObserver</Item>
+               <Item>ISystemObserver.OnPortDrivesSignalNoLonger(Signal, Port, Int32):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="MathNet.Symbolics.Mediator.ISystemObserver.OnPortMoved(MathNet.Symbolics.Port,System.Int32,System.Int32):System.Void">
+            <Messages>
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>LogSystemObserver</Item>
+               <Item>ISystemObserver.OnPortMoved(Port, Int32, Int32):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="MathNet.Symbolics.Mediator.ISystemObserver.OnPortRemoved(MathNet.Symbolics.Port,System.Int32):System.Void">
+            <Messages>
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>LogSystemObserver</Item>
+               <Item>ISystemObserver.OnPortRemoved(Port, Int32):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="MathNet.Symbolics.Mediator.ISystemObserver.OnSignalAdded(MathNet.Symbolics.Signal,System.Int32):System.Void">
+            <Messages>
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>LogSystemObserver</Item>
+               <Item>ISystemObserver.OnSignalAdded(Signal, Int32):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="MathNet.Symbolics.Mediator.ISystemObserver.OnSignalDrivesPort(MathNet.Symbolics.Signal,MathNet.Symbolics.Port,System.Int32):System.Void">
+            <Messages>
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>LogSystemObserver</Item>
+               <Item>ISystemObserver.OnSignalDrivesPort(Signal, Port, Int32):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="MathNet.Symbolics.Mediator.ISystemObserver.OnSignalDrivesPortNoLonger(MathNet.Symbolics.Signal,MathNet.Symbolics.Port,System.Int32):System.Void">
+            <Messages>
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>LogSystemObserver</Item>
+               <Item>ISystemObserver.OnSignalDrivesPortNoLonger(Signal, Port, Int32):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="MathNet.Symbolics.Mediator.ISystemObserver.OnSignalMoved(MathNet.Symbolics.Signal,System.Int32,System.Int32):System.Void">
+            <Messages>
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>LogSystemObserver</Item>
+               <Item>ISystemObserver.OnSignalMoved(Signal, Int32, Int32):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="MathNet.Symbolics.Mediator.ISystemObserver.OnSignalRemoved(MathNet.Symbolics.Signal,System.Int32):System.Void">
+            <Messages>
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>LogSystemObserver</Item>
+               <Item>ISystemObserver.OnSignalRemoved(Signal, Int32):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="MathNet.Symbolics.Mediator.ISystemObserver.OnSignalValueChanged(MathNet.Symbolics.Signal):System.Void">
+            <Messages>
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>LogSystemObserver</Item>
+               <Item>ISystemObserver.OnSignalValueChanged(Signal):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="NewPortCommand">
+          <Members>
+           <Member Name=".ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <Messages>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'info'</Item>
+               <Item>NewPortCommand.NewPortCommand(SerializationInfo, StreamingContext)</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext):System.Void">
+            <Messages>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'info'</Item>
+               <Item>NewPortCommand.GetObjectData(SerializationInfo, StreamingContext):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="ReadXml(System.Xml.XmlReader):System.Void">
+            <Messages>
+             <Message Id="System.Int32.Parse(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>NewPortCommand.ReadXml(XmlReader):Void</Item>
+               <Item>System.Int32.Parse(System.String)</Item>
+               <Item>System.Int32.Parse(System.String,System.IFormatProvider)</Item>
+              </Issue>
+              <Issue>
+               <Item>NewPortCommand.ReadXml(XmlReader):Void</Item>
+               <Item>System.Int32.Parse(System.String)</Item>
+               <Item>System.Int32.Parse(System.String,System.IFormatProvider)</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'reader'</Item>
+               <Item>NewPortCommand.ReadXml(XmlReader):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="WriteXml(System.Xml.XmlWriter):System.Void">
+            <Messages>
+             <Message Id="System.Int32.ToString" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>NewPortCommand.WriteXml(XmlWriter):Void</Item>
+               <Item>System.Int32.ToString</Item>
+               <Item>System.Int32.ToString(System.IFormatProvider)</Item>
+              </Issue>
+              <Issue>
+               <Item>NewPortCommand.WriteXml(XmlWriter):Void</Item>
+               <Item>System.Int32.ToString</Item>
+               <Item>System.Int32.ToString(System.IFormatProvider)</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'writer'</Item>
+               <Item>NewPortCommand.WriteXml(XmlWriter):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="PortUndriveSignalCommand">
+          <Messages>
+           <Message Id="Undrive" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2007-03-28 20:14:01Z">
+            <Issue Name="Type">
+             <Item>Undrive</Item>
+             <Item>MathNet.Symbolics.Mediator.PortUndriveSignalCommand</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+         <Type Name="RemovePortCommand">
+          <Members>
+           <Member Name=".ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <Messages>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'info'</Item>
+               <Item>RemovePortCommand.RemovePortCommand(SerializationInfo, StreamingContext)</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext):System.Void">
+            <Messages>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'info'</Item>
+               <Item>RemovePortCommand.GetObjectData(SerializationInfo, StreamingContext):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="ReadXml(System.Xml.XmlReader):System.Void">
+            <Messages>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'reader'</Item>
+               <Item>RemovePortCommand.ReadXml(XmlReader):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="WriteXml(System.Xml.XmlWriter):System.Void">
+            <Messages>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'writer'</Item>
+               <Item>RemovePortCommand.WriteXml(XmlWriter):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="RemoveSignalCommand">
+          <Members>
+           <Member Name=".ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <Messages>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'info'</Item>
+               <Item>RemoveSignalCommand.RemoveSignalCommand(SerializationInfo, StreamingContext)</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext):System.Void">
+            <Messages>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'info'</Item>
+               <Item>RemoveSignalCommand.GetObjectData(SerializationInfo, StreamingContext):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="ReadXml(System.Xml.XmlReader):System.Void">
+            <Messages>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'reader'</Item>
+               <Item>RemoveSignalCommand.ReadXml(XmlReader):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="WriteXml(System.Xml.XmlWriter):System.Void">
+            <Messages>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'writer'</Item>
+               <Item>RemoveSignalCommand.WriteXml(XmlWriter):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="SignalUnrivePortCommand">
+          <Messages>
+           <Message Id="Unrive" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2007-03-28 20:14:01Z">
+            <Issue Name="Type">
+             <Item>Unrive</Item>
+             <Item>MathNet.Symbolics.Mediator.SignalUnrivePortCommand</Item>
+            </Issue>
+           </Message>
+          </Messages>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="MathNet.Symbolics.Mediator.ObjectModel">
+        <Types>
+         <Type Name="BusCommand">
+          <Members>
+           <Member Name="ReadXml(System.Xml.XmlReader):System.Void">
+            <Messages>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'reader'</Item>
+               <Item>BusCommand.ReadXml(XmlReader):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="WriteXml(System.Xml.XmlWriter):System.Void">
+            <Messages>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'writer'</Item>
+               <Item>BusCommand.WriteXml(XmlWriter):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="CommandBase">
+          <Members>
+           <Member Name="GetSchema():System.Xml.Schema.XmlSchema">
+            <Messages>
+             <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Created="2007-03-28 20:14:01Z">
+              <Issue Certainty="50">
+               <Item>GetSchema</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="LazyVerify(System.Guid,System.Guid):System.Void">
+            <Messages>
+             <Message Id="MathNet.Symbolics.Exceptions.CommandException.#ctor(System.String)" TypeName="DoNotPassLiteralsAsLocalizedParameters" Category="Microsoft.Globalization" CheckId="CA1303" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>CommandBase.LazyVerify(Guid, Guid):Void</Item>
+               <Item>1</Item>
+               <Item>CommandException.CommandException(String)</Item>
+               <Item>Command Failed: InstanceId mismatch.</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2007-03-28 20:14:01Z" FixCategory="Breaking">
+              <Issue>
+               <Item>CommandBase.LazyVerify(Guid, Guid):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="NewCommand">
+          <Members>
+           <Member Name="ReadXml(System.Xml.XmlReader):System.Void">
+            <Messages>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'reader'</Item>
+               <Item>NewCommand.ReadXml(XmlReader):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="WriteXml(System.Xml.XmlWriter):System.Void">
+            <Messages>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'writer'</Item>
+               <Item>NewCommand.WriteXml(XmlWriter):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="PortBusCommand">
+          <Members>
+           <Member Name="ReadXml(System.Xml.XmlReader):System.Void">
+            <Messages>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'reader'</Item>
+               <Item>PortBusCommand.ReadXml(XmlReader):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="WriteXml(System.Xml.XmlWriter):System.Void">
+            <Messages>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'writer'</Item>
+               <Item>PortBusCommand.WriteXml(XmlWriter):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="PortBusIndexCommand">
+          <Members>
+           <Member Name=".ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <Messages>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'info'</Item>
+               <Item>PortBusIndexCommand.PortBusIndexCommand(SerializationInfo, StreamingContext)</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext):System.Void">
+            <Messages>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'info'</Item>
+               <Item>PortBusIndexCommand.GetObjectData(SerializationInfo, StreamingContext):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="ReadXml(System.Xml.XmlReader):System.Void">
+            <Messages>
+             <Message Id="System.Int32.Parse(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>PortBusIndexCommand.ReadXml(XmlReader):Void</Item>
+               <Item>System.Int32.Parse(System.String)</Item>
+               <Item>System.Int32.Parse(System.String,System.IFormatProvider)</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'reader'</Item>
+               <Item>PortBusIndexCommand.ReadXml(XmlReader):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="WriteXml(System.Xml.XmlWriter):System.Void">
+            <Messages>
+             <Message Id="System.Int32.ToString" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>PortBusIndexCommand.WriteXml(XmlWriter):Void</Item>
+               <Item>System.Int32.ToString</Item>
+               <Item>System.Int32.ToString(System.IFormatProvider)</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'writer'</Item>
+               <Item>PortBusIndexCommand.WriteXml(XmlWriter):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="PortCommand">
+          <Members>
+           <Member Name="ReadXml(System.Xml.XmlReader):System.Void">
+            <Messages>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'reader'</Item>
+               <Item>PortCommand.ReadXml(XmlReader):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="WriteXml(System.Xml.XmlWriter):System.Void">
+            <Messages>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'writer'</Item>
+               <Item>PortCommand.WriteXml(XmlWriter):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="PortIndexCommand">
+          <Members>
+           <Member Name=".ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <Messages>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'info'</Item>
+               <Item>PortIndexCommand.PortIndexCommand(SerializationInfo, StreamingContext)</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext):System.Void">
+            <Messages>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'info'</Item>
+               <Item>PortIndexCommand.GetObjectData(SerializationInfo, StreamingContext):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="ReadXml(System.Xml.XmlReader):System.Void">
+            <Messages>
+             <Message Id="System.Int32.Parse(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>PortIndexCommand.ReadXml(XmlReader):Void</Item>
+               <Item>System.Int32.Parse(System.String)</Item>
+               <Item>System.Int32.Parse(System.String,System.IFormatProvider)</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'reader'</Item>
+               <Item>PortIndexCommand.ReadXml(XmlReader):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="WriteXml(System.Xml.XmlWriter):System.Void">
+            <Messages>
+             <Message Id="System.Int32.ToString" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>PortIndexCommand.WriteXml(XmlWriter):Void</Item>
+               <Item>System.Int32.ToString</Item>
+               <Item>System.Int32.ToString(System.IFormatProvider)</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'writer'</Item>
+               <Item>PortIndexCommand.WriteXml(XmlWriter):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="PortSignalCommand">
+          <Members>
+           <Member Name="ReadXml(System.Xml.XmlReader):System.Void">
+            <Messages>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'reader'</Item>
+               <Item>PortSignalCommand.ReadXml(XmlReader):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="WriteXml(System.Xml.XmlWriter):System.Void">
+            <Messages>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'writer'</Item>
+               <Item>PortSignalCommand.WriteXml(XmlWriter):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="PortSignalIndexCommand">
+          <Members>
+           <Member Name=".ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <Messages>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'info'</Item>
+               <Item>PortSignalIndexCommand.PortSignalIndexCommand(SerializationInfo, StreamingContext)</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext):System.Void">
+            <Messages>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'info'</Item>
+               <Item>PortSignalIndexCommand.GetObjectData(SerializationInfo, StreamingContext):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="ReadXml(System.Xml.XmlReader):System.Void">
+            <Messages>
+             <Message Id="System.Int32.Parse(System.String)" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>PortSignalIndexCommand.ReadXml(XmlReader):Void</Item>
+               <Item>System.Int32.Parse(System.String)</Item>
+               <Item>System.Int32.Parse(System.String,System.IFormatProvider)</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'reader'</Item>
+               <Item>PortSignalIndexCommand.ReadXml(XmlReader):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="WriteXml(System.Xml.XmlWriter):System.Void">
+            <Messages>
+             <Message Id="System.Int32.ToString" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>PortSignalIndexCommand.WriteXml(XmlWriter):Void</Item>
+               <Item>System.Int32.ToString</Item>
+               <Item>System.Int32.ToString(System.IFormatProvider)</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'writer'</Item>
+               <Item>PortSignalIndexCommand.WriteXml(XmlWriter):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="SignalCommand">
+          <Members>
+           <Member Name="ReadXml(System.Xml.XmlReader):System.Void">
+            <Messages>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'reader'</Item>
+               <Item>SignalCommand.ReadXml(XmlReader):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="WriteXml(System.Xml.XmlWriter):System.Void">
+            <Messages>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'writer'</Item>
+               <Item>SignalCommand.WriteXml(XmlWriter):Void</Item>
+              </Issue>
              </Message>
             </Messages>
            </Member>
@@ -4226,6 +5396,66 @@
          </Type>
         </Types>
        </Namespace>
+       <Namespace Name="MathNet.Symbolics.Persistence">
+        <Types>
+         <Type Name="Serializer">
+          <Members>
+           <Member Name="Deserialize(System.Xml.XmlReader,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):T">
+            <Messages>
+             <Message TypeName="GenericMethodsShouldProvideTypeParameter" Category="Microsoft.Design" CheckId="CA1004" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>Serializer.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):T</Item>
+               <Item>T</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="DeserializeFromString(System.String,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):T">
+            <Messages>
+             <Message TypeName="GenericMethodsShouldProvideTypeParameter" Category="Microsoft.Design" CheckId="CA1004" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>Serializer.DeserializeFromString(String, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):T</Item>
+               <Item>T</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="DeserializeList(System.Xml.XmlReader,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;,System.String):System.Collections.Generic.List`1&lt;T&gt;">
+            <Messages>
+             <Message TypeName="DoNotExposeGenericLists" Category="Microsoft.Design" CheckId="CA1002" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>System.Collections.Generic.List`1&lt;T&gt;</Item>
+               <Item>Serializer.DeserializeList(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;, String):List`1&lt;T&gt;</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="GenericMethodsShouldProvideTypeParameter" Category="Microsoft.Design" CheckId="CA1004" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>Serializer.DeserializeList(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;, String):List`1&lt;T&gt;</Item>
+               <Item>T</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="DeserializeListFromString(System.String,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;,System.String):System.Collections.Generic.List`1&lt;T&gt;">
+            <Messages>
+             <Message TypeName="DoNotExposeGenericLists" Category="Microsoft.Design" CheckId="CA1002" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>System.Collections.Generic.List`1&lt;T&gt;</Item>
+               <Item>Serializer.DeserializeListFromString(String, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;, String):List`1&lt;T&gt;</Item>
+              </Issue>
+             </Message>
+             <Message TypeName="GenericMethodsShouldProvideTypeParameter" Category="Microsoft.Design" CheckId="CA1004" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>Serializer.DeserializeListFromString(String, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;, String):List`1&lt;T&gt;</Item>
+               <Item>T</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
       </Namespaces>
      </Module>
     </Modules>
@@ -4362,6 +5592,22 @@
            </Member>
           </Members>
          </Type>
+         <Type Name="NearlySymmetricGenericEntity">
+          <Members>
+           <Member Name="CompileGenericEntity(System.Int32,System.Int32,System.Nullable`1&lt;System.Int32&gt;):MathNet.Symbolics.IEntity">
+            <Messages>
+             <Message Id="2#" TypeName="ParameterNamesShouldMatchBaseDeclaration" Category="Microsoft.Naming" CheckId="CA1725" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>outputSignalsCnt</Item>
+               <Item>NearlySymmetricGenericEntity.CompileGenericEntity(Int32, Int32, Nullable`1&lt;System.Int32&gt;):IEntity</Item>
+               <Item>outputSignalsCount</Item>
+               <Item>IEntity.CompileGenericEntity(Int32, Int32, Nullable`1&lt;System.Int32&gt;):IEntity</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
          <Type Name="PropertyBase">
           <Messages>
            <Message TypeName="OverrideGetHashCodeOnOverridingEquals" Category="Microsoft.Usage" CheckId="CA2218" Created="2007-03-25 19:46:45Z">
@@ -4379,6 +5625,191 @@
             </Issue>
            </Message>
           </Messages>
+         </Type>
+        </Types>
+       </Namespace>
+      </Namespaces>
+     </Module>
+    </Modules>
+   </Target>
+   <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Packages.PetriNet.dll">
+    <Modules>
+     <Module Name="mathnet.yttrium.packages.petrinet.dll">
+      <Messages>
+       <Message TypeName="AssembliesShouldDeclareMinimumSecurity" Category="Microsoft.Usage" CheckId="CA2209" Created="2007-03-28 20:14:01Z">
+        <Issue>
+         <Item>MathNet.Yttrium.Packages.PetriNet</Item>
+        </Issue>
+       </Message>
+       <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Created="2007-03-28 20:14:01Z">
+        <Issue Name="NoStrongName">
+         <Item>MathNet.Yttrium.Packages.PetriNet</Item>
+        </Issue>
+       </Message>
+       <Message TypeName="MarkAssembliesWithClsCompliant" Category="Microsoft.Design" CheckId="CA1014" Created="2007-03-28 20:14:01Z">
+        <Issue Name="NoAttr">
+         <Item>MathNet.Yttrium.Packages.PetriNet</Item>
+        </Issue>
+       </Message>
+      </Messages>
+      <Namespaces>
+       <Namespace Name="MathNet.Symbolics.Packages.PetriNet">
+        <Types>
+         <Type Name="PetriNetPackageManager">
+          <Members>
+           <Member Name="RegisterArchitectures(MathNet.Symbolics.Library.ILibrary):System.Void">
+            <Messages>
+             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2007-03-28 20:14:01Z" FixCategory="Breaking">
+              <Issue>
+               <Item>PetriNetPackageManager.RegisterArchitectures(ILibrary):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="RegisterEntities(MathNet.Symbolics.Library.ILibrary):System.Void">
+            <Messages>
+             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2007-03-28 20:14:01Z" FixCategory="Breaking">
+              <Issue>
+               <Item>PetriNetPackageManager.RegisterEntities(ILibrary):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="RegisterStructures(MathNet.Symbolics.Library.ILibrary):System.Void">
+            <Messages>
+             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2007-03-28 20:14:01Z" FixCategory="Breaking">
+              <Issue>
+               <Item>PetriNetPackageManager.RegisterStructures(ILibrary):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="RegisterTheorems(MathNet.Symbolics.Library.ILibrary):System.Void">
+            <Messages>
+             <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Created="2007-03-28 20:14:01Z" FixCategory="Breaking">
+              <Issue>
+               <Item>PetriNetPackageManager.RegisterTheorems(ILibrary):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="PetriNetScheduler">
+          <Members>
+           <Member Name="_phase">
+            <Messages>
+             <Message TypeName="AvoidUnusedPrivateFields" Category="Microsoft.Performance" CheckId="CA1823" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>PetriNetScheduler._phase</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="TokenValue">
+          <Members>
+           <Member Name="Add(MathNet.Symbolics.Packages.PetriNet.TokenValue):MathNet.Symbolics.Packages.PetriNet.TokenValue">
+            <Messages>
+             <Message Id="0#" TypeName="ParameterNamesShouldMatchBaseDeclaration" Category="Microsoft.Naming" CheckId="CA1725" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>op</Item>
+               <Item>TokenValue.Add(TokenValue):TokenValue</Item>
+               <Item>other</Item>
+               <Item>IAlgebraicAdditiveClose`1&lt;MathNet.Symbolics.Packages.PetriNet.TokenValue&gt;.Add(TokenValue):TokenValue</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="CompareTo(MathNet.Symbolics.Packages.PetriNet.TokenValue):System.Int32">
+            <Messages>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'other'</Item>
+               <Item>TokenValue.CompareTo(TokenValue):Int32</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="ConvertFrom(MathNet.Symbolics.Packages.Standard.Structures.IntegerValue):MathNet.Symbolics.Packages.PetriNet.TokenValue">
+            <Messages>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'value'</Item>
+               <Item>TokenValue.ConvertFrom(IntegerValue):TokenValue</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="Deserialize(System.Xml.XmlReader,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;,System.Collections.Generic.IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):MathNet.Symbolics.Packages.PetriNet.TokenValue">
+            <Messages>
+             <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>TokenValue.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):TokenValue</Item>
+              </Issue>
+             </Message>
+             <Message Id="buses" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Created="2007-03-28 20:14:01Z" FixCategory="NonBreaking">
+              <Issue>
+               <Item>buses</Item>
+               <Item>TokenValue.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):TokenValue</Item>
+              </Issue>
+             </Message>
+             <Message Id="signals" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Created="2007-03-28 20:14:01Z" FixCategory="NonBreaking">
+              <Issue>
+               <Item>signals</Item>
+               <Item>TokenValue.Deserialize(XmlReader, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Signal&gt;, IDictionary`2&lt;System.Guid,MathNet.Symbolics.Bus&gt;):TokenValue</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="op_Explicit(MathNet.Symbolics.Packages.Standard.Structures.IntegerValue):MathNet.Symbolics.Packages.PetriNet.TokenValue">
+            <Messages>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'value'</Item>
+               <Item>TokenValue.op_Explicit(IntegerValue):TokenValue</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="Serialize(System.Xml.XmlWriter,System.Collections.Generic.IDictionary`2&lt;System.Guid,System.Guid&gt;,System.Collections.Generic.IDictionary`2&lt;System.Guid,System.Guid&gt;):System.Void">
+            <Messages>
+             <Message TypeName="ValidateArgumentsOfPublicMethods" Category="Microsoft.Design" CheckId="CA1062" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>'writer'</Item>
+               <Item>TokenValue.Serialize(XmlWriter, IDictionary`2&lt;System.Guid,System.Guid&gt;, IDictionary`2&lt;System.Guid,System.Guid&gt;):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="Subtract(MathNet.Symbolics.Packages.PetriNet.TokenValue):MathNet.Symbolics.Packages.PetriNet.TokenValue">
+            <Messages>
+             <Message Id="0#" TypeName="ParameterNamesShouldMatchBaseDeclaration" Category="Microsoft.Naming" CheckId="CA1725" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>op</Item>
+               <Item>TokenValue.Subtract(TokenValue):TokenValue</Item>
+               <Item>other</Item>
+               <Item>IAlgebraicGroup`1&lt;MathNet.Symbolics.Packages.PetriNet.TokenValue&gt;.Subtract(TokenValue):TokenValue</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="TransitionArchitectures">
+          <Members>
+           <Member Name="RegisterTheorems(MathNet.Symbolics.Library.ILibrary):System.Void">
+            <Messages>
+             <Message Id="library" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Created="2007-03-28 20:14:01Z" FixCategory="Breaking">
+              <Issue>
+               <Item>library</Item>
+               <Item>TransitionArchitectures.RegisterTheorems(ILibrary):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
          </Type>
         </Types>
        </Namespace>
@@ -7124,6 +8555,424 @@
      </Module>
     </Modules>
    </Target>
+   <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Presentation.dll">
+    <Modules>
+     <Module Name="mathnet.yttrium.presentation.dll">
+      <Messages>
+       <Message TypeName="AssembliesShouldDeclareMinimumSecurity" Category="Microsoft.Usage" CheckId="CA2209" Created="2007-03-28 20:14:01Z">
+        <Issue>
+         <Item>MathNet.Yttrium.Presentation</Item>
+        </Issue>
+       </Message>
+       <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Created="2007-03-28 20:14:01Z">
+        <Issue Name="NoStrongName">
+         <Item>MathNet.Yttrium.Presentation</Item>
+        </Issue>
+       </Message>
+       <Message TypeName="MarkAssembliesWithClsCompliant" Category="Microsoft.Design" CheckId="CA1014" Created="2007-03-28 20:14:01Z">
+        <Issue Name="NoAttr">
+         <Item>MathNet.Yttrium.Presentation</Item>
+        </Issue>
+       </Message>
+      </Messages>
+      <Namespaces>
+       <Namespace Name="MathNet.Symbolics.Presentation">
+        <Types>
+         <Type Name="ControllerBase">
+          <Members>
+           <Member Name="MathNet.Symbolics.Mediator.ISystemObserver.AttachedToSystem(MathNet.Symbolics.IMathSystem):System.Void">
+            <Messages>
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>ControllerBase</Item>
+               <Item>ISystemObserver.AttachedToSystem(IMathSystem):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="MathNet.Symbolics.Mediator.ISystemObserver.BeginInitialize():System.Void">
+            <Messages>
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>ControllerBase</Item>
+               <Item>ISystemObserver.BeginInitialize():Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="MathNet.Symbolics.Mediator.ISystemObserver.DetachedFromSystem(MathNet.Symbolics.IMathSystem):System.Void">
+            <Messages>
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>ControllerBase</Item>
+               <Item>ISystemObserver.DetachedFromSystem(IMathSystem):Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="MathNet.Symbolics.Mediator.ISystemObserver.EndInitialize():System.Void">
+            <Messages>
+             <Message TypeName="InterfaceMethodsShouldBeCallableByChildTypes" Category="Microsoft.Design" CheckId="CA1033" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>ControllerBase</Item>
+               <Item>ISystemObserver.EndInitialize():Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="MathNet.Symbolics.Presentation.Shapes">
+        <Types>
+         <Type Name="BusShape">
+          <Messages>
+           <Message TypeName="IdentifiersShouldDifferByMoreThanCase" Category="Microsoft.Naming" CheckId="CA1708" Created="2007-03-28 20:14:01Z">
+            <Issue Name="Member">
+             <Item>'busConnector'</Item>
+             <Item>BusConnector</Item>
+            </Issue>
+           </Message>
+           <Message TypeName="MarkISerializableTypesWithSerializable" Category="Microsoft.Usage" CheckId="CA2237" Created="2007-03-28 20:14:01Z">
+            <Issue Certainty="75" Level="Warning">
+             <Item>BusShape</Item>
+            </Issue>
+           </Message>
+          </Messages>
+          <Members>
+           <Member Name=".ctor(MathNet.Symbolics.Mediator.CommandReference)">
+            <Messages>
+             <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>BusShape.BusShape(CommandReference)</Item>
+               <Item>&#xD;&#xA;&#xD;&#xA;BusShape.BusShape(CommandReference)&#xD;&#xA;BusShape.Initialize():Void&#xD;&#xA;DiagramEntityBase.get_Model():IModel</Item>
+              </Issue>
+              <Issue>
+               <Item>BusShape.BusShape(CommandReference)</Item>
+               <Item>&#xD;&#xA;&#xD;&#xA;BusShape.BusShape(CommandReference)&#xD;&#xA;BusShape.Initialize():Void&#xD;&#xA;DiagramEntityBase.get_Rectangle():Rectangle</Item>
+              </Issue>
+              <Issue>
+               <Item>BusShape.BusShape(CommandReference)</Item>
+               <Item>&#xD;&#xA;&#xD;&#xA;BusShape.BusShape(CommandReference)&#xD;&#xA;BusShape.Initialize():Void&#xD;&#xA;SimpleShapeBase.set_AutoSize(Boolean):Void&#xD;&#xA;SimpleShapeBase.AutoReSize(String):Void&#xD;&#xA;ShapeBase.Transform(Rectangle):Void&#xD;&#xA;ShapeBase.Transform(Int32, Int32, Int32, Int32):Void</Item>
+              </Issue>
+              <Issue>
+               <Item>BusShape.BusShape(CommandReference)</Item>
+               <Item>&#xD;&#xA;&#xD;&#xA;BusShape.BusShape(CommandReference)&#xD;&#xA;BusShape.Initialize():Void&#xD;&#xA;SimpleShapeBase.set_AutoSize(Boolean):Void&#xD;&#xA;SimpleShapeBase.AutoReSize(String):Void&#xD;&#xA;ShapeBase.Transform(Rectangle):Void&#xD;&#xA;ShapeBase.Transform(Int32, Int32, Int32, Int32):Void&#xD;&#xA;DiagramEntityBase.UpdatePaintingMaterial():Void</Item>
+              </Issue>
+              <Issue>
+               <Item>BusShape.BusShape(CommandReference)</Item>
+               <Item>&#xD;&#xA;&#xD;&#xA;BusShape.BusShape(CommandReference)&#xD;&#xA;BusShape.Initialize():Void&#xD;&#xA;SimpleShapeBase.set_AutoSize(Boolean):Void&#xD;&#xA;SimpleShapeBase.AutoReSize(String):Void&#xD;&#xA;ShapeBase.Transform(Rectangle):Void&#xD;&#xA;ShapeBase.Transform(Int32, Int32, Int32, Int32):Void&#xD;&#xA;DiagramEntityBase.UpdatePaintingMaterial():Void&#xD;&#xA;DiagramEntityBase.Invalidate():Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name=".ctor(Netron.NetronLight.IModel,MathNet.Symbolics.Mediator.CommandReference)">
+            <Messages>
+             <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>BusShape.BusShape(IModel, CommandReference)</Item>
+               <Item>&#xD;&#xA;&#xD;&#xA;BusShape.BusShape(IModel, CommandReference)&#xD;&#xA;BusShape.Initialize():Void&#xD;&#xA;DiagramEntityBase.get_Model():IModel</Item>
+              </Issue>
+              <Issue>
+               <Item>BusShape.BusShape(IModel, CommandReference)</Item>
+               <Item>&#xD;&#xA;&#xD;&#xA;BusShape.BusShape(IModel, CommandReference)&#xD;&#xA;BusShape.Initialize():Void&#xD;&#xA;DiagramEntityBase.get_Rectangle():Rectangle</Item>
+              </Issue>
+              <Issue>
+               <Item>BusShape.BusShape(IModel, CommandReference)</Item>
+               <Item>&#xD;&#xA;&#xD;&#xA;BusShape.BusShape(IModel, CommandReference)&#xD;&#xA;BusShape.Initialize():Void&#xD;&#xA;SimpleShapeBase.set_AutoSize(Boolean):Void&#xD;&#xA;SimpleShapeBase.AutoReSize(String):Void&#xD;&#xA;ShapeBase.Transform(Rectangle):Void&#xD;&#xA;ShapeBase.Transform(Int32, Int32, Int32, Int32):Void</Item>
+              </Issue>
+              <Issue>
+               <Item>BusShape.BusShape(IModel, CommandReference)</Item>
+               <Item>&#xD;&#xA;&#xD;&#xA;BusShape.BusShape(IModel, CommandReference)&#xD;&#xA;BusShape.Initialize():Void&#xD;&#xA;SimpleShapeBase.set_AutoSize(Boolean):Void&#xD;&#xA;SimpleShapeBase.AutoReSize(String):Void&#xD;&#xA;ShapeBase.Transform(Rectangle):Void&#xD;&#xA;ShapeBase.Transform(Int32, Int32, Int32, Int32):Void&#xD;&#xA;DiagramEntityBase.UpdatePaintingMaterial():Void</Item>
+              </Issue>
+              <Issue>
+               <Item>BusShape.BusShape(IModel, CommandReference)</Item>
+               <Item>&#xD;&#xA;&#xD;&#xA;BusShape.BusShape(IModel, CommandReference)&#xD;&#xA;BusShape.Initialize():Void&#xD;&#xA;SimpleShapeBase.set_AutoSize(Boolean):Void&#xD;&#xA;SimpleShapeBase.AutoReSize(String):Void&#xD;&#xA;ShapeBase.Transform(Rectangle):Void&#xD;&#xA;ShapeBase.Transform(Int32, Int32, Int32, Int32):Void&#xD;&#xA;DiagramEntityBase.UpdatePaintingMaterial():Void&#xD;&#xA;DiagramEntityBase.Invalidate():Void</Item>
+              </Issue>
+             </Message>
+             <Message Id="0#s" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2007-03-28 20:14:01Z">
+              <Issue Name="ParameterOneLetter">
+               <Item>BusShape.BusShape(IModel, CommandReference)</Item>
+               <Item>s</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="busConnector">
+            <Messages>
+             <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>busConnector</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="Initialize():System.Void">
+            <Messages>
+             <Message Id="System.Int32.ToString" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>BusShape.Initialize():Void</Item>
+               <Item>System.Int32.ToString</Item>
+               <Item>System.Int32.ToString(System.IFormatProvider)</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="PortShape">
+          <Messages>
+           <Message TypeName="MarkISerializableTypesWithSerializable" Category="Microsoft.Usage" CheckId="CA2237" Created="2007-03-28 20:14:01Z">
+            <Issue Certainty="75" Level="Warning">
+             <Item>PortShape</Item>
+            </Issue>
+           </Message>
+          </Messages>
+          <Members>
+           <Member Name=".ctor(MathNet.Symbolics.Mediator.CommandReference)">
+            <Messages>
+             <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>PortShape.PortShape(CommandReference)</Item>
+               <Item>&#xD;&#xA;&#xD;&#xA;PortShape.PortShape(CommandReference)&#xD;&#xA;PortShape.Initialize():Void&#xD;&#xA;SimpleShapeBase.set_AutoSize(Boolean):Void&#xD;&#xA;SimpleShapeBase.AutoReSize(String):Void&#xD;&#xA;DiagramEntityBase.get_Rectangle():Rectangle</Item>
+              </Issue>
+              <Issue>
+               <Item>PortShape.PortShape(CommandReference)</Item>
+               <Item>&#xD;&#xA;&#xD;&#xA;PortShape.PortShape(CommandReference)&#xD;&#xA;PortShape.Initialize():Void&#xD;&#xA;SimpleShapeBase.set_AutoSize(Boolean):Void&#xD;&#xA;SimpleShapeBase.AutoReSize(String):Void&#xD;&#xA;ShapeBase.Transform(Rectangle):Void&#xD;&#xA;ShapeBase.Transform(Int32, Int32, Int32, Int32):Void</Item>
+              </Issue>
+              <Issue>
+               <Item>PortShape.PortShape(CommandReference)</Item>
+               <Item>&#xD;&#xA;&#xD;&#xA;PortShape.PortShape(CommandReference)&#xD;&#xA;PortShape.Initialize():Void&#xD;&#xA;SimpleShapeBase.set_AutoSize(Boolean):Void&#xD;&#xA;SimpleShapeBase.AutoReSize(String):Void&#xD;&#xA;ShapeBase.Transform(Rectangle):Void&#xD;&#xA;ShapeBase.Transform(Int32, Int32, Int32, Int32):Void&#xD;&#xA;DiagramEntityBase.Invalidate(Rectangle):Void&#xD;&#xA;DiagramEntityBase.get_Model():IModel</Item>
+              </Issue>
+              <Issue>
+               <Item>PortShape.PortShape(CommandReference)</Item>
+               <Item>&#xD;&#xA;&#xD;&#xA;PortShape.PortShape(CommandReference)&#xD;&#xA;PortShape.Initialize():Void&#xD;&#xA;SimpleShapeBase.set_AutoSize(Boolean):Void&#xD;&#xA;SimpleShapeBase.AutoReSize(String):Void&#xD;&#xA;ShapeBase.Transform(Rectangle):Void&#xD;&#xA;ShapeBase.Transform(Int32, Int32, Int32, Int32):Void&#xD;&#xA;DiagramEntityBase.UpdatePaintingMaterial():Void</Item>
+              </Issue>
+              <Issue>
+               <Item>PortShape.PortShape(CommandReference)</Item>
+               <Item>&#xD;&#xA;&#xD;&#xA;PortShape.PortShape(CommandReference)&#xD;&#xA;PortShape.Initialize():Void&#xD;&#xA;SimpleShapeBase.set_AutoSize(Boolean):Void&#xD;&#xA;SimpleShapeBase.AutoReSize(String):Void&#xD;&#xA;ShapeBase.Transform(Rectangle):Void&#xD;&#xA;ShapeBase.Transform(Int32, Int32, Int32, Int32):Void&#xD;&#xA;DiagramEntityBase.UpdatePaintingMaterial():Void&#xD;&#xA;DiagramEntityBase.Invalidate():Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name=".ctor(Netron.NetronLight.IModel,MathNet.Symbolics.Mediator.CommandReference)">
+            <Messages>
+             <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>PortShape.PortShape(IModel, CommandReference)</Item>
+               <Item>&#xD;&#xA;&#xD;&#xA;PortShape.PortShape(IModel, CommandReference)&#xD;&#xA;PortShape.Initialize():Void&#xD;&#xA;SimpleShapeBase.set_AutoSize(Boolean):Void&#xD;&#xA;SimpleShapeBase.AutoReSize(String):Void&#xD;&#xA;DiagramEntityBase.get_Rectangle():Rectangle</Item>
+              </Issue>
+              <Issue>
+               <Item>PortShape.PortShape(IModel, CommandReference)</Item>
+               <Item>&#xD;&#xA;&#xD;&#xA;PortShape.PortShape(IModel, CommandReference)&#xD;&#xA;PortShape.Initialize():Void&#xD;&#xA;SimpleShapeBase.set_AutoSize(Boolean):Void&#xD;&#xA;SimpleShapeBase.AutoReSize(String):Void&#xD;&#xA;ShapeBase.Transform(Rectangle):Void&#xD;&#xA;ShapeBase.Transform(Int32, Int32, Int32, Int32):Void</Item>
+              </Issue>
+              <Issue>
+               <Item>PortShape.PortShape(IModel, CommandReference)</Item>
+               <Item>&#xD;&#xA;&#xD;&#xA;PortShape.PortShape(IModel, CommandReference)&#xD;&#xA;PortShape.Initialize():Void&#xD;&#xA;SimpleShapeBase.set_AutoSize(Boolean):Void&#xD;&#xA;SimpleShapeBase.AutoReSize(String):Void&#xD;&#xA;ShapeBase.Transform(Rectangle):Void&#xD;&#xA;ShapeBase.Transform(Int32, Int32, Int32, Int32):Void&#xD;&#xA;DiagramEntityBase.Invalidate(Rectangle):Void&#xD;&#xA;DiagramEntityBase.get_Model():IModel</Item>
+              </Issue>
+              <Issue>
+               <Item>PortShape.PortShape(IModel, CommandReference)</Item>
+               <Item>&#xD;&#xA;&#xD;&#xA;PortShape.PortShape(IModel, CommandReference)&#xD;&#xA;PortShape.Initialize():Void&#xD;&#xA;SimpleShapeBase.set_AutoSize(Boolean):Void&#xD;&#xA;SimpleShapeBase.AutoReSize(String):Void&#xD;&#xA;ShapeBase.Transform(Rectangle):Void&#xD;&#xA;ShapeBase.Transform(Int32, Int32, Int32, Int32):Void&#xD;&#xA;DiagramEntityBase.UpdatePaintingMaterial():Void</Item>
+              </Issue>
+              <Issue>
+               <Item>PortShape.PortShape(IModel, CommandReference)</Item>
+               <Item>&#xD;&#xA;&#xD;&#xA;PortShape.PortShape(IModel, CommandReference)&#xD;&#xA;PortShape.Initialize():Void&#xD;&#xA;SimpleShapeBase.set_AutoSize(Boolean):Void&#xD;&#xA;SimpleShapeBase.AutoReSize(String):Void&#xD;&#xA;ShapeBase.Transform(Rectangle):Void&#xD;&#xA;ShapeBase.Transform(Int32, Int32, Int32, Int32):Void&#xD;&#xA;DiagramEntityBase.UpdatePaintingMaterial():Void&#xD;&#xA;DiagramEntityBase.Invalidate():Void</Item>
+              </Issue>
+             </Message>
+             <Message Id="0#s" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2007-03-28 20:14:01Z">
+              <Issue Name="ParameterOneLetter">
+               <Item>PortShape.PortShape(IModel, CommandReference)</Item>
+               <Item>s</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="BusConnectors">
+            <Messages>
+             <Message TypeName="DoNotExposeGenericLists" Category="Microsoft.Design" CheckId="CA1002" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>System.Collections.Generic.List`1&lt;Netron.NetronLight.Connector&gt;</Item>
+               <Item>PortShape.BusConnectors:List`1&lt;Netron.NetronLight.Connector&gt;</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="Initialize():System.Void">
+            <Messages>
+             <Message Id="System.Int32.ToString" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>PortShape.Initialize():Void</Item>
+               <Item>System.Int32.ToString</Item>
+               <Item>System.Int32.ToString(System.IFormatProvider)</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="InputConnectors">
+            <Messages>
+             <Message TypeName="DoNotExposeGenericLists" Category="Microsoft.Design" CheckId="CA1002" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>System.Collections.Generic.List`1&lt;Netron.NetronLight.Connector&gt;</Item>
+               <Item>PortShape.InputConnectors:List`1&lt;Netron.NetronLight.Connector&gt;</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="OutputConnectors">
+            <Messages>
+             <Message TypeName="DoNotExposeGenericLists" Category="Microsoft.Design" CheckId="CA1002" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>System.Collections.Generic.List`1&lt;Netron.NetronLight.Connector&gt;</Item>
+               <Item>PortShape.OutputConnectors:List`1&lt;Netron.NetronLight.Connector&gt;</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="SyncConnectors(System.Int32,System.Collections.Generic.List`1&lt;Netron.NetronLight.Connector&gt;,System.String):System.Void">
+            <Messages>
+             <Message Id="System.Int32.ToString" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>PortShape.SyncConnectors(Int32, List`1&lt;Netron.NetronLight.Connector&gt;, String):Void</Item>
+               <Item>System.Int32.ToString</Item>
+               <Item>System.Int32.ToString(System.IFormatProvider)</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="SignalShape">
+          <Messages>
+           <Message TypeName="MarkISerializableTypesWithSerializable" Category="Microsoft.Usage" CheckId="CA2237" Created="2007-03-28 20:14:01Z">
+            <Issue Certainty="75" Level="Warning">
+             <Item>SignalShape</Item>
+            </Issue>
+           </Message>
+          </Messages>
+          <Members>
+           <Member Name=".ctor(MathNet.Symbolics.Mediator.CommandReference)">
+            <Messages>
+             <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>SignalShape.SignalShape(CommandReference)</Item>
+               <Item>&#xD;&#xA;&#xD;&#xA;SignalShape.SignalShape(CommandReference)&#xD;&#xA;SignalShape.Initialize():Void&#xD;&#xA;DiagramEntityBase.get_Model():IModel</Item>
+              </Issue>
+              <Issue>
+               <Item>SignalShape.SignalShape(CommandReference)</Item>
+               <Item>&#xD;&#xA;&#xD;&#xA;SignalShape.SignalShape(CommandReference)&#xD;&#xA;SignalShape.Initialize():Void&#xD;&#xA;DiagramEntityBase.get_Rectangle():Rectangle</Item>
+              </Issue>
+              <Issue>
+               <Item>SignalShape.SignalShape(CommandReference)</Item>
+               <Item>&#xD;&#xA;&#xD;&#xA;SignalShape.SignalShape(CommandReference)&#xD;&#xA;SignalShape.Initialize():Void&#xD;&#xA;SimpleShapeBase.set_AutoSize(Boolean):Void&#xD;&#xA;SimpleShapeBase.AutoReSize(String):Void&#xD;&#xA;ShapeBase.Transform(Rectangle):Void&#xD;&#xA;ShapeBase.Transform(Int32, Int32, Int32, Int32):Void</Item>
+              </Issue>
+              <Issue>
+               <Item>SignalShape.SignalShape(CommandReference)</Item>
+               <Item>&#xD;&#xA;&#xD;&#xA;SignalShape.SignalShape(CommandReference)&#xD;&#xA;SignalShape.Initialize():Void&#xD;&#xA;SimpleShapeBase.set_AutoSize(Boolean):Void&#xD;&#xA;SimpleShapeBase.AutoReSize(String):Void&#xD;&#xA;ShapeBase.Transform(Rectangle):Void&#xD;&#xA;ShapeBase.Transform(Int32, Int32, Int32, Int32):Void&#xD;&#xA;DiagramEntityBase.UpdatePaintingMaterial():Void</Item>
+              </Issue>
+              <Issue>
+               <Item>SignalShape.SignalShape(CommandReference)</Item>
+               <Item>&#xD;&#xA;&#xD;&#xA;SignalShape.SignalShape(CommandReference)&#xD;&#xA;SignalShape.Initialize():Void&#xD;&#xA;SimpleShapeBase.set_AutoSize(Boolean):Void&#xD;&#xA;SimpleShapeBase.AutoReSize(String):Void&#xD;&#xA;ShapeBase.Transform(Rectangle):Void&#xD;&#xA;ShapeBase.Transform(Int32, Int32, Int32, Int32):Void&#xD;&#xA;DiagramEntityBase.UpdatePaintingMaterial():Void&#xD;&#xA;DiagramEntityBase.Invalidate():Void</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name=".ctor(Netron.NetronLight.IModel,MathNet.Symbolics.Mediator.CommandReference)">
+            <Messages>
+             <Message TypeName="DoNotCallOverridableMethodsInConstructors" Category="Microsoft.Usage" CheckId="CA2214" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>SignalShape.SignalShape(IModel, CommandReference)</Item>
+               <Item>&#xD;&#xA;&#xD;&#xA;SignalShape.SignalShape(IModel, CommandReference)&#xD;&#xA;SignalShape.Initialize():Void&#xD;&#xA;DiagramEntityBase.get_Model():IModel</Item>
+              </Issue>
+              <Issue>
+               <Item>SignalShape.SignalShape(IModel, CommandReference)</Item>
+               <Item>&#xD;&#xA;&#xD;&#xA;SignalShape.SignalShape(IModel, CommandReference)&#xD;&#xA;SignalShape.Initialize():Void&#xD;&#xA;DiagramEntityBase.get_Rectangle():Rectangle</Item>
+              </Issue>
+              <Issue>
+               <Item>SignalShape.SignalShape(IModel, CommandReference)</Item>
+               <Item>&#xD;&#xA;&#xD;&#xA;SignalShape.SignalShape(IModel, CommandReference)&#xD;&#xA;SignalShape.Initialize():Void&#xD;&#xA;SimpleShapeBase.set_AutoSize(Boolean):Void&#xD;&#xA;SimpleShapeBase.AutoReSize(String):Void&#xD;&#xA;ShapeBase.Transform(Rectangle):Void&#xD;&#xA;ShapeBase.Transform(Int32, Int32, Int32, Int32):Void</Item>
+              </Issue>
+              <Issue>
+               <Item>SignalShape.SignalShape(IModel, CommandReference)</Item>
+               <Item>&#xD;&#xA;&#xD;&#xA;SignalShape.SignalShape(IModel, CommandReference)&#xD;&#xA;SignalShape.Initialize():Void&#xD;&#xA;SimpleShapeBase.set_AutoSize(Boolean):Void&#xD;&#xA;SimpleShapeBase.AutoReSize(String):Void&#xD;&#xA;ShapeBase.Transform(Rectangle):Void&#xD;&#xA;ShapeBase.Transform(Int32, Int32, Int32, Int32):Void&#xD;&#xA;DiagramEntityBase.UpdatePaintingMaterial():Void</Item>
+              </Issue>
+              <Issue>
+               <Item>SignalShape.SignalShape(IModel, CommandReference)</Item>
+               <Item>&#xD;&#xA;&#xD;&#xA;SignalShape.SignalShape(IModel, CommandReference)&#xD;&#xA;SignalShape.Initialize():Void&#xD;&#xA;SimpleShapeBase.set_AutoSize(Boolean):Void&#xD;&#xA;SimpleShapeBase.AutoReSize(String):Void&#xD;&#xA;ShapeBase.Transform(Rectangle):Void&#xD;&#xA;ShapeBase.Transform(Int32, Int32, Int32, Int32):Void&#xD;&#xA;DiagramEntityBase.UpdatePaintingMaterial():Void&#xD;&#xA;DiagramEntityBase.Invalidate():Void</Item>
+              </Issue>
+             </Message>
+             <Message Id="0#s" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2007-03-28 20:14:01Z">
+              <Issue Name="ParameterOneLetter">
+               <Item>SignalShape.SignalShape(IModel, CommandReference)</Item>
+               <Item>s</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="inConnector">
+            <Messages>
+             <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>inConnector</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="Initialize():System.Void">
+            <Messages>
+             <Message Id="System.Int32.ToString" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>SignalShape.Initialize():Void</Item>
+               <Item>System.Int32.ToString</Item>
+               <Item>System.Int32.ToString(System.IFormatProvider)</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="outConnector">
+            <Messages>
+             <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Created="2007-03-28 20:14:01Z">
+              <Issue>
+               <Item>outConnector</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+       <Namespace Name="MathNet.Symbolics.Presentation.WinDiagram">
+        <Types>
+         <Type Name="NetronController">
+          <Messages>
+           <Message Id="Netron" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2007-03-28 20:14:01Z">
+            <Issue Name="Type">
+             <Item>Netron</Item>
+             <Item>MathNet.Symbolics.Presentation.WinDiagram.NetronController</Item>
+            </Issue>
+           </Message>
+          </Messages>
+          <Members>
+           <Member Name=".ctor(Netron.NetronLight.Win.DiagramControl)">
+            <Messages>
+             <Message Id="0#netron" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2007-03-28 20:14:01Z">
+              <Issue Name="Parameter">
+               <Item>NetronController.NetronController(DiagramControl)</Item>
+               <Item>netron</Item>
+               <Item>netronDiagram</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+        </Types>
+       </Namespace>
+      </Namespaces>
+     </Module>
+    </Modules>
+   </Target>
    <Target Name="$(ProjectDir)/build/Debug/MathNet.Yttrium.Repository.Contracts.dll">
     <Modules>
      <Module Name="mathnet.yttrium.repository.contracts.dll">
@@ -8048,6 +9897,9 @@
    </User>
   </Notes>
   <Rules>
+   <Rule TypeName="AssembliesShouldDeclareMinimumSecurity" Category="Microsoft.Usage" CheckId="CA2209">
+    <Resolution Name="Default">No valid permission requests were found for assembly '{0}'. You should always specify the minimum security permissions using SecurityAction.RequestMinimum.</Resolution>
+   </Rule>
    <Rule TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210">
     <Resolution Name="NoStrongName">Sign '{0}' with a strong name key.</Resolution>
    </Rule>
@@ -8085,6 +9937,9 @@
    <Rule TypeName="DoNotDeclareStaticMembersOnGenericTypes" Category="Microsoft.Design" CheckId="CA1000">
     <Resolution Name="Default">Remove {0} from '{1}' or make it an instance member.</Resolution>
    </Rule>
+   <Rule TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051">
+    <Resolution Name="Default">Make '{0}' private or internal (Friend in VB, public private in C++) and provide a public or protected property to access it.</Resolution>
+   </Rule>
    <Rule TypeName="DoNotExposeGenericLists" Category="Microsoft.Design" CheckId="CA1002">
     <Resolution Name="Default">Change '{0}' in {1} to use Collection&lt;T&gt;, ReadOnlyCollection&lt;T&gt; or KeyedCollection&lt;K,V&gt;</Resolution>
    </Rule>
@@ -8114,6 +9969,9 @@
     <Resolution Name="ParameterOneLetter">In method {0}, consider providing a more meaningful name than the one-letter parameter name '{1}'.</Resolution>
     <Resolution Name="Type">Correct the spelling of the unrecognized token '{0}' in type name '{1}'.</Resolution>
    </Rule>
+   <Rule TypeName="IdentifiersShouldDifferByMoreThanCase" Category="Microsoft.Naming" CheckId="CA1708">
+    <Resolution Name="Member">Change member names {0} and '{1}' so that they differ by more than case.</Resolution>
+   </Rule>
    <Rule TypeName="IdentifiersShouldHaveCorrectSuffix" Category="Microsoft.Naming" CheckId="CA1710">
     <Resolution Name="Default">Rename '{0}' to end in '{1}'.</Resolution>
    </Rule>
@@ -8140,6 +9998,9 @@
    </Rule>
    <Rule TypeName="LiteralsShouldBeSpelledCorrectly" Category="Microsoft.Usage" CheckId="CA2204">
     <Resolution Name="Default">Correct the spelling of the unrecognized token '{0}' in the literal '{1}'.</Resolution>
+   </Rule>
+   <Rule TypeName="MarkAssembliesWithClsCompliant" Category="Microsoft.Design" CheckId="CA1014">
+    <Resolution Name="NoAttr">'{0}' should be marked with CLSCompliantAttribute and its value should be true.</Resolution>
    </Rule>
    <Rule TypeName="MarkISerializableTypesWithSerializable" Category="Microsoft.Usage" CheckId="CA2237">
     <Resolution Name="Default">Add [Serializable] to '{0}' as this type implements ISerializable.</Resolution>
@@ -8179,6 +10040,9 @@
    <Rule TypeName="ShortAcronymsShouldBeUppercase" Category="Microsoft.Naming" CheckId="CA1706">
     <Resolution Name="Parameter">Correct the capitalization of '{0}' in parameter name '{1}'.</Resolution>
     <Resolution Name="Type">Correct the capitalization of '{0}' in type name '{1}'.</Resolution>
+   </Rule>
+   <Rule TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305">
+    <Resolution Name="Default">{0} makes a call to {1} that does not explicitly provide an IFormatProvider. This should be replaced with a call to {2}.</Resolution>
    </Rule>
    <Rule TypeName="TypeNamesShouldNotMatchNamespaces" Category="Microsoft.Naming" CheckId="CA1724">
     <Resolution Name="Default">The type name '{0}' conflicts in whole or in part with the namespace name '{1}'. Change either name to eliminate the conflict.</Resolution>
