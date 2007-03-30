@@ -24,6 +24,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 
+using MathNet.Symbolics.Library;
+
 namespace MathNet.Symbolics.Conversion
 {
     public class ConversionRouter : IValueConverter, IConversionRouter
@@ -36,13 +38,13 @@ namespace MathNet.Symbolics.Conversion
         #region Routing Structures
         private struct ConversionRoute
         {
-            public ConversionRoute(MathIdentifier canConvertFrom, Converter<ICustomData, ICustomData> convert)
+            public ConversionRoute(MathIdentifier canConvertFrom, Converter<object, object> convert)
             {
                 this.CanConvertFrom = canConvertFrom;
                 this.Convert = convert;
             }
             public readonly MathIdentifier CanConvertFrom;
-            public readonly Converter<ICustomData, ICustomData> Convert;
+            public readonly Converter<object, object> Convert;
         }
 
         private struct ConversionDistance : IRouteDistance
@@ -50,10 +52,10 @@ namespace MathNet.Symbolics.Conversion
             private readonly MathIdentifier _canConvertFrom;
             private readonly int _cost;
             private readonly IConversionRouter _nextHop;
-            private readonly Converter<ICustomData, ICustomData> _convert;
+            private readonly Converter<object, object> _convert;
             private readonly bool _lossless;
 
-            public ConversionDistance(MathIdentifier canConvertFrom, int cost, bool lossless, IConversionRouter nextHop, Converter<ICustomData, ICustomData> convert)
+            public ConversionDistance(MathIdentifier canConvertFrom, int cost, bool lossless, IConversionRouter nextHop, Converter<object, object> convert)
             {
                 _canConvertFrom = canConvertFrom;
                 _cost = cost;
@@ -76,7 +78,7 @@ namespace MathNet.Symbolics.Conversion
                 get { return _nextHop; }
                 //set { _nextHop = value; }
             }
-            public Converter<ICustomData, ICustomData> Convert
+            public Converter<object, object> Convert
             {
                 get { return _convert; }
                 //set { _convert = value; }
@@ -104,7 +106,7 @@ namespace MathNet.Symbolics.Conversion
         }
 
         #region Routing
-        public void AddSourceNeighbor(IConversionRouter routerWeCanConvertFrom, bool lossless, Converter<ICustomData, ICustomData> directConvert)
+        public void AddSourceNeighbor(IConversionRouter routerWeCanConvertFrom, bool lossless, Converter<object, object> directConvert)
         {
             MathIdentifier id = routerWeCanConvertFrom.TypeIdentifier;
             Propose(new ConversionDistance(id, 0, lossless, null, directConvert), routerWeCanConvertFrom);
@@ -177,12 +179,12 @@ namespace MathNet.Symbolics.Conversion
                 // then we want to add this route to our vector
 
                 // we have to map the proposed conversion with then one required to convert from him
-                Converter<ICustomData, ICustomData> distanceC = distance.Convert, localC, convert;
+                Converter<object, object> distanceC = distance.Convert, localC, convert;
                 if(knownLosslessProposer)
                     localC = losslessNeighbors[proposedBy.TypeIdentifier].Convert;
                 else
                     localC = lossyNeighbors[proposedBy.TypeIdentifier].Convert;
-                convert = delegate(ICustomData v) { return localC(distanceC(v)); };
+                convert = delegate(object v) { return localC(distanceC(v)); };
 
                 // Add route to vector and broadcast the vector.
                 vector[id] = new ConversionDistance(id, cost, lossless, proposedBy, convert);
@@ -211,10 +213,10 @@ namespace MathNet.Symbolics.Conversion
         #endregion
 
         #region Conversion
-        public Converter<ICustomData, ICustomData> BuildConverterFrom(MathIdentifier id)
+        public Converter<object, object> BuildConverterFrom(MathIdentifier id)
         {
             if(structureId.Equals(id))
-                return delegate(ICustomData value) { return value; };
+                return delegate(object value) { return value; };
             IRouteDistance cd;
             if(vector.TryGetValue(id, out cd))
                 return cd.Convert;
@@ -223,13 +225,26 @@ namespace MathNet.Symbolics.Conversion
             //throw new MathNet.Symbolics.Backend.Exceptions.IncompatibleStructureException(id.Label, id.Domain);
         }
 
-        public ICustomData ConvertFrom(ICustomData value)
+        public object ConvertFrom(ICustomData value)
         {
             MathIdentifier id = value.TypeId;
             if(structureId.Equals(id))
                 return value;
             IRouteDistance cd;
             if(vector.TryGetValue(id,out cd))
+                return cd.Convert(value);
+
+            throw new NotSupportedException("no route available to convert from " + id.ToString());
+            //throw new MathNet.Symbolics.Backend.Exceptions.IncompatibleStructureException(id.Label, id.Domain);
+        }
+
+        public object ConvertFrom(object value)
+        {
+            MathIdentifier id = Service<ILibrary>.Instance.LookupArbitraryType(value.GetType());
+            if(structureId.Equals(id))
+                return value;
+            IRouteDistance cd;
+            if(vector.TryGetValue(id, out cd))
                 return cd.Convert(value);
 
             throw new NotSupportedException("no route available to convert from " + id.ToString());
@@ -245,18 +260,53 @@ namespace MathNet.Symbolics.Conversion
                 return cd.Lossless || allowLoss;
             return false;
         }
+        public bool CanConvertFrom(Type type, bool allowLoss)
+        {
+            MathIdentifier id = Service<ILibrary>.Instance.LookupArbitraryType(type);
+            if(structureId.Equals(id))
+                return true;
+            IRouteDistance cd;
+            if(vector.TryGetValue(id, out cd))
+                return cd.Lossless || allowLoss;
+            return false;
+        }
         public bool CanConvertLosslessFrom(ICustomData value)
         {
             return value != null && CanConvertFrom(value.TypeId, false);
+        }
+        public bool CanConvertLosslessFrom(object value)
+        {
+            return value != null && CanConvertFrom(value.GetType(), false);
         }
         public bool CanConvertLossyFrom(ICustomData value)
         {
             return value != null && CanConvertFrom(value.TypeId, true);
         }
+        public bool CanConvertLossyFrom(object value)
+        {
+            return value != null && CanConvertFrom(value.GetType(), true);
+        }
 
-        public bool TryConvertFrom(ICustomData value, out ICustomData returnValue)
+        public bool TryConvertFrom(ICustomData value, out object returnValue)
         {
             MathIdentifier id = value.TypeId;
+            if(structureId.Equals(id))
+            {
+                returnValue = value;
+                return true;
+            }
+            IRouteDistance cd;
+            if(vector.TryGetValue(id, out cd))
+            {
+                returnValue = cd.Convert(value);
+                return true;
+            }
+            returnValue = null;
+            return false;
+        }
+        public bool TryConvertFrom(object value, out object returnValue)
+        {
+            MathIdentifier id = Service<ILibrary>.Instance.LookupArbitraryType(value.GetType());
             if(structureId.Equals(id))
             {
                 returnValue = value;

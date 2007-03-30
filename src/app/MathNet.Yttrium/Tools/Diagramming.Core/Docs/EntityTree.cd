@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Font Name="Tahoma" Size="8.25" />
+  <Comment CommentText="Anything derived from IPaintable can be painted on the surface.">
+    <Position X="6.333" Y="0.688" Height="0.594" Width="1.7" />
+  </Comment>
+  <Comment CommentText="Anything derived from IDiagramEntity is part of the diagram.">
+    <Position X="3" Y="2" Height="0.75" Width="1.7" />
+  </Comment>
+  <Comment CommentText="Anything derived from IShape can be considered as a diagram node.">
+    <Position X="5.594" Y="5.51" Height="0.75" Width="1.7" />
+  </Comment>
+  <Comment CommentText="Anything derived from IConnector can be considered as an attachment point for a connection.">
+    <Position X="5.948" Y="4.354" Height="0.75" Width="1.7" />
+  </Comment>
+  <Comment CommentText="Anything derived from IConnection can be considered as a link in a diagram.">
+    <Position X="8.208" Y="4.333" Height="0.75" Width="1.7" />
+  </Comment>
+  <Comment CommentText="Anything derived from IAnts can be considered as a selection widget.">
+    <Position X="10.448" Y="2.844" Height="0.75" Width="1.7" />
+  </Comment>
+  <Comment CommentText="Anything derived from IGhost can be considered as a (transparent) temporary visual element on the surface (e.g. shape previews).">
+    <Position X="12.646" Y="2.823" Height="0.865" Width="1.7" />
+  </Comment>
+  <Comment CommentText="Anything derived from IGroup can be considered as a compound diagram element.">
+    <Position X="1.734" Y="4.356" Height="0.75" Width="1.7" />
+  </Comment>
+  <Comment CommentText="A simple shape is...well, a simple shape!">
+    <Position X="1.906" Y="7.844" Height="0.75" Width="1.7" />
+  </Comment>
+  <Comment CommentText="A complex shape can have IPaintable children, which means you can adorn the shape with as good as anything.">
+    <Position X="5.792" Y="7.833" Height="0.75" Width="1.981" />
+  </Comment>
+  <Comment CommentText="Anything derived from ITracker can be considered as a tracker of some diagram entity.">
+    <Position X="15.268" Y="2.788" Height="0.75" Width="1.7" />
+  </Comment>
+  <Interface Name="Netron.Diagramming.Core.IShape" Collapsed="true">
+    <Position X="3.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Core\Interfaces\IShape.cs</FileName>
+      <HashCode>AAAAAAAABAAAAAAAAAIAAEQAAAAAAAAAAAAAAAKAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Netron.Diagramming.Core.IDiagramEntity" Collapsed="true">
+    <Position X="5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Core\Interfaces\IDiagramEntity.cs</FileName>
+      <HashCode>AAAAEEAEAIAgFAAAAAICQAQCAAAAEAABAAiCgAABAAg=</HashCode>
+    </TypeIdentifier>
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
+    </Compartments>
+  </Interface>
+  <Interface Name="Netron.Diagramming.Core.IPaintable" Collapsed="true">
+    <Position X="8.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Core\Interfaces\IPaintable.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAIAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Netron.Diagramming.Core.IGhost" Collapsed="true">
+    <Position X="12.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Core\Interfaces\IGhost.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Netron.Diagramming.Core.IAnts" Collapsed="true">
+    <Position X="10.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Core\Interfaces\IAnts.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Netron.Diagramming.Core.IConnector" Collapsed="true">
+    <Position X="6" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Core\Interfaces\IConnector.cs</FileName>
+      <HashCode>AMCAAAAAAAAAgAAAAAAAIAQAAAAAAAAAAAAAAAIAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Netron.Diagramming.Core.IConnection" Collapsed="true">
+    <Position X="8.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Core\Interfaces\IConnection.cs</FileName>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Netron.Diagramming.Core.IGroup" Collapsed="true">
+    <Position X="1.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Core\Interfaces\IGroup.cs</FileName>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Netron.Diagramming.Core.ISimpleShape" Collapsed="true">
+    <Position X="2" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Core\Interfaces\ISimpleShape.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Netron.Diagramming.Core.IComplexShape" Collapsed="true">
+    <Position X="5.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Core\Interfaces\IComplexShape.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Netron.Diagramming.Core.ITracker" Collapsed="true">
+    <Position X="15.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Core\Interfaces\ITracker.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAAAQAAAAAAAAQAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Netron.Diagramming.Core.IShapeMaterial" Collapsed="true">
+    <Position X="17.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Core\Interfaces\IShapeMaterial.cs</FileName>
+      <HashCode>AAAEAAAAAAAABAAAAAAAAAQAAAAgAAAIAAAAAAIAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+</ClassDiagram>

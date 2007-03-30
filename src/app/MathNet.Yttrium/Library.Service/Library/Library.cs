@@ -33,6 +33,7 @@ namespace MathNet.Symbolics.Library
         private ArchitectureFactoryCollection _architectures;
         private TheoremProviderCollection _theorems;
         private CustomDataCollection _customData;
+        private Dictionary<MathIdentifier, Type> _arbitraryType;
 
         public Library()
         {
@@ -40,6 +41,7 @@ namespace MathNet.Symbolics.Library
             _architectures = new ArchitectureFactoryCollection();
             _theorems = new TheoremProviderCollection();
             _customData = new CustomDataCollection();
+            _arbitraryType = new Dictionary<MathIdentifier, Type>();
         }
 
         public void AddEntity(IEntity entity)
@@ -76,6 +78,15 @@ namespace MathNet.Symbolics.Library
              where TCustomType : ICustomData
         {
             _customData.Add(new CustomDataRef(typeof(TCustomType), ValueConverter<TCustomType>.Router, optionalSingletonInstance));
+        }
+
+        public void AddArbitraryType(Type type)
+        {
+            if(type == null) throw new ArgumentNullException("type");
+            MathIdentifier id = new MathIdentifier(type.Name, type.Namespace);
+            if(!_arbitraryType.ContainsKey(id))
+                _arbitraryType.Add(id, type);
+
         }
 
         #region Entity Library
@@ -260,6 +271,29 @@ namespace MathNet.Symbolics.Library
         public bool TryLookupCustomDataType(MathIdentifier typeId, out ICustomDataRef data)
         {
             return _customData.TryGetValue(typeId, out data);
+        }
+        #endregion
+
+        #region Arbitrary Type Library
+        public bool ContainsArbitraryType(MathIdentifier id)
+        {
+            return _arbitraryType.ContainsKey(id);
+        }
+        public bool ContainsArbitraryType(Type type)
+        {
+            return _arbitraryType.ContainsValue(type);
+        }
+        public Type LookupArbitraryType(MathIdentifier id)
+        {
+            return _arbitraryType[id];
+        }
+        public MathIdentifier LookupArbitraryType(Type type)
+        {
+            return new MathIdentifier(type.Name, type.Namespace);
+        }
+        public bool TryLookupArbitraryType(MathIdentifier id, out Type type)
+        {
+            return _arbitraryType.TryGetValue(id, out type);
         }
         #endregion
     }

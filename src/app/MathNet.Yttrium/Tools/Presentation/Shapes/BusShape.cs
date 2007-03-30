@@ -4,10 +4,11 @@ using System.Text;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 
-using Netron.NetronLight;
-using Netron.NetronLight.Win;
+using Netron.Diagramming.Core;
+using Netron.Diagramming.Win;
 
 using MathNet.Symbolics.Mediator;
+using MathNet.Symbolics.Presentation.FlyweightShapes;
 
 namespace MathNet.Symbolics.Presentation.Shapes
 {
@@ -16,9 +17,10 @@ namespace MathNet.Symbolics.Presentation.Shapes
     /// </summary>
     public partial class BusShape : SimpleShapeBase
     {
-        protected Connector busConnector;
+        private Connector busConnector;
         private CommandReference sysRef;
         private Bus bus;
+        private IFlyweightShape<BusShape> _fly;
 
         #region Properties
         public CommandReference BusReference
@@ -43,50 +45,31 @@ namespace MathNet.Symbolics.Presentation.Shapes
         }
         #endregion
 
-        #region Constructor
-        /// <summary>
-        /// Default ctor
-        /// </summary>
-        /// <param name="s"></param>
-        public BusShape(IModel s, CommandReference reference)
-            : base(s)
+        public BusShape(IModel model, CommandReference reference, IFlyweightShape<BusShape> fly)
+            : base(model)
         {
             this.sysRef = reference;
-            Initialize();
-        }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="T:SimpleRectangle"/> class.
-        /// </summary>
-        public BusShape(CommandReference reference)
-            : base()
-        {
-            this.sysRef = reference;
-            Initialize();
-        }
 
-        private void Initialize()
-        {
-            busConnector = new Connector(new Point((int)(Rectangle.Left + Rectangle.Width / 2),Rectangle.Bottom), Model);
+            busConnector = new Connector(Model); //new Point((int)(Rectangle.Left + Rectangle.Width / 2), Rectangle.Bottom), 
             busConnector.Name = "Bus";
+            busConnector.Parent = this;
             Connectors.Add(busConnector);
 
-            foreach(IConnector con in Connectors)
-            {
-                con.Parent = this;
-            }
-
-            AutoSize = false;
-            Width = 20;
-            Height = 20;
-            Resizable = false;
-            Text = sysRef.Index.ToString();
-
-            PaintStyle = new GradientPaintStyle(Color.DarkGreen, Color.Yellow, -135);
+            AssignFly(fly);
         }
 
-        #endregion
+        public void AssignFly(IFlyweightShape<BusShape> fly)
+        {
+            if(_fly != fly)
+            {
+                _fly = fly;
+                if(_fly != null)
+                    _fly.InitShape(this);
+            }
 
-        #region Methods
+            Invalidate();
+        }
+
         /// <summary>
         /// Tests whether the mouse hits this bundle
         /// </summary>
@@ -94,11 +77,9 @@ namespace MathNet.Symbolics.Presentation.Shapes
         /// <returns></returns>
         public override bool Hit(Point p)
         {
-            Rectangle r = new Rectangle(p, new Size(5, 5));
+            Rectangle r = new Rectangle(p, new Size(2, 2));
             return Rectangle.Contains(r);
         }
-
-
 
         /// <summary>
         /// Paints the bundle on the canvas
@@ -106,30 +87,7 @@ namespace MathNet.Symbolics.Presentation.Shapes
         /// <param name="g"></param>
         public override void Paint(Graphics g)
         {
-            g.SmoothingMode = SmoothingMode.HighQuality;
-
-            //the shadow
-            g.FillRectangle(ArtPallet.ShadowBrush, Rectangle.X + 3, Rectangle.Y + 3, Rectangle.Width, Rectangle.Height);
-            
-            //the actual shape
-            g.FillRectangle(Brush, Rectangle);
-            
-            //the edge of the bundle
-            if(Hovered || IsSelected)
-                g.DrawRectangle(ArtPallet.HighlightPen, Rectangle);
-            else
-                g.DrawRectangle(Pen, Rectangle);
-            
-            //the connectors
-            for(int k = 0; k < Connectors.Count; k++)
-            {
-                Connectors[k].Paint(g);
-            }
-
-            if(!string.IsNullOrEmpty(Text))
-                g.DrawString(Text, ArtPallet.DefaultFont, Brushes.Black, TextRectangle.X - 6, TextRectangle.Y - 6);
+            _fly.Paint(this, g);
         }
-
-        #endregion
     }
 }

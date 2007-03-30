@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Font Name="Tahoma" Size="8.25" />
+  <Class Name="Netron.Diagramming.Core.ShapeProvider" Collapsed="true">
+    <Position X="5.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>PropertySystem\Providers\ShapeProvider.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAQAAAEAAAAAAAAAAAAAABAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Netron.Diagramming.Core.ConnectionProvider" Collapsed="true">
+    <Position X="8" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <FileName>PropertySystem\Providers\ConnectionProvider.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAAAABAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Netron.Diagramming.Core.DiagramEntityBaseDescriptor" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="2" />
+    <TypeIdentifier>
+      <FileName>PropertySystem\Descriptors\DiagramEntityBaseDescriptor.cs</FileName>
+      <HashCode>AAAAAAAAIAAAAgAAAAAAAAAAAAAAAABAAQCAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Netron.Diagramming.Core.DescriptorBase" Collapsed="true">
+    <Position X="2.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>PropertySystem\Descriptors\DescriptorBase.cs</FileName>
+      <HashCode>AAAACAQAIAAAAgAAQAAAAAAAAAABAAAIAAAAAAACAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.ComponentModel.TypeDescriptionProvider" Collapsed="true">
+    <Position X="6.75" Y="0.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="System.ComponentModel.CustomTypeDescriptor" Collapsed="true">
+    <Position X="2.25" Y="0.75" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Netron.Diagramming.Core.ConnectionBaseDescriptor" Collapsed="true">
+    <Position X="3.25" Y="4.75" Width="2" />
+    <TypeIdentifier>
+      <FileName>PropertySystem\Descriptors\ConnectionBaseDescriptor.cs</FileName>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Netron.Diagramming.Core.SimpleShapeBaseDescriptor" Collapsed="true">
+    <Position X="0.75" Y="6.25" Width="2" />
+    <TypeIdentifier>
+      <FileName>PropertySystem\Descriptors\SimpleShapeBaseDescriptor.cs</FileName>
+      <HashCode>AAAAAAAAIAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Netron.Diagramming.Core.ConnectionDescriptor" Collapsed="true">
+    <Position X="3.25" Y="6.25" Width="2" />
+    <TypeIdentifier>
+      <FileName>PropertySystem\Descriptors\ConnectionDescriptor.cs</FileName>
+      <HashCode>AAAAAAAAIAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Netron.Diagramming.Core.ShapeBaseDescriptor" Collapsed="true">
+    <Position X="1" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>PropertySystem\Descriptors\ShapeBaseDescriptor.cs</FileName>
+      <HashCode>AAAAAAAAIAAAAgAAAAAAAAAAAAAAAABAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+</ClassDiagram>

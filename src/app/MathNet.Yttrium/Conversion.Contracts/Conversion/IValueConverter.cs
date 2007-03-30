@@ -28,12 +28,17 @@ namespace MathNet.Symbolics.Conversion
     public interface IValueConverter
     {
         MathIdentifier TypeIdentifier { get;}
-        Converter<ICustomData, ICustomData> BuildConverterFrom(MathIdentifier id);
-        ICustomData ConvertFrom(ICustomData value);
-        bool TryConvertFrom(ICustomData value, out ICustomData returnValue);
+        Converter<object, object> BuildConverterFrom(MathIdentifier id);
+        object ConvertFrom(ICustomData value);
+        object ConvertFrom(object value);
+        bool TryConvertFrom(ICustomData value, out object returnValue);
+        bool TryConvertFrom(object value, out object returnValue);
         bool CanConvertFrom(MathIdentifier id, bool allowLoss);
+        bool CanConvertFrom(Type type, bool allowLoss);
         bool CanConvertLosslessFrom(ICustomData value);
         bool CanConvertLossyFrom(ICustomData value);
+        bool CanConvertLosslessFrom(object value);
+        bool CanConvertLossyFrom(object value);
 
         //Type InstanceType { get;}
     }

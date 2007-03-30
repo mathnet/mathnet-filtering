@@ -46,7 +46,7 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
             ValueConverter<ComplexValue>.AddConverterFrom<RationalValue>(true, ConvertFrom);
             ValueConverter<ComplexValue>.AddConverterFrom<RealValue>(true, ConvertFrom);
             ValueConverter<ComplexValue>.AddConverterTo(ValueConverter<RealValue>.Router, false,
-                delegate(ICustomData value) { return new RealValue(((ComplexValue)value).RealValue); });
+                delegate(object value) { return new RealValue(((ComplexValue)value).RealValue); });
         }
         public static ComplexValue ConvertFrom(ICustomData value)
         {

@@ -22,8 +22,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Reflection;
 
 using MathNet.Symbolics.Conversion;
+using MathNet.Symbolics.Library;
 
 namespace MathNet.Symbolics
 {
@@ -41,8 +43,23 @@ namespace MathNet.Symbolics
         }
         IConversionRouter IFactory<IConversionRouter, Type>.GetInstance(Type p1)
         {
-            object id = p1.GetProperty("TypeIdentifier", typeof(MathIdentifier)).GetValue(null, null);
-            return new ConversionRouter((MathIdentifier)id);
+            PropertyInfo info = p1.GetProperty("TypeIdentifier", typeof(MathIdentifier));
+            if(info != null)
+            {
+                object id = info.GetValue(null, null);
+                return new ConversionRouter((MathIdentifier)id);
+            }
+            else
+            {
+                // map to an arbitrary type, if this type has been registered
+                ILibrary lib = Service<ILibrary>.Instance;
+                if(lib.ContainsArbitraryType(p1))
+                {
+                    MathIdentifier id = lib.LookupArbitraryType(p1);
+                    return new ConversionRouter(id);
+                }
+                throw new NotSupportedException("Given type is neither a custom data type nor a registered arbitrary type.");                
+            }
         }
     }
 }

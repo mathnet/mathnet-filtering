@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Font Name="Tahoma" Size="8.25" />
+  <Comment CommentText="The Model is the data repository and contains both diagram and ambient information (canvas properties and metadata). The Model is unaware of the Controller and View.">
+    <Position X="4.333" Y="1.531" Height="0.75" Width="3.137" />
+  </Comment>
+  <Comment CommentText="The diagram is still a collection of shapes and connections but the Model will eventually evolve towards a scene-graph (cfr. DirectX scenes).">
+    <Position X="5.583" Y="4.271" Height="0.75" Width="2.585" />
+  </Comment>
+  <Comment CommentText="At every stage the class design now heavily relies on generics, static classes, anonymous methods and interfaces.">
+    <Position X="9.406" Y="4.521" Height="0.75" Width="2.21" />
+  </Comment>
+  <Class Name="Netron.Diagramming.Core.Model" Collapsed="true">
+    <Position X="4.5" Y="2.5" Width="2.25" />
+    <TypeIdentifier>
+      <FileName>MVC\Model.cs</FileName>
+      <HashCode>AACFMAABRDCAAAGBACQAAECAAAAgAoEElAgQACBgYAA=</HashCode>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Ambience" />
+      <Property Name="Connections" />
+      <Property Name="Information" />
+      <Property Name="Shapes" />
+    </ShowAsAssociation>
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="Ambience" Type="Netron.Diagramming.Core.Ambience">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.575" Y="0.35" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Connections" Type="Netron.Diagramming.Core.CollectionBase&lt;T&gt;">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.482" Y="2.87" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="Information" Type="Netron.Diagramming.Core.DocumentInformation" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4.75" Y="3.009" />
+        <Point X="4.75" Y="4.255" />
+        <Point X="3" Y="4.255" />
+      </Path>
+    </AssociationLine>
+    <Lollipop Orientation="Bottom" Position="1.815" />
+  </Class>
+  <Class Name="Netron.Diagramming.Core.Ambience" Collapsed="true">
+    <Position X="1.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Ambience.cs</FileName>
+      <HashCode>AACAggAAAJAAIQIBACAAgAAACAAAAAEAAAAABAACAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Orientation="Left" Position="0.1" />
+  </Class>
+  <Class Name="Netron.Diagramming.Core.CollectionBase&lt;T&gt;" Collapsed="true">
+    <Position X="8" Y="5.5" Width="2" />
+    <TypeIdentifier>
+      <FileName>Collections\CollectionBase.cs</FileName>
+      <HashCode>AAIAGAIACABEABAECQAABAQAAAAIEBAkKAAAAAFQIAM=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Orientation="Right" Position="0.1" />
+  </Class>
+  <Class Name="Netron.Diagramming.Core.DocumentInformation" Collapsed="true">
+    <Position X="1.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>DocumentInformation.cs</FileName>
+      <HashCode>QCQAAAAQBBAgAEAAgCAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Orientation="Left" Position="0.152" />
+  </Class>
+  <Class Name="Netron.Diagramming.Core.ShapeCollection">
+    <Position X="5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Collections\ShapeCollection.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Delegate Name="System.EventHandler&lt;TEventArgs&gt;" Collapsed="true">
+    <Position X="8" Y="6.5" Width="2.5" />
+    <TypeIdentifier />
+  </Delegate>
+</ClassDiagram>

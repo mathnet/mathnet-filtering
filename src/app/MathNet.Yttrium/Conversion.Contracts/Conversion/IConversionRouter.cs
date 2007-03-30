@@ -27,7 +27,7 @@ namespace MathNet.Symbolics.Conversion
 {
     public interface IConversionRouter : IValueConverter
     {
-        void AddSourceNeighbor(IConversionRouter routerWeCanConvertFrom, bool lossless, Converter<ICustomData, ICustomData> directConvert);
+        void AddSourceNeighbor(IConversionRouter routerWeCanConvertFrom, bool lossless, Converter<object, object> directConvert);
         void AddTargetNeighbor(IConversionRouter routerWeCanConvertTo);
         bool Propose(IRouteDistance distance, IConversionRouter proposedBy);
         void Propose(Dictionary<MathIdentifier, IRouteDistance> vec, IConversionRouter proposedBy);

@@ -32,10 +32,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\MathNet.Iridium\Library\bin\Release\MathNet.Iridium.dll</HintPath>
     </Reference>
-    <Reference Include="Netron.NetronLight, Version=2.8.2313.25507, Culture=neutral, PublicKeyToken=9c4817ccfa6cd2b1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Netron4Chris\Core\bin\Release\Netron.NetronLight.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -122,6 +118,14 @@
     <ProjectReference Include="..\..\Simulation.Contracts\Yttrium.Simulation.Contracts.csproj">
       <Project>{CFE74A4D-51A2-432C-966A-E29773C55D45}</Project>
       <Name>Yttrium.Simulation.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Diagramming.Core\Netron.Diagramming.Core.csproj">
+      <Project>{96AEBBEE-4203-45F3-BCF5-7B73BF256BDA}</Project>
+      <Name>Netron.Diagramming.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Diagramming.Win\Netron.Diagramming.Win.csproj">
+      <Project>{1D15C2A9-7D08-4BA6-B307-BDE0CA8AF1CB}</Project>
+      <Name>Netron.Diagramming.Win</Name>
     </ProjectReference>
     <ProjectReference Include="..\Presentation\Yttrium.Presentation.csproj">
       <Project>{80FC18B6-13DC-4D8F-8007-8D2CD08D1B5B}</Project>

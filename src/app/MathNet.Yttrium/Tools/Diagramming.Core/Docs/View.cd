@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Font Name="Tahoma" Size="8.25" />
+  <Comment CommentText="The View holds a pointer to the surface and the surface simply call the paint method of the view to display the diagram.">
+    <Position X="3.073" Y="0.948" Height="0.75" Width="1.7" />
+  </Comment>
+  <Comment CommentText="Selection ants (marquee) and other visual effects are now formalized and generalized via static classes. It allows a wide variety of visuals independently of the diagram Model data.">
+    <Position X="7.667" Y="3.667" Height="1.281" Width="1.7" />
+  </Comment>
+  <Comment CommentText="Different views can be attached to the Model enabling a better separation, ASP.Net controls and viewers (diagram thumbnail e.g.).">
+    <Position X="3.042" Y="4.281" Height="0.844" Width="1.94" />
+  </Comment>
+  <Class Name="Netron.Diagramming.Core.View">
+    <Position X="5.25" Y="2" Width="2.25" />
+    <TypeIdentifier>
+      <FileName>MVC\View.cs</FileName>
+      <HashCode>AABABAAECIAAYAQABAAAAABAIQAAAEQAAKgAgAAIEBI=</HashCode>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="parentControl" />
+      <Property Name="Model" />
+    </ShowAsAssociation>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="Netron.Diagramming.Core.View.AntsFactory" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>MVC\View.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <NestedTypes>
+          <Class Name="Netron.Diagramming.Core.View.AntsFactory.RectAnts" Collapsed="true">
+            <TypeIdentifier>
+              <NewMemberFileName>MVC\View.cs</NewMemberFileName>
+            </TypeIdentifier>
+            <Lollipop Position="0.2" />
+          </Class>
+        </NestedTypes>
+      </Class>
+      <Enum Name="Netron.Diagramming.Core.View.AntTypes" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>MVC\View.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Class Name="Netron.Diagramming.Core.View.GhostsFactory" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>MVC\View.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Enum Name="Netron.Diagramming.Core.View.GhostTypes" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>MVC\View.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <AssociationLine Name="parentControl" Type="Netron.Diagramming.Core.UI.DiagramControl">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.164" Y="0.235" />
+      </MemberNameLabel>
+    </AssociationLine>
+  </Class>
+  <Class Name="Netron.Diagramming.Core.UI.DiagramControl" Collapsed="true">
+    <Position X="5.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>UI\DiagramControl.cs</FileName>
+      <HashCode>AQCBgQAACQAABABIIDAAAAgBAgAJAABDAAACBgABEAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Orientation="Right" Position="0.1" />
+  </Class>
+  <Interface Name="Netron.Diagramming.Core.IModel" Collapsed="true">
+    <Position X="5.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Interfaces\Diagramming\IModel.cs</FileName>
+      <HashCode>AACFIAAAACCAAAAAAAQAAAAAAAAAAoAAAAAAACBAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+</ClassDiagram>

@@ -43,7 +43,7 @@ namespace MathNet.Symbolics.Packages.PetriNet
             library.AddCustomDataType<TokenValue>();
             ValueConverter<TokenValue>.AddConverterFrom<IntegerValue>(true, ConvertFrom);
             ValueConverter<TokenValue>.AddConverterTo(ValueConverter<IntegerValue>.Router, true,
-                delegate(ICustomData value)
+                delegate(object value)
                 {
                     return new IntegerValue(((TokenValue)value).Value);
                 });

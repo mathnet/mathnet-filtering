@@ -7,13 +7,13 @@ using System.Text;
 using System.Windows.Forms;
 
 using MathNet.Symbolics.Mediator;
+using MathNet.Symbolics.Library;
 using MathNet.Symbolics.Packages.Standard;
 using MathNet.Symbolics.Packages.Standard.Properties;
 using MathNet.Symbolics.Packages.Standard.Structures;
 using MathNet.Symbolics.Presentation.WinDiagram;
 
-using Netron.NetronLight;
-using MathNet.Symbolics.Library;
+using Netron.Diagramming.Core;
 
 namespace MathNet.Symbolics.Whiteboard
 {
@@ -25,6 +25,7 @@ namespace MathNet.Symbolics.Whiteboard
         {
             InitializeComponent();
             _ctrl = new NetronController(netron);
+            _ctrl.ModelChanged += new EventHandler(_ctrl_ModelChanged);
 
             Service<IPackageLoader>.Instance.LoadStdPackage();
 
@@ -33,16 +34,35 @@ namespace MathNet.Symbolics.Whiteboard
             //LogSystemObserver lo = new LogSystemObserver(new TextLogWriter(Console.Out));
             //_project.AttachLocalObserver(lo);
 
+            //Ambience amb = netron.Document.Model.DefaultPage.Ambience;
+            //amb.BackgroundType = CanvasBackgroundTypes.Gradient;
+            //amb.GradientColor1 = Color.Gold; //Color.WhiteSmoke;
+            //amb.GradientColor2 = Color.Goldenrod; //Color.SteelBlue;
 
+            
+        }
 
-            Ambience amb = netron.Document.Model.DefaultPage.Ambience;
+        void _ctrl_ModelChanged(object sender, EventArgs e)
+        {
+            netron.View.SetBackgroundType(CanvasBackgroundTypes.Gradient);
+            Ambience amb = _ctrl.CurrentDocument.Model.CurrentPage.Ambience;
+            amb.BackgroundColor = Color.Gold;
             amb.BackgroundType = CanvasBackgroundTypes.Gradient;
-            amb.GradientColor1 = Color.WhiteSmoke; //Color.Gold;
-            amb.GradientColor2 = Color.SteelBlue; //Color.Goldenrod;
+            amb.GradientColor1 = Color.Gold; //Color.WhiteSmoke;
+            amb.GradientColor2 = Color.Goldenrod; //Color.SteelBlue;
+            
         }
 
         private void WhiteboardForm_Load(object sender, EventArgs e)
         {
+            //netron.View.SetBackgroundType(CanvasBackgroundTypes.Gradient);
+            //Ambience amb = netron.View.Model.Pages[0].Ambience;
+            //amb.BackgroundType = CanvasBackgroundTypes.Gradient;
+            //amb.BackgroundColor = Color.Gold;
+            //amb.GradientColor1 = Color.Gold; //Color.WhiteSmoke;
+            //amb.GradientColor2 = Color.Goldenrod; //Color.SteelBlue;
+            
+
             entitySelector.Entities = Service<ILibrary>.Instance.GetAllEntities();
             entitySelector.UpdateEntities();
 
@@ -93,6 +113,7 @@ namespace MathNet.Symbolics.Whiteboard
             cmd.EntityId = entitySelector.Entity.EntityId;
             cmd.NumberOfInputs = entitySelector.NumberOfInputs;
             cmd.NumberOfBuses = entitySelector.NumberOfBuses;
+            cmd.NumberOfOutputs = entitySelector.NumberOfOutputs;
             _ctrl.PostCommand(cmd);
             entitySelector.Visible = false;
         }

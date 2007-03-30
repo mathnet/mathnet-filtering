@@ -29,14 +29,15 @@ using System.Runtime.Serialization;
 namespace MathNet.Symbolics.Mediator
 {
     [Serializable]
-    public class SignalUnrivePortCommand : ObjectModel.PortIndexCommand
+    public class SignalUndrivePortCommand : ObjectModel.PortIndexCommand
     {
-        public SignalUnrivePortCommand() { }
-        protected SignalUnrivePortCommand(SerializationInfo info, StreamingContext context) : base(info, context) { }
+        public SignalUndrivePortCommand() { }
+        protected SignalUndrivePortCommand(SerializationInfo info, StreamingContext context) : base(info, context) { }
 
         protected override void Action(Port port, int index)
         {
-            port.RemoveInputSignalBinding(index);
+            if(port.InputSignals[index] != null)
+                port.RemoveInputSignalBinding(index);
         }
     }
 }

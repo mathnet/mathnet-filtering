@@ -36,7 +36,8 @@ namespace MathNet.Symbolics.Mediator
 
         protected override void Action(Port port, Signal signal, int index)
         {
-            port.AddInputSignalBinding(index, signal);
+            if(port.InputSignals[index] != signal)
+                port.AddInputSignalBinding(index, signal);
         }
     }
 }

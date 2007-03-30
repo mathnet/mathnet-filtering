@@ -28,7 +28,8 @@ namespace MathNet.Symbolics.Whiteboard
         /// </summary>
         private void InitializeComponent()
         {
-            this.netron = new Netron.NetronLight.Win.DiagramControl();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WhiteboardForm));
+            this.netron = new Netron.Diagramming.Win.DiagramControl();
             this.btnBuildSample = new System.Windows.Forms.Button();
             this.btnNewSignal = new System.Windows.Forms.Button();
             this.btnNewBus = new System.Windows.Forms.Button();
@@ -43,21 +44,25 @@ namespace MathNet.Symbolics.Whiteboard
             this.netron.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.netron.AutoScroll = true;
             this.netron.BackColor = System.Drawing.Color.Gold;
-            this.netron.BackgroundType = Netron.NetronLight.CanvasBackgroundTypes.Gradient;
+            this.netron.BackgroundType = Netron.Diagramming.Core.CanvasBackgroundTypes.FlatColor;
+            //this.netron.Document = ((Netron.Diagramming.Core.Document)(resources.GetObject("netron.Document")));
             this.netron.EnableAddConnection = true;
-            this.netron.Location = new System.Drawing.Point(-2, 0);
+            this.netron.Location = new System.Drawing.Point(0, 0);
+            this.netron.Magnification = new System.Drawing.SizeF(100F, 100F);
             this.netron.Name = "netron";
-            this.netron.Pan = new System.Drawing.Point(0, 0);
-            this.netron.Scale = 1F;
-            this.netron.Size = new System.Drawing.Size(730, 567);
+            this.netron.Origin = new System.Drawing.Point(0, 0);
+            this.netron.ShowPage = false;
+            this.netron.ShowRulers = false;
+            this.netron.Size = new System.Drawing.Size(818, 603);
             this.netron.TabIndex = 0;
             this.netron.Text = "Math.NET Whiteboard Diagram";
             // 
             // btnBuildSample
             // 
             this.btnBuildSample.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBuildSample.Location = new System.Drawing.Point(552, 573);
+            this.btnBuildSample.Location = new System.Drawing.Point(640, 609);
             this.btnBuildSample.Name = "btnBuildSample";
             this.btnBuildSample.Size = new System.Drawing.Size(163, 23);
             this.btnBuildSample.TabIndex = 1;
@@ -68,7 +73,7 @@ namespace MathNet.Symbolics.Whiteboard
             // btnNewSignal
             // 
             this.btnNewSignal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnNewSignal.Location = new System.Drawing.Point(12, 573);
+            this.btnNewSignal.Location = new System.Drawing.Point(12, 609);
             this.btnNewSignal.Name = "btnNewSignal";
             this.btnNewSignal.Size = new System.Drawing.Size(75, 23);
             this.btnNewSignal.TabIndex = 2;
@@ -79,7 +84,7 @@ namespace MathNet.Symbolics.Whiteboard
             // btnNewBus
             // 
             this.btnNewBus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnNewBus.Location = new System.Drawing.Point(94, 573);
+            this.btnNewBus.Location = new System.Drawing.Point(94, 609);
             this.btnNewBus.Name = "btnNewBus";
             this.btnNewBus.Size = new System.Drawing.Size(75, 23);
             this.btnNewBus.TabIndex = 3;
@@ -90,7 +95,7 @@ namespace MathNet.Symbolics.Whiteboard
             // btnNewPort
             // 
             this.btnNewPort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnNewPort.Location = new System.Drawing.Point(175, 573);
+            this.btnNewPort.Location = new System.Drawing.Point(175, 609);
             this.btnNewPort.Name = "btnNewPort";
             this.btnNewPort.Size = new System.Drawing.Size(75, 23);
             this.btnNewPort.TabIndex = 4;
@@ -103,9 +108,9 @@ namespace MathNet.Symbolics.Whiteboard
             this.entitySelector.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.entitySelector.BackColor = System.Drawing.SystemColors.Control;
             this.entitySelector.Entities = null;
-            this.entitySelector.Location = new System.Drawing.Point(12, 572);
+            this.entitySelector.Location = new System.Drawing.Point(12, 608);
             this.entitySelector.Name = "entitySelector";
-            this.entitySelector.Size = new System.Drawing.Size(398, 24);
+            this.entitySelector.Size = new System.Drawing.Size(527, 24);
             this.entitySelector.TabIndex = 5;
             this.entitySelector.Visible = false;
             this.entitySelector.CompiledEntitySelected += new System.EventHandler(this.entitySelector_CompiledEntitySelected);
@@ -115,7 +120,7 @@ namespace MathNet.Symbolics.Whiteboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(727, 608);
+            this.ClientSize = new System.Drawing.Size(815, 644);
             this.Controls.Add(this.entitySelector);
             this.Controls.Add(this.btnNewPort);
             this.Controls.Add(this.btnNewBus);
@@ -132,7 +137,7 @@ namespace MathNet.Symbolics.Whiteboard
 
         #endregion
 
-        private Netron.NetronLight.Win.DiagramControl netron;
+        private Netron.Diagramming.Win.DiagramControl netron;
         private System.Windows.Forms.Button btnBuildSample;
         private System.Windows.Forms.Button btnNewSignal;
         private System.Windows.Forms.Button btnNewBus;

@@ -35,8 +35,11 @@ namespace MathNet.Symbolics.Whiteboard
             this.label2 = new System.Windows.Forms.Label();
             this.btnOk = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.udOutputs = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.udInputs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.udBuses)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.udOutputs)).BeginInit();
             this.SuspendLayout();
             // 
             // cmbEntities
@@ -64,7 +67,7 @@ namespace MathNet.Symbolics.Whiteboard
             // udBuses
             // 
             this.udBuses.Enabled = false;
-            this.udBuses.Location = new System.Drawing.Point(259, 0);
+            this.udBuses.Location = new System.Drawing.Point(368, 0);
             this.udBuses.Name = "udBuses";
             this.udBuses.Size = new System.Drawing.Size(36, 20);
             this.udBuses.TabIndex = 2;
@@ -81,7 +84,7 @@ namespace MathNet.Symbolics.Whiteboard
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(214, 2);
+            this.label2.Location = new System.Drawing.Point(323, 2);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(39, 13);
             this.label2.TabIndex = 4;
@@ -89,7 +92,7 @@ namespace MathNet.Symbolics.Whiteboard
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(302, 0);
+            this.btnOk.Location = new System.Drawing.Point(423, 0);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(36, 23);
             this.btnOk.TabIndex = 5;
@@ -99,7 +102,7 @@ namespace MathNet.Symbolics.Whiteboard
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(344, 0);
+            this.btnCancel.Location = new System.Drawing.Point(465, 0);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(52, 23);
             this.btnCancel.TabIndex = 6;
@@ -107,11 +110,40 @@ namespace MathNet.Symbolics.Whiteboard
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(218, 2);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(47, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Outputs:";
+            // 
+            // udOutputs
+            // 
+            this.udOutputs.Enabled = false;
+            this.udOutputs.Location = new System.Drawing.Point(271, 0);
+            this.udOutputs.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
+            this.udOutputs.Name = "udOutputs";
+            this.udOutputs.Size = new System.Drawing.Size(36, 20);
+            this.udOutputs.TabIndex = 7;
+            this.udOutputs.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
+            // 
             // EntitySelector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.udOutputs);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.label2);
@@ -120,9 +152,10 @@ namespace MathNet.Symbolics.Whiteboard
             this.Controls.Add(this.udInputs);
             this.Controls.Add(this.cmbEntities);
             this.Name = "EntitySelector";
-            this.Size = new System.Drawing.Size(398, 24);
+            this.Size = new System.Drawing.Size(520, 24);
             ((System.ComponentModel.ISupportInitialize)(this.udInputs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.udBuses)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.udOutputs)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -137,5 +170,7 @@ namespace MathNet.Symbolics.Whiteboard
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.NumericUpDown udOutputs;
     }
 }

@@ -32,10 +32,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\MathNet.Iridium\Library\bin\Release\MathNet.Iridium.dll</HintPath>
     </Reference>
-    <Reference Include="Netron.NetronLight, Version=2.8.2313.25507, Culture=neutral, PublicKeyToken=9c4817ccfa6cd2b1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\lib\netron\Netron.NetronLight.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Design" />
@@ -46,6 +42,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ControllerBase.cs" />
+    <Compile Include="FlyweightShapes\PetriNetPortShape.cs" />
+    <Compile Include="FlyweightShapes\DefaultBusShape.cs" />
+    <Compile Include="FlyweightShapes\DefaultPortShape.cs" />
+    <Compile Include="FlyweightShapes\DefaultSignalShape.cs" />
+    <Compile Include="FlyweightShapes\IFlyweightShape.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shapes\BusShape.cs" />
     <Compile Include="Shapes\PortShape.cs" />
@@ -56,6 +57,14 @@
     <ProjectReference Include="..\..\Contracts\Yttrium.Contracts.csproj">
       <Project>{8966E2C5-B1C9-44BE-8751-45DCCA3D268F}</Project>
       <Name>Yttrium.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Conversion.Contracts\Yttrium.Conversion.Contracts.csproj">
+      <Project>{FACEF94F-CB8B-45FA-8664-3B9F043C27E9}</Project>
+      <Name>Yttrium.Conversion.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Conversion.Toolkit\Yttrium.Conversion.Toolkit.csproj">
+      <Project>{8CD3403D-22BF-4BBD-9F8E-36F0F0201351}</Project>
+      <Name>Yttrium.Conversion.Toolkit</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Library.Contracts\Yttrium.Library.Contracts.csproj">
       <Project>{70E79678-387A-4AF6-8F64-4271CFE914BE}</Project>
@@ -72,6 +81,14 @@
     <ProjectReference Include="..\..\Microkernel\Yttrium.Microkernel.csproj">
       <Project>{D03B156A-D6F3-4F46-AC59-7156681F69B7}</Project>
       <Name>Yttrium.Microkernel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Diagramming.Core\Netron.Diagramming.Core.csproj">
+      <Project>{96AEBBEE-4203-45F3-BCF5-7B73BF256BDA}</Project>
+      <Name>Netron.Diagramming.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Diagramming.Win\Netron.Diagramming.Win.csproj">
+      <Project>{1D15C2A9-7D08-4BA6-B307-BDE0CA8AF1CB}</Project>
+      <Name>Netron.Diagramming.Win</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

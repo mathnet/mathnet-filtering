@@ -40,6 +40,12 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
         public static void Register(ILibrary library)
         {
             library.AddCustomDataType<IntegerValue>();
+            library.AddArbitraryType(typeof(long));
+            ValueConverter<IntegerValue>.AddConverterFrom(ValueConverter<long>.Router, true,
+                delegate(object value) { return new IntegerValue((long)value); });
+            ValueConverter<IntegerValue>.AddConverterTo(ValueConverter<long>.Router, true,
+                delegate(object value) { return ((IntegerValue)value).Value; });
+
             //library.AddCustomDataType(new CustomDataRef(typeof(IntegerValue), ValueConverter<IntegerValue>.Router));
         }
         public static IntegerValue ConvertFrom(ICustomData value)

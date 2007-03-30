@@ -61,7 +61,7 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
             library.AddCustomDataType<LogicValue>();
             //library.AddCustomDataType(new CustomDataRef(typeof(LogicValue), ValueConverter<LogicValue>.Router));
             ValueConverter<LogicValue>.AddConverterFrom(ValueConverter<IntegerValue>.Router, false,
-                delegate(ICustomData value) { return new LogicValue(((IntegerValue)value).Value == 0 ? ELogicX01.False : ELogicX01.True); });
+                delegate(object value) { return new LogicValue(((IntegerValue)value).Value == 0 ? ELogicX01.False : ELogicX01.True); });
         }
         public static LogicValue ConvertFrom(ICustomData value)
         {

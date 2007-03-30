@@ -150,6 +150,7 @@ namespace MathNet.Symbolics.Presentation
         {
             _sysMediator.PostCommand(command);
         }
+
         public virtual void PostCommandNewSignal()
         {
             PostCommand(new NewSignalCommand());
@@ -158,6 +159,7 @@ namespace MathNet.Symbolics.Presentation
         {
             PostCommand(new NewBusCommand());
         }
+
         public virtual void PostCommandNewPort(MathIdentifier entityId, int inputCount, int busCount)
         {
             NewPortCommand cmd = new NewPortCommand();
@@ -184,6 +186,52 @@ namespace MathNet.Symbolics.Presentation
             RemovePortCommand cmd = new RemovePortCommand();
             cmd.PortReference = reference;
             cmd.Isolate = isolate;
+            PostCommand(cmd);
+        }
+
+        public virtual void PostCommandBusAttachedToPort(CommandReference bus, CommandReference port, int index)
+        {
+            BusDrivePortCommand cmd = new BusDrivePortCommand();
+            cmd.BusReference = bus;
+            cmd.PortReference = port;
+            cmd.Index = index;
+            PostCommand(cmd);
+        }
+        public virtual void PostCommandSignalDrivesPort(CommandReference signal, CommandReference port, int index)
+        {
+            SignalDrivePortCommand cmd = new SignalDrivePortCommand();
+            cmd.SignalReference = signal;
+            cmd.PortReference = port;
+            cmd.Index = index;
+            PostCommand(cmd);
+        }
+        public virtual void PostCommandPortDrivesSignal(CommandReference signal, CommandReference port, int index)
+        {
+            PortDriveSignalCommand cmd = new PortDriveSignalCommand();
+            cmd.SignalReference = signal;
+            cmd.PortReference = port;
+            cmd.Index = index;
+            PostCommand(cmd);
+        }
+        public virtual void PostCommandBusDetachedFromPort(CommandReference port, int index)
+        {
+            BusUndrivePortCommand cmd = new BusUndrivePortCommand();
+            cmd.PortReference = port;
+            cmd.Index = index;
+            PostCommand(cmd);
+        }
+        public virtual void PostCommandSignalDrivesPortNoLonger(CommandReference port, int index)
+        {
+            SignalUndrivePortCommand cmd = new SignalUndrivePortCommand();
+            cmd.PortReference = port;
+            cmd.Index = index;
+            PostCommand(cmd);
+        }
+        public virtual void PostCommandPortDrivesSignalNoLonger(CommandReference port, int index)
+        {
+            PortUndriveSignalCommand cmd = new PortUndriveSignalCommand();
+            cmd.PortReference = port;
+            cmd.Index = index;
             PostCommand(cmd);
         }
         #endregion

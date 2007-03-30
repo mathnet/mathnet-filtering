@@ -39,6 +39,7 @@ namespace MathNet.Symbolics.Library
         void AddCustomDataType(ICustomDataRef data);
         void AddCustomDataType<TCustomType>() where TCustomType : ICustomData;
         void AddCustomDataType<TCustomType>(TCustomType optionalSingletonInstance) where TCustomType : ICustomData;
+        void AddArbitraryType(Type type);
 
         #region Entity Library
         bool ContainsEntity(MathIdentifier entityId);
@@ -97,6 +98,14 @@ namespace MathNet.Symbolics.Library
         bool ContainsCustomDataType(MathIdentifier typeId);
         ICustomDataRef LookupCustomDataType(MathIdentifier typeId);
         bool TryLookupCustomDataType(MathIdentifier typeId, out ICustomDataRef data);
+        #endregion
+
+        #region Arbitrary Type Library
+        bool ContainsArbitraryType(MathIdentifier id);
+        bool ContainsArbitraryType(Type type);
+        Type LookupArbitraryType(MathIdentifier id);
+        MathIdentifier LookupArbitraryType(Type type);
+        bool TryLookupArbitraryType(MathIdentifier id, out Type type);
         #endregion
 
         #region Theorem Lookup

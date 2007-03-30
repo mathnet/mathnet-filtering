@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Font Name="Tahoma" Size="8.25" />
+  <Class Name="Netron.Diagramming.Core.ComplexShapeBase" Collapsed="true">
+    <Position X="2.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>BaseClasses\ComplexShapeBase.cs</FileName>
+      <HashCode>gAACAAEAAIAAQEAAAgAEAARiAABAEgAIAAACiBiIAEA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Netron.Diagramming.Core.ShapeBase" Collapsed="true">
+    <Position X="8" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Analysis\ShapeBase.Analysis.cs</FileName>
+      <HashCode>AAAAgwgEZJAAJAFYEAIAIGQiAAJgAoCAAagyoAKIYEM=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Netron.Diagramming.Core.DiagramEntityBase" Collapsed="true">
+    <Position X="10.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>BaseClasses\DiagramEntityBase.cs</FileName>
+      <HashCode>QAAAEEMEIPAgnIIQABJCSAQiAQJgEgQJIAqAgAAJAEg=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Netron.Diagramming.Core.ClassShape" Collapsed="true">
+    <Position X="1.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Diagram elements\Shapes\ClassShape.cs</FileName>
+      <HashCode>ESBJhCEAAJgoSGCAACoCEEwiIBBAlgADAIACiAAIMEI=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Netron.Diagramming.Core.ComplexRectangle" Collapsed="true">
+    <Position X="3.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Diagram elements\Shapes\ComplexRectangle.cs</FileName>
+      <HashCode>AAAAAAEAABAAAAAAAAIAAABiEABAAgABAIACgAAIIEA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Netron.Diagramming.Core.ConnectionBase" Collapsed="true">
+    <Position X="17" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>BaseClasses\ConnectionBase.cs</FileName>
+      <HashCode>AgAAAAgECAAAAAAAAAAAAAAiAABIAgAAAAAAgAAIAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Netron.Diagramming.Core.ConnectorBase" Collapsed="true">
+    <Position X="19.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>BaseClasses\ConnectorBase.cs</FileName>
+      <HashCode>AMCEAAEAAAAAgAAAAAAAIAQiACBAAwAAAAAAgAIAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Netron.Diagramming.Core.SimpleShapeBase" Collapsed="true">
+    <Position X="10.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>BaseClasses\SimpleShapeBase.cs</FileName>
+      <HashCode>AAQCAAAQAICAAAAAAEAAAAQiAABAAgQAAAAAiAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Netron.Diagramming.Core.ImageShape" Collapsed="true">
+    <Position X="5.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Diagram elements\Shapes\ImageShape.cs</FileName>
+      <HashCode>AQCAQIAAABAAAAAAAAAAAIAiAABAAhABCIAAgAAIIEA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Netron.Diagramming.Core.SimpleEllipse" Collapsed="true">
+    <Position X="8" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Diagram elements\Shapes\SimpleEllipse.cs</FileName>
+      <HashCode>AAAAAAAAABAAAAAAAAIAAAAiAABAAgABAIAAgAAIIEA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Netron.Diagramming.Core.SimpleRectangle" Collapsed="true">
+    <Position X="10.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Diagram elements\Shapes\SimpleRectangle.cs</FileName>
+      <HashCode>AAAAQAAAABAAAAAAAAIAAAAiAABAAgABAIAAgAAIIEA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Netron.Diagramming.Core.TextLabel" Collapsed="true">
+    <Position X="12.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Diagram elements\Shapes\TextLabel.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAAAAQAAABEAAAAAAIAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Netron.Diagramming.Core.TextOnly" Collapsed="true">
+    <Position X="14.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Diagram elements\Shapes\TextOnly.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAAAAiAABAAgABAAAAgAAIAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Netron.Diagramming.Core.Connection" Collapsed="true">
+    <Position X="17" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Analysis\Connection.Analysis.cs</FileName>
+      <HashCode>AAAAEAEEAJMAAACAFEIAAAAiAhBkAgABEAAAoAAMAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Netron.Diagramming.Core.Connector" Collapsed="true">
+    <Position X="19.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Diagram elements\Connectors\Connector.cs</FileName>
+      <HashCode>AAAAAAAEAIAAAAAAAAIAAAAiAABgAgABAAAAgAAIAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+</ClassDiagram>

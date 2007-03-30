@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Font Name="Tahoma" Size="8.25" />
+  <Comment CommentText="The Controller holds a stack of undoable actions in the UndoManager. The actions are ICommand objects.">
+    <Position X="0.541" Y="3.218" Height="0.75" Width="1.7" />
+  </Comment>
+  <Comment CommentText="When ICommand objects are executed the data Model is changed. The Model communicates with the View via events. The View refreshes the display.">
+    <Position X="5.374" Y="4.792" Height="0.75" Width="4.44" />
+  </Comment>
+  <Comment CommentText="The Controller communicate certain changes to the view, e.g. a change of cursor or a refresh of the canvas.">
+    <Position X="2.417" Y="1.188" Height="0.75" Width="1.7" />
+  </Comment>
+  <Class Name="Netron.Diagramming.Core.UndoManager" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>UndoRedo\UndoManager.cs</FileName>
+      <HashCode>AAgCBAAIRABAJAwAAQgAIhADAAAAAEAAAAAAAAEEAEA=</HashCode>
+    </TypeIdentifier>
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <Lollipop Position="0.1" />
+  </Class>
+  <Class Name="Netron.Diagramming.Core.Model" Collapsed="true">
+    <Position X="3.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Analysis\Model.Analysis.cs</FileName>
+      <HashCode>BoT9NcEBjCSAEOXpECA4BFBnE2BiAsgAEohTgKJmYVo=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Orientation="Left" Position="0.1" />
+  </Class>
+  <Class Name="Netron.Diagramming.Core.ControllerBase" Collapsed="true">
+    <Position X="3.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Core\ControllerBase.cs</FileName>
+      <HashCode>FgSAp0gAACCE58AtRAIIoAADAUEBQAQYYKiIqIIgIQo=</HashCode>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="UndoManager" />
+      <Property Name="View" />
+    </ShowAsAssociation>
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="View" Type="Netron.Diagramming.Core.IView">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.619" Y="0.768" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <Lollipop Orientation="Bottom" Position="0.1" />
+  </Class>
+  <Interface Name="Netron.Diagramming.Core.IView" Collapsed="true">
+    <Position X="3.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Core\Interfaces\IView.cs</FileName>
+      <HashCode>ACBAQCIECABIAARAQAgAAwESAQIhACAIAogEAAwIAAY=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+</ClassDiagram>

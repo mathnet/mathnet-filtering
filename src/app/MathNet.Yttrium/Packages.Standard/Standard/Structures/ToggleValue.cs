@@ -42,9 +42,9 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
             library.AddCustomDataType<ToggleValue>();
             //library.AddCustomDataType(new CustomDataRef(typeof(ToggleValue), ValueConverter<ToggleValue>.Router));
             ValueConverter<ToggleValue>.AddConverterFrom(ValueConverter<IntegerValue>.Router, false,
-                delegate(ICustomData value) { return ((IntegerValue)value).Value == 0 ? _toggleB : _toggleA; });
+                delegate(object value) { return ((IntegerValue)value).Value == 0 ? _toggleB : _toggleA; });
             ValueConverter<ToggleValue>.AddConverterTo(ValueConverter<IntegerValue>.Router, true,
-                delegate(ICustomData value) { return ((ToggleValue)value)._dataValue ? IntegerValue.Zero : IntegerValue.One; });
+                delegate(object value) { return ((ToggleValue)value)._dataValue ? IntegerValue.Zero : IntegerValue.One; });
         }
 
         public static ToggleValue ConvertFrom(ICustomData value)

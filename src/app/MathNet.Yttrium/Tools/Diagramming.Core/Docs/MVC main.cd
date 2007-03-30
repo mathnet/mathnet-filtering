@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Font Name="Tahoma" Size="8.25" />
+  <Comment CommentText="The DiagramControl (aka 'surface') is the ToolBox control which communicates events to the Controller and displays the graphics delivered by the View.">
+    <Position X="4.26" Y="0.5" Height="0.625" Width="3.106" />
+  </Comment>
+  <Comment CommentText="This is the MVC triad around which everything is running.">
+    <Position X="4.844" Y="2.677" Height="0.458" Width="1.752" />
+  </Comment>
+  <Comment CommentText="The Controller receives events and processes them via 'tools'.">
+    <Position X="2.75" Y="3.698" Height="0.615" Width="1.94" />
+  </Comment>
+  <Comment CommentText="The View is the output channel and paints the model.">
+    <Position X="6.99" Y="3.719" Height="0.531" Width="1.971" />
+  </Comment>
+  <Comment CommentText="The model is the 'data' part of the MVC triad.">
+    <Position X="7.271" Y="4.771" Height="0.542" Width="1.7" />
+  </Comment>
+  <Class Name="Netron.Diagramming.Core.Controller" Collapsed="true">
+    <Position X="3" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MVC\Controller.cs</FileName>
+      <HashCode>AAQAoQgCAACA5AAgRAAAgAABAEABQAAKAAgAAAAAIAA=</HashCode>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Model" />
+    </ShowAsAssociation>
+    <Members>
+      <Field Name="mModel" Hidden="true" />
+      <Field Name="mUndoManager" Hidden="true" />
+    </Members>
+    <AssociationLine Name="Model" Type="Netron.Diagramming.Core.Model" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="4.5" Y="3.25" />
+        <Point X="5.938" Y="3.25" />
+        <Point X="5.938" Y="4.75" />
+      </Path>
+    </AssociationLine>
+    <Lollipop Orientation="Left" Position="0.1" />
+  </Class>
+  <Class Name="Netron.Diagramming.Core.Model" Collapsed="true">
+    <Position X="4.75" Y="4.75" Width="2.25" />
+    <TypeIdentifier>
+      <FileName>MVC\Model.cs</FileName>
+      <HashCode>AACFMAABRDCAAAGBACQAAECAAAAgAoEElAgQACBgYAA=</HashCode>
+    </TypeIdentifier>
+    <Members>
+      <Field Name="mLayers" Hidden="true" />
+      <Field Name="mRectangle" Hidden="true" />
+      <Field Name="mShapes" Hidden="true" />
+    </Members>
+    <Lollipop Orientation="Left" Position="0.1" />
+  </Class>
+  <Class Name="Netron.Diagramming.Core.View" Collapsed="true">
+    <Position X="7.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>MVC\View.cs</FileName>
+      <HashCode>AABABAAECIAAYAQABAAAAABAIQAAAEQAAKgAgAAIEBI=</HashCode>
+    </TypeIdentifier>
+    <Members>
+      <Field Name="mModel" Hidden="true" />
+    </Members>
+    <NestedTypes>
+      <Class Name="Netron.Diagramming.Core.View.GhostsFactory" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>MVC\View.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Enum Name="Netron.Diagramming.Core.View.GhostTypes" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>MVC\View.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+  </Class>
+  <Class Name="Netron.Diagramming.Core.UI.DiagramControl" Collapsed="true">
+    <Position X="5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>UI\DiagramControl.cs</FileName>
+      <HashCode>AQCBgQAACQAABABIIDAAAAgBAgAJAABDAAACBgABEAA=</HashCode>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="View" />
+      <Property Name="Controller" />
+    </ShowAsAssociation>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="View" Type="Netron.Diagramming.Core.View" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.5" Y="2.062" />
+        <Point X="8.062" Y="2.062" />
+        <Point X="8.062" Y="3" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Controller" Type="Netron.Diagramming.Core.Controller" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="5" Y="2.062" />
+        <Point X="3.688" Y="2.062" />
+        <Point X="3.688" Y="3" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.268" Y="0.068" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="Netron.Diagramming.Core.IShape" Collapsed="true">
+    <Position X="3" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Interfaces\Diagramming\IShape.cs</FileName>
+      <HashCode>AAAAAAAABAAAAAAAAAIAAEAAAAAgAAAAAAAACAKAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Netron.Diagramming.Core.IConnection" Collapsed="true">
+    <Position X="6.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Interfaces\Diagramming\IConnection.cs</FileName>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+</ClassDiagram>

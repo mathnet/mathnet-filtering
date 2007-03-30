@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Font Name="Tahoma" Size="8.25" />
+  <Comment CommentText="The Controller listens to the surface and broadcasts events to the registered tools.">
+    <Position X="3.511" Y="1.906" Height="0.75" Width="1.7" />
+  </Comment>
+  <Comment CommentText="Tools handle events broadcasted by the controller and created ICommand objects. These objects are inserted in the undo stack and executed in the undo manager.">
+    <Position X="1.223" Y="3.97" Height="0.75" Width="3.846" />
+  </Comment>
+  <Class Name="Netron.Diagramming.Core.CollectionBase&lt;T&gt;" Collapsed="true">
+    <Position X="3.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Collections\CollectionBase.cs</FileName>
+      <HashCode>AEIAGEIACATEABAECQAAFAQAAAAIABAkKAAAAAFUIAM=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Netron.Diagramming.Core.ControllerBase" Collapsed="true">
+    <Position X="0.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Core\ControllerBase.cs</FileName>
+      <HashCode>FgQAp0gAACAA54AkRAIIoAADAEEBQAAaYAiICAIgIQo=</HashCode>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Tools" />
+    </ShowAsCollectionAssociation>
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
+    </Compartments>
+    <Lollipop Orientation="Bottom" Position="1.138" />
+  </Class>
+  <Interface Name="Netron.Diagramming.Core.ITool" Collapsed="true">
+    <Position X="3.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Core\Interfaces\ITool.cs</FileName>
+      <HashCode>AAAAAQAAAAAQAIBAEAAAgAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+  </Interface>
+  <Interface Name="Netron.Diagramming.Core.ICommand" Collapsed="true">
+    <Position X="3.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Core\Interfaces\ICommand.cs</FileName>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAABAAAAAAAAAAAACAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+</ClassDiagram>

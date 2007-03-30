@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Font Name="Tahoma" Size="8.25" />
+  <Class Name="Netron.Diagramming.Core.Win.DiagramControl" Collapsed="true">
+    <Position X="1" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>UI\Win\DiagramControl.cs</FileName>
+      <HashCode>AAABIEAACAAAAoCgIAAIAAgAAgAIAABAAAAAEAAAAQI=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Netron.Diagramming.Core.DiagramControlBase">
+    <Position X="0.5" Y="2.25" Width="2.5" />
+    <TypeIdentifier>
+      <FileName>UI\DiagramControlBase.cs</FileName>
+      <HashCode>AQCAhQAAASgABABIAHAAAAABAAABEAATAAAABgABUAA=</HashCode>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Document" />
+    </ShowAsAssociation>
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="System.Windows.Forms.ScrollableControl" Collapsed="true">
+    <Position X="1" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Netron.Diagramming.Core.Document" Collapsed="true">
+    <Position X="4" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Core\Document.cs</FileName>
+      <HashCode>AAAAEAAAAAAAIAAAAAAAAAAgAAAAAAAAAAgABAABAAA=</HashCode>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Information" />
+      <Property Name="Model" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Netron.Diagramming.Core.DocumentInformation" Collapsed="true">
+    <Position X="3.5" Y="5" Width="1.75" />
+    <TypeIdentifier>
+      <FileName>Core\DocumentInformation.cs</FileName>
+      <HashCode>QCQAAAAQBAAgAEAAgAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+  </Class>
+  <Interface Name="Netron.Diagramming.Core.IModel" Collapsed="true">
+    <Position X="6.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Core\Interfaces\IModel.cs</FileName>
+      <HashCode>AADFJEAAACCAAIAgAAQABAAEAAAAAoAAAAAAACBAAEI=</HashCode>
+    </TypeIdentifier>
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+  </Interface>
+</ClassDiagram>

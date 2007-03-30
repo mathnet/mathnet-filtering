@@ -42,6 +42,15 @@ namespace MathNet.Symbolics.Whiteboard
             get { return (int)udBuses.Value; }
         }
 
+        public int? NumberOfOutputs
+        {
+            get
+            {
+                int ret = (int)udOutputs.Value;
+                return ret == -1 ? null : (int?)ret;
+            }
+        }
+
         public void UpdateEntities()
         {
             cmbEntities.Items.Clear();
@@ -68,11 +77,13 @@ namespace MathNet.Symbolics.Whiteboard
             {
                 udInputs.Enabled = true;
                 udBuses.Enabled = true;
+                udOutputs.Enabled = true;
             }
             else
             {
                 udInputs.Enabled = false;
                 udBuses.Enabled = false;
+                udOutputs.Enabled = false;
             }
         }
 

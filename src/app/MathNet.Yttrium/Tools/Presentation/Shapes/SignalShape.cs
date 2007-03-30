@@ -4,10 +4,11 @@ using System.Text;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 
-using Netron.NetronLight;
-using Netron.NetronLight.Win;
+using Netron.Diagramming.Core;
+using Netron.Diagramming.Win;
 
 using MathNet.Symbolics.Mediator;
+using MathNet.Symbolics.Presentation.FlyweightShapes;
 
 namespace MathNet.Symbolics.Presentation.Shapes
 {
@@ -16,9 +17,10 @@ namespace MathNet.Symbolics.Presentation.Shapes
     /// </summary>
     public partial class SignalShape : SimpleShapeBase
     {
-        protected Connector outConnector, inConnector;
+        private Connector outConnector, inConnector;
         private CommandReference sysRef;
         private Signal signal;
+        private IFlyweightShape<SignalShape> _fly;
 
         #region Properties
         public CommandReference SignalReference
@@ -47,54 +49,36 @@ namespace MathNet.Symbolics.Presentation.Shapes
         }
         #endregion
 
-        #region Constructor
-        /// <summary>
-        /// Default ctor
-        /// </summary>
-        /// <param name="s"></param>
-        public SignalShape(IModel s, CommandReference reference)
-            : base(s)
+        public SignalShape(IModel model, CommandReference reference, IFlyweightShape<SignalShape> fly)
+            : base(model)
         {
             this.sysRef = reference;
-            Initialize();
-        }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="T:SimpleRectangle"/> class.
-        /// </summary>
-        public SignalShape(CommandReference reference)
-            : base()
-        {
-            this.sysRef = reference;
-            Initialize();
-        }
 
-        private void Initialize()
-        {
-            outConnector = new Connector(new Point(Rectangle.Right, (int)(Rectangle.Top + Rectangle.Height / 2)), Model);
+            outConnector = new Connector(Model);
             outConnector.Name = "Output";
+            outConnector.Parent = this;
             Connectors.Add(outConnector);
 
-            inConnector = new Connector(new Point(Rectangle.Left, (int)(Rectangle.Top + Rectangle.Height / 2)), Model);
+            inConnector = new Connector(Model);
             inConnector.Name = "Input";
+            inConnector.Parent = this;
             Connectors.Add(inConnector);
 
-            foreach(IConnector con in Connectors)
-            {
-                con.Parent = this;
-            }
-
-            AutoSize = false;
-            Width = 20;
-            Height = 20;
-            Resizable = false;
-            Text = sysRef.Index.ToString();
-
-            PaintStyle = new GradientPaintStyle(Color.OrangeRed, Color.Yellow, -135);
+            AssignFly(fly);
         }
 
-        #endregion
+        public void AssignFly(IFlyweightShape<SignalShape> fly)
+        {
+            if(_fly != fly)
+            {
+                _fly = fly;
+                if(_fly != null)
+                    _fly.InitShape(this);
+            }
 
-        #region Methods
+            Invalidate();
+        }
+
         /// <summary>
         /// Tests whether the mouse hits this bundle
         /// </summary>
@@ -102,7 +86,7 @@ namespace MathNet.Symbolics.Presentation.Shapes
         /// <returns></returns>
         public override bool Hit(Point p)
         {
-            Rectangle r = new Rectangle(p, new Size(5, 5));
+            Rectangle r = new Rectangle(p, new Size(2, 2));
             return Rectangle.Contains(r);
         }
 
@@ -112,29 +96,7 @@ namespace MathNet.Symbolics.Presentation.Shapes
         /// <param name="g"></param>
         public override void Paint(Graphics g)
         {
-            g.SmoothingMode = SmoothingMode.HighQuality;
-
-            //the shadow
-            g.FillEllipse(ArtPallet.ShadowBrush, Rectangle.X + 3, Rectangle.Y + 3, Rectangle.Width, Rectangle.Height);
-            
-            //the actual shape
-            g.FillEllipse(Brush, Rectangle);
-            
-            //the edge of the bundle
-            if(Hovered || IsSelected)
-                g.DrawEllipse(ArtPallet.HighlightPen, Rectangle);
-            else
-                g.DrawEllipse(Pen, Rectangle);
-            
-            //the connectors
-            for(int k = 0; k < Connectors.Count; k++)
-            {
-                Connectors[k].Paint(g);
-            }
-
-            if(!string.IsNullOrEmpty(Text))
-                g.DrawString(Text, ArtPallet.DefaultFont, Brushes.Black, TextRectangle.X - 6, TextRectangle.Y - 6);
+            _fly.Paint(this, g);
         }
-        #endregion
     }
 }

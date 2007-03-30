@@ -46,7 +46,7 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
             //library.AddCustomDataType(new CustomDataRef(typeof(RationalValue), ValueConverter<RationalValue>.Router));
             ValueConverter<RationalValue>.AddConverterFrom<IntegerValue>(true, ConvertFromInteger);
             ValueConverter<RationalValue>.AddConverterTo(ValueConverter<IntegerValue>.Router, false,
-                delegate(ICustomData value)
+                delegate(object value)
                 {
                     RationalValue rv = (RationalValue)value;
                     return new IntegerValue(rv._numeratorValue / rv._denominatorValue);

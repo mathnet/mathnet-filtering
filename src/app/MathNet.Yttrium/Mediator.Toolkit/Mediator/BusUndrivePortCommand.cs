@@ -29,14 +29,15 @@ using System.Runtime.Serialization;
 namespace MathNet.Symbolics.Mediator
 {
     [Serializable]
-    public class BusUnrivePortCommand : ObjectModel.PortIndexCommand
+    public class BusUndrivePortCommand : ObjectModel.PortIndexCommand
     {
-        public BusUnrivePortCommand() { }
-        protected BusUnrivePortCommand(SerializationInfo info, StreamingContext context) : base(info, context) { }
+        public BusUndrivePortCommand() { }
+        protected BusUndrivePortCommand(SerializationInfo info, StreamingContext context) : base(info, context) { }
 
         protected override void Action(Port port, int index)
         {
-            port.RemoveBusBinding(index);
+            if(port.Buses[index] != null)
+                port.RemoveBusBinding(index);
         }
     }
 }

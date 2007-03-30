@@ -1,0 +1,442 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{96AEBBEE-4203-45F3-BCF5-7B73BF256BDA}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>Resources\Schema.ico</ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>Netron.Diagramming.Core</AssemblyName>
+    <AssemblyOriginatorKeyFile>ForUnitTestingPurposesOnly.snk</AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Netron.Diagramming.Core</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRules>-Microsoft.Design#CA1040;-Microsoft.Design#CA1020;-Microsoft.Design#CA1045;-Microsoft.Design#CA1033;-Microsoft.Design#CA1030;-Microsoft.Design#CA1062;-Microsoft.Globalization#CA1301;-Microsoft.Globalization#CA1302;-Microsoft.Globalization#CA1303;-Microsoft.Globalization#CA1306;-Microsoft.Globalization#CA1304;-Microsoft.Globalization#CA1305;-Microsoft.Globalization#CA1300;-Microsoft.Mobility#CA1600;-Microsoft.Mobility#CA1601;-Microsoft.Naming#CA1725;-Microsoft.Performance#CA1811;-Microsoft.Performance#CA1807;-Microsoft.Performance#CA1822;-Microsoft.Portability#CA1901;-Microsoft.Portability#CA1900;-Microsoft.Security#CA2116;-Microsoft.Security#CA2117;-Microsoft.Security#CA2105;-Microsoft.Security#CA2104;-Microsoft.Security#CA2114;-Microsoft.Security#CA2123;-Microsoft.Security#CA2108;-Microsoft.Security#CA2107;-Microsoft.Security#CA2103;-Microsoft.Security#CA2109;-Microsoft.Security#CA2106;-Microsoft.Security#CA2112;-Microsoft.Security#CA2110;-Microsoft.Security#CA2120;-Microsoft.Usage#CA2214;-Microsoft.Usage#CA2208</CodeAnalysisRules>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRules>-Microsoft.Naming#CA1725;-Microsoft.Performance#CA1807</CodeAnalysisRules>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Analysis\Connection.Analysis.cs" />
+    <Compile Include="Analysis\IEdge.cs" />
+    <Compile Include="Analysis\IGraph.cs" />
+    <Compile Include="Analysis\INode.cs" />
+    <Compile Include="Analysis\ITree.cs" />
+    <Compile Include="Analysis\Model.Analysis.cs" />
+    <Compile Include="Analysis\ShapeBase.Analysis.cs" />
+    <Compile Include="Collections\ICollectionBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Declarations\Attributes\Attributes.cs" />
+    <Compile Include="Diagram elements\Group\CollapsibleGroupShape.cs" />
+    <Compile Include="Diagram elements\Materials\ClickableIconLabelMaterial.cs" />
+    <Compile Include="Layout\BalloonTreeLayout.cs" />
+    <Compile Include="Layout\ForceDirectedLayout.cs" />
+    <Compile Include="Layout\Force\DragForce.cs" />
+    <Compile Include="Layout\Force\ForceBase.cs" />
+    <Compile Include="Layout\Force\ForceItem.cs" />
+    <Compile Include="Layout\Force\ForceSimulator.cs" />
+    <Compile Include="Layout\Force\IForce.cs" />
+    <Compile Include="Layout\Force\IIntegrator.cs" />
+    <Compile Include="Layout\Force\NBodyForce.cs" />
+    <Compile Include="Layout\Force\RungeKuttaIntegrator.cs" />
+    <Compile Include="Layout\Force\Spring.cs" />
+    <Compile Include="Layout\Force\SpringForce.cs" />
+    <Compile Include="Layout\FruchtermanReingoldLayout.cs" />
+    <Compile Include="Layout\LayoutBase.cs" />
+    <Compile Include="Layout\LayoutEnums.cs" />
+    <Compile Include="Layout\LayoutSettings.cs" />
+    <Compile Include="Layout\RadialTreeLayout.cs" />
+    <Compile Include="Layout\RandomLayout.cs" />
+    <Compile Include="Layout\SpeedVector.cs" />
+    <Compile Include="Layout\StandardTreeLayout.cs" />
+    <Compile Include="Layout\Tree.cs" />
+    <Compile Include="Layout\TreeLayoutBase.cs" />
+    <Compile Include="Ruler\HorizontalRuler.cs" />
+    <Compile Include="Ruler\Ruler.cs" />
+    <Compile Include="Ruler\VerticalRuler.cs" />
+    <Compile Include="Serialization\ImageShape.Serialization.cs" />
+    <Compile Include="Serialization\LinePenStyle.Serialization.cs" />
+    <Compile Include="Tools\AlignTool.cs" />
+    <Compile Include="Utils\Formatting.cs" />
+    <Compile Include="BaseClasses\ActionBase.cs" />
+    <Compile Include="BaseClasses\ActivityBase.cs" />
+    <Compile Include="BaseClasses\ComplexShapeBase.cs" />
+    <Compile Include="BaseClasses\SubsetActionBase.cs" />
+    <Compile Include="Core\Interfaces\ISubsetAction.cs" />
+    <Compile Include="Core\Interfaces\IAction.cs" />
+    <Compile Include="Core\Interfaces\IActivity.cs" />
+    <Compile Include="Core\Interfaces\IAttachmentCallback.cs" />
+    <Compile Include="Core\Interfaces\IDrawStyle.cs" />
+    <Compile Include="Core\Interfaces\IPaintStyle.cs" />
+    <Compile Include="Diagram elements\Materials\ClickableLabelMaterial.cs" />
+    <Compile Include="Diagram elements\Materials\IconLabelMaterial.cs" />
+    <Compile Include="Diagram elements\Materials\FolderMaterial.cs" />
+    <Compile Include="Diagram elements\Materials\SwitchIconMaterial.cs" />
+    <Compile Include="Diagram elements\Shapes\MultiPointShape.cs" />
+    <Compile Include="PropertySystem\Descriptors\ClassShapeDescriptor.cs" />
+    <Compile Include="PropertySystem\Editors\ShapeMaterialCollectionEditor.cs" />
+    <Compile Include="Serialization\Anchors.cs" />
+    <Compile Include="Serialization\CollectionBase.Serialization.cs" />
+    <Compile Include="Serialization\ConnectionBase.Serialization.cs" />
+    <Compile Include="Serialization\Connection.Serialization.cs" />
+    <Compile Include="Serialization\ConnectorBase.Serialization.cs" />
+    <Compile Include="Serialization\Connector.Serialization.cs" />
+    <Compile Include="Serialization\ComplexShapeBase.Serialization.cs" />
+    <Compile Include="Serialization\ClassShape.Serialization.cs" />
+    <Compile Include="Serialization\ClickableIconMaterial.Serialization.cs" />
+    <Compile Include="Serialization\ClickableLabelMaterial.Serialization.cs" />
+    <Compile Include="Serialization\ComplexRectangle.Serialization.cs" />
+    <Compile Include="Serialization\GradientPaintStyle.Serialization.cs" />
+    <Compile Include="Serialization\SolidPaintStyle.Serialization.cs" />
+    <Compile Include="Serialization\PenStyle.Serialization.cs" />
+    <Compile Include="Serialization\GroupShape.Serialization.cs" />
+    <Compile Include="Serialization\TextOnly.Serialization.cs" />
+    <Compile Include="Serialization\IconMaterial.Serialization.cs" />
+    <Compile Include="Serialization\SwitchIconMaterial.Serialization.cs" />
+    <Compile Include="Serialization\LabelMaterial.Serialization.cs" />
+    <Compile Include="Serialization\IconLabelMaterial.Serialization.cs" />
+    <Compile Include="Serialization\FolderMaterial.Serialization.cs" />
+    <Compile Include="Serialization\ShapeMaterialBase.Serialization.cs" />
+    <Compile Include="Serialization\SimpleEllipse.Serialization.cs" />
+    <Compile Include="Serialization\DiagramEntityBase.Serialization.cs" />
+    <Compile Include="Serialization\ShapeBase.Serialization.cs" />
+    <Compile Include="Serialization\SimpleShapeBase.Serialization.cs" />
+    <Compile Include="BaseClasses\SimpleShapeBase.cs" />
+    <Compile Include="BaseClasses\TrackerBase.cs" />
+    <Compile Include="Serialization\Ambience.Serialization.cs" />
+    <Compile Include="Serialization\DocumentInformation.Serialization.cs" />
+    <Compile Include="Serialization\Document.Serialization.cs" />
+    <Compile Include="Core\Interfaces\IGenericFormatter.cs" />
+    <Compile Include="Core\Interfaces\IHoverListener.cs" />
+    <Compile Include="Core\Interfaces\ICompoundCommand.cs" />
+    <Compile Include="Core\Interfaces\IDragDropListener.cs" />
+    <Compile Include="Core\Interfaces\IInteraction.cs" />
+    <Compile Include="Serialization\Layer.Serialization.cs" />
+    <Compile Include="Serialization\Page.Serialization.cs" />
+    <Compile Include="Serialization\Model.Serialization.cs" />
+    <Compile Include="Diagram elements\Group\GroupShape.cs" />
+    <Compile Include="BaseClasses\ShapeMaterialBase.cs" />
+    <Compile Include="Diagram elements\Materials\ClickableIconMaterial.cs" />
+    <Compile Include="Diagram elements\Materials\IconMaterial.cs" />
+    <Compile Include="Core\Interfaces\IShapeMaterial.cs" />
+    <Compile Include="Diagram elements\Materials\LabelMaterial.cs" />
+    <Compile Include="Diagram elements\Shapes\ClassShape.cs" />
+    <Compile Include="Core\Interfaces\IComplexShape.cs" />
+    <Compile Include="Core\Interfaces\ISimpleShape.cs" />
+    <Compile Include="Core\Interfaces\ITracker.cs" />
+    <Compile Include="Diagram elements\Shapes\ComplexRectangle.cs" />
+    <Compile Include="Diagram elements\Shapes\ImageShape.cs" />
+    <Compile Include="Serialization\SimpleRectangle.Serialization.cs" />
+    <Compile Include="Diagram elements\Shapes\ShapeFactory.cs" />
+    <Compile Include="Diagram elements\Shapes\TextOnly.cs" />
+    <Compile Include="IO\Binary\BinarySerializer.cs" />
+    <Compile Include="IO\GenericFormatter.cs" />
+    <Compile Include="PropertySystem\Converters\PointConverter.cs" />
+    <Compile Include="PropertySystem\Descriptors\ConnectionDescriptor.cs" />
+    <Compile Include="PropertySystem\Descriptors\ConnectionBaseDescriptor.cs" />
+    <Compile Include="PropertySystem\Descriptors\ComplexShapeBaseDescriptor.cs" />
+    <Compile Include="PropertySystem\Descriptors\ControlDescriptor.cs" />
+    <Compile Include="PropertySystem\Descriptors\DiagramEntityBaseDescriptor.cs" />
+    <Compile Include="PropertySystem\Descriptors\DescriptorBase.cs" />
+    <Compile Include="PropertySystem\Descriptors\ShapeBaseDescriptor.cs" />
+    <Compile Include="PropertySystem\Descriptors\SimpleShapeBaseDescriptor.cs" />
+    <Compile Include="PropertySystem\Providers\ConnectionProvider.cs" />
+    <Compile Include="PropertySystem\Providers\ControlProvider.cs" />
+    <Compile Include="PropertySystem\Providers\ShapeProvider.cs" />
+    <Compile Include="PropertySystem\PropertyEventArgs.cs" />
+    <Compile Include="PropertySystem\PropertySpec.cs" />
+    <Compile Include="PropertySystem\PropertySpecDescriptor.cs" />
+    <Compile Include="Tools\ConnectorMoverTool.cs" />
+    <Compile Include="Tools\ContextTool.cs" />
+    <Compile Include="Tools\ComplexRectangleTool.cs" />
+    <Compile Include="Tools\HotKeys.cs" />
+    <Compile Include="Tools\PolygonTool.cs" />
+    <Compile Include="Tools\MultiLineTool.cs" />
+    <Compile Include="Tools\ScribbleTool.cs" />
+    <Compile Include="Tools\PasteTool.cs" />
+    <Compile Include="Tools\CopyTool.cs" />
+    <Compile Include="Tools\HoverTool.cs" />
+    <Compile Include="Tools\HitTool.cs" />
+    <Compile Include="Tools\TransformTool.cs" />
+    <Compile Include="Tools\SendForwardsTool.cs" />
+    <Compile Include="Tools\SendToFrontTool.cs" />
+    <Compile Include="Tools\SendBackwardsTool.cs" />
+    <Compile Include="Tools\SendToBackTool.cs" />
+    <Compile Include="Tools\UngroupTool.cs" />
+    <Compile Include="Tools\GroupTool.cs" />
+    <Compile Include="Tools\DragDropTool.cs" />
+    <Compile Include="Core\Interfaces\IController.cs" />
+    <Compile Include="Core\Interfaces\IView.cs" />
+    <Compile Include="UndoRedo\Commands\AddConnectionCommand.cs" />
+    <Compile Include="UndoRedo\Commands\BindConnectorsCommand.cs" />
+    <Compile Include="UndoRedo\Commands\CompoundCommand.cs" />
+    <Compile Include="UndoRedo\Commands\AddMultiPointShapeCommand.cs" />
+    <Compile Include="UndoRedo\Commands\PenStyleCommand.cs" />
+    <Compile Include="UndoRedo\Commands\DeleteCommand.cs" />
+    <Compile Include="UndoRedo\Commands\FillStyleCommand.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UndoRedo\Commands\TransformCommand.cs" />
+    <Compile Include="UndoRedo\Commands\UngroupCommand.cs" />
+    <Compile Include="UndoRedo\Commands\GroupCommand.cs" />
+    <Compile Include="UndoRedo\Commands\DetachConnectorsCommand.cs" />
+    <Compile Include="Utils\Algorithms.cs" />
+    <Compile Include="Core\Ambience.cs" />
+    <Compile Include="Utils\Measurements.cs" />
+    <Compile Include="Utils\Styling\ArtPallet.cs" />
+    <Compile Include="BaseClasses\AbstractTool.cs" />
+    <Compile Include="Utils\Bundle.cs" />
+    <Compile Include="Collections\StackBase.cs" />
+    <Compile Include="UndoRedo\Commands\AddShapeCommand.cs" />
+    <Compile Include="UndoRedo\Commands\MoveCommand.cs" />
+    <Compile Include="Core\DocumentInformation.cs" />
+    <Compile Include="Collections\CollectionBase.cs" />
+    <Compile Include="Diagram elements\Connections\Connection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Diagram elements\Connectors\Connector.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Declarations\Exceptions\InconsistencyException.cs" />
+    <Compile Include="Utils\Styling\CursorPallet.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utils\EntityBone.cs" />
+    <Compile Include="Utils\Styling\GradientPaintStyle.cs" />
+    <Compile Include="Utils\Styling\LinePenStyle.cs" />
+    <Compile Include="Utils\Styling\PenStyle.cs" />
+    <Compile Include="Utils\SceneIndexComparer.cs" />
+    <Compile Include="Utils\Styling\SolidPaintStyle.cs" />
+    <Compile Include="Utils\Tracing.cs" />
+    <Compile Include="Utils\Unit testing\GlobalSuppressions.cs" />
+    <Compile Include="Core\Interfaces\IGroup.cs" />
+    <Compile Include="Core\Interfaces\IBundle.cs" />
+    <Compile Include="Core\Interfaces\IGhost.cs" />
+    <Compile Include="Core\Interfaces\IKeyboardListener.cs" />
+    <Compile Include="Core\Interfaces\ILayer.cs" />
+    <Compile Include="Core\Interfaces\IPage.cs" />
+    <Compile Include="Core\Scene graph\Layer.cs" />
+    <Compile Include="Core\ControllerBase.cs" />
+    <Compile Include="Core\Document.cs" />
+    <Compile Include="Declarations\Enums\Enums.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseClasses\ConnectionBase.cs" />
+    <Compile Include="BaseClasses\ConnectorBase.cs" />
+    <Compile Include="BaseClasses\DiagramEntityBase.cs" />
+    <Compile Include="BaseClasses\ShapeBase.cs" />
+    <Compile Include="Declarations\Delegates\Delegates.cs" />
+    <Compile Include="Declarations\Delegates\EventArguments.cs" />
+    <Compile Include="Core\Interfaces\IAnts.cs" />
+    <Compile Include="Core\Interfaces\IModel.cs" />
+    <Compile Include="Core\Interfaces\IConnection.cs" />
+    <Compile Include="Core\Interfaces\IConnector.cs" />
+    <Compile Include="Core\Interfaces\IDiagramControl.cs" />
+    <Compile Include="Core\Interfaces\IDiagramEntity.cs" />
+    <Compile Include="Core\Interfaces\ILayout.cs" />
+    <Compile Include="Core\Interfaces\IMouseListener.cs" />
+    <Compile Include="Core\Interfaces\IPaintable.cs" />
+    <Compile Include="Core\Interfaces\IShape.cs" />
+    <Compile Include="Core\Interfaces\ITool.cs" />
+    <Compile Include="Core\Interfaces\ICommand.cs" />
+    <Compile Include="Core\Interfaces\IUndoSupport.cs" />
+    <Compile Include="Core\Scene graph\Model.cs" />
+    <Compile Include="Core\Scene graph\Page.cs" />
+    <Compile Include="Utils\Selection.cs" />
+    <Compile Include="Diagram elements\Shapes\SimpleEllipse.cs" />
+    <Compile Include="Tools\ConnectionTool.cs" />
+    <Compile Include="Tools\SelectionTool.cs" />
+    <Compile Include="Tools\EllipseTool.cs" />
+    <Compile Include="Tools\MoveTool.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Resource1.Designer.cs">
+      <DependentUpon>Resource1.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Diagram elements\Shapes\SimpleRectangle.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Diagram elements\Shapes\TextLabel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Tools\AbstractDrawingTool.cs" />
+    <Compile Include="Tools\RectangleTool.cs" />
+    <Compile Include="UI\DiagramControlBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UndoRedo\Command.cs" />
+    <Compile Include="UndoRedo\UndoInfo.cs" />
+    <Compile Include="UndoRedo\UndoManager.cs" />
+    <Compile Include="Utils\Utils.cs" />
+    <Compile Include="Core\ViewBase.cs" />
+    <EmbeddedResource Include="Resources\down.ico" />
+    <EmbeddedResource Include="Resources\idea.gif" />
+    <EmbeddedResource Include="Resources\minus.ico" />
+    <EmbeddedResource Include="Resources\plus.ico" />
+    <EmbeddedResource Include="Resources\SPP.ico" />
+    <EmbeddedResource Include="Resources\up.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Resource1.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+      <CustomToolNamespace>Netron.NetronLight</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\AboutSplash.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Declarations\Attributes\Readme.xml" />
+    <Content Include="Diagram elements\Connections\Readme.xml" />
+    <Content Include="Diagram elements\Connectors\Readme.xml" />
+    <Content Include="Diagram elements\Group\Readme.xml" />
+    <Content Include="Diagram elements\Materials\Readme.xml" />
+    <Content Include="Docs\Controller.png" />
+    <Content Include="Docs\Model.png" />
+    <Content Include="Docs\MVC main.png" />
+    <Content Include="Docs\View.png" />
+    <EmbeddedResource Include="Resources\Grip.cur" />
+    <EmbeddedResource Include="Resources\Add.cur" />
+    <EmbeddedResource Include="Resources\Cross.cur" />
+    <EmbeddedResource Include="Resources\Move.cur" />
+    <EmbeddedResource Include="Resources\Select.cur" />
+    <EmbeddedResource Include="Resources\Selection.cur" />
+    <EmbeddedResource Include="Resources\Web.png" />
+    <EmbeddedResource Include="Resources\ClassShape.png" />
+    <EmbeddedResource Include="Resources\DropShape.cur" />
+    <EmbeddedResource Include="Resources\DropText.cur" />
+    <EmbeddedResource Include="Resources\DropImage.cur" />
+    <EmbeddedResource Include="Resources\Text.png" />
+    <EmbeddedResource Include="Resources\PublicMethod.ico" />
+    <EmbeddedResource Include="Resources\PublicProperty.ico" />
+    <EmbeddedResource Include="Resources\DialHS.png" />
+    <EmbeddedResource Include="Resources\HomeHS.png" />
+    <Content Include="Core\Readme.xml" />
+    <Content Include="Core\Scene graph\Readme.xml" />
+    <Content Include="Declarations\Delegates\Readme.xml" />
+    <Content Include="Declarations\Enums\Readme.xml" />
+    <Content Include="Declarations\Exceptions\Readme.xml" />
+    <Content Include="Core\Interfaces\Readme.xml" />
+    <EmbeddedResource Include="Resources\Schema.ico" />
+    <Content Include="Diagram elements\Shapes\Readme.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Docs\Document.cd" />
+    <None Include="Docs\CollectionBase.cd" />
+    <None Include="Docs\Abstract base classes.cd" />
+    <None Include="Docs\Descriptors.cd" />
+    <None Include="Docs\Controller1.cd" />
+    <None Include="Docs\Controller2.cd" />
+    <None Include="Docs\EntityTree.cd" />
+    <None Include="Docs\Model.cd">
+      <SubType>
+      </SubType>
+    </None>
+    <None Include="Docs\MVC main.cd" />
+    <None Include="Docs\NetronLibrary.vsd" />
+    <None Include="Docs\Scene graph.cd" />
+    <None Include="Docs\View.cd" />
+    <None Include="ForUnitTestingPurposesOnly.snk" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="PropertySystem\Style\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

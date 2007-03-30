@@ -26,7 +26,6 @@ using System.Text;
 namespace MathNet.Symbolics.Conversion
 {
     public static class ValueConverter<TTarget>
-        where TTarget : ICustomData
     {
         //lazy initialization, since there are no other field members
         private static readonly IConversionRouter _router = Binder.GetInstance<IConversionRouter, Type>(typeof(TTarget));
@@ -42,17 +41,22 @@ namespace MathNet.Symbolics.Conversion
             return (TTarget)_router.ConvertFrom(value);
         }
 
+        public static TTarget ConvertFrom(object value)
+        {
+            return (TTarget)_router.ConvertFrom(value);
+        }
+
         public static IConversionRouter Router
         {
             get { return _router; }
         }
 
-        public static void AddConverterFrom(IConversionRouter sourceRouter, bool lossless, Converter<ICustomData, ICustomData> directConvert)
+        public static void AddConverterFrom(IConversionRouter sourceRouter, bool lossless, Converter<object, object> directConvert)
         {
             _router.AddSourceNeighbor(sourceRouter, lossless, directConvert);
         }
 
-        public static void AddConverterTo(IConversionRouter destinationRouter, bool lossless, Converter<ICustomData, ICustomData> directConvert)
+        public static void AddConverterTo(IConversionRouter destinationRouter, bool lossless, Converter<object, object> directConvert)
         {
             destinationRouter.AddSourceNeighbor(_router, lossless, directConvert);
         }
@@ -61,14 +65,14 @@ namespace MathNet.Symbolics.Conversion
             where TSource : ICustomData
         {
             // TODO: Modify conversion core to operate directly on typed converters
-            _router.AddSourceNeighbor(ValueConverter<TSource>.Router, lossless, delegate(ICustomData value) { return directConvert((TSource)value); });
+            _router.AddSourceNeighbor(ValueConverter<TSource>.Router, lossless, delegate(object value) { return directConvert((TSource)value); });
         }
 
         public static void AddConverterTo<TDestination>(bool lossless, Converter<TTarget, TDestination> directConvert)
             where TDestination : ICustomData
         {
             // TODO: Modify conversion core to operate directly on typed converters
-            ValueConverter<TDestination>.Router.AddSourceNeighbor(_router, lossless, delegate(ICustomData value) { return directConvert((TTarget)value); });
+            ValueConverter<TDestination>.Router.AddSourceNeighbor(_router, lossless, delegate(object value) { return directConvert((TTarget)value); });
         }
     }
 }

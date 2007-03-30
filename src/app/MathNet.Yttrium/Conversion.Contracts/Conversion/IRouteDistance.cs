@@ -30,7 +30,7 @@ namespace MathNet.Symbolics.Conversion
         MathIdentifier CanConvertFrom { get;}
         int Cost { get; }
         IConversionRouter NextHop { get; }
-        Converter<ICustomData, ICustomData> Convert { get; }
+        Converter<object, object> Convert { get; }
         bool Lossless { get; }
     }
 }

@@ -42,11 +42,16 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
         public static void Register(ILibrary library)
         {
             library.AddCustomDataType<RealValue>();
+            library.AddArbitraryType(typeof(double));
             //library.AddCustomDataType(new CustomDataRef(typeof(RealValue), ValueConverter<RealValue>.Router));
             ValueConverter<RealValue>.AddConverterFrom<IntegerValue>(true, ConvertFrom);
             ValueConverter<RealValue>.AddConverterFrom<RationalValue>(true, ConvertFrom);
             ValueConverter<RealValue>.AddConverterTo(ValueConverter<IntegerValue>.Router, false,
-                delegate(ICustomData value) { return new IntegerValue((long)Math.Round(((RealValue)value).Value, 0)); });
+                delegate(object value) { return new IntegerValue((long)Math.Round(((RealValue)value).Value, 0)); });
+            ValueConverter<IntegerValue>.AddConverterFrom(ValueConverter<double>.Router, true,
+                delegate(object value) { return new RealValue((double)value); });
+            ValueConverter<IntegerValue>.AddConverterTo(ValueConverter<double>.Router, true,
+                delegate(object value) { return ((RealValue)value).Value; });
         }
         public static RealValue ConvertFrom(ICustomData value)
         {
