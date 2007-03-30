@@ -2,68 +2,208 @@
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium", "src\app\MathNet.Yttrium\Library\Yttrium.csproj", "{CAB86B17-68FA-4081-B687-DB71B74BAF79}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Test", "src\test\MathNet.Yttrium.Test\Yttrium.Test.csproj", "{C5F4F488-5A7A-47BB-936C-19E30AFB4FEB}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Contracts", "src\app\MathNet.Yttrium\Contracts\Yttrium.Contracts.csproj", "{8966E2C5-B1C9-44BE-8751-45DCCA3D268F}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Microkernel", "src\app\MathNet.Yttrium\Microkernel\Yttrium.Microkernel.csproj", "{D03B156A-D6F3-4F46-AC59-7156681F69B7}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Interpreter.Contracts", "src\app\MathNet.Yttrium\Interpreter.Contracts\Yttrium.Interpreter.Contracts.csproj", "{3A0BF5B0-653C-40BD-8046-ED614D95D3D6}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Packages.Standard", "src\app\MathNet.Yttrium\Packages.Standard\Yttrium.Packages.Standard.csproj", "{7D33EAA2-C873-4BC0-88C5-FA350CB4B67A}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Conversion.Contracts", "src\app\MathNet.Yttrium\Conversion.Contracts\Yttrium.Conversion.Contracts.csproj", "{FACEF94F-CB8B-45FA-8664-3B9F043C27E9}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Packages.Helper", "src\app\MathNet.Yttrium\Packages.Helper\Yttrium.Packages.Helper.csproj", "{F1B95DE1-5170-4C65-92A4-CFE69256D6E1}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Library.Contracts", "src\app\MathNet.Yttrium\Library.Contracts\Yttrium.Library.Contracts.csproj", "{70E79678-387A-4AF6-8F64-4271CFE914BE}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Traversing.Contracts", "src\app\MathNet.Yttrium\Traversing.Contracts\Yttrium.Traversing.Contracts.csproj", "{191C1DF6-DDD9-4CFB-B459-3FA3FC421AC8}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Manipulation.Contracts", "src\app\MathNet.Yttrium\Manipulation.Contracts\Yttrium.Manipulation.Contracts.csproj", "{B273E022-E5DC-4FEE-8B70-FD9AF6A9BF6C}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Patterns.Toolkit", "src\app\MathNet.Yttrium\Patterns.Toolkit\Yttrium.Patterns.Toolkit.csproj", "{6AAA89AE-90D5-496B-9EBD-5274C662C147}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.SystemBuilder.Toolkit", "src\app\MathNet.Yttrium\SystemBuilder.Toolkit\Yttrium.SystemBuilder.Toolkit.csproj", "{8005E26B-E82F-4AF4-92E5-EDFA6FABCAA3}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Manipulation.Service", "src\app\MathNet.Yttrium\Manipulation.Service\Yttrium.Manipulation.Service.csproj", "{4927027C-5A8B-41ED-B680-84C656A98031}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Traversing.Service", "src\app\MathNet.Yttrium\Traversing.Service\Yttrium.Traversing.Service.csproj", "{90E6DB8F-7BFD-4DB3-B705-468769B718E8}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Library.Service", "src\app\MathNet.Yttrium\Library.Service\Yttrium.Library.Service.csproj", "{C1280263-2D0B-4D42-909D-B750FB52D873}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Builder.Service", "src\app\MathNet.Yttrium\Builder.Service\Yttrium.Builder.Service.csproj", "{55E44945-2BB3-4BDB-8E2D-934C334D73ED}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Conversion.Service", "src\app\MathNet.Yttrium\Conversion.Service\Yttrium.Conversion.Service.csproj", "{3B927CA1-FD05-4DC0-A065-A45B2B2730EC}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Interpreter.Service", "src\app\MathNet.Yttrium\Interpreter.Service\Yttrium.Interpreter.Service.csproj", "{66210C43-A4BD-4B01-A862-BC5EE789CC6E}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Repository.Contracts", "src\app\MathNet.Yttrium\Repository.Contracts\Yttrium.Repository.Contracts.csproj", "{FF88EDDE-73BB-4BE1-B0FB-33278F3FD257}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Repository.Service", "src\app\MathNet.Yttrium\Repository.Service\Yttrium.Repository.Service.csproj", "{36E41B54-4992-40AF-ABF9-5F0EE34B8B32}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Conversion.Toolkit", "src\app\MathNet.Yttrium\Conversion.Toolkit\Yttrium.Conversion.Toolkit.csproj", "{8CD3403D-22BF-4BBD-9F8E-36F0F0201351}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Simulation.Contracts", "src\app\MathNet.Yttrium\Simulation.Contracts\Yttrium.Simulation.Contracts.csproj", "{CFE74A4D-51A2-432C-966A-E29773C55D45}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Simulation.Service", "src\app\MathNet.Yttrium\Simulation.Service\Yttrium.Simulation.Service.csproj", "{A214B5AE-5823-4E97-9809-39CB5FC1C1F2}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Mediator.Contracts", "src\app\MathNet.Yttrium\Mediator.Contracts\Yttrium.Mediator.Contracts.csproj", "{E623ED40-9B92-40CA-9080-0FC78F668FFE}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Mediator.Service", "src\app\MathNet.Yttrium\Mediator.Service\Yttrium.Mediator.Service.csproj", "{5ADA1A0C-25A8-4B09-8956-AF0C94575D22}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Packages", "Packages", "{F75A5EAF-5C00-4F8C-AA9D-0745AA7E210D}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Packages.PetriNet", "src\app\MathNet.Yttrium\Packages\Yttrium.Packages.PetriNet\Yttrium.Packages.PetriNet.csproj", "{5D5C5661-1B83-4C25-AC7A-C7AED7FFC9DD}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{DA91D993-09E5-43F2-B99E-298D0DB2F07A}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Presentation", "src\app\MathNet.Yttrium\Tools\Presentation\Yttrium.Presentation.csproj", "{80FC18B6-13DC-4D8F-8007-8D2CD08D1B5B}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Mediator.Toolkit", "src\app\MathNet.Yttrium\Mediator.Toolkit\Yttrium.Mediator.Toolkit.csproj", "{334D8A1D-1004-4097-ACEE-8B954F911EB2}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Whiteboard", "src\app\MathNet.Yttrium\Tools\WhiteBoard\Yttrium.Whiteboard.csproj", "{20419F60-1DA7-478F-B77C-1EC2BC36DE53}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Netron.Diagramming.Core", "src\app\MathNet.Yttrium\Tools\Diagramming.Core\Netron.Diagramming.Core.csproj", "{96AEBBEE-4203-45F3-BCF5-7B73BF256BDA}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Netron.Diagramming.Win", "src\app\MathNet.Yttrium\Tools\Diagramming.Win\Netron.Diagramming.Win.csproj", "{1D15C2A9-7D08-4BA6-B307-BDE0CA8AF1CB}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -191,6 +331,14 @@ Global
 		{20419F60-1DA7-478F-B77C-1EC2BC36DE53}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20419F60-1DA7-478F-B77C-1EC2BC36DE53}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20419F60-1DA7-478F-B77C-1EC2BC36DE53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96AEBBEE-4203-45F3-BCF5-7B73BF256BDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96AEBBEE-4203-45F3-BCF5-7B73BF256BDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96AEBBEE-4203-45F3-BCF5-7B73BF256BDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96AEBBEE-4203-45F3-BCF5-7B73BF256BDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D15C2A9-7D08-4BA6-B307-BDE0CA8AF1CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D15C2A9-7D08-4BA6-B307-BDE0CA8AF1CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D15C2A9-7D08-4BA6-B307-BDE0CA8AF1CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D15C2A9-7D08-4BA6-B307-BDE0CA8AF1CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -199,5 +347,7 @@ Global
 		{5D5C5661-1B83-4C25-AC7A-C7AED7FFC9DD} = {F75A5EAF-5C00-4F8C-AA9D-0745AA7E210D}
 		{80FC18B6-13DC-4D8F-8007-8D2CD08D1B5B} = {DA91D993-09E5-43F2-B99E-298D0DB2F07A}
 		{20419F60-1DA7-478F-B77C-1EC2BC36DE53} = {DA91D993-09E5-43F2-B99E-298D0DB2F07A}
+		{96AEBBEE-4203-45F3-BCF5-7B73BF256BDA} = {DA91D993-09E5-43F2-B99E-298D0DB2F07A}
+		{1D15C2A9-7D08-4BA6-B307-BDE0CA8AF1CB} = {DA91D993-09E5-43F2-B99E-298D0DB2F07A}
 	EndGlobalSection
 EndGlobal
