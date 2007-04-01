@@ -723,6 +723,7 @@ namespace MathNet.Numerics.LinearAlgebra
 		/// <summary>Solve A*X = B against a Least Square (L2) criterion.</summary>
 		/// <param name="B">right hand side</param>
 		/// <returns>solution if A is square, least squares solution otherwise.</returns>
+        /// <exception cref="InvalidOperationException">Matrix rank is deficient.</exception>
 		public virtual Matrix Solve(Matrix B)
 		{
 			return (RowCount == ColumnCount ? (new LUDecomposition(this)).Solve(B):(new QRDecomposition(this)).Solve(B));
