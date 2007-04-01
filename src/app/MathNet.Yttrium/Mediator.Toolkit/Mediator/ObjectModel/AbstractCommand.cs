@@ -36,6 +36,7 @@ namespace MathNet.Symbolics.Mediator.ObjectModel
 
         protected abstract void Action();
 
+        [System.Diagnostics.DebuggerStepThrough]
         public void Execute()
         {
             if(!BeginExecute())

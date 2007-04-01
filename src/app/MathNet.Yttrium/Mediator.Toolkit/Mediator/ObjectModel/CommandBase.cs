@@ -43,7 +43,9 @@ namespace MathNet.Symbolics.Mediator.ObjectModel
 
         public IMathSystem System
         {
+            [System.Diagnostics.DebuggerStepThrough]
             get { return _system; }
+            [System.Diagnostics.DebuggerStepThrough]
             set { _system = value; }
         }
 
@@ -53,11 +55,13 @@ namespace MathNet.Symbolics.Mediator.ObjectModel
         }
 
         /// <returns>true if and only if the command should continue executing.</returns>
+        [System.Diagnostics.DebuggerStepThrough]
         public bool BeginExecute()
         {
             return !_done;
         }
 
+        [System.Diagnostics.DebuggerStepThrough]
         public void EndExecute()
         {
             _done = true;
@@ -65,18 +69,23 @@ namespace MathNet.Symbolics.Mediator.ObjectModel
                 Executed(this, EventArgs.Empty);
         }
 
+        [System.Diagnostics.DebuggerStepThrough]
         protected Signal GetVerifySignal(CommandReference signalReference)
         {
             Signal signal = System.GetSignal(signalReference.Index);
             LazyVerify(signal.InstanceId, signalReference.InstanceId);
             return signal;
         }
+
+        [System.Diagnostics.DebuggerStepThrough]
         protected Bus GetVerifyBus(CommandReference busReference)
         {
             Bus bus = System.GetBus(busReference.Index);
             LazyVerify(bus.InstanceId, busReference.InstanceId);
             return bus;
         }
+
+        [System.Diagnostics.DebuggerStepThrough]
         protected Port GetVerifyPort(CommandReference portReference)
         {
             Port port = System.GetPort(portReference.Index);
@@ -84,6 +93,7 @@ namespace MathNet.Symbolics.Mediator.ObjectModel
             return port;
         }
 
+        [System.Diagnostics.DebuggerStepThrough]
         protected void LazyVerify(Guid found, Guid target)
         {
             if(!(Guid.Empty.Equals(target) || found.Equals(target)))

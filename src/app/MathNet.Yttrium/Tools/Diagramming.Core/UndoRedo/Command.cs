@@ -35,6 +35,7 @@ namespace Netron.Diagramming.Core
         /// </summary>
         protected IController Controller
         {
+            [System.Diagnostics.DebuggerStepThrough]
             get { return mController; }
             set { mController = value; }
         }

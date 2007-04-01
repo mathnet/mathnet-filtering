@@ -47,7 +47,6 @@ namespace MathNet.Symbolics.Whiteboard
             this.netron.AutoScroll = true;
             this.netron.BackColor = System.Drawing.Color.Gold;
             this.netron.BackgroundType = Netron.Diagramming.Core.CanvasBackgroundTypes.FlatColor;
-            //this.netron.Document = ((Netron.Diagramming.Core.Document)(resources.GetObject("netron.Document")));
             this.netron.EnableAddConnection = true;
             this.netron.Location = new System.Drawing.Point(0, 0);
             this.netron.Magnification = new System.Drawing.SizeF(100F, 100F);
@@ -55,14 +54,14 @@ namespace MathNet.Symbolics.Whiteboard
             this.netron.Origin = new System.Drawing.Point(0, 0);
             this.netron.ShowPage = false;
             this.netron.ShowRulers = false;
-            this.netron.Size = new System.Drawing.Size(818, 603);
+            this.netron.Size = new System.Drawing.Size(740, 603);
             this.netron.TabIndex = 0;
             this.netron.Text = "Math.NET Whiteboard Diagram";
             // 
             // btnBuildSample
             // 
             this.btnBuildSample.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBuildSample.Location = new System.Drawing.Point(640, 609);
+            this.btnBuildSample.Location = new System.Drawing.Point(562, 609);
             this.btnBuildSample.Name = "btnBuildSample";
             this.btnBuildSample.Size = new System.Drawing.Size(163, 23);
             this.btnBuildSample.TabIndex = 1;
@@ -120,7 +119,7 @@ namespace MathNet.Symbolics.Whiteboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(815, 644);
+            this.ClientSize = new System.Drawing.Size(737, 644);
             this.Controls.Add(this.entitySelector);
             this.Controls.Add(this.btnNewPort);
             this.Controls.Add(this.btnNewBus);

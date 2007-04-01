@@ -9,6 +9,7 @@ using Netron.Diagramming.Win;
 
 using MathNet.Symbolics.Mediator;
 using MathNet.Symbolics.Presentation.FlyweightShapes;
+using MathNet.Symbolics.Presentation.Connectors;
 
 namespace MathNet.Symbolics.Presentation.Shapes
 {
@@ -19,7 +20,7 @@ namespace MathNet.Symbolics.Presentation.Shapes
     {
         private CommandReference sysRef;
         private Port port;
-        private List<Connector> cIn, cOut, cBus;
+        private List<YttriumConnector> cIn, cOut, cBus;
         private IFlyweightShape<PortShape> _fly;
 
         #region Properties
@@ -38,15 +39,15 @@ namespace MathNet.Symbolics.Presentation.Shapes
             }
         }
 
-        public List<Connector> InputConnectors
+        public List<YttriumConnector> InputConnectors
         {
             get { return cIn; }
         }
-        public List<Connector> OutputConnectors
+        public List<YttriumConnector> OutputConnectors
         {
             get { return cOut; }
         }
-        public List<Connector> BusConnectors
+        public List<YttriumConnector> BusConnectors
         {
             get { return cBus; }
         }
@@ -65,9 +66,9 @@ namespace MathNet.Symbolics.Presentation.Shapes
         {
             this.sysRef = reference;
 
-            cIn = new List<Connector>();
-            cOut = new List<Connector>();
-            cBus = new List<Connector>();
+            cIn = new List<YttriumConnector>();
+            cOut = new List<YttriumConnector>();
+            cBus = new List<YttriumConnector>();
 
             AssignFly(fly);
         }
@@ -78,7 +79,10 @@ namespace MathNet.Symbolics.Presentation.Shapes
             {
                 _fly = fly;
                 if(_fly != null)
+                {
                     _fly.InitShape(this);
+                    _fly.Reposition(this, Point.Empty);
+                }
             }
 
             Invalidate();
@@ -87,7 +91,10 @@ namespace MathNet.Symbolics.Presentation.Shapes
         private void UpdatePort()
         {
             if(_fly != null)
+            {
                 _fly.InitShape(this);
+                _fly.Reposition(this, Point.Empty);
+            }
         }
 
         /// <summary>
@@ -114,17 +121,7 @@ namespace MathNet.Symbolics.Presentation.Shapes
         public override void Move(Point p)
         {
             base.Move(p);
-
-            foreach(Connector c in cOut)
-                foreach(Connector cnf in c.AttachedConnectors)
-                {
-                    IConnector c2 = ((IConnection)cnf.Parent).To.AttachedTo;
-                    SignalShape ss = c2.Parent as SignalShape;
-                    if(ss != null)
-                    {
-                        ss.Location = new Point(c.Point.X - 16, c.Point.Y - 10);
-                    }
-                }
+            _fly.Reposition(this, p);
         }
     }
 }

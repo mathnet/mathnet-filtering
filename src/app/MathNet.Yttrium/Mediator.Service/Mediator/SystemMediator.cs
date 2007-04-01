@@ -463,11 +463,13 @@ namespace MathNet.Symbolics.Mediator
         //    get { return _commands; }
         //}
 
+        [System.Diagnostics.DebuggerStepThrough]
         public void PostCommand(ICommand command)
         {
             _commands.PushEntry(command);
         }
 
+        [System.Diagnostics.DebuggerStepThrough]
         private void EntryAvailableHandler(object sender, EventArgs e)
         {
             while(_commands.HasEntries)

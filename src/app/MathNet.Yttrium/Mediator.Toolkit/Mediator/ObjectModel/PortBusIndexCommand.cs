@@ -56,6 +56,7 @@ namespace MathNet.Symbolics.Mediator.ObjectModel
 
         protected abstract void Action(Port port, Bus bus, int index);
 
+        [System.Diagnostics.DebuggerStepThrough]
         public void Execute()
         {
             if(!BeginExecute())

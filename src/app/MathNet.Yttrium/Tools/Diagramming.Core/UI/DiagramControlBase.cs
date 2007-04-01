@@ -24,6 +24,7 @@ namespace Netron.Diagramming.Core
         (F.Shiller)
           
          */
+
         #region Constants
         protected const string constGeneral = "General";
         #endregion

@@ -9,6 +9,7 @@ using Netron.Diagramming.Win;
 using MathNet.Symbolics.Mediator;
 using MathNet.Symbolics.Presentation.Shapes;
 using MathNet.Symbolics.Presentation.FlyweightShapes;
+using MathNet.Symbolics.Presentation.Connectors;
 
 namespace MathNet.Symbolics.Presentation.WinDiagram
 {
@@ -232,7 +233,11 @@ namespace MathNet.Symbolics.Presentation.WinDiagram
                 PostCommandRemovePort(ps.PortReference, true);
                 return;
             }
+            IConnection cn = entity as IConnection;
+            if(cn != null)
+            {
 
+            }
         }
         void NetronEntityAddedHandler(object sender, EntityEventArgs e)
         {
@@ -285,7 +290,7 @@ namespace MathNet.Symbolics.Presentation.WinDiagram
                     // PORT <-> SIGNAL
 
                     int index = -1;
-                    List<Connector> sl = port.InputConnectors;
+                    List<YttriumConnector> sl = port.InputConnectors;
                     for(int i = 0; i < sl.Count; i++)
                     {
                         if(sl[i] == portConnector)
@@ -323,7 +328,7 @@ namespace MathNet.Symbolics.Presentation.WinDiagram
                     // PORT <-> BUS
 
                     int index = -1;
-                    List<Connector> bl = port.BusConnectors;
+                    List<YttriumConnector> bl = port.BusConnectors;
                     for(int i = 0; i < bl.Count; i++)
                     {
                         if(bl[i] == portConnector)
@@ -395,7 +400,7 @@ namespace MathNet.Symbolics.Presentation.WinDiagram
                     // PORT <-> SIGNAL
 
                     int index = -1;
-                    List<Connector> sl = port.InputConnectors;
+                    List<YttriumConnector> sl = port.InputConnectors;
                     for(int i = 0; i < sl.Count; i++)
                     {
                         if(sl[i] == portConnector)
@@ -433,7 +438,7 @@ namespace MathNet.Symbolics.Presentation.WinDiagram
                     // PORT <-> BUS
 
                     int index = -1;
-                    List<Connector> bl = port.BusConnectors;
+                    List<YttriumConnector> bl = port.BusConnectors;
                     for(int i = 0; i < bl.Count; i++)
                     {
                         if(bl[i] == portConnector)

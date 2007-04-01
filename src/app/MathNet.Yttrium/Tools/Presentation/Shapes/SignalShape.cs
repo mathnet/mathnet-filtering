@@ -9,6 +9,7 @@ using Netron.Diagramming.Win;
 
 using MathNet.Symbolics.Mediator;
 using MathNet.Symbolics.Presentation.FlyweightShapes;
+using MathNet.Symbolics.Presentation.Connectors;
 
 namespace MathNet.Symbolics.Presentation.Shapes
 {
@@ -17,7 +18,7 @@ namespace MathNet.Symbolics.Presentation.Shapes
     /// </summary>
     public partial class SignalShape : SimpleShapeBase
     {
-        private Connector outConnector, inConnector;
+        private YttriumConnector outConnector, inConnector;
         private CommandReference sysRef;
         private Signal signal;
         private IFlyweightShape<SignalShape> _fly;
@@ -34,11 +35,11 @@ namespace MathNet.Symbolics.Presentation.Shapes
             set { signal = value; }
         }
 
-        public Connector OutputConnector
+        public YttriumConnector OutputConnector
         {
             get { return outConnector; }
         }
-        public Connector InputConnector
+        public YttriumConnector InputConnector
         {
             get { return inConnector; }
         }
@@ -54,12 +55,12 @@ namespace MathNet.Symbolics.Presentation.Shapes
         {
             this.sysRef = reference;
 
-            outConnector = new Connector(Model);
+            outConnector = new YttriumConnector(Model, ConnectorType.SignalOutputConnector);
             outConnector.Name = "Output";
             outConnector.Parent = this;
             Connectors.Add(outConnector);
 
-            inConnector = new Connector(Model);
+            inConnector = new YttriumConnector(Model, ConnectorType.SignalInputConnector);
             inConnector.Name = "Input";
             inConnector.Parent = this;
             Connectors.Add(inConnector);
@@ -73,7 +74,10 @@ namespace MathNet.Symbolics.Presentation.Shapes
             {
                 _fly = fly;
                 if(_fly != null)
+                {
                     _fly.InitShape(this);
+                    _fly.Reposition(this, Point.Empty);
+                }
             }
 
             Invalidate();
@@ -97,6 +101,12 @@ namespace MathNet.Symbolics.Presentation.Shapes
         public override void Paint(Graphics g)
         {
             _fly.Paint(this, g);
+        }
+
+        public override void Move(Point p)
+        {
+            base.Move(p);
+            _fly.Reposition(this, p);
         }
     }
 }

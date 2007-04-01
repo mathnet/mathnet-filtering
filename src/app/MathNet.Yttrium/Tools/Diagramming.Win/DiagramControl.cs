@@ -257,7 +257,7 @@ namespace Netron.Diagramming.Win
         }
         private void OnNewConnection(object sender, EventArgs e)
         {
-
+            this.Controller.ActivateTool("Connection Tool");
         }
 
        

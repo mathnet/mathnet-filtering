@@ -41,6 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connections\ConnectionState.cs" />
+    <Compile Include="Connections\YttriumConnection.cs" />
+    <Compile Include="Connections\YttriumConnection.Serialization.cs" />
+    <Compile Include="Connectors\YttriumConnector.Serialization.cs" />
+    <Compile Include="Connectors\YttriumConnector.cs" />
+    <Compile Include="Connectors\ConnectorType.cs" />
     <Compile Include="ControllerBase.cs" />
     <Compile Include="FlyweightShapes\PetriNetPortShape.cs" />
     <Compile Include="FlyweightShapes\DefaultBusShape.cs" />

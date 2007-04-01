@@ -146,6 +146,7 @@ namespace MathNet.Symbolics.Presentation
         #endregion
 
         #region Command Helper
+        [System.Diagnostics.DebuggerStepThrough]
         public void PostCommand(ICommand command)
         {
             _sysMediator.PostCommand(command);

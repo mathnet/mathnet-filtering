@@ -51,5 +51,9 @@ namespace MathNet.Symbolics.Presentation.FlyweightShapes
             if(!string.IsNullOrEmpty(shape.Text))
                 g.DrawString(shape.Text, ArtPallet.DefaultFont, Brushes.Black, shape.TextRectangle.X - 6, shape.TextRectangle.Y - 6);
         }
+
+        public void Reposition(SignalShape shape, Point shift)
+        {
+        }
     }
 }

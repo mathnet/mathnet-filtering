@@ -44,6 +44,7 @@ namespace MathNet.Symbolics.Mediator.ObjectModel
 
         protected abstract CommandReference Action();
 
+        [System.Diagnostics.DebuggerStepThrough]
         public void Execute()
         {
             if(!BeginExecute())

@@ -44,6 +44,7 @@ namespace MathNet.Symbolics.Mediator.ObjectModel
 
         protected abstract void Action(Bus bus);
 
+        [System.Diagnostics.DebuggerStepThrough]
         public void Execute()
         {
             if(!BeginExecute())

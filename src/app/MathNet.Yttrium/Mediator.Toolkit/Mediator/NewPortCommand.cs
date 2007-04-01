@@ -69,8 +69,8 @@ namespace MathNet.Symbolics.Mediator
                 e = e.CompileGenericEntity(_inputCnt, _busCnt, _outputCnt);
             Port p = e.InstantiateUnboundPort();
             Guid iid = p.InstanceId;
-            System.AddPort(p);
             System.AddSignalRange(p.OutputSignals);
+            System.AddPort(p);
             return new CommandReference(iid, idx);
         }
 

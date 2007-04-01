@@ -262,7 +262,7 @@ namespace Netron.Diagramming.Core
                 case System.Windows.Forms.Keys.NumPad9:
                     break;
                 case System.Windows.Forms.Keys.O:
-                    this.Controller.ParentControl.Open(@"c:\temp\test.netron");
+                    //this.Controller.ParentControl.Open(@"c:\temp\test.netron");
                     break;
                 
                
@@ -309,7 +309,7 @@ namespace Netron.Diagramming.Core
                 case System.Windows.Forms.Keys.Right:
                     break;
                 case System.Windows.Forms.Keys.S:
-                    this.Controller.ParentControl.SaveAs(@"c:\temp\test.netron");
+                    //this.Controller.ParentControl.SaveAs(@"c:\temp\test.netron");
                     break;
                 case System.Windows.Forms.Keys.Scroll:
                     break;

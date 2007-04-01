@@ -6,6 +6,7 @@ using System.Drawing.Drawing2D;
 
 using Netron.Diagramming.Core;
 using MathNet.Symbolics.Presentation.Shapes;
+using MathNet.Symbolics.Presentation.Connectors;
 
 namespace MathNet.Symbolics.Presentation.FlyweightShapes
 {
@@ -33,14 +34,14 @@ namespace MathNet.Symbolics.Presentation.FlyweightShapes
                 shape.Width = 60 + 25 * busCnt;
                 shape.Height = 40 + 25 * inoutCnt;
 
-                SyncConnectors(shape.Connectors, shape.Model, inCnt, shape.InputConnectors, "Input");
-                SyncConnectors(shape.Connectors, shape.Model, outCnt, shape.OutputConnectors, "Output");
-                SyncConnectors(shape.Connectors, shape.Model, busCnt, shape.BusConnectors, "Bus");
+                SyncConnectors(shape.Connectors, shape.Model, inCnt, shape.InputConnectors, "Input", ConnectorType.PortInputConnector);
+                SyncConnectors(shape.Connectors, shape.Model, outCnt, shape.OutputConnectors, "Output", ConnectorType.PortOutputConnector);
+                SyncConnectors(shape.Connectors, shape.Model, busCnt, shape.BusConnectors, "Bus", ConnectorType.PortBusConnector);
 
                 Point loc = shape.Location;
                 int right = loc.X + shape.Width;
 
-                List<Connector> list = shape.InputConnectors;
+                List<YttriumConnector> list = shape.InputConnectors;
                 for(int i = 0; i < inCnt; i++)
                     list[i].Point = new Point(loc.X, loc.Y + 30 + i * 25);
                 list = shape.OutputConnectors;
@@ -102,13 +103,13 @@ namespace MathNet.Symbolics.Presentation.FlyweightShapes
 
             //the connectors
             Brush cBrush = ArtPallet.GetSolidBrush(Color.Gray, 255); //Color.SteelBlue
-            foreach(Connector c in shape.OutputConnectors)
+            foreach(YttriumConnector c in shape.OutputConnectors)
             {
                 g.FillRectangle(cBrush, c.Point.X - 7, c.Point.Y - 12, 7, 24);
                 g.FillPie(cBrush, c.Point.X - 18, c.Point.Y - 12, 24, 24, 90, 180);
                 //g.FillEllipse(cBrush, c.Point.X - 12, c.Point.Y - 12, 24, 24);
             }
-            foreach(Connector c in shape.Connectors)
+            foreach(IConnector c in shape.Connectors)
                 c.Paint(g);
 
             if(shape.Port != null)
@@ -120,12 +121,12 @@ namespace MathNet.Symbolics.Presentation.FlyweightShapes
             }
         }
 
-        private void SyncConnectors(ICollection<IConnector> connectors, IModel model, int count, List<Connector> list, string prefix)
+        private void SyncConnectors(ICollection<IConnector> connectors, IModel model, int count, List<YttriumConnector> list, string prefix, ConnectorType type)
         {
             if(count > list.Count)
                 for(int i = list.Count; i < count; i++)
                 {
-                    Connector c = new Connector(model);
+                    YttriumConnector c = new YttriumConnector(model, type);
                     c.Name = prefix + i.ToString();
                     c.Parent = this;
                     list.Add(c);
@@ -134,9 +135,23 @@ namespace MathNet.Symbolics.Presentation.FlyweightShapes
             else if(count < list.Count)
                 for(int i = list.Count - 1; i > count; i--)
                 {
-                    Connector c = list[i];
+                    YttriumConnector c = list[i];
                     connectors.Remove(c);
                     list.RemoveAt(i);
+                }
+        }
+
+        public void Reposition(PortShape shape, Point shift)
+        {
+            foreach(YttriumConnector c in shape.OutputConnectors)
+                foreach(IConnector cnf in c.AttachedConnectors)
+                {
+                    IConnector c2 = ((IConnection)cnf.Parent).To.AttachedTo;
+                    SignalShape ss = c2.Parent as SignalShape;
+                    if(ss != null)
+                    {
+                        ss.Location = new Point(c.Point.X - 16, c.Point.Y - 10);
+                    }
                 }
         }
     }

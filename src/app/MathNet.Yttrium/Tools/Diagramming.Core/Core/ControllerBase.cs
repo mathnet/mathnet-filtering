@@ -132,14 +132,9 @@ namespace Netron.Diagramming.Core
         /// <value></value>
         public IModel Model
         {
-            get
-            {
-                return mModel;
-            }
-            set
-            {
-                AttachToModel(value);
-            }
+            [System.Diagnostics.DebuggerStepThrough]
+            get { return mModel; }
+            set { AttachToModel(value); }
         }
 
         /// <summary>

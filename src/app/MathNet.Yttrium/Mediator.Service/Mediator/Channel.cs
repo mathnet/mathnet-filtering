@@ -55,11 +55,14 @@ namespace MathNet.Symbolics.Mediator
             get { return _enabled; }
         }
 
+        
         public bool HasEntries
         {
+            [System.Diagnostics.DebuggerStepThrough]
             get { return _queue.Count > 0; }
         }
 
+        [System.Diagnostics.DebuggerStepThrough]
         public void PushEntry(EntryType entry)
         {
             if(_enabled)
@@ -71,11 +74,13 @@ namespace MathNet.Symbolics.Mediator
             }
         }
 
+        [System.Diagnostics.DebuggerStepThrough]
         public EntryType PopEntry()
         {
             return _queue.Dequeue();
         }
 
+        [System.Diagnostics.DebuggerStepThrough]
         public EntryType PeekEntry()
         {
             return _queue.Peek();

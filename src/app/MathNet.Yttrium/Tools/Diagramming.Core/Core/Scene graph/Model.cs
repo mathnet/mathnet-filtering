@@ -283,6 +283,7 @@ namespace Netron.Diagramming.Core
         /// </summary>
         public  IPage DefaultPage
         {
+            [System.Diagnostics.DebuggerStepThrough]
             get { return mDefaultPage; }
             set { mDefaultPage = value; }
         }
@@ -301,8 +302,11 @@ namespace Netron.Diagramming.Core
             }
         }
 
+        [Obsolete("Use .Parent instead")]
         public Dictionary<IConnector, IDiagramEntity> ConnectorHolders
         {
+            // TODO: Get rid of this, complete nonsense. Obviously had some bad 5 minutes... (chris)
+
             get
             {
                 return mConnectorHolders;
@@ -510,12 +514,6 @@ namespace Netron.Diagramming.Core
         /// <param name="e">The <see cref="T:Netron.Diagramming.Core.EntityEventArgs"/> instance containing the event data.</param>
         void mDefaultPage_OnEntityRemoved(object sender, EntityEventArgs e)
         {
-            IConnection cn = e.Entity as IConnection;
-            if(cn != null)
-            {
-                mConnectorHolders.Remove(cn.From);
-                mConnectorHolders.Remove(cn.To);
-            }
             //IShape sp = e.Entity as IShape;
             //if(sp != null)
             //{
@@ -539,7 +537,15 @@ namespace Netron.Diagramming.Core
             {
                 Selection.SelectedItems.Remove(e.Entity);               
             }
+
             RaiseOnEntityRemoved(e);
+
+            IConnection cn = e.Entity as IConnection;
+            if(cn != null)
+            {
+                mConnectorHolders.Remove(cn.From);
+                mConnectorHolders.Remove(cn.To);
+            }
         }
 
         /// <summary>
@@ -808,7 +814,6 @@ namespace Netron.Diagramming.Core
             {
                 SetModel(entity);
                 DefaultPage.DefaultLayer.Entities.Add(entity);
-                
             }
         }
         /// <summary>

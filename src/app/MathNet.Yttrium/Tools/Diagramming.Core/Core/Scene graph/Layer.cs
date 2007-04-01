@@ -161,6 +161,7 @@ namespace Netron.Diagramming.Core
         /// </summary>
         /// <param name="sender">The sender.</param>
         /// <param name="e">The e.</param>
+        [System.Diagnostics.DebuggerStepThrough]
         void mEntities_OnItemRemoved(object sender, CollectionEventArgs<IDiagramEntity> e)
         {
             EventHandler<EntityEventArgs> handler = OnEntityRemoved;
@@ -173,6 +174,7 @@ namespace Netron.Diagramming.Core
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        [System.Diagnostics.DebuggerStepThrough]
         void mEntities_OnItemAdded(object sender, CollectionEventArgs<IDiagramEntity> e)
         {
             EventHandler<EntityEventArgs> handler = OnEntityAdded;

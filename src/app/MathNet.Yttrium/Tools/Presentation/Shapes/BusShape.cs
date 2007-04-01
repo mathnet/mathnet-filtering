@@ -9,6 +9,7 @@ using Netron.Diagramming.Win;
 
 using MathNet.Symbolics.Mediator;
 using MathNet.Symbolics.Presentation.FlyweightShapes;
+using MathNet.Symbolics.Presentation.Connectors;
 
 namespace MathNet.Symbolics.Presentation.Shapes
 {
@@ -17,7 +18,7 @@ namespace MathNet.Symbolics.Presentation.Shapes
     /// </summary>
     public partial class BusShape : SimpleShapeBase
     {
-        private Connector busConnector;
+        private YttriumConnector busConnector;
         private CommandReference sysRef;
         private Bus bus;
         private IFlyweightShape<BusShape> _fly;
@@ -34,7 +35,7 @@ namespace MathNet.Symbolics.Presentation.Shapes
             set { bus = value; }
         }
 
-        public Connector BusConnector
+        public YttriumConnector BusConnector
         {
             get { return busConnector; }
         }
@@ -50,7 +51,7 @@ namespace MathNet.Symbolics.Presentation.Shapes
         {
             this.sysRef = reference;
 
-            busConnector = new Connector(Model); //new Point((int)(Rectangle.Left + Rectangle.Width / 2), Rectangle.Bottom), 
+            busConnector = new YttriumConnector(Model, ConnectorType.BusConnector); //new Point((int)(Rectangle.Left + Rectangle.Width / 2), Rectangle.Bottom), 
             busConnector.Name = "Bus";
             busConnector.Parent = this;
             Connectors.Add(busConnector);
@@ -64,7 +65,10 @@ namespace MathNet.Symbolics.Presentation.Shapes
             {
                 _fly = fly;
                 if(_fly != null)
+                {
                     _fly.InitShape(this);
+                    _fly.Reposition(this, Point.Empty);
+                }
             }
 
             Invalidate();
@@ -88,6 +92,12 @@ namespace MathNet.Symbolics.Presentation.Shapes
         public override void Paint(Graphics g)
         {
             _fly.Paint(this, g);
+        }
+
+        public override void Move(Point p)
+        {
+            base.Move(p);
+            _fly.Reposition(this, p);
         }
     }
 }

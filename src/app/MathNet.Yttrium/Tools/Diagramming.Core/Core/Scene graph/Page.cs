@@ -95,14 +95,8 @@ namespace Netron.Diagramming.Core
         [Browsable(true), Description("The background type"), Category("Appearance"), DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public CanvasBackgroundTypes BackgroundType
         {
-            get
-            {
-                return Ambience.BackgroundType;
-            }
-            set
-            {
-                Ambience.BackgroundType = value;
-            }
+            get { return Ambience.BackgroundType; }
+            set { Ambience.BackgroundType = value; }
         }
 
         /// <summary>
@@ -110,10 +104,7 @@ namespace Netron.Diagramming.Core
         /// </summary>
         public Ambience Ambience
         {
-            get
-            {
-                return mAmbience;
-            }
+            get { return mAmbience; }
             set
             {
                 mAmbience = value;
@@ -128,14 +119,8 @@ namespace Netron.Diagramming.Core
         [Browsable(true), Description("The background color of the canvas if the type is set to 'flat'"), Category("Appearance"), DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color BackColor
         {
-            get
-            {
-                return Ambience.BackgroundColor;
-            }
-            set
-            {
-                Ambience.BackgroundColor = value;
-            }
+            get { return Ambience.BackgroundColor; }
+            set { Ambience.BackgroundColor = value; }
         }
 
         /// <summary>
@@ -144,24 +129,16 @@ namespace Netron.Diagramming.Core
         /// <value>The default layer.</value>
         public ILayer DefaultLayer
         {
-            get
-            {
-                return mDefaultLayer;
-            }
+            [System.Diagnostics.DebuggerStepThrough]
+            get { return mDefaultLayer; }
         }
         /// <summary>
         /// Gets or sets the Layers
         /// </summary>
         public CollectionBase<ILayer> Layers
         {
-            get
-            {
-                return mLayers;
-            }
-            set
-            {
-                mLayers = value;
-            }
+            get { return mLayers; }
+            set { mLayers = value; }
         }
         /// <summary>
         /// Gets or sets the Name
@@ -281,6 +258,7 @@ namespace Netron.Diagramming.Core
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="T:Netron.Diagramming.Core.EntityEventArgs"/> instance containing the event data.</param>
+        [System.Diagnostics.DebuggerStepThrough]
         void mDefaultLayer_OnEntityRemoved(object sender, EntityEventArgs e)
         {
             EventHandler<EntityEventArgs> handler = OnEntityRemoved;
@@ -293,6 +271,7 @@ namespace Netron.Diagramming.Core
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="T:Netron.Diagramming.Core.EntityEventArgs"/> instance containing the event data.</param>
+        [System.Diagnostics.DebuggerStepThrough]
         void defaultLayer_OnEntityAdded(object sender, EntityEventArgs e)
         {
             EventHandler<EntityEventArgs> handler = OnEntityAdded;
