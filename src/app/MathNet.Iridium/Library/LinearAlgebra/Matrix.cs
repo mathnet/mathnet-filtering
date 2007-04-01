@@ -732,6 +732,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <summary>Solve A*X = B against a Least Absolute Deviation (L1) criterion.</summary>
         /// <param name="B">right hand side</param>
         /// <returns>The implementation relies on the IRLS (iterated Re-weighted Least Square) algorithm.</returns>
+        /// <exception cref="InvalidOperationException">Matrix rank is deficient.</exception>
         public virtual Matrix SolveRobust(Matrix B)
         {
             if (RowCount == ColumnCount)
