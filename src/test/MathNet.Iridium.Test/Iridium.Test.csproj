@@ -41,6 +41,8 @@
   <ItemGroup>
     <Compile Include="ComplexTest.cs" />
     <Compile Include="LinearAlgebra.Test.cs" />
+    <Compile Include="MatrixTest.cs" />
+    <Compile Include="MyStopWatch.cs" />
     <Compile Include="SpecialFunctionsTest.cs" />
     <Compile Include="FftTest.cs" />
     <Compile Include="NumberTest.cs" />
