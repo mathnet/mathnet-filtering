@@ -764,7 +764,7 @@ namespace MathNet.Numerics
         /// <summary>Natural Logarithm of this <c>Complex</c> (Base E).</summary>
         public Complex NaturalLogarithm()
         {
-            if(IsReal)
+            if(IsRealNonNegative)
                 return new Complex(Math.Log(real), 0d);
             return new Complex(0.5d * Math.Log(ModulusSquared), Argument);
         }

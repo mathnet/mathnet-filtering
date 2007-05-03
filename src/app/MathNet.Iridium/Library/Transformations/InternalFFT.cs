@@ -31,9 +31,9 @@ namespace MathNet.Numerics.Transformations
     /// </summary>
     internal class InternalFFT
     {
-        private const int maxLength = 4096;
+        private const int maxLength = 1048576;
         private const int minLength = 1;
-        private const int maxBits = 12;
+        private const int maxBits = 20; //12;
         private const int minBits = 0;
 
         public void DiscreteFourierTransform(double[] samples, bool forward, TransformationConvention convention)
