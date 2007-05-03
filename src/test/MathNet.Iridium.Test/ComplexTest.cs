@@ -64,5 +64,18 @@ namespace Iridium.Test
             Assert.AreEqual(1231.2d, c1.Real, "A1");
             Assert.AreEqual(0.0d, c1.Imag, "A2");
         }
+
+        [Test]
+        public void TestNaturalLogarithmOfNegativeReal()
+        {
+            // Regression Test for Bug IRID-77
+
+            Complex minusOne = -Complex.One;
+            Complex piI = minusOne.NaturalLogarithm();
+
+            Assert.AreEqual(0.0, piI.Real, 1e-8, "Re{ln(-1)} = 0");
+            Assert.AreEqual(Constants.Pi, piI.Imag, 1e-8, "Im{ln(-1)} = Pi");
+
+        }
     }
 }

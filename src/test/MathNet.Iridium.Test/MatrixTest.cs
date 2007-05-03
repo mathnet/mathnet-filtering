@@ -262,7 +262,7 @@ namespace Iridium.Test
             {
                 ms = ma.Solve(mb);
             };
-            Console.Write("Solve Time (ms): ");
+            Console.Write("Solve Time (ms) for " + ma.ColumnCount + ": ");
             MyStopwatch.Time(m);
 
             Assert.IsTrue(CompareMatrices(ms, mx, epsilon), "Matrices should be equal");

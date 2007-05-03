@@ -769,5 +769,300 @@ namespace Iridium.Test
         }
         #endregion
 
+        [Test]
+        public void Stress_SingleReal_1024()
+        {
+            int numSamples = 1024;
+            int half = numSamples >> 1;
+
+            double[] dataEven = new double[numSamples];
+
+            for(int i = 0; i < numSamples; i++)
+            {
+                double z = (double)(i - half) / half;
+                dataEven[i] = 1.0 / (z * z + 1.0);
+            }
+
+            RealTestTimeEven(dataEven);
+
+            double[] evenReal = new double[0], evenImag = new double[0];
+
+            rft.Convention = TransformationConvention.Default;
+
+            MyStopwatch.MethodToTime m = delegate
+            {
+                rft.TransformForward(dataEven, out evenReal, out evenImag);
+            };
+            Console.Write("FFT Time (ms) for " + numSamples.ToString() + ": ");
+            MyStopwatch.Time(m);
+
+            // This time do a round trip check, too:
+            double[] dataEven2;
+            rft.TransformBackward(evenReal, evenImag, out dataEven2);
+            // Compare with original samples
+            for(int i = 0; i < numSamples; i += 2)
+            {
+                Assert.AreEqual(dataEven[i], dataEven2[i], 0.00001, "Inv: " + i.ToString());
+            }
+        }
+
+        [Test]
+        public void Stress_SingleReal_4096()
+        {
+            int numSamples = 4096;
+            int half = numSamples >> 1;
+
+            double[] dataEven = new double[numSamples];
+
+            for(int i = 0; i < numSamples; i++)
+            {
+                double z = (double)(i - half) / half;
+                dataEven[i] = 1.0 / (z * z + 1.0);
+            }
+
+            RealTestTimeEven(dataEven);
+
+            double[] evenReal = new double[0], evenImag = new double[0];
+
+            rft.Convention = TransformationConvention.Default;
+
+            MyStopwatch.MethodToTime m = delegate
+            {
+                rft.TransformForward(dataEven, out evenReal, out evenImag);
+            };
+            Console.Write("FFT Time (ms) for " + numSamples.ToString() + ": ");
+            MyStopwatch.Time(m);
+
+            // This time do a round trip check, too:
+            double[] dataEven2;
+            rft.TransformBackward(evenReal, evenImag, out dataEven2);
+            // Compare with original samples
+            for(int i = 0; i < numSamples; i += 2)
+            {
+                Assert.AreEqual(dataEven[i], dataEven2[i], 0.00001, "Inv: " + i.ToString());
+            }
+        }
+
+        [Test]
+        public void Stress_SingleReal_8192()
+        {
+            int numSamples = 8192;
+            int half = numSamples >> 1;
+
+            double[] dataEven = new double[numSamples];
+
+            for(int i = 0; i < numSamples; i++)
+            {
+                double z = (double)(i - half) / half;
+                dataEven[i] = 1.0 / (z * z + 1.0);
+            }
+
+            RealTestTimeEven(dataEven);
+
+            double[] evenReal = new double[0], evenImag = new double[0];
+
+            rft.Convention = TransformationConvention.Default;
+
+            MyStopwatch.MethodToTime m = delegate
+            {
+                rft.TransformForward(dataEven, out evenReal, out evenImag);
+            };
+            Console.Write("FFT Time (ms) for " + numSamples.ToString() + ": ");
+            MyStopwatch.Time(m);
+
+            // This time do a round trip check, too:
+            double[] dataEven2;
+            rft.TransformBackward(evenReal, evenImag, out dataEven2);
+            // Compare with original samples
+            for(int i = 0; i < numSamples; i += 2)
+            {
+                Assert.AreEqual(dataEven[i], dataEven2[i], 0.00001, "Inv: " + i.ToString());
+            }
+        }
+
+        [Test]
+        public void Stress_SingleReal_16384()
+        {
+            int numSamples = 16384;
+            int half = numSamples >> 1;
+
+            double[] dataEven = new double[numSamples];
+
+            for(int i = 0; i < numSamples; i++)
+            {
+                double z = (double)(i - half) / half;
+                dataEven[i] = 1.0 / (z * z + 1.0);
+            }
+
+            RealTestTimeEven(dataEven);
+
+            double[] evenReal = new double[0], evenImag = new double[0];
+
+            rft.Convention = TransformationConvention.Default;
+
+            MyStopwatch.MethodToTime m = delegate
+            {
+                rft.TransformForward(dataEven, out evenReal, out evenImag);
+            };
+            Console.Write("FFT Time (ms) for " + numSamples.ToString() + ": ");
+            MyStopwatch.Time(m);
+
+            // This time do a round trip check, too:
+            double[] dataEven2;
+            rft.TransformBackward(evenReal, evenImag, out dataEven2);
+            // Compare with original samples
+            for(int i = 0; i < numSamples; i += 2)
+            {
+                Assert.AreEqual(dataEven[i], dataEven2[i], 0.00001, "Inv: " + i.ToString());
+            }
+        }
+
+        [Test]
+        public void Stress_SingleReal_65536()
+        {
+            int numSamples = 65536;
+            int half = numSamples >> 1;
+
+            double[] dataEven = new double[numSamples];
+
+            for(int i = 0; i < numSamples; i++)
+            {
+                double z = (double)(i - half) / half;
+                dataEven[i] = 1.0 / (z * z + 1.0);
+            }
+
+            RealTestTimeEven(dataEven);
+
+            double[] evenReal = new double[0], evenImag = new double[0];
+
+            rft.Convention = TransformationConvention.Default;
+
+            MyStopwatch.MethodToTime m = delegate
+            {
+                rft.TransformForward(dataEven, out evenReal, out evenImag);
+            };
+            Console.Write("FFT Time (ms) for " + numSamples.ToString() + ": ");
+            MyStopwatch.Time(m);
+
+            // This time do a round trip check, too:
+            double[] dataEven2;
+            rft.TransformBackward(evenReal, evenImag, out dataEven2);
+            // Compare with original samples
+            for(int i = 0; i < numSamples; i += 2)
+            {
+                Assert.AreEqual(dataEven[i], dataEven2[i], 0.00001, "Inv: " + i.ToString());
+            }
+        }
+
+        [Test]
+        public void Stress_SingleReal_262144()
+        {//1048576
+            int numSamples = 262144;
+            int half = numSamples >> 1;
+
+            double[] dataEven = new double[numSamples];
+
+            for(int i = 0; i < numSamples; i++)
+            {
+                double z = (double)(i - half) / half;
+                dataEven[i] = 1.0 / (z * z + 1.0);
+            }
+
+            RealTestTimeEven(dataEven);
+
+            double[] evenReal = new double[0], evenImag = new double[0];
+
+            rft.Convention = TransformationConvention.Default;
+
+            MyStopwatch.MethodToTime m = delegate
+            {
+                rft.TransformForward(dataEven, out evenReal, out evenImag);
+            };
+            Console.Write("FFT Time (ms) for " + numSamples.ToString() + ": ");
+            MyStopwatch.Time(m);
+
+            // This time do a round trip check, too:
+            double[] dataEven2;
+            rft.TransformBackward(evenReal, evenImag, out dataEven2);
+            // Compare with original samples
+            for(int i = 0; i < numSamples; i += 2)
+            {
+                Assert.AreEqual(dataEven[i], dataEven2[i], 0.00001, "Inv: " + i.ToString());
+            }
+        }
+
+        [Test]
+        public void Stress_SingleReal_1048576()
+        {
+            int numSamples = 1048576;
+            int half = numSamples >> 1;
+
+            double[] dataEven = new double[numSamples];
+
+            for(int i = 0; i < numSamples; i++)
+            {
+                double z = (double)(i - half) / half;
+                dataEven[i] = 1.0 / (z * z + 1.0);
+            }
+
+            RealTestTimeEven(dataEven);
+
+            double[] evenReal = new double[0], evenImag = new double[0];
+
+            rft.Convention = TransformationConvention.Default;
+
+            MyStopwatch.MethodToTime m = delegate
+            {
+                rft.TransformForward(dataEven, out evenReal, out evenImag);
+            };
+            Console.Write("FFT Time (ms) for " + numSamples.ToString() + ": ");
+            MyStopwatch.Time(m);
+
+            // This time do a round trip check, too:
+            double[] dataEven2;
+            rft.TransformBackward(evenReal, evenImag, out dataEven2);
+            // Compare with original samples
+            for(int i = 0; i < numSamples; i += 2)
+            {
+                Assert.AreEqual(dataEven[i], dataEven2[i], 0.00001, "Inv: " + i.ToString());
+            }
+        }
+
+        //[Test]
+        //public void Stress_SingleReal_2097152()
+        //{
+        //    int numSamples = 2097152;
+        //    int half = numSamples >> 1;
+
+        //    double[] dataEven = new double[numSamples];
+
+        //    for(int i = 0; i < numSamples; i++)
+        //    {
+        //        double z = (double)(i - half) / half;
+        //        dataEven[i] = 1.0 / (z * z + 1.0);
+        //    }
+
+        //    RealTestTimeEven(dataEven);
+
+        //    double[] evenReal = new double[0], evenImag = new double[0];
+
+        //    rft.Convention = TransformationConvention.Default;
+
+        //    MyStopwatch.MethodToTime m = delegate
+        //    {
+        //        rft.TransformForward(dataEven, out evenReal, out evenImag);
+        //    };
+        //    Console.Write("FFT Time (ms) for " + numSamples.ToString() + ": ");
+        //    MyStopwatch.Time(m);
+
+        //    // This time do a round trip check, too:
+        //    double[] dataEven2;
+        //    rft.TransformBackward(evenReal, evenImag, out dataEven2);
+        //    // Compare with original samples
+        //    for(int i = 0; i < numSamples; i += 2)
+        //    {
+        //        Assert.AreEqual(dataEven[i], dataEven2[i], 0.00001, "Inv: " + i.ToString());
+        //    }
+        //}
     }
 }
