@@ -206,7 +206,7 @@ namespace MathNet.Symbolics.Packages.Standard
             Flow.TransportArchitecture.RegisterTheorems(library);
             #endregion
             #region Other
-            //GenericMathOpArchitecture.RegisterTheorems(library);
+            Algebra.AutoSimplifyArchitecture.RegisterTheorems(library);
             #endregion
         }
 

@@ -52,31 +52,5 @@ namespace MathNet.Symbolics.Packages.ObjectModel
 
         public override void UnregisterArchitecture() { }
         protected override void ReregisterArchitecture(Port oldPort, Port newPort) { }
-
-        //public static ITransformationTheorem[] BuildTheorems(IContext context)
-        //{
-        //    ITransformationTheorem[] theorems = new ITransformationTheorem[1];
-
-        //    theorems[0] = new AutoSimplifyTransformation(new MathIdentifier("GenericMathOpAutoSimplify", "Std"),
-        //        delegate()
-        //        {
-        //            return new Pattern(new ArchitectureCondition(delegate(IArchitecture a) { return a.IsMathematicalOperator; }));
-        //        },
-        //        delegate(Port port)
-        //        {
-        //            return ManipulationPlan.DoAlter;
-        //        },
-        //        delegate(Port port, SignalSet manipulatedInputs, bool hasManipulatedInputs)
-        //        {
-        //            if(hasManipulatedInputs)
-        //                port = port.Entity.InstantiatePort(context, manipulatedInputs);
-        //            if(port.HasArchitectureLink && port.CurrentArchitecture.IsMathematicalOperator)
-        //                return port.CurrentArchitecture.ExecuteMathematicalOperator();
-        //            else
-        //                return port.OutputSignals;
-        //        });
-
-        //    return theorems;
-        //}
     }
 }

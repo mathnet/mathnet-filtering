@@ -25,6 +25,9 @@ using MathNet.Symbolics.Backend;
 using MathNet.Symbolics.Backend.Containers;
 using MathNet.Symbolics.Packages.Standard.Structures;
 using MathNet.Symbolics.Packages.ObjectModel;
+using MathNet.Symbolics.Library;
+using MathNet.Symbolics.Patterns.Toolkit;
+using MathNet.Symbolics.Manipulation;
 
 namespace MathNet.Symbolics.Packages.Standard.Algebra
 {
@@ -58,6 +61,29 @@ namespace MathNet.Symbolics.Packages.Standard.Algebra
         public override IArchitecture InstantiateToPort(Port port)
         {
             return new AutoSimplifyArchitecture(port);
+        }
+
+        public static void RegisterTheorems(ILibrary library)
+        {
+            Algebra.AutoSimplifyTransformation.Provider.Add(
+                new Algebra.AutoSimplifyTransformation(new MathIdentifier("GenericMathOpAutoSimplify", "Std"),
+                delegate()
+                {
+                    return new Pattern(new ArchitectureCondition(delegate(IArchitecture a) { return a.IsMathematicalOperator; }));
+                },
+                delegate(Port port)
+                {
+                    return ManipulationPlan.DoAlter;
+                },
+                delegate(Port port, SignalSet manipulatedInputs, bool hasManipulatedInputs)
+                {
+                    if(hasManipulatedInputs)
+                        port = port.Entity.InstantiatePort(manipulatedInputs);
+                    if(port.HasArchitectureLink && port.CurrentArchitecture.IsMathematicalOperator)
+                        return port.CurrentArchitecture.ExecuteMathematicalOperator();
+                    else
+                        return port.OutputSignals;
+                }));
         }
     }
 }
