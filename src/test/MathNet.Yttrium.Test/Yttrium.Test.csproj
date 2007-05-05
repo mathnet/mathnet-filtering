@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="BasicTest.cs" />
     <Compile Include="ConversionTest.cs" />
+    <Compile Include="AutoSimplifyTest.cs" />
     <Compile Include="MicrokernelTest.cs" />
     <Compile Include="PatternTest.cs" />
     <Compile Include="ParserTest.cs" />
