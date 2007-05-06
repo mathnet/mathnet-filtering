@@ -21,7 +21,7 @@
 		<Copy SourceFiles="@(ConfigFiles)" DestinationFolder="D:\integration\Math.NET\Iridium\work"/>
 		
 		<!--<Exec WorkingDirectory="..\Iridium\work" Command="..\..\checkout\tools\ncover\ncover.console.exe &quot;..\..\checkout\tools\nunit\bin\nunit-console.exe&quot; /nologo /noshadow /xml=..\artifact\nunit-result.xml %(NUnitTargetTest.Filename).dll //x ..\artifact\ncover-result.xml //a @(NCoverTargets->'%(filename)',';')" ContinueOnError="false"/>-->
-		<Exec WorkingDirectory="..\Iridium\work" Command="ncover.console.exe &quot;nunit-console.exe&quot; /nologo /noshadow /xml=..\artifact\nunit-result.xml Iridium.Test.dll //x ..\artifact\ncover-result.xml //a MathNet.Iridium.dll" ContinueOnError="false"/>
+		<Exec WorkingDirectory="..\Iridium\work" Command="ncover.console.exe &quot;nunit-console.exe&quot; /nologo /noshadow /xml=..\artifact\nunit-result.xml Iridium.Test.dll //x ..\artifact\ncover-result.xml //a MathNet.Iridium" ContinueOnError="false"/>
 
 	</Target>
 </Project>
