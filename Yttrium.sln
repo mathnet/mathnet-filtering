@@ -169,37 +169,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Packages.PetriNet",
 		Release.AspNetCompiler.Debug = "False"
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{DA91D993-09E5-43F2-B99E-298D0DB2F07A}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Presentation", "src\app\MathNet.Yttrium\Tools\Presentation\Yttrium.Presentation.csproj", "{80FC18B6-13DC-4D8F-8007-8D2CD08D1B5B}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Mediator.Toolkit", "src\app\MathNet.Yttrium\Mediator.Toolkit\Yttrium.Mediator.Toolkit.csproj", "{334D8A1D-1004-4097-ACEE-8B954F911EB2}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Whiteboard", "src\app\MathNet.Yttrium\Tools\WhiteBoard\Yttrium.Whiteboard.csproj", "{20419F60-1DA7-478F-B77C-1EC2BC36DE53}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Netron.Diagramming.Core", "src\app\MathNet.Yttrium\Tools\Diagramming.Core\Netron.Diagramming.Core.csproj", "{96AEBBEE-4203-45F3-BCF5-7B73BF256BDA}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Netron.Diagramming.Win", "src\app\MathNet.Yttrium\Tools\Diagramming.Win\Netron.Diagramming.Win.csproj", "{1D15C2A9-7D08-4BA6-B307-BDE0CA8AF1CB}"
 	ProjectSection(WebsiteProperties) = preProject
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.Debug = "False"
@@ -319,35 +289,15 @@ Global
 		{5D5C5661-1B83-4C25-AC7A-C7AED7FFC9DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D5C5661-1B83-4C25-AC7A-C7AED7FFC9DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D5C5661-1B83-4C25-AC7A-C7AED7FFC9DD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{80FC18B6-13DC-4D8F-8007-8D2CD08D1B5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{80FC18B6-13DC-4D8F-8007-8D2CD08D1B5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{80FC18B6-13DC-4D8F-8007-8D2CD08D1B5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{80FC18B6-13DC-4D8F-8007-8D2CD08D1B5B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{334D8A1D-1004-4097-ACEE-8B954F911EB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{334D8A1D-1004-4097-ACEE-8B954F911EB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{334D8A1D-1004-4097-ACEE-8B954F911EB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{334D8A1D-1004-4097-ACEE-8B954F911EB2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{20419F60-1DA7-478F-B77C-1EC2BC36DE53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{20419F60-1DA7-478F-B77C-1EC2BC36DE53}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{20419F60-1DA7-478F-B77C-1EC2BC36DE53}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{20419F60-1DA7-478F-B77C-1EC2BC36DE53}.Release|Any CPU.Build.0 = Release|Any CPU
-		{96AEBBEE-4203-45F3-BCF5-7B73BF256BDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{96AEBBEE-4203-45F3-BCF5-7B73BF256BDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{96AEBBEE-4203-45F3-BCF5-7B73BF256BDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{96AEBBEE-4203-45F3-BCF5-7B73BF256BDA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1D15C2A9-7D08-4BA6-B307-BDE0CA8AF1CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1D15C2A9-7D08-4BA6-B307-BDE0CA8AF1CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1D15C2A9-7D08-4BA6-B307-BDE0CA8AF1CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1D15C2A9-7D08-4BA6-B307-BDE0CA8AF1CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{5D5C5661-1B83-4C25-AC7A-C7AED7FFC9DD} = {F75A5EAF-5C00-4F8C-AA9D-0745AA7E210D}
-		{80FC18B6-13DC-4D8F-8007-8D2CD08D1B5B} = {DA91D993-09E5-43F2-B99E-298D0DB2F07A}
-		{20419F60-1DA7-478F-B77C-1EC2BC36DE53} = {DA91D993-09E5-43F2-B99E-298D0DB2F07A}
-		{96AEBBEE-4203-45F3-BCF5-7B73BF256BDA} = {DA91D993-09E5-43F2-B99E-298D0DB2F07A}
-		{1D15C2A9-7D08-4BA6-B307-BDE0CA8AF1CB} = {DA91D993-09E5-43F2-B99E-298D0DB2F07A}
 	EndGlobalSection
 EndGlobal
