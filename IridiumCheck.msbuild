@@ -1,9 +1,11 @@
 <Project DefaultTargets="Check" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	<ItemGroup>
-		<NUnitBin Include="tools\nunit\bin\*.dll"/>
-		<NUnitTargetFiles Include="src\test\MathNet.Iridium.Test\**\Debug\*.dll"/>
-		<NUnitTargetTest Include="src\test\MathNet.Iridium.Test\**\Debug\*.Test.dll"/>
-		<NCoverTargets Include="src\app\MathNet.Iridium\**\Debug\*.pdb"/>
+		<NUnitBin Include="tools\nunit\bin\*.*"/>
+		<NCoverBin Include="tools\ncover\*.*"/>
+		<NUnitTargetFiles Include="build\Debug\*.dll"/>
+		<NUnitTargetTest Include="build\Debug\*.Test.dll"/>
+		<NCoverTargets Include="build\Debug\*.pdb"/>
+		<ConfigFiles Include="**\bin\**\*.config"/>
 	</ItemGroup>
 
 	<Target Name="Check">
@@ -13,9 +15,13 @@
 		<Exec Command="tools\simian\simian.exe -recurse=src\app\MathNet.Iridium\*.cs -formatter=xml:..\Iridium\artifact\simian-result.xml" IgnoreExitCode="true" ContinueOnError="true"/>
 
 		<Copy SourceFiles="@(NUnitBin)" DestinationFolder="D:\integration\Math.NET\Iridium\work" SkipUnchangedFiles="true"/>
+		<Copy SourceFiles="@(NCoverBin)" DestinationFolder="D:\integration\Math.NET\Iridium\work" SkipUnchangedFiles="true"/>
 		<Copy SourceFiles="@(NUnitTargetFiles)" DestinationFolder="D:\integration\Math.NET\Iridium\work"/>
 		<Copy SourceFiles="@(NCoverTargets)" DestinationFolder="D:\integration\Math.NET\Iridium\work"/>
-		<Exec WorkingDirectory="..\Iridium\work" Command="..\..\checkout\tools\ncover\ncover.console.exe &quot;..\..\checkout\tools\nunit\bin\nunit-console.exe&quot; /nologo /noshadow /xml=..\artifact\nunit-result.xml %(NUnitTargetTest.Filename).dll //x ..\artifact\ncover-result.xml //a @(NCoverTargets->'%(filename)',';')" ContinueOnError="false"/>
+		<Copy SourceFiles="@(ConfigFiles)" DestinationFolder="D:\integration\Math.NET\Iridium\work"/>
 		
+		<!--<Exec WorkingDirectory="..\Iridium\work" Command="..\..\checkout\tools\ncover\ncover.console.exe &quot;..\..\checkout\tools\nunit\bin\nunit-console.exe&quot; /nologo /noshadow /xml=..\artifact\nunit-result.xml %(NUnitTargetTest.Filename).dll //x ..\artifact\ncover-result.xml //a @(NCoverTargets->'%(filename)',';')" ContinueOnError="false"/>-->
+		<Exec WorkingDirectory="..\Iridium\work" Command="ncover.console.exe &quot;nunit-console.exe&quot; /nologo /noshadow /xml=..\artifact\nunit-result.xml Iridium.Test.dll //x ..\artifact\ncover-result.xml //a MathNet.Iridium.dll" ContinueOnError="false"/>
+
 	</Target>
 </Project>
