@@ -1,8 +1,8 @@
-#region Math.NET Iridium (LGPL) by Ruegg + Contributors
+#region Math.NET Iridium (LGPL) by Ruegg
 // Math.NET Iridium, part of the Math.NET Project
 // http://mathnet.opensourcedotnet.info
 //
-// Copyright (c) 2004-2007, Christoph Rüegg,  http://christoph.ruegg.name
+// Copyright (c) 2002-2007, Christoph Rüegg, http://christoph.ruegg.name
 //						
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
@@ -18,7 +18,7 @@
 // License along with this program; if not, write to the Free Software
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
-#region Derived From: Copyright 2006 Stefan Troschütz
+#region Derived From: Copyright 2006 Troschütz
 /* 
  * Derived from the Troschuetz.Random Class Library,
  * Copyright © 2006 Stefan Troschütz (stefan@troschuetz.de)
@@ -66,9 +66,9 @@ namespace MathNet.Numerics.Distributions
         public BetaDistribution()
             : base()
         {
-            SetDistributionParameters(1.0, 1.0);
             _gammaAlpha = new GammaDistribution(this.RandomSource);
             _gammaBeta = new GammaDistribution(this.RandomSource);
+            SetDistributionParameters(1.0, 1.0);
         }
 
         /// <summary>
@@ -82,9 +82,9 @@ namespace MathNet.Numerics.Distributions
         public BetaDistribution(RandomSource random)
             : base(random)
         {
-            SetDistributionParameters(1.0, 1.0);
             _gammaAlpha = new GammaDistribution(random);
             _gammaBeta = new GammaDistribution(random);
+            SetDistributionParameters(1.0, 1.0);
         }
 
         /// <summary>
@@ -94,9 +94,9 @@ namespace MathNet.Numerics.Distributions
         public BetaDistribution(double alpha, double beta)
             : base()
         {
-            SetDistributionParameters(alpha, beta);
             _gammaAlpha = new GammaDistribution(this.RandomSource);
             _gammaBeta = new GammaDistribution(this.RandomSource);
+            SetDistributionParameters(alpha, beta);
         }
         #endregion
 

@@ -1,10 +1,9 @@
-#region MathNet Numerics, Copyright ©2004 Joannes Vermorel
-
-// MathNet Numerics, part of MathNet
+#region Math.NET Iridium (LGPL) by Vermorel
+// Math.NET Iridium, part of the Math.NET Project
+// http://mathnet.opensourcedotnet.info
 //
-// Copyright (c) 2004,	Joannes Vermorel, http://www.vermorel.com
-//
-//
+// Copyright (c) 2004-2007, Joannes Vermorel, http://www.vermorel.com
+//						
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -18,11 +17,11 @@
 // You should have received a copy of the GNU Lesser General Public 
 // License along with this program; if not, write to the Free Software
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-
 #endregion
 
 using System;
 using MathNet.Numerics.RandomSources;
+using MathNet.Numerics.Properties;
 
 namespace MathNet.Numerics.Distributions
 {
@@ -48,15 +47,15 @@ namespace MathNet.Numerics.Distributions
     {
         RandomSource random;
 
-		private double skew;
+        private double skew;
 
-		/// <summary>Zipfian generator with a default 
-		/// <c>skew</c> equal to <c>2</c>.</summary>
-		public ZipfDistribution()
-		{
-			this.skew = 2d;
+        /// <summary>Zipfian generator with a default 
+        /// <c>skew</c> equal to <c>2</c>.</summary>
+        public ZipfDistribution()
+        {
+            this.skew = 2d;
             random = new SystemRandomSource();
-		}
+        }
 
         public ZipfDistribution(RandomSource random)
         {
@@ -64,45 +63,45 @@ namespace MathNet.Numerics.Distributions
             this.random = random;
         }
 
-		/// <summary>Zipfian generator with the provided <c>skew</c>.</summary>
-		public ZipfDistribution(double skew)
-		{
-			if(skew <= 1d) throw new ArgumentOutOfRangeException("skew", skew,
-				"The skew should be greater than 1.0.");
+        /// <summary>Zipfian generator with the provided <c>skew</c>.</summary>
+        public ZipfDistribution(double skew)
+        {
+            if(skew <= 1d) throw new ArgumentOutOfRangeException("skew", skew,
+                string.Format(Resources.ArgumentOutOfRangeGreater, "skew", "1.0"));
 
-			this.skew = skew;
+            this.skew = skew;
             random = new SystemRandomSource();
-		}
+        }
 
         public ZipfDistribution(double skew, int seed)
         {
-            if (skew <= 1d) throw new ArgumentOutOfRangeException("skew", skew,
-                 "The skew should be greater than 1.0.");
+            if(skew <= 1d) throw new ArgumentOutOfRangeException("skew", skew,
+               string.Format(Resources.ArgumentOutOfRangeGreater, "skew", "1.0"));
 
             this.skew = skew;
             random = new SystemRandomSource(seed);
         }
 
-		/// <summary>Gets or sets the skew of the zipfian distribution.</summary>
-		public double Skew
-		{
-			get { return skew; }
-			set
-			{
-				if(value <= 1d) throw new ArgumentOutOfRangeException("value", value,
-					"The skew should be greater than 1.0.");
+        /// <summary>Gets or sets the skew of the zipfian distribution.</summary>
+        public double Skew
+        {
+            get { return skew; }
+            set
+            {
+                if(value <= 1d) throw new ArgumentOutOfRangeException("value", value,
+                string.Format(Resources.ArgumentOutOfRangeGreater, "skew", "1.0"));
                 skew = value;
-			}
-		}
+            }
+        }
 
-		/// <summary>Returns the next zipfian deviate.</summary>
-		public double Next()
-		{
-			/* A transformation method (similar to the exponential
-			 * generator) is used here to generate a zipfian deviate. */
+        /// <summary>Returns the next zipfian deviate.</summary>
+        public double Next()
+        {
+            /* A transformation method (similar to the exponential
+             * generator) is used here to generate a zipfian deviate. */
 
-			double p = random.NextDouble();
-			return Math.Pow(1d - p, 1d / (1d - skew));
-		}
+            double p = random.NextDouble();
+            return Math.Pow(1d - p, 1d / (1d - skew));
+        }
     }
 }

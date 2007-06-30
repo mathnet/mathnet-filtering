@@ -1,8 +1,8 @@
-#region Math.NET Iridium (LGPL) by Ruegg + Contributors
+#region Math.NET Iridium (LGPL) by Ruegg
 // Math.NET Iridium, part of the Math.NET Project
 // http://mathnet.opensourcedotnet.info
 //
-// Copyright (c) 2004-2007, Christoph Rüegg,  http://christoph.ruegg.name
+// Copyright (c) 2002-2007, Christoph Rüegg, http://christoph.ruegg.name
 //						
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
@@ -18,7 +18,7 @@
 // License along with this program; if not, write to the Free Software
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
-#region Derived From: Copyright 2006 Stefan Troschütz
+#region Derived From: Copyright 2006 Troschütz
 /* 
  * Derived from the Troschuetz.Random Class Library,
  * Copyright © 2006 Stefan Troschütz (stefan@troschuetz.de)
@@ -92,7 +92,7 @@ namespace MathNet.Numerics.Distributions
         /// </exception>
         protected DiscreteDistribution(RandomSource random)
         {
-            if (random == null)
+            if(random == null)
             {
                 string message = string.Format(null, Resources.ArgumentNull, "generator");
                 throw new ArgumentNullException("generator", message);
@@ -113,54 +113,54 @@ namespace MathNet.Numerics.Distributions
 
         #region abstract members
         /// <summary>
-		/// Gets the minimum possible value of distributed random numbers.
+        /// Gets the minimum possible value of distributed random numbers.
         /// </summary>
         public abstract int Minimum
-		{
-			get;
-		}
+        {
+            get;
+        }
 
         /// <summary>
-		/// Gets the maximum possible value of distributed random numbers.
+        /// Gets the maximum possible value of distributed random numbers.
         /// </summary>
         public abstract int Maximum
-		{
-			get;
-		}
+        {
+            get;
+        }
 
         /// <summary>
-		/// Gets the mean of distributed random numbers.
+        /// Gets the mean of distributed random numbers.
         /// </summary>
         public abstract double Mean
-		{
-			get;
-		}
-		
-		/// <summary>
-		/// Gets the median of distributed random numbers.
-		/// </summary>
-        public abstract int Median
-		{
-			get;
-		}
+        {
+            get;
+        }
 
         /// <summary>
-		/// Gets the variance of distributed random numbers.
+        /// Gets the median of distributed random numbers.
+        /// </summary>
+        public abstract int Median
+        {
+            get;
+        }
+
+        /// <summary>
+        /// Gets the variance of distributed random numbers.
         /// </summary>
         public abstract double Variance
-		{
-			get;
-		}
+        {
+            get;
+        }
 
         public abstract double Skewness
         {
             get;
         }
-		
-		/// <summary>
-		/// Returns a distributed integer random number.
-		/// </summary>
-		/// <returns>A distributed 32 bit signed integer number.</returns>
+
+        /// <summary>
+        /// Returns a distributed integer random number.
+        /// </summary>
+        /// <returns>A distributed 32 bit signed integer number.</returns>
         public abstract int NextInt32();
 
         public abstract double ProbabilityMass(int x);

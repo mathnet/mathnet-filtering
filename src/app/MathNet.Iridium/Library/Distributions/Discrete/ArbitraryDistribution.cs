@@ -1,8 +1,8 @@
-#region Math.NET Iridium (LGPL) by Ruegg + Vermorel
+#region Math.NET Iridium (LGPL) by Ruegg, Vermorel
 // Math.NET Iridium, part of the Math.NET Project
 // http://mathnet.opensourcedotnet.info
 //
-// Copyright (c) 2004-2007, Christoph Rüegg,  http://christoph.ruegg.name
+// Copyright (c) 2002-2007, Christoph Rüegg, http://christoph.ruegg.name
 //                          Joannes Vermorel, http://www.vermorel.com
 //						
 // This program is free software; you can redistribute it and/or modify
@@ -235,7 +235,7 @@ namespace MathNet.Numerics.Distributions
             return 1.0;
         }
 
-        #endregion 
+        #endregion
 
         #region Generator
         public override int NextInt32()

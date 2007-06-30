@@ -1,8 +1,8 @@
-#region Math.NET Iridium (LGPL) by Ruegg + Contributors
+#region Math.NET Iridium (LGPL) by Ruegg
 // Math.NET Iridium, part of the Math.NET Project
 // http://mathnet.opensourcedotnet.info
 //
-// Copyright (c) 2004-2007, Christoph Rüegg,  http://christoph.ruegg.name
+// Copyright (c) 2002-2007, Christoph Rüegg, http://christoph.ruegg.name
 //						
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
@@ -18,7 +18,7 @@
 // License along with this program; if not, write to the Free Software
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
-#region Derived From: Copyright 2006 Stefan Troschütz
+#region Derived From: Copyright 2006 Troschütz
 /* 
  * Derived from the Troschuetz.Random Class Library,
  * Copyright © 2006 Stefan Troschütz (stefan@troschuetz.de)
@@ -193,7 +193,7 @@ namespace MathNet.Numerics.Distributions
             return populationSize >= 0 && favoredItems >= 0 && favoredItems <= populationSize
                                         && numberOfSamples >= 0 && numberOfSamples <= populationSize;
         }
-        #endregion       
+        #endregion
 
         #region Distribution Properties
         /// <summary>
@@ -246,7 +246,7 @@ namespace MathNet.Numerics.Distributions
         {
             get
             {
-                double d1 = (_N - 2 * _M) * (_N - 2 * _n) * Math.Sqrt(_N-1.0);
+                double d1 = (_N - 2 * _M) * (_N - 2 * _n) * Math.Sqrt(_N - 1.0);
                 double d2 = (_N - 2) * Math.Sqrt(_n * _M * (_N - _M) * (_N - _n));
                 return d1 / d2;
             }

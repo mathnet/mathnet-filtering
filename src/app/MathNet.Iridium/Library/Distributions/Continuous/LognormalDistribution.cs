@@ -1,8 +1,8 @@
-#region Math.NET Iridium (LGPL) by Ruegg + Contributors
+#region Math.NET Iridium (LGPL) by Ruegg
 // Math.NET Iridium, part of the Math.NET Project
 // http://mathnet.opensourcedotnet.info
 //
-// Copyright (c) 2004-2007, Christoph Rüegg,  http://christoph.ruegg.name
+// Copyright (c) 2002-2007, Christoph Rüegg, http://christoph.ruegg.name
 //						
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
@@ -18,7 +18,7 @@
 // License along with this program; if not, write to the Free Software
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
-#region Derived From: Copyright 2006 Stefan Troschütz
+#region Derived From: Copyright 2006 Troschütz
 /* 
  * Derived from the Troschuetz.Random Class Library,
  * Copyright © 2006 Stefan Troschütz (stefan@troschuetz.de)
@@ -36,7 +36,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA 
  */
 #endregion
-#region Derived From: Copyright 2001 Jens Maurer
+#region Derived From: Copyright 2001 Maurer
 //* boost random/lognormal_distribution.hpp header file
 //*
 //* Copyright Jens Maurer 2000-2001
@@ -80,8 +80,8 @@ namespace MathNet.Numerics.Distributions
         public LognormalDistribution()
             : base()
         {
-            SetDistributionParameters(0.0, 1.0);
             _standard = new StandardDistribution(this.RandomSource);
+            SetDistributionParameters(0.0, 1.0);
         }
 
         /// <summary>
@@ -95,8 +95,8 @@ namespace MathNet.Numerics.Distributions
         public LognormalDistribution(RandomSource random)
             : base(random)
         {
-            SetDistributionParameters(0.0, 1.0);
             _standard = new StandardDistribution(random);
+            SetDistributionParameters(0.0, 1.0);
         }
 
         /// <summary>
@@ -106,8 +106,8 @@ namespace MathNet.Numerics.Distributions
         public LognormalDistribution(double mu, double sigma)
             : base()
         {
-            SetDistributionParameters(mu, sigma);
             _standard = new StandardDistribution(this.RandomSource);
+            SetDistributionParameters(mu, sigma);
         }
         #endregion
 

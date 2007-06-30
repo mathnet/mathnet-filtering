@@ -2,7 +2,7 @@
 // Math.NET Iridium, part of the Math.NET Project
 // http://mathnet.opensourcedotnet.info
 //
-// Copyright (c) 2004-2007, Christoph Rüegg,  http://christoph.ruegg.name
+// Copyright (c) 2002-2007, Christoph Rüegg, http://christoph.ruegg.name
 //						
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
@@ -56,8 +56,8 @@ namespace MathNet.Numerics.Distributions
         public NormalDistribution()
             : base()
         {
-            SetDistributionParameters(0.0, 1.0);
             _standard = new StandardDistribution(this.RandomSource);
+            SetDistributionParameters(0.0, 1.0);
         }
 
         /// <summary>
@@ -71,8 +71,8 @@ namespace MathNet.Numerics.Distributions
         public NormalDistribution(RandomSource random)
             : base(random)
         {
-            SetDistributionParameters(0.0, 1.0);
             _standard = new StandardDistribution(random);
+            SetDistributionParameters(0.0, 1.0);
         }
 
         /// <summary>
@@ -82,8 +82,8 @@ namespace MathNet.Numerics.Distributions
         public NormalDistribution(double mu, double sigma)
             : base()
         {
-            SetDistributionParameters(mu, sigma);
             _standard = new StandardDistribution(this.RandomSource);
+            SetDistributionParameters(mu, sigma);
         }
         #endregion
 

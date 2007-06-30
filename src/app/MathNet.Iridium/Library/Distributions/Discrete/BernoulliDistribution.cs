@@ -1,8 +1,8 @@
-#region Math.NET Iridium (LGPL) by Ruegg + Contributors
+#region Math.NET Iridium (LGPL) by Ruegg
 // Math.NET Iridium, part of the Math.NET Project
 // http://mathnet.opensourcedotnet.info
 //
-// Copyright (c) 2004-2007, Christoph Rüegg,  http://christoph.ruegg.name
+// Copyright (c) 2002-2007, Christoph Rüegg, http://christoph.ruegg.name
 //						
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
@@ -18,7 +18,7 @@
 // License along with this program; if not, write to the Free Software
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
-#region Derived From: Copyright 2006 Stefan Troschütz
+#region Derived From: Copyright 2006 Troschütz
 /* 
  * Derived from the Troschuetz.Random Class Library,
  * Copyright © 2006 Stefan Troschütz (stefan@troschuetz.de)
@@ -171,7 +171,7 @@ namespace MathNet.Numerics.Distributions
         {
             get
             {
-                double q = 1-_p;
+                double q = 1 - _p;
                 return (q - _p) / Math.Sqrt(q * _p);
             }
         }
@@ -194,8 +194,8 @@ namespace MathNet.Numerics.Distributions
             return 1;
         }
 
-        #endregion 
-        
+        #endregion
+
         #region Generator
         /// <summary>
         /// Returns a bernoulli distributed random number.

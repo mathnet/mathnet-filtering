@@ -1,8 +1,8 @@
-#region Math.NET Iridium (LGPL) by Ruegg + Contributors
+#region Math.NET Iridium (LGPL) by Ruegg
 // Math.NET Iridium, part of the Math.NET Project
 // http://mathnet.opensourcedotnet.info
 //
-// Copyright (c) 2004-2007, Christoph Rüegg,  http://christoph.ruegg.name
+// Copyright (c) 2002-2007, Christoph Rüegg, http://christoph.ruegg.name
 //						
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
@@ -18,7 +18,7 @@
 // License along with this program; if not, write to the Free Software
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
-#region Derived From: Copyright 2006 Stefan Troschütz
+#region Derived From: Copyright 2006 Troschütz
 /* 
  * Derived from the Troschuetz.Random Class Library,
  * Copyright © 2006 Stefan Troschütz (stefan@troschuetz.de)
@@ -63,8 +63,8 @@ namespace MathNet.Numerics.Distributions
         public ChiSquareDistribution()
             : base()
         {
-            SetDistributionParameters(1);
             _standard = new StandardDistribution(this.RandomSource);
+            SetDistributionParameters(1);
         }
 
         /// <summary>
@@ -78,8 +78,8 @@ namespace MathNet.Numerics.Distributions
         public ChiSquareDistribution(RandomSource random)
             : base(random)
         {
-            SetDistributionParameters(1);
             _standard = new StandardDistribution(random);
+            SetDistributionParameters(1);
         }
 
         /// <summary>
@@ -89,8 +89,8 @@ namespace MathNet.Numerics.Distributions
         public ChiSquareDistribution(int degreesOfFreedom)
             : base()
         {
-            SetDistributionParameters(degreesOfFreedom);
             _standard = new StandardDistribution(this.RandomSource);
+            SetDistributionParameters(degreesOfFreedom);
         }
         #endregion
 
@@ -164,7 +164,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override double Median
         {
-            get { return _degreesOfFreedom - 2.0/3.0; }
+            get { return _degreesOfFreedom - 2.0 / 3.0; }
         }
 
         /// <summary>
