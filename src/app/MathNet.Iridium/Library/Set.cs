@@ -1,9 +1,9 @@
-#region MathNet Numerics, Copyright ©2005 Christoph Ruegg
-
-// MathNet Numerics, part of MathNet
+#region Math.NET Iridium (LGPL) by Ruegg
+// Math.NET Iridium, part of the Math.NET Project
+// http://mathnet.opensourcedotnet.info
 //
-// Copyright (c) 2005,	Christoph Rüegg, http://www.cdrnet.net
-//
+// Copyright (c) 2002-2007, Christoph Rüegg, http://christoph.ruegg.name
+//						
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -17,7 +17,6 @@
 // You should have received a copy of the GNU Lesser General Public 
 // License along with this program; if not, write to the Free Software
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-
 #endregion
 
 using System;
@@ -120,7 +119,7 @@ namespace MathNet.Numerics
         public T[] ToArray()
         {
             T[] array = new T[base.Count];
-            base.CopyTo(array,0);
+            base.CopyTo(array, 0);
             return array;
         }
 
@@ -509,7 +508,7 @@ namespace MathNet.Numerics
         public Set<T> FindAll(Predicate<T> match)
         {
             if(match == null) throw new ArgumentNullException("match");
-            
+
             Set<T> found = CreateNewSet();
             for(int i = 0; i < base.Count; i++)
                 if(match(base[i]))

@@ -1,8 +1,8 @@
-#region Math.NET Iridium (LGPL) by Ruegg + Contributors
+#region Math.NET Iridium (LGPL) by Ruegg
 // Math.NET Iridium, part of the Math.NET Project
 // http://mathnet.opensourcedotnet.info
 //
-// Copyright (c) 2004-2007, Christoph Rüegg,  http://christoph.ruegg.name
+// Copyright (c) 2002-2007, Christoph Rüegg, http://christoph.ruegg.name
 //						
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
@@ -18,7 +18,7 @@
 // License along with this program; if not, write to the Free Software
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
-#region Derived From: Copyright 2006 Stefan Troschütz
+#region Derived From: Copyright 2006 Troschütz
 /* 
  * Derived from the Troschuetz.Random Class Library,
  * Copyright © 2006 Stefan Troschütz (stefan@troschuetz.de)
@@ -36,7 +36,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA 
  */
 #endregion
-#region Derived From: Copyright 2000-2001 Jens Maurer
+#region Derived From: Copyright 2000-2001 Maurer
 /* boost random/lagged_fibonacci.hpp header file
  *
  * Copyright Jens Maurer 2000-2001
@@ -97,7 +97,7 @@ namespace MathNet.Numerics.RandomSources
             }
             set
             {
-                if (this.IsValidShortLag(value))
+                if(this.IsValidShortLag(value))
                 {
                     _shortLag = value;
                 }
@@ -115,13 +115,13 @@ namespace MathNet.Numerics.RandomSources
         /// <remarks>Call <see cref="IsValidLongLag"/> to determine whether a value is valid and therefor assignable.</remarks>
         public int LongLag
         {
-            get 
-            { 
-                return _longLag; 
-            }
-            set 
+            get
             {
-                if (this.IsValidLongLag(value))
+                return _longLag;
+            }
+            set
+            {
+                if(this.IsValidLongLag(value))
                 {
                     _longLag = value;
                     this.Reset();
@@ -143,7 +143,7 @@ namespace MathNet.Numerics.RandomSources
         /// Stores an index for the random number array element that will be accessed next.
         /// </summary>
         private int _i;
-        
+
         /// <summary>
         /// Stores the used seed value.
         /// </summary>
@@ -230,7 +230,7 @@ namespace MathNet.Numerics.RandomSources
         {
             MersenneTwisterRandomSource gen = new MersenneTwisterRandomSource(_seed);
             _x = new uint[_longLag];
-            for (uint j = 0; j < _longLag; ++j)
+            for(uint j = 0; j < _longLag; ++j)
             {
                 _x[j] = gen.NextUInt();
             }
@@ -251,11 +251,11 @@ namespace MathNet.Numerics.RandomSources
         private void Fill()
         {
             // two loops to avoid costly modulo operations
-            for (int j = 0; j < _shortLag; ++j)
+            for(int j = 0; j < _shortLag; ++j)
             {
                 _x[j] = _x[j] + _x[j + (_longLag - _shortLag)];
             }
-            for (int j = _shortLag; j < _longLag; ++j)
+            for(int j = _shortLag; j < _longLag; ++j)
             {
                 _x[j] = _x[j] + _x[j - _shortLag];
             }
@@ -272,7 +272,7 @@ namespace MathNet.Numerics.RandomSources
         [CLSCompliant(false)]
         public uint NextUInt()
         {
-            if (_i >= _longLag)
+            if(_i >= _longLag)
             {
                 this.Fill();
             }
@@ -289,7 +289,7 @@ namespace MathNet.Numerics.RandomSources
         public int NextInclusiveMaxValue()
         {
             // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
-            if (_i >= _longLag)
+            if(_i >= _longLag)
             {
                 this.Fill();
             }
@@ -327,15 +327,15 @@ namespace MathNet.Numerics.RandomSources
         public override int Next()
         {
             // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
-            if (_i >= _longLag)
+            if(_i >= _longLag)
             {
                 this.Fill();
             }
             uint x = _x[_i++];
-            
+
             int result = (int)(x >> 1);
             // Exclude Int32.MaxValue from the range of return values.
-            if (result == Int32.MaxValue)
+            if(result == Int32.MaxValue)
             {
                 return this.Next();
             }
@@ -361,7 +361,7 @@ namespace MathNet.Numerics.RandomSources
         /// </exception>
         public override int Next(int maxValue)
         {
-            if (maxValue < 0)
+            if(maxValue < 0)
             {
                 string message = string.Format(null, Resources.ArgumentOutOfRangeGreaterEqual,
                     "maxValue", "0");
@@ -369,7 +369,7 @@ namespace MathNet.Numerics.RandomSources
             }
 
             // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
-            if (_i >= _longLag)
+            if(_i >= _longLag)
             {
                 this.Fill();
             }
@@ -401,22 +401,22 @@ namespace MathNet.Numerics.RandomSources
         /// </exception>
         public override int Next(int minValue, int maxValue)
         {
-            if (minValue > maxValue)
+            if(minValue > maxValue)
             {
-                string message = string.Format(null, Resources.ArgumentOutOfRangeGreaterEqual, 
+                string message = string.Format(null, Resources.ArgumentOutOfRangeGreaterEqual,
                     "maxValue", "minValue");
                 throw new ArgumentOutOfRangeException("maxValue", maxValue, message);
             }
 
             // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
-            if (_i >= _longLag)
+            if(_i >= _longLag)
             {
                 this.Fill();
             }
             uint x = _x[_i++];
 
             int range = maxValue - minValue;
-            if (range < 0)
+            if(range < 0)
             {
                 // The range is greater than Int32.MaxValue, so we have to use slower floating point arithmetic.
                 // Also all 32 random bits (uint) have to be used which again is slower (See comment in NextDouble()).
@@ -442,7 +442,7 @@ namespace MathNet.Numerics.RandomSources
         public override double NextDouble()
         {
             // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
-            if (_i >= _longLag)
+            if(_i >= _longLag)
             {
                 this.Fill();
             }
@@ -472,7 +472,7 @@ namespace MathNet.Numerics.RandomSources
         /// </exception>
         public override double NextDouble(double maxValue)
         {
-            if (maxValue < 0.0)
+            if(maxValue < 0.0)
             {
                 string message = string.Format(null, Resources.ArgumentOutOfRangeGreaterEqual,
                     "maxValue", "0.0");
@@ -480,7 +480,7 @@ namespace MathNet.Numerics.RandomSources
             }
 
             // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
-            if (_i >= _longLag)
+            if(_i >= _longLag)
             {
                 this.Fill();
             }
@@ -520,7 +520,7 @@ namespace MathNet.Numerics.RandomSources
         /// </exception>
         public override double NextDouble(double minValue, double maxValue)
         {
-            if (minValue > maxValue)
+            if(minValue > maxValue)
             {
                 string message = string.Format(null, Resources.ArgumentOutOfRangeGreaterEqual,
                     "maxValue", "minValue");
@@ -529,7 +529,7 @@ namespace MathNet.Numerics.RandomSources
 
             double range = maxValue - minValue;
 
-            if (range == double.PositiveInfinity)
+            if(range == double.PositiveInfinity)
             {
                 string message = string.Format(null, Resources.ArgumentRangeLessEqual,
                     "minValue", "maxValue", "Double.MaxValue");
@@ -537,7 +537,7 @@ namespace MathNet.Numerics.RandomSources
             }
 
             // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
-            if (_i >= _longLag)
+            if(_i >= _longLag)
             {
                 this.Fill();
             }
@@ -559,11 +559,11 @@ namespace MathNet.Numerics.RandomSources
         /// <returns>A <see cref="Boolean"/> value.</returns>
         public override bool NextBoolean()
         {
-            if (_bitCount == 0)
+            if(_bitCount == 0)
             {
                 // Generate 32 more bits (1 uint) and store it for future calls.
                 // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
-                if (_i >= _longLag)
+                if(_i >= _longLag)
                 {
                     this.Fill();
                 }
@@ -592,19 +592,19 @@ namespace MathNet.Numerics.RandomSources
         /// </exception>
         public override void NextBytes(byte[] buffer)
         {
-            if (buffer == null)
+            if(buffer == null)
             {
                 string message = string.Format(null, Resources.ArgumentNull, "buffer");
                 throw new ArgumentNullException("buffer", message);
             }
-            
+
             // Fill the buffer with 4 bytes (1 uint) at a time.
             int i = 0;
             uint w;
-            while (i < buffer.Length - 3)
+            while(i < buffer.Length - 3)
             {
                 // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
-                if (_i >= _longLag)
+                if(_i >= _longLag)
                 {
                     this.Fill();
                 }
@@ -617,23 +617,23 @@ namespace MathNet.Numerics.RandomSources
             }
 
             // Fill up any remaining bytes in the buffer.
-            if (i < buffer.Length)
+            if(i < buffer.Length)
             {
                 // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
-                if (_i >= _longLag)
+                if(_i >= _longLag)
                 {
                     this.Fill();
                 }
                 w = _x[_i++];
 
                 buffer[i++] = (byte)w;
-                if (i < buffer.Length)
+                if(i < buffer.Length)
                 {
                     buffer[i++] = (byte)(w >> 8);
-                    if (i < buffer.Length)
+                    if(i < buffer.Length)
                     {
                         buffer[i++] = (byte)(w >> 16);
-                        if (i < buffer.Length)
+                        if(i < buffer.Length)
                         {
                             buffer[i] = (byte)(w >> 24);
                         }

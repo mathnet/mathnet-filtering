@@ -273,7 +273,7 @@ namespace MathNet.Numerics
                 }
                 long r;
                 sum = _coeff[exponent + 1] - Math.DivRem(-sum, (long)_radix, out r);
-                _coeff[exponent++] = (r == 0) ? 0 : (uint)(_radix-(ulong)r);
+                _coeff[exponent++] = (r == 0) ? 0 : (uint)(_radix - (ulong)r);
             }
             _coeff[exponent] = (uint)sum;
             underflow = false;
@@ -308,7 +308,7 @@ namespace MathNet.Numerics
                 ret._coeff[i] = _coeff[i + exponent];
             return ret;
         }
-        
+
         /// <summary>
         /// Set all coefficients of exponents higher than or equal to the given exponent to zero.
         /// </summary>
@@ -361,7 +361,7 @@ namespace MathNet.Numerics
         private Natural MultiplyLarge(Natural number)
         {
             uint len = Math.Max(_bound, number._bound);
-            uint k = (uint)Math.Ceiling(0.5*len);
+            uint k = (uint)Math.Ceiling(0.5 * len);
             Natural a0 = Restrict(k);
             Natural a1 = ShiftDown(k);
             Natural b0 = number.Restrict(k);

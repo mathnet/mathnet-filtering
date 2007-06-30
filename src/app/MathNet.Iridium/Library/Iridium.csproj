@@ -70,7 +70,6 @@
     <Compile Include="Distributions\ContinuousDistribution.cs" />
     <Compile Include="Distributions\IDiscreteProbabilityDistribution.cs" />
     <Compile Include="Distributions\NamespaceDoc.cs" />
-    <Compile Include="Double.cs" />
     <Compile Include="Equations\NamespaceDoc.cs" />
     <Compile Include="Equations\ScalarIterator.cs" />
     <Compile Include="Equations\Solver.cs" />
@@ -88,7 +87,6 @@
     <Compile Include="Interpolation\PolynomialInterpolationAlgorithm.cs" />
     <Compile Include="Interpolation\RationalInterpolationAlgorithm.cs" />
     <Compile Include="IRealFunction.cs" />
-    <Compile Include="IRealGenerator.cs" />
     <Compile Include="LinearAlgebra\CholeskyDecomposition.cs" />
     <Compile Include="LinearAlgebra\EigenvalueDecomposition.cs" />
     <Compile Include="LinearAlgebra\LUDecomposition.cs" />

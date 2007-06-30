@@ -1,9 +1,12 @@
-// MathNet Numerics, part of MathNet
+#region Math.NET Iridium (LGPL) by Ruegg + Contributors
+// Math.NET Iridium, part of the Math.NET Project
+// http://mathnet.opensourcedotnet.info
 //
-// Copyright (c) 2004,	Christoph Ruegg, http://www.cdrnet.net
-// Partially based on ideas from Numerical Recipes in C++, Second Edition [2003],
-// as well as Handbook of Mathematical Functions [1965].
+// Copyright (c) 2002-2007, Christoph Rüegg, http://christoph.ruegg.name
 //
+// Contribution: Numerical Recipes in C++, Second Edition [2003]
+//               Handbook of Mathematical Functions [1965]
+//						
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -17,6 +20,7 @@
 // You should have received a copy of the GNU Lesser General Public 
 // License along with this program; if not, write to the Free Software
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#endregion
 
 using System;
 using MathNet.Numerics;

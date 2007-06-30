@@ -1,10 +1,11 @@
-#region Copyright ©2000 The MathWorks and NIST, ©2004 Joannes Vermorel
-
-// MathNet Numerics, part of MathNet
+#region Math.NET Iridium (LGPL) by Vermorel + Contributors
+// Math.NET Iridium, part of the Math.NET Project
+// http://mathnet.opensourcedotnet.info
 //
-// Copyright (c) 2004,	Joannes Vermorel, http://www.vermorel.com
-//	
+// Copyright (c) 2004-2007, Joannes Vermorel, http://www.vermorel.com
 //
+// Contribution: The MathWorks and NIST [2000]
+//						
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +19,6 @@
 // You should have received a copy of the GNU Lesser General Public 
 // License along with this program; if not, write to the Free Software
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-
 #endregion
 
 using System;

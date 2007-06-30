@@ -121,7 +121,7 @@
     <value>{0} ist Null (Nothing in Visual Basic).</value>
   </data>
   <data name="ArgumentOutOfRangeGreaterEqual" xml:space="preserve">
-    <value>{0} muss größer oder gleich {1} sein.</value>
+    <value>{0} muss grösser oder gleich {1} sein.</value>
   </data>
   <data name="ArgumentRangeLessEqual" xml:space="preserve">
     <value>Der Bereich zwischen {0} und {1} muss kleiner oder gleich {2} sein.</value>

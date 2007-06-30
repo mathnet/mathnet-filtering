@@ -2,7 +2,7 @@
 // Math.NET Iridium, part of the Math.NET Project
 // http://mathnet.opensourcedotnet.info
 //
-// Copyright (c) 2004-2007, Christoph Rüegg,  http://christoph.ruegg.name
+// Copyright (c) 2002-2007, Christoph Rüegg, http://christoph.ruegg.name
 //
 // Contribution: Fn.IntLog2 by Ben Houston, http://www.exocortex.org
 //						
@@ -29,7 +29,7 @@ using MathNet.Numerics.Properties;
 namespace MathNet.Numerics
 {
     /// <summary>
-    /// Static DoublePrecision Special Functions Helper Class
+    /// Double-precision special functions toolkit.
     /// </summary>
     public static class Fn
     {
@@ -197,10 +197,10 @@ namespace MathNet.Numerics
         /// </summary>
         /// <returns>gcd(a,b)</returns>
         public static long Gcd(long a, long b)
-        {                        	
-            long rem;                	
+        {
+            long rem;
             while(b != 0)
-            {       	
+            {
                 rem = a % b;
                 a = b;
                 b = rem;
@@ -270,7 +270,7 @@ namespace MathNet.Numerics
 
         #region Factorial, Binomial Coefficient
         /// <summary>
-        /// Returns the natural logarithm of the Factorial for a real value > 0.
+        /// Returns the natural logarithm of the factorial (n!) for an integer value > 0.
         /// </summary>
         /// <returns>A value ln(value!) for value > 0</returns>
         public static double FactorialLn(int value)
@@ -290,9 +290,17 @@ namespace MathNet.Numerics
         private const int FactorialLnCacheSize = 2 * FactorialPrecompSize;
 
         /// <summary>
-        /// Returns a factorial of an integer number (n!)
+        /// Returns the factorial (n!) of an integer number > 0. Consider using <see cref="FactorialLn"/> instead.
         /// </summary>
         /// <returns>A value value! for value > 0</returns>
+        /// <remarks>
+        /// If you need to multiply or divide various such factorials, consider
+        /// using the logarithmic version <see cref="FactorialLn"/> instead
+        /// so you can add instead of multiply and subtract instead of divide, and
+        /// then exponentiate the result using <see cref="System.Math.Exp"/>.
+        /// This will also completely circumvent the problem that factorials
+        /// easily become very large.
+        /// </remarks>
         public static double Factorial(int value)
         {
             if(value < 0)
@@ -316,8 +324,14 @@ namespace MathNet.Numerics
         private const int FactorialPrecompSize = 32;
 
         /// <summary>
-        /// Returns a binomial coefficient of n and k as a double precision number
+        /// Returns the binomial coefficient of n and k as a double precision number.
         /// </summary>
+        /// <remarks>
+        /// If you need to multiply or divide various such coefficients, consider
+        /// using the logarithmic version <see cref="BinomialCoefficientLn"/> instead
+        /// so you can add instead of multiply and subtract instead of divide, and
+        /// then exponentiate the result using <see cref="System.Math.Exp"/>.
+        /// </remarks>
         public static double BinomialCoefficient(int n, int k)
         {
             if(k < 0 || k > n)
@@ -325,6 +339,9 @@ namespace MathNet.Numerics
             return Math.Floor(0.5 + Math.Exp(FactorialLn(n) - FactorialLn(k) - FactorialLn(n - k)));
         }
 
+        /// <summary>
+        /// Returns the natural logarithm of the binomial coefficient of n and k as a double precision number.
+        /// </summary>
         public static double BinomialCoefficientLn(int n, int k)
         {
             if(k < 0 || k > n)
@@ -352,9 +369,10 @@ namespace MathNet.Numerics
             return -temp + Math.Log(2.50662827463100005 * ser / x);
         }
 
-		/// <summary>
-        /// Returns the regularized lower incomplete gamma function P(a,x) = 1/Gamma(a) * int(exp(-t)t^(a-1),t=0..x) for real a &gt; 0, x &gt; 0.
-		/// </summary>
+        /// <summary>
+        /// Returns the regularized lower incomplete gamma function
+        /// P(a,x) = 1/Gamma(a) * int(exp(-t)t^(a-1),t=0..x) for real a &gt; 0, x &gt; 0.
+        /// </summary>
         public static double IncompleteGammaRegularized(double a, double x)
         {
             const int MaxIterations = 100;
@@ -416,27 +434,33 @@ namespace MathNet.Numerics
 
         #region Beta Functions
         /// <summary>
-        /// Returns the Euler Beta function of real valued z > 0, w > 0. Beta(z,w) = Beta(w,z).
+        /// Returns the Euler Beta function of real valued z > 0, w > 0.
+        /// Beta(z,w) = Beta(w,z).
         /// </summary>
         public static double Beta(double z, double w)
         {
             return Math.Exp(GammaLn(z) + GammaLn(w) - GammaLn(z + w));
         }
 
+        /// <summary>
+        /// Returns the natural logarithm of the Euler Beta function of real valued z > 0, w > 0.
+        /// BetaLn(z,w) = BetaLn(w,z).
+        /// </summary>
         public static double BetaLn(double z, double w)
         {
             return GammaLn(z) + GammaLn(w) - GammaLn(z + w);
         }
 
         /// <summary>
-        /// Returns the regularized lower incomplete beta function I_x(a,b) = 1/Beta(a,b) * int(t^(a-1)*(1-t)^(b-1),t=0..x) for real a &gt; 0, b &gt; 0, 1 &gt;= x &gt;= 0.
+        /// Returns the regularized lower incomplete beta function
+        /// I_x(a,b) = 1/Beta(a,b) * int(t^(a-1)*(1-t)^(b-1),t=0..x) for real a &gt; 0, b &gt; 0, 1 &gt;= x &gt;= 0.
         /// </summary>
         public static double IncompleteBetaRegularized(double a, double b, double x)
         {
             if(a < 0.0 || b < 0.0)
                 throw new ArgumentOutOfRangeException("a,b", Resources.ArgumentNotNegative);
             if(x < 0.0 || x > 1.0)
-                throw new ArgumentOutOfRangeException("x", String.Format(Resources.ArgumentInIntervalXYInclusive,"0.0","1.0"));
+                throw new ArgumentOutOfRangeException("x", String.Format(Resources.ArgumentInIntervalXYInclusive, "0.0", "1.0"));
 
             double bt = (x == 0.0 || x == 1.0) ? 0.0 : Math.Exp(GammaLn(a + b) - GammaLn(a) - GammaLn(b) + a * Math.Log(x) + b * Math.Log(1.0 - x));
             double betacf;
@@ -513,7 +537,7 @@ namespace MathNet.Numerics
         public static double ErfInverse(double x)
         {
             if(x < -1.0 || x > 1.0) throw new ArgumentOutOfRangeException(
-                "p", x, String.Format(Resources.ArgumentInIntervalXYInclusive,"-1.0","1.0"));
+                "p", x, String.Format(Resources.ArgumentInIntervalXYInclusive, "-1.0", "1.0"));
 
             x = 0.5 * (x + 1.0);
 

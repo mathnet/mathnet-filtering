@@ -2,8 +2,8 @@
 // Math.NET Iridium, part of the Math.NET Project
 // http://mathnet.opensourcedotnet.info
 //
-// Copyright (c) 2007, Christoph Rüegg,  http://christoph.ruegg.name
-//                     Joannes Vermorel, http://www.vermorel.com
+// Copyright (c) 2002-2007, Christoph Rüegg, http://christoph.ruegg.name
+//                          Joannes Vermorel, http://www.vermorel.com
 //						
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
@@ -149,19 +149,19 @@ namespace MathNet.Numerics
         {
             if(double.IsPositiveInfinity(real) && double.IsPositiveInfinity(imag))
             {
-                real = halfOfRoot2; imag = halfOfRoot2;
+                real = Constants.Sqrt1_2; imag = Constants.Sqrt1_2;
             }
             else if(double.IsPositiveInfinity(real) && double.IsNegativeInfinity(imag))
             {
-                real = halfOfRoot2; imag = -halfOfRoot2;
+                real = Constants.Sqrt1_2; imag = -Constants.Sqrt1_2;
             }
             else if(double.IsNegativeInfinity(real) && double.IsPositiveInfinity(imag))
             {
-                real = -halfOfRoot2; imag = -halfOfRoot2;
+                real = -Constants.Sqrt1_2; imag = -Constants.Sqrt1_2;
             }
             else if(double.IsNegativeInfinity(real) && double.IsNegativeInfinity(imag))
             {
-                real = -halfOfRoot2; imag = halfOfRoot2;
+                real = -Constants.Sqrt1_2; imag = Constants.Sqrt1_2;
             }
             else
             {
@@ -751,8 +751,6 @@ namespace MathNet.Numerics
         #endregion
 
         #region Exponential Functions
-        private static readonly double halfOfRoot2 = 0.5 * Math.Sqrt(2d);
-
         /// <summary>Exponential of this <c>Complex</c> (exp(x), E^x).</summary>
         public Complex Exponential()
         {
@@ -792,9 +790,9 @@ namespace MathNet.Numerics
                 return new Complex(Math.Sqrt(real), 0d);
             double mod = Modulus;
             if(imag > 0 || imag == 0 && real < 0)
-                return new Complex(halfOfRoot2 * Math.Sqrt(mod + real), halfOfRoot2 * Math.Sqrt(mod - real));
+                return new Complex(Constants.Sqrt1_2 * Math.Sqrt(mod + real), Constants.Sqrt1_2 * Math.Sqrt(mod - real));
             else
-                return new Complex(halfOfRoot2 * Math.Sqrt(mod + real), -halfOfRoot2 * Math.Sqrt(mod - real));
+                return new Complex(Constants.Sqrt1_2 * Math.Sqrt(mod + real), -Constants.Sqrt1_2 * Math.Sqrt(mod - real));
         }
         #endregion
 
@@ -850,7 +848,7 @@ namespace MathNet.Numerics
             {
                 if(imag == 1) return "I";
                 if(imag == -1) return numberFormat.NegativeSign + "I";
-                if(imag < 0) return numberFormat.NegativeSign + "I*" + (-imag).ToString(numberFormat); 
+                if(imag < 0) return numberFormat.NegativeSign + "I*" + (-imag).ToString(numberFormat);
 
                 return "I*" + imag.ToString(numberFormat);
             }
@@ -901,7 +899,7 @@ namespace MathNet.Numerics
                     if(cursor < source.Length)
                         return source[cursor];
                     else
-                        throw new ArgumentException("The given expression does not represent a complex number.", "complex");
+                        throw new ArgumentException(Resources.ArgumentParseComplexNumber, "complex");
                 }
             }
             #endregion
@@ -1067,31 +1065,31 @@ namespace MathNet.Numerics
 
         #endregion
 
-//        #region Unit Testing Suite
-//#if DEBUG
+        //        #region Unit Testing Suite
+        //#if DEBUG
 
-//        /// <summary>Testing suite for the <c>Complex</c> class.</summary>
-//        [TestFixture]
-//        public class TestingSuite
-//        {
-//            private static Random random = new Random();
+        //        /// <summary>Testing suite for the <c>Complex</c> class.</summary>
+        //        [TestFixture]
+        //        public class TestingSuite
+        //        {
+        //            private static Random random = new Random();
 
-//            /// <summary>
-//            /// Testing the method <see cref="Complex.ToString"/>
-//            /// </summary>
-//            [Test] public void ToStringTest()
-//            {
-//                for(int i = 0; i < 100; i++)
-//                {
-//                    Complex c = new Complex(2 * random.NextDouble() - 1,
-//                                            2 * random.NextDouble() - 1);
+        //            /// <summary>
+        //            /// Testing the method <see cref="Complex.ToString"/>
+        //            /// </summary>
+        //            [Test] public void ToStringTest()
+        //            {
+        //                for(int i = 0; i < 100; i++)
+        //                {
+        //                    Complex c = new Complex(2 * random.NextDouble() - 1,
+        //                                            2 * random.NextDouble() - 1);
 
-//                    string s = c.ToString();
-//                    Assertion.AssertEquals("#A00 Unexpected parse result.", c, Complex.Parse(s));
-//                }
-//            }
-//        }
-//#endif
-//        #endregion
+        //                    string s = c.ToString();
+        //                    Assertion.AssertEquals("#A00 Unexpected parse result.", c, Complex.Parse(s));
+        //                }
+        //            }
+        //        }
+        //#endif
+        //        #endregion
     }
 }

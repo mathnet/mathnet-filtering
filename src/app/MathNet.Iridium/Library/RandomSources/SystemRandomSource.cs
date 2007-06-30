@@ -1,8 +1,8 @@
-#region Math.NET Iridium (LGPL) by Ruegg + Contributors
+#region Math.NET Iridium (LGPL) by Ruegg
 // Math.NET Iridium, part of the Math.NET Project
 // http://mathnet.opensourcedotnet.info
 //
-// Copyright (c) 2004-2007, Christoph Rüegg,  http://christoph.ruegg.name
+// Copyright (c) 2002-2007, Christoph Rüegg, http://christoph.ruegg.name
 //						
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
@@ -18,7 +18,7 @@
 // License along with this program; if not, write to the Free Software
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
-#region Derived From: Copyright 2006 Stefan Troschütz
+#region Derived From: Copyright 2006 Troschütz
 /* 
  * Derived from the Troschuetz.Random Class Library,
  * Copyright © 2006 Stefan Troschütz (stefan@troschuetz.de)
@@ -50,7 +50,7 @@ namespace MathNet.Numerics.RandomSources
     ///   to generat pseudo-random numbers.
     /// </remarks>
     public class SystemRandomSource : RandomSource
-    {   
+    {
         #region instance fields
         /// <summary>
         /// Stores an instance of <see cref="System.Random"/> type that is used to generate random numbers.
@@ -61,7 +61,7 @@ namespace MathNet.Numerics.RandomSources
         /// Stores the used seed value.
         /// </summary>
         private int _seed;
-        
+
         /// <summary>
         /// Stores an <see cref="int"/> used to generate up to 31 random <see cref="Boolean"/> values.
         /// </summary>
@@ -212,7 +212,7 @@ namespace MathNet.Numerics.RandomSources
         /// </exception>
         public override double NextDouble(double maxValue)
         {
-            if (maxValue < 0)
+            if(maxValue < 0)
             {
                 string message = string.Format(null, Resources.ArgumentOutOfRangeGreaterEqual,
                     "maxValue", "0.0");
@@ -251,7 +251,7 @@ namespace MathNet.Numerics.RandomSources
         /// </exception>
         public override double NextDouble(double minValue, double maxValue)
         {
-            if (minValue > maxValue)
+            if(minValue > maxValue)
             {
                 string message = string.Format(null, Resources.ArgumentOutOfRangeGreaterEqual,
                     "maxValue", "minValue");
@@ -260,7 +260,7 @@ namespace MathNet.Numerics.RandomSources
 
             double range = maxValue - minValue;
 
-            if (range == double.PositiveInfinity)
+            if(range == double.PositiveInfinity)
             {
                 string message = string.Format(null, Resources.ArgumentRangeLessEqual,
                     "minValue", "maxValue", "Double.MaxValue");
@@ -269,7 +269,7 @@ namespace MathNet.Numerics.RandomSources
 
             return minValue + _generator.NextDouble() * range;
         }
-        
+
         /// <summary>
         /// Returns a random Boolean value.
         /// </summary>
@@ -279,7 +279,7 @@ namespace MathNet.Numerics.RandomSources
         /// <returns>A <see cref="Boolean"/> value.</returns>
         public override bool NextBoolean()
         {
-            if (_bitCount == 0)
+            if(_bitCount == 0)
             {
                 // Generate 31 more bits (1 int) and store it for future calls.
                 _bitBuffer = _generator.Next();
@@ -293,7 +293,7 @@ namespace MathNet.Numerics.RandomSources
             _bitCount--;
             return ((_bitBuffer >>= 1) & 0x1) == 1;
         }
-        
+
         /// <summary>
         /// Fills the elements of a specified array of bytes with random numbers. 
         /// </summary>

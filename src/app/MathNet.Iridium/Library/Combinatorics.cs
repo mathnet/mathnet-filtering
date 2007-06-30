@@ -1,8 +1,8 @@
-#region Math.NET Iridium (LGPL) by Ruegg + Vermorel
+#region Math.NET Iridium (LGPL) by Ruegg, Vermorel
 // Math.NET Iridium, part of the Math.NET Project
 // http://mathnet.opensourcedotnet.info
 //
-// Copyright (c) 2004-2007, Christoph Rüegg,  http://christoph.ruegg.name
+// Copyright (c) 2002-2007, Christoph Rüegg, http://christoph.ruegg.name
 //                          Joannes Vermorel, http://www.vermorel.com
 //						
 // This program is free software; you can redistribute it and/or modify
@@ -19,12 +19,12 @@
 // License along with this program; if not, write to the Free Software
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
-
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 using MathNet.Numerics.RandomSources;
+using MathNet.Numerics.Properties;
 
 namespace MathNet.Numerics
 {
@@ -73,6 +73,7 @@ namespace MathNet.Numerics
         /// <summary>
         /// Computes the number of permutations (without repetition). 
         /// </summary>
+        /// <param name="n">Number of (distinguishable) elements in the set.</param>
         public static double Permutations(int n)
         {
             return Fn.Factorial(n);
@@ -106,10 +107,10 @@ namespace MathNet.Numerics
 
         /// <summary>Randomly shuffles the numbers 0 to N-1.</summary>
         /// <returns>An array of length <c>N</c> that contains (in any order) the integers of the interval <c>[0, N)</c>.</returns>
-        public static int[] RandomPremutation(int n)
+        public static int[] RandomPermutation(int n)
         {
             if(n < 0) throw new ArgumentOutOfRangeException(
-                   "size", n, "The size must be non-negative.");
+                   "size", n, Resources.ArgumentNotNegative);
 
             IndexedValue[] indexedValues = new IndexedValue[n];
             for(int i = 0; i < indexedValues.Length; i++)
@@ -157,7 +158,7 @@ namespace MathNet.Numerics
             }
             else // based on permutation
             {
-                int[] permutation = RandomPremutation(n);
+                int[] permutation = RandomPermutation(n);
                 for(int i = 0; i < k; i++)
                     selection[permutation[i]] = true;
                 return selection;
@@ -179,7 +180,7 @@ namespace MathNet.Numerics
         public static int[] RandomVariation(int n, int k)
         {
             int[] selection = new int[k];
-            int[] permutation = RandomPremutation(n);
+            int[] permutation = RandomPermutation(n);
             for(int i = 0; i < k; i++)
                 selection[i] = permutation[i];
             return selection;
@@ -208,7 +209,7 @@ namespace MathNet.Numerics
         public static void RandomShuffle<T>(IList<T> source, IList<T> target)
         {
             int len = Math.Min(source.Count, target.Count);
-            int[] permutation = RandomPremutation(len);
+            int[] permutation = RandomPermutation(len);
             for(int i = 0; i < len; i++)
                 target[i] = source[permutation[i]];
         }

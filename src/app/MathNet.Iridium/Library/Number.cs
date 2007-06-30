@@ -1,21 +1,22 @@
-#region Copyright 2006 Christoph Rüegg
-//MathNet Numerics: Iridium, part of Math.NET
-//Copyright (c) 2006, Christoph Daniel Rüegg (http://cdrnet.net/)
-//This Math.NET package is available under the terms of the LGPL.
-
-//This program is free software; you can redistribute it and/or modify
-//it under the terms of the GNU Lesser General Public License as published 
-//by the Free Software Foundation; either version 2 of the License, or
-//(at your option) any later version.
-
-//This program is distributed in the hope that it will be useful,
-//but WITHOUT ANY WARRANTY; without even the implied warranty of
-//MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//GNU Lesser General Public License for more details.
-
-//You should have received a copy of the GNU Lesser General Public 
-//License along with this program; if not, write to the Free Software
-//Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#region Math.NET Iridium (LGPL) by Ruegg
+// Math.NET Iridium, part of the Math.NET Project
+// http://mathnet.opensourcedotnet.info
+//
+// Copyright (c) 2002-2007, Christoph Rüegg, http://christoph.ruegg.name
+//						
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published 
+// by the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public 
+// License along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
 
 using System;
@@ -163,7 +164,7 @@ namespace MathNet.Numerics
         {
             return AlmostEqual(a, b, (ulong)maxNumbersBetween);
         }
-        
+
         /// <param name="maxNumbersBetween">The maximum count of numbers between the two numbers plus one ([a,a] -> 0, [a,a+e] -> 1, [a,a+2e] -> 2, ...).</param>
         public static bool AlmostEqual(double a, double b, ulong maxNumbersBetween)
         {

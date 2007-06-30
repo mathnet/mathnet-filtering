@@ -1,8 +1,8 @@
-#region Math.NET Iridium (LGPL) by Ruegg + Contributors
+#region Math.NET Iridium (LGPL) by Ruegg
 // Math.NET Iridium, part of the Math.NET Project
 // http://mathnet.opensourcedotnet.info
 //
-// Copyright (c) 2004-2007, Christoph Rüegg,  http://christoph.ruegg.name
+// Copyright (c) 2002-2007, Christoph Rüegg, http://christoph.ruegg.name
 //						
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
@@ -18,7 +18,7 @@
 // License along with this program; if not, write to the Free Software
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
-#region Derived From: Copyright 2006 Stefan Troschütz
+#region Derived From: Copyright 2006 Troschütz
 /* 
  * Derived from the Troschuetz.Random Class Library,
  * Copyright © 2006 Stefan Troschütz (stefan@troschuetz.de)
@@ -36,7 +36,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA 
  */
 #endregion
-#region Derived From: Copyright 2002 Takuji Nishimura and Makoto Matsumoto
+#region Derived From: Copyright 2002 Nishimura, Matsumoto
 //A C-program for MT19937, with initialization improved 2002/1/26.
 //Coded by Takuji Nishimura and Makoto Matsumoto.
 
@@ -92,7 +92,7 @@ namespace MathNet.Numerics.RandomSources
     ///   <a href="http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/emt.html">Mersenne Twister Home Page</a>.
     /// </remarks>
     public class MersenneTwisterRandomSource : RandomSource
-    { 
+    {
         #region class fields
         /// <summary>
         /// Represents the number of unsigned random numbers generated at one time. This field is constant.
@@ -105,19 +105,19 @@ namespace MathNet.Numerics.RandomSources
         /// </summary>
         /// <remarks>The value of this constant is 397.</remarks>
         private const int M = 397;
-        
+
         /// <summary>
         /// Represents the constant vector a. This field is constant.
         /// </summary>
         /// <remarks>The value of this constant is 0x9908b0dfU.</remarks>
-        private const uint VectorA = 0x9908b0dfU; 
+        private const uint VectorA = 0x9908b0dfU;
 
         /// <summary>
         /// Represents the most significant w-r bits. This field is constant.
         /// </summary>
         /// <remarks>The value of this constant is 0x80000000.</remarks>
         private const uint UpperMask = 0x80000000U;
-        
+
         /// <summary>
         /// Represents the least significant r bits. This field is constant.
         /// </summary>
@@ -218,7 +218,7 @@ namespace MathNet.Numerics.RandomSources
         /// </exception>
         public MersenneTwisterRandomSource(int[] seedArray)
         {
-            if (seedArray == null)
+            if(seedArray == null)
             {
                 string message = string.Format(null, Resources.ArgumentNull, "seedArray");
                 throw new ArgumentNullException("seedArray", message);
@@ -227,7 +227,7 @@ namespace MathNet.Numerics.RandomSources
             _mt = new uint[N];
             _seed = 19650218U;
             _seedArray = new uint[seedArray.Length];
-            for (int index = 0; index < seedArray.Length; index++)
+            for(int index = 0; index < seedArray.Length; index++)
             {
                 _seedArray[index] = (uint)Math.Abs(seedArray[index]);
             }
@@ -246,7 +246,7 @@ namespace MathNet.Numerics.RandomSources
         [CLSCompliant(false)]
         public MersenneTwisterRandomSource(uint[] seedArray)
         {
-            if (seedArray == null)
+            if(seedArray == null)
             {
                 string message = string.Format(null, Resources.ArgumentNull, "seedArray");
                 throw new ArgumentNullException("seedArray", message);
@@ -266,7 +266,7 @@ namespace MathNet.Numerics.RandomSources
         private void ResetGenerator()
         {
             _mt[0] = _seed & 0xffffffffU;
-            for (_mti = 1; _mti < N; _mti++)
+            for(_mti = 1; _mti < N; _mti++)
             {
                 _mt[_mti] = (1812433253U * (_mt[_mti - 1] ^ (_mt[_mti - 1] >> 30)) + _mti);
                 // See Knuth TAOCP Vol2. 3rd Ed. P.106 for multiplier.
@@ -275,7 +275,7 @@ namespace MathNet.Numerics.RandomSources
             }
 
             // If the object was instanciated with a seed array do some further (re)initialisation.
-            if (_seedArray != null)
+            if(_seedArray != null)
             {
                 this.ResetBySeedArray();
             }
@@ -293,26 +293,26 @@ namespace MathNet.Numerics.RandomSources
             uint i = 1;
             uint j = 0;
             int k = (N > _seedArray.Length) ? N : _seedArray.Length;
-            for (; k > 0; k--)
+            for(; k > 0; k--)
             {
                 _mt[i] = (_mt[i] ^ ((_mt[i - 1] ^ (_mt[i - 1] >> 30)) * 1664525U)) + _seedArray[j] + j; // non linear
                 i++;
                 j++;
-                if (i >= N)
+                if(i >= N)
                 {
                     _mt[0] = _mt[N - 1];
                     i = 1;
                 }
-                if (j >= _seedArray.Length)
+                if(j >= _seedArray.Length)
                 {
                     j = 0;
                 }
             }
-            for (k = N - 1; k > 0; k--)
+            for(k = N - 1; k > 0; k--)
             {
                 _mt[i] = (_mt[i] ^ ((_mt[i - 1] ^ (_mt[i - 1] >> 30)) * 1566083941U)) - i; // non linear
                 i++;
-                if (i >= N)
+                if(i >= N)
                 {
                     _mt[0] = _mt[N - 1];
                     i = 1;
@@ -334,13 +334,13 @@ namespace MathNet.Numerics.RandomSources
             int kk;
             uint y;
             uint[] mag01 = new uint[2] { 0x0U, VectorA };
-            
-            for (kk = 0; kk < N - M; kk++)
+
+            for(kk = 0; kk < N - M; kk++)
             {
                 y = (_mt[kk] & UpperMask) | (_mt[kk + 1] & LowerMask);
                 _mt[kk] = _mt[kk + M] ^ (y >> 1) ^ mag01[y & 0x1U];
             }
-            for (; kk < N - 1; kk++)
+            for(; kk < N - 1; kk++)
             {
                 y = (_mt[kk] & UpperMask) | (_mt[kk + 1] & LowerMask);
                 _mt[kk] = _mt[kk + (M - N)] ^ (y >> 1) ^ mag01[y & 0x1U];
@@ -361,7 +361,7 @@ namespace MathNet.Numerics.RandomSources
         [CLSCompliant(false)]
         public uint NextUInt()
         {
-            if (_mti >= N)
+            if(_mti >= N)
             {// generate N words at one time
                 this.GenerateNUInts();
             }
@@ -384,7 +384,7 @@ namespace MathNet.Numerics.RandomSources
         public int NextInclusiveMaxValue()
         {
             // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
-            if (_mti >= N)
+            if(_mti >= N)
             {// generate N words at one time
                 this.GenerateNUInts();
             }
@@ -427,7 +427,7 @@ namespace MathNet.Numerics.RandomSources
         public override int Next()
         {
             // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
-            if (_mti >= N)
+            if(_mti >= N)
             {// generate N words at one time
                 this.GenerateNUInts();
             }
@@ -440,7 +440,7 @@ namespace MathNet.Numerics.RandomSources
 
             int result = (int)(y >> 1);
             // Exclude Int32.MaxValue from the range of return values.
-            if (result == Int32.MaxValue)
+            if(result == Int32.MaxValue)
             {
                 return this.Next();
             }
@@ -466,7 +466,7 @@ namespace MathNet.Numerics.RandomSources
         /// </exception>
         public override int Next(int maxValue)
         {
-            if (maxValue < 0)
+            if(maxValue < 0)
             {
                 string message = string.Format(null, Resources.ArgumentOutOfRangeGreaterEqual,
                     "maxValue", "0");
@@ -474,7 +474,7 @@ namespace MathNet.Numerics.RandomSources
             }
 
             // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
-            if (_mti >= N)
+            if(_mti >= N)
             {// generate N words at one time
                 this.GenerateNUInts();
             }
@@ -511,7 +511,7 @@ namespace MathNet.Numerics.RandomSources
         /// </exception>
         public override int Next(int minValue, int maxValue)
         {
-            if (minValue > maxValue)
+            if(minValue > maxValue)
             {
                 string message = string.Format(null, Resources.ArgumentOutOfRangeGreaterEqual,
                     "maxValue", "minValue");
@@ -519,7 +519,7 @@ namespace MathNet.Numerics.RandomSources
             }
 
             // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
-            if (_mti >= N)
+            if(_mti >= N)
             {// generate N words at one time
                 this.GenerateNUInts();
             }
@@ -531,7 +531,7 @@ namespace MathNet.Numerics.RandomSources
             y ^= (y >> 18);
 
             int range = maxValue - minValue;
-            if (range < 0)
+            if(range < 0)
             {
                 // The range is greater than Int32.MaxValue, so we have to use slower floating point arithmetic.
                 // Also all 32 random bits (uint) have to be used which again is slower (See comment in NextDouble()).
@@ -556,7 +556,7 @@ namespace MathNet.Numerics.RandomSources
         public override double NextDouble()
         {
             // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
-            if (_mti >= N)
+            if(_mti >= N)
             {// generate N words at one time
                 this.GenerateNUInts();
             }
@@ -591,7 +591,7 @@ namespace MathNet.Numerics.RandomSources
         /// </exception>
         public override double NextDouble(double maxValue)
         {
-            if (maxValue < 0.0)
+            if(maxValue < 0.0)
             {
                 string message = string.Format(null, Resources.ArgumentOutOfRangeGreaterEqual,
                     "maxValue", "0.0");
@@ -599,7 +599,7 @@ namespace MathNet.Numerics.RandomSources
             }
 
             // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
-            if (_mti >= N)
+            if(_mti >= N)
             {// generate N words at one time
                 this.GenerateNUInts();
             }
@@ -644,7 +644,7 @@ namespace MathNet.Numerics.RandomSources
         /// </exception>
         public override double NextDouble(double minValue, double maxValue)
         {
-            if (minValue > maxValue)
+            if(minValue > maxValue)
             {
                 string message = string.Format(null, Resources.ArgumentOutOfRangeGreaterEqual,
                     "maxValue", "minValue");
@@ -653,7 +653,7 @@ namespace MathNet.Numerics.RandomSources
 
             double range = maxValue - minValue;
 
-            if (range == double.PositiveInfinity)
+            if(range == double.PositiveInfinity)
             {
                 string message = string.Format(null, Resources.ArgumentRangeLessEqual,
                     "minValue", "maxValue", "Double.MaxValue");
@@ -661,7 +661,7 @@ namespace MathNet.Numerics.RandomSources
             }
 
             // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
-            if (_mti >= N)
+            if(_mti >= N)
             {// generate N words at one time
                 this.GenerateNUInts();
             }
@@ -676,7 +676,7 @@ namespace MathNet.Numerics.RandomSources
             // See comment in NextDouble().
             return minValue + (double)(int)(y >> 1) * IntToDoubleMultiplier * range;
         }
-        
+
         /// <summary>
         /// Returns a random Boolean value.
         /// </summary>
@@ -686,11 +686,11 @@ namespace MathNet.Numerics.RandomSources
         /// <returns>A <see cref="Boolean"/> value.</returns>
         public override bool NextBoolean()
         {
-            if (_bitCount == 32)
+            if(_bitCount == 32)
             {
                 // Generate 32 more bits (1 uint) and store it for future calls.
                 // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
-                if (_mti >= N)
+                if(_mti >= N)
                 {// generate N words at one time
                     this.GenerateNUInts();
                 }
@@ -710,7 +710,7 @@ namespace MathNet.Numerics.RandomSources
             _bitCount++;
             return ((_bitBuffer >>= 1) & 0x1) == 1;
         }
-        
+
         /// <summary>
         /// Fills the elements of a specified array of bytes with random numbers. 
         /// </summary>
@@ -724,7 +724,7 @@ namespace MathNet.Numerics.RandomSources
         /// </exception>
         public override void NextBytes(byte[] buffer)
         {
-            if (buffer == null)
+            if(buffer == null)
             {
                 string message = string.Format(null, Resources.ArgumentNull, "buffer");
                 throw new ArgumentNullException("buffer", message);
@@ -733,10 +733,10 @@ namespace MathNet.Numerics.RandomSources
             // Fill the buffer with 4 bytes (1 uint) at a time.
             int i = 0;
             uint y;
-            while (i < buffer.Length - 3)
+            while(i < buffer.Length - 3)
             {
                 // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
-                if (_mti >= N)
+                if(_mti >= N)
                 {// generate N words at one time
                     this.GenerateNUInts();
                 }
@@ -754,10 +754,10 @@ namespace MathNet.Numerics.RandomSources
             }
 
             // Fill up any remaining bytes in the buffer.
-            if (i < buffer.Length)
+            if(i < buffer.Length)
             {
                 // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
-                if (_mti >= N)
+                if(_mti >= N)
                 {// generate N words at one time
                     this.GenerateNUInts();
                 }
@@ -769,13 +769,13 @@ namespace MathNet.Numerics.RandomSources
                 y ^= (y >> 18);
 
                 buffer[i++] = (byte)y;
-                if (i < buffer.Length)
+                if(i < buffer.Length)
                 {
                     buffer[i++] = (byte)(y >> 8);
-                    if (i < buffer.Length)
+                    if(i < buffer.Length)
                     {
                         buffer[i++] = (byte)(y >> 16);
-                        if (i < buffer.Length)
+                        if(i < buffer.Length)
                         {
                             buffer[i] = (byte)(y >> 24);
                         }

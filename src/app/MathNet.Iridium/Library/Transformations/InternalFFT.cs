@@ -1,9 +1,10 @@
-#region Math.NET Iridium (LGPL) by Ruegg + Houston
+#region Math.NET Iridium (LGPL) by Ruegg + Contributors
 // Math.NET Iridium, part of the Math.NET Project
 // http://mathnet.opensourcedotnet.info
 //
-// Copyright (c) 2004-2007, Christoph Rüegg,  http://christoph.ruegg.name
-// Based on Exocortex.DSP, Ben Houston, http://www.exocortex.org
+// Copyright (c) 2002-2007, Christoph Rüegg, http://christoph.ruegg.name
+//
+// Contribution: Exocortex.DSP, Ben Houston, http://www.exocortex.org
 //						
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 

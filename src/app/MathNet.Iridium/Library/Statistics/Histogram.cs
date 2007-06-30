@@ -1,7 +1,29 @@
+#region Math.NET Iridium (LGPL) by Vermorel
+// Math.NET Iridium, part of the Math.NET Project
+// http://mathnet.opensourcedotnet.info
+//
+// Copyright (c) 2004-2007, Joannes Vermorel, http://www.vermorel.com
+//						
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published 
+// by the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public 
+// License along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+#endregion
+
 using System;
 using System.Collections;
 using System.Diagnostics;
 using System.Text;
+using MathNet.Numerics.Properties;
 
 namespace MathNet.Numerics.Statistics
 {
@@ -55,8 +77,8 @@ namespace MathNet.Numerics.Statistics
             LazySort();
             int index = buckets.BinarySearch(v, Bucket.DefaultPointComparer);
 
-            if (index < 0)
-                throw new ArgumentException("The histogram does not contains the value " + v);
+            if(index < 0)
+                throw new ArgumentException(string.Format(Resources.ArgumentHistogramContainsNot, v));
 
             return index;
         }
@@ -66,11 +88,11 @@ namespace MathNet.Numerics.Statistics
         /// </summary>
         public void JoinBuckets()
         {
-            if (buckets.Count == 0)
-                throw new ArgumentException("Empty histogram.");
+            if(buckets.Count == 0)
+                throw new ArgumentException(Resources.InvalidOperationHistogramEmpty);
 
             LazySort();
-            for (int i = 0; i < buckets.Count - 2; i++)
+            for(int i = 0; i < buckets.Count - 2; i++)
             {
                 double middle = (((Bucket)buckets[i]).UpperBound
                     + ((Bucket)buckets[i + 1]).LowerBound) / 2;
@@ -82,7 +104,7 @@ namespace MathNet.Numerics.Statistics
 
         private void LazySort()
         {
-            if (!areBucketsSorted)
+            if(!areBucketsSorted)
             {
                 buckets.Sort();
                 areBucketsSorted = true;
@@ -123,7 +145,7 @@ namespace MathNet.Numerics.Statistics
             get
             {
                 double totalDepth = 0;
-                for (int i = 0; i < this.Count; i++)
+                for(int i = 0; i < this.Count; i++)
                     totalDepth += this[i].Depth;
 
                 return totalDepth;
@@ -134,7 +156,7 @@ namespace MathNet.Numerics.Statistics
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            foreach (Bucket b in buckets)
+            foreach(Bucket b in buckets)
                 sb.Append(b.ToString());
 
             return sb.ToString();
@@ -143,8 +165,8 @@ namespace MathNet.Numerics.Statistics
 
         public static Histogram OptimalDispersion(int bucketCount, ICollection distribution)
         {
-            if (distribution.Count < Math.Max(bucketCount, 2))
-                throw new ArgumentException("Not enough points in the distribution.");
+            if(distribution.Count < Math.Max(bucketCount, 2))
+                throw new ArgumentException(Resources.InvalidOperationHistogramNotEnoughPoints);
 
             // "values" contains the sorted distribution.
             double[] values = new double[distribution.Count];
@@ -164,13 +186,13 @@ namespace MathNet.Numerics.Statistics
             double[] prefixSum = new double[values.Length + 1];
 
             // Initialization of the prefix sums
-            for (int i = 0; i < values.Length; i++)
+            for(int i = 0; i < values.Length; i++)
                 prefixSum[i + 1] = prefixSum[i] + values[i];
 
             // "One bucket" histograms initialization
-            for (int i = 0, avg = 0; i < values.Length; i++)
+            for(int i = 0, avg = 0; i < values.Length; i++)
             {
-                while ((avg + 1) < values.Length &&
+                while((avg + 1) < values.Length &&
                     values[avg + 1] < prefixSum[i + 1] / (i + 1)) avg++;
 
                 optimalCost[i, 0] =
@@ -179,7 +201,7 @@ namespace MathNet.Numerics.Statistics
             }
 
             // "One value per bucket" histograms initialization
-            for (int k = 0; k < bucketCount; k++)
+            for(int k = 0; k < bucketCount; k++)
             {
                 // optimalCost[k, k] = 0;
                 lastBucketIndex[k, k] = k;
@@ -189,24 +211,24 @@ namespace MathNet.Numerics.Statistics
 
             // Loop on the number of buckets 
             // (note that there are 'k+1' buckets)
-            for (int k = 1; k < bucketCount; k++)
+            for(int k = 1; k < bucketCount; k++)
                 // Loop on the number of considered values
                 // (note that there are 'i+1' considered values)
-                for (int i = k; i < values.Length; i++)
+                for(int i = k; i < values.Length; i++)
                 {
                     optimalCost[i, k] = double.PositiveInfinity;
                     // Loop for finding the optimal boundary of the last bucket
                     // ('j+1' is the index of the first value in the last bucket)
-                    for (int j = (k - 1), avg = (k - 1); j < i; j++)
+                    for(int j = (k - 1), avg = (k - 1); j < i; j++)
                     {
-                        while ((avg + 1) < values.Length &&
+                        while((avg + 1) < values.Length &&
                             values[avg + 1] < (prefixSum[i + 1] - prefixSum[j + 1]) / (i - j)) avg++;
 
                         double currentCost = optimalCost[j, k - 1] +
                             prefixSum[i + 1] + prefixSum[j + 1] - 2 * prefixSum[avg + 1]
                             + (2 * avg - i - j) * (prefixSum[i + 1] - prefixSum[j + 1]) / (i - j);
 
-                        if (currentCost < optimalCost[i, k])
+                        if(currentCost < optimalCost[i, k])
                         {
                             optimalCost[i, k] = currentCost;
                             lastBucketIndex[i, k] = j + 1;
@@ -217,7 +239,7 @@ namespace MathNet.Numerics.Statistics
             // ----- Reconstitution of the histogram -----
             Histogram histogram = new Histogram();
             int index = values.Length - 1;
-            for (int k = (bucketCount - 1); k >= 0; k--)
+            for(int k = (bucketCount - 1); k >= 0; k--)
             {
                 histogram.Add(new Bucket(values[lastBucketIndex[index, k]],
                     values[index], index - lastBucketIndex[index, k] + 1));
@@ -237,8 +259,8 @@ namespace MathNet.Numerics.Statistics
         /// <c>distribution.Length</c>.</remarks>
         public static Histogram OptimalVariance(int bucketCount, ICollection distribution)
         {
-            if (distribution.Count < bucketCount)
-                throw new ArgumentException("Not enough points in the distribution.");
+            if(distribution.Count < bucketCount)
+                throw new ArgumentException(Resources.InvalidOperationHistogramNotEnoughPoints);
 
             // "values" contains the sorted distribution.
             double[] values = new double[distribution.Count];
@@ -260,19 +282,19 @@ namespace MathNet.Numerics.Statistics
                     sqPrefixSum = new double[values.Length + 1];
 
             // Initialization of the prefix sums
-            for (int i = 0; i < values.Length; i++)
+            for(int i = 0; i < values.Length; i++)
             {
                 prefixSum[i + 1] = prefixSum[i] + values[i];
                 sqPrefixSum[i + 1] = sqPrefixSum[i] + values[i] * values[i];
             }
 
             // "One bucket" histograms initialization
-            for (int i = 0; i < values.Length; i++)
+            for(int i = 0; i < values.Length; i++)
                 optimalCost[i, 0] = sqPrefixSum[i + 1] -
                     prefixSum[i + 1] * prefixSum[i + 1] / (i + 1);
 
             // "One value per bucket" histograms initialization
-            for (int k = 0; k < bucketCount; k++)
+            for(int k = 0; k < bucketCount; k++)
             {
                 // optimalCost[k, k] = 0;
                 lastBucketIndex[k, k] = k;
@@ -282,20 +304,20 @@ namespace MathNet.Numerics.Statistics
 
             // Loop on the number of buckets 
             // (note that there are 'k+1' buckets)
-            for (int k = 1; k < bucketCount; k++)
+            for(int k = 1; k < bucketCount; k++)
                 // Loop on the number of considered values
                 // (note that there are 'i+1' considered values)
-                for (int i = k; i < values.Length; i++)
+                for(int i = k; i < values.Length; i++)
                 {
                     optimalCost[i, k] = double.PositiveInfinity;
                     // Loop for finding the optimal boundary of the last bucket
                     // ('j+1' is the index of the first value in the last bucket)
-                    for (int j = (k - 1); j < i; j++)
+                    for(int j = (k - 1); j < i; j++)
                     {
                         double currentCost = optimalCost[j, k - 1] + sqPrefixSum[i + 1] - sqPrefixSum[j + 1]
                             - (prefixSum[i + 1] - prefixSum[j + 1]) * (prefixSum[i + 1] - prefixSum[j + 1]) / (i - j);
 
-                        if (currentCost < optimalCost[i, k])
+                        if(currentCost < optimalCost[i, k])
                         {
                             optimalCost[i, k] = currentCost;
                             lastBucketIndex[i, k] = j + 1;
@@ -306,7 +328,7 @@ namespace MathNet.Numerics.Statistics
             // ----- Reconstitution of the histogram -----
             Histogram histogram = new Histogram();
             int index = values.Length - 1;
-            for (int k = (bucketCount - 1); k >= 0; k--)
+            for(int k = (bucketCount - 1); k >= 0; k--)
             {
                 histogram.Add(new Bucket(values[lastBucketIndex[index, k]],
                     values[index], index - lastBucketIndex[index, k] + 1));
@@ -321,8 +343,8 @@ namespace MathNet.Numerics.Statistics
 
         public static Histogram OptimalFreedom(int bucketCount, ICollection distribution)
         {
-            if (distribution.Count < Math.Max(bucketCount, 2))
-                throw new ArgumentException("Not enough points in the distribution.");
+            if(distribution.Count < Math.Max(bucketCount, 2))
+                throw new ArgumentException(Resources.InvalidOperationHistogramNotEnoughPoints);
 
             // "values" contains the sorted distribution.
             double[] values = new double[distribution.Count];
@@ -339,11 +361,11 @@ namespace MathNet.Numerics.Statistics
             int[,] lastBucketIndex = new int[values.Length, bucketCount];
 
             // "One bucket" histograms initialization
-            for (int i = 0; i < values.Length; i++)
+            for(int i = 0; i < values.Length; i++)
                 optimalCost[i, 0] = (values[i] - values[0]) * (i + 1);
 
             // "One value per bucket" histograms initialization
-            for (int k = 0; k < bucketCount; k++)
+            for(int k = 0; k < bucketCount; k++)
             {
                 // optimalCost[k, k] = 0;
                 lastBucketIndex[k, k] = k;
@@ -353,20 +375,20 @@ namespace MathNet.Numerics.Statistics
 
             // Loop on the number of buckets 
             // (note that there are 'k+1' buckets)
-            for (int k = 1; k < bucketCount; k++)
+            for(int k = 1; k < bucketCount; k++)
                 // Loop on the number of considered values
                 // (note that there are 'i+1' considered values)
-                for (int i = k; i < values.Length; i++)
+                for(int i = k; i < values.Length; i++)
                 {
                     optimalCost[i, k] = double.PositiveInfinity;
                     // Loop for finding the optimal boundary of the last bucket
                     // ('j+1' is the index of the first value in the last bucket)
-                    for (int j = (k - 1), avg = (k - 1); j < i; j++)
+                    for(int j = (k - 1), avg = (k - 1); j < i; j++)
                     {
                         double currentCost = optimalCost[j, k - 1] +
                             (values[i] - values[j + 1]) * (i - j);
 
-                        if (currentCost < optimalCost[i, k])
+                        if(currentCost < optimalCost[i, k])
                         {
                             optimalCost[i, k] = currentCost;
                             lastBucketIndex[i, k] = j + 1;
@@ -377,7 +399,7 @@ namespace MathNet.Numerics.Statistics
             // ----- Reconstitution of the histogram -----
             Histogram histogram = new Histogram();
             int index = values.Length - 1;
-            for (int k = (bucketCount - 1); k >= 0; k--)
+            for(int k = (bucketCount - 1); k >= 0; k--)
             {
                 histogram.Add(new Bucket(values[lastBucketIndex[index, k]],
                     values[index], index - lastBucketIndex[index, k] + 1));
@@ -391,8 +413,8 @@ namespace MathNet.Numerics.Statistics
 
         public static Histogram OptimalSquaredFreedom(int histSize, ICollection distribution)
         {
-            if (distribution.Count < Math.Max(histSize, 2))
-                throw new ArgumentException("Not enough points in the distribution.");
+            if(distribution.Count < Math.Max(histSize, 2))
+                throw new ArgumentException(Resources.InvalidOperationHistogramNotEnoughPoints);
 
             // "values" contains the sorted distribution.
             double[] values = new double[distribution.Count];
@@ -409,12 +431,12 @@ namespace MathNet.Numerics.Statistics
             int[,] lastBucketIndex = new int[values.Length, histSize];
 
             // "One bucket" histograms initialization
-            for (int i = 0; i < values.Length; i++)
+            for(int i = 0; i < values.Length; i++)
                 optimalCost[i, 0] =
                     (values[i] - values[0]) * (values[i] - values[0]) * (i + 1);
 
             // "One value per bucket" histograms initialization
-            for (int k = 0; k < histSize; k++)
+            for(int k = 0; k < histSize; k++)
             {
                 // optimalCost[k, k] = 0;
                 lastBucketIndex[k, k] = k;
@@ -424,20 +446,20 @@ namespace MathNet.Numerics.Statistics
 
             // Loop on the number of buckets 
             // (note that there are 'k+1' buckets)
-            for (int k = 1; k < histSize; k++)
+            for(int k = 1; k < histSize; k++)
                 // Loop on the number of considered values
                 // (note that there are 'i+1' considered values)
-                for (int i = k; i < values.Length; i++)
+                for(int i = k; i < values.Length; i++)
                 {
                     optimalCost[i, k] = double.PositiveInfinity;
                     // Loop for finding the optimal boundary of the last bucket
                     // ('j+1' is the index of the first value in the last bucket)
-                    for (int j = (k - 1), avg = (k - 1); j < i; j++)
+                    for(int j = (k - 1), avg = (k - 1); j < i; j++)
                     {
                         double currentCost = optimalCost[j, k - 1] +
                             (values[i] - values[j + 1]) * (values[i] - values[j + 1]) * (i - j);
 
-                        if (currentCost < optimalCost[i, k])
+                        if(currentCost < optimalCost[i, k])
                         {
                             optimalCost[i, k] = currentCost;
                             lastBucketIndex[i, k] = j + 1;
@@ -448,7 +470,7 @@ namespace MathNet.Numerics.Statistics
             // ----- Reconstitution of the histogram -----
             Histogram histogram = new Histogram();
             int index = values.Length - 1;
-            for (int k = (histSize - 1); k >= 0; k--)
+            for(int k = (histSize - 1); k >= 0; k--)
             {
                 histogram.Add(new Bucket(values[lastBucketIndex[index, k]],
                     values[index], index - lastBucketIndex[index, k] + 1));
@@ -480,7 +502,7 @@ namespace MathNet.Numerics.Statistics
                 double val = 0;
                 int unit = 0;
 
-                if (obj1 is Bucket)
+                if(obj1 is Bucket)
                 {
                     bucket = (Bucket)obj1;
                     val = (double)obj2;
@@ -493,10 +515,10 @@ namespace MathNet.Numerics.Statistics
                     unit = -1;
                 }
 
-                if (bucket.upperBound < val) return -unit;
+                if(bucket.upperBound < val) return -unit;
                 else
                 {
-                    if (bucket.lowerBound <= val) return 0;
+                    if(bucket.lowerBound <= val) return 0;
                     else return unit;
                 }
             }
@@ -577,10 +599,10 @@ namespace MathNet.Numerics.Statistics
                 || this.lowerBound >= bucket.upperBound,
                 "Could not compare two intersecting buckets.");
 
-            if (this.Width == 0 && bucket.Width == 0
+            if(this.Width == 0 && bucket.Width == 0
                 && this.lowerBound == bucket.lowerBound) return 0;
 
-            if (bucket.upperBound - this.lowerBound <= 0) return 1;
+            if(bucket.upperBound - this.lowerBound <= 0) return 1;
             else return -1;
         }
 
@@ -592,7 +614,7 @@ namespace MathNet.Numerics.Statistics
 
         public override bool Equals(object obj)
         {
-            if (!(obj is Bucket)) return false;
+            if(!(obj is Bucket)) return false;
 
             Bucket b = (Bucket)obj;
             return (this.lowerBound == b.lowerBound)
@@ -606,5 +628,4 @@ namespace MathNet.Numerics.Statistics
         }
 
     }
-
 }
