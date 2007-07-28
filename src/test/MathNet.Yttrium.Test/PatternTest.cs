@@ -59,7 +59,8 @@ namespace Yttrium.UnitTests
             Assert.AreEqual(true, centity.FulfillsCondition(sinx2, sinx2.DrivenByPort), "A02");
             Assert.AreEqual(false, centity.FulfillsCondition(x2, x2.DrivenByPort), "A03");
 
-            InputSignalsPropertyCondition cinputconst = new InputSignalsPropertyCondition(new MathIdentifier("Constant", "Std"), CombinationMode.AtLeastOne);
+            //InputSignalsPropertyCondition cinputconst = new InputSignalsPropertyCondition(new MathIdentifier("Constant", "Std"), CombinationMode.AtLeastOne);
+            InputSignalsFlagCondition cinputconst = new InputSignalsFlagCondition(StdAspect.ConstantFlag, FlagState.Enabled, CombinationMode.AtLeastOne);
             Assert.AreEqual(true, cinputconst.FulfillsCondition(x2, x2.DrivenByPort), "A04");
             Assert.AreEqual(false, cinputconst.FulfillsCondition(sinx2, sinx2.DrivenByPort), "A05");
 
