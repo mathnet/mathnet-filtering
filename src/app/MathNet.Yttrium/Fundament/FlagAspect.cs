@@ -50,8 +50,15 @@ namespace MathNet.Symbolics
         {
             OnFlagChanged(host, oldState, newState);
         }
-
         protected abstract void OnFlagChanged<THost>(THost host, FlagState oldState, FlagState newState)
+            where THost : IEventAspectHost<TIdentifier, TEvent>;
+
+        internal void RaiseFlagDirtied<THost>(THost host)
+            where THost : IEventAspectHost<TIdentifier, TEvent>
+        {
+            OnFlagDirtied(host);
+        }
+        protected abstract void OnFlagDirtied<THost>(THost host)
             where THost : IEventAspectHost<TIdentifier, TEvent>;
     }
 }

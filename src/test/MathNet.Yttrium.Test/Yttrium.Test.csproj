@@ -53,6 +53,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SchedulerTest.cs" />
     <Compile Include="StdPolynomialTest.cs" />
+    <Compile Include="StdVariousTest.cs" />
     <Compile Include="SystemBuilderTest.cs" />
     <Compile Include="UseCasesBasicTest.cs" />
   </ItemGroup>

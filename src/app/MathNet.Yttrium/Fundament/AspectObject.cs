@@ -159,10 +159,11 @@ namespace MathNet.Symbolics
             if(_properties == null)
                 return;
             Dirtyable<Object> obj;
-            if(_properties.TryGetValue(property, out obj))
+            if(_properties.TryGetValue(property, out obj) && !obj.IsDirty)
             {
                 obj.IsDirty = true;
                 _properties[property] = obj;
+                property.RaisePropertyDirtied((TObject)this);
             }
         }
 
@@ -296,10 +297,11 @@ namespace MathNet.Symbolics
             if(_flags == null)
                 return;
             Dirtyable<bool> obj;
-            if(_flags.TryGetValue(flag, out obj))
+            if(_flags.TryGetValue(flag, out obj) && !obj.IsDirty)
             {
                 obj.IsDirty = true;
                 _flags[flag] = obj;
+                flag.RaiseFlagDirtied((TObject)this);
             }
         }
         public void ClearAllFlagsWhere(Predicate<TFlag> condition)

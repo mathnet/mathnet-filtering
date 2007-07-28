@@ -780,23 +780,37 @@ namespace MathNet.Symbolics.Packages.Standard
         //}
 
         /// <summary>
-        /// Whether the signal is restricted to be an integer > 0, that is one of 1,2,3,...
+        /// Whether the signal is restricted to be > 0
         /// </summary>
-        public static bool IsAlwaysPositiveInteger(Signal signal)
+        public static bool IsAlwaysPositive(Signal signal)
         {
             if(signal == null)
                 throw new ArgumentNullException("signal");
 
-            return signal.AskForProperty("PositiveIntegerSet", "Std")
-                || IsConstant(signal) && IntegerValue.CanConvertLosslessFrom(signal.Value) && IntegerValue.ConvertFrom(signal.Value).Value > 0;
+            return signal.IsFlagEnabled(StdAspect.PositiveWithoutZeroConstraingFlag)
+                || IsConstant(signal) && RealValue.CanConvertLosslessFrom(signal.Value) && RealValue.ConvertFrom(signal.Value).Value > 0d;
         }
-        /// <summary>
-        /// Whether the signal is restricted to be an integer >= 0, that is one of 0,1,2,3,...
-        /// </summary>
-        public static bool IsAlwaysNonnegativeInteger(Signal signal)
+        public static void ConstrainAlwaysPositive(Signal signal)
         {
-            return IsAlwaysPositiveInteger(signal) || IsConstantAdditiveIdentity(signal);
+            signal.EnableFlag(StdAspect.PositiveWithoutZeroConstraingFlag);
         }
+
+        /// <summary>
+        /// Whether the signal is restricted to be >= 0
+        /// </summary>
+        public static bool IsAlwaysNonnegative(Signal signal)
+        {
+            if(signal == null)
+                throw new ArgumentNullException("signal");
+
+            return signal.IsFlagEnabled(StdAspect.PositiveOrZeroConstraintFlag)
+                || IsConstant(signal) && RealValue.CanConvertLosslessFrom(signal.Value) && RealValue.ConvertFrom(signal.Value).Value >= 0d;
+        }
+        public static void ConstrainAlwaysNonnegative(Signal signal)
+        {
+            signal.EnableFlag(StdAspect.PositiveOrZeroConstraintFlag);
+        }
+
         /// <summary>
         /// Whether the signal is restricted to be an integer, that is one of ...,-3,-2,-1,0,1,2,3,...
         /// </summary>
@@ -805,27 +819,70 @@ namespace MathNet.Symbolics.Packages.Standard
             if(signal == null)
                 throw new ArgumentNullException("signal");
 
-            return signal.AskForFlag(StdAspect.IntegerConstraintFlag) == FlagState.Enabled
-                || IsConstant(signal) && IntegerValue.CanConvertLosslessFrom(signal.Value)
-                || IsAlwaysNonnegativeInteger(signal);
+            return signal.IsFlagEnabled(StdAspect.IntegerConstraintFlag)
+                || IsConstant(signal) && IntegerValue.CanConvertLosslessFrom(signal.Value);
         }
+        public static void ConstrainAlwaysInteger(Signal signal)
+        {
+            signal.EnableFlag(StdAspect.IntegerConstraintFlag);
+        }
+
+        /// <summary>
+        /// Whether the signal is restricted to be a rational.
+        /// </summary>
         public static bool IsAlwaysRational(Signal signal)
         {
             if(signal == null)
                 throw new ArgumentNullException("signal");
 
-            return signal.AskForFlag(StdAspect.RationalConstraintFlag) == FlagState.Enabled
-                || IsConstant(signal) && RationalValue.CanConvertLosslessFrom(signal.Value)
-                || IsAlwaysInteger(signal);
+            return signal.IsFlagEnabled(StdAspect.RationalConstraintFlag)
+                || IsConstant(signal) && RationalValue.CanConvertLosslessFrom(signal.Value);
         }
+        public static void ConstrainAlwaysRational(Signal signal)
+        {
+            signal.EnableFlag(StdAspect.RationalConstraintFlag);
+        }
+
+        /// <summary>
+        /// Whether the signal is restricted to be a real.
+        /// </summary>
         public static bool IsAlwaysReal(Signal signal)
         {
             if(signal == null)
                 throw new ArgumentNullException("signal");
 
-            return signal.AskForFlag(StdAspect.RealConstraintFlag) == FlagState.Enabled
-                || IsConstant(signal) && RealValue.CanConvertLosslessFrom(signal.Value)
-                || IsAlwaysRational(signal);
+            return signal.IsFlagEnabled(StdAspect.RealConstraintFlag)
+                || IsConstant(signal) && RealValue.CanConvertLosslessFrom(signal.Value);
+        }
+        public static void ConstrainAlwaysReal(Signal signal)
+        {
+            signal.EnableFlag(StdAspect.RealConstraintFlag);
+        }
+
+        /// <summary>
+        /// Whether the signal is restricted to be an integer > 0, that is one of 1,2,3,...
+        /// </summary>
+        public static bool IsAlwaysPositiveInteger(Signal signal)
+        {
+            return IsAlwaysInteger(signal) && IsAlwaysPositive(signal);
+        }
+        public static void ConstrainAlwaysPositiveInteger(Signal signal)
+        {
+            ConstrainAlwaysInteger(signal);
+            ConstrainAlwaysPositive(signal);
+        }
+
+        /// <summary>
+        /// Whether the signal is restricted to be an integer >= 0, that is one of 0,1,2,3,...
+        /// </summary>
+        public static bool IsAlwaysNonnegativeInteger(Signal signal)
+        {
+            return IsAlwaysInteger(signal) && IsAlwaysNonnegative(signal);
+        }
+        public static void ConstrainAlwaysNonnegativeInteger(Signal signal)
+        {
+            ConstrainAlwaysInteger(signal);
+            ConstrainAlwaysNonnegative(signal);
         }
         #endregion
     }

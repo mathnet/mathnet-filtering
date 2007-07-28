@@ -61,8 +61,15 @@ namespace MathNet.Symbolics
         {
             OnPropertyChanged(host, oldValue, newValue);
         }
-
         protected abstract void OnPropertyChanged<THost>(THost host, object oldValue, object newValue)
+            where THost : IEventAspectHost<TIdentifier, TEvent>;
+
+        internal void RaisePropertyDirtied<THost>(THost host)
+            where THost : IEventAspectHost<TIdentifier, TEvent>
+        {
+            OnPropertyDirtied(host);
+        }
+        protected abstract void OnPropertyDirtied<THost>(THost host)
             where THost : IEventAspectHost<TIdentifier, TEvent>;
     }
 }

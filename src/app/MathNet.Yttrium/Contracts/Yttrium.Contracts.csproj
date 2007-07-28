@@ -49,6 +49,8 @@
     <Compile Include="Events\BusPortIndexEventArgs.cs" />
     <Compile Include="Events\BusIndexEventArgs.cs" />
     <Compile Include="Events\BusIndexChangedEventArgs.cs" />
+    <Compile Include="Events\NodePropertyDirtiedEventArgs.cs" />
+    <Compile Include="Events\NodeFlagDirtiedEventArgs.cs" />
     <Compile Include="Events\NodeFlagChangedEventArgs.cs" />
     <Compile Include="Events\NodePropertyChangedEventArgs.cs" />
     <Compile Include="Events\PortIndexChangedEventArgs.cs" />
