@@ -265,5 +265,68 @@ namespace Yttrium.UnitTests
             n.RaiseEvent(clearEvent, EventArgs.Empty);
             Assert.AreEqual(FlagState.Unknown, n.GetFlagState(flag), "G01");
         }
+
+        [Test]
+        public void RemoteEventTriggersTest()
+        {
+            MathIdentifier flagId = new MathIdentifier("TX_F", "FundamentTest");
+
+            NodeFlag flag = NodeFlag.Register(flagId, typeof(FundamentTest));
+
+            NodeFlag flagEnableRemote = NodeFlag.Register(flagId.DerivePostfix("EnableRemote"), typeof(FundamentTest), FlagKind.Default,
+                new NodeEventTrigger(EventTriggerAction.Enable, flag, flag.FlagEnabledEvent));
+            NodeFlag flagEnableLocal = NodeFlag.Register(flagId.DerivePostfix("EnableLocal"), typeof(FundamentTest), FlagKind.Default,
+                new NodeEventTrigger(EventTriggerAction.Enable, flag.FlagEnabledEvent));
+
+            NodeFlag flagDisableRemote = NodeFlag.Register(flagId.DerivePostfix("DisableRemote"), typeof(FundamentTest), FlagKind.Default,
+                new NodeEventTrigger(EventTriggerAction.Disable, flag, flag.FlagChangedEvent));
+            NodeFlag flagDisableLocal = NodeFlag.Register(flagId.DerivePostfix("DisableLocal"), typeof(FundamentTest), FlagKind.Default,
+                new NodeEventTrigger(EventTriggerAction.Disable, flag.FlagChangedEvent));
+
+            NodeObject n = new NodeObject();
+            Assert.AreEqual(FlagState.Unknown, n.GetFlagState(flag), "A01");
+            Assert.AreEqual(FlagState.Unknown, n.GetFlagState(flagEnableRemote), "A02");
+            Assert.AreEqual(FlagState.Unknown, n.GetFlagState(flagEnableLocal), "A03");
+            Assert.AreEqual(FlagState.Unknown, n.GetFlagState(flagDisableRemote), "A04");
+            Assert.AreEqual(FlagState.Unknown, n.GetFlagState(flagDisableLocal), "A05");
+
+            n.EnableFlag(flag);
+            Assert.AreEqual(FlagState.Enabled, n.GetFlagState(flag), "B01");
+            Assert.AreEqual(FlagState.Enabled, n.GetFlagState(flagEnableRemote), "B02");
+            Assert.AreEqual(FlagState.Unknown, n.GetFlagState(flagEnableLocal), "B03");
+            Assert.AreEqual(FlagState.Disabled, n.GetFlagState(flagDisableRemote), "B04");
+            Assert.AreEqual(FlagState.Unknown, n.GetFlagState(flagDisableLocal), "B05");
+
+            n.ClearFlag(flag);
+            Assert.AreEqual(FlagState.Unknown, n.GetFlagState(flag), "C01");
+            Assert.AreEqual(FlagState.Enabled, n.GetFlagState(flagEnableRemote), "C02");
+            Assert.AreEqual(FlagState.Unknown, n.GetFlagState(flagEnableLocal), "C03");
+            Assert.AreEqual(FlagState.Disabled, n.GetFlagState(flagDisableRemote), "C04");
+            Assert.AreEqual(FlagState.Unknown, n.GetFlagState(flagDisableLocal), "C05");
+
+            n.EnableFlag(flagDisableLocal);
+            n.DisableFlag(flagEnableLocal);
+            n.ClearFlag(flagDisableRemote);
+            n.ClearFlag(flagEnableRemote);
+            Assert.AreEqual(FlagState.Unknown, n.GetFlagState(flag), "D01");
+            Assert.AreEqual(FlagState.Unknown, n.GetFlagState(flagEnableRemote), "D02");
+            Assert.AreEqual(FlagState.Disabled, n.GetFlagState(flagEnableLocal), "D03");
+            Assert.AreEqual(FlagState.Unknown, n.GetFlagState(flagDisableRemote), "D04");
+            Assert.AreEqual(FlagState.Enabled, n.GetFlagState(flagDisableLocal), "D05");
+
+            n.DisableFlag(flag);
+            Assert.AreEqual(FlagState.Disabled, n.GetFlagState(flag), "E01");
+            Assert.AreEqual(FlagState.Unknown, n.GetFlagState(flagEnableRemote), "E02");
+            Assert.AreEqual(FlagState.Disabled, n.GetFlagState(flagEnableLocal), "E03");
+            Assert.AreEqual(FlagState.Disabled, n.GetFlagState(flagDisableRemote), "E04");
+            Assert.AreEqual(FlagState.Disabled, n.GetFlagState(flagDisableLocal), "E05");
+
+            n.EnableFlag(flag);
+            Assert.AreEqual(FlagState.Enabled, n.GetFlagState(flag), "F01");
+            Assert.AreEqual(FlagState.Enabled, n.GetFlagState(flagEnableRemote), "F02");
+            Assert.AreEqual(FlagState.Enabled, n.GetFlagState(flagEnableLocal), "F03");
+            Assert.AreEqual(FlagState.Disabled, n.GetFlagState(flagDisableRemote), "F04");
+            Assert.AreEqual(FlagState.Disabled, n.GetFlagState(flagDisableLocal), "F05");
+        }
     }
 }
