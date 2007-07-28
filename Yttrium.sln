@@ -175,6 +175,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Mediator.Toolkit", 
 		Release.AspNetCompiler.Debug = "False"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Fundament", "src\app\MathNet.Yttrium\Fundament\Yttrium.Fundament.csproj", "{FDD51A32-1C78-4135-A6E8-222B022A01C6}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -293,11 +299,17 @@ Global
 		{334D8A1D-1004-4097-ACEE-8B954F911EB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{334D8A1D-1004-4097-ACEE-8B954F911EB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{334D8A1D-1004-4097-ACEE-8B954F911EB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDD51A32-1C78-4135-A6E8-222B022A01C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDD51A32-1C78-4135-A6E8-222B022A01C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDD51A32-1C78-4135-A6E8-222B022A01C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDD51A32-1C78-4135-A6E8-222B022A01C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{F1B95DE1-5170-4C65-92A4-CFE69256D6E1} = {F75A5EAF-5C00-4F8C-AA9D-0745AA7E210D}
+		{7D33EAA2-C873-4BC0-88C5-FA350CB4B67A} = {F75A5EAF-5C00-4F8C-AA9D-0745AA7E210D}
 		{5D5C5661-1B83-4C25-AC7A-C7AED7FFC9DD} = {F75A5EAF-5C00-4F8C-AA9D-0745AA7E210D}
 	EndGlobalSection
 EndGlobal
