@@ -67,6 +67,10 @@
       <Project>{8966E2C5-B1C9-44BE-8751-45DCCA3D268F}</Project>
       <Name>Yttrium.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fundament\Yttrium.Fundament.csproj">
+      <Project>{FDD51A32-1C78-4135-A6E8-222B022A01C6}</Project>
+      <Name>Yttrium.Fundament</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Microkernel\Yttrium.Microkernel.csproj">
       <Project>{D03B156A-D6F3-4F46-AC59-7156681F69B7}</Project>
       <Name>Yttrium.Microkernel</Name>

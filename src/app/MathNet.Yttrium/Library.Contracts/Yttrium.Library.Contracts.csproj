@@ -54,6 +54,10 @@
       <Project>{FACEF94F-CB8B-45FA-8664-3B9F043C27E9}</Project>
       <Name>Yttrium.Conversion.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fundament\Yttrium.Fundament.csproj">
+      <Project>{FDD51A32-1C78-4135-A6E8-222B022A01C6}</Project>
+      <Name>Yttrium.Fundament</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -47,6 +47,7 @@ namespace MathNet.Symbolics.Whiteboard
             this.netron.AutoScroll = true;
             this.netron.BackColor = System.Drawing.Color.Gold;
             this.netron.BackgroundType = Netron.Diagramming.Core.CanvasBackgroundTypes.FlatColor;
+            this.netron.Document = ((Netron.Diagramming.Core.Document)(resources.GetObject("netron.Document")));
             this.netron.EnableAddConnection = true;
             this.netron.Location = new System.Drawing.Point(0, 0);
             this.netron.Magnification = new System.Drawing.SizeF(100F, 100F);
@@ -126,6 +127,7 @@ namespace MathNet.Symbolics.Whiteboard
             this.Controls.Add(this.btnNewSignal);
             this.Controls.Add(this.btnBuildSample);
             this.Controls.Add(this.netron);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "WhiteboardForm";
             this.Text = "Math.NET Whiteboard";
             this.Load += new System.EventHandler(this.WhiteboardForm_Load);

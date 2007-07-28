@@ -710,7 +710,7 @@ namespace MathNet.Symbolics.Packages.Standard
         }
         #endregion
 
-        #region Signals
+        #region Signal Properties
         //public static Signal Constant(IContext context, ValueStructure value)
         //{
         //    Signal s = new Signal(context, value);
@@ -724,7 +724,8 @@ namespace MathNet.Symbolics.Packages.Standard
             if(signal == null)
                 throw new ArgumentNullException("signal");
 
-            return signal.AskForProperty("Constant", "Std");
+            return signal.AskForFlag(StdAspect.ConstantFlag) == FlagState.Enabled;
+            //return signal.AskForProperty("Constant", "Std");
         }
 
         public static bool IsUndefined(ValueNode signal)
@@ -804,7 +805,7 @@ namespace MathNet.Symbolics.Packages.Standard
             if(signal == null)
                 throw new ArgumentNullException("signal");
 
-            return signal.AskForProperty("IntegerSet", "Std")
+            return signal.AskForFlag(StdAspect.IntegerConstraintFlag) == FlagState.Enabled
                 || IsConstant(signal) && IntegerValue.CanConvertLosslessFrom(signal.Value)
                 || IsAlwaysNonnegativeInteger(signal);
         }
@@ -813,7 +814,7 @@ namespace MathNet.Symbolics.Packages.Standard
             if(signal == null)
                 throw new ArgumentNullException("signal");
 
-            return signal.AskForProperty("RationalSet", "Std")
+            return signal.AskForFlag(StdAspect.RationalConstraintFlag) == FlagState.Enabled
                 || IsConstant(signal) && RationalValue.CanConvertLosslessFrom(signal.Value)
                 || IsAlwaysInteger(signal);
         }
@@ -822,7 +823,7 @@ namespace MathNet.Symbolics.Packages.Standard
             if(signal == null)
                 throw new ArgumentNullException("signal");
 
-            return signal.AskForProperty("RealSet", "Std")
+            return signal.AskForFlag(StdAspect.RealConstraintFlag) == FlagState.Enabled
                 || IsConstant(signal) && RealValue.CanConvertLosslessFrom(signal.Value)
                 || IsAlwaysRational(signal);
         }

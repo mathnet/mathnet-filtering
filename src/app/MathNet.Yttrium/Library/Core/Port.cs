@@ -30,6 +30,7 @@ using MathNet.Symbolics.Library;
 using MathNet.Symbolics.Traversing;
 using MathNet.Symbolics.Mediator;
 using MathNet.Symbolics.Events;
+using MathNet.Symbolics.AutoEvaluation;
 
 namespace MathNet.Symbolics.Core
 {
@@ -188,6 +189,7 @@ namespace MathNet.Symbolics.Core
                     LookupAndLinkNewArchitecture();
             }
 
+            OnInputTreeChanged(index);
             Service<IMediator>.Instance.NotifySignalDrivesPort(signal, this, index);
         }
         public override void RemoveInputSignalBinding(int index)
@@ -202,6 +204,7 @@ namespace MathNet.Symbolics.Core
                     if(_outputSignalSet[i] != null)
                         ((ISignal_CycleAnalysis)signal).RemoveCycles(_outputSignalSet[i], Config.Random.Next());
 
+                OnInputTreeChanged(index);
                 Service<IMediator>.Instance.NotifySignalDrivesPortNoLonger(signal, this, index);
             }
         }
@@ -271,6 +274,7 @@ namespace MathNet.Symbolics.Core
                     LookupAndLinkNewArchitecture();
             }
 
+            OnBusChanged(index);
             Service<IMediator>.Instance.NotifyBusAttachedToPort(bus, this, index);
         }
         public override void RemoveBusBinding(int index)
@@ -281,7 +285,10 @@ namespace MathNet.Symbolics.Core
             RemoveLinkedArchitecture();
 
             if(bus != null)
+            {
+                OnBusChanged(index);
                 Service<IMediator>.Instance.NotifyBusDetachedFromPort(bus, this, index);
+            }
         }
         public override void ReplaceBusBinding(int index, MathNet.Symbolics.Bus replacement)
         {
@@ -321,6 +328,8 @@ namespace MathNet.Symbolics.Core
             _inputSignalSet.ReplaceRange(inputSignals);
 
             for(int i = 0; i < _inputSignalSet.Count; i++)
+            {
+                OnInputTreeChanged(i);
                 if(_inputSignalSet[i] != null)
                 {
                     _inputSignalSet[i].ValueChanged += Port_SignalValueChanged;
@@ -329,6 +338,7 @@ namespace MathNet.Symbolics.Core
 
                     Service<IMediator>.Instance.NotifySignalDrivesPort(_inputSignalSet[i], this, i);
                 }
+            }
 
             if(UpdateIsCompletelyConnected() && _currentArchitecture != null && !_currentArchitecture.RebindToPortIfSupported(this))
                 LookupAndLinkNewArchitecture();
@@ -342,7 +352,10 @@ namespace MathNet.Symbolics.Core
             _busSet.ReplaceRange(buses);
 
             for(int i = 0; i < _busSet.Count; i++)
+            {
+                OnBusChanged(i);
                 Service<IMediator>.Instance.NotifyBusAttachedToPort(_busSet[i], this, i);
+            }
 
             if(UpdateIsCompletelyConnected() && _currentArchitecture != null && !_currentArchitecture.RebindToPortIfSupported(this))
                 LookupAndLinkNewArchitecture();
@@ -375,12 +388,14 @@ namespace MathNet.Symbolics.Core
                 ok = true;
             else if(_completelyConnected && lib.ContainsArchitecture(this))
             {
+                IArchitecture oldArchitecture = _currentArchitecture;
                 if(_currentArchitecture != null)
                 {
                     _currentArchitecture.UnregisterArchitecture();
                     _currentArchitecture = null;
                 }
                 _currentArchitecture = lib.LookupArchitecture(this).InstantiateToPort(this);
+                OnArchitectureChanged(oldArchitecture, _currentArchitecture);
                 ok = true;
             }
 
@@ -393,8 +408,10 @@ namespace MathNet.Symbolics.Core
 
             if(lib.ContainsArchitecture(this))
             {
+                IArchitecture oldArchitecture = _currentArchitecture;
                 RemoveLinkedArchitecture();
                 _currentArchitecture = lib.LookupArchitecture(this).InstantiateToPort(this);
+                OnArchitectureChanged(oldArchitecture, _currentArchitecture);
                 return true;
             }
             else
@@ -405,11 +422,23 @@ namespace MathNet.Symbolics.Core
         {
             if(_currentArchitecture != null)
             {
+                IArchitecture oldArchitecture = _currentArchitecture;
                 _currentArchitecture.UnregisterArchitecture();
                 _currentArchitecture = null;
+                OnArchitectureChanged(oldArchitecture, null);
             }
         }
         #endregion
+
+        protected override void OnAutoEvaluateFlag(NodeFlag flag)
+        {
+            Service<IAutoEvaluator>.Instance.AutoEvaluateFlag(this, flag);
+        }
+
+        protected override void OnAutoEvaluateProperty(NodeProperty property)
+        {
+            Service<IAutoEvaluator>.Instance.AutoEvaluateProperty(this, property);
+        }
 
         #region Dependency Analysis
         public override bool DependsOn(MathNet.Symbolics.Signal signal)

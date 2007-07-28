@@ -426,7 +426,8 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
         {
             Signal s = Binder.CreateSignal(new RealValue(value));
             s.Label = name + "_Constant";
-            s.AddConstraint(Properties.ConstantSignalProperty.Instance);
+            s.EnableFlag(StdAspect.ConstantFlag);
+            //s.AddConstraint(Properties.ConstantSignalProperty.Instance);
             return s;
         }
 

@@ -103,32 +103,15 @@ namespace MathNet.Symbolics.Manipulation
         }
         public Match MatchBest(Signal output, Port port)
         {
-            MatchCollection res = _root.MatchAll(output, port, 1);
-            Match bestMatch = null;
-            int bestScore = -1;
-            foreach(Match m in res)
-                if(m.Score > bestScore)
-                {
-                    bestMatch = m;
-                    bestScore = m.Score;
-                }
-            if(bestScore == -1)
+            Match bestMatch = _root.MatchBest(output, port);
+            if(bestMatch == null)
                 throw new MathNet.Symbolics.Exceptions.NotFoundException();
             return bestMatch;
         }
         public bool TryMatchBest(Signal output, Port port, out Match match)
         {
-            MatchCollection res = _root.MatchAll(output, port, 1);
-            Match bestMatch = null;
-            int bestScore = -1;
-            foreach(Match m in res)
-                if(m.Score > bestScore)
-                {
-                    bestMatch = m;
-                    bestScore = m.Score;
-                }
-            match = bestMatch;
-            return bestScore != -1;
+            match = _root.MatchBest(output, port);
+            return match != null;
         }
         #endregion
 

@@ -26,6 +26,7 @@ using System.Xml;
 using MathNet.Symbolics.Backend;
 using MathNet.Symbolics.Simulation;
 using MathNet.Symbolics.Mediator;
+using MathNet.Symbolics.AutoEvaluation;
 
 namespace MathNet.Symbolics.Core
 {
@@ -69,6 +70,16 @@ namespace MathNet.Symbolics.Core
 
         // TODO: Implement Value Handling
         #endregion
+
+        protected override void OnAutoEvaluateFlag(NodeFlag flag)
+        {
+            Service<IAutoEvaluator>.Instance.AutoEvaluateFlag(this, flag);
+        }
+
+        protected override void OnAutoEvaluateProperty(NodeProperty property)
+        {
+            Service<IAutoEvaluator>.Instance.AutoEvaluateProperty(this, property);
+        }
 
         #region System Builder
         Guid IBus_BuilderAdapter.AcceptSystemBuilderBefore(ISystemBuilder builder)

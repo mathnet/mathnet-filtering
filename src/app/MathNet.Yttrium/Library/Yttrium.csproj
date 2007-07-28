@@ -76,6 +76,10 @@
       <Project>{8966E2C5-B1C9-44BE-8751-45DCCA3D268F}</Project>
       <Name>Yttrium.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fundament\Yttrium.Fundament.csproj">
+      <Project>{FDD51A32-1C78-4135-A6E8-222B022A01C6}</Project>
+      <Name>Yttrium.Fundament</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Interpreter.Contracts\Yttrium.Interpreter.Contracts.csproj">
       <Project>{3A0BF5B0-653C-40BD-8046-ED614D95D3D6}</Project>
       <Name>Yttrium.Interpreter.Contracts</Name>
@@ -83,6 +87,10 @@
     <ProjectReference Include="..\Library.Contracts\Yttrium.Library.Contracts.csproj">
       <Project>{70E79678-387A-4AF6-8F64-4271CFE914BE}</Project>
       <Name>Yttrium.Library.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Manipulation.Contracts\Yttrium.Manipulation.Contracts.csproj">
+      <Project>{B273E022-E5DC-4FEE-8B70-FD9AF6A9BF6C}</Project>
+      <Name>Yttrium.Manipulation.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\Mediator.Contracts\Yttrium.Mediator.Contracts.csproj">
       <Project>{E623ED40-9B92-40CA-9080-0FC78F668FFE}</Project>

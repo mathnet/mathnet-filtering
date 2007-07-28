@@ -49,6 +49,8 @@
     <Compile Include="Events\BusPortIndexEventArgs.cs" />
     <Compile Include="Events\BusIndexEventArgs.cs" />
     <Compile Include="Events\BusIndexChangedEventArgs.cs" />
+    <Compile Include="Events\NodeFlagChangedEventArgs.cs" />
+    <Compile Include="Events\NodePropertyChangedEventArgs.cs" />
     <Compile Include="Events\PortIndexChangedEventArgs.cs" />
     <Compile Include="Events\SignalIndexChangedEventArgs.cs" />
     <Compile Include="Events\PortIndexEventArgs.cs" />
@@ -60,6 +62,7 @@
     <Compile Include="Events\SignalPortIndexEventArgs.cs" />
     <Compile Include="Events\SimulationTimeEventArgs.cs" />
     <Compile Include="Bus.cs" />
+    <Compile Include="Events\ValueChangedEventArgs.cs" />
     <Compile Include="Exceptions\ArchitectureNotAvailableException.cs" />
     <Compile Include="Exceptions\CyclicSignalsNotSupportedException.cs" />
     <Compile Include="Exceptions\DeserializationException.cs" />
@@ -94,6 +97,10 @@
     <Compile Include="ISignal_Drive.cs" />
     <Compile Include="ISystemBuilder.cs" />
     <Compile Include="Node.cs" />
+    <Compile Include="NodeEvent.cs" />
+    <Compile Include="NodeFlag.cs" />
+    <Compile Include="NodeProperty.cs" />
+    <Compile Include="NodeEventTrigger.cs" />
     <Compile Include="Port.cs" />
     <Compile Include="IArchitecture.cs" />
     <Compile Include="IEntity.cs" />
@@ -117,6 +124,12 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Fundament\Yttrium.Fundament.csproj">
+      <Project>{FDD51A32-1C78-4135-A6E8-222B022A01C6}</Project>
+      <Name>Yttrium.Fundament</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

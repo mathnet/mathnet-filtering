@@ -9,6 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MathNet.Symbolics.Whiteboard</RootNamespace>
     <AssemblyName>MathNet.Yttrium.Whiteboard</AssemblyName>
+    <ApplicationIcon>Properties\MathNet_PreVista.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -131,6 +132,9 @@
       <Project>{80FC18B6-13DC-4D8F-8007-8D2CD08D1B5B}</Project>
       <Name>Yttrium.Presentation</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\MathNet_PreVista.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -70,6 +70,10 @@
       <Project>{FACEF94F-CB8B-45FA-8664-3B9F043C27E9}</Project>
       <Name>Yttrium.Conversion.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fundament\Yttrium.Fundament.csproj">
+      <Project>{FDD51A32-1C78-4135-A6E8-222B022A01C6}</Project>
+      <Name>Yttrium.Fundament</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Manipulation.Contracts\Yttrium.Manipulation.Contracts.csproj">
       <Project>{B273E022-E5DC-4FEE-8B70-FD9AF6A9BF6C}</Project>
       <Name>Yttrium.Manipulation.Contracts</Name>

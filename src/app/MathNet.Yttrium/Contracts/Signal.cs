@@ -23,6 +23,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+using MathNet.Symbolics.Events;
+
 namespace MathNet.Symbolics
 {
     /// <summary>
@@ -40,6 +42,22 @@ namespace MathNet.Symbolics
             : base(initialValue)
         {
         }
+
+        #region Event Aspects
+        public static readonly NodeEvent SignalInputTreeChangedEvent
+            = NodeEvent.Register(new MathIdentifier("SignalInputTreeChanged", "Core"),
+                                 typeof(EventHandler<SignalEventArgs>),
+                                 typeof(Signal));
+        public event EventHandler<SignalEventArgs> SignalInputTreeChanged
+        {
+            add { AddHandler(SignalInputTreeChangedEvent, value); }
+            remove { RemoveHandler(SignalInputTreeChangedEvent, value); }
+        }
+        protected virtual void OnInputTreeChanged()
+        {
+            RaiseEvent(SignalInputTreeChangedEvent, new SignalEventArgs(this));
+        }
+        #endregion
 
         #region Drive State
         public abstract bool IsDriven

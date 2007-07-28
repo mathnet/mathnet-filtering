@@ -107,43 +107,6 @@ namespace MathNet.Symbolics.Patterns.Toolkit
             _groupAxis.Remove(patternId);
         }
 
-        public MatchCollection MatchAll(Signal output, Port port, int score)
-        {
-            int newScore = score + _condition.Score;
-
-            // Check Node Condition
-            if(!_condition.FulfillsCondition(output, port))
-                return new MatchCollection();
-
-            List<MatchCollection> matches = new List<MatchCollection>();
-
-            // Follow Condition Axis
-            foreach(CoalescedTreeNode condition in _conditionAxis)
-                matches.Add(condition.MatchAll(output, port, newScore));
-
-            // Follow Pattern Axis
-            foreach(CoalescedChildPattern pattern in _patternAxis)
-                matches.Add(pattern.MatchAll(port, newScore));
-
-            // Combine Matches
-            MatchCollection res = MatchCollection.CombineUnion(matches);
-
-            // Check Subscription Axis
-            foreach(MathIdentifier id in _subscriptionAxis)
-                if(!res.Contains(id))
-                    res.Add(new Match(id, newScore));
-
-            // Check Group Axis
-            foreach(KeyValuePair<MathIdentifier, string> group in _groupAxis)
-            {
-                Match m;
-                if(res.TryGetValue(group.Key, out m))
-                    m.AppendGroup(group.Value, new Tuple<Signal, Port>(output, port));
-            }
-
-            return res;
-        }
-
         /// <returns>Null, if no match was found.</returns>
         public Match MatchFirst(Signal output, Port port)
         {
@@ -194,6 +157,59 @@ namespace MathNet.Symbolics.Patterns.Toolkit
 
             // No match found
             return null;
+        }
+
+        public MatchCollection MatchAll(Signal output, Port port, int score)
+        {
+            int newScore = score + _condition.Score;
+
+            // Check Node Condition
+            if(!_condition.FulfillsCondition(output, port))
+                return new MatchCollection();
+
+            List<MatchCollection> matches = new List<MatchCollection>();
+
+            // Follow Condition Axis
+            foreach(CoalescedTreeNode condition in _conditionAxis)
+                matches.Add(condition.MatchAll(output, port, newScore));
+
+            // Follow Pattern Axis
+            foreach(CoalescedChildPattern pattern in _patternAxis)
+                matches.Add(pattern.MatchAll(port, newScore));
+
+            // Combine Matches
+            MatchCollection res = MatchCollection.CombineUnion(matches);
+
+            // Check Subscription Axis
+            foreach(MathIdentifier id in _subscriptionAxis)
+                if(!res.Contains(id))
+                    res.Add(new Match(id, newScore));
+
+            // Check Group Axis
+            foreach(KeyValuePair<MathIdentifier, string> group in _groupAxis)
+            {
+                Match m;
+                if(res.TryGetValue(group.Key, out m))
+                    m.AppendGroup(group.Value, new Tuple<Signal, Port>(output, port));
+            }
+
+            return res;
+        }
+
+        public Match MatchBest(Signal output, Port port)
+        {
+            MatchCollection res = MatchAll(output, port, 1);
+            Match bestMatch = null;
+            int bestScore = -1;
+            foreach(Match m in res)
+                if(m.Score > bestScore)
+                {
+                    bestMatch = m;
+                    bestScore = m.Score;
+                }
+            if(bestScore == -1)
+                return null;
+            return bestMatch;
         }
     }
 }

@@ -61,6 +61,10 @@
       <Project>{8966E2C5-B1C9-44BE-8751-45DCCA3D268F}</Project>
       <Name>Yttrium.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Fundament\Yttrium.Fundament.csproj">
+      <Project>{FDD51A32-1C78-4135-A6E8-222B022A01C6}</Project>
+      <Name>Yttrium.Fundament</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Interpreter.Contracts\Yttrium.Interpreter.Contracts.csproj">
       <Project>{3A0BF5B0-653C-40BD-8046-ED614D95D3D6}</Project>
       <Name>Yttrium.Interpreter.Contracts</Name>

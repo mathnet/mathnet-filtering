@@ -24,6 +24,7 @@ using System.Collections.Generic;
 using System.Text;
 
 using MathNet.Symbolics.Backend.Containers;
+using MathNet.Symbolics.Events;
 
 namespace MathNet.Symbolics
 {
@@ -37,6 +38,50 @@ namespace MathNet.Symbolics
             : base()
         {
         }
+
+        #region Event Aspects
+        public static readonly NodeEvent ArchitectureChangedEvent
+            = NodeEvent.Register(new MathIdentifier("ArchitectureChanged", "Core"),
+                                 typeof(EventHandler<ValueChangedEventArgs<IArchitecture, Port>>),
+                                 typeof(Port));
+        public event EventHandler<ValueChangedEventArgs<IArchitecture, Port>> ArchitectureChanged
+        {
+            add { AddHandler(ArchitectureChangedEvent, value); }
+            remove { RemoveHandler(ArchitectureChangedEvent, value); }
+        }
+        protected virtual void OnArchitectureChanged(IArchitecture oldArchitecture, IArchitecture newArchitecture)
+        {
+            RaiseEvent(ArchitectureChangedEvent, new ValueChangedEventArgs<IArchitecture, Port>(this, oldArchitecture, newArchitecture));
+        }
+
+        public static readonly NodeEvent PortInputTreeChangedEvent
+            = NodeEvent.Register(new MathIdentifier("PortInputTreeChanged", "Core"),
+                                 typeof(EventHandler<PortIndexEventArgs>),
+                                 typeof(Port));
+        public event EventHandler<PortIndexEventArgs> PortInputTreeChanged
+        {
+            add { AddHandler(PortInputTreeChangedEvent, value); }
+            remove { RemoveHandler(PortInputTreeChangedEvent, value); }
+        }
+        protected virtual void OnInputTreeChanged(int index)
+        {
+            RaiseEvent(PortInputTreeChangedEvent, new PortIndexEventArgs(this, index));
+        }
+
+        public static readonly NodeEvent PortBusChangedEvent
+            = NodeEvent.Register(new MathIdentifier("PortBusChanged", "Core"),
+                                 typeof(EventHandler<PortIndexEventArgs>),
+                                 typeof(Port));
+        public event EventHandler<PortIndexEventArgs> PortBusChanged
+        {
+            add { AddHandler(PortBusChangedEvent, value); }
+            remove { RemoveHandler(PortBusChangedEvent, value); }
+        }
+        protected virtual void OnBusChanged(int index)
+        {
+            RaiseEvent(PortBusChangedEvent, new PortIndexEventArgs(this, index));
+        }
+        #endregion
 
         #region Graph Structure
         public abstract int InputSignalCount { get; }

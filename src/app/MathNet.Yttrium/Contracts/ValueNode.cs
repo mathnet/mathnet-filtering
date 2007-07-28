@@ -32,7 +32,21 @@ namespace MathNet.Symbolics
         private IValueStructure _presentStructure; // = null;
         private bool _hasEvent; // = false;
 
-        public event EventHandler<ValueNodeEventArgs> ValueChanged;
+        #region Event Aspects
+        public static readonly NodeEvent ValueChangedEvent
+            = NodeEvent.Register(new MathIdentifier("ValueChanged", "Core"),
+                                 typeof(EventHandler<ValueNodeEventArgs>),
+                                 typeof(ValueNode));
+        public event EventHandler<ValueNodeEventArgs> ValueChanged
+        {
+            add { AddHandler(ValueChangedEvent, value); }
+            remove { RemoveHandler(ValueChangedEvent, value); }
+        }
+        protected virtual void OnValueChanged()
+        {
+            RaiseEvent(ValueChangedEvent, new ValueNodeEventArgs(this));
+        }
+        #endregion
 
         protected ValueNode()
         {
@@ -76,14 +90,6 @@ namespace MathNet.Symbolics
             //   && !(_presentStructure != null && value != null && _presentStructure.Equals(value));
             _presentStructure = value;
             //_properties.ValidatePropertiesAfterEvent(this);
-        }
-
-        protected void OnValueChanged()
-        {
-            //_context.NotifySignalValueChanged(this);
-            EventHandler<ValueNodeEventArgs> handler = ValueChanged;
-            if(handler != null)
-                handler(this, new ValueNodeEventArgs(this));
         }
 
         public abstract void PostNewValue(IValueStructure newValue);

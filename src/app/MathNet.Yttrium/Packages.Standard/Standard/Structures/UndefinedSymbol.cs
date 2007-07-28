@@ -86,7 +86,8 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
                 {
                     ret = Binder.CreateSignal(Instance);
                     ret.Label = "Undefined";
-                    ret.AddConstraint(Properties.ConstantSignalProperty.Instance);
+                    ret.EnableFlag(StdAspect.ConstantFlag);
+                    //ret.AddConstraint(Properties.ConstantSignalProperty.Instance);
                     Service<ISignalCache>.Instance.Add(id, ret);
                     return ret;
                 }

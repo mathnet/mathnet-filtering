@@ -23,6 +23,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
+
 using MathNet.Symbolics.Properties;
 
 namespace MathNet.Symbolics
@@ -44,7 +45,9 @@ namespace MathNet.Symbolics
     /// </example>
     public class MathContext : IDisposable
     {
-        private static Dictionary<int, Stack<MathContext>> _table = new Dictionary<int, Stack<MathContext>>();
+        [ThreadStatic]
+        private static Stack<MathContext> _perThreadStack;
+
         private static MathContext _root = new MathContext(null, null);
 
         public static event EventHandler<Events.MathContextEventArgs> ContextExpired;
@@ -53,25 +56,17 @@ namespace MathNet.Symbolics
         {
             get
             {
-                // TODO: preformance analysis - how expensive is this? (prototype)
-                int id = Thread.CurrentThread.ManagedThreadId;
-                Stack<MathContext> stack;
-                lock(_table)
+                if(_perThreadStack == null)
                 {
-                    if(!_table.TryGetValue(id, out stack)) // first time access - create root context
-                    {
-                        stack = new Stack<MathContext>();
-                        _table.Add(id, stack);
-                        stack.Push(_root);
-                    }
-                    return stack.Peek();
+                    _perThreadStack = new Stack<MathContext>();
+                    _perThreadStack.Push(_root);
                 }
+                return _perThreadStack.Peek();
             }
         }
 
         public static Guid CurrentInstanceId
         {
-            // Maybe could be implemented more performantly than returning the whole context in the future.
             get { return Current.InstanceId; }
         }
 
@@ -82,31 +77,24 @@ namespace MathNet.Symbolics
 
         public static MathContext Create()
         {
-            // TODO: preformance analysis - how expensive is this? (prototype)
-            int id = Thread.CurrentThread.ManagedThreadId;
-            Stack<MathContext> stack;
-            lock(_table)
+            if(_perThreadStack == null)
             {
-                if(!_table.TryGetValue(id, out stack)) // first time access - create root context
-                {
-                    stack = new Stack<MathContext>();
-                    _table.Add(id, stack);
-                    stack.Push(_root);
-                }
-                MathContext ctx = new MathContext(stack.Peek(), stack);
-                stack.Push(ctx);
-                return ctx;
+                _perThreadStack = new Stack<MathContext>();
+                _perThreadStack.Push(_root);
             }
+            MathContext ctx = new MathContext(_perThreadStack.Peek(), _perThreadStack);
+            _perThreadStack.Push(ctx);
+            return ctx;
         }
 
         private MathContext _parent;
-        private Stack<MathContext> _stack;
+        private Stack<MathContext> _localStack;
         private Guid _iid;
 
         private MathContext(MathContext parent, Stack<MathContext> stack)
         {
             _parent = parent;
-            _stack = stack;
+            _localStack = stack;
             _iid = Guid.NewGuid();
         }
 
@@ -116,13 +104,7 @@ namespace MathNet.Symbolics
             {
                 if(_root == null)
                     return; // root context
-                bool valid;
-                lock(_table)
-                {
-                    MathContext ctx = _stack.Pop();
-                    valid = ctx._iid.Equals(_iid);
-                }
-                if(!valid)
+                if(!_localStack.Pop()._iid.Equals(_iid))
                     throw new Exceptions.MicrokernelException(Resources.ContextIllegalState);
                 EventHandler<Events.MathContextEventArgs> handler = ContextExpired;
                 if(handler != null)

@@ -44,6 +44,7 @@
     <Compile Include="Patterns\Toolkit\CoalescedTreeNode.cs" />
     <Compile Include="Patterns\Toolkit\CombinationMode.cs" />
     <Compile Include="Patterns\Toolkit\Condition.cs" />
+    <Compile Include="Patterns\Toolkit\InputSignalsFlagCondition.cs" />
     <Compile Include="Patterns\Toolkit\EntityCondition.cs" />
     <Compile Include="Patterns\Toolkit\Group.cs" />
     <Compile Include="Patterns\Toolkit\GroupCollection.cs" />
@@ -61,6 +62,10 @@
     <ProjectReference Include="..\Contracts\Yttrium.Contracts.csproj">
       <Project>{8966E2C5-B1C9-44BE-8751-45DCCA3D268F}</Project>
       <Name>Yttrium.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fundament\Yttrium.Fundament.csproj">
+      <Project>{FDD51A32-1C78-4135-A6E8-222B022A01C6}</Project>
+      <Name>Yttrium.Fundament</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

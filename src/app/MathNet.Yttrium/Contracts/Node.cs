@@ -25,7 +25,8 @@ using System.Text;
 
 namespace MathNet.Symbolics
 {
-    public abstract class Node : IEquatable<Node>
+    public abstract class Node
+        : AspectObject<MathIdentifier, Node, NodeProperty, NodeFlag, NodeEvent>, IEquatable<Node>
     {
         private readonly Guid _iid;
         private string _label;
@@ -56,6 +57,14 @@ namespace MathNet.Symbolics
         public bool Equals(Node other)
         {
             return _iid.Equals(other._iid);
+        }
+
+        public void ClearAllFlagsWhere(FlagKind kind)
+        {
+            ClearAllFlagsWhere(delegate(NodeFlag flag)
+            {
+                return flag.Kind == kind;
+            });
         }
     }
 }
