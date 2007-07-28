@@ -5,7 +5,7 @@
 		<NUnitTargetFiles Include="build\Debug\*.dll"/>
 		<NUnitTargetTest Include="build\Debug\*.Test.dll"/>
 		<NCoverTargets Include="build\Debug\*.pdb"/>
-		<ConfigFiles Include="**\bin\**\*.config"/>
+		<ConfigFiles Include="build\Debug\*.config"/>
 	</ItemGroup>
 
 	<Target Name="Check">
