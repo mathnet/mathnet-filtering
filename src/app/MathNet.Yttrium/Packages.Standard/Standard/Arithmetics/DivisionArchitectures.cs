@@ -28,6 +28,7 @@ using MathNet.Symbolics.Packages.Standard.Structures;
 using MathNet.Symbolics.Packages.ObjectModel;
 using MathNet.Symbolics.Manipulation;
 using MathNet.Symbolics.Library;
+using MathNet.Symbolics.Conversion;
 
 namespace MathNet.Symbolics.Packages.Standard.Arithmetics
 {
@@ -61,21 +62,41 @@ namespace MathNet.Symbolics.Packages.Standard.Arithmetics
 
         public static bool SimplifyFactors(ISignalSet signals)
         {
-            if(signals == null) throw new ArgumentNullException("signals");
-            if(Std.IsConstantAdditiveIdentity(signals[0]))
+            if(signals.Count < 2)
+                return false;
+            bool changed = false;
+            IAccumulator acc = null; 
+            for(int i = signals.Count - 1; i > 0; i--)  //don't touch first item!
             {
-                signals.Clear();
-                signals.Add(signals[0]);
-                return true;
-            }
-            bool altered = false;
-            for(int i = signals.Count - 1; i > 0; i--) //don't touch first item!
-                if(Std.IsConstantMultiplicativeIdentity(signals[i]))
+                Signal s = signals[i];
+                if(s.IsFlagEnabled(StdAspect.ConstantFlag) && ValueConverter<ComplexValue>.CanConvertLosslessFrom(s.Value))
                 {
-                    altered = true;
+                    if(acc == null)
+                        acc = Accumulator<IntegerValue>.Create(IntegerValue.MultiplicativeIdentity);
                     signals.RemoveAt(i);
+                    changed = true;
+                    acc = acc.Multiply(s.Value);
                 }
-            return altered;
+            }
+            if(acc != null && !acc.Value.Equals(IntegerValue.MultiplicativeIdentity))
+            {
+                Signal first = signals[0];
+                if(first.IsFlagEnabled(StdAspect.ConstantFlag) && ValueConverter<ComplexValue>.CanConvertLosslessFrom(first.Value))
+                {
+                    acc = acc.Divide(first.Value).Invert();
+                    Signal product = Binder.CreateSignal(acc.Value);
+                    product.EnableFlag(StdAspect.ConstantFlag);
+                    changed = true;
+                    signals[0] = product;
+                }
+                else
+                {
+                    Signal product = Binder.CreateSignal(acc.Value);
+                    product.EnableFlag(StdAspect.ConstantFlag);
+                    signals.Insert(1, product);
+                }
+            }
+            return changed;
         }
 
         public static void RegisterTheorems(ILibrary library)

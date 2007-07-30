@@ -176,12 +176,12 @@ namespace MathNet.Symbolics.Packages.PetriNet
             return _dataValue.GetHashCode();
         }
 
-        #region IAlgebraicMonoid Members
+        #region IAlgebraicAdditiveIdentityElement Members
         public bool IsAdditiveIdentity
         {
             get { return _dataValue == 0; }
         }
-        IValueStructure IAlgebraicMonoid.AdditiveIdentity
+        IValueStructure IAlgebraicAdditiveIdentityElement.AdditiveIdentity
         {
             get { return AdditiveIdentity; }
         }

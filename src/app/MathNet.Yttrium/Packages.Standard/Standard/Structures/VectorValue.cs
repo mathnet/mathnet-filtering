@@ -168,7 +168,7 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
             TScalar[] value = new TScalar[_dataValue.Length];
 
             for(int i = 0; i < _dataValue.Length; i++)
-                value[i] = _dataValue[i].Scale(scalar);
+                value[i] = _dataValue[i].Multiply(scalar);
 
             return new VectorValue<TScalar>(value);
         }
@@ -231,7 +231,7 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
             return _dataValue.GetHashCode();
         }
 
-        #region IAlgebraicMonoid Members
+        #region IAlgebraicAdditiveIdentityElement Members
         public bool IsAdditiveIdentity
         {
             get
@@ -242,7 +242,7 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
                 return true;
             }
         }
-        IValueStructure IAlgebraicMonoid.AdditiveIdentity
+        IValueStructure IAlgebraicAdditiveIdentityElement.AdditiveIdentity
         {
             get { return AdditiveIdentity; }
         }
@@ -273,5 +273,7 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
             return new VectorValue<TScalar>(values);
         }
         #endregion
+
+        
     }
 }

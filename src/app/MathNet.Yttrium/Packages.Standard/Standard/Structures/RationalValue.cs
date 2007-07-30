@@ -434,22 +434,22 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
             return _numeratorValue.GetHashCode() ^ _denominatorValue.GetHashCode();
         }
 
-        #region IAlgebraicRingWithUnity Members
+        #region IAlgebraicMultiplicativeIdentityElement Members
         public bool IsMultiplicativeIdentity
         {
             get { return _numeratorValue == 1 && _denominatorValue == 1; }
         }
-        IValueStructure IAlgebraicRingWithUnity.MultiplicativeIdentity
+        IValueStructure IAlgebraicMultiplicativeIdentityElement.MultiplicativeIdentity
         {
             get { return MultiplicativeIdentity; }
         }
         #endregion
-        #region IAlgebraicMonoid Members
+        #region IAlgebraicAdditiveIdentityElement Members
         public bool IsAdditiveIdentity
         {
             get { return _numeratorValue == 0 && !double.IsInfinity(_denominatorValue); }
         }
-        IValueStructure IAlgebraicMonoid.AdditiveIdentity
+        IValueStructure IAlgebraicAdditiveIdentityElement.AdditiveIdentity
         {
             get { return AdditiveIdentity; }
         }

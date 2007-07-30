@@ -28,6 +28,7 @@ using MathNet.Symbolics.Packages.Standard.Structures;
 using MathNet.Symbolics.Manipulation;
 using MathNet.Symbolics.Packages.ObjectModel;
 using MathNet.Symbolics.Library;
+using MathNet.Symbolics.Conversion;
 
 namespace MathNet.Symbolics.Packages.Standard.Arithmetics
 {
@@ -99,7 +100,29 @@ namespace MathNet.Symbolics.Packages.Standard.Arithmetics
 
         public static bool SimplifySummands(ISignalSet signals)
         {
-            return 0 < signals.RemoveAll(Std.IsConstantAdditiveIdentity);
+            if(signals.Count < 2)
+                return false;
+            bool changed = false;
+            IAccumulator acc = null;
+            for(int i = signals.Count - 1; i >= 0; i--)
+            {
+                Signal s = signals[i];
+                if(s.IsFlagEnabled(StdAspect.ConstantFlag) && ValueConverter<ComplexValue>.CanConvertLosslessFrom(s.Value))
+                {
+                    if(acc == null)
+                        acc = Accumulator<IntegerValue>.Create(IntegerValue.AdditiveIdentity);
+                    signals.RemoveAt(i);
+                    changed = true;
+                    acc = acc.Add(s.Value);
+                }
+            }
+            if(acc != null && !acc.Value.Equals(IntegerValue.AdditiveIdentity))
+            {
+                Signal sum = Binder.CreateSignal(acc.Value);
+                sum.EnableFlag(StdAspect.ConstantFlag);
+                signals.Insert(0, sum);
+            }
+            return changed;
         }
 
         public static void RegisterTheorems(ILibrary library)

@@ -48,7 +48,7 @@ namespace Yttrium.UnitTests
 
             // sin(x^2)
             Signal x = Binder.CreateSignal(); x.Label = "x";
-            x.AddConstraint(RealSetProperty.Instance);
+            Std.ConstrainAlwaysReal(x);
             Signal x2 = StdBuilder.Power(x, IntegerValue.ConstantTwo); x2.Label = "x2";
             Signal sinx2 = StdBuilder.Sine(x2); sinx2.Label = "sinx2";
 
@@ -82,7 +82,7 @@ namespace Yttrium.UnitTests
 
             // sin(x^2)
             Signal x = Binder.CreateSignal(); x.Label = "x";
-            x.AddConstraint(RealSetProperty.Instance);
+            Std.ConstrainAlwaysReal(x);
             Signal x2 = StdBuilder.Square(x); x2.Label = "x2";
             Signal sinx2 = StdBuilder.Sine(x2); sinx2.Label = "sinx2";
 
@@ -109,7 +109,7 @@ namespace Yttrium.UnitTests
 
             // sin(x^2)
             Signal x = Binder.CreateSignal(); x.Label = "x";
-            x.AddConstraint(RealSetProperty.Instance);
+            Std.ConstrainAlwaysReal(x);
             Signal x2 = StdBuilder.Square(x); x2.Label = "x2";
             Signal sinx2 = StdBuilder.Sine(x2); sinx2.Label = "sinx2";
 
@@ -164,7 +164,7 @@ namespace Yttrium.UnitTests
 
             // sin(x^2)
             Signal x = Binder.CreateSignal(); x.Label = "x";
-            x.AddConstraint(RealSetProperty.Instance);
+            Std.ConstrainAlwaysReal(x);
             Signal x2 = StdBuilder.Square(x); x2.Label = "x2";
             Signal sinx2 = StdBuilder.Sine(x2); sinx2.Label = "sinx2";
 

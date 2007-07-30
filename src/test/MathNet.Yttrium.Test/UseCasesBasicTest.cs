@@ -50,7 +50,7 @@ namespace Yttrium.UnitTests
             MathSystem s = p.CurrentSystem;
 
             Signal x = Binder.CreateSignal();
-            x.AddConstraint(RealSetProperty.Instance);
+            Std.ConstrainAlwaysReal(x);
             Signal x2 = StdBuilder.Square(x);
             Signal sinx2 = StdBuilder.Sine(x2);
 
@@ -123,7 +123,7 @@ namespace Yttrium.UnitTests
             MathSystem s = p.CurrentSystem;
 
             Signal x = Binder.CreateSignal();
-            x.AddConstraint(RealSetProperty.Instance);
+            Std.ConstrainAlwaysReal(x);
             Signal x2 = StdBuilder.Square(x);
             Signal sinx2 = StdBuilder.Sine(x2);
 

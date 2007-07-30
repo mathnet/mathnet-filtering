@@ -46,6 +46,42 @@ namespace MathNet.Symbolics.Conversion
             return (TTarget)_router.ConvertFrom(value);
         }
 
+        public static TTarget[] ConvertFrom(IList<ICustomData> values)
+        {
+            TTarget[] res = new TTarget[values.Count];
+            for(int i = 0; i < res.Length; i++)
+                res[i] = (TTarget)_router.ConvertFrom(values[i]);
+            return res;
+        }
+
+        public static TTarget ConvertFromValue(ValueNode node)
+        {
+            return (TTarget)_router.ConvertFrom(node.Value);
+        }
+        public static TTarget[] ConvertFromValue(IList<ValueNode> nodes)
+        {
+            TTarget[] res = new TTarget[nodes.Count];
+            for(int i = 0; i < res.Length; i++)
+                res[i] = (TTarget)_router.ConvertFrom(nodes[i].Value);
+            return res;
+        }
+
+        public static bool CanConvertLosslessFrom(ICustomData value)
+        {
+            return _router.CanConvertLosslessFrom(value);
+        }
+
+        public static bool TryConvertLosslessFrom(ICustomData value, out object returnValue)
+        {
+            if(!_router.CanConvertLosslessFrom(value))
+            {
+                returnValue = null;
+                return false;
+            }
+            returnValue = _router.ConvertFrom(value);
+            return true;
+        }
+
         public static IConversionRouter Router
         {
             get { return _router; }

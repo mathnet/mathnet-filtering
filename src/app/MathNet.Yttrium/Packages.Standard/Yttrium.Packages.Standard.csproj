@@ -46,6 +46,7 @@
     <Compile Include="Standard\Analysis\AlgebraicDerivativeArchitecture.cs" />
     <Compile Include="Standard\Analysis\DerivativeTransformation.cs" />
     <Compile Include="Standard\Arithmetics\AbsoluteArchitectures.cs" />
+    <Compile Include="Standard\Arithmetics\Accumulator.cs" />
     <Compile Include="Standard\Arithmetics\AdditionArchitectures.cs" />
     <Compile Include="Standard\Arithmetics\DivisionArchitectures.cs" />
     <Compile Include="Standard\Arithmetics\ExponentialArchitectures.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="Standard\Flow\SyncArchitecture.cs" />
     <Compile Include="Standard\Flow\SystemPipeline.cs" />
     <Compile Include="Standard\Flow\TransportArchitecture.cs" />
+    <Compile Include="Standard\GeneralizedPolynomial.cs" />
     <Compile Include="Standard\Logic\AndArchitectures.cs" />
     <Compile Include="Standard\Logic\NandArchitectures.cs" />
     <Compile Include="Standard\Logic\NorArchitectures.cs" />
@@ -68,6 +70,7 @@
     <Compile Include="Standard\Logic\OrArchitectures.cs" />
     <Compile Include="Standard\Logic\XnorArchitectures.cs" />
     <Compile Include="Standard\Logic\XorArchitectures.cs" />
+    <Compile Include="Standard\Polynomial.cs" />
     <Compile Include="Standard\Properties\IntegerSetProperty.cs" />
     <Compile Include="Standard\Properties\PositiveIntegerSetProperty.cs" />
     <Compile Include="Standard\Properties\RationalSetProperty.cs" />

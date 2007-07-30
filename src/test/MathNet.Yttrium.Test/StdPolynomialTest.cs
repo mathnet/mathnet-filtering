@@ -19,7 +19,6 @@
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
 
-//using Microsoft.VisualStudio.QualityTools.UnitTesting.Framework;
 using NUnit.Framework;
 
 using System;
@@ -33,26 +32,23 @@ using MathNet.Symbolics.Packages.Standard;
 
 namespace Yttrium.UnitTests
 {
-    //[TestClass]
     [TestFixture]
     public class StdPolynomialTest
     {
         private Project project;
 
-        //[TestInitialize]
         [SetUp]
         public void Initialize()
         {
             this.project = new Project();
         }
 
-        //[TestCleanup]
+        [TearDown]
         public void Cleanup()
         {
             this.project = null;
         }
 
-        //[TestMethod]
         [Test]
         public void StdPolynomial_SingleVariable()
         {
@@ -74,45 +70,89 @@ namespace Yttrium.UnitTests
             Signal a3x3 = a3 * x3;
             Signal a2x2 = a2 * x2;
 
-            Assert.IsTrue(Std.IsMonomial(x, x), "x: is SVM(x)");
-            Assert.IsTrue(Std.IsMonomial(a0, x), "0: is SVM(x)");
-            Assert.IsTrue(Std.IsMonomial(a2, x), "1/2: is SVM(x)");
-            Assert.IsFalse(Std.IsMonomial(badX, x), "sin(x): is not SVM(x)");
-            Assert.IsFalse(Std.IsMonomial(badA2, x), "tan(1/2): is not SVM(x)");
-            Assert.IsFalse(Std.IsMonomial(badA3, x), "pi is not SVM(x)");
-            Assert.IsTrue(Std.IsMonomial(x3, x), "x^3: is SVM(x)");
-            Assert.IsTrue(Std.IsMonomial(a2x2, x), "1/2*x^2: is SVM(x)");
+            Assert.IsTrue(Polynomial.IsMonomial(x, x), "x: is SVM(x)");
+            Assert.IsTrue(Polynomial.IsMonomial(a0, x), "0: is SVM(x)");
+            Assert.IsTrue(Polynomial.IsMonomial(a2, x), "1/2: is SVM(x)");
+            Assert.IsFalse(Polynomial.IsMonomial(badX, x), "sin(x): is not SVM(x)");
+            Assert.IsFalse(Polynomial.IsMonomial(badA2, x), "tan(1/2): is not SVM(x)");
+            Assert.IsFalse(Polynomial.IsMonomial(badA3, x), "pi is not SVM(x)");
+            Assert.IsTrue(Polynomial.IsMonomial(x3, x), "x^3: is SVM(x)");
+            Assert.IsTrue(Polynomial.IsMonomial(a2x2, x), "1/2*x^2: is SVM(x)");
 
-            Assert.AreEqual("Std.Integer(1)", Std.MonomialDegree(x, x).ToString(), "x: SVM deg(x)=1");
-            Assert.AreEqual("Std.Integer(0)", Std.MonomialDegree(a2, x).ToString(), "1/2: SVM deg(x)=0");
-            Assert.AreEqual("Std.NegativeInfinity", Std.MonomialDegree(a0, x).ToString(), "0: SVM deg(x)=-inf");
-            Assert.AreEqual("Std.Integer(3)", Std.MonomialDegree(x3, x).ToString(), "x^3: SVM deg(x)=3");
-            Assert.AreEqual("Std.Integer(2)", Std.MonomialDegree(a2x2, x).ToString(), "1/2*x^2: SVM deg(x)=2");
+            Assert.AreEqual("Std.Integer(1)", Polynomial.MonomialDegree(x, x).ToString(), "x: SVM deg(x)=1");
+            Assert.AreEqual("Std.Integer(0)", Polynomial.MonomialDegree(a2, x).ToString(), "1/2: SVM deg(x)=0");
+            Assert.AreEqual("Std.NegativeInfinity", Polynomial.MonomialDegree(a0, x).ToString(), "0: SVM deg(x)=-inf");
+            Assert.AreEqual("Std.Integer(3)", Polynomial.MonomialDegree(x3, x).ToString(), "x^3: SVM deg(x)=3");
+            Assert.AreEqual("Std.Integer(2)", Polynomial.MonomialDegree(a2x2, x).ToString(), "1/2*x^2: SVM deg(x)=2");
 
             IValueStructure vs;
-            Signal test = Std.MonomialCoefficient(x, x, out vs);
+            Signal test = Polynomial.MonomialCoefficient(x, x, out vs);
             Assert.AreEqual("Std.Integer(1)", vs.ToString(), "x: SVM coeff deg=1 ");
-            Assert.IsTrue(test.Equals(a1), "x: SVM coeff = 1");
+            Assert.IsTrue(test.Value.Equals(a1.Value), "x: SVM coeff = 1");
 
-            test = Std.MonomialCoefficient(a2, x, out vs);
+            test = Polynomial.MonomialCoefficient(a2, x, out vs);
             Assert.AreEqual("Std.Integer(0)", vs.ToString(), "1/2: SVM coeff deg=0 ");
-            Assert.IsTrue(test.Equals(a2), "1/2: SVM coeff = 1/2");
+            Assert.IsTrue(test.Value.Equals(a2.Value), "1/2: SVM coeff = 1/2");
 
-            test = Std.MonomialCoefficient(a3x3, x, out vs);
+            test = Polynomial.MonomialCoefficient(a3x3, x, out vs);
             Assert.AreEqual("Std.Integer(3)", vs.ToString(), "2*x^3: SVM coeff deg=3 ");
-            Assert.IsTrue(test.Equals(a3), "2*x^3: SVM coeff = 2");
+            Assert.IsTrue(test.Value.Equals(a3.Value), "2*x^3: SVM coeff = 2");
 
             Signal a3x3_a2x2_a4 = StdBuilder.Add(a3x3, a2x2, a4);
 
-            Assert.IsFalse(Std.IsMonomial(a3x3_a2x2_a4, x), "2*x^3+1/2*x^2+3: is not SVM(x)");
-            Assert.IsTrue(Std.IsPolynomial(a3x3_a2x2_a4, x), "2*x^3+1/2*x^2+3: is SVP(x)");
-            Assert.AreEqual("Std.Integer(3)", Std.PolynomialDegree(a3x3_a2x2_a4, x).ToString(), "2*x^3+1/2*x^2+3: SVP deg(x)=3");
+            Assert.IsFalse(Polynomial.IsMonomial(a3x3_a2x2_a4, x), "2*x^3+1/2*x^2+3: is not SVM(x)");
+            Assert.IsTrue(Polynomial.IsPolynomial(a3x3_a2x2_a4, x), "2*x^3+1/2*x^2+3: is SVP(x)");
+            Assert.AreEqual("Std.Integer(3)", Polynomial.PolynomialDegree(a3x3_a2x2_a4, x).ToString(), "2*x^3+1/2*x^2+3: SVP deg(x)=3");
 
-            test = Std.PolynomialCoefficient(a3x3_a2x2_a4, x, 1);
-            Assert.IsTrue(test.Equals(a0), "2*x^3+1/2*x^2+3: SVP coeff(1) = 0");
+            test = Polynomial.PolynomialCoefficient(a3x3_a2x2_a4, x, 1);
+            Assert.IsTrue(test.Value.Equals(a0.Value), "2*x^3+1/2*x^2+3: SVP coeff(1) = 0");
 
-            test = Std.PolynomialCoefficient(a3x3_a2x2_a4, x, 2);
-            Assert.IsTrue(test.Equals(a2), "2*x^3+1/2*x^2+3: SVP coeff(2) = 1/2");
+            test = Polynomial.PolynomialCoefficient(a3x3_a2x2_a4, x, 2);
+            Assert.IsTrue(test.Value.Equals(a2.Value), "2*x^3+1/2*x^2+3: SVP coeff(2) = 1/2");
+
+            Signal[] coefficients = Polynomial.PolynomialCoefficients(a3x3_a2x2_a4, x);
+            Assert.AreEqual(4, coefficients.Length, "2*x^3+1/2*x^2+3: SVP coeffs: len(coeffs) = 4 (-> deg=3)");
+            Assert.IsTrue(coefficients[0].Value.Equals(a4.Value), "2*x^3+1/2*x^2+3: SVP coeffs: coeffs[0] = 3");
+            Assert.IsTrue(coefficients[1].Value.Equals(a0.Value), "2*x^3+1/2*x^2+3: SVP coeffs: coeffs[1] = 0");
+            Assert.IsTrue(coefficients[2].Value.Equals(a2.Value), "2*x^3+1/2*x^2+3: SVP coeffs: coeffs[2] = 1/2");
+            Assert.IsTrue(coefficients[3].Value.Equals(a3.Value), "2*x^3+1/2*x^2+3: SVP coeffs: coeffs[3] = 2");
+        }
+
+        [Test]
+        public void PolynomialDivisionTest()
+        {
+            Signal x = Binder.CreateSignal();
+
+            Signal c0 = IntegerValue.ConstantZero;
+            Signal c1 = IntegerValue.ConstantOne;
+            Signal c3 = IntegerValue.Constant(3);
+            Signal c3n = IntegerValue.Constant(-3);
+            Signal c5 = IntegerValue.Constant(5);
+
+            Signal a = Polynomial.ConstructPolynomial(x, c5, c1, c1, c3);
+            Signal b = Polynomial.ConstructPolynomial(x, c1, c3n, c5);
+
+            Assert.AreEqual(c5.Value, Polynomial.PolynomialCoefficient(a, x, 0).Value, "A01");
+            Assert.AreEqual(c1.Value, Polynomial.PolynomialCoefficient(a, x, 1).Value, "A02");
+            Assert.AreEqual(c1.Value, Polynomial.PolynomialCoefficient(a, x, 2).Value, "A03");
+            Assert.AreEqual(c3.Value, Polynomial.PolynomialCoefficient(a, x, 3).Value, "A04");
+            Assert.AreEqual(c1.Value, Polynomial.PolynomialCoefficient(b, x, 0).Value, "A05");
+            Assert.AreEqual(c3n.Value, Polynomial.PolynomialCoefficient(b, x, 1).Value, "A06");
+            Assert.AreEqual(c5.Value, Polynomial.PolynomialCoefficient(b, x, 2).Value, "A07");
+
+            Signal remainder;
+            Signal quotient = Polynomial.PolynomialDivision(a, b, x, out remainder);
+
+            Signal[] quotientCoeff = Polynomial.PolynomialCoefficients(quotient, x);
+            Assert.AreEqual(2, quotientCoeff.Length, "B01");
+            Assert.AreEqual(new RationalValue(14, 25), quotientCoeff[0].Value, "B02");
+            Assert.AreEqual(new RationalValue(3, 5), quotientCoeff[1].Value, "B03");
+
+            Signal[] remainderCoeff = Polynomial.PolynomialCoefficients(remainder, x);
+            Assert.AreEqual(2, remainderCoeff.Length, "C01");
+            Assert.AreEqual(new RationalValue(111, 25), remainderCoeff[0].Value, "C02");
+            Assert.AreEqual(new RationalValue(52, 25), remainderCoeff[1].Value, "C03");
+
         }
     }
 }

@@ -58,7 +58,7 @@ namespace Yttrium.UnitTests
             p.Interpret(@"fdiv <- fn / fdiff;");
 
             Signal x = s.LookupNamedSignal("x");
-            x.AddConstraint(RealSetProperty.Instance);
+            Std.ConstrainAlwaysReal(x);
 
             Signal fdiv = s.LookupNamedSignal("fdiv");
             Assert.AreEqual(new MathIdentifier("Divide", "Std"), fdiv.DrivenByPort.Entity.EntityId, "A");

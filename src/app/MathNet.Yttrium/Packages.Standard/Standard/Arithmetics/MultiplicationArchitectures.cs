@@ -28,6 +28,7 @@ using MathNet.Symbolics.Packages.Standard.Structures;
 using MathNet.Symbolics.Packages.ObjectModel;
 using MathNet.Symbolics.Manipulation;
 using MathNet.Symbolics.Library;
+using MathNet.Symbolics.Conversion;
 
 namespace MathNet.Symbolics.Packages.Standard.Arithmetics
 {
@@ -61,14 +62,29 @@ namespace MathNet.Symbolics.Packages.Standard.Arithmetics
 
         public static bool SimplifyFactors(ISignalSet signals)
         {
-            Signal zero;
-            if(signals.Exists(Std.IsConstantAdditiveIdentity, out zero))
+            if(signals.Count < 2)
+                return false;
+            bool changed = false;
+            IAccumulator acc = null;
+            for(int i = signals.Count - 1; i >= 0; i--)
             {
-                signals.Clear();
-                signals.Add(zero);
-                return true;
+                Signal s = signals[i];
+                if(s.IsFlagEnabled(StdAspect.ConstantFlag) && ValueConverter<ComplexValue>.CanConvertLosslessFrom(s.Value))
+                {
+                    if(acc == null)
+                        acc = Accumulator<IntegerValue>.Create(IntegerValue.MultiplicativeIdentity);
+                    signals.RemoveAt(i);
+                    changed = true;
+                    acc = acc.Multiply(s.Value);
+                }
             }
-            return 0 < signals.RemoveAll(Std.IsConstantMultiplicativeIdentity);
+            if(acc != null && !acc.Value.Equals(IntegerValue.MultiplicativeIdentity))
+            {
+                Signal sum = Binder.CreateSignal(acc.Value);
+                sum.EnableFlag(StdAspect.ConstantFlag);
+                signals.Insert(0, sum);
+            }
+            return changed;
         }
 
         public static void RegisterTheorems(ILibrary library)

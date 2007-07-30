@@ -444,22 +444,22 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
             return _dataValue.GetHashCode();
         }
 
-        #region IAlgebraicRingWithUnity Members
+        #region IAlgebraicMultiplicativeIdentityElement Members
         public bool IsMultiplicativeIdentity
         {
             get { return _dataValue.IsOne; }
         }
-        IValueStructure IAlgebraicRingWithUnity.MultiplicativeIdentity
+        IValueStructure IAlgebraicMultiplicativeIdentityElement.MultiplicativeIdentity
         {
             get { return MultiplicativeIdentity; }
         }
         #endregion
-        #region IAlgebraicMonoid Members
+        #region IAlgebraicAdditiveIdentityElement Members
         public bool IsAdditiveIdentity
         {
             get { return _dataValue.IsZero; }
         }
-        IValueStructure IAlgebraicMonoid.AdditiveIdentity
+        IValueStructure IAlgebraicAdditiveIdentityElement.AdditiveIdentity
         {
             get { return AdditiveIdentity; }
         }

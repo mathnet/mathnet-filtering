@@ -50,7 +50,7 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
     }
 
     /// <summary>logic value - X01 subset of IEEE 1164 standard (aka MVL-9)</summary>
-    public class LogicValue : ValueStructureBase, IEquatable<LogicValue>, IComparable<LogicValue>, IAlgebraicCommutativeRingWithUnity<LogicValue>
+    public class LogicValue : ValueStructureBase, IEquatable<LogicValue>, IComparable<LogicValue>, IAlgebraicBooleanAlgebra<LogicValue>
     {
         private static readonly MathIdentifier _customTypeId = new MathIdentifier("Logic", "Std");
         private readonly ELogicX01 _dataValue; // = ELogicX01.Uninitialized;
@@ -486,24 +486,30 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
             return _dataValue.GetHashCode();
         }
 
-        #region IAlgebraicRingWithUnity Members
+        #region IAlgebraicMultiplicativeIdentityElement Members
         public bool IsMultiplicativeIdentity
         {
             get { return _dataValue == ELogicX01.True ; }
         }
-        IValueStructure IAlgebraicRingWithUnity.MultiplicativeIdentity
+        IValueStructure IAlgebraicMultiplicativeIdentityElement.MultiplicativeIdentity
         {
             get { return MultiplicativeIdentity; }
         }
         #endregion
-        #region IAlgebraicMonoid Members
+        #region IAlgebraicAdditiveIdentityElement Members
         public bool IsAdditiveIdentity
         {
             get { return _dataValue == ELogicX01.False; }
         }
-        IValueStructure IAlgebraicMonoid.AdditiveIdentity
+        IValueStructure IAlgebraicAdditiveIdentityElement.AdditiveIdentity
         {
             get { return AdditiveIdentity; }
+        }
+        #endregion
+        #region IAlgebraicBooleanAlgebra<LogicValue> Members
+        public LogicValue Complement()
+        {
+            return Not();
         }
         #endregion
 
@@ -525,5 +531,7 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
             return new LogicValue((ELogicX01)Enum.Parse(typeof(ELogicX01), reader.ReadString()));
         }
         #endregion
+
+        
     }
 }

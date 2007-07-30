@@ -28,6 +28,7 @@ using MathNet.Symbolics.Packages.Standard.Structures;
 using MathNet.Symbolics.Packages.ObjectModel;
 using MathNet.Symbolics.Manipulation;
 using MathNet.Symbolics.Library;
+using MathNet.Symbolics.Conversion;
 
 namespace MathNet.Symbolics.Packages.Standard.Arithmetics
 {
@@ -61,15 +62,41 @@ namespace MathNet.Symbolics.Packages.Standard.Arithmetics
 
         public static bool SimplifySummands(ISignalSet signals)
         {
-            if(signals == null) throw new ArgumentNullException("signals");
-            bool altered = false;
-            for(int i = signals.Count - 1; i > 0; i--) //don't touch first item!
-                if(Std.IsConstantAdditiveIdentity(signals[i]))
+            if(signals.Count < 2)
+                return false;
+            bool changed = false;
+            IAccumulator acc = null; 
+            for(int i = signals.Count - 1; i > 0; i--)  //don't touch first item!
+            {
+                Signal s = signals[i];
+                if(s.IsFlagEnabled(StdAspect.ConstantFlag) && ValueConverter<ComplexValue>.CanConvertLosslessFrom(s.Value))
                 {
-                    altered = true;
+                    if(acc == null)
+                        acc = Accumulator<IntegerValue>.Create(IntegerValue.AdditiveIdentity);
                     signals.RemoveAt(i);
+                    changed = true;
+                    acc = acc.Add(s.Value);
                 }
-            return altered;
+            }
+            if(acc != null && !acc.Value.Equals(IntegerValue.AdditiveIdentity))
+            {
+                Signal first = signals[0];
+                if(first.IsFlagEnabled(StdAspect.ConstantFlag) && ValueConverter<ComplexValue>.CanConvertLosslessFrom(first.Value))
+                {
+                    acc = acc.Subtract(first.Value).Negate();
+                    Signal sum = Binder.CreateSignal(acc.Value);
+                    sum.EnableFlag(StdAspect.ConstantFlag);
+                    changed = true;
+                    signals[0] = sum;
+                }
+                else
+                {
+                    Signal sum = Binder.CreateSignal(acc.Value);
+                    sum.EnableFlag(StdAspect.ConstantFlag);
+                    signals.Insert(1, sum);
+                }
+            }
+            return changed;
         }
 
         public static void RegisterTheorems(ILibrary library)

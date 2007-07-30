@@ -61,79 +61,85 @@ namespace MathNet.Symbolics.Packages.Standard
         BooleanAlgebra = CommutativeSemiring | AdditiveIdentityElement | MultiplicativeIdentityElement | DistributiveAdditiveOverMultiplicative | Complement
     }
 
-    #region Additive Close -> Add
-    //public interface IAlgebraicAdditiveClose
-    //{
-    //    IAlgebraicAdditiveClose Add(IAlgebraicAdditiveClose other);
-    //}
     public interface IAlgebraicAdditiveClose<T>
-        where T : IValueStructure, IAlgebraicAdditiveClose<T>
+        where T : IValueStructure //, IAlgebraicAdditiveClose<T>
     {
         T Add(T other);
     }
-    #endregion
-
-    #region Multiplicative Close -> Multiply
-    //public interface IAlgebraicMultiplicativeClose
-    //{
-    //    IAlgebraicMultiplicativeClose Multiply(IAlgebraicMultiplicativeClose other);
-    //}
     public interface IAlgebraicMultiplicativeClose<T>
-        where T : IValueStructure, IAlgebraicMultiplicativeClose<T>
+        where T : IValueStructure //, IAlgebraicMultiplicativeClose<T>
     {
         T Multiply(T other);
     }
-    #endregion
-
-    public interface IAlgebraicMonoid
+    public interface IAlgebraicAdditiveIdentityElement
     {
         bool IsAdditiveIdentity { get;}
         IValueStructure AdditiveIdentity { get;}
     }
+    public interface IAlgebraicMultiplicativeIdentityElement
+    {
+        bool IsMultiplicativeIdentity { get;}
+        IValueStructure MultiplicativeIdentity { get;}
+    }
 
-    public interface IAlgebraicMonoid<T> : IAlgebraicMonoid, IAlgebraicAdditiveClose<T>
-        where T : IValueStructure, IAlgebraicMonoid<T>
+    public interface IAlgebraicSemigroup<T> : IAlgebraicAdditiveClose<T>
+        where T : IValueStructure //, IAlgebraicSemigroup<T>
+    {
+    }
+
+    public interface IAlgebraicMonoid<T> : IAlgebraicSemigroup<T>, IAlgebraicAdditiveIdentityElement
+        where T : IValueStructure //, IAlgebraicMonoid<T>
     {
     }
 
     public interface IAlgebraicGroup<T> : IAlgebraicMonoid<T>
-        where T : IValueStructure, IAlgebraicGroup<T>
+        where T : IValueStructure //, IAlgebraicGroup<T>
     {
         T Subtract(T other);
         T Negate();
     }
 
     public interface IAlgebraicAbelianGroup<T> : IAlgebraicGroup<T>
-        where T : IValueStructure, IAlgebraicAbelianGroup<T>
+        where T : IValueStructure //, IAlgebraicAbelianGroup<T>
     {
     }
 
-    public interface IAlgebraicRingWithUnity : IAlgebraicMonoid
+    public interface IAlgebraicSemiring<T> : IAlgebraicSemigroup<T>, IAlgebraicMultiplicativeClose<T>
+        where T : IValueStructure //, IAlgebraicSemiring<T>
     {
-        bool IsMultiplicativeIdentity { get;}
-        IValueStructure MultiplicativeIdentity { get;}
     }
 
-    public interface IAlgebraicRingWithUnity<T> : IAlgebraicRingWithUnity, IAlgebraicMonoid<T>, IAlgebraicMultiplicativeClose<T>
-        where T : IValueStructure, IAlgebraicRingWithUnity<T>
+    public interface IAlgebraicRing<T> : IAlgebraicAbelianGroup<T>, IAlgebraicMultiplicativeClose<T>
+        where T : IValueStructure //, IAlgebraicRing<T>
+    {
+    }
+
+    public interface IAlgebraicRingWithUnity<T> : IAlgebraicRing<T>, IAlgebraicMultiplicativeIdentityElement
+        where T : IValueStructure //, IAlgebraicRingWithUnity<T>
     {
     }
 
     public interface IAlgebraicCommutativeRingWithUnity<T> : IAlgebraicRingWithUnity<T>
-        where T : IValueStructure, IAlgebraicCommutativeRingWithUnity<T>
+        where T : IValueStructure //, IAlgebraicCommutativeRingWithUnity<T>
     {
     }
 
     public interface IAlgebraicSkewField<T> : IAlgebraicRingWithUnity<T>
-        where T : IValueStructure, IAlgebraicSkewField<T>
+        where T : IValueStructure //, IAlgebraicSkewField<T>
     {
         T Divide(T other);
         T Invert();
     }
 
-    public interface IAlgebraicField<T> : IAlgebraicSkewField<T>, IAlgebraicVectorSpace<T,T>
-        where T : IValueStructure, IAlgebraicField<T>
+    public interface IAlgebraicField<T> : IAlgebraicSkewField<T>, IAlgebraicCommutativeRingWithUnity<T> //, IAlgebraicVectorSpace<T,T>
+        where T : IValueStructure //, IAlgebraicField<T>
     {
+    }
+
+    public interface IAlgebraicBooleanAlgebra<T> : IAlgebraicSemiring<T>, IAlgebraicAdditiveIdentityElement, IAlgebraicMultiplicativeIdentityElement
+        where T : IValueStructure //, IAlgebraicBooleanAlgebra<T>
+    {
+        T Complement();
     }
 
     /// <summary>

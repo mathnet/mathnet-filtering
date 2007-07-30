@@ -49,7 +49,7 @@ namespace Yttrium.UnitTests
 
             // BUILD SYSTEM 1: sin(x^2)
             Signal x = Binder.CreateSignal(); x.Label = "x";
-            x.AddConstraint(RealSetProperty.Instance);
+            Std.ConstrainAlwaysReal(x);
             Signal x2 = StdBuilder.Square(x); x2.Label = "x2";
             Signal sinx2 = StdBuilder.Sine(x2); sinx2.Label = "sinx2";
             Signal sinx2t2 = sinx2 * IntegerValue.ConstantTwo;
@@ -96,7 +96,7 @@ namespace Yttrium.UnitTests
 
             // BUILD SYSTEM 1: sin(x^2)*2
             Signal x = Binder.CreateSignal(); x.Label = "x";
-            x.AddConstraint(RealSetProperty.Instance);
+            Std.ConstrainAlwaysReal(x);
             Signal x2 = StdBuilder.Square(x); x2.Label = "x2";
             Signal sinx2 = StdBuilder.Sine(x2); sinx2.Label = "sinx2";
             Signal sinx2t2 = sinx2 * IntegerValue.ConstantTwo;
@@ -172,7 +172,7 @@ namespace Yttrium.UnitTests
 
             // BUILD SYSTEM 1: sin(x^2)*2
             Signal x = Binder.CreateSignal(); x.Label = "x";
-            x.AddConstraint(RealSetProperty.Instance);
+            Std.ConstrainAlwaysReal(x);
             Signal x2 = StdBuilder.Square(x); x2.Label = "x2";
             Signal sinx2 = StdBuilder.Sine(x2); sinx2.Label = "sinx2";
             Signal sinx2t2 = sinx2 * IntegerValue.ConstantTwo;

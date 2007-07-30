@@ -538,22 +538,22 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
             return _dataValue.GetHashCode();
         }
 
-        #region IAlgebraicRingWithUnity Members
+        #region IAlgebraicMultiplicativeIdentityElement Members
         public bool IsMultiplicativeIdentity
         {
             get { return _dataValue == 1d; }
         }
-        IValueStructure IAlgebraicRingWithUnity.MultiplicativeIdentity
+        IValueStructure IAlgebraicMultiplicativeIdentityElement.MultiplicativeIdentity
         {
             get { return MultiplicativeIdentity; }
         }
         #endregion
-        #region IAlgebraicMonoid Members
+        #region IAlgebraicAdditiveIdentityElement Members
         public bool IsAdditiveIdentity
         {
             get { return _dataValue == 0d; }
         }
-        IValueStructure IAlgebraicMonoid.AdditiveIdentity
+        IValueStructure IAlgebraicAdditiveIdentityElement.AdditiveIdentity
         {
             get { return AdditiveIdentity; }
         }
