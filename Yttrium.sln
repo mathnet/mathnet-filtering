@@ -181,6 +181,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Fundament", "src\ap
 		Release.AspNetCompiler.Debug = "False"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Formatter.Contracts", "src\app\MathNet.Yttrium\Formatter.Contracts\Yttrium.Formatter.Contracts.csproj", "{92C1E300-20D2-4195-AB4C-1402A9152E25}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yttrium.Formatter.Service", "src\app\MathNet.Yttrium\Formatter.Service\Yttrium.Formatter.Service.csproj", "{36BE1C95-3E2A-4110-9FE1-E46EC3A3D5C5}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -303,6 +315,14 @@ Global
 		{FDD51A32-1C78-4135-A6E8-222B022A01C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FDD51A32-1C78-4135-A6E8-222B022A01C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FDD51A32-1C78-4135-A6E8-222B022A01C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92C1E300-20D2-4195-AB4C-1402A9152E25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92C1E300-20D2-4195-AB4C-1402A9152E25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92C1E300-20D2-4195-AB4C-1402A9152E25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92C1E300-20D2-4195-AB4C-1402A9152E25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36BE1C95-3E2A-4110-9FE1-E46EC3A3D5C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36BE1C95-3E2A-4110-9FE1-E46EC3A3D5C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36BE1C95-3E2A-4110-9FE1-E46EC3A3D5C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36BE1C95-3E2A-4110-9FE1-E46EC3A3D5C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

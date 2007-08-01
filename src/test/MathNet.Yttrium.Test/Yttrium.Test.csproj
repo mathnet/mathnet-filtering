@@ -46,6 +46,7 @@
     <Compile Include="BasicTest.cs" />
     <Compile Include="ConversionTest.cs" />
     <Compile Include="AutoSimplifyTest.cs" />
+    <Compile Include="FormatterTest.cs" />
     <Compile Include="FundamentTest.cs" />
     <Compile Include="MicrokernelTest.cs" />
     <Compile Include="PatternTest.cs" />
@@ -69,6 +70,10 @@
     <ProjectReference Include="..\..\app\MathNet.Yttrium\Conversion.Toolkit\Yttrium.Conversion.Toolkit.csproj">
       <Project>{8CD3403D-22BF-4BBD-9F8E-36F0F0201351}</Project>
       <Name>Yttrium.Conversion.Toolkit</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\app\MathNet.Yttrium\Formatter.Contracts\Yttrium.Formatter.Contracts.csproj">
+      <Project>{92C1E300-20D2-4195-AB4C-1402A9152E25}</Project>
+      <Name>Yttrium.Formatter.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\app\MathNet.Yttrium\Fundament\Yttrium.Fundament.csproj">
       <Project>{FDD51A32-1C78-4135-A6E8-222B022A01C6}</Project>

@@ -28,11 +28,12 @@ using MathNet.Symbolics.Packages.Standard.Trigonometry;
 using MathNet.Symbolics.Packages.ObjectModel;
 using MathNet.Symbolics.Conversion;
 using MathNet.Symbolics.Library;
+using MathNet.Symbolics.Formatter;
 
 namespace MathNet.Symbolics.Packages.Standard.Structures
 {
     /// <summary>complex numbers with signed real components</summary>
-    public class ComplexValue : ValueStructureBase, IEquatable<ComplexValue>, IComparable<ComplexValue>, IAlgebraicField<ComplexValue>
+    public class ComplexValue : ValueStructureBase, IEquatable<ComplexValue>, IComparable<ComplexValue>, IAlgebraicField<ComplexValue>, IFormattableLeaf
     {
         private static readonly MathIdentifier _customTypeId = new MathIdentifier("Complex", "Std");
         private readonly Complex _dataValue;
@@ -394,11 +395,6 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
         }
         #endregion
 
-        public override string ToString()
-        {
-            return base.ToString() + "(" + _dataValue.ToString() + ")";
-        }
-
         public bool Equals(RealValue other)
         {
             return other != null && _dataValue.IsReal && _dataValue.Real == other.Value;
@@ -485,6 +481,30 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
         {
             return new ComplexValue(double.Parse(reader.ReadElementString("Real"), Config.InternalNumberFormat),
                 double.Parse(reader.ReadElementString("Imag"), Config.InternalNumberFormat));
+        }
+        #endregion
+
+        #region Formatting
+        private string FormatImpl(out int precedence)
+        {
+            if(!_dataValue.IsReal && !_dataValue.IsImaginary)
+                precedence = 60;
+            else if(_dataValue.IsReal)
+                precedence = -1;
+            else
+                precedence = 50;
+
+            System.Globalization.NumberFormatInfo format = System.Globalization.NumberFormatInfo.InvariantInfo;
+            return _dataValue.ToString(format);
+        }
+        public override string ToString()
+        {
+            int precedence;
+            return FormatBase(FormatImpl(out precedence), FormattingOptions.Default);
+        }
+        string IFormattableLeaf.Format(FormattingOptions options, out int precedence)
+        {
+            return FormatBase(FormatImpl(out precedence), options);
         }
         #endregion
     }

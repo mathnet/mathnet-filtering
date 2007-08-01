@@ -323,7 +323,7 @@ namespace MathNet.Symbolics.Packages.Standard
 
         #region Construction
         public static Signal ConstructPolynomial<TCoeff>(Signal variable, params TCoeff[] coefficients)
-            where TCoeff : IAlgebraicMonoid<TCoeff>, IValueStructure
+            where TCoeff : IAlgebraicRingWithUnity<TCoeff>, IValueStructure
         {
             Signal zero = null;
             Signal[] summands = new Signal[coefficients.Length];
@@ -347,9 +347,19 @@ namespace MathNet.Symbolics.Packages.Standard
                 if(i == 0)
                     summands[0] = coeff;
                 else if(i == 1)
-                    summands[1] = StdBuilder.Multiply(coeff, variable);
+                {
+                    if(c.IsMultiplicativeIdentity)
+                        summands[1] = variable;
+                    else
+                        summands[1] = StdBuilder.Multiply(coeff, variable);
+                }
                 else
-                    summands[i] = StdBuilder.Multiply(coeff, StdBuilder.Power(variable, IntegerValue.Constant(i)));
+                {
+                    if(c.IsMultiplicativeIdentity)
+                        summands[i] = StdBuilder.Power(variable, IntegerValue.Constant(i));
+                    else
+                        summands[i] = StdBuilder.Multiply(coeff, StdBuilder.Power(variable, IntegerValue.Constant(i)));
+                }
             }
             return Std.Add(summands);
         }
@@ -369,9 +379,19 @@ namespace MathNet.Symbolics.Packages.Standard
                 if(i == 0)
                     summands[0] = coeff;
                 else if(i == 1)
-                    summands[1] = StdBuilder.Multiply(coeff, variable);
+                {
+                    if(Std.IsConstantMultiplicativeIdentity(coeff))
+                        summands[1] = variable;
+                    else
+                        summands[1] = StdBuilder.Multiply(coeff, variable);
+                }
                 else
-                    summands[i] = StdBuilder.Multiply(coeff, StdBuilder.Power(variable, IntegerValue.Constant(i)));
+                {
+                    if(Std.IsConstantMultiplicativeIdentity(coeff))
+                        summands[i] = StdBuilder.Power(variable, IntegerValue.Constant(i));
+                    else
+                        summands[i] = StdBuilder.Multiply(coeff, StdBuilder.Power(variable, IntegerValue.Constant(i)));
+                }
             }
             return Std.Add(summands);
         }

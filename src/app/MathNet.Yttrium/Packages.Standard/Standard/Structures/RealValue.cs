@@ -29,11 +29,12 @@ using MathNet.Symbolics.Packages.ObjectModel;
 using MathNet.Symbolics.Conversion;
 using MathNet.Symbolics.Library;
 using MathNet.Symbolics.Repository;
+using MathNet.Symbolics.Formatter;
 
 namespace MathNet.Symbolics.Packages.Standard.Structures
 {
     /// <summary>signed real numbers</summary>
-    public class RealValue : ValueStructureBase, IEquatable<RealValue>, IComparable<RealValue>, IAlgebraicField<RealValue>
+    public class RealValue : ValueStructureBase, IEquatable<RealValue>, IComparable<RealValue>, IAlgebraicField<RealValue>, IFormattableLeaf
     {
         private static readonly MathIdentifier _customTypeId = new MathIdentifier("Real", "Std");
         private readonly double _dataValue; // = 0;
@@ -496,11 +497,6 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
         }
         #endregion
 
-        public override string ToString()
-        {
-            return base.ToString() + "(" + _dataValue.ToString(System.Globalization.NumberFormatInfo.InvariantInfo) + ")";
-        }
-
         public bool Equals(RationalValue other)
         {
             return other != null && _dataValue == other.ToDouble();
@@ -575,6 +571,20 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
         private static RealValue Deserialize(XmlReader reader, IDictionary<Guid, Signal> signals, IDictionary<Guid, Bus> buses)
         {
             return new RealValue(double.Parse(reader.ReadString(), Config.InternalNumberFormat));
+        }
+        #endregion
+
+        #region Formatting
+        public override string ToString()
+        {
+            IFormatProvider format = System.Globalization.NumberFormatInfo.InvariantInfo;
+            return FormatBase(_dataValue.ToString(format), FormattingOptions.Default);
+        }
+        string IFormattableLeaf.Format(FormattingOptions options, out int precedence)
+        {
+            precedence = -1;
+            IFormatProvider format = System.Globalization.NumberFormatInfo.InvariantInfo;
+            return FormatBase(_dataValue.ToString(format), options);
         }
         #endregion
     }

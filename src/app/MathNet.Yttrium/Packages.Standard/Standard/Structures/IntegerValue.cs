@@ -27,11 +27,12 @@ using MathNet.Symbolics.Packages.ObjectModel;
 using MathNet.Symbolics.Conversion;
 using MathNet.Symbolics.Library;
 using MathNet.Symbolics.Repository;
+using MathNet.Symbolics.Formatter;
 
 namespace MathNet.Symbolics.Packages.Standard.Structures
 {
     /// <summary>signed integer</summary>
-    public class IntegerValue : ValueStructureBase, IEquatable<IntegerValue>, IComparable<IntegerValue>, IAlgebraicCommutativeRingWithUnity<IntegerValue>
+    public class IntegerValue : ValueStructureBase, IEquatable<IntegerValue>, IComparable<IntegerValue>, IAlgebraicCommutativeRingWithUnity<IntegerValue>, IFormattableLeaf
     {
         private static readonly MathIdentifier _customTypeId = new MathIdentifier("Integer", "Std");
         private readonly long _dataValue; // = 0;
@@ -373,11 +374,6 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
             return (double)_dataValue;
         }
 
-        public override string ToString()
-        {
-            return base.ToString() + "(" + _dataValue.ToString(System.Globalization.NumberFormatInfo.InvariantInfo) + ")";
-        }
-
         public override bool Equals(IValueStructure other)
         {
             IntegerValue integerValue = other as IntegerValue;
@@ -444,6 +440,20 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
         private static IntegerValue Deserialize(XmlReader reader, IDictionary<Guid, Signal> signals, IDictionary<Guid, Bus> buses)
         {
             return new IntegerValue(long.Parse(reader.ReadString(), Config.InternalNumberFormat));
+        }
+        #endregion
+
+        #region Formatting
+        public override string ToString()
+        {
+            IFormatProvider format = System.Globalization.NumberFormatInfo.InvariantInfo;
+            return FormatBase(_dataValue.ToString(format), FormattingOptions.Default);
+        }
+        string IFormattableLeaf.Format(FormattingOptions options, out int precedence)
+        {
+            precedence = -1;
+            IFormatProvider format = System.Globalization.NumberFormatInfo.InvariantInfo;
+            return FormatBase(_dataValue.ToString(format), options);
         }
         #endregion
     }

@@ -26,6 +26,7 @@ using System.Xml;
 using MathNet.Symbolics.Packages.ObjectModel;
 using MathNet.Symbolics.Conversion;
 using MathNet.Symbolics.Library;
+using MathNet.Symbolics.Formatter;
 
 namespace MathNet.Symbolics.Packages.Standard.Structures
 {
@@ -50,7 +51,7 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
     }
 
     /// <summary>logic value - X01 subset of IEEE 1164 standard (aka MVL-9)</summary>
-    public class LogicValue : ValueStructureBase, IEquatable<LogicValue>, IComparable<LogicValue>, IAlgebraicBooleanAlgebra<LogicValue>
+    public class LogicValue : ValueStructureBase, IEquatable<LogicValue>, IComparable<LogicValue>, IAlgebraicBooleanAlgebra<LogicValue>, IFormattableLeaf
     {
         private static readonly MathIdentifier _customTypeId = new MathIdentifier("Logic", "Std");
         private readonly ELogicX01 _dataValue; // = ELogicX01.Uninitialized;
@@ -452,19 +453,6 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
         }
         #endregion
 
-        public override string ToString()
-        {
-            switch(_dataValue)
-            {
-                case ELogicX01.True:
-                    return base.ToString() + "(1)";
-                case ELogicX01.False:
-                    return base.ToString() + "(0)";
-                default:
-                    return base.ToString() + "(X)";
-            }
-        }
-
         public override bool Equals(IValueStructure other)
         {
             LogicValue logicValue = other as LogicValue;
@@ -532,6 +520,28 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
         }
         #endregion
 
-        
+        #region Formatting
+        private string FormatImpl()
+        {
+            switch(_dataValue)
+            {
+                case ELogicX01.True:
+                    return "1";
+                case ELogicX01.False:
+                    return "0";
+                default:
+                    return "X";
+            }
+        }
+        public override string ToString()
+        {
+            return FormatBase(FormatImpl(), FormattingOptions.Default);
+        }
+        string IFormattableLeaf.Format(FormattingOptions options, out int precedence)
+        {
+            precedence = -1;
+            return FormatBase(FormatImpl(), options);
+        }
+        #endregion
     }
 }

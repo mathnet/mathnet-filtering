@@ -4,11 +4,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F1B95DE1-5170-4C65-92A4-CFE69256D6E1}</ProjectGuid>
+    <ProjectGuid>{36BE1C95-3E2A-4110-9FE1-E46EC3A3D5C5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MathNet.Symbolics.Packages</RootNamespace>
-    <AssemblyName>MathNet.Yttrium.Packages.Helper</AssemblyName>
+    <RootNamespace>MathNet.Symbolics</RootNamespace>
+    <AssemblyName>MathNet.Yttrium.Formatter.Service</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -28,47 +28,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MathNet.Iridium, Version=2006.6.3.22935, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MathNet.Iridium, Version=2007.3.9.40416, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\MathNet.Iridium\Library\bin\Release\MathNet.Iridium.dll</HintPath>
+      <HintPath>..\..\..\..\build\Release\MathNet.Iridium.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ObjectModel\ArbitraryGenericEntity.cs" />
-    <Compile Include="ObjectModel\ArchitectureBase.cs" />
-    <Compile Include="ObjectModel\CategoryBase.cs" />
-    <Compile Include="ObjectModel\CategoryMembershipProperty.cs" />
-    <Compile Include="ObjectModel\EntityBase.cs" />
-    <Compile Include="ObjectModel\ProcessBase.cs" />
+    <Compile Include="Formatter\InfixFormatter.cs" />
+    <Compile Include="FormatterFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ObjectModel\PropertyBase.cs" />
-    <Compile Include="ObjectModel\CompoundArchitecture.cs" />
-    <Compile Include="ObjectModel\CompoundProcess.cs" />
-    <Compile Include="ObjectModel\GenericArchitecture.cs" />
-    <Compile Include="ObjectModel\GenericArchitectureFactory.cs" />
-    <Compile Include="ObjectModel\GenericFunctionProcess.cs" />
-    <Compile Include="ObjectModel\GenericMathOpArchitecture.cs" />
-    <Compile Include="ObjectModel\GenericParallelProcess.cs" />
-    <Compile Include="ObjectModel\GenericPropagationTheorem.cs" />
-    <Compile Include="ObjectModel\GenericSimpleArchitecture.cs" />
-    <Compile Include="ObjectModel\GenericStdFunctionProcess.cs" />
-    <Compile Include="ObjectModel\GenericStdParallelProcess.cs" />
-    <Compile Include="ObjectModel\NaryToOneGenericEntity.cs" />
-    <Compile Include="ObjectModel\NearlySymmetricGenericEntity.cs" />
-    <Compile Include="ObjectModel\SymmetricGenericEntity.cs" />
-    <Compile Include="ObjectModel\ValueStructureBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Contracts\Yttrium.Contracts.csproj">
       <Project>{8966E2C5-B1C9-44BE-8751-45DCCA3D268F}</Project>
       <Name>Yttrium.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Conversion.Contracts\Yttrium.Conversion.Contracts.csproj">
-      <Project>{FACEF94F-CB8B-45FA-8664-3B9F043C27E9}</Project>
-      <Name>Yttrium.Conversion.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\Formatter.Contracts\Yttrium.Formatter.Contracts.csproj">
       <Project>{92C1E300-20D2-4195-AB4C-1402A9152E25}</Project>
@@ -77,14 +53,6 @@
     <ProjectReference Include="..\Fundament\Yttrium.Fundament.csproj">
       <Project>{FDD51A32-1C78-4135-A6E8-222B022A01C6}</Project>
       <Name>Yttrium.Fundament</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Manipulation.Contracts\Yttrium.Manipulation.Contracts.csproj">
-      <Project>{B273E022-E5DC-4FEE-8B70-FD9AF6A9BF6C}</Project>
-      <Name>Yttrium.Manipulation.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Microkernel\Yttrium.Microkernel.csproj">
-      <Project>{D03B156A-D6F3-4F46-AC59-7156681F69B7}</Project>
-      <Name>Yttrium.Microkernel</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

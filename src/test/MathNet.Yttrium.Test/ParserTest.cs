@@ -19,7 +19,6 @@
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
 
-//using Microsoft.VisualStudio.QualityTools.UnitTesting.Framework;
 using NUnit.Framework;
 
 using System;
@@ -36,11 +35,9 @@ using MathNet.Symbolics.Library;
 
 namespace Yttrium.UnitTests
 {
-    //[TestClass]
     [TestFixture]
     public class ParserTest
     {
-        //[TestMethod]
         [Test]
         public void Parser_SimpleExpressions()
         {
@@ -78,7 +75,6 @@ namespace Yttrium.UnitTests
             Assert.AreEqual("a", s.LookupNamedSignal("d").DrivenByPort.InputSignals[1].Label, "E4");
         }
 
-        //[TestMethod]
         [Test]
         public void Parser_StructuralExpressions()
         {

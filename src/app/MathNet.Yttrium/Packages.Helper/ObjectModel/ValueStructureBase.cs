@@ -23,6 +23,7 @@ using System;
 using System.Collections.Generic;
 using System.Xml;
 using System.Reflection;
+using MathNet.Symbolics.Formatter;
 
 namespace MathNet.Symbolics.Packages.ObjectModel
 {
@@ -65,6 +66,14 @@ namespace MathNet.Symbolics.Packages.ObjectModel
             return TypeId.Equals(otherStructureId);
         }
         #endregion
+
+        protected string FormatBase(string value, FormattingOptions options)
+        {
+            if((options & FormattingOptions.Compact) == FormattingOptions.Compact)
+                return value;
+            else
+                return TypeId.ToString() + "(" + value + ")";
+        }
 
         public override string ToString()
         {

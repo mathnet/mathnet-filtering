@@ -29,6 +29,7 @@ using MathNet.Symbolics.Workplace;
 using MathNet.Symbolics.Backend;
 using MathNet.Symbolics.Packages.Standard.Structures;
 using MathNet.Symbolics.Packages.Standard;
+using MathNet.Symbolics.Formatter;
 
 namespace Yttrium.UnitTests
 {
@@ -122,6 +123,7 @@ namespace Yttrium.UnitTests
         public void PolynomialDivisionTest()
         {
             Signal x = Binder.CreateSignal();
+            x.Label = "x";
 
             Signal c0 = IntegerValue.ConstantZero;
             Signal c1 = IntegerValue.ConstantOne;
@@ -131,6 +133,8 @@ namespace Yttrium.UnitTests
 
             Signal a = Polynomial.ConstructPolynomial(x, c5, c1, c1, c3);
             Signal b = Polynomial.ConstructPolynomial(x, c1, c3n, c5);
+            Assert.AreEqual("5+x+x^2+3*x^3", Service<IFormatter>.Instance.Format(a, FormattingOptions.Compact), "X01");
+            Assert.AreEqual("1+-3*x+5*x^2", Service<IFormatter>.Instance.Format(b, FormattingOptions.Compact), "X02");
 
             Assert.AreEqual(c5.Value, Polynomial.PolynomialCoefficient(a, x, 0).Value, "A01");
             Assert.AreEqual(c1.Value, Polynomial.PolynomialCoefficient(a, x, 1).Value, "A02");
@@ -147,12 +151,13 @@ namespace Yttrium.UnitTests
             Assert.AreEqual(2, quotientCoeff.Length, "B01");
             Assert.AreEqual(new RationalValue(14, 25), quotientCoeff[0].Value, "B02");
             Assert.AreEqual(new RationalValue(3, 5), quotientCoeff[1].Value, "B03");
+            Assert.AreEqual("14/25+3/5*x", Service<IFormatter>.Instance.Format(quotient, FormattingOptions.Compact), "B04");
 
             Signal[] remainderCoeff = Polynomial.PolynomialCoefficients(remainder, x);
             Assert.AreEqual(2, remainderCoeff.Length, "C01");
             Assert.AreEqual(new RationalValue(111, 25), remainderCoeff[0].Value, "C02");
             Assert.AreEqual(new RationalValue(52, 25), remainderCoeff[1].Value, "C03");
-
+            Assert.AreEqual("111/25+52/25*x", Service<IFormatter>.Instance.Format(remainder, FormattingOptions.Compact), "C04");
         }
     }
 }

@@ -29,11 +29,12 @@ using MathNet.Symbolics.Packages.ObjectModel;
 using MathNet.Symbolics.Conversion;
 using MathNet.Symbolics.Library;
 using MathNet.Symbolics.Repository;
+using MathNet.Symbolics.Formatter;
 
 namespace MathNet.Symbolics.Packages.Standard.Structures
 {
     /// <summary>signed rational (fraction)</summary>
-    public class RationalValue : ValueStructureBase, IEquatable<RationalValue>, IComparable<RationalValue>, IAlgebraicField<RationalValue>
+    public class RationalValue : ValueStructureBase, IEquatable<RationalValue>, IComparable<RationalValue>, IAlgebraicField<RationalValue>, IFormattableLeaf
     {
         private static readonly MathIdentifier _customTypeId = new MathIdentifier("Rational", "Std");
         private readonly long _numeratorValue; // = 0;
@@ -395,12 +396,6 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
             return ((double)_numeratorValue) / ((double)_denominatorValue);
         }
 
-        public override string ToString()
-        {
-            IFormatProvider format = System.Globalization.NumberFormatInfo.InvariantInfo;
-            return base.ToString() + "(" + _numeratorValue.ToString(format) + "/" + _denominatorValue.ToString(format) + ")";
-        }
-
         public bool Equals(IntegerValue other)
         {
             return other != null && _numeratorValue == other.Value && _denominatorValue == 1;
@@ -475,6 +470,32 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
         {
             return new RationalValue(long.Parse(reader.ReadElementString("Numerator"), Config.InternalNumberFormat),
                 long.Parse(reader.ReadElementString("Denominator"), Config.InternalNumberFormat));
+        }
+        #endregion
+
+        #region Formatting
+        private string FormatImpl(out int precedence)
+        {
+            IFormatProvider format = System.Globalization.NumberFormatInfo.InvariantInfo;
+            if(IsInteger)
+            {
+                precedence = -1;
+                return _numeratorValue.ToString(format);
+            }
+            else
+            {
+                precedence = 50;
+                return _numeratorValue.ToString(format) + "/" + _denominatorValue.ToString(format);
+            }
+        }
+        public override string ToString()
+        {
+            int precedence;
+            return FormatBase(FormatImpl(out precedence), FormattingOptions.Default);
+        }
+        string IFormattableLeaf.Format(FormattingOptions options, out int precedence)
+        {
+            return FormatBase(FormatImpl(out precedence), options);
         }
         #endregion
     }

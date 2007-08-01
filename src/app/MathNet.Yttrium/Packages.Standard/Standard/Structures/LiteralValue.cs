@@ -28,11 +28,12 @@ using MathNet.Symbolics.Packages.ObjectModel;
 using MathNet.Symbolics.Conversion;
 using MathNet.Symbolics.Library;
 using MathNet.Symbolics.Repository;
+using MathNet.Symbolics.Formatter;
 
 namespace MathNet.Symbolics.Packages.Standard.Structures
 {
     /// <summary>string literal</summary>
-    public class LiteralValue : ValueStructureBase, IEquatable<LiteralValue>, IComparable<LiteralValue>
+    public class LiteralValue : ValueStructureBase, IEquatable<LiteralValue>, IComparable<LiteralValue>, IFormattableLeaf
     {
         private static readonly MathIdentifier _customTypeId = new MathIdentifier("Literal", "Std");
         private readonly string _dataValue;
@@ -131,11 +132,6 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
         }
         #endregion
 
-        public override string ToString()
-        {
-            return base.ToString() + "(" + _dataValue + ")";
-        }
-
         public override bool Equals(IValueStructure other)
         {
             LiteralValue literalValue = other as LiteralValue;
@@ -173,6 +169,23 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
         private static LiteralValue Deserialize(XmlReader reader, IDictionary<Guid, Signal> signals, IDictionary<Guid, Bus> buses)
         {
             return new LiteralValue(reader.ReadString());
+        }
+        #endregion
+
+        #region Formatting
+        private string FormatImpl()
+        {
+            // character-stuffing
+            return "\"" + _dataValue.Replace("\"","\"\"") + "\"";
+        }
+        public override string ToString()
+        {
+            return FormatBase(FormatImpl(), FormattingOptions.Default);
+        }
+        string IFormattableLeaf.Format(FormattingOptions options, out int precedence)
+        {
+            precedence = -1;
+            return FormatBase(FormatImpl(), options);
         }
         #endregion
     }
