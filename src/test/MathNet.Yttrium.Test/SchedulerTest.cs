@@ -29,6 +29,7 @@ using MathNet.Symbolics;
 using MathNet.Symbolics.Workplace;
 using MathNet.Symbolics.Backend;
 using MathNet.Symbolics.Packages.Standard.Structures;
+using MathNet.Symbolics.Packages.Standard;
 
 namespace Yttrium.UnitTests
 {
@@ -77,7 +78,7 @@ namespace Yttrium.UnitTests
         {
             Signal a = Binder.CreateSignal();
             Signal b = Binder.CreateSignal();
-            Signal c = a / b;
+            Signal c = StdBuilder.Divide(a, b);
 
             Signal d = Binder.CreateSignal();
             Signal e = Binder.CreateSignal();

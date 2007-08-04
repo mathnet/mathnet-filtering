@@ -258,6 +258,14 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
         {
             return new RealValue(Math.Log(_dataValue));
         }
+        public RealValue PositiveIntegerPower(int op)
+        {
+            return new RealValue(Math.Pow(_dataValue, op));
+        }
+        public RealValue IntegerPower(int op)
+        {
+            return new RealValue(Math.Pow(_dataValue, op));
+        }
         public RealValue Power(RealValue op)
         {
             if(op == null)

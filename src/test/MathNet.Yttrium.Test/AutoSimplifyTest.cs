@@ -35,6 +35,7 @@ using MathNet.Symbolics.Packages.Standard.Structures;
 using MathNet.Symbolics.Packages.Standard.Properties;
 using MathNet.Symbolics.Library;
 using MathNet.Symbolics.Packages.Standard;
+using MathNet.Symbolics.Formatter;
 
 namespace Yttrium.UnitTests
 {
@@ -42,20 +43,86 @@ namespace Yttrium.UnitTests
     [TestFixture]
     public class AutoSimplifyTest
     {
+        private Project _p;
+        private IFormatter _f;
+
+        [SetUp]
+        public void Initialize()
+        {
+            _p = new Project();
+            _f = Service<IFormatter>.Instance;
+        }
+
+        [TearDown]
+        public void Cleanup()
+        {
+            _p = null;
+            _f = null;
+        }
+
+        [Test]
+        public void AutoSimplify_RationalNumberExpression()
+        {
+            // A
+            Signal a =
+                StdBuilder.Add(
+                    StdBuilder.Divide(IntegerValue.Constant(2), IntegerValue.Constant(3)),
+                    RationalValue.Constant(3, 4));
+            Assert.AreEqual("2/3+3/4", _f.Format(a, FormattingOptions.Compact), "A1");
+
+            Signal aS = Std.AutoSimplify(a);
+            Assert.AreEqual("17/12", _f.Format(aS, FormattingOptions.Compact), "A2");
+
+            // B
+            Signal b =
+                StdBuilder.Power(
+                    StdBuilder.Divide(IntegerValue.Constant(4), IntegerValue.Constant(2)),
+                    IntegerValue.Constant(3));
+            Assert.AreEqual("(4/2)^3", _f.Format(b, FormattingOptions.Compact), "B1");
+
+            Signal bS = Std.AutoSimplify(b);
+            Assert.AreEqual("8", _f.Format(bS, FormattingOptions.Compact), "B2");
+
+            // C
+            Signal c =
+                StdBuilder.Divide(
+                    IntegerValue.ConstantOne,
+                    StdBuilder.Subtract(
+                        RationalValue.Constant(2, 4),
+                        RationalValue.ConstantHalf));
+            Assert.AreEqual("1/(1/2-1/2)", _f.Format(c, FormattingOptions.Compact), "C1");
+
+            Signal cS = Std.AutoSimplify(c);
+            Assert.AreEqual("Std.Undefined", _f.Format(cS, FormattingOptions.Compact), "C2");
+
+            // D
+            Signal d =
+                StdBuilder.Power(
+                    StdBuilder.Power(
+                        IntegerValue.Constant(5),
+                        IntegerValue.Constant(2)),
+                    StdBuilder.Power(
+                        IntegerValue.Constant(3),
+                        IntegerValue.Constant(1)));
+            Assert.AreEqual("(5^2)^(3^1)", _f.Format(d, FormattingOptions.Compact), "D1");
+
+            Signal dS = Std.AutoSimplify(d);
+            Assert.AreEqual("15625", _f.Format(dS, FormattingOptions.Compact), "D2");
+        }
+
         [Test]
         public void AutoSimplify_MathOp_AlgebraDerive()
         {
-            Project p = new Project();
-            IMathSystem s = p.CurrentSystem;
+            IMathSystem s = _p.CurrentSystem;
 
-            p.Interpret(@"Signal x;");
-            p.Interpret(@"Signal fn;");
-            p.Interpret(@"Signal fdiv;");
-            p.Interpret(@"Signal fdiff;");
+            _p.Interpret(@"Signal x;");
+            _p.Interpret(@"Signal fn;");
+            _p.Interpret(@"Signal fdiv;");
+            _p.Interpret(@"Signal fdiff;");
 
-            p.Interpret(@"fn <- 3*exp(-3*x)-x;");
-            p.Interpret(@"fdiff <- diff(3*exp(-3*x)-x, x);");
-            p.Interpret(@"fdiv <- fn / fdiff;");
+            _p.Interpret(@"fn <- 3*exp(-3*x)-x;");
+            _p.Interpret(@"fdiff <- diff(3*exp(-3*x)-x, x);");
+            _p.Interpret(@"fdiv <- fn / fdiff;");
 
             Signal x = s.LookupNamedSignal("x");
             Std.ConstrainAlwaysReal(x);
@@ -70,12 +137,13 @@ namespace Yttrium.UnitTests
 
             // Execute MathOp Std.Derive
             Signal simplified = Std.AutoSimplify(fdiv);
-            Assert.AreEqual(new MathIdentifier("Divide", "Std"), simplified.DrivenByPort.Entity.EntityId, "D");
+            Assert.AreEqual("(3*exp(-3*x)+-1*x)*(-1+-9*exp(-3*x))^(-1)", _f.Format(simplified, FormattingOptions.Compact), "D");
+            Assert.AreEqual(new MathIdentifier("Multiply", "Std"), simplified.DrivenByPort.Entity.EntityId, "E");
 
             Signal simplified_n = simplified.DrivenByPort.InputSignals[0];
             Signal simplified_d = simplified.DrivenByPort.InputSignals[1];
-            Assert.AreEqual(new MathIdentifier("Subtract", "Std"), simplified_n.DrivenByPort.Entity.EntityId, "E");
-            Assert.AreEqual(new MathIdentifier("Subtract", "Std"), simplified_d.DrivenByPort.Entity.EntityId, "F");
+            Assert.AreEqual(new MathIdentifier("Add", "Std"), simplified_n.DrivenByPort.Entity.EntityId, "F");
+            Assert.AreEqual(new MathIdentifier("Power", "Std"), simplified_d.DrivenByPort.Entity.EntityId, "G");
 
             s.PromoteAsInput(x);
             s.AddSignalTree(simplified, true, false);
@@ -83,7 +151,7 @@ namespace Yttrium.UnitTests
             s.RemoveUnusedObjects();
 
             // The Derive Mapping should be removed from the system
-            Assert.IsFalse(s.GetAllPorts().Exists(delegate(Port port) { return port.Entity.EqualsById(new MathIdentifier("Derive", "Std")); }), "G");
+            Assert.IsFalse(s.GetAllPorts().Exists(delegate(Port port) { return port.Entity.EqualsById(new MathIdentifier("Derive", "Std")); }), "H");
 
             Assert.AreEqual(-0.3, s.Evaluate(0.0)[0], 1e-8, "x=0.0");
             Assert.AreEqual(.5874238104, s.Evaluate(1.0)[0], 1e-8, "x=1.0");

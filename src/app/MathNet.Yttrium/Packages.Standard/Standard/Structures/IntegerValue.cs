@@ -32,7 +32,7 @@ using MathNet.Symbolics.Formatter;
 namespace MathNet.Symbolics.Packages.Standard.Structures
 {
     /// <summary>signed integer</summary>
-    public class IntegerValue : ValueStructureBase, IEquatable<IntegerValue>, IComparable<IntegerValue>, IAlgebraicCommutativeRingWithUnity<IntegerValue>, IFormattableLeaf
+    public class IntegerValue : ValueStructureBase, IEquatable<IntegerValue>, IComparable<IntegerValue>, IAlgebraicIntegralDomain<IntegerValue, RationalValue>, IFormattableLeaf
     {
         private static readonly MathIdentifier _customTypeId = new MathIdentifier("Integer", "Std");
         private readonly long _dataValue; // = 0;
@@ -228,11 +228,31 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
         {
             return new RationalValue(1, _dataValue);
         }
+
+        public IntegerValue PositiveIntegerPower(int op)
+        {
+            if(op == 1)
+                return this;
+            if(op == 0)
+                return _dataValue == 0 ? IntegerValue.Zero : IntegerValue.One;
+            return new IntegerValue(MathNet.Numerics.Fn.IntPow(_dataValue, (uint)op));
+        }
+        public RationalValue IntegerPower(int op)
+        {
+            if(op == 1)
+                return new RationalValue(this);
+            if(op == 0)
+                return _dataValue == 0 ? RationalValue.Zero : RationalValue.One;
+            if(op > 1)
+                return new RationalValue(MathNet.Numerics.Fn.IntPow(_dataValue, (uint)op), 1);
+            return new RationalValue(1, MathNet.Numerics.Fn.IntPow(_dataValue, (uint)-op));
+        }
         public IntegerValue Power(IntegerValue op)
         {
             if(op == null)
                 throw new ArgumentNullException("op");
-            
+ 
+            // TODO: get rid of this
             return new IntegerValue((long)Math.Round(Math.Pow(_dataValue, op._dataValue)));
         }
         public IntegerValue Absolute()
@@ -451,7 +471,7 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
         }
         string IFormattableLeaf.Format(FormattingOptions options, out int precedence)
         {
-            precedence = -1;
+            precedence = _dataValue < 0 ? 20 : -1;
             IFormatProvider format = System.Globalization.NumberFormatInfo.InvariantInfo;
             return FormatBase(_dataValue.ToString(format), options);
         }

@@ -68,6 +68,29 @@ namespace MathNet.Symbolics.Packages.Standard.Arithmetics
                 {
                     return StdBuilder.Negate(manipulatedInputs);
                 }));
+
+            Algebra.AutoSimplifyTransformation.Provider.Add(
+                new Algebra.AutoSimplifyTransformation(_entityId,
+                delegate(Port port)
+                {
+                    // TODO
+                    return ManipulationPlan.DoAlter;
+                },
+                delegate(Port port, SignalSet manipulatedInputs, bool hasManipulatedInputs)
+                {
+                    if(manipulatedInputs.Count == 0)
+                            return new SignalSet(IntegerValue.ConstantAdditiveIdentity);
+                    if(manipulatedInputs.Count == 1)
+                    {
+                        Signal s = manipulatedInputs[0];
+                        if(Std.IsConstantAdditiveIdentity(s))
+                            return new SignalSet(s);
+                        return new SignalSet(Std.Negate(s));
+                    }
+                    if(hasManipulatedInputs)
+                        return new SignalSet(StdBuilder.Negate(manipulatedInputs));
+                    return port.OutputSignals;
+                }));
         }
     }
 }

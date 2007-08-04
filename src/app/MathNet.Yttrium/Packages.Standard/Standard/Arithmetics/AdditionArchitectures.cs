@@ -98,19 +98,54 @@ namespace MathNet.Symbolics.Packages.Standard.Arithmetics
             throw new MathNet.Symbolics.Exceptions.ArchitectureNotAvailableException(port);
         }
 
+        public static bool CollectSummands(ISignalSet signals)
+        {
+            bool changed = false;
+            for(int i = 0; i < signals.Count; i++)
+            {
+                Signal s = signals[i];
+                if(!s.BehavesAsBeingDriven(false))
+                    continue;
+
+                Port p = s.DrivenByPort;
+                if(p.Entity.EntityId.Equals(AdditionArchitectures.EntityIdentifier))
+                {
+                    signals.RemoveAt(i);
+                    ISignalSet inputs = p.InputSignals;
+                    for(int j = 0; j < inputs.Count; j++)
+                        signals.Insert(i + j, inputs[j]);
+                    i--;
+                    changed = true;
+                    continue;
+                }
+
+                if(p.Entity.EntityId.Equals(SubtractionArchitectures.EntityIdentifier))
+                {
+                    ISignalSet inputs = p.InputSignals;
+                    signals[i] = inputs[0];
+                    i--;
+                    for(int j = 1; j < inputs.Count; j++)
+                        signals.Insert(i + j, Std.Negate(inputs[j]));
+                    changed = true;
+                    continue;
+                }
+            }
+            return changed;
+        }
+
         public static bool SimplifySummands(ISignalSet signals)
         {
+            bool changed = CollectSummands(signals);
             if(signals.Count < 2)
-                return false;
-            bool changed = false;
+                return changed;
             IAccumulator acc = null;
             for(int i = signals.Count - 1; i >= 0; i--)
             {
                 Signal s = signals[i];
-                if(s.IsFlagEnabled(StdAspect.ConstantFlag) && ValueConverter<ComplexValue>.CanConvertLosslessFrom(s.Value))
+                if(Std.IsConstantComplex(s))
                 {
                     if(acc == null)
-                        acc = Accumulator<IntegerValue>.Create(IntegerValue.AdditiveIdentity);
+                        acc = Accumulator<IntegerValue, RationalValue>.Create(IntegerValue.AdditiveIdentity);
                     signals.RemoveAt(i);
                     changed = true;
                     acc = acc.Add(s.Value);
@@ -118,9 +153,7 @@ namespace MathNet.Symbolics.Packages.Standard.Arithmetics
             }
             if(acc != null && !acc.Value.Equals(IntegerValue.AdditiveIdentity))
             {
-                Signal sum = Binder.CreateSignal(acc.Value);
-                sum.EnableFlag(StdAspect.ConstantFlag);
-                signals.Insert(0, sum);
+                signals.Insert(0, Std.DefineConstant(acc.Value));
             }
             return changed;
         }
@@ -149,7 +182,7 @@ namespace MathNet.Symbolics.Packages.Standard.Arithmetics
                             return new SignalSet(IntegerValue.ConstantAdditiveIdentity);
                         if(manipulatedInputs.Count == 1)
                             return manipulatedInputs;
-                        return new SignalSet(Std.Add(manipulatedInputs));
+                        return new SignalSet(StdBuilder.Add(manipulatedInputs));
                     }
                     else
                         return port.OutputSignals;

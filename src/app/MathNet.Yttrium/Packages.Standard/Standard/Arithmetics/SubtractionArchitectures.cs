@@ -60,6 +60,20 @@ namespace MathNet.Symbolics.Packages.Standard.Arithmetics
                 delegate(Port port) { return new ProcessBase[] { new GenericStdFunctionProcess<ComplexValue>(delegate() { return ComplexValue.Zero; }, ComplexValue.ConvertFrom, ComplexValue.Subtract, port.InputSignalCount) }; });
         }
 
+        public static bool SimplifySummandsForceAddition(ISignalSet signals)
+        {
+            if(signals.Count < 2)
+                return false;
+
+            for(int i = 1; i < signals.Count; i++)
+                signals[i] = Std.Negate(signals[i]);
+            Signal sum = Std.Add(signals);
+
+            signals.Clear();
+            signals.Add(sum);
+            return true;
+        }
+
         public static bool SimplifySummands(ISignalSet signals)
         {
             if(signals.Count < 2)
@@ -69,10 +83,10 @@ namespace MathNet.Symbolics.Packages.Standard.Arithmetics
             for(int i = signals.Count - 1; i > 0; i--)  //don't touch first item!
             {
                 Signal s = signals[i];
-                if(s.IsFlagEnabled(StdAspect.ConstantFlag) && ValueConverter<ComplexValue>.CanConvertLosslessFrom(s.Value))
+                if(Std.IsConstantComplex(s))
                 {
                     if(acc == null)
-                        acc = Accumulator<IntegerValue>.Create(IntegerValue.AdditiveIdentity);
+                        acc = Accumulator<IntegerValue, RationalValue>.Create(IntegerValue.AdditiveIdentity);
                     signals.RemoveAt(i);
                     changed = true;
                     acc = acc.Add(s.Value);
@@ -81,19 +95,15 @@ namespace MathNet.Symbolics.Packages.Standard.Arithmetics
             if(acc != null && !acc.Value.Equals(IntegerValue.AdditiveIdentity))
             {
                 Signal first = signals[0];
-                if(first.IsFlagEnabled(StdAspect.ConstantFlag) && ValueConverter<ComplexValue>.CanConvertLosslessFrom(first.Value))
+                if(Std.IsConstantComplex(first))
                 {
                     acc = acc.Subtract(first.Value).Negate();
-                    Signal sum = Binder.CreateSignal(acc.Value);
-                    sum.EnableFlag(StdAspect.ConstantFlag);
+                    signals[0] = Std.DefineConstant(acc.Value);
                     changed = true;
-                    signals[0] = sum;
                 }
                 else
                 {
-                    Signal sum = Binder.CreateSignal(acc.Value);
-                    sum.EnableFlag(StdAspect.ConstantFlag);
-                    signals.Insert(1, sum);
+                    signals.Insert(1, Std.DefineConstant(acc.Value));
                 }
             }
             return changed;
@@ -117,13 +127,13 @@ namespace MathNet.Symbolics.Packages.Standard.Arithmetics
                 },
                 delegate(Port port, SignalSet manipulatedInputs, bool hasManipulatedInputs)
                 {
-                    if(SimplifySummands(manipulatedInputs) || hasManipulatedInputs)
+                    if(SimplifySummandsForceAddition(manipulatedInputs) || hasManipulatedInputs)
                     {
                         if(manipulatedInputs.Count == 0)
                             return new SignalSet(IntegerValue.ConstantAdditiveIdentity);
                         if(manipulatedInputs.Count == 1)
                             return manipulatedInputs;
-                        return new SignalSet(Std.Subtract(manipulatedInputs));
+                        return new SignalSet(StdBuilder.Subtract(manipulatedInputs));
                     }
                     else
                         return port.OutputSignals;

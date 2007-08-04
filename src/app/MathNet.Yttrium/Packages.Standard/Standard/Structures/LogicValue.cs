@@ -417,6 +417,16 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
         {
             return And(op);
         }
+        public LogicValue PositiveIntegerPower(int op)
+        {
+            if(op > 0)
+                return this;
+
+            if(op == 0)
+                return LogicValue.Zero;
+
+            throw new NotSupportedException();
+        }
         #endregion
 
         #region Static Templates

@@ -32,6 +32,7 @@ using MathNet.Symbolics.Backend;
 using MathNet.Symbolics.Packages.Standard;
 using MathNet.Symbolics.Packages.Standard.Properties;
 using MathNet.Symbolics.Packages.Standard.Structures;
+using MathNet.Symbolics.Formatter;
 
 namespace Yttrium.UnitTests
 {
@@ -39,15 +40,32 @@ namespace Yttrium.UnitTests
     [TestFixture]
     public class UseCasesBasicTest
     {
+        private Project _p;
+        private IFormatter _f;
+
+        [SetUp]
+        public void Initialize()
+        {
+            _p = new Project();
+            _f = Service<IFormatter>.Instance;
+        }
+
+        [TearDown]
+        public void Cleanup()
+        {
+            _p = null;
+            _f = null;
+        }
+
         //[TestMethod]
         [Test]
         public void UseCase_SimpleSystemAsFunction()
         {
             // TODO: Replace with new (easier to use) MathFunction class instead of MathSystem
 
-            Project p = new Project();
-            p.KeepTrack = true;
-            MathSystem s = p.CurrentSystem;
+            _p.KeepTrack = true;
+            MathSystem s = _p.CurrentSystem;
+            s.RemoveUnusedObjects();
 
             Signal x = Binder.CreateSignal();
             Std.ConstrainAlwaysReal(x);
@@ -81,31 +99,34 @@ namespace Yttrium.UnitTests
         {
             // TODO: Replace with new (easier to use) MathFunction class instead of MathSystem
 
-            Project p = new Project();
-            p.KeepTrack = true;
-            MathSystem s = p.CurrentSystem;
+            _p.KeepTrack = false;
+            MathSystem s = _p.CurrentSystem;
 
             Signal x = Binder.CreateSignal(); x.Label = "x";
             Signal x2 = StdBuilder.Square(x); x2.Label = "x2";
             Signal secx2 = StdBuilder.Secant(x2); secx2.Label = "secx2";
             Signal diff = Std.Derive(secx2, x); diff.Label = "diff1";
-
-            Assert.AreEqual(0, s.InputCount, "Input Signal Count A");
-            Assert.AreEqual(0, s.OutputCount, "Output Signal Count A");
-            Assert.AreEqual(0, s.BusCount, "Bus Count A");
-            Assert.AreEqual(7, s.SignalCount, "Signal Count A");
-            Assert.AreEqual(5, s.PortCount, "Port Count A");
-
-            Signal diff2 = Std.AutoSimplify(diff);
-            s.PromoteAsInput(x);
-            s.PromoteAsOutput(diff2);
+            s.AddSignalTree(diff, true, true);
             s.RemoveUnusedObjects();
 
+            Assert.AreEqual("2*sec(sqr(x))*tan(sqr(x))*x", _f.Format(diff, FormattingOptions.Compact), "Formatted Diff A");
+            Assert.AreEqual(1, s.InputCount, "Input Signal Count A");
+            Assert.AreEqual(1, s.OutputCount, "Output Signal Count A");
+            Assert.AreEqual(0, s.BusCount, "Bus Count A");
+            Assert.AreEqual(6, s.SignalCount, "Signal Count A");
+            Assert.AreEqual(4, s.PortCount, "Port Count A");
+
+            Signal diff2 = Std.AutoSimplify(diff);
+            s.UnpromoteAsOutput(diff);
+            s.AddSignalTree(diff2, true, true);
+            s.RemoveUnusedObjects();
+
+            Assert.AreEqual("2*sec(sqr(x))*tan(sqr(x))*x", _f.Format(diff2, FormattingOptions.Compact), "Formatted Diff B");
             Assert.AreEqual(1, s.InputCount, "Input Signal Count B");
             Assert.AreEqual(1, s.OutputCount, "Output Signal Count B");
             Assert.AreEqual(0, s.BusCount, "Bus Count B");
-            Assert.AreEqual(7, s.SignalCount, "Signal Count B");
-            Assert.AreEqual(5, s.PortCount, "Port Count B");
+            Assert.AreEqual(6, s.SignalCount, "Signal Count B");
+            Assert.AreEqual(4, s.PortCount, "Port Count B");
 
             IValueStructure vs = s.Evaluate(ComplexValue.I)[0];
             Assert.IsInstanceOfType(typeof(ComplexValue), vs, "Result is complex.");
@@ -119,8 +140,9 @@ namespace Yttrium.UnitTests
         [Test]
         public void UseCase_SystemAsCompoundArchitecture()
         {
-            Project p = new Project();
-            MathSystem s = p.CurrentSystem;
+            _p.KeepTrack = false;
+            MathSystem s = _p.CurrentSystem;
+            s.RemoveUnusedObjects();
 
             Signal x = Binder.CreateSignal();
             Std.ConstrainAlwaysReal(x);
@@ -135,7 +157,7 @@ namespace Yttrium.UnitTests
             Signal y = Binder.CreateSignal();
             y.PostNewValue(RealValue.E);
             Signal z = Service<IBuilder>.Instance.Function("sinx2", y);
-            p.SimulateInstant();  //.SimulateFor(new TimeSpan(1)); 
+            _p.SimulateInstant();  //.SimulateFor(new TimeSpan(1)); 
             IValueStructure res = z.Value;
             RealValue resReal = RealValue.ConvertFrom(res);
             Assert.AreEqual(0.8939, Math.Round(resReal.Value, 4));

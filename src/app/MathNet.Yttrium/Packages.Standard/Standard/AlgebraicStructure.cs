@@ -70,6 +70,7 @@ namespace MathNet.Symbolics.Packages.Standard
         where T : IValueStructure //, IAlgebraicMultiplicativeClose<T>
     {
         T Multiply(T other);
+        T PositiveIntegerPower(int exponent);
     }
     public interface IAlgebraicAdditiveIdentityElement
     {
@@ -80,6 +81,12 @@ namespace MathNet.Symbolics.Packages.Standard
     {
         bool IsMultiplicativeIdentity { get;}
         IValueStructure MultiplicativeIdentity { get;}
+    }
+    public interface IAlgebraicDivisionExtension<T, TExtension>
+    {
+        TExtension Divide(T other);
+        TExtension Invert();
+        TExtension IntegerPower(int exponent);
     }
 
     public interface IAlgebraicSemigroup<T> : IAlgebraicAdditiveClose<T>
@@ -124,14 +131,14 @@ namespace MathNet.Symbolics.Packages.Standard
     {
     }
 
-    public interface IAlgebraicSkewField<T> : IAlgebraicRingWithUnity<T>
+    public interface IAlgebraicSkewField<T> : IAlgebraicRingWithUnity<T>, IAlgebraicIntegralDomain<T,T>
         where T : IValueStructure //, IAlgebraicSkewField<T>
     {
-        T Divide(T other);
-        T Invert();
+        //T Divide(T other);
+        //T Invert();
     }
 
-    public interface IAlgebraicField<T> : IAlgebraicSkewField<T>, IAlgebraicCommutativeRingWithUnity<T> //, IAlgebraicVectorSpace<T,T>
+    public interface IAlgebraicField<T> : IAlgebraicSkewField<T>, IAlgebraicCommutativeRingWithUnity<T>
         where T : IValueStructure //, IAlgebraicField<T>
     {
     }
@@ -140,6 +147,18 @@ namespace MathNet.Symbolics.Packages.Standard
         where T : IValueStructure //, IAlgebraicBooleanAlgebra<T>
     {
         T Complement();
+    }
+
+    public interface IAlgebraicDomain<T> : IAlgebraicRingWithUnity<T>
+        where T : IValueStructure //, IAlgebraicDomain<T>
+    {
+
+    }
+
+    public interface IAlgebraicIntegralDomain<T, TDivision> : IAlgebraicDomain<T>, IAlgebraicCommutativeRingWithUnity<T>, IAlgebraicDivisionExtension<T,TDivision>
+        where T : IValueStructure //, IAlgebraicIntegralDomain<T>
+    {
+
     }
 
     /// <summary>

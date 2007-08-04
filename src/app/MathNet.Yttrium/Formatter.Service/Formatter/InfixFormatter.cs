@@ -37,6 +37,8 @@ namespace MathNet.Symbolics.Formatter
             StringBuilder sb = new StringBuilder(8 * sequence.Count); // heuristics
             foreach(string token in sequence)
                 sb.Append(token);
+            //sb.Replace("+-", "-");
+            //sb.Replace("--", "+");
             return sb.ToString();
         }
 
@@ -91,7 +93,8 @@ namespace MathNet.Symbolics.Formatter
                     notFirst = true;
 
                 LinkedListNode<string> before = sequence.Last;
-                if(FormatExpression(s, sequence, options) > precedence)
+                int subPrecedence = FormatExpression(s, sequence, options);
+                if(subPrecedence >= precedence && notation != InfixNotation.None)
                 {
                     sequence.AddAfter(before, "(");
                     sequence.AddLast(")");

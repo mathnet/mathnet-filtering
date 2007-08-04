@@ -151,13 +151,13 @@ namespace Yttrium.UnitTests
             Assert.AreEqual(2, quotientCoeff.Length, "B01");
             Assert.AreEqual(new RationalValue(14, 25), quotientCoeff[0].Value, "B02");
             Assert.AreEqual(new RationalValue(3, 5), quotientCoeff[1].Value, "B03");
-            Assert.AreEqual("14/25+3/5*x", Service<IFormatter>.Instance.Format(quotient, FormattingOptions.Compact), "B04");
+            Assert.AreEqual("14/25+(3/5)*x", Service<IFormatter>.Instance.Format(quotient, FormattingOptions.Compact), "B04");
 
             Signal[] remainderCoeff = Polynomial.PolynomialCoefficients(remainder, x);
             Assert.AreEqual(2, remainderCoeff.Length, "C01");
             Assert.AreEqual(new RationalValue(111, 25), remainderCoeff[0].Value, "C02");
             Assert.AreEqual(new RationalValue(52, 25), remainderCoeff[1].Value, "C03");
-            Assert.AreEqual("111/25+52/25*x", Service<IFormatter>.Instance.Format(remainder, FormattingOptions.Compact), "C04");
+            Assert.AreEqual("111/25+(52/25)*x", Service<IFormatter>.Instance.Format(remainder, FormattingOptions.Compact), "C04");
         }
     }
 }

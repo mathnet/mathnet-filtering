@@ -35,6 +35,14 @@ namespace MathNet.Symbolics.Packages.Standard
                 new NodeEventTrigger(EventTriggerAction.Dirty, RationalConstraintFlag.FlagChangedEvent, RationalConstraintFlag.FlagDirtiedEvent));
 
         /// <summary>
+        /// Flag indicating that the signal is constrained to always have complex values (of real parts).
+        /// </summary>
+        public static readonly NodeFlag ComplexConstraintFlag =
+            NodeFlag.Register(new MathIdentifier("ComplexConstraint", "Std"), typeof(StdAspect), FlagKind.Constraint,
+                new NodeEventTrigger(EventTriggerAction.Enable, RealConstraintFlag, RealConstraintFlag.FlagEnabledEvent),
+                new NodeEventTrigger(EventTriggerAction.Dirty, RealConstraintFlag.FlagChangedEvent, RealConstraintFlag.FlagDirtiedEvent));
+
+        /// <summary>
         /// Flag indicating that the signal is constrained to always be >= 0.
         /// </summary>
         public static readonly NodeFlag PositiveOrZeroConstraintFlag =
@@ -47,5 +55,19 @@ namespace MathNet.Symbolics.Packages.Standard
             NodeFlag.Register(new MathIdentifier("PositiveWithoutZero", "Std"), typeof(StdAspect), FlagKind.Constraint,
                 new NodeEventTrigger(EventTriggerAction.Enable, PositiveOrZeroConstraintFlag, PositiveOrZeroConstraintFlag.FlagEnabledEvent),
                 new NodeEventTrigger(EventTriggerAction.Dirty, PositiveOrZeroConstraintFlag.FlagChangedEvent));
+
+        /// <summary>
+        /// Flag indicating that the signal is constrained to always be <= 0.
+        /// </summary>
+        public static readonly NodeFlag NegativeOrZeroConstraintFlag =
+            NodeFlag.Register(new MathIdentifier("NegativeOrZero", "Std"), typeof(StdAspect), FlagKind.Constraint);
+
+        /// <summary>
+        /// Flag indicating that the signal is constrained to always be < 0.
+        /// </summary>
+        public static readonly NodeFlag NegativeWithoutZeroConstraingFlag =
+            NodeFlag.Register(new MathIdentifier("NegativeWithoutZero", "Std"), typeof(StdAspect), FlagKind.Constraint,
+                new NodeEventTrigger(EventTriggerAction.Enable, NegativeOrZeroConstraintFlag, NegativeOrZeroConstraintFlag.FlagEnabledEvent),
+                new NodeEventTrigger(EventTriggerAction.Dirty, NegativeOrZeroConstraintFlag.FlagChangedEvent));
     }
 }

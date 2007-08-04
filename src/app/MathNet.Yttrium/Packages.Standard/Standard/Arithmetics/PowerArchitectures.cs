@@ -28,6 +28,7 @@ using MathNet.Symbolics.Packages.Standard.Structures;
 using MathNet.Symbolics.Packages.ObjectModel;
 using MathNet.Symbolics.Manipulation;
 using MathNet.Symbolics.Library;
+using MathNet.Symbolics.Conversion;
 
 namespace MathNet.Symbolics.Packages.Standard.Arithmetics
 {
@@ -59,19 +60,84 @@ namespace MathNet.Symbolics.Packages.Standard.Arithmetics
                 delegate(Port port) { return new ProcessBase[] { new GenericStdFunctionProcess<ComplexValue>(delegate() { return ComplexValue.One; }, ComplexValue.ConvertFrom, ComplexValue.Power, port.InputSignalCount) }; });
         }
 
-        //public static Signal[] SimplifyOperands(List<Signal> signals)
-        //{
-        //    if(signals.Count>0 && Std.IsConstantOne(signals[0]))
-        //        return new Signal[] { signals[0] };
-        //    for(int i = signals.Count - 1; i > 0; i--) //don't touch first item
-        //    {
-        //        if(Std.IsConstantZero(signals[i]))
-        //            return new Signal[] { IntegerValue.ConstantOne(signals[i].Context) };
-        //        if(Std.IsConstantOne(signals[i]))
-        //            signals.RemoveAt(i);
-        //    }
-        //    return signals.ToArray();
-        //}
+        public static bool SimplifyOperands(ISignalSet signals)
+        {
+            if(signals.Count < 2)
+                return false;
+
+            bool changed = false;
+            Signal radix = signals[0];
+
+            if(Std.IsConstantAdditiveIdentity(radix) && Std.IsConstant(signals[1]))
+            {
+                if(Std.IsAlwaysNegative(signals[1]))
+                {
+                    signals.Clear();
+                    signals.Add(UndefinedSymbol.Constant);
+                    return true;
+                }
+                signals.Clear();
+                signals.Add(radix);
+                return true;
+            }
+            if(Std.IsConstantMultiplicativeIdentity(radix))
+            {
+                signals.Clear();
+                signals.Add(radix);
+                return true;
+            }
+
+            // Evaluate all but the first two operands -> nonnegative integers
+            IntegerValue value = null;
+            for(int i = signals.Count - 1; i > 1; i--)
+            {
+                Signal s = signals[i];
+                if(!Std.IsConstantNonnegativeInteger(s))
+                {
+                    if(changed)
+                    {
+                        signals.Add(Std.DefineConstant(value));
+                        return true;
+                    }
+                    return false;
+                }
+                signals.RemoveAt(i);
+                value = ValueConverter<IntegerValue>.ConvertFrom(s.Value).PositiveIntegerPower((int)value.Value);
+                changed = true;
+            }
+
+            // Evaluate the second operand -> integer (can also be negative)
+            Signal exponent = signals[1];
+            if(!Std.IsConstantInteger(exponent))
+            {
+                if(changed)
+                {
+                    signals.Add(Std.DefineConstant(value));
+                    return true;
+                }
+                return false;
+            }
+            IntegerValue exponentValue = ValueConverter<IntegerValue>.ConvertFrom(exponent.Value);
+            if(changed)
+                exponentValue = exponentValue.PositiveIntegerPower((int)value.Value);
+
+            // Evaluate the first operand -> accumulator
+            if(!Std.IsConstantComplex(radix))
+            {
+                if(changed)
+                {
+                    signals[1] = Std.DefineConstant(exponentValue);
+                    return true;
+                }
+                return false;
+            }
+            IAccumulator acc = Accumulator<IntegerValue, RationalValue>.Create(radix.Value);
+            acc = acc.IntegerPower((int)exponentValue.Value);
+
+            signals.Clear();
+            signals.Add(Std.DefineConstant(acc.Value));
+            return true;
+        }
 
         public static void RegisterTheorems(ILibrary library)
         {
@@ -93,14 +159,20 @@ namespace MathNet.Symbolics.Packages.Standard.Arithmetics
                 },
                 delegate(Port port, SignalSet manipulatedInputs, bool hasManipulatedInputs)
                 {
-                    if(Std.IsConstantMultiplicativeIdentity(manipulatedInputs[0]))
-                        return new SignalSet(manipulatedInputs[0]);
-                    if(Std.IsConstantMultiplicativeIdentity(manipulatedInputs[1]))
-                        return new SignalSet(manipulatedInputs[0]);
-                    if(Std.IsConstantAdditiveIdentity(manipulatedInputs[1]))
-                        return new SignalSet(IntegerValue.ConstantOne);
-                    if(hasManipulatedInputs)
-                        return port.Entity.InstantiatePort(manipulatedInputs).OutputSignals;
+                    if(SimplifyOperands(manipulatedInputs) || hasManipulatedInputs)
+                    {
+                        if(manipulatedInputs.Count == 0)
+                            return new SignalSet(IntegerValue.ConstantMultiplicativeIdentity);
+                        if(manipulatedInputs.Count == 1)
+                            return manipulatedInputs;
+                        if(Std.IsConstantMultiplicativeIdentity(manipulatedInputs[0]))
+                            return new SignalSet(manipulatedInputs[0]);
+                        if(Std.IsConstantMultiplicativeIdentity(manipulatedInputs[1]))
+                            return new SignalSet(manipulatedInputs[0]);
+                        if(Std.IsConstantAdditiveIdentity(manipulatedInputs[1]))
+                            return new SignalSet(IntegerValue.ConstantOne);
+                        return new SignalSet(StdBuilder.Power(manipulatedInputs));
+                    }
                     else
                         return port.OutputSignals;
                 }));

@@ -28,9 +28,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MathNet.Iridium, Version=2006.6.3.19463, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="MathNet.Iridium, Version=2007.6.9.30485, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\MathNet.Iridium\Library\bin\Release\MathNet.Iridium.dll</HintPath>
+      <HintPath>..\..\..\..\build\Release\MathNet.Iridium.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

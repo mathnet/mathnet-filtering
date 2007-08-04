@@ -37,11 +37,14 @@ namespace MathNet.Symbolics.Packages.Standard.Arithmetics
         IAccumulator Divide(IValueStructure operand);
         IAccumulator Negate();
         IAccumulator Invert();
+        IAccumulator IntegerPower(int exponent);
+        IAccumulator IntegerPower(IValueStructure exponent);
     }
 
-    internal class Accumulator<T> :
+    internal class Accumulator<T, TDivision> :
         IAccumulator
-        where T : IAlgebraicCommutativeRingWithUnity<T>, IValueStructure
+        where T : IAlgebraicIntegralDomain<T, TDivision>, IValueStructure //IAlgebraicCommutativeRingWithUnity<T>
+        where TDivision : IAlgebraicIntegralDomain<TDivision, TDivision>, IValueStructure
     {
         private T _value;
 
@@ -109,10 +112,15 @@ namespace MathNet.Symbolics.Packages.Standard.Arithmetics
         public IAccumulator Divide(IValueStructure operand)
         {
             object other;
-            if((_value is IAlgebraicField<T>) && ValueConverter<T>.TryConvertLosslessFrom(operand, out other))
+            if(ValueConverter<T>.TryConvertLosslessFrom(operand, out other))
             {
-                _value = ((IAlgebraicField<T>)_value).Divide((T)other);
-                return this;
+                TDivision res = _value.Divide((T)other);
+                if(_value is IAlgebraicDivisionExtension<T, T>)
+                {
+                    _value = (T)(object)res;
+                    return this;
+                }
+                return Escalate<TDivision, TDivision>(res);
             }
             else
             {
@@ -123,13 +131,43 @@ namespace MathNet.Symbolics.Packages.Standard.Arithmetics
 
         public IAccumulator Invert()
         {
-            if(!(_value is IAlgebraicField<T>))
+            TDivision res = _value.Invert();
+            if(_value is IAlgebraicDivisionExtension<T, T>)
             {
-                IAccumulator acc = Escalate(_value.TypeId, _value, true);
-                return acc.Invert();
+                _value = (T)(object)res;
+                return this;
             }
-            _value = ((IAlgebraicField<T>)_value).Invert();
-            return this;
+            return Escalate<TDivision, TDivision>(res);
+        }
+
+        public IAccumulator IntegerPower(int exponent)
+        {
+            if(exponent >= 0)
+            {
+                _value = _value.PositiveIntegerPower(exponent);
+                return this;
+            }
+            TDivision res = _value.IntegerPower(exponent);
+            if(_value is IAlgebraicDivisionExtension<T, T>)
+            {
+                _value = (T)(object)res;
+                return this;
+            }
+            return Escalate<TDivision, TDivision>(res);
+        }
+
+        public IAccumulator IntegerPower(IValueStructure operand)
+        {
+            object other;
+            if(ValueConverter<IntegerValue>.TryConvertLosslessFrom(operand, out other))
+                return IntegerPower((int)((IntegerValue)other).Value);
+            if(ValueConverter<RationalValue>.TryConvertLosslessFrom(operand, out other))
+            {
+                RationalValue rv = (RationalValue)other;
+                if(rv.IsInteger)
+                    return IntegerPower((int)rv.NumeratorValue);
+            }
+            throw new NotSupportedException();
         }
 
         private static IAccumulator Escalate(MathIdentifier structure, IValueStructure value, bool requireField)
@@ -137,26 +175,27 @@ namespace MathNet.Symbolics.Packages.Standard.Arithmetics
             if(structure.Equals(IntegerValue.TypeIdentifier))
             {
                 if(requireField)
-                    return Escalate<RationalValue>(value);
+                    return Escalate<RationalValue, RationalValue>(value);
                 else
-                    return Escalate<IntegerValue>(value);
+                    return Escalate<IntegerValue, RationalValue>(value);
             }
             if(structure.Equals(RationalValue.TypeIdentifier))
-                return Escalate<RationalValue>(value);
+                return Escalate<RationalValue, RationalValue>(value);
             if(structure.Equals(RealValue.TypeIdentifier))
-                return Escalate<RealValue>(value);
+                return Escalate<RealValue, RealValue>(value);
             if(structure.Equals(ComplexValue.TypeIdentifier))
-                return Escalate<ComplexValue>(value);
+                return Escalate<ComplexValue, ComplexValue>(value);
 
             throw new NotSupportedException();
         }
 
-        private static IAccumulator Escalate<TStructure>(IValueStructure value)
-            where TStructure : IAlgebraicCommutativeRingWithUnity<TStructure>, IValueStructure
+        private static IAccumulator Escalate<TStructure, TStructureDivision>(IValueStructure value)
+            where TStructure : IAlgebraicIntegralDomain<TStructure, TStructureDivision>, IValueStructure
+            where TStructureDivision : IAlgebraicIntegralDomain<TStructureDivision, TStructureDivision>, IValueStructure
         {
             object val;
             if(ValueConverter<TStructure>.TryConvertLosslessFrom(value, out val))
-                return new Accumulator<TStructure>((TStructure)val);
+                return new Accumulator<TStructure, TStructureDivision>((TStructure)val);
             else
                 throw new NotSupportedException();
         }

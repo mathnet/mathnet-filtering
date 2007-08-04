@@ -308,17 +308,41 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
         {
             return (_numeratorValue < 0) ? new RationalValue(-_numeratorValue, _denominatorValue) : this;
         }
+        public RationalValue PositiveIntegerPower(int op)
+        {
+            if(op == 1)
+                return this;
+            if(op == 0)
+                return IsAdditiveIdentity ? RationalValue.Zero : RationalValue.One;
+            return new RationalValue(MathNet.Numerics.Fn.IntPow(_numeratorValue, (uint)op),
+                                     MathNet.Numerics.Fn.IntPow(_denominatorValue, (uint)op));
+        }
+        public RationalValue IntegerPower(int op)
+        {
+            if(op == 1)
+                return this;
+            if(op == 0)
+                return IsAdditiveIdentity ? RationalValue.Zero : RationalValue.One;
+            if(op > 1)
+                return new RationalValue(MathNet.Numerics.Fn.IntPow(_numeratorValue, (uint)op),
+                                         MathNet.Numerics.Fn.IntPow(_denominatorValue, (uint)op));
+            return new RationalValue(MathNet.Numerics.Fn.IntPow(_numeratorValue, (uint)(-op)),
+                                     MathNet.Numerics.Fn.IntPow(_denominatorValue, (uint)(-op)));
+        }
         public RationalValue Power(IntegerValue op)
         {
             if(op == null)
                 throw new ArgumentNullException("op");
 
-            return new RationalValue((long)Math.Round(Math.Pow(_numeratorValue, op.Value)), (long)Math.Round(Math.Pow(_denominatorValue, op.Value)));
+            return IntegerPower((int)op.Value);
         }
         public RealValue Power(RationalValue op)
         {
             if(op == null)
                 throw new ArgumentNullException("op");
+
+            //if(op.IsInteger)
+            //    return Power(op.Numerator);
 
             return new RealValue(Math.Pow(ToDouble(), op.ToDouble()));
         }

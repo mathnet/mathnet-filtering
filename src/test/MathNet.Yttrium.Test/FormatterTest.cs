@@ -67,8 +67,40 @@ namespace Yttrium.UnitTests
                 RationalValue.Zero,
                 new RationalValue(12, 23));
 
-            Assert.AreEqual("1/3+4/5*x+12/23*x^3",
+            Assert.AreEqual("1/3+(4/5)*x+(12/23)*x^3",
                 f.Format(p, FormattingOptions.Compact), "A01");
+        }
+
+        [Test]
+        public void FormatAssociativeTest()
+        {
+            IFormatter f = Service<IFormatter>.Instance;
+            MathSystem s = project.CurrentSystem;
+            s.RemoveUnusedObjects();
+
+            project.Interpret("x1 <- (a+b)+(c+d);");
+            Signal x1 = s.LookupNamedSignal("x1");
+            Assert.AreEqual("(a+b)+(c+d)", f.Format(x1, FormattingOptions.Compact), "A1");
+            Signal x1S = Std.AutoSimplify(x1);
+            Assert.AreEqual("a+b+c+d", f.Format(x1S, FormattingOptions.Compact), "A2");
+
+            project.Interpret("x2 <- (a-b)+(c-d);");
+            Signal x2 = s.LookupNamedSignal("x2");
+            Assert.AreEqual("(a-b)+(c-d)", f.Format(x2, FormattingOptions.Compact), "B1");
+            Signal x2S = Std.AutoSimplify(x2);
+            Assert.AreEqual("a+-1*b+c+-1*d", f.Format(x2S, FormattingOptions.Compact), "B2");
+
+            project.Interpret("y1 <- (a*b)*(c*d);");
+            Signal y1 = s.LookupNamedSignal("y1");
+            Assert.AreEqual("(a*b)*(c*d)", f.Format(y1, FormattingOptions.Compact), "C1");
+            Signal y1S = Std.AutoSimplify(y1);
+            Assert.AreEqual("a*b*c*d", f.Format(y1S, FormattingOptions.Compact), "C2");
+
+            project.Interpret("y2 <- (a/b)*(c/d);");
+            Signal y2 = s.LookupNamedSignal("y2");
+            Assert.AreEqual("(a/b)*(c/d)", f.Format(y2, FormattingOptions.Compact), "D1");
+            Signal y2S = Std.AutoSimplify(y2);
+            Assert.AreEqual("a*b^(-1)*c*d^(-1)", f.Format(y2S, FormattingOptions.Compact), "D2");
         }
 
         [Test]
@@ -80,12 +112,12 @@ namespace Yttrium.UnitTests
             project.Interpret("x <- a+3+b*(c+d)/(1/2+3/4)^(5/6);");
             Signal x = s.LookupNamedSignal("x");
 
-            Assert.AreEqual("a+3+b*(c+d)/(1/2+3/4)^(5/6)",
+            Assert.AreEqual("(a+3)+(b*(c+d))/(1/2+3/4)^(5/6)",
                 Service<IFormatter>.Instance.Format(x, FormattingOptions.Compact), "A01");
 
             Signal x2 = Std.AutoSimplify(x);
 
-            Assert.AreEqual("3+a+b*(c+d)/(5/4)^(5/6)",
+            Assert.AreEqual("3+a+b*(c+d)*((5/4)^(5/6))^(-1)",
                 Service<IFormatter>.Instance.Format(x2, FormattingOptions.Compact), "B01");
         }
     }

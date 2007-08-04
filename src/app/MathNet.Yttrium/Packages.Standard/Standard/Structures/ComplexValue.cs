@@ -209,6 +209,14 @@ namespace MathNet.Symbolics.Packages.Standard.Structures
         {
             return new ComplexValue(_dataValue.Power(exponent.Value));
         }
+        public ComplexValue PositiveIntegerPower(int exponent)
+        {
+            return new ComplexValue(_dataValue.Power(exponent));
+        }
+        public ComplexValue IntegerPower(int exponent)
+        {
+            return new ComplexValue(_dataValue.Power(exponent));
+        }
         public static ComplexValue Root(ComplexValue radicand, ComplexValue rootexponent) { return radicand.Root(rootexponent); }
         public ComplexValue Root(ComplexValue rootexponent)
         {

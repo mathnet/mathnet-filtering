@@ -333,16 +333,12 @@ namespace MathNet.Symbolics.Packages.Standard
                 if(c.IsAdditiveIdentity)
                 {
                     if(zero == null)
-                    {
-                        zero = Binder.CreateSignal(c);
-                        zero.EnableFlag(StdAspect.ConstantFlag);
-                    }
+                        zero = Std.DefineConstant(c);
                     summands[i] = zero;
                     continue;
                 }
 
-                Signal coeff = Binder.CreateSignal(c);
-                coeff.EnableFlag(StdAspect.ConstantFlag);
+                Signal coeff = Std.DefineConstant(c);
 
                 if(i == 0)
                     summands[0] = coeff;

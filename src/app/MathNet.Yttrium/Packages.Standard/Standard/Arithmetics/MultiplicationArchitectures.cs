@@ -60,19 +60,60 @@ namespace MathNet.Symbolics.Packages.Standard.Arithmetics
                 delegate(Port port) { return new ProcessBase[] { new GenericStdFunctionProcess<ComplexValue>(delegate() { return ComplexValue.One; }, ComplexValue.ConvertFrom, ComplexValue.Multiply, port.InputSignalCount) }; });
         }
 
+        public static bool CollectFactors(ISignalSet signals)
+        {
+            bool changed = false;
+            for(int i = 0; i < signals.Count; i++)
+            {
+                Signal s = signals[i];
+                if(!s.BehavesAsBeingDriven(false))
+                    continue;
+
+                Port p = s.DrivenByPort;
+                if(p.Entity.EntityId.Equals(MultiplicationArchitectures.EntityIdentifier))
+                {
+                    signals.RemoveAt(i);
+                    ISignalSet inputs = p.InputSignals;
+                    for(int j = 0; j < inputs.Count; j++)
+                        signals.Insert(i + j, inputs[j]);
+                    i--;
+                    changed = true;
+                    continue;
+                }
+
+                if(p.Entity.EntityId.Equals(DivisionArchitectures.EntityIdentifier))
+                {
+                    ISignalSet inputs = p.InputSignals;
+                    signals[i] = inputs[0];
+                    i--;
+                    for(int j = 1; j < inputs.Count; j++)
+                        signals.Insert(i + j, Std.Invert(inputs[j]));
+                    changed = true;
+                    continue;
+                }
+            }
+            return changed;
+        }
+
         public static bool SimplifyFactors(ISignalSet signals)
         {
+            bool changed = CollectFactors(signals);
             if(signals.Count < 2)
-                return false;
-            bool changed = false;
+                return changed;
             IAccumulator acc = null;
             for(int i = signals.Count - 1; i >= 0; i--)
             {
                 Signal s = signals[i];
-                if(s.IsFlagEnabled(StdAspect.ConstantFlag) && ValueConverter<ComplexValue>.CanConvertLosslessFrom(s.Value))
+                if(Std.IsConstantComplex(s))
                 {
+                    if(Std.IsAdditiveIdentity(s))
+                    {
+                        signals.Clear();
+                        signals.Add(s);
+                        return true;
+                    }
                     if(acc == null)
-                        acc = Accumulator<IntegerValue>.Create(IntegerValue.MultiplicativeIdentity);
+                        acc = Accumulator<IntegerValue, RationalValue>.Create(IntegerValue.MultiplicativeIdentity);
                     signals.RemoveAt(i);
                     changed = true;
                     acc = acc.Multiply(s.Value);
@@ -80,9 +121,7 @@ namespace MathNet.Symbolics.Packages.Standard.Arithmetics
             }
             if(acc != null && !acc.Value.Equals(IntegerValue.MultiplicativeIdentity))
             {
-                Signal sum = Binder.CreateSignal(acc.Value);
-                sum.EnableFlag(StdAspect.ConstantFlag);
-                signals.Insert(0, sum);
+                signals.Insert(0, Std.DefineConstant(acc.Value));
             }
             return changed;
         }
@@ -120,7 +159,7 @@ namespace MathNet.Symbolics.Packages.Standard.Arithmetics
                             return new SignalSet(IntegerValue.ConstantMultiplicativeIdentity);
                         if(manipulatedInputs.Count == 1)
                             return manipulatedInputs;
-                        return new SignalSet(Std.Multiply(manipulatedInputs));
+                        return new SignalSet(StdBuilder.Multiply(manipulatedInputs));
                     }
                     else
                         return port.OutputSignals;
