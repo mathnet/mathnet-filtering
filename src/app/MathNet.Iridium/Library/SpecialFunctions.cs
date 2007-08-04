@@ -54,6 +54,13 @@ namespace MathNet.Numerics
             return r;
         }
 
+        [CLSCompliant(false)]
+        public static long IntPow(long radix, uint exponent)
+        {
+            // TODO: investigate for a better solution
+            return (long)Math.Round(Math.Pow(radix, exponent));
+        }
+
         #region Base 2 Integer Exponentiation
         /// <summary>
         /// Raises 2 to the provided integer exponent (0 &lt;= exponent &lt; 31).
