@@ -60,10 +60,46 @@ namespace MathNet.Symbolics.Packages.Standard.Arithmetics
                 delegate(Port port) { return new ProcessBase[] { new GenericStdFunctionProcess<ComplexValue>(delegate() { return ComplexValue.One; }, ComplexValue.ConvertFrom, ComplexValue.Divide, port.InputSignalCount) }; });
         }
 
+        public static bool CollectFactors(ISignalSet signals)
+        {
+            bool changed = false;
+            for(int i = 0; i < signals.Count; i++)
+            {
+                Signal s = signals[i];
+                if(!s.BehavesAsBeingDriven(false))
+                    continue;
+
+                Port p = s.DrivenByPort;
+                if(p.Entity.EntityId.Equals(MultiplicationArchitectures.EntityIdentifier))
+                {
+                    signals.RemoveAt(i);
+                    ISignalSet inputs = p.InputSignals;
+                    for(int j = 0; j < inputs.Count; j++)
+                        signals.Insert(i + j, (i == 0 && j != 0) ? Std.Invert(inputs[j]) : inputs[j]);
+                    i--;
+                    changed = true;
+                    continue;
+                }
+
+                if(p.Entity.EntityId.Equals(DivisionArchitectures.EntityIdentifier))
+                {
+                    ISignalSet inputs = p.InputSignals;
+                    signals[i] = inputs[0];
+                    i--;
+                    for(int j = 1; j < inputs.Count; j++)
+                        signals.Insert(i + j, (i == 0) ? inputs[j] : Std.Invert(inputs[j]));
+                    changed = true;
+                    continue;
+                }
+            }
+            return changed;
+        }
+
         public static bool SimplifyFactorsForceMultiplication(ISignalSet signals)
         {
+            bool changed = CollectFactors(signals);
             if(signals.Count < 2)
-                return false;
+                return changed;
 
             for(int i = 1; i < signals.Count; i++)
                 signals[i] = Std.Invert(signals[i]);
@@ -76,9 +112,9 @@ namespace MathNet.Symbolics.Packages.Standard.Arithmetics
 
         public static bool SimplifyFactors(ISignalSet signals)
         {
+            bool changed = CollectFactors(signals);
             if(signals.Count < 2)
-                return false;
-            bool changed = false;
+                return changed;
             IAccumulator acc = null; 
             for(int i = signals.Count - 1; i > 0; i--)  //don't touch first item!
             {

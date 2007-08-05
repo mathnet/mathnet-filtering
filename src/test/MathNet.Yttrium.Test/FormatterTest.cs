@@ -78,29 +78,53 @@ namespace Yttrium.UnitTests
             MathSystem s = project.CurrentSystem;
             s.RemoveUnusedObjects();
 
-            project.Interpret("x1 <- (a+b)+(c+d);");
+            project.Interpret("v1 <- (a+b)+(c+d);");
+            Signal v1 = s.LookupNamedSignal("v1");
+            Assert.AreEqual("(a+b)+(c+d)", f.Format(v1, FormattingOptions.Compact), "V1A");
+            Signal v1S = Std.AutoSimplify(v1);
+            Assert.AreEqual("a+b+c+d", f.Format(v1S, FormattingOptions.Compact), "V1B");
+
+            project.Interpret("v2 <- (a-b)+(c-d);");
+            Signal v2 = s.LookupNamedSignal("v2");
+            Assert.AreEqual("(a-b)+(c-d)", f.Format(v2, FormattingOptions.Compact), "V2A");
+            Signal v2S = Std.AutoSimplify(v2);
+            Assert.AreEqual("a+-1*b+c+-1*d", f.Format(v2S, FormattingOptions.Compact), "V2B");
+
+            project.Interpret("w1 <- (a-b)-(c-d);");
+            Signal w1 = s.LookupNamedSignal("w1");
+            Assert.AreEqual("(a-b)-(c-d)", f.Format(w1, FormattingOptions.Compact), "W1A");
+            Signal w1S = Std.AutoSimplify(w1);
+            Assert.AreEqual("a+-1*b+-1*c+d", f.Format(w1S, FormattingOptions.Compact), "W1B");
+
+            project.Interpret("w2 <- (a+b)-(c+d);");
+            Signal w2 = s.LookupNamedSignal("w2");
+            Assert.AreEqual("(a+b)-(c+d)", f.Format(w2, FormattingOptions.Compact), "W2A");
+            Signal w2S = Std.AutoSimplify(w2);
+            Assert.AreEqual("a+b+-1*c+-1*d", f.Format(w2S, FormattingOptions.Compact), "W2B");
+
+            project.Interpret("x1 <- (a*b)*(c*d);");
             Signal x1 = s.LookupNamedSignal("x1");
-            Assert.AreEqual("(a+b)+(c+d)", f.Format(x1, FormattingOptions.Compact), "A1");
+            Assert.AreEqual("(a*b)*(c*d)", f.Format(x1, FormattingOptions.Compact), "X1A");
             Signal x1S = Std.AutoSimplify(x1);
-            Assert.AreEqual("a+b+c+d", f.Format(x1S, FormattingOptions.Compact), "A2");
+            Assert.AreEqual("a*b*c*d", f.Format(x1S, FormattingOptions.Compact), "X1B");
 
-            project.Interpret("x2 <- (a-b)+(c-d);");
+            project.Interpret("x2 <- (a/b)*(c/d);");
             Signal x2 = s.LookupNamedSignal("x2");
-            Assert.AreEqual("(a-b)+(c-d)", f.Format(x2, FormattingOptions.Compact), "B1");
+            Assert.AreEqual("(a/b)*(c/d)", f.Format(x2, FormattingOptions.Compact), "X2A");
             Signal x2S = Std.AutoSimplify(x2);
-            Assert.AreEqual("a+-1*b+c+-1*d", f.Format(x2S, FormattingOptions.Compact), "B2");
+            Assert.AreEqual("a*b^(-1)*c*d^(-1)", f.Format(x2S, FormattingOptions.Compact), "X2B");
 
-            project.Interpret("y1 <- (a*b)*(c*d);");
+            project.Interpret("y1 <- (a/b)/(c/d);");
             Signal y1 = s.LookupNamedSignal("y1");
-            Assert.AreEqual("(a*b)*(c*d)", f.Format(y1, FormattingOptions.Compact), "C1");
+            Assert.AreEqual("(a/b)/(c/d)", f.Format(y1, FormattingOptions.Compact), "Y1A");
             Signal y1S = Std.AutoSimplify(y1);
-            Assert.AreEqual("a*b*c*d", f.Format(y1S, FormattingOptions.Compact), "C2");
+            Assert.AreEqual("a*b^(-1)*c^(-1)*d", f.Format(y1S, FormattingOptions.Compact), "Y1B");
 
-            project.Interpret("y2 <- (a/b)*(c/d);");
+            project.Interpret("y2 <- (a*b)/(c*d);");
             Signal y2 = s.LookupNamedSignal("y2");
-            Assert.AreEqual("(a/b)*(c/d)", f.Format(y2, FormattingOptions.Compact), "D1");
+            Assert.AreEqual("(a*b)/(c*d)", f.Format(y2, FormattingOptions.Compact), "Y2A");
             Signal y2S = Std.AutoSimplify(y2);
-            Assert.AreEqual("a*b^(-1)*c*d^(-1)", f.Format(y2S, FormattingOptions.Compact), "D2");
+            Assert.AreEqual("a*b*c^(-1)*d^(-1)", f.Format(y2S, FormattingOptions.Compact), "Y2B");
         }
 
         [Test]

@@ -60,6 +60,15 @@ namespace MathNet.Symbolics.Packages.Standard.Arithmetics
                 delegate(Port port) { return new ProcessBase[] { new GenericStdFunctionProcess<ComplexValue>(delegate() { return ComplexValue.One; }, ComplexValue.ConvertFrom, ComplexValue.Power, port.InputSignalCount) }; });
         }
 
+        public static bool CollectOperands(ISignalSet signals)
+        {
+            bool changed = false;
+            while(signals.Count > 0 && signals[0].IsDrivenByPortEntity(PowerArchitectures.EntityIdentifier))
+            {
+            }
+            return changed;
+        }
+
         public static bool SimplifyOperands(ISignalSet signals)
         {
             if(signals.Count < 2)
@@ -96,7 +105,8 @@ namespace MathNet.Symbolics.Packages.Standard.Arithmetics
                 {
                     if(changed)
                     {
-                        signals.Add(Std.DefineConstant(value));
+                        if(!value.IsMultiplicativeIdentity)
+                            signals.Add(Std.DefineConstant(value));
                         return true;
                     }
                     return false;
@@ -112,7 +122,8 @@ namespace MathNet.Symbolics.Packages.Standard.Arithmetics
             {
                 if(changed)
                 {
-                    signals.Add(Std.DefineConstant(value));
+                    if(!value.IsMultiplicativeIdentity)
+                        signals.Add(Std.DefineConstant(value));
                     return true;
                 }
                 return false;
@@ -121,12 +132,25 @@ namespace MathNet.Symbolics.Packages.Standard.Arithmetics
             if(changed)
                 exponentValue = exponentValue.PositiveIntegerPower((int)value.Value);
 
-            // Evaluate the first operand -> accumulator
+            // Special case: first operand is a power
+            if(radix.IsDrivenByPortEntity(PowerArchitectures.EntityIdentifier)
+                && radix.DrivenByPort.InputSignalCount == 2
+                && Std.IsConstantInteger(radix.DrivenByPort.InputSignals[1]))
+            {
+                exponentValue = exponentValue.Multiply(ValueConverter<IntegerValue>.ConvertFrom(radix.DrivenByPort.InputSignals[1].Value));
+                signals[0] = radix = radix.DrivenByPort.InputSignals[0];
+                changed = true;
+            }
+
+            // Evaluate the first operand
             if(!Std.IsConstantComplex(radix))
             {
                 if(changed)
                 {
-                    signals[1] = Std.DefineConstant(exponentValue);
+                    if(!exponentValue.IsMultiplicativeIdentity)
+                        signals[1] = Std.DefineConstant(exponentValue);
+                    else
+                        signals.RemoveAt(1);
                     return true;
                 }
                 return false;
