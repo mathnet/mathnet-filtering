@@ -56,6 +56,9 @@ namespace MathNet.Numerics
         int RemoveAll(Predicate<T> match);
 
         bool IsReadonly { get;}
+
+        void Sort(IComparer<T> comparer);
+        void Sort(int index, int count, IComparer<T> comparer);
     }
 
     public class Set<T> : Collection<T>, ISet<T> where T : IEquatable<T>
@@ -539,6 +542,30 @@ namespace MathNet.Numerics
             return ret;
         }
         #endregion
+
+        #region Sorting
+        public void Sort(IComparer<T> comparer)
+        {
+            Sort(0, Count, comparer);
+        }
+        public void Sort(int index, int count, IComparer<T> comparer)
+        {
+            IList<T> items = Items;
+            List<T> list = items as List<T>;
+            if(list != null)
+            {
+                list.Sort(index, count, comparer);
+                return;
+            }
+            T[] array = items as T[];
+            if(array != null)
+            {
+                Array.Sort<T>(array, index, count, comparer);
+                return;
+            }
+            throw new NotSupportedException();
+        }
+        #endregion
     }
 
     public class ReadOnlySet<T> : ReadOnlyCollection<T>, ISet<T> where T : IEquatable<T>
@@ -747,6 +774,14 @@ namespace MathNet.Numerics
             throw new NotSupportedException();
         }
         int ISet<T>.RemoveAll(Predicate<T> match)
+        {
+            throw new NotSupportedException();
+        }
+        void ISet<T>.Sort(IComparer<T> comparer)
+        {
+            throw new NotSupportedException();
+        }
+        void ISet<T>.Sort(int index, int count, IComparer<T> comparer)
         {
             throw new NotSupportedException();
         }
