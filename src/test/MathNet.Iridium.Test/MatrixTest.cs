@@ -22,9 +22,9 @@ namespace Iridium.Test
         [Test]
         public void TestMatrix_Create()
         {
-            double[,] a = { { 1, 2 }, { 2, 3 } };
+            double[][] a = { new double[] { 1, 2 }, new double[] { 2, 3 } };
             Matrix ma = Matrix.Create(a);
-            double[,] b = { { 1.0, 2.0 }, { 2.0, 3.0 } };
+            double[][] b = { new double[] { 1.0, 2.0 }, new double[] { 2.0, 3.0 } };
             Matrix mb = Matrix.Create(a);
             Assert.IsTrue(ma.Equals(ma), "Matrices should be equal");
         }
@@ -32,11 +32,11 @@ namespace Iridium.Test
         [Test]
         public void TestMatrix_Add()
         {
-            double[,] a = { { 1, 2 }, { 2, 3 } };
+            double[][] a = { new double[] { 1, 2 }, new double[] { 2, 3 } };
             Matrix ma = Matrix.Create(a);
-            double[,] b = { { 1.0, 2.0 }, { 3.0, 4.0 } };
+            double[][] b = { new double[] { 1.0, 2.0 }, new double[] { 3.0, 4.0 } };
             Matrix mb = Matrix.Create(b);
-            double[,] r = { { 2.0, 4.0 }, { 5.0, 7.0 } };
+            double[][] r = { new double[] { 2.0, 4.0 }, new double[] { 5.0, 7.0 } };
             Matrix mr = Matrix.Create(r);
             //Console.WriteLine("a");
             //Console.WriteLine(ma.ToString());
@@ -55,11 +55,11 @@ namespace Iridium.Test
         [Test]
         public void TestMatrix_Multiply()
         {
-            double[,] a = { { 1, 2 }, { 3, 5 } };
+            double[][] a = { new double[] { 1, 2 }, new double[] { 3, 5 } };
             Matrix ma = Matrix.Create(a);
-            double[,] b = { { 7, 11 }, { 13, 17 } };
+            double[][] b = { new double[] { 7, 11 }, new double[] { 13, 17 } };
             Matrix mb = Matrix.Create(b);
-            double[,] r = { { 33, 45 }, { 86, 118 } };
+            double[][] r = { new double[] { 33, 45 }, new double[] { 86, 118 } };
             Matrix mr = Matrix.Create(r);
             //Console.WriteLine("a");
             //Console.WriteLine(ma.ToString());
@@ -78,11 +78,11 @@ namespace Iridium.Test
         [Test]
         public void TestMatrix_Solve()
         {
-            double[,] a = { { 1, 2 }, { 3, 5 } };
+            double[][] a = { new double[] { 1, 2 }, new double[] { 3, 5 } };
             Matrix ma = Matrix.Create(a);
-            double[,] b = { { 29.0 }, { 76.0 } };
+            double[][] b = { new double[] { 29.0 }, new double[] { 76.0 } };
             Matrix mb = Matrix.Create(b);
-            double[,] r = { { 7 }, { 11.0 } };
+            double[][] r = { new double[] { 7 }, new double[] { 11.0 } };
             Matrix mr = Matrix.Create(r);
             //Console.WriteLine("a");
             //Console.WriteLine(ma.ToString());
@@ -112,10 +112,10 @@ namespace Iridium.Test
         public void TestMatrix_SolveA()
         {
             TestMatrix(
-              new double[,] { { 1, 2 }, 
-                        { 3, 5 } },
-              new double[,] { { 7 }, 
-                        { 11.0 } },
+              new double[][] { new double[]{ 1, 2 }, 
+                        new double[]{ 3, 5 } },
+              new double[][] { new double[]{ 7 }, 
+                        new double[]{ 11.0 } },
               1e-13, false);
         }
 
@@ -123,12 +123,12 @@ namespace Iridium.Test
         public void TestMatrix_SolveB()
         {
             TestMatrix(
-              new double[,] { { 1,  2,  3}, 
-                        { 5,  7, 11 },
-                        {13, 17, 19}},
-              new double[,] { { 23 }, 
-                        { 29 }, 
-                        { 31 }},
+              new double[][] { new double[] { 1,  2,  3}, 
+                        new double[]{ 5,  7, 11 },
+                        new double[]{13, 17, 19}},
+              new double[][] { new double[]{ 23 }, 
+                        new double[]{ 29 }, 
+                        new double[]{ 31 }},
               1e-13, false);
         }
 
@@ -159,7 +159,7 @@ namespace Iridium.Test
         [Test]
         public void TestMatrix_Solve080()
         {
-             TestMatrix_NxN(80, 1e-9, false);
+            TestMatrix_NxN(80, 1e-9, false);
         }
 
         [Test]
@@ -204,20 +204,26 @@ namespace Iridium.Test
         //    TestMatrix_NxN(1000, 1e-9, false);
         //}
 
+        //[Test]
+        //public void TestMatrix_Solve4000()
+        //{
+        //    TestMatrix_NxN(4000, 1e-9, false);
+        //}
+
         private void TestMatrix_NxN(int n, double epsilon, bool show)
         {
             Random r = new Random();
-            double[,] a = new double[n, n];
-            double[,] x = new double[n, 1];
+            double[][] a = Matrix.CreateMatrixData(n, n);
+            double[][] x = Matrix.CreateMatrixData(n, 1);
             for(int i = 0; i < n; i++)
             {
                 for(int j = 0; j < n; j++)
                 {
                     if(j == 0)
                     {
-                        x[i, j] = r.NextDouble();
+                        x[i][ 0] = r.NextDouble();
                     }
-                    a[i, j] = r.NextDouble();
+                    a[i][ j] = r.NextDouble();
                 }
             }
             TestMatrix(a, x, epsilon, show);
@@ -225,7 +231,7 @@ namespace Iridium.Test
 
 
         //calculate right hand side and then solve for x, show all matrices on console out.
-        private void TestMatrix(double[,] a, double[,] x, double epsilon, bool show)
+        private void TestMatrix(double[][] a, double[][] x, double epsilon, bool show)
         {
             Matrix ma = Matrix.Create(a);
             Matrix mx = Matrix.Create(x);

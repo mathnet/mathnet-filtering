@@ -78,6 +78,8 @@ namespace Iridium.Test
         {
             IFormatProvider format = System.Globalization.CultureInfo.InvariantCulture;
             Assert.AreEqual("1.11022302462516E-16", Number.EpsilonOf(1.0).ToString(format), "A");
+            Assert.AreEqual("1.11022302462516E-16", Number.RelativeAccuracy.ToString(format), "A2");
+            Assert.AreEqual("2.22044604925031E-16", Number.PositiveRelativeAccuracy.ToString(format), "A3");
             Assert.AreEqual("1.11022302462516E-16", Number.EpsilonOf(-1.0).ToString(format), "B");
             Assert.AreEqual("4.94065645841247E-324", Number.EpsilonOf(0.0).ToString(format), "C");
             Assert.AreEqual("1.94266889222573E+84", Number.EpsilonOf(1.0e+100).ToString(format), "D");
@@ -91,6 +93,7 @@ namespace Iridium.Test
             Assert.IsTrue(double.IsNaN(Number.EpsilonOf(double.NaN)), "L");
             Assert.IsTrue(double.IsNaN(Number.EpsilonOf(double.PositiveInfinity)), "M");
             Assert.IsTrue(double.IsNaN(Number.EpsilonOf(double.NegativeInfinity)), "N");
+
         }
 
         [Test]

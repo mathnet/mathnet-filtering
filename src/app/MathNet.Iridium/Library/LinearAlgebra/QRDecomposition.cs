@@ -1,8 +1,9 @@
-#region Math.NET Iridium (LGPL) by Vermorel + Contributors
+#region Math.NET Iridium (LGPL) by Vermorel, Ruegg + Contributors
 // Math.NET Iridium, part of the Math.NET Project
 // http://mathnet.opensourcedotnet.info
 //
 // Copyright (c) 2004-2007, Joannes Vermorel, http://www.vermorel.com
+//                          Christoph Rüegg, http://christoph.ruegg.name
 //
 // Contribution: The MathWorks and NIST [2000]
 //						
@@ -44,18 +45,18 @@ namespace MathNet.Numerics.LinearAlgebra
         #region Class variables
 
         /// <summary>Array for internal storage of decomposition.</summary>
-        private double[,] QR;
+        private double[][] QR;
 
         /// <summary>Row dimensions.</summary>
         private int m
         {
-            get { return QR.GetLength(0); }
+            get { return QR.Length; }
         }
 
         /// <summary>Column dimensions.</summary>
         private int n
         {
-            get { return QR.GetLength(1); }
+            get { return QR[0].Length; }
         }
 
         /// <summary>Array for internal storage of diagonal of R.</summary>
@@ -73,7 +74,7 @@ namespace MathNet.Numerics.LinearAlgebra
             // TODO: it is usually considered as a poor practice to execute algorithms within a constructor.
 
             // Initialize.
-            QR = (Matrix)A.Clone();
+            QR = A.Clone();
             Rdiag = new double[n];
 
             // Main loop.
@@ -83,21 +84,21 @@ namespace MathNet.Numerics.LinearAlgebra
                 double nrm = 0;
                 for(int i = k; i < m; i++)
                 {
-                    nrm = Fn.Hypot(nrm, QR[i, k]);
+                    nrm = Fn.Hypot(nrm, QR[i][k]);
                 }
 
                 if(nrm != 0.0)
                 {
                     // Form k-th Householder vector.
-                    if(QR[k, k] < 0)
+                    if(QR[k][k] < 0)
                     {
                         nrm = -nrm;
                     }
                     for(int i = k; i < m; i++)
                     {
-                        QR[i, k] /= nrm;
+                        QR[i][k] /= nrm;
                     }
-                    QR[k, k] += 1.0;
+                    QR[k][k] += 1.0;
 
                     // Apply transformation to remaining columns.
                     for(int j = k + 1; j < n; j++)
@@ -105,12 +106,12 @@ namespace MathNet.Numerics.LinearAlgebra
                         double s = 0.0;
                         for(int i = k; i < m; i++)
                         {
-                            s += QR[i, k] * QR[i, j];
+                            s += QR[i][k] * QR[i][j];
                         }
-                        s = (-s) / QR[k, k];
+                        s = (-s) / QR[k][k];
                         for(int i = k; i < m; i++)
                         {
-                            QR[i, j] += s * QR[i, k];
+                            QR[i][j] += s * QR[i][k];
                         }
                     }
                 }
@@ -146,23 +147,22 @@ namespace MathNet.Numerics.LinearAlgebra
                 // TODO: bad behavior of this property
                 // this property does not always return the same matrix
 
-                Matrix X = new Matrix(m, n);
-                double[,] H = X;
+                double[][] H = Matrix.CreateMatrixData(m, n);
                 for(int i = 0; i < m; i++)
                 {
                     for(int j = 0; j < n; j++)
                     {
                         if(i >= j)
                         {
-                            H[i, j] = QR[i, j];
+                            H[i][j] = QR[i][j];
                         }
                         else
                         {
-                            H[i, j] = 0.0;
+                            H[i][j] = 0.0;
                         }
                     }
                 }
-                return X;
+                return new Matrix(H);
             }
         }
 
@@ -174,27 +174,26 @@ namespace MathNet.Numerics.LinearAlgebra
                 // TODO: bad behavior of this property
                 // this property does not always return the same matrix
 
-                Matrix X = new Matrix(n, n);
-                double[,] R = X;
+                double[][] R = Matrix.CreateMatrixData(n, n);
                 for(int i = 0; i < n; i++)
                 {
                     for(int j = 0; j < n; j++)
                     {
                         if(i < j)
                         {
-                            R[i, j] = QR[i, j];
+                            R[i][j] = QR[i][j];
                         }
                         else if(i == j)
                         {
-                            R[i, j] = Rdiag[i];
+                            R[i][j] = Rdiag[i];
                         }
                         else
                         {
-                            R[i, j] = 0.0;
+                            R[i][j] = 0.0;
                         }
                     }
                 }
-                return X;
+                return new Matrix(R);
             }
         }
 
@@ -206,33 +205,32 @@ namespace MathNet.Numerics.LinearAlgebra
                 // TODO: bad behavior of this property
                 // this property does not always return the same matrix
 
-                Matrix X = new Matrix(m, n);
-                double[,] Q = X;
+                double[][] Q = Matrix.CreateMatrixData(m, n);
                 for(int k = n - 1; k >= 0; k--)
                 {
                     for(int i = 0; i < m; i++)
                     {
-                        Q[i, k] = 0.0;
+                        Q[i][k] = 0.0;
                     }
-                    Q[k, k] = 1.0;
+                    Q[k][k] = 1.0;
                     for(int j = k; j < n; j++)
                     {
-                        if(QR[k, k] != 0)
+                        if(QR[k][k] != 0)
                         {
                             double s = 0.0;
                             for(int i = k; i < m; i++)
                             {
-                                s += QR[i, k] * Q[i, j];
+                                s += QR[i][k] * Q[i][j];
                             }
-                            s = (-s) / QR[k, k];
+                            s = (-s) / QR[k][k];
                             for(int i = k; i < m; i++)
                             {
-                                Q[i, j] += s * QR[i, k];
+                                Q[i][j] += s * QR[i][k];
                             }
                         }
                     }
                 }
-                return X;
+                return new Matrix(Q);
             }
         }
         #endregion //  Public Properties
@@ -253,7 +251,7 @@ namespace MathNet.Numerics.LinearAlgebra
 
             // Copy right hand side
             int nx = B.ColumnCount;
-            double[,] X = (Matrix)B.Clone();
+            double[][] X = B.Clone();
 
             // Compute Y = transpose(Q)*B
             for(int k = 0; k < n; k++)
@@ -263,12 +261,12 @@ namespace MathNet.Numerics.LinearAlgebra
                     double s = 0.0;
                     for(int i = k; i < m; i++)
                     {
-                        s += QR[i, k] * X[i, j];
+                        s += QR[i][k] * X[i][j];
                     }
-                    s = (-s) / QR[k, k];
+                    s = (-s) / QR[k][k];
                     for(int i = k; i < m; i++)
                     {
-                        X[i, j] += s * QR[i, k];
+                        X[i][j] += s * QR[i][k];
                     }
                 }
             }
@@ -277,13 +275,13 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 for(int j = 0; j < nx; j++)
                 {
-                    X[k, j] /= Rdiag[k];
+                    X[k][j] /= Rdiag[k];
                 }
                 for(int i = 0; i < k; i++)
                 {
                     for(int j = 0; j < nx; j++)
                     {
-                        X[i, j] -= X[k, j] * QR[i, k];
+                        X[i][j] -= X[k][j] * QR[i][k];
                     }
                 }
             }

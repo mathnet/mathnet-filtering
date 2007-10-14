@@ -1,8 +1,9 @@
-#region Math.NET Iridium (LGPL) by Vermorel + Contributors
+#region Math.NET Iridium (LGPL) by Vermorel, Ruegg + Contributors
 // Math.NET Iridium, part of the Math.NET Project
 // http://mathnet.opensourcedotnet.info
 //
 // Copyright (c) 2004-2007, Joannes Vermorel, http://www.vermorel.com
+//                          Christoph Rüegg, http://christoph.ruegg.name
 //
 // Contribution: The MathWorks and NIST [2000]
 //						
@@ -40,12 +41,12 @@ namespace MathNet.Numerics.LinearAlgebra
         #region Class variables
 
         /// <summary>Array for internal storage of decomposition.</summary>
-        private double[,] L;
+        private double[][] L;
 
         /// <summary>Row and column dimension (square matrix).</summary>
         private int n
         {
-            get { return L.GetLength(0); }
+            get { return L.Length; }
         }
 
         /// <summary>Symmetric and positive definite flag.</summary>
@@ -61,8 +62,8 @@ namespace MathNet.Numerics.LinearAlgebra
         public CholeskyDecomposition(Matrix Arg)
         {
             // Initialize.
-            double[,] A = Arg;
-            L = new double[Arg.RowCount, Arg.RowCount];
+            double[][] A = Arg;
+            L = Matrix.CreateMatrixData(Arg.RowCount, Arg.RowCount);
 
             isspd = (Arg.ColumnCount == n);
             // Main loop.
@@ -76,18 +77,18 @@ namespace MathNet.Numerics.LinearAlgebra
                     double s = 0.0;
                     for(int i = 0; i < k; i++)
                     {
-                        s += L[k, i] * L[j, i];
+                        s += L[k][i] * L[j][i];
                     }
-                    L[j, k] = s = (A[j, k] - s) / L[k, k];
+                    L[j][k] = s = (A[j][k] - s) / L[k][k];
                     d = d + s * s;
-                    isspd = isspd & (A[k, j] == A[j, k]);
+                    isspd = isspd & (A[k][j] == A[j][k]);
                 }
-                d = A[j, j] - d;
+                d = A[j][j] - d;
                 isspd = isspd & (d > 0.0);
-                L[j, j] = System.Math.Sqrt(System.Math.Max(d, 0.0));
+                L[j][j] = Math.Sqrt(Math.Max(d, 0.0));
                 for(int k = j + 1; k < n; k++)
                 {
-                    L[j, k] = 0.0;
+                    L[j][k] = 0.0;
                 }
             }
         }
@@ -124,7 +125,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 throw new InvalidOperationException(Resources.ArgumentMatrixSymetricPositiveDefinite);
 
             // Copy right hand side.
-            double[,] X = B.Clone();
+            double[][] X = B.Clone();
             int nx = B.ColumnCount;
 
             // Solve L*Y = B;
@@ -134,12 +135,12 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     for(int j = 0; j < nx; j++)
                     {
-                        X[i, j] -= X[k, j] * L[i, k];
+                        X[i][j] -= X[k][j] * L[i][k];
                     }
                 }
                 for(int j = 0; j < nx; j++)
                 {
-                    X[k, j] /= L[k, k];
+                    X[k][j] /= L[k][k];
                 }
             }
 
@@ -148,13 +149,13 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 for(int j = 0; j < nx; j++)
                 {
-                    X[k, j] /= L[k, k];
+                    X[k][j] /= L[k][k];
                 }
                 for(int i = 0; i < k; i++)
                 {
                     for(int j = 0; j < nx; j++)
                     {
-                        X[i, j] -= X[k, j] * L[k, i];
+                        X[i][j] -= X[k][j] * L[k][i];
                     }
                 }
             }

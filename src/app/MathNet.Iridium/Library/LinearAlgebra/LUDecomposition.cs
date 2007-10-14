@@ -1,8 +1,9 @@
-#region Math.NET Iridium (LGPL) by Vermorel + Contributors
+#region Math.NET Iridium (LGPL) by Vermorel, Ruegg + Contributors
 // Math.NET Iridium, part of the Math.NET Project
 // http://mathnet.opensourcedotnet.info
 //
 // Copyright (c) 2004-2007, Joannes Vermorel, http://www.vermorel.com
+//                          Christoph Rüegg, http://christoph.ruegg.name
 //
 // Contribution: The MathWorks and NIST [2000]
 //						
@@ -44,19 +45,13 @@ namespace MathNet.Numerics.LinearAlgebra
         #region Class variables
 
         /// <summary>Array for internal storage of decomposition.</summary>
-        private double[,] LU;
+        private double[][] LU;
 
         /// <summary>Row dimensions.</summary>
-        private int m
-        {
-            get { return LU.GetLength(0); }
-        }
+        private readonly int _rowCount;
 
         /// <summary>Column dimensions.</summary>
-        private int n
-        {
-            get { return LU.GetLength(1); }
-        }
+        private readonly int _columnCount;
 
         /// <summary>Pivot sign.</summary>
         private int pivsign;
@@ -77,61 +72,64 @@ namespace MathNet.Numerics.LinearAlgebra
 
             // Use a "left-looking", dot-product, Crout/Doolittle algorithm.
 
-            LU = (Matrix)A.Clone();
-            piv = new int[m];
-            for(int i = 0; i < m; i++)
+            LU = A.Clone();
+            _rowCount = A.RowCount;
+            _columnCount = A.ColumnCount;
+
+            piv = new int[_rowCount];
+            for(int i = 0; i < _rowCount; i++)
             {
                 piv[i] = i;
             }
             pivsign = 1;
             //double[] LUrowi;
-            double[] LUcolj = new double[m];
+            double[] LUcolj = new double[_rowCount];
 
             // Outer loop.
 
-            for(int j = 0; j < n; j++)
+            for(int j = 0; j < _columnCount; j++)
             {
 
                 // Make a copy of the j-th column to localize references.
 
-                for(int i = 0; i < m; i++)
+                for(int i = 0; i < LUcolj.Length; i++)
                 {
-                    LUcolj[i] = LU[i, j];
+                    LUcolj[i] = LU[i][j];
                 }
 
                 // Apply previous transformations.
 
-                for(int i = 0; i < m; i++)
+                for(int i = 0; i < LUcolj.Length; i++)
                 {
                     //LUrowi = LU[i];
 
                     // Most of the time is spent in the following dot product.
 
-                    int kmax = System.Math.Min(i, j);
+                    int kmax = Math.Min(i, j);
                     double s = 0.0;
                     for(int k = 0; k < kmax; k++)
                     {
-                        s += LU[i, k] * LUcolj[k];
+                        s += LU[i][k] * LUcolj[k];
                     }
 
-                    LU[i, j] = LUcolj[i] -= s;
+                    LU[i][j] = LUcolj[i] -= s;
                 }
 
                 // Find pivot and exchange if necessary.
 
                 int p = j;
-                for(int i = j + 1; i < m; i++)
+                for(int i = j + 1; i < LUcolj.Length; i++)
                 {
-                    if(System.Math.Abs(LUcolj[i]) > System.Math.Abs(LUcolj[p]))
+                    if(Math.Abs(LUcolj[i]) > Math.Abs(LUcolj[p]))
                     {
                         p = i;
                     }
                 }
                 if(p != j)
                 {
-                    for(int k = 0; k < n; k++)
+                    for(int k = 0; k < _columnCount; k++)
                     {
-                        double t = LU[p, k]; LU[p, k] = LU[j, k]; LU[j, k] = t;
+                        double t = LU[p][k]; LU[p][k] = LU[j][k]; LU[j][k] = t;
                     }
                     int k2 = piv[p]; piv[p] = piv[j]; piv[j] = k2;
                     pivsign = -pivsign;
@@ -139,11 +137,11 @@ namespace MathNet.Numerics.LinearAlgebra
 
                 // Compute multipliers.
 
-                if(j < m & LU[j, j] != 0.0)
+                if((j < _rowCount) && (LU[j][j] != 0.0))
                 {
-                    for(int i = j + 1; i < m; i++)
+                    for(int i = j + 1; i < _rowCount; i++)
                     {
-                        LU[i, j] /= LU[j, j];
+                        LU[i][j] /= LU[j][j];
                     }
                 }
             }
@@ -157,8 +155,8 @@ namespace MathNet.Numerics.LinearAlgebra
         {
             get
             {
-                for(int j = 0; j < n; j++)
-                    if(LU[j, j] == 0) return false;
+                for(int j = 0; j < _columnCount; j++)
+                    if(LU[j][j] == 0) return false;
 
                 return true;
             }
@@ -172,27 +170,26 @@ namespace MathNet.Numerics.LinearAlgebra
                 // TODO: bad behavior of this property
                 // this property does not always return the same matrix
 
-                Matrix X = new Matrix(m, n);
-                double[,] L = X;
-                for(int i = 0; i < m; i++)
+                double[][] L = Matrix.CreateMatrixData(_rowCount, _columnCount);
+                for(int i = 0; i < L.Length; i++)
                 {
-                    for(int j = 0; j < n; j++)
+                    for(int j = 0; j < _columnCount; j++)
                     {
                         if(i > j)
                         {
-                            L[i, j] = LU[i, j];
+                            L[i][j] = LU[i][j];
                         }
                         else if(i == j)
                         {
-                            L[i, j] = 1.0;
+                            L[i][j] = 1.0;
                         }
                         else
                         {
-                            L[i, j] = 0.0;
+                            L[i][j] = 0.0;
                         }
                     }
                 }
-                return X;
+                return new Matrix(L);
             }
         }
 
@@ -204,23 +201,22 @@ namespace MathNet.Numerics.LinearAlgebra
                 // TODO: bad behavior of this property
                 // this property does not always return the same matrix
 
-                Matrix X = new Matrix(n, n);
-                double[,] U = X;
-                for(int i = 0; i < n; i++)
+                double[][] U = Matrix.CreateMatrixData(_columnCount, _columnCount);
+                for(int i = 0; i < _columnCount; i++)
                 {
-                    for(int j = 0; j < n; j++)
+                    for(int j = 0; j < _columnCount; j++)
                     {
                         if(i <= j)
                         {
-                            U[i, j] = LU[i, j];
+                            U[i][j] = LU[i][j];
                         }
                         else
                         {
-                            U[i, j] = 0.0;
+                            U[i][j] = 0.0;
                         }
                     }
                 }
-                return X;
+                return new Matrix(U);
             }
         }
 
@@ -232,8 +228,8 @@ namespace MathNet.Numerics.LinearAlgebra
                 // TODO: bad behavior of this property
                 // this property does not always return the same matrix
 
-                int[] p = new int[m];
-                for(int i = 0; i < m; i++)
+                int[] p = new int[_rowCount];
+                for(int i = 0; i < _rowCount; i++)
                 {
                     p[i] = piv[i];
                 }
@@ -249,8 +245,8 @@ namespace MathNet.Numerics.LinearAlgebra
                 // TODO: bad behavior of this property
                 // this property does not always return the same matrix
 
-                double[] vals = new double[m];
-                for(int i = 0; i < m; i++)
+                double[] vals = new double[_rowCount];
+                for(int i = 0; i < _rowCount; i++)
                 {
                     vals[i] = (double)piv[i];
                 }
@@ -267,13 +263,13 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <exception cref="System.ArgumentException">Matrix must be square</exception>
         public double Determinant()
         {
-            if(m != n)
+            if(_rowCount != _columnCount)
                 throw new System.ArgumentException(Resources.ArgumentMatrixSquare);
 
             double d = (double)pivsign;
-            for(int j = 0; j < n; j++)
+            for(int j = 0; j < _columnCount; j++)
             {
-                d *= LU[j, j];
+                d *= LU[j][j];
             }
             return d;
         }
@@ -285,7 +281,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <exception cref="System.SystemException">Matrix is singular.</exception>
         public Matrix Solve(Matrix B)
         {
-            if(B.RowCount != m)
+            if(B.RowCount != _rowCount)
                 throw new ArgumentException(Resources.ArgumentMatrixSameRowDimension, "B");
             if(!this.IsNonSingular)
                 throw new InvalidOperationException(Resources.ArgumentMatrixNotSingular);
@@ -293,31 +289,31 @@ namespace MathNet.Numerics.LinearAlgebra
             // Copy right hand side with pivoting
             int nx = B.ColumnCount;
             Matrix Xmat = B.GetMatrix(piv, 0, nx - 1);
-            double[,] X = Xmat;
+            double[][] X = Xmat;
 
             // Solve L*Y = B(piv,:)
-            for(int k = 0; k < n; k++)
+            for(int k = 0; k < _columnCount; k++)
             {
-                for(int i = k + 1; i < n; i++)
+                for(int i = k + 1; i < _columnCount; i++)
                 {
                     for(int j = 0; j < nx; j++)
                     {
-                        X[i, j] -= X[k, j] * LU[i, k];
+                        X[i][j] -= X[k][j] * LU[i][k];
                     }
                 }
             }
             // Solve U*X = Y;
-            for(int k = n - 1; k >= 0; k--)
+            for(int k = _columnCount - 1; k >= 0; k--)
             {
                 for(int j = 0; j < nx; j++)
                 {
-                    X[k, j] /= LU[k, k];
+                    X[k][j] /= LU[k][k];
                 }
                 for(int i = 0; i < k; i++)
                 {
                     for(int j = 0; j < nx; j++)
                     {
-                        X[i, j] -= X[k, j] * LU[i, k];
+                        X[i][j] -= X[k][j] * LU[i][k];
                     }
                 }
             }

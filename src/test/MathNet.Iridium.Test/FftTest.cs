@@ -42,15 +42,15 @@ namespace Iridium.Test
         {
             int len = samples.Length;
             for(int i = 1; i < samples.Length; i++)
-                Assert.AreEqual(samples[i], samples[len - i], 0.00000001, "Real Even in Time Space");
+                NumericAssert.AreAlmostEqual(samples[i], samples[len - i], "Real Even in Time Space");
         }
 
         public static void RealTestTimeOdd(double[] samples)
         {
             int len = samples.Length;
             for(int i = 1; i < samples.Length; i++)
-                Assert.AreEqual(samples[i], -samples[len - i], 0.00000001, "Real Odd in Time Space");
-            Assert.AreEqual(0.0, samples[0], 0.00000001, "Real Odd in Time Space: Periodic Continuation");
+                NumericAssert.AreAlmostEqual(samples[i], -samples[len - i], "Real Odd in Time Space");
+            NumericAssert.AreAlmostEqual(0.0, samples[0], "Real Odd in Time Space: Periodic Continuation");
         }
 
         public static void ComplexTestTimeEven(double[] samples)
@@ -58,8 +58,8 @@ namespace Iridium.Test
             int len = samples.Length;
             for(int i = 2; i < samples.Length / 2; i += 2)
             {
-                Assert.AreEqual(samples[i], samples[len - i], 0.00000001, "Complex Even in Time Space: Real Part");
-                Assert.AreEqual(samples[i + 1], samples[len + 1 - i], 0.00000001, "Complex Even in Time Space: Imaginary Part");
+                NumericAssert.AreAlmostEqual(samples[i], samples[len - i], "Complex Even in Time Space: Real Part");
+                NumericAssert.AreAlmostEqual(samples[i + 1], samples[len + 1 - i], "Complex Even in Time Space: Imaginary Part");
             }
         }
 
@@ -68,11 +68,11 @@ namespace Iridium.Test
             int len = samples.Length;
             for(int i = 2; i < samples.Length / 2; i += 2)
             {
-                Assert.AreEqual(samples[i], -samples[len - i], 0.00000001, "Complex Odd in Time Space: Real Part");
-                Assert.AreEqual(samples[i + 1], -samples[len + 1 - i], 0.00000001, "Complex Odd in Time Space: Imaginary Part");
+                NumericAssert.AreAlmostEqual(samples[i], -samples[len - i], "Complex Odd in Time Space: Real Part");
+                NumericAssert.AreAlmostEqual(samples[i + 1], -samples[len + 1 - i], "Complex Odd in Time Space: Imaginary Part");
             }
-            Assert.AreEqual(0.0, samples[0], 0.00000001, "Complex Odd in Time Space: Real Part: Periodic Continuation");
-            Assert.AreEqual(0.0, samples[1], 0.00000001, "Complex Odd in Time Space: Imaginary Part: Periodic Continuation");
+            NumericAssert.AreAlmostEqual(0.0, samples[0], "Complex Odd in Time Space: Real Part: Periodic Continuation");
+            NumericAssert.AreAlmostEqual(0.0, samples[1], "Complex Odd in Time Space: Imaginary Part: Periodic Continuation");
         }
 
         public static void ComplexTestFreqEven(double[] samples)
@@ -93,20 +93,20 @@ namespace Iridium.Test
                 Assert.AreEqual(samples[i + 2], -samples[len - 2 - i], 0.00000001, "Complex Odd in Frequency Space: Real Part");
                 Assert.AreEqual(samples[i + 3], -samples[len - 1 - i], 0.00000001, "Complex Odd in Frequency Space: Imaginary Part");
             }
-            Assert.AreEqual(0.0, samples[0], 0.00000001, "Complex Odd in Frequency Space: Real Part: Periodic Continuation (No DC)");
-            Assert.AreEqual(0.0, samples[1], 0.00000001, "Complex Odd in Frequency Space: Imaginary Part: Periodic Continuation (No DC)");
+            NumericAssert.AreAlmostEqual(0.0, samples[0], "Complex Odd in Frequency Space: Real Part: Periodic Continuation (No DC)");
+            NumericAssert.AreAlmostEqual(0.0, samples[1], "Complex Odd in Frequency Space: Imaginary Part: Periodic Continuation (No DC)");
         }
 
         public static void ComplexTestRealZero(double[] samples)
         {
             for(int i = 0; i < samples.Length; i += 2)
-                Assert.AreEqual(0, samples[i], 0.00000001, "Complex: Zero Real Part"); ;
+                NumericAssert.AreAlmostEqual(0, samples[i], "Complex: Zero Real Part"); ;
         }
 
         public static void ComplexTestImagZero(double[] samples)
         {
             for(int i = 1; i < samples.Length; i += 2)
-                Assert.AreEqual(0, samples[i], 0.00000001, "Complex: Zero Imaginary Part");
+                NumericAssert.AreAlmostEqual(0, samples[i], "Complex: Zero Imaginary Part");
         }
         #endregion
 

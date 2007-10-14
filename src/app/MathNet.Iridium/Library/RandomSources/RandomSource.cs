@@ -38,13 +38,14 @@
 #endregion
 
 using System;
+using MathNet.Numerics.Distributions;
 
 namespace MathNet.Numerics.RandomSources
 {
     /// <summary>
     /// Declares common functionality for all random number generators.
     /// </summary>
-    public abstract class RandomSource
+    public abstract class RandomSource : IContinuousGenerator
     {
         /// <summary>
         /// Gets a value indicating whether the random number generator can be reset, so that it produces the same 

@@ -46,7 +46,12 @@ namespace MathNet.Numerics
     public static class Number
     {
         public const double SmallestNumberGreaterThanZero = double.Epsilon;
+        /// <summary>2^(-53)</summary>
         public static readonly double RelativeAccuracy = EpsilonOf(1.0);
+        /// <summary>2^(-52)</summary>
+        public static readonly double PositiveRelativeAccuracy = PositiveEpsilonOf(1.0);
+        /// <summary>10 * 2^(-52)</summary>
+        public static readonly double DefaultRelativeAccuracy = 10 * PositiveRelativeAccuracy;
 
         /// <summary>
         /// Evaluates the minimum distance to the next distinguishable number near the argument value.
@@ -68,6 +73,11 @@ namespace MathNet.Numerics
                 return BitConverter.Int64BitsToDouble(signed64) - value;
             else
                 return value - BitConverter.Int64BitsToDouble(signed64);
+        }
+
+        public static double PositiveEpsilonOf(double value)
+        {
+            return 2 * EpsilonOf(value);
         }
 
         /// <summary>
@@ -184,6 +194,43 @@ namespace MathNet.Numerics
 
             ulong between = NumbersBetween(a, b);
             return between <= maxNumbersBetween;
+        }
+
+        public static bool AlmostEqualNorm(double a, double b, double diff, double relativeAccuracy)
+        {
+            if((a == 0 && Math.Abs(b) < relativeAccuracy)
+                || (b == 0 && Math.Abs(a) < relativeAccuracy))
+            {
+                return true;
+            }
+            return Math.Abs(diff) < relativeAccuracy * Math.Max(Math.Abs(a), Math.Abs(b));
+        }
+
+        public static bool AlmostEqualNorm(double a, double b, double diff)
+        {
+            return AlmostEqualNorm(a, b, diff, DefaultRelativeAccuracy);
+        }
+
+        public static bool AlmostEqual(double a, double b, double relativeAccuracy)
+        {
+            return AlmostEqualNorm(a, b, a - b, relativeAccuracy);
+        }
+
+        public static bool AlmostEqual(double a, double b)
+        {
+            return AlmostEqualNorm(a, b, a - b, DefaultRelativeAccuracy);
+        }
+
+        public static bool AlmostEqual(double[] x, double[] y)
+        {
+            if(x.Length != y.Length)
+                return false;
+            for(int i = 0; i < x.Length; i++)
+            {
+                if(!AlmostEqual(x[i], y[i]))
+                    return false;
+            }
+            return true;
         }
     }
 }

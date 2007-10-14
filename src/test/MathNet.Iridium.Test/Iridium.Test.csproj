@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NumericAssert.cs" />
     <Compile Include="SetTest.cs" />
     <Compile Include="ComplexTest.cs" />
     <Compile Include="LinearAlgebra.Test.cs" />
