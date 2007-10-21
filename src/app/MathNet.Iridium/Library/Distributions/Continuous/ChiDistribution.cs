@@ -207,7 +207,7 @@ namespace MathNet.Numerics.Distributions
 
         public override double CumulativeDistribution(double x)
         {
-            return Fn.IncompleteGammaRegularized(0.5 * _degreesOfFreedom, 0.5 * x * x);
+            return Fn.GammaRegularized(0.5 * _degreesOfFreedom, 0.5 * x * x);
         }
         #endregion
 

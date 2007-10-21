@@ -224,6 +224,11 @@ namespace MathNet.Numerics.Distributions
         {
             return 0.5 * (1.0 + Fn.Erf((Math.Log(x) - _mu) / (_sigma * Constants.Sqrt2)));
         }
+
+        public double InverseCumulativeDistribution(double x)
+        {
+            return Math.Exp(_sigma * Constants.Sqrt2 * Fn.ErfInverse(2.0 * x - 1.0) + _mu);
+        }
         #endregion
 
         #region Generator

@@ -192,7 +192,7 @@ namespace MathNet.Numerics.Distributions
 
         public override double CumulativeDistribution(double x)
         {
-            return Fn.IncompleteGammaRegularized(_shape, _rate * x);
+            return Fn.GammaRegularized(_shape, _rate * x);
         }
         #endregion
 
@@ -206,11 +206,11 @@ namespace MathNet.Numerics.Distributions
             double product = 1.0;
             for(int i = 0; i < _shape; i++)
             {
-                product *= this.RandomSource.NextDouble();
+                // Subtract random number from 1.0 to avoid Math.Log(0.0)
+                product *= (1.0 - this.RandomSource.NextDouble());
             }
 
-            // Subtract product from 1.0 to avoid Math.Log(0.0)
-            return _helper1 * Math.Log(1.0 - product);
+            return _helper1 * Math.Log(product);
         }
         #endregion
     }

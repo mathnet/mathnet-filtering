@@ -198,7 +198,7 @@ namespace MathNet.Numerics.Distributions
 
         public double InverseCumulativeDistribution(double x)
         {
-            return _sigma * Constants.Sqrt1_2 * Fn.ErfInverse(2.0 * x - 1.0) + _mu;
+            return _sigma * Constants.Sqrt2 * Fn.ErfInverse(2.0 * x - 1.0) + _mu;
         }
         #endregion
 

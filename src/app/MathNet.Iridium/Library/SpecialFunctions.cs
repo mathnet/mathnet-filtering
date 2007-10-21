@@ -377,10 +377,19 @@ namespace MathNet.Numerics
         }
 
         /// <summary>
+        /// Obsolete. Please use GammaRegularized instead, with the same parameters (method was renamed).
+        /// </summary>
+        [Obsolete("Renamed to GammaRegularized; Hence please migrate to GammaRegularized.")]
+        public static double IncompleteGammaRegularized(double a, double x)
+        {
+            return GammaRegularized(a, x);
+        }
+
+        /// <summary>
         /// Returns the regularized lower incomplete gamma function
         /// P(a,x) = 1/Gamma(a) * int(exp(-t)t^(a-1),t=0..x) for real a &gt; 0, x &gt; 0.
         /// </summary>
-        public static double IncompleteGammaRegularized(double a, double x)
+        public static double GammaRegularized(double a, double x)
         {
             const int MaxIterations = 100;
             double eps = Number.RelativeAccuracy;
@@ -459,10 +468,19 @@ namespace MathNet.Numerics
         }
 
         /// <summary>
+        /// Obsolete. Please use BetaRegularized instead, with the same parameters (method was renamed).
+        /// </summary>
+        [Obsolete("Renamed to BetaRegularized; Hence please migrate to BetaRegularized.")]
+        public static double IncompleteBetaRegularized(double a, double b, double x)
+        {
+            return BetaRegularized(a, b, x);
+        }
+
+        /// <summary>
         /// Returns the regularized lower incomplete beta function
         /// I_x(a,b) = 1/Beta(a,b) * int(t^(a-1)*(1-t)^(b-1),t=0..x) for real a &gt; 0, b &gt; 0, 1 &gt;= x &gt;= 0.
         /// </summary>
-        public static double IncompleteBetaRegularized(double a, double b, double x)
+        public static double BetaRegularized(double a, double b, double x)
         {
             if(a < 0.0 || b < 0.0)
                 throw new ArgumentOutOfRangeException("a,b", Resources.ArgumentNotNegative);
@@ -470,7 +488,8 @@ namespace MathNet.Numerics
                 throw new ArgumentOutOfRangeException("x", String.Format(Resources.ArgumentInIntervalXYInclusive, "0.0", "1.0"));
 
             double bt = (x == 0.0 || x == 1.0) ? 0.0 : Math.Exp(GammaLn(a + b) - GammaLn(a) - GammaLn(b) + a * Math.Log(x) + b * Math.Log(1.0 - x));
-            double betacf;
+
+            bool symmetryTransformation = (x >= (a + 1.0) / (a + b + 2.0));
 
             // Continued fraction representation
 
@@ -478,6 +497,13 @@ namespace MathNet.Numerics
             double eps = Number.RelativeAccuracy;
             double fpmin = Number.SmallestNumberGreaterThanZero / eps;
 
+            if(symmetryTransformation)
+            {
+                x = 1.0 - x;
+                double swap = a;
+                a = b;
+                b = swap;
+            }
             double qab = a + b;
             double qap = a + 1.0;
             double qam = a - 1.0;
@@ -510,10 +536,10 @@ namespace MathNet.Numerics
                 h *= del;
                 if(Math.Abs(del - 1.0) <= eps)
                 {
-                    if(x < (a + 1.0) / (a + b + 2.0))
-                        return bt * h / a;
+                    if(symmetryTransformation)
+                        return 1.0 - bt * h / a;
                     else
-                        return 1.0 - bt * h / b;
+                        return bt * h / a;
                 }
             }
             throw new ArgumentException(Resources.ArgumentTooLargeForIterationLimit, "a,b");
@@ -526,8 +552,12 @@ namespace MathNet.Numerics
         /// </summary>
         public static double Erf(double x)
         {
-            return x < 0.0 ? -IncompleteGammaRegularized(0.5, x * x)
-                : IncompleteGammaRegularized(0.5, x * x);
+            if(double.IsNegativeInfinity(x))
+                return -1.0;
+            if(double.IsPositiveInfinity(x))
+                return 1.0;
+            return x < 0.0 ? -GammaRegularized(0.5, x * x)
+                : GammaRegularized(0.5, x * x);
         }
 
         /// <summary>

@@ -235,7 +235,7 @@ namespace MathNet.Numerics.Distributions
 
         public override double CumulativeDistribution(double x)
         {
-            return 1.0 - Fn.IncompleteGammaRegularized(x + 1, _lambda);
+            return 1.0 - Fn.GammaRegularized(x + 1, _lambda);
         }
         #endregion
 
