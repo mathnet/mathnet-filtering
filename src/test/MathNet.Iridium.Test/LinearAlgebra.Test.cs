@@ -35,7 +35,7 @@ namespace Iridium.Test
         [Test]
         public void MultiplyByDiagonal()
         {
-            Matrix A = new Matrix(
+            Matrix A = Matrix.Create(
                 new double[3, 4] {
                     {1, 2, 3, 4},
                     {3, 4, 5, 6},
@@ -58,14 +58,14 @@ namespace Iridium.Test
         public void MultiplyByMatrix()
         {
 
-            Matrix A = new Matrix(
+            Matrix A = Matrix.Create(
                 new double[3, 4] {
                     {10, -61, -8, -29},
                     {95, 11, -49, -47},
                     {40, -81, 91, 68}
                     });
 
-            Matrix B = new Matrix(
+            Matrix B = Matrix.Create(
                 new double[4, 2] {
                     {72, 37},
                     {-23, 87},
@@ -73,7 +73,7 @@ namespace Iridium.Test
                     {98, -23}
                     });
 
-            Matrix C = new Matrix(
+            Matrix C = Matrix.Create(
                 new double[3, 2] {
                     {-1071, -4502},
                     { -175, 4132},
@@ -97,7 +97,7 @@ namespace Iridium.Test
         public void SolveRobust()
         {
 
-            Matrix A1 = new Matrix(
+            Matrix A1 = Matrix.Create(
                 new double[6, 2] {
                     {1, 1},
                     {1, 2},
@@ -107,7 +107,7 @@ namespace Iridium.Test
                     {2, 1}
                     });
 
-            Matrix B1 = new Matrix(
+            Matrix B1 = Matrix.Create(
                 new double[6, 1] {
                     {2},
                     {2},
@@ -124,7 +124,7 @@ namespace Iridium.Test
             Assert.AreEqual(0.4, X1[1, 0], 1.0e-3, "#A01 Unexpected robust regression result.");
 
 
-            Matrix A2 = new Matrix(
+            Matrix A2 = Matrix.Create(
                 new double[6, 3] {
                     {2, -1, 2},
                     {3, 2, 0},
@@ -134,7 +134,7 @@ namespace Iridium.Test
                     {2, 1, 1}
                     });
 
-            Matrix B2 = new Matrix(
+            Matrix B2 = Matrix.Create(
                 new double[6, 1] {
                     {0},
                     {4},
@@ -152,7 +152,7 @@ namespace Iridium.Test
             Assert.AreEqual(-0.167, X2[2, 0], 1.0e-3, "#A04 Unexpected robust regression result.");
 
 
-            Matrix A3 = new Matrix(
+            Matrix A3 = Matrix.Create(
                 new double[10, 4] {
                     {-8, -29, 95, 11},
                     {-47, 40, -81, 91},
@@ -166,7 +166,7 @@ namespace Iridium.Test
                     {-83, 98, -48, -19}
                     });
 
-            Matrix B3 = new Matrix(
+            Matrix B3 = Matrix.Create(
                 new double[10, 1] {
                     {-49},
                     {68},

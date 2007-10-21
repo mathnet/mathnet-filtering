@@ -112,5 +112,66 @@ namespace Iridium.Test
             Assert.AreEqual(.8862271575e-3, Fn.ErfInverse(0.001), 0.000001, "B15");
             Assert.AreEqual(.4431163629e-2, Fn.ErfInverse(0.005), 0.000001, "B16");
         }
+
+        [Test]
+        public void TestSpecialFunctions_Beta()
+        {
+            // Symmetry:
+            NumericAssert.AreAlmostEqual(Fn.Beta(1.0, 0.1), Fn.Beta(0.1, 1.0), "A1");
+            NumericAssert.AreAlmostEqual(Fn.Beta(10.0, 0.1), Fn.Beta(0.1, 10.0), "A2");
+            NumericAssert.AreAlmostEqual(Fn.Beta(1.0, 0.5), Fn.Beta(0.5, 1.0), "A3");
+            NumericAssert.AreAlmostEqual(Fn.Beta(10.0, 0.5), Fn.Beta(0.5, 10.0), "A4");
+            NumericAssert.AreAlmostEqual(Fn.Beta(100.0, 10.0), Fn.Beta(10.0, 100.0), "A1");
+
+            // Compare with Maple: "evalf(Beta(0.1,x),10);", with relative accuracy
+            NumericAssert.AreAlmostEqual(19.71463949, Fn.Beta(0.1, 0.1), 1e-6, "B1");
+            NumericAssert.AreAlmostEqual(14.59937149, Fn.Beta(0.1, 0.2), 1e-6, "B2");
+            NumericAssert.AreAlmostEqual(12.83059854, Fn.Beta(0.1, 0.3), 1e-6, "B3");
+            NumericAssert.AreAlmostEqual(10.0, Fn.Beta(0.1, 1.0), 1e-6, "B4");
+            NumericAssert.AreAlmostEqual(9.090909091, Fn.Beta(0.1, 2.0), 1e-6, "B5");
+            NumericAssert.AreAlmostEqual(8.174359079, Fn.Beta(0.1, 5.0), 1e-6, "B6");
+            NumericAssert.AreAlmostEqual(7.591380001, Fn.Beta(0.1, 10.0), 1e-6, "B7");
+            NumericAssert.AreAlmostEqual(6.005322939, Fn.Beta(0.1, 100.0), 1e-6, "B8");
+
+            // Compare with Maple: "evalf(Beta(25.0,x),10);", with relative accuracy
+            NumericAssert.AreAlmostEqual(6.907685443, Fn.Beta(25.0, 0.1), 1e-6, "C1");
+            NumericAssert.AreAlmostEqual(2.419355828, Fn.Beta(25.0, 0.2), 1e-6, "C2");
+            NumericAssert.AreAlmostEqual(1.143788741, Fn.Beta(25.0, 0.3), 1e-6, "C3");
+            NumericAssert.AreAlmostEqual(.4000000000e-1, Fn.Beta(25.0, 1.0), 1e-6, "C4");
+            NumericAssert.AreAlmostEqual(.1538461538e-2, Fn.Beta(25.0, 2.0), 1e-6, "C5");
+            NumericAssert.AreAlmostEqual(.1684139615e-5, Fn.Beta(25.0, 5.0), 1e-5, "C6");
+            NumericAssert.AreAlmostEqual(.7626128152e-9, Fn.Beta(25.0, 10.0), 1e-5, "C7");
+            NumericAssert.AreAlmostEqual(.3844532000e-27, Fn.Beta(25.0, 100.0), 1e-6, "C8");
+        }
+
+        [Test]
+        public void TestSpecialFunctions_BetaRegularized()
+        {
+            // Maple: Ix := (x,a,b) -> int(t^(a-1)*(1-t)^(b-1),t=0..x)/Beta(a,b);
+
+            // Compare with Maple: "evalf(Ix(x,0.2,0.2),10);", with relative accuracy
+            NumericAssert.AreAlmostEqual(0.0, Fn.BetaRegularized(0.2, 0.2, 0.0), 1e-6, "A1");
+            NumericAssert.AreAlmostEqual(.3927221643, Fn.BetaRegularized(0.2, 0.2, 0.2), 1e-6, "A2");
+            NumericAssert.AreAlmostEqual(.5000000000, Fn.BetaRegularized(0.2, 0.2, 0.5), 1e-6, "A3");
+            NumericAssert.AreAlmostEqual(.6072778356, Fn.BetaRegularized(0.2, 0.2, 0.8), 1e-6, "A4");
+            NumericAssert.AreAlmostEqual(1.000000000, Fn.BetaRegularized(0.2, 0.2, 1.0), 1e-6, "A5");
+
+            // Compare with Maple: "evalf(Ix(x,0.6,1.2),10);", with relative accuracy
+            NumericAssert.AreAlmostEqual(0.0, Fn.BetaRegularized(0.6, 1.2, 0.0), 1e-6, "B1");
+            NumericAssert.AreAlmostEqual(.4254033199, Fn.BetaRegularized(0.6, 1.2, 0.2), 1e-6, "B2");
+            NumericAssert.AreAlmostEqual(.7164101154, Fn.BetaRegularized(0.6, 1.2, 0.5), 1e-6, "B3");
+            NumericAssert.AreAlmostEqual(.9137319497, Fn.BetaRegularized(0.6, 1.2, 0.8), 1e-6, "B4");
+            NumericAssert.AreAlmostEqual(1.000000000, Fn.BetaRegularized(0.6, 1.2, 1.0), 1e-6, "B5");
+
+            // Compare with Maple: "evalf(Ix(x,7.0,1.2),10);", with relative accuracy
+            NumericAssert.AreAlmostEqual(0.0, Fn.BetaRegularized(7.0, 1.2, 0.0), 1e-6, "C1");
+            NumericAssert.AreAlmostEqual(.2012688845e-4, Fn.BetaRegularized(7.0, 1.2, 0.2), 1e-6, "C2");
+            NumericAssert.AreAlmostEqual(.1137109228e-1, Fn.BetaRegularized(7.0, 1.2, 0.5), 1e-6, "C3");
+            NumericAssert.AreAlmostEqual(.1110209035, Fn.BetaRegularized(7.0, 1.2, 0.7), 1e-6, "C4");
+            NumericAssert.AreAlmostEqual(.2677464855, Fn.BetaRegularized(7.0, 1.2, 0.8), 1e-5, "C5");
+            NumericAssert.AreAlmostEqual(.5647746760, Fn.BetaRegularized(7.0, 1.2, 0.9), 1e-6, "C6");
+            NumericAssert.AreAlmostEqual(.7775340561, Fn.BetaRegularized(7.0, 1.2, 0.95), 1e-6, "C7");
+            NumericAssert.AreAlmostEqual(1.000000000, Fn.BetaRegularized(7.0, 1.2, 1.0), 1e-6, "C8");
+        }
     }
 }
