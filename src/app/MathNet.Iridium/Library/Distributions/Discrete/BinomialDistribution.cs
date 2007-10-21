@@ -104,13 +104,16 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Gets or sets the number of trials parameter.
         /// </summary>
-        /// <remarks>Call <see cref="IsValidBeta"/> to determine whether a value is valid and therefor assignable.</remarks>
+        /// <remarks>Call <see cref="IsValidParameterSet"/> to determine whether a value is valid and therefor assignable.</remarks>
         public int NumberOfTrials
         {
             get { return _n; }
             set { SetDistributionParameters(_p, value); }
         }
 
+        /// <summary>
+        /// Configure all distribution parameters.
+        /// </summary>
         public void SetDistributionParameters(double probabilityOfSuccess, int numberOfTrials)
         {
             if(!IsValidParameterSet(probabilityOfSuccess, numberOfTrials))
@@ -183,14 +186,20 @@ namespace MathNet.Numerics.Distributions
             get { return (1.0 - 2.0 * _p) / Math.Sqrt(_p * (1.0 - _p) * _n); }
         }
 
+        /// <summary>
+        /// Discrete probability mass function (pmf) of this probability distribution.
+        /// </summary>
         public override double ProbabilityMass(int x)
         {
             return Fn.BinomialCoefficient(_n, x) * Math.Pow(_p, x) * Math.Pow(1 - _p, _n - x);
         }
 
+        /// <summary>
+        /// Continuous cumulative distribution function (cdf) of this probability distribution.
+        /// </summary>
         public override double CumulativeDistribution(double x)
         {
-            return Fn.IncompleteBetaRegularized(_n - x, x + 1, 1 - _p);
+            return Fn.BetaRegularized(_n - x, x + 1, 1 - _p);
         }
         #endregion
 

@@ -88,7 +88,7 @@ namespace MathNet.Numerics.RandomSources
     /// Represents a Mersenne Twister pseudo-random number generator with period 2^19937-1.
     /// </summary>
     /// <remarks>
-    /// The <see cref="MT19937Generator"/> type bases upon information and the implementation presented on the
+    /// The <see cref="MersenneTwisterRandomSource"/> type bases upon information and the implementation presented on the
     ///   <a href="http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/emt.html">Mersenne Twister Home Page</a>.
     /// </remarks>
     public class MersenneTwisterRandomSource : RandomSource
@@ -159,19 +159,19 @@ namespace MathNet.Numerics.RandomSources
         private uint[] _seedArray;
 
         /// <summary>
-        /// Stores an <see cref="uint"/> used to generate up to 32 random <see cref="Boolean"/> values.
+        /// Stores an <see cref="UInt32"/> used to generate up to 32 random <see cref="Boolean"/> values.
         /// </summary>
         private uint _bitBuffer;
 
         /// <summary>
-        /// Stores how many random <see cref="Boolean"/> values still can be generated from <see cref="bitBuffer"/>.
+        /// Stores how many random <see cref="Boolean"/> values still can be generated from <see cref="_bitBuffer"/>.
         /// </summary>
         private int _bitCount;
         #endregion
 
         #region construction
         /// <summary>
-        /// Initializes a new instance of the <see cref="MT19937Generator"/> class, using a time-dependent default 
+        /// Initializes a new instance of the <see cref="MersenneTwisterRandomSource"/> class, using a time-dependent default 
         ///   seed value.
         /// </summary>
         public MersenneTwisterRandomSource()
@@ -180,7 +180,7 @@ namespace MathNet.Numerics.RandomSources
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MT19937Generator"/> class, using the specified seed value.
+        /// Initializes a new instance of the <see cref="MersenneTwisterRandomSource"/> class, using the specified seed value.
         /// </summary>
         /// <param name="seed">
         /// A number used to calculate a starting value for the pseudo-random number sequence.
@@ -192,7 +192,7 @@ namespace MathNet.Numerics.RandomSources
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MT19937Generator"/> class, using the specified seed value.
+        /// Initializes a new instance of the <see cref="MersenneTwisterRandomSource"/> class, using the specified seed value.
         /// </summary>
         /// <param name="seed">
         /// An unsigned number used to calculate a starting value for the pseudo-random number sequence.
@@ -207,7 +207,7 @@ namespace MathNet.Numerics.RandomSources
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MT19937Generator"/> class, using the specified seed array.
+        /// Initializes a new instance of the <see cref="MersenneTwisterRandomSource"/> class, using the specified seed array.
         /// </summary>
         /// <param name="seedArray">
         /// An array of numbers used to calculate a starting values for the pseudo-random number sequence.
@@ -235,7 +235,7 @@ namespace MathNet.Numerics.RandomSources
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MT19937Generator"/> class, using the specified seed array.
+        /// Initializes a new instance of the <see cref="MersenneTwisterRandomSource"/> class, using the specified seed array.
         /// </summary>
         /// <param name="seedArray">
         /// An array of unsigned numbers used to calculate a starting values for the pseudo-random number sequence.
@@ -261,7 +261,7 @@ namespace MathNet.Numerics.RandomSources
 
         #region instance methods
         /// <summary>
-        /// Resets the <see cref="MT19937Generator"/>, so that it produces the same pseudo-random number sequence again.
+        /// Resets the <see cref="MersenneTwisterRandomSource"/>, so that it produces the same pseudo-random number sequence again.
         /// </summary>
         private void ResetGenerator()
         {
@@ -286,7 +286,7 @@ namespace MathNet.Numerics.RandomSources
         }
 
         /// <summary>
-        /// Extends resetting of the <see cref="MT19937Generator"/> using the <see cref="seedArray"/>.
+        /// Extends resetting of the <see cref="MersenneTwisterRandomSource"/> using the <see cref="_seedArray"/>.
         /// </summary>
         private void ResetBySeedArray()
         {
@@ -323,7 +323,7 @@ namespace MathNet.Numerics.RandomSources
         }
 
         /// <summary>
-        /// Generates <see cref="MT19937Generator.N"/> unsigned random numbers.
+        /// Generates <see cref="MersenneTwisterRandomSource.N"/> unsigned random numbers.
         /// </summary>
         /// <remarks>
         /// Generated random numbers are 32-bit unsigned integers greater than or equal to <see cref="UInt32.MinValue"/> 
@@ -401,7 +401,7 @@ namespace MathNet.Numerics.RandomSources
 
         #region overridden Generator members
         /// <summary>
-        /// Gets a value indicating whether the <see cref="MT19937Generator"/> can be reset, so that it produces the 
+        /// Gets a value indicating whether the <see cref="MersenneTwisterRandomSource"/> can be reset, so that it produces the 
         ///   same pseudo-random number sequence again.
         /// </summary>
         public override bool CanReset
@@ -410,7 +410,7 @@ namespace MathNet.Numerics.RandomSources
         }
 
         /// <summary>
-        /// Resets the <see cref="MT19937Generator"/>, so that it produces the same pseudo-random number sequence again.
+        /// Resets the <see cref="MersenneTwisterRandomSource"/>, so that it produces the same pseudo-random number sequence again.
         /// </summary>
         public override void Reset()
         {

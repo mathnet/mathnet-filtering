@@ -171,6 +171,9 @@ namespace MathNet.Numerics.Distributions
             set { SetDistributionParameters(_N, _M, value); }
         }
 
+        /// <summary>
+        /// Configure all distribution parameters.
+        /// </summary>
         public void SetDistributionParameters(int populationSize, int favoredItems, int numberOfSamples)
         {
             if(!IsValidParameterSet(populationSize, favoredItems, numberOfSamples))
@@ -252,12 +255,18 @@ namespace MathNet.Numerics.Distributions
             }
         }
 
+        /// <summary>
+        /// Discrete probability mass function (pmf) of this probability distribution.
+        /// </summary>
         public override double ProbabilityMass(int x)
         {
             return Math.Exp(Fn.BinomialCoefficientLn(_M, x) + Fn.BinomialCoefficientLn(_N - _M, _n - x)
                 - Fn.BinomialCoefficientLn(_N, _n));
         }
 
+        /// <summary>
+        /// Continuous cumulative distribution function (cdf) of this probability distribution.
+        /// </summary>
         public override double CumulativeDistribution(double x)
         {
             double cdf;

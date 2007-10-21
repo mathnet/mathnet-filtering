@@ -108,6 +108,9 @@ namespace MathNet.Numerics.Distributions
             set { SetDistributionParameters(value); }
         }
 
+        /// <summary>
+        /// Configure all distribution parameters.
+        /// </summary>
         public void SetDistributionParameters(double rate)
         {
             if(!IsValidParameterSet(rate))
@@ -178,11 +181,17 @@ namespace MathNet.Numerics.Distributions
             get { return 2.0; }
         }
 
+        /// <summary>
+        /// Continuous probability density function (pdf) of this probability distribution.
+        /// </summary>
         public override double ProbabilityDensity(double x)
         {
             return _rate * Math.Exp(-_rate * x);
         }
 
+        /// <summary>
+        /// Continuous cumulative distribution function (cdf) of this probability distribution.
+        /// </summary>
         public override double CumulativeDistribution(double x)
         {
             return 1.0 - Math.Exp(-_rate * x);

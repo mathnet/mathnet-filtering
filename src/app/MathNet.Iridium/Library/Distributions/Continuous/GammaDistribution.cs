@@ -114,6 +114,9 @@ namespace MathNet.Numerics.Distributions
             set { SetDistributionParameters(_alpha, value); }
         }
 
+        /// <summary>
+        /// Configure all distribution parameters.
+        /// </summary>
         public void SetDistributionParameters(double alpha, double theta)
         {
             if(!IsValidParameterSet(alpha, theta))
@@ -188,11 +191,17 @@ namespace MathNet.Numerics.Distributions
             get { return 2.0 / Math.Sqrt(_alpha); }
         }
 
+        /// <summary>
+        /// Continuous probability density function (pdf) of this probability distribution.
+        /// </summary>
         public override double ProbabilityDensity(double x)
         {
             return Math.Exp((_alpha - 1) * Math.Log(x) - x / _theta - _lngammaAlpha - _alphaLnTheta);
         }
 
+        /// <summary>
+        /// Continuous cumulative distribution function (cdf) of this probability distribution.
+        /// </summary>
         public override double CumulativeDistribution(double x)
         {
             return Fn.GammaRegularized(_alpha, x / _theta);

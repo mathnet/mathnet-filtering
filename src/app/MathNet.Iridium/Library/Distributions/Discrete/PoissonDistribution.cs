@@ -158,6 +158,9 @@ namespace MathNet.Numerics.Distributions
             set { SetDistributionParameters(value); }
         }
 
+        /// <summary>
+        /// Configure all distribution parameters.
+        /// </summary>
         public void SetDistributionParameters(double lambda)
         {
             if(!IsValidParameterSet(lambda))
@@ -228,11 +231,17 @@ namespace MathNet.Numerics.Distributions
             get { return Math.Sqrt(_lambda); }
         }
 
+        /// <summary>
+        /// Discrete probability mass function (pmf) of this probability distribution.
+        /// </summary>
         public override double ProbabilityMass(int x)
         {
             return Math.Exp(-_lambda + x * Math.Log(_lambda) - Fn.FactorialLn(x));
         }
 
+        /// <summary>
+        /// Continuous cumulative distribution function (cdf) of this probability distribution.
+        /// </summary>
         public override double CumulativeDistribution(double x)
         {
             return 1.0 - Fn.GammaRegularized(x + 1, _lambda);

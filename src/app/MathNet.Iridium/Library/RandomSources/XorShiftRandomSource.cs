@@ -80,7 +80,7 @@ namespace MathNet.Numerics.RandomSources
     /// Represents a xorshift pseudo-random number generator with period 2^128-1.
     /// </summary>
     /// <remarks>
-    /// The <see cref="XorShift128Generator"/> type bases upon the implementation presented in the CP article
+    /// The <see cref="XorShiftRandomSource"/> type bases upon the implementation presented in the CP article
     ///   "<a href="http://www.codeproject.com/csharp/fastrandom.asp">A fast equivalent for System.Random</a>"
     ///   and the theoretical background on xorshift random number generators published by George Marsaglia 
     ///   in this paper "<a href="http://www.jstatsoft.org/v08/i14/xorshift.pdf">Xorshift RNGs</a>".
@@ -89,19 +89,19 @@ namespace MathNet.Numerics.RandomSources
     {
         #region class fields
         /// <summary>
-        /// Represents the seed for the <see cref="y"/> variable. This field is constant.
+        /// Represents the seed for the <see cref="_y"/> variable. This field is constant.
         /// </summary>
         /// <remarks>The value of this constant is 362436069.</remarks>
         private const uint SeedY = 362436069;
 
         /// <summary>
-        /// Represents the seed for the <see cref="z"/> variable. This field is constant.
+        /// Represents the seed for the <see cref="_z"/> variable. This field is constant.
         /// </summary>
         /// <remarks>The value of this constant is 521288629.</remarks>
         private const uint SeedZ = 521288629;
 
         /// <summary>
-        /// Represents the seed for the <see cref="w"/> variable. This field is constant.
+        /// Represents the seed for the <see cref="_w"/> variable. This field is constant.
         /// </summary>
         /// <remarks>The value of this constant is 88675123.</remarks>
         private const uint SeedW = 88675123;
@@ -146,19 +146,19 @@ namespace MathNet.Numerics.RandomSources
         private uint _seed;
 
         /// <summary>
-        /// Stores an <see cref="uint"/> used to generate up to 32 random <see cref="Boolean"/> values.
+        /// Stores an <see cref="UInt32"/> used to generate up to 32 random <see cref="Boolean"/> values.
         /// </summary>
         private uint _bitBuffer;
 
         /// <summary>
-        /// Stores how many random <see cref="Boolean"/> values still can be generated from <see cref="bitBuffer"/>.
+        /// Stores how many random <see cref="Boolean"/> values still can be generated from <see cref="_bitBuffer"/>.
         /// </summary>
         private int _bitCount;
         #endregion
 
         #region construction
         /// <summary>
-        /// Initializes a new instance of the <see cref="XorShift128Generator"/> class, using a time-dependent default 
+        /// Initializes a new instance of the <see cref="XorShiftRandomSource"/> class, using a time-dependent default 
         ///   seed value.
         /// </summary>
         public XorShiftRandomSource()
@@ -167,7 +167,7 @@ namespace MathNet.Numerics.RandomSources
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="XorShift128Generator"/> class, using the specified seed value.
+        /// Initializes a new instance of the <see cref="XorShiftRandomSource"/> class, using the specified seed value.
         /// </summary>
         /// <param name="seed">
         /// A number used to calculate a starting value for the pseudo-random number sequence.
@@ -179,7 +179,7 @@ namespace MathNet.Numerics.RandomSources
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="XorShift128Generator"/> class, using the specified seed value.
+        /// Initializes a new instance of the <see cref="XorShiftRandomSource"/> class, using the specified seed value.
         /// </summary>
         /// <param name="seed">
         /// An unsigned number used to calculate a starting value for the pseudo-random number sequence.
@@ -194,7 +194,7 @@ namespace MathNet.Numerics.RandomSources
 
         #region instance methods
         /// <summary>
-        /// Resets the <see cref="XorShift128Generator"/>, so that it produces the same pseudo-random number sequence again.
+        /// Resets the <see cref="XorShiftRandomSource"/>, so that it produces the same pseudo-random number sequence again.
         /// </summary>
         private void ResetGenerator()
         {
@@ -249,7 +249,7 @@ namespace MathNet.Numerics.RandomSources
 
         #region overridden Generator members
         /// <summary>
-        /// Gets a value indicating whether the <see cref="XorShift128Generator"/> can be reset, so that it produces the 
+        /// Gets a value indicating whether the <see cref="XorShiftRandomSource"/> can be reset, so that it produces the 
         ///   same pseudo-random number sequence again.
         /// </summary>
         public override bool CanReset
@@ -258,7 +258,7 @@ namespace MathNet.Numerics.RandomSources
         }
 
         /// <summary>
-        /// Resets the <see cref="XorShift128Generator"/>, so that it produces the same pseudo-random number sequence again.
+        /// Resets the <see cref="XorShiftRandomSource"/>, so that it produces the same pseudo-random number sequence again.
         /// </summary>
         public override void Reset()
         {

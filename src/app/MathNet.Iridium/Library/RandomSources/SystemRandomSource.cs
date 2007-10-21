@@ -46,7 +46,7 @@ namespace MathNet.Numerics.RandomSources
     /// Represents a simple pseudo-random number generator.
     /// </summary>
     /// <remarks>
-    /// The <see cref="StandardGenerator"/> type internally uses an instance of the <see cref="System.Random"/> type 
+    /// The <see cref="SystemRandomSource"/> type internally uses an instance of the <see cref="System.Random"/> type 
     ///   to generat pseudo-random numbers.
     /// </remarks>
     public class SystemRandomSource : RandomSource
@@ -63,19 +63,19 @@ namespace MathNet.Numerics.RandomSources
         private int _seed;
 
         /// <summary>
-        /// Stores an <see cref="int"/> used to generate up to 31 random <see cref="Boolean"/> values.
+        /// Stores an <see cref="Int32"/> used to generate up to 31 random <see cref="Boolean"/> values.
         /// </summary>
         private int _bitBuffer;
 
         /// <summary>
-        /// Stores how many random <see cref="Boolean"/> values still can be generated from <see cref="bitBuffer"/>.
+        /// Stores how many random <see cref="Boolean"/> values still can be generated from <see cref="_bitBuffer"/>.
         /// </summary>
         private int _bitCount;
         #endregion
 
         #region construction
         /// <summary>
-        /// Initializes a new instance of the <see cref="StandardGenerator"/> class, using a time-dependent default 
+        /// Initializes a new instance of the <see cref="SystemRandomSource"/> class, using a time-dependent default 
         ///   seed value.
         /// </summary>
         public SystemRandomSource()
@@ -84,7 +84,7 @@ namespace MathNet.Numerics.RandomSources
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="StandardGenerator"/> class, using the specified seed value.
+        /// Initializes a new instance of the <see cref="SystemRandomSource"/> class, using the specified seed value.
         /// </summary>
         /// <param name="seed">
         /// A number used to calculate a starting value for the pseudo-random number sequence.
@@ -99,7 +99,7 @@ namespace MathNet.Numerics.RandomSources
 
         #region instance methods
         /// <summary>
-        /// Resets the <see cref="StandardGenerator"/>, so that it produces the same pseudo-random number sequence again.
+        /// Resets the <see cref="SystemRandomSource"/>, so that it produces the same pseudo-random number sequence again.
         /// </summary>
         private void ResetGenerator()
         {
@@ -114,7 +114,7 @@ namespace MathNet.Numerics.RandomSources
 
         #region overridden Generator members
         /// <summary>
-        /// Gets a value indicating whether the <see cref="StandardGenerator"/> can be reset, so that it produces the 
+        /// Gets a value indicating whether the <see cref="SystemRandomSource"/> can be reset, so that it produces the 
         ///   same pseudo-random number sequence again.
         /// </summary>
         public override bool CanReset
@@ -123,7 +123,7 @@ namespace MathNet.Numerics.RandomSources
         }
 
         /// <summary>
-        /// Resets the <see cref="StandardGenerator"/>, so that it produces the same pseudo-random number sequence again.
+        /// Resets the <see cref="SystemRandomSource"/>, so that it produces the same pseudo-random number sequence again.
         /// </summary>
         public override void Reset()
         {

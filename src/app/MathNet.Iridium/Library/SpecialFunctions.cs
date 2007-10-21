@@ -54,6 +54,9 @@ namespace MathNet.Numerics
             return r;
         }
 
+        /// <summary>
+        /// Integer Power
+        /// </summary>
         [CLSCompliant(false)]
         public static long IntPow(long radix, uint exponent)
         {

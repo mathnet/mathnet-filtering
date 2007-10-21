@@ -116,6 +116,9 @@ namespace MathNet.Numerics.Distributions
             set { SetDistributionParameters(_a, value); }
         }
 
+        /// <summary>
+        /// Configure all distribution parameters.
+        /// </summary>
         public void SetDistributionParameters(int lowerLimit, int upperLimit)
         {
             if(!IsValidParameterSet(lowerLimit, upperLimit))
@@ -187,6 +190,9 @@ namespace MathNet.Numerics.Distributions
             get { return 0.0; }
         }
 
+        /// <summary>
+        /// Discrete probability mass function (pmf) of this probability distribution.
+        /// </summary>
         public override double ProbabilityMass(int x)
         {
             if(_a <= x && x <= _b)
@@ -194,6 +200,9 @@ namespace MathNet.Numerics.Distributions
             return 0.0;
         }
 
+        /// <summary>
+        /// Continuous cumulative distribution function (cdf) of this probability distribution.
+        /// </summary>
         public override double CumulativeDistribution(double x)
         {
             if(x < _a)

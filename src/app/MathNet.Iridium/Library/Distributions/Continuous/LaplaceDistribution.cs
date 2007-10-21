@@ -109,6 +109,9 @@ namespace MathNet.Numerics.Distributions
             set { SetDistributionParameters(_location, value); }
         }
 
+        /// <summary>
+        /// Configure all distribution parameters.
+        /// </summary>
         public void SetDistributionParameters(double location, double scale)
         {
             if(!IsValidParameterSet(location, scale))
@@ -179,11 +182,17 @@ namespace MathNet.Numerics.Distributions
             get { return 0.0; }
         }
 
+        /// <summary>
+        /// Continuous probability density function (pdf) of this probability distribution.
+        /// </summary>
         public override double ProbabilityDensity(double x)
         {
             return 1.0 / (2.0 * _scale) * Math.Exp(-Math.Abs(x - _location) / _scale);
         }
 
+        /// <summary>
+        /// Continuous cumulative distribution function (cdf) of this probability distribution.
+        /// </summary>
         public override double CumulativeDistribution(double x)
         {
             if(x < _location)

@@ -34,7 +34,7 @@ namespace MathNet.Numerics
     /// on complex numbers. All the operators <c>+</c>, <c>-</c>,
     /// <c>*</c>, <c>/</c>, <c>==</c>, <c>!=</c> are defined in the
     /// canonical way. Additional complex trigonometric functions such 
-    /// as <see cref="Complex.Cos"/>, <see cref="Complex.Acoth"/>, ... 
+    /// as <see cref="Complex.Cosine"/>, ... 
     /// are also provided. Note that the <c>Complex</c> structures 
     /// has two special constant values <see cref="Complex.NaN"/> and 
     /// <see cref="Complex.Infinity"/>.</p>

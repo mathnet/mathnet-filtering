@@ -111,6 +111,9 @@ namespace MathNet.Numerics.Distributions
             set { SetDistributionParameters(_shape, value); }
         }
 
+        /// <summary>
+        /// Configure all distribution parameters.
+        /// </summary>
         public void SetDistributionParameters(int shape, double rate)
         {
             if(!IsValidParameterSet(shape, rate))
@@ -185,11 +188,17 @@ namespace MathNet.Numerics.Distributions
             get { return 2.0 / Math.Sqrt(_shape); }
         }
 
+        /// <summary>
+        /// Continuous probability density function (pdf) of this probability distribution.
+        /// </summary>
         public override double ProbabilityDensity(double x)
         {
             return Math.Exp(_shape * Math.Log(_rate) + (_shape - 1) * Math.Log(x) - _rate * x - Fn.FactorialLn(_shape - 1));
         }
 
+        /// <summary>
+        /// Continuous cumulative distribution function (cdf) of this probability distribution.
+        /// </summary>
         public override double CumulativeDistribution(double x)
         {
             return Fn.GammaRegularized(_shape, _rate * x);

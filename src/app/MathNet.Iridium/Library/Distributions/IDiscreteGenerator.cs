@@ -23,10 +23,22 @@ using System;
 
 namespace MathNet.Numerics.Distributions
 {
+    /// <summary>
+    /// Discrete number generator, returning <see cref="Int32"/> integer numbers.
+    /// </summary>
     public interface IDiscreteGenerator
     {
+        /// <summary>
+        /// Generates the next <see cref="Int32"/> integer numbers.
+        /// </summary>
         int NextInt32();
+        /// <summary>
+        /// True if the generator is reproducible, i.e. te same sequence can be generated again.
+        /// </summary>
         bool CanReset { get;}
+        /// <summary>
+        /// Resets the number generator, so that it produces the same sequence again.
+        /// </summary>
         void Reset();
     }
 }

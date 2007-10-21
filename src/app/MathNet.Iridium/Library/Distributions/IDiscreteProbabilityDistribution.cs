@@ -23,15 +23,42 @@ using System;
 
 namespace MathNet.Numerics.Distributions
 {
+    /// <summary>
+    /// Discrete probability distribution, providing distribution properties and functions.
+    /// </summary>
     public interface IDiscreteProbabilityDistribution
     {
+        /// <summary>
+        /// Discrete probability mass function (pmf) of this probability distribution.
+        /// </summary>
         double ProbabilityMass(int x);
+        /// <summary>
+        /// Continuous cumulative distribution function (cdf) of this probability distribution.
+        /// </summary>
         double CumulativeDistribution(double x);
+        /// <summary>
+        /// The expected value of a random variable with this probability distribution.
+        /// </summary>
         double Mean { get;}
+        /// <summary>
+        /// Average of the squared distances to the expected value of a random variable with this probability distribution.
+        /// </summary>
         double Variance { get;}
+        /// <summary>
+        /// The value seperating the lower half part from the upper half part of a random variable with this probability distribution.
+        /// </summary>
         int Median { get;}
+        /// <summary>
+        /// Lower limit of a random variable with this probability distribution.
+        /// </summary>
         int Minimum { get;}
+        /// <summary>
+        /// Upper limit of a random variable with this probability distribution.
+        /// </summary>
         int Maximum { get;}
+        /// <summary>
+        /// Measure of the asymmetry of this probability distribution.
+        /// </summary>
         double Skewness { get;}
     }
 }

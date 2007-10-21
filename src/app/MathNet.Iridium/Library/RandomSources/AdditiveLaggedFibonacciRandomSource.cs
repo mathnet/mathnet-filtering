@@ -62,7 +62,7 @@ namespace MathNet.Numerics.RandomSources
     /// Represents a Additive Lagged Fibonacci pseudo-random number generator.
     /// </summary>
     /// <remarks>
-    /// The <see cref="ALFGenerator"/> type bases upon the implementation in the 
+    /// The <see cref="AdditiveLaggedFibonacciRandomSource"/> type bases upon the implementation in the 
     ///   <a href="http://www.boost.org/libs/random/index.html">Boost Random Number Library</a>.
     /// It uses the modulus 2<sup>32</sup> and by default the "lags" 418 and 1279, which can be adjusted through the 
     ///   associated <see cref="ShortLag"/> and <see cref="LongLag"/> properties. Some popular pairs are presented on 
@@ -135,7 +135,7 @@ namespace MathNet.Numerics.RandomSources
         private int _longLag;
 
         /// <summary>
-        /// Stores an array of <see cref="longLag"/> random numbers
+        /// Stores an array of <see cref="_longLag"/> random numbers
         /// </summary>
         private uint[] _x;
 
@@ -150,19 +150,19 @@ namespace MathNet.Numerics.RandomSources
         private uint _seed;
 
         /// <summary>
-        /// Stores an <see cref="uint"/> used to generate up to 32 random <see cref="Boolean"/> values.
+        /// Stores an <see cref="UInt32"/> used to generate up to 32 random <see cref="Boolean"/> values.
         /// </summary>
         private uint _bitBuffer;
 
         /// <summary>
-        /// Stores how many random <see cref="Boolean"/> values still can be generated from <see cref="bitBuffer"/>.
+        /// Stores how many random <see cref="Boolean"/> values still can be generated from <see cref="_bitBuffer"/>.
         /// </summary>
         private int _bitCount;
         #endregion
 
         #region construction
         /// <summary>
-        /// Initializes a new instance of the <see cref="ALFGenerator"/> class, using a time-dependent default 
+        /// Initializes a new instance of the <see cref="AdditiveLaggedFibonacciRandomSource"/> class, using a time-dependent default 
         ///   seed value.
         /// </summary>
         public AdditiveLaggedFibonacciRandomSource()
@@ -171,7 +171,7 @@ namespace MathNet.Numerics.RandomSources
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ALFGenerator"/> class, using the specified seed value.
+        /// Initializes a new instance of the <see cref="AdditiveLaggedFibonacciRandomSource"/> class, using the specified seed value.
         /// </summary>
         /// <param name="seed">
         /// A number used to calculate a starting value for the pseudo-random number sequence.
@@ -183,7 +183,7 @@ namespace MathNet.Numerics.RandomSources
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="StandardGenerator"/> class, using the specified seed value.
+        /// Initializes a new instance of the <see cref="AdditiveLaggedFibonacciRandomSource"/> class, using the specified seed value.
         /// </summary>
         /// <param name="seed">
         /// An unsigned number used to calculate a starting value for the pseudo-random number sequence.
@@ -224,7 +224,7 @@ namespace MathNet.Numerics.RandomSources
         }
 
         /// <summary>
-        /// Resets the <see cref="ALFGenerator"/>, so that it produces the same pseudo-random number sequence again.
+        /// Resets the <see cref="AdditiveLaggedFibonacciRandomSource"/>, so that it produces the same pseudo-random number sequence again.
         /// </summary>
         private void ResetGenerator()
         {
@@ -242,7 +242,7 @@ namespace MathNet.Numerics.RandomSources
         }
 
         /// <summary>
-        /// Fills the array <see cref="x"/> with <see cref="longLag"/> new unsigned random numbers.
+        /// Fills the array <see cref="_x"/> with <see cref="_longLag"/> new unsigned random numbers.
         /// </summary>
         /// <remarks>
         /// Generated random numbers are 32-bit unsigned integers greater than or equal to <see cref="UInt32.MinValue"/> 
@@ -301,7 +301,7 @@ namespace MathNet.Numerics.RandomSources
 
         #region overridden Generator members
         /// <summary>
-        /// Gets a value indicating whether the <see cref="ALFGenerator"/> can be reset, so that it produces the 
+        /// Gets a value indicating whether the <see cref="AdditiveLaggedFibonacciRandomSource"/> can be reset, so that it produces the 
         ///   same pseudo-random number sequence again.
         /// </summary>
         public override bool CanReset
@@ -310,7 +310,7 @@ namespace MathNet.Numerics.RandomSources
         }
 
         /// <summary>
-        /// Resets the <see cref="ALFGenerator"/>, so that it produces the same pseudo-random number sequence again.
+        /// Resets the <see cref="AdditiveLaggedFibonacciRandomSource"/>, so that it produces the same pseudo-random number sequence again.
         /// </summary>
         public override void Reset()
         {

@@ -113,7 +113,7 @@ namespace MathNet.Numerics.Distributions
 
         #region abstract members
         /// <summary>
-        /// Gets the minimum possible value of distributed random numbers.
+        /// Lower limit of a random variable with this probability distribution.
         /// </summary>
         public abstract double Minimum
         {
@@ -121,7 +121,7 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Gets the maximum possible value of distributed random numbers.
+        /// Upper limit of a random variable with this probability distribution.
         /// </summary>
         public abstract double Maximum
         {
@@ -129,7 +129,7 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Gets the mean of distributed random numbers.
+        /// The expected value of a random variable with this probability distribution.
         /// </summary>
         public abstract double Mean
         {
@@ -137,7 +137,7 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Gets the median of distributed random numbers.
+        /// The value seperating the lower half part from the upper half part of a random variable with this probability distribution.
         /// </summary>
         public abstract double Median
         {
@@ -145,13 +145,16 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Gets the variance of distributed random numbers.
+        /// Average of the squared distances to the expected value of a random variable with this probability distribution.
         /// </summary>
         public abstract double Variance
         {
             get;
         }
 
+        /// <summary>
+        /// Measure of the asymmetry of this probability distribution.
+        /// </summary>
         public abstract double Skewness
         {
             get;
@@ -163,8 +166,14 @@ namespace MathNet.Numerics.Distributions
         /// <returns>A distributed double-precision floating point number.</returns>
         public abstract double NextDouble();
 
+        /// <summary>
+        /// Continuous probability density function (pdf) of this probability distribution.
+        /// </summary>
         public abstract double ProbabilityDensity(double x);
 
+        /// <summary>
+        /// Continuous cumulative distribution function (cdf) of this probability distribution.
+        /// </summary>
         public abstract double CumulativeDistribution(double x);
         #endregion
     }

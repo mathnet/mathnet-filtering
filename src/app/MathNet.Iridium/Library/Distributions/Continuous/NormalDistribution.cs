@@ -87,6 +87,10 @@ namespace MathNet.Numerics.Distributions
         }
         #endregion
 
+        /// <summary>
+        /// Gets or sets a <see cref="RandomSource"/> object that can be used
+        /// as underlying random number generator.
+        /// </summary>
         public override RandomSource RandomSource
         {
             set
@@ -115,6 +119,9 @@ namespace MathNet.Numerics.Distributions
             set { SetDistributionParameters(_mu, value); }
         }
 
+        /// <summary>
+        /// Configure all distribution parameters.
+        /// </summary>
         public void SetDistributionParameters(double mu, double sigma)
         {
             if(!IsValidParameterSet(mu, sigma))
@@ -185,12 +192,18 @@ namespace MathNet.Numerics.Distributions
             get { return 0.0; }
         }
 
+        /// <summary>
+        /// Continuous probability density function (pdf) of this probability distribution.
+        /// </summary>
         public override double ProbabilityDensity(double x)
         {
             double xmu = x - _mu;
             return Constants.InvSqrt2Pi / _sigma * Math.Exp(xmu * xmu / (-2.0 * _sigma * _sigma));
         }
 
+        /// <summary>
+        /// Continuous cumulative distribution function (cdf) of this probability distribution.
+        /// </summary>
         public override double CumulativeDistribution(double x)
         {
             return 0.5 * (1.0 + Fn.Erf((x - _mu) / (_sigma * Constants.Sqrt2)));

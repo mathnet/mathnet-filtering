@@ -46,7 +46,7 @@ namespace MathNet.Numerics.Distributions
     /// Provides generation of cauchy distributed random numbers.
     /// </summary>
     /// <remarks>
-    /// The implementation of the <see cref="CauchyDistribution"/> type bases upon information presented on
+    /// The implementation of the <see cref="CauchyLorentzDistribution"/> type bases upon information presented on
     ///   <a href="http://en.wikipedia.org/wiki/Cauchy_distribution">Wikipedia - Cauchy distribution</a> and
     ///   <a href="http://www.xycoon.com/cauchy2p_random.htm">Xycoon - Cauchy Distribution</a>.
     /// </remarks>
@@ -110,6 +110,9 @@ namespace MathNet.Numerics.Distributions
             set { SetDistributionParameters(_location, value); }
         }
 
+        /// <summary>
+        /// Configure all distribution parameters.
+        /// </summary>
         public void SetDistributionParameters(double location, double scale)
         {
             if(!IsValidParameterSet(location, scale))
@@ -189,12 +192,18 @@ namespace MathNet.Numerics.Distributions
             get { throw new NotSupportedException(); }
         }
 
+        /// <summary>
+        /// Continuous probability density function (pdf) of this probability distribution.
+        /// </summary>
         public override double ProbabilityDensity(double x)
         {
             double a = (x - _location) / _scale;
             return 1.0 / (Constants.Pi * _scale * (1.0 + a * a));
         }
 
+        /// <summary>
+        /// Continuous cumulative distribution function (cdf) of this probability distribution.
+        /// </summary>
         public override double CumulativeDistribution(double x)
         {
             return Constants.InvPi * Trig.InverseTangent((x - _location) / _scale) + 0.5;

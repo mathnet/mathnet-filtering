@@ -25,6 +25,9 @@ using System.Text;
 
 namespace MathNet.Numerics.Transformations
 {
+    /// <summary>
+    /// FFT Convention
+    /// </summary>
     [Flags]
     public enum TransformationConvention : int
     {

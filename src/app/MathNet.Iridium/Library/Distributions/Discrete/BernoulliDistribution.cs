@@ -100,6 +100,9 @@ namespace MathNet.Numerics.Distributions
             set { SetDistributionParameters(value); }
         }
 
+        /// <summary>
+        /// Configure all distribution parameters.
+        /// </summary>
         public void SetDistributionParameters(double probabilityOfSuccess)
         {
             if(!IsValidParameterSet(probabilityOfSuccess))
@@ -176,6 +179,9 @@ namespace MathNet.Numerics.Distributions
             }
         }
 
+        /// <summary>
+        /// Discrete probability mass function (pmf) of this probability distribution.
+        /// </summary>
         public override double ProbabilityMass(int x)
         {
             if(x == 1)
@@ -185,6 +191,9 @@ namespace MathNet.Numerics.Distributions
             return 0;
         }
 
+        /// <summary>
+        /// Continuous cumulative distribution function (cdf) of this probability distribution.
+        /// </summary>
         public override double CumulativeDistribution(double x)
         {
             if(x < 0)

@@ -120,11 +120,17 @@ namespace MathNet.Numerics.Distributions
             get { return 0.0; }
         }
 
+        /// <summary>
+        /// Continuous probability density function (pdf) of this probability distribution.
+        /// </summary>
         public override double  ProbabilityDensity(double x)
         {
             return Constants.InvSqrt2Pi * Math.Exp(x * x / -2.0);
         }
 
+        /// <summary>
+        /// Continuous cumulative distribution function (cdf) of this probability distribution.
+        /// </summary>
         public override double CumulativeDistribution(double x)
         {
             return 0.5 * (1.0 + Fn.Erf(x * Constants.Sqrt1_2));

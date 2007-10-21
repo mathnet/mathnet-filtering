@@ -642,7 +642,7 @@ namespace MathNet.Numerics.LinearAlgebra
         }
 
         /// <summary>In place transposition of this <c>Matrix</c>.</summary>
-        /// <seealso cref="Transpose(Matrix)"/>
+        /// <seealso cref="Transpose(IMatrix)"/>
         public virtual void Transpose()
         {
             // TODO: test this method
@@ -705,7 +705,7 @@ namespace MathNet.Numerics.LinearAlgebra
 
         /// <summary>In place element-by-element multiplication.</summary>
         /// <remarks>This instance and <c>m</c> must have the same dimensions.</remarks>
-        /// <seealso cref="ArrayMultiply(Matrix, Matrix)"/>
+        /// <seealso cref="ArrayMultiply(IMatrix, IMatrix)"/>
         public void ArrayMultiply(IMatrix m)
         {
             CheckMatchingMatrixDimensions(this, m);
@@ -717,7 +717,7 @@ namespace MathNet.Numerics.LinearAlgebra
 
         /// <summary>Element-by-element multiplication.</summary>
         /// <remarks><c>m1</c> and <c>m2</c> must have the same dimensions.</remarks>
-        /// <seealso cref="ArrayMultiply(Matrix )"/>
+        /// <seealso cref="ArrayMultiply(IMatrix )"/>
         public static Matrix ArrayMultiply(IMatrix m1, IMatrix m2)
         {
             CheckMatchingMatrixDimensions(m1, m2);
@@ -1035,7 +1035,7 @@ namespace MathNet.Numerics.LinearAlgebra
         }
 
         /// <summary>
-        /// Excplicit conversion to a <c>double</c> scalar of a single column & row (1-by-1) matrix.
+        /// Excplicit conversion to a <c>double</c> scalar of a single column and row (1-by-1) matrix.
         /// </summary>
         /// <param name="m">1-by-1 Matrix</param>
         public static explicit operator double(Matrix m)
