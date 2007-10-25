@@ -104,7 +104,7 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Gets or sets the number of trials parameter.
         /// </summary>
-        /// <remarks>Call <see cref="IsValidParameterSet"/> to determine whether a value is valid and therefor assignable.</remarks>
+        /// <remarks>Call <see cref="IsValidParameterSet"/> to determine whether a value is valid and therefore assignable.</remarks>
         public int NumberOfTrials
         {
             get { return _n; }

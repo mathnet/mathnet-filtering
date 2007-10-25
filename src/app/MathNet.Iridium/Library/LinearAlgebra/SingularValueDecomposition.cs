@@ -35,7 +35,7 @@ namespace MathNet.Numerics.LinearAlgebra
     /// <p>The singular values, sigma[k] = S[k, k], are ordered so that
     /// sigma[0] >= sigma[1] >= ... >= sigma[n-1].</p>
     /// 
-    /// <p>The singular value decompostion always exists, so the constructor will
+    /// <p>The singular value decomposition always exists, so the constructor will
     /// never fail.  The matrix condition number and the effective numerical
     /// rank can be computed from this decomposition.</p>
     /// </remarks>

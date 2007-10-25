@@ -52,7 +52,7 @@ namespace MathNet.Numerics.LinearAlgebra
         private int n;
 
         /// <summary>Symmetry flag.</summary>
-        private bool issymmetric;
+        private bool isSymmetric;
 
         /// <summary>Arrays for internal storage of eigenvalues.</summary>
         private double[] d, e;
@@ -1019,16 +1019,16 @@ namespace MathNet.Numerics.LinearAlgebra
             d = new double[n];
             e = new double[n];
 
-            issymmetric = true;
-            for(int j = 0; (j < n) & issymmetric; j++)
+            isSymmetric = true;
+            for(int j = 0; (j < n) & isSymmetric; j++)
             {
-                for(int i = 0; (i < n) & issymmetric; i++)
+                for(int i = 0; (i < n) & isSymmetric; i++)
                 {
-                    issymmetric = (A[i][j] == A[j][i]);
+                    isSymmetric = (A[i][j] == A[j][i]);
                 }
             }
 
-            if(issymmetric)
+            if(isSymmetric)
             {
                 for(int i = 0; i < n; i++)
                 {

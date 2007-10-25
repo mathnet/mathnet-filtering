@@ -128,7 +128,7 @@ namespace MathNet.Numerics.LinearAlgebra
             }
         }
 
-        /// <summary>Constructs a matrix from a 2-D array by deep-copying the provided array to the internal data stucture.</summary>
+        /// <summary>Constructs a matrix from a 2-D array by deep-copying the provided array to the internal data structure.</summary>
         /// <param name="A">Two-dimensional array of doubles.</param>
         [Obsolete("Use 'Matrix.Create(double[,])' or 'new Matrix(double[][])' instead")]
         public Matrix(double[,] A)
@@ -225,7 +225,7 @@ namespace MathNet.Numerics.LinearAlgebra
 
         /// <summary>Generates identity matrix</summary>
         /// <param name="m">Number of rows.</param>
-        /// <param name="n">Number of colums.</param>
+        /// <param name="n">Number of columns.</param>
         /// <returns>An m-by-n matrix with ones on the diagonal and zeros elsewhere.</returns>
         public static Matrix Identity(int m, int n)
         {
@@ -626,7 +626,7 @@ namespace MathNet.Numerics.LinearAlgebra
             return new Matrix(newData);
         }
 
-        /// <summary>In place substraction of <c>m</c> to this <c>Matrix</c>.</summary>
+        /// <summary>In place subtraction of <c>m</c> to this <c>Matrix</c>.</summary>
         /// <seealso cref="operator - (Matrix, Matrix)"/>
         public virtual void Subtract(IMatrix m)
         {

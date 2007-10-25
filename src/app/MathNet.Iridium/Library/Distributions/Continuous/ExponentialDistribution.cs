@@ -53,7 +53,7 @@ namespace MathNet.Numerics.Distributions
     /// 
     /// <para>For details of the algorithm, see
     /// <a href="http://www.library.cornell.edu/nr/">
-    /// Numerical recipees in C</a> (chapter 7)</para>
+    /// Numerical recipes in C</a> (chapter 7)</para>
     ///
     /// <para>pdf: f(x) = l*exp(-l*x); l = lambda</para>
     /// </remarks>
@@ -100,7 +100,7 @@ namespace MathNet.Numerics.Distributions
 
         #region Distribution Parameters
         /// <summary>
-        /// Gets or sets the avarage rate parameter, also known as lambda.
+        /// Gets or sets the average rate parameter, also known as lambda.
         /// </summary>
         public double Rate
         {

@@ -50,7 +50,7 @@ namespace MathNet.Numerics
     /// Complex z = (x + y) / (x - y);
     /// </code>
     /// 
-    /// <p>Since there is no canonical order amoung the complex numbers,
+    /// <p>Since there is no canonical order among the complex numbers,
     /// <c>Complex</c> does not implement <c>IComparable</c> but several
     /// lexicographic <c>IComparer</c> implementations are provided, see 
     /// <see cref="Complex.RealImaginaryComparer"/>,
@@ -311,7 +311,7 @@ namespace MathNet.Numerics
         }
 
         /// <summary>Gets or sets the modulus of this <c>Complex</c>.</summary>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown if an attemp
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if an attempt
         /// is made to set a negative modulus.</exception>
         /// <remarks>If this <c>Complex</c> is zero when the modulus is set, the Complex is assumed to be positive real with an argument of zero.</remarks>
         /// <seealso cref="Argument"/>
@@ -346,7 +346,7 @@ namespace MathNet.Numerics
         }
 
         /// <summary>Gets or sets the squared modulus of this <c>Complex</c>.</summary>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown if an attemp
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if an attempt
         /// is made to set a negative modulus.</exception>
         /// <remarks>If this <c>Complex</c> is zero when the modulus is set, the Complex is assumed to be positive real with an argument of zero.</remarks>
         /// <seealso cref="Argument"/>
@@ -519,9 +519,9 @@ namespace MathNet.Numerics
         }
 
         /// <summary>Complex multiplication.</summary>
-        public static Complex operator *(Complex multiplicand, Complex muliplier)
+        public static Complex operator *(Complex multiplicand, Complex multiplier)
         {
-            return new Complex(multiplicand.real * muliplier.real - multiplicand.imag * muliplier.imag, multiplicand.real * muliplier.imag + multiplicand.imag * muliplier.real);
+            return new Complex(multiplicand.real * multiplier.real - multiplicand.imag * multiplier.imag, multiplicand.real * multiplier.imag + multiplicand.imag * multiplier.real);
         }
 
         /// <summary>Complex multiplication.</summary>
@@ -816,7 +816,7 @@ namespace MathNet.Numerics
         /// Complex nan = Complex.Parse("NaN");
         /// Complex infinity = Complex.Parse("Infinity");
         /// </code>
-        /// This method is symetric to <see cref="ToString"/>.
+        /// This method is symmetric to <see cref="ToString"/>.
         /// </remarks>
         public static Complex Parse(string complex)
         {

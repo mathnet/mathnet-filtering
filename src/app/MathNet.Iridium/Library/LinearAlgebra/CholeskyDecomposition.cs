@@ -122,7 +122,7 @@ namespace MathNet.Numerics.LinearAlgebra
             if(B.RowCount != n)
                 throw new ArgumentException(Resources.ArgumentMatrixSameRowDimension, "B");
             if(!isspd)
-                throw new InvalidOperationException(Resources.ArgumentMatrixSymetricPositiveDefinite);
+                throw new InvalidOperationException(Resources.ArgumentMatrixSymmetricPositiveDefinite);
 
             // Copy right hand side.
             double[][] X = B.Clone();

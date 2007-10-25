@@ -36,8 +36,8 @@ namespace MathNet.Numerics.Distributions
     /// Pseudo-random generator of Zipf distributed deviates.
     /// </summary>
     /// <remarks>
-    /// <p>The density of the continuous zipf distribution is defined
-    /// on <c>[1, +infinty)</c>, the density is proportional to
+    /// <p>The density of the continuous Zipf distribution is defined
+    /// on <c>[1, +infinity)</c>, the density is proportional to
     /// <c>x^s</c> where <c>s &gt; 1</c> is the <i>skew</i>.</p>
     /// 
     /// <p>See the <a href="http://en.wikipedia.org/wiki/Zipfs_law">Wikipedia</a>

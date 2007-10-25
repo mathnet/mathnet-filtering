@@ -50,7 +50,7 @@
 //http://www.jstatsoft.org/v08/i14/xorshift.pdf
 
 //This particular implementation of xorshift has a period of 2^128-1. See the above paper to see
-//how this can be easily extened if you need a longer period. At the time of writing I could find no 
+//how this can be easily extended if you need a longer period. At the time of writing I could find no 
 //information on the period of System.Random for comparison.
 
 //2) Faster than System.Random. Up to 15x faster, depending on which methods are called.

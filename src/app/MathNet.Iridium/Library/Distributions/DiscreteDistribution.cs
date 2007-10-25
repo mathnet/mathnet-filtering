@@ -137,7 +137,7 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// The value seperating the lower half part from the upper half part of a random variable with this probability distribution.
+        /// The value separating the lower half part from the upper half part of a random variable with this probability distribution.
         /// </summary>
         public abstract int Median
         {

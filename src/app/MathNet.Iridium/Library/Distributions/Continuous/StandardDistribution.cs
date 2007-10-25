@@ -39,7 +39,7 @@ namespace MathNet.Numerics.Distributions
     /// 
     /// <para>For details of the algorithm, see
     /// <a href="http://www.library.cornell.edu/nr/">
-    /// Numerical recipees in C</a> (chapter 7)</para>
+    /// Numerical recipes in C</a> (chapter 7)</para>
     ///
     /// <para>pdf: f(x) = 1/sqrt(2*Pi)*exp(-x^2/2)</para>
     /// </remarks>

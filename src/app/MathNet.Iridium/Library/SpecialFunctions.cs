@@ -34,7 +34,7 @@ namespace MathNet.Numerics
     public static class Fn
     {
         /// <summary> Returns <code>sqrt(a<sup>2</sup> + b<sup>2</sup>)</code> 
-        /// without underflow/overlow.</summary>
+        /// without underflow/overflow.</summary>
         public static double Hypot(double a, double b)
         {
             double r;

@@ -158,8 +158,8 @@ namespace MathNet.Numerics.Statistics
         /// Removes a value from the accumulator.
         /// </summary>
         /// <remarks>
-        /// <p>Caution: the <c>Accumulator</c> does not explicitely records the
-        /// added values. Therefore, no exception will be thrown if an attemp
+        /// <p>Caution: the <c>Accumulator</c> does not explicitly records the
+        /// added values. Therefore, no exception will be thrown if an attempt
         /// is made to remove a value that have not been previously added to
         /// the accumulator.</p>
         /// </remarks>

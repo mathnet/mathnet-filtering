@@ -124,7 +124,7 @@ namespace Iridium.Test
             }
         }
 
-        private void TestContinuousDistributionShapeMatchesCummulativeDensity(
+        private void TestContinuousDistributionShapeMatchesCumulativeDensity(
             ContinuousDistribution distribution,
             double min, double max,
             int numberOfBuckets, int avgSamplesPerBucket,
@@ -152,63 +152,63 @@ namespace Iridium.Test
         [Test]
         public void TestContinuousDistributions_ShapeMatchesCumulativeDensity()
         {
-            TestContinuousDistributionShapeMatchesCummulativeDensity(
+            TestContinuousDistributionShapeMatchesCumulativeDensity(
                 new ContinuousUniformDistribution(0.0, 1.0),
                 0.0, 1.0, 5, 100000, 0.01, "ContinuousUniform(0.0,1.0)");
 
-            TestContinuousDistributionShapeMatchesCummulativeDensity(
+            TestContinuousDistributionShapeMatchesCumulativeDensity(
                 new ContinuousUniformDistribution(-2.0, 2.0),
                 -2.0, 2.0, 10, 100000, 0.01, "ContinuousUniform(-2.0,2.0)");
 
-            TestContinuousDistributionShapeMatchesCummulativeDensity(
+            TestContinuousDistributionShapeMatchesCumulativeDensity(
                 new TriangularDistribution(2.0, 4.0, 2.5),
                 2.0, 4.0, 10, 100000, 0.01, "TriangularDistribution(2.0,4.0,2.5)");
 
-            TestContinuousDistributionShapeMatchesCummulativeDensity(
+            TestContinuousDistributionShapeMatchesCumulativeDensity(
                 new StandardDistribution(),
                 -2.0, 2.0, 10, 100000, 0.01, "StandardDistribution()");
 
-            TestContinuousDistributionShapeMatchesCummulativeDensity(
+            TestContinuousDistributionShapeMatchesCumulativeDensity(
                 new NormalDistribution(-5.0, 2.0),
                 -9.0, -1.0, 10, 100000, 0.01, "NormalDistribution(-5.0,2.0)");
 
-            TestContinuousDistributionShapeMatchesCummulativeDensity(
+            TestContinuousDistributionShapeMatchesCumulativeDensity(
                 new LognormalDistribution(1.0, 0.5),
                 0.0, 8.0, 10, 100000, 0.01, "LognormalDistribution(1.0,0.5)");
 
-            TestContinuousDistributionShapeMatchesCummulativeDensity(
+            TestContinuousDistributionShapeMatchesCumulativeDensity(
                 new ExponentialDistribution(0.75),
                 0.0, 7.0, 10, 100000, 0.01, "ExponentialDistribution(0.75)");
 
-            TestContinuousDistributionShapeMatchesCummulativeDensity(
+            TestContinuousDistributionShapeMatchesCumulativeDensity(
                 new GammaDistribution(2.0, 2.0),
                 0.0, 12.0, 10, 100000, 0.01, "GammaDistribution(2.0,2.0)");
 
-            TestContinuousDistributionShapeMatchesCummulativeDensity(
+            TestContinuousDistributionShapeMatchesCumulativeDensity(
                 new BetaDistribution(2.0, 5.0),
                 0.0, 1.0, 10, 100000, 0.01, "BetaDistribution(2.0,5.0)");
 
-            TestContinuousDistributionShapeMatchesCummulativeDensity(
+            TestContinuousDistributionShapeMatchesCumulativeDensity(
                 new LaplaceDistribution(4.0, 1.5),
                 0.0, 8.0, 10, 100000, 0.01, "LaplaceDistribution(4.0,1.5)");
 
-            TestContinuousDistributionShapeMatchesCummulativeDensity(
+            TestContinuousDistributionShapeMatchesCumulativeDensity(
                 new ChiDistribution(3),
                 0.0, 8.0, 10, 100000, 0.01, "ChiDistribution(3)");
 
-            TestContinuousDistributionShapeMatchesCummulativeDensity(
+            TestContinuousDistributionShapeMatchesCumulativeDensity(
                 new ChiSquareDistribution(2),
                 0.0, 8.0, 10, 100000, 0.01, "ChiSquareDistribution(2)");
 
-            TestContinuousDistributionShapeMatchesCummulativeDensity(
+            TestContinuousDistributionShapeMatchesCumulativeDensity(
                 new ParetoDistribution(1.0, 2.0),
                 1.0, 4.0, 10, 100000, 0.01, "ParetoDistribution(1.0,2.0)");
 
-            TestContinuousDistributionShapeMatchesCummulativeDensity(
+            TestContinuousDistributionShapeMatchesCumulativeDensity(
                 new CauchyLorentzDistribution(1.0, 0.5),
                 0.0, 3.0, 10, 100000, 0.01, "CauchyLorentzDistribution(1.0,0.5)");
 
-            TestContinuousDistributionShapeMatchesCummulativeDensity(
+            TestContinuousDistributionShapeMatchesCumulativeDensity(
                 new ErlangDistribution(2, 2.0),
                 0.0, 10.0, 10, 100000, 0.01, "ErlangDistribution(2,2.0)");
         }

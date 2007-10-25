@@ -225,7 +225,7 @@ namespace MathNet.Numerics
         }
 
         /// <summary>
-        /// The smalles key t in the sample list, where x=f(t) or (t,x).
+        /// The smallest key t in the sample list, where x=f(t) or (t,x).
         /// </summary>
         public double MinT
         {
@@ -767,7 +767,7 @@ namespace MathNet.Numerics
         {
             double t;
             /// <summary>
-            /// Instanciate new event arguments.
+            /// Instantiate new event arguments.
             /// </summary>
             /// <param name="t">The t-value of the x=f(t) or (t,x) samples.</param>
             public SampleAlteredEventArgs(double t)

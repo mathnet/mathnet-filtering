@@ -123,7 +123,7 @@ namespace MathNet.Numerics.Transformations
         /// <param name="samples">Reordered complex samples (even = real, odd = imaginary). Length must be a power of two.</param>
         /// <param name="forward">true for forward transformation, false for (unscaled) backward/inverse transform.</param>
         /// <param name="convention">FFT Convention to be used</param>
-        /// <remarks>The returnd results in backward/inverse mode are not scaled yet; scale them using <see cref="Rescale"/> afterwards.</remarks>
+        /// <remarks>The returned results in backward/inverse mode are not scaled yet; scale them using <see cref="Rescale"/> afterwards.</remarks>
         public void DanielsonLanczosTransform(double[] samples, bool forward, TransformationConvention convention)
         {
             int levels = Fn.IntLog2(samples.Length >> 1);

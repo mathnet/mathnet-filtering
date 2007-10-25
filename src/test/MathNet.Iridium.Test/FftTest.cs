@@ -220,7 +220,7 @@ namespace Iridium.Test
                 data[i] = z / (z * z + 1.0);
                 data[i + 1] = 0.0;
             }
-            data[0] = 0.0; // peridoic continuation; force odd
+            data[0] = 0.0; // periodic continuation; force odd
 
             ComplexTestTimeOdd(data);
 
@@ -265,7 +265,7 @@ namespace Iridium.Test
                 data[i] = 0.0;
                 data[i + 1] = z / (z * z + 1.0);
             }
-            data[1] = 0.0; // peridoic continuation; force odd
+            data[1] = 0.0; // periodic continuation; force odd
 
             ComplexTestTimeOdd(data);
 
@@ -308,7 +308,7 @@ namespace Iridium.Test
                 data[i] = 1.0 / (z * z + 1.0);
                 data[i + 1] = z / (z * z + 1.0);
             }
-            data[1] = 0.0; // peridoic continuation; force odd
+            data[1] = 0.0; // periodic continuation; force odd
 
             cft.Convention = TransformationConvention.Matlab;
             cft.TransformForward(data);
@@ -370,7 +370,7 @@ namespace Iridium.Test
                 dataEven[i] = 1.0 / (z * z + 1.0);
                 dataOdd[i] = z / (z * z + 1.0);
             }
-            dataOdd[0] = 0.0; // peridoic continuation; force odd
+            dataOdd[0] = 0.0; // periodic continuation; force odd
 
             RealTestTimeEven(dataEven);
             RealTestTimeOdd(dataOdd);
@@ -440,7 +440,7 @@ namespace Iridium.Test
                 dataEven[i] = 1.0 / (z * z + 1.0);
                 dataOdd[i] = z / (z * z + 1.0);
             }
-            dataOdd[0] = 0.0; // peridoic continuation; force odd
+            dataOdd[0] = 0.0; // periodic continuation; force odd
 
             RealTestTimeEven(dataEven);
             RealTestTimeOdd(dataOdd);
@@ -480,7 +480,7 @@ namespace Iridium.Test
                 dataEven[i] = 1.0 / (z * z + 1.0);
                 dataOdd[i] = z / (z * z + 1.0);
             }
-            dataOdd[0] = 0.0; // peridoic continuation; force odd
+            dataOdd[0] = 0.0; // periodic continuation; force odd
 
             RealTestTimeEven(dataEven);
             RealTestTimeOdd(dataOdd);
@@ -550,7 +550,7 @@ namespace Iridium.Test
                 dataEven[i] = 1.0 / (z * z + 1.0);
                 dataOdd[i] = z / (z * z + 1.0);
             }
-            dataOdd[0] = 0.0; // peridoic continuation; force odd
+            dataOdd[0] = 0.0; // periodic continuation; force odd
 
             RealTestTimeEven(dataEven);
             RealTestTimeOdd(dataOdd);
@@ -599,7 +599,7 @@ namespace Iridium.Test
                 data[i] = 1.0 / (z * z + 1.0);
                 data[i + 1] = z / (z * z + 1.0);
             }
-            data[1] = 0.0; // peridoic continuation; force odd
+            data[1] = 0.0; // periodic continuation; force odd
 
             cft.Convention = TransformationConvention.Matlab;
             cft.TransformForward(data, dims);
@@ -658,7 +658,7 @@ namespace Iridium.Test
                 data[i] = i;
                 data[i + 1] = numSamples - i;
             }
-            data[1] = 0.0; // peridoic continuation; force odd
+            data[1] = 0.0; // periodic continuation; force odd
 
             cft.Convention = TransformationConvention.Matlab;
             cft.TransformForward(data, dims);

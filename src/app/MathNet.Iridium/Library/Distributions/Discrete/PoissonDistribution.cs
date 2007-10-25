@@ -200,7 +200,7 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Gets the mean value of generatedd random numbers. 
+        /// Gets the mean value of generated random numbers. 
         /// </summary>
         public override double Mean
         {
@@ -211,7 +211,7 @@ namespace MathNet.Numerics.Distributions
         /// Gets the median of generated random numbers.
         /// </summary>
         public override int Median
-        { // approximation, see wikipedia
+        { // approximation, see Wikipedia
             get { return (int)Math.Floor(_lambda + 1.0 / 3.0 - 0.2 / _lambda); }
         }
 

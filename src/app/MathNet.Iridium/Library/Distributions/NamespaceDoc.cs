@@ -26,7 +26,7 @@
 //{
 //    /// <summary>
 //    /// <p><c>MathNet.Numerics.Distributions</c> provides the common
-//    /// statitiscal distributions.</p>
+//    /// statistical distributions.</p>
 //    /// 
 //    /// <p>Note that all the distributions implement <c>IRealFunction</c>.</p>
 //    /// </summary>

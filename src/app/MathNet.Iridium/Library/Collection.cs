@@ -26,18 +26,18 @@ using MathNet.Numerics.Properties;
 namespace MathNet.Numerics
 {
     /// <summary>
-    /// The class <c>Collection</c> contains several utilies performing
+    /// The class <c>Collection</c> contains several utilities performing
     /// some basic collection operations (like union, intersection...).
     /// </summary>
     public sealed class Collection
     {
         /// <summary>
-        /// Preventing the instanciation of the <see cref="Collection"/> class.
+        /// Preventing the instantiation of the <see cref="Collection"/> class.
         /// </summary>
         private Collection() { }
 
         /// <summary>
-        /// The class <c>ContatCollection</c> is used to perform the 
+        /// The class <c>ConcatCollection</c> is used to perform the 
         /// mathematical concatenation between two collections.
         /// </summary>
         /// <seealso cref="Collection.Concat"/>
@@ -247,7 +247,7 @@ namespace MathNet.Numerics
 
         /// <summary>
         /// The collection <c>MinusCollection</c> is used to perform
-        /// the mathematical substraction of two collections.
+        /// the mathematical subtraction of two collections.
         /// </summary>
         /// <seealso cref="Collection.Minus"/>
         [Obsolete("Use Set<T>.Subtract() instead.", false)]
@@ -310,7 +310,7 @@ namespace MathNet.Numerics
         /// <param name="c1">Should not be null.</param>
         /// <param name="c2">Should not be null.</param>
         /// <remarks>The call is performed in <c>O(1)</c> computational time, the
-        /// contatenated collection is not built explicitely.</remarks>
+        /// concatenated collection is not built explicitly.</remarks>
         public static ICollection Concat(ICollection c1, ICollection c2)
         {
             if(c1 == null) throw new ArgumentNullException("c1",
@@ -329,7 +329,7 @@ namespace MathNet.Numerics
         /// <param name="c2">Should not be null.</param>
         /// <remarks>
         /// <p>The call is performed in <c>O(c1.Count+c2.Count)</c> and
-        /// the intersection is built explicitely.</p>
+        /// the intersection is built explicitly.</p>
         /// <p>The resulting collection will not contain several identical elements.</p>
         /// <p>Example: Inter({1;1;2;3},{0;1;1;3;4}) = {1;3}.</p>
         /// </remarks>
@@ -345,7 +345,7 @@ namespace MathNet.Numerics
         }
 
         /// <summary>
-        /// Returns a collection resulting from the substraction of
+        /// Returns a collection resulting from the subtraction of
         /// the items of <c>c2</c> to the collection <c>c1</c>. 
         /// </summary>
         /// <param name="c1">Should not be null.</param>

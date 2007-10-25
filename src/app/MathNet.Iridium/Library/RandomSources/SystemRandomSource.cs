@@ -47,7 +47,7 @@ namespace MathNet.Numerics.RandomSources
     /// </summary>
     /// <remarks>
     /// The <see cref="SystemRandomSource"/> type internally uses an instance of the <see cref="System.Random"/> type 
-    ///   to generat pseudo-random numbers.
+    ///   to generate pseudo-random numbers.
     /// </remarks>
     public class SystemRandomSource : RandomSource
     {

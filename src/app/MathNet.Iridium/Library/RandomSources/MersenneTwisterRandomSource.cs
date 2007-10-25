@@ -274,13 +274,13 @@ namespace MathNet.Numerics.RandomSources
                 // 2002/01/09 modified by Makoto Matsumoto
             }
 
-            // If the object was instanciated with a seed array do some further (re)initialisation.
+            // If the object was instantiated with a seed array do some further (re)initialisation.
             if(_seedArray != null)
             {
                 this.ResetBySeedArray();
             }
 
-            // Reset helper variables used for generation of random bools.
+            // Reset helper variables used for generation of random booleans.
             _bitBuffer = 0;
             _bitCount = 32;
         }

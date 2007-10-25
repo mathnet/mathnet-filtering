@@ -35,7 +35,7 @@
 //    ///		<see cref="MathNet.Numerics.LinearAlgebra.Sparse"/>.</li>
 //    ///		<li>Non-uniform random generators, see 
 //    ///		<see cref="MathNet.Numerics.Generators"/>.</li>
-//    ///		<li>Distribution fonctions, see
+//    ///		<li>Distribution functions, see
 //    ///		<see cref="MathNet.Numerics.Distributions"/>.</li>
 //    ///		<li>Statistics tools, see
 //    ///		<see cref="MathNet.Numerics.Statistics"/>.</li>

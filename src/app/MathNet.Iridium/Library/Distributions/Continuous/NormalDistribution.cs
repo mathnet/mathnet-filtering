@@ -38,7 +38,7 @@ namespace MathNet.Numerics.Distributions
     /// 
     /// <para>For details of the algorithm, see
     /// <a href="http://www.library.cornell.edu/nr/">
-    /// Numerical recipees in C</a> (chapter 7)</para>
+    /// Numerical recipes in C</a> (chapter 7)</para>
     ///
     /// <para>pdf: f(x) = 1/(s*sqrt(2*Pi))*exp(-(x-m)^2/(2*s^2)); m = mu (location), s = sigma (scale)</para>
     /// </remarks>
@@ -217,7 +217,7 @@ namespace MathNet.Numerics.Distributions
 
         #region Generator
         /// <summary>
-        /// Returns a normal/gaussion distributed floating point random number.
+        /// Returns a normal/gaussian distributed floating point random number.
         /// </summary>
         /// <returns>A normal distributed double-precision floating point number.</returns>
         public override double NextDouble()

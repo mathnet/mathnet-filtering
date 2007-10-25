@@ -223,9 +223,9 @@ namespace MathNet.Numerics
         /// </remarks>
         public static void RandomShuffle<T>(IList<T> array)
         {
-            T[] arrayCpy = new T[array.Count];
-            array.CopyTo(arrayCpy, 0);
-            RandomShuffle(arrayCpy, array);
+            T[] arrayCopy = new T[array.Count];
+            array.CopyTo(arrayCopy, 0);
+            RandomShuffle(arrayCopy, array);
         }
 
         /// <summary>
