@@ -59,13 +59,14 @@ namespace MathNet.Numerics
         /// <param name="copy">A polynomial to copy from.</param>
         public Polynomial(Polynomial copy)
         {
+            this.order = copy.order;
             this.coefficients = new double[copy.coefficients.Length];
             Array.Copy(copy.coefficients, this.coefficients, Math.Min(this.coefficients.Length, copy.coefficients.Length));
         }
         #endregion
 
         #region Size
-        private int SizeOfOrder(int order)
+        private static int SizeOfOrder(int order)
         {
             return 1 << (int)Math.Ceiling(Math.Log(order + 1, 2));
         }
