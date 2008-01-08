@@ -226,7 +226,7 @@ namespace Iridium.Test
             double[][] rankdef = avals;
             double[][] tvals = { new double[] { 1.0, 2.0, 3.0 }, new double[] { 4.0, 5.0, 6.0 }, new double[] { 7.0, 8.0, 9.0 }, new double[] { 10.0, 11.0, 12.0 } };
             double[][] subavals = { new double[] { 5.0, 8.0, 11.0 }, new double[] { 6.0, 9.0, 12.0 } };
-            double[][] pvals = { new double[] { 1.0, 1.0, 1.0 }, new double[] { 1.0, 2.0, 3.0 }, new double[] { 1.0, 3.0, 6.0 } };
+            double[][] pvals = { new double[] { 25, -5, 10 }, new double[] { -5, 17, 10 }, new double[] { 10, 10, 62 } };
             double[][] ivals = { new double[] { 1.0, 0.0, 0.0, 0.0 }, new double[] { 0.0, 1.0, 0.0, 0.0 }, new double[] { 0.0, 0.0, 1.0, 0.0 } };
             double[][] evals = { new double[] { 0.0, 1.0, 0.0, 0.0 }, new double[] { 1.0, 0.0, 2e-7, 0.0 }, new double[] { 0.0, -2e-7, 0.0, 1.0 }, new double[] { 0.0, 0.0, 1.0, 0.0 } };
             double[][] square = { new double[] { 166.0, 188.0, 210.0 }, new double[] { 188.0, 214.0, 240.0 }, new double[] { 210.0, 240.0, 270.0 } };
