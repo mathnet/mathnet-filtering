@@ -149,12 +149,21 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
+        /// Obsolete. Use static BetaDistribution.IsValidParameterSet instead.
+        /// </summary>
+        [Obsolete("Use static BetaDistribution.IsValidParameterSet instead.")]
+        public bool IsValidParameterSet(double alpha, double beta)
+        {
+            return BetaDistribution.IsValidParameterSet(alpha, beta);
+        }
+
+        /// <summary>
         /// Determines whether the specified parameters is valid.
         /// </summary>
         /// <returns>
         /// <see langword="true"/> if both alpha and beta are greater than 0.0; otherwise, <see langword="false"/>.
         /// </returns>
-        public bool IsValidParameterSet(double alpha, double beta)
+        public static bool IsValidParameterSet(double alpha, double beta)
         {
             return alpha > 0.0 && beta > 0.0;
         }

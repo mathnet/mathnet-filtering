@@ -162,12 +162,21 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
+        /// Obsolete. Use static TriangularDistribution.IsValidParameterSet instead.
+        /// </summary>
+        [Obsolete("Use static TriangularDistribution.IsValidParameterSet instead.")]
+        public bool IsValidParameterSet(double lowerLimit, double upperLimit, double center)
+        {
+            return TriangularDistribution.IsValidParameterSet(lowerLimit, upperLimit, center);
+        }
+
+        /// <summary>
         /// Determines whether the specified parameters is valid.
         /// </summary>
         /// <returns>
         /// <see langword="true"/> if both shape and rate are greater than 0.0; otherwise, <see langword="false"/>.
         /// </returns>
-        public bool IsValidParameterSet(double lowerLimit, double upperLimit, double center)
+        public static bool IsValidParameterSet(double lowerLimit, double upperLimit, double center)
         {
             return lowerLimit < upperLimit && lowerLimit <= center && center <= upperLimit;
         }

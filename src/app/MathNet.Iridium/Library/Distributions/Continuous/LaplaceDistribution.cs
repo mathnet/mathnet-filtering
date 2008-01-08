@@ -122,12 +122,21 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
+        /// Obsolete. Use static LaplaceDistribution.IsValidParameterSet instead.
+        /// </summary>
+        [Obsolete("Use static LaplaceDistribution.IsValidParameterSet instead.")]
+        public bool IsValidParameterSet(double location, double scale)
+        {
+            return LaplaceDistribution.IsValidParameterSet(location, scale);
+        }
+
+        /// <summary>
         /// Determines whether the specified parameters is valid.
         /// </summary>
         /// <returns>
         /// <see langword="true"/> if scale is greater than 0.0; otherwise, <see langword="false"/>.
         /// </returns>
-        public bool IsValidParameterSet(double location, double scale)
+        public static bool IsValidParameterSet(double location, double scale)
         {
             return scale > 0;
         }

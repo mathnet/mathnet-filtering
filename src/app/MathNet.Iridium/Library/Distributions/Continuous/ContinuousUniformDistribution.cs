@@ -129,12 +129,21 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
+        /// Obsolete. Use static ContinuousUniformDistribution.IsValidParameterSet instead.
+        /// </summary>
+        [Obsolete("Use static ContinuousUniformDistribution.IsValidParameterSet instead.")]
+        public bool IsValidParameterSet(double lowerLimit, double upperLimit)
+        {
+            return ContinuousUniformDistribution.IsValidParameterSet(lowerLimit, upperLimit);
+        }
+
+        /// <summary>
         /// Determines whether the specified parameters is valid.
         /// </summary>
         /// <returns>
         /// <see langword="true"/> if lowerLimit &lt;= upperLimit; otherwise, <see langword="false"/>.
         /// </returns>
-        public bool IsValidParameterSet(double lowerLimit, double upperLimit)
+        public static bool IsValidParameterSet(double lowerLimit, double upperLimit)
         {
             return lowerLimit <= upperLimit;
         }

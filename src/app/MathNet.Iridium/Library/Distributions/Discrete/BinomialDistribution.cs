@@ -124,13 +124,22 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
+        /// Obsolete. Use static BinomialDistribution.IsValidParameterSet instead.
+        /// </summary>
+        [Obsolete("Use static BinomialDistribution.IsValidParameterSet instead.")]
+        public bool IsValidParameterSet(double probabilityOfSuccess, int numberOfTrials)
+        {
+            return BinomialDistribution.IsValidParameterSet(probabilityOfSuccess, numberOfTrials);
+        }
+
+        /// <summary>
         /// Determines whether the specified parameters is valid.
         /// </summary>
         /// <returns>
         /// <see langword="true"/> if probabilityOfSuccess is greater than or equal to 0.0, and less than or equal to 1.0,
         /// and numberOfTrials is greater than or equal to 0; otherwise, <see langword="false"/>.
         /// </returns>
-        public bool IsValidParameterSet(double probabilityOfSuccess, int numberOfTrials)
+        public static bool IsValidParameterSet(double probabilityOfSuccess, int numberOfTrials)
         {
             return (probabilityOfSuccess >= 0.0 && probabilityOfSuccess <= 1.0)
                 && (numberOfTrials >= 0);

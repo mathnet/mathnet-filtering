@@ -164,12 +164,21 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
+        /// Obsolete. Use static GeometricDistribution.IsValidParameterSet instead.
+        /// </summary>
+        [Obsolete("Use static GeometricDistribution.IsValidParameterSet instead.")]
+        public bool IsValidParameterSet(double probabilityOfSuccess)
+        {
+            GeometricDistribution.IsValidParameterSet(probabilityOfSuccess);
+        }
+
+        /// <summary>
         /// Determines whether the specified parameters are valid.
         /// </summary>
         /// <returns>
         /// <see langword="true"/> if value is greater than or equal to 0.0, and less than or equal to 1.0; otherwise, <see langword="false"/>.
         /// </returns>
-        public bool IsValidParameterSet(double probabilityOfSuccess)
+        public static bool IsValidParameterSet(double probabilityOfSuccess)
         {
             return probabilityOfSuccess >= 0.0 && probabilityOfSuccess <= 1.0;
         }

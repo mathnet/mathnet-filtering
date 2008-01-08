@@ -125,12 +125,21 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
+        /// Obsolete. Use static ParetoDistribution.IsValidParameterSet instead.
+        /// </summary>
+        [Obsolete("Use static ParetoDistribution.IsValidParameterSet instead.")]
+        public bool IsValidParameterSet(double location, double shape)
+        {
+            return ParetoDistribution.IsValidParameterSet(location, shape);
+        }
+
+        /// <summary>
         /// Determines whether the specified parameters is valid.
         /// </summary>
         /// <returns>
         /// <see langword="true"/> if both location and shape are greater than 0.0; otherwise, <see langword="false"/>.
         /// </returns>
-        public bool IsValidParameterSet(double location, double shape)
+        public static bool IsValidParameterSet(double location, double shape)
         {
             return location > 0.0 && shape > 0.0; ;
         }

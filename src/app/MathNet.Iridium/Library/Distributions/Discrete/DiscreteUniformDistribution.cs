@@ -130,12 +130,21 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
+        /// Obsolete. Use static DiscreteUniformDistribution.IsValidParameterSet instead.
+        /// </summary>
+        [Obsolete("Use static DiscreteUniformDistribution.IsValidParameterSet instead.")]
+        public bool IsValidParameterSet(int lowerLimit, int upperLimit)
+        {
+            return DiscreteUniformDistribution.IsValidParameterSet(lowerLimit, upperLimit);
+        }
+
+        /// <summary>
         /// Determines whether the specified parameters is valid.
         /// </summary>
         /// <returns>
         /// <see langword="true"/> if lowerLimit &lt;= upperLimit; otherwise, <see langword="false"/>.
         /// </returns>
-        public bool IsValidParameterSet(int lowerLimit, int upperLimit)
+        public static bool IsValidParameterSet(int lowerLimit, int upperLimit)
         {
             return lowerLimit <= upperLimit;
         }

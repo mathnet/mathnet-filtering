@@ -186,12 +186,21 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
+        /// Obsolete. Use static HypergeometricDistribution.IsValidParameterSet instead.
+        /// </summary>
+        [Obsolete("Use static HypergeometricDistribution.IsValidParameterSet instead.")]
+        public bool IsValidParameterSet(int populationSize, int favoredItems, int numberOfSamples)
+        {
+            HypergeometricDistribution.IsValidParameterSet(populationSize, favoredItems, numberOfSamples);
+        }
+
+        /// <summary>
         /// Determines whether the specified parameters is valid.
         /// </summary>
         /// <returns>
         /// <see langword="true"/> if values are greater than or equal to 0.0 and both favored items and number of samples are not bigger than the population size; otherwise, <see langword="false"/>.
         /// </returns>
-        public bool IsValidParameterSet(int populationSize, int favoredItems, int numberOfSamples)
+        public static bool IsValidParameterSet(int populationSize, int favoredItems, int numberOfSamples)
         {
             return populationSize >= 0 && favoredItems >= 0 && favoredItems <= populationSize
                                         && numberOfSamples >= 0 && numberOfSamples <= populationSize;

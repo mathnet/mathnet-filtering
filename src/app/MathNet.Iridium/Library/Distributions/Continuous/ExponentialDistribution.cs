@@ -121,12 +121,21 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
+        /// Obsolete. Use static ExponentialDistribution.IsValidParameterSet instead.
+        /// </summary>
+        [Obsolete("Use static ExponentialDistribution.IsValidParameterSet instead.")]
+        public bool IsValidParameterSet(double rate)
+        {
+            return ExponentialDistribution.IsValidParameterSet(rate);
+        }
+
+        /// <summary>
         /// Determines whether the specified parameters is valid.
         /// </summary>
         /// <returns>
         /// <see langword="true"/> if value is greater than 0.0; otherwise, <see langword="false"/>.
         /// </returns>
-        public bool IsValidParameterSet(double rate)
+        public static bool IsValidParameterSet(double rate)
         {
             return rate > 0.0;
         }
