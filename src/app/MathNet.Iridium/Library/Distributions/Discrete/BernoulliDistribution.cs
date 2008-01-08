@@ -112,15 +112,6 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Obsolete. Use static BernoulliDistribution.IsValidParameterSet instead.
-        /// </summary>
-        [Obsolete("Use static BernoulliDistribution.IsValidParameterSet instead.")]
-        public bool IsValidParameterSet(double probabilityOfSuccess)
-        {
-            BernoulliDistribution.IsValidParameterSet(probabilityOfSuccess);
-        }
-
-        /// <summary>
         /// Determines whether the specified parameters is valid.
         /// </summary>
         /// <returns>

@@ -123,15 +123,6 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Obsolete. Use static CauchyLorentzDistribution.IsValidParameterSet instead.
-        /// </summary>
-        [Obsolete("Use static CauchyLorentzDistribution.IsValidParameterSet instead.")]
-        public bool IsValidParameterSet(double location, double scale)
-        {
-            return CauchyLorentzDistribution.IsValidParameterSet(location, scale);
-        }
-
-        /// <summary>
         /// Determines whether the specified parameters is valid.
         /// </summary>
         /// <returns>

@@ -171,15 +171,6 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Obsolete. Use static PoissonDistribution.IsValidParameterSet instead.
-        /// </summary>
-        [Obsolete("Use static PoissonDistribution.IsValidParameterSet instead.")]
-        public bool IsValidParameterSet(double lambda)
-        {
-            return PoissonDistribution.IsValidParameterSet(lambda);
-        }
-
-        /// <summary>
         /// Determines whether the specified parameters are valid.
         /// </summary>
         /// <returns>

@@ -132,15 +132,6 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Obsolete. Use static NormalDistribution.IsValidParameterSet instead.
-        /// </summary>
-        [Obsolete("Use static NormalDistribution.IsValidParameterSet instead.")]
-        public bool IsValidParameterSet(double mu, double sigma)
-        {
-            return NormalDistribution.IsValidParameterSet(mu, sigma);
-        }
-
-        /// <summary>
         /// Determines whether the specified parameters is valid.
         /// </summary>
         /// <returns>

@@ -154,15 +154,6 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Obsolete. Use static ArbitrarcDistribution.IsValidParameterSet instead.
-        /// </summary>
-        [Obsolete("Use static ArbitrarcDistribution.IsValidParameterSet instead.")]
-        public bool IsValidParameterSet(int offset, params double[] probabilityMass)
-        {
-            return ArbitraryDistribution.IsValidParameterSet(probabilityMass);
-        }
-
-        /// <summary>
         /// Determines whether the specified parameters is valid.
         /// </summary>
         /// <returns>

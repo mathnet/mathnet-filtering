@@ -157,15 +157,6 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Obsolete. Use static LognormalDistribution.IsValidParameterSet instead.
-        /// </summary>
-        [Obsolete("Use static LognormalDistribution.IsValidParameterSet instead.")]
-        public bool IsValidParameterSet(double mu, double sigma)
-        {
-            return LognormalDistribution.IsValidParameterSet(mu, sigma);
-        }
-
-        /// <summary>
         /// Determines whether the specified parameters is valid.
         /// </summary>
         /// <returns>

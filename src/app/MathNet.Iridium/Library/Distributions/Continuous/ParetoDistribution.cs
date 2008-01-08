@@ -125,15 +125,6 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Obsolete. Use static ParetoDistribution.IsValidParameterSet instead.
-        /// </summary>
-        [Obsolete("Use static ParetoDistribution.IsValidParameterSet instead.")]
-        public bool IsValidParameterSet(double location, double shape)
-        {
-            return ParetoDistribution.IsValidParameterSet(location, shape);
-        }
-
-        /// <summary>
         /// Determines whether the specified parameters is valid.
         /// </summary>
         /// <returns>

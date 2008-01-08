@@ -132,15 +132,6 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Obsolete. Use static ChiDistribution.IsValidParameterSet instead.
-        /// </summary>
-        [Obsolete("Use static ChiDistribution.IsValidParameterSet instead.")]
-        public bool IsValidParameterSet(int degreesOfFreedom)
-        {
-            return ChiDistribution.IsValidParameterSet(degreesOfFreedom);
-        }
-
-        /// <summary>
         /// Determines whether the specified parameters is valid.
         /// </summary>
         /// <returns>

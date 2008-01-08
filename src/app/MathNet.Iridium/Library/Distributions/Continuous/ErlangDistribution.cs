@@ -125,15 +125,6 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Obsolete. Use static ErlangDistribution.IsValidParameterSet instead.
-        /// </summary>
-        [Obsolete("Use static ErlangDistribution.IsValidParameterSet instead.")]
-        public bool IsValidParameterSet(int shape, double rate)
-        {
-            return ErlangDistribution.IsValidParameterSet(shape, rate);
-        }
-
-        /// <summary>
         /// Determines whether the specified parameters is valid.
         /// </summary>
         /// <returns>

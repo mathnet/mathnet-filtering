@@ -131,15 +131,6 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Obsolete. Use static GammaDistribution.IsValidParameterSet instead.
-        /// </summary>
-        [Obsolete("Use static GammaDistribution.IsValidParameterSet instead.")]
-        public bool IsValidParameterSet(double alpha, double theta)
-        {
-            return GammaDistribution.IsValidParameterSet(alpha, theta);
-        }
-
-        /// <summary>
         /// Determines whether the specified parameters is valid.
         /// </summary>
         /// <returns>
