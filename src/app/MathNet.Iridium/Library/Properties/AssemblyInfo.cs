@@ -36,9 +36,18 @@ using System.Security.Permissions;
 [assembly: CLSCompliant(true)]
 [assembly: ComVisible(false)]
 
-// Refuse anything except SecurityPermission.Execution and identity permissions:
-// TODO: Should be "Execution"
-[assembly: PermissionSet(SecurityAction.RequestOptional, Name="FullTrust")] 
+[assembly: PermissionSet(SecurityAction.RequestOptional, Unrestricted=false)]
+[assembly: SecurityPermission(SecurityAction.RequestMinimum, Execution=true)]
+[assembly: SecurityPermission(SecurityAction.RequestRefuse, UnmanagedCode=true, Assertion=true, BindingRedirects=true)]
+[assembly: FileIOPermission(SecurityAction.RequestRefuse, Unrestricted=true)]
+[assembly: EnvironmentPermission(SecurityAction.RequestRefuse, Unrestricted=true)]
+[assembly: ReflectionPermission(SecurityAction.RequestRefuse, Unrestricted=true)]
+[assembly: RegistryPermission(SecurityAction.RequestRefuse, Unrestricted=true)]
+[assembly: System.Net.SocketPermission(SecurityAction.RequestRefuse, Unrestricted=true)]
+[assembly: System.Net.WebPermission(SecurityAction.RequestRefuse, Unrestricted=true)]
+[assembly: System.Net.DnsPermission(SecurityAction.RequestRefuse, Unrestricted = true)]
+[assembly: System.Net.Mail.SmtpPermission(SecurityAction.RequestRefuse, Unrestricted = true)]
+[assembly: System.Net.NetworkInformation.NetworkInformationPermission(SecurityAction.RequestRefuse, Unrestricted=true)]
 
 [assembly: Guid("1386fccc-7816-4311-a04b-25227138e8b3")]
 
