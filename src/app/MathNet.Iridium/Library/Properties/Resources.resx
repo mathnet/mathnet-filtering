@@ -153,6 +153,9 @@
   <data name="ArgumentMatrixSquare" xml:space="preserve">
     <value>Matrix must be square.</value>
   </data>
+  <data name="ArgumentMatrixSymmetric" xml:space="preserve">
+    <value>Matrix must be symmetric.</value>
+  </data>
   <data name="ArgumentMatrixSymmetricPositiveDefinite" xml:space="preserve">
     <value>Matrix must be symmetric positive definite.</value>
   </data>

@@ -24,7 +24,7 @@ namespace Iridium.Test
             Matrix test1a = m1 * inv1a;
             NumericAssert.AreAlmostEqual(i, test1a, "1A");
             Matrix inv1b = m1.Inverse();
-            Matrix.AlmostEqual(inv1a, inv1b);
+            NumericAssert.AreAlmostEqual(inv1a, inv1b, "1B");
 
             double[][] pvals2 = { new double[] { 25, -5, 10 }, new double[] { -5, 17, 10 }, new double[] { 10, 10, 62 } };
             Matrix m2 = new Matrix(pvals2);
@@ -34,7 +34,7 @@ namespace Iridium.Test
             Matrix test2a = m2 * inv2a;
             NumericAssert.AreAlmostEqual(i, test2a, "2A");
             Matrix inv2b = m2.Inverse();
-            Matrix.AlmostEqual(inv2a, inv2b);
+            NumericAssert.AreAlmostEqual(inv2a, inv2b, "2B");
         }
     }
 }
