@@ -38,6 +38,7 @@ using System.Security.Permissions;
 
 [assembly: PermissionSet(SecurityAction.RequestOptional, Unrestricted=false)]
 [assembly: SecurityPermission(SecurityAction.RequestMinimum, Execution=true)]
+[assembly: SecurityPermission(SecurityAction.RequestOptional, SkipVerification=true)] // TODO: remove - temp. fixes NCover issue
 [assembly: SecurityPermission(SecurityAction.RequestRefuse, UnmanagedCode=true, Assertion=true, BindingRedirects=true)]
 [assembly: FileIOPermission(SecurityAction.RequestRefuse, Unrestricted=true)]
 [assembly: EnvironmentPermission(SecurityAction.RequestRefuse, Unrestricted=true)]
