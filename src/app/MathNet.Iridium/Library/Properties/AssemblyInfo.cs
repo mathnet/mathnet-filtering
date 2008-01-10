@@ -23,6 +23,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security.Permissions;
+using System.Security;
 
 [assembly: AssemblyTitle("Math.NET Iridium: Scientific Numerical Library")]
 [assembly: AssemblyDescription("http://mathnet.opensourcedotnet.info/")]
@@ -32,9 +33,6 @@ using System.Security.Permissions;
 [assembly: AssemblyCopyright("Copyright © 2006, Math.NET Project")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-
-[assembly: CLSCompliant(true)]
-[assembly: ComVisible(false)]
 
 [assembly: PermissionSet(SecurityAction.RequestOptional, Unrestricted=false)]
 [assembly: SecurityPermission(SecurityAction.RequestMinimum, Execution=true)]
@@ -50,7 +48,12 @@ using System.Security.Permissions;
 [assembly: System.Net.Mail.SmtpPermission(SecurityAction.RequestRefuse, Unrestricted = true)]
 [assembly: System.Net.NetworkInformation.NetworkInformationPermission(SecurityAction.RequestRefuse, Unrestricted=true)]
 
+[assembly: AllowPartiallyTrustedCallers]
+
+[assembly: CLSCompliant(true)]
+
 [assembly: Guid("1386fccc-7816-4311-a04b-25227138e8b3")]
+[assembly: ComVisible(true)]
 
 [assembly: AssemblyVersion("2007.8.9.*")] // even = release
 [assembly: AssemblyFileVersion("2007.8.9.0")]
