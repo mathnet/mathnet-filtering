@@ -40,7 +40,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static double Variations(int n, int k)
         {
-            if(k < 0 || k > n)
+            if(k < 0 || n < 0 || k > n)
                 return 0;
             return Math.Floor(0.5 + System.Math.Exp(Fn.FactorialLn(n) - Fn.FactorialLn(n - k)));
         }
@@ -50,6 +50,8 @@ namespace MathNet.Numerics
         /// </summary>
         public static double VariationsWithRepetition(int n, int k)
         {
+            if(k < 0 || n < 0)
+                return 0;
             return Math.Pow(n, k);
         }
 
@@ -66,8 +68,10 @@ namespace MathNet.Numerics
         /// </summary>
         public static double CombinationsWithRepetition(int n, int k)
         {
-            if(k < 0)
+            if(k < 0 || n < 0 || (n == 0 && k > 0))
                 return 0;
+            if(n == 0 && k == 0)
+                return 1;
             return Math.Floor(0.5 + System.Math.Exp(Fn.FactorialLn(n + k - 1) - Fn.FactorialLn(k) - Fn.FactorialLn(n - 1)));
         }
 

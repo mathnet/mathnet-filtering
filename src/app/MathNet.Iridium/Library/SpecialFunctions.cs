@@ -344,7 +344,7 @@ namespace MathNet.Numerics
         /// </remarks>
         public static double BinomialCoefficient(int n, int k)
         {
-            if(k < 0 || k > n)
+            if(k < 0 || n < 0 || k > n)
                 return 0.0;
             return Math.Floor(0.5 + Math.Exp(FactorialLn(n) - FactorialLn(k) - FactorialLn(n - k)));
         }
@@ -354,7 +354,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static double BinomialCoefficientLn(int n, int k)
         {
-            if(k < 0 || k > n)
+            if(k < 0 || n < 0 || k > n)
                 return 1.0;
             return FactorialLn(n) - FactorialLn(k) - FactorialLn(n - k);
         }
