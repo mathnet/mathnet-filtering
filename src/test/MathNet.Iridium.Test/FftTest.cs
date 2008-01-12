@@ -2,7 +2,7 @@
 // Math.NET Iridium, part of the Math.NET Project
 // http://mathnet.opensourcedotnet.info
 //
-// Copyright (c) 2004-2007, Christoph Rüegg,  http://christoph.ruegg.name
+// Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
 //						
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
