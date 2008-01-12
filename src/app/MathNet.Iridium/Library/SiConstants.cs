@@ -2,7 +2,7 @@
 // Math.NET Iridium, part of the Math.NET Project
 // http://mathnet.opensourcedotnet.info
 //
-// Copyright (c) 2002-2007, Christoph Rüegg, http://christoph.ruegg.name
+// Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
 //						
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
@@ -63,69 +63,117 @@ namespace MathNet.Numerics
         /// <summary>Conductance Quantum: G_0 = 2*e^2/h [S = m^-2 kg^-1 s^3 A^2] (2002 CODATA)</summary>
         public const double ConductanceQuantum = 7.748091733e-5;
         
-        
+        /// <summary>Josephson Constant: [] (2002 CODATA)</summary>
         public const double JosephsonConstant = 483597.879e9;
+        /// <summary>Von Klitzing Constant: [] (2002 CODATA)</summary>
         public const double VonKlitzingConstant = 25812.807449;
+        /// <summary>Bohr Magneton: [] (2002 CODATA)</summary>
         public const double BohrMagneton = 927.400949e-26;
+        /// <summary>Nuclear Magneton: [] (2002 CODATA)</summary>
         public const double NuclearMagneton = 5.05078343e-27;
+        /// <summary>Fine Structure Constant: [] (2002 CODATA)</summary>
         public const double FineStructureConstant = 7.297352568e-3;
+        /// <summary>Rydberg Constant: [] (2002 CODATA)</summary>
         public const double RydbergConstant = 10973731.568525;
+        /// <summary>Bor Radius: [] (2002 CODATA)</summary>
         public const double BohrRadius = 0.5291772108e-10;
+        /// <summary>Hartree Energy: [] (2002 CODATA)</summary>
         public const double HartreeEnergy = 4.35974417e-18;
+        /// <summary>Quantum of Circulation: [] (2002 CODATA)</summary>
         public const double QuantumOfCirculation = 3.636947550e-4;
+        /// <summary>Fermi Coupling Constant: [] (2002 CODATA)</summary>
         public const double FermiCouplingConstant = 1.16639e-5;
+        /// <summary>Weak Mixin Angle: [] (2002 CODATA)</summary>
         public const double WeakMixingAngle = 0.22215;
 
+        /// <summary>Electron Mass: [] (2002 CODATA)</summary>
         public const double ElectronMass = 9.1093826e-31;
+        /// <summary>Electron Mass Energy Equivalent: [] (2002 CODATA)</summary>
         public const double ElectronMassEnergyEquivalent = 8.1871047e-14;
+        /// <summary>Electron Molar Mass: [] (2002 CODATA)</summary>
         public const double ElectronMolarMass = 5.4857990945e-7;
+        /// <summary>Electron Compton Wavelength: [] (2002 CODATA)</summary>
         public const double ComptonWavelength = 2.426310238e-12;
         //public const double ComptonWavelengthOver2Pi = 386.1592678e-15;
+        /// <summary>Classical Electron Radius: [] (2002 CODATA)</summary>
         public const double ClassicalElectronRadius = 2.817940325e-15;
+        /// <summary>Tomson Cross Section: [] (2002 CODATA)</summary>
         public const double ThomsonCrossSection = 0.665245873e-28;
+        /// <summary>Electron Magnetic Moment: [] (2002 CODATA)</summary>
         public const double ElectronMagneticMoment = -928.476412e-26;
+        /// <summary>Electon G-Factor: [] (2002 CODATA)</summary>
         public const double ElectronGFactor = -2.0023193043718;
 
+        /// <summary>Muon Mass: [] (2002 CODATA)</summary>
         public const double MuonMass = 1.88353140e-28;
+        /// <summary>Muon Mass Energy Equivalent: [] (2002 CODATA)</summary>
         public const double MuonMassEnegryEquivalent = 1.69283360e-11;
+        /// <summary>Muon Molar Mass: [] (2002 CODATA)</summary>
         public const double MuonMolarMass = 0.1134289264e-3;
+        /// <summary>Muon Compton Wavelength: [] (2002 CODATA)</summary>
         public const double MuonComptonWavelength = 11.73444105e-15;
+        /// <summary>Muon Magnetic Moment: [] (2002 CODATA)</summary>
         public const double MuonMagneticMoment = -4.49044799e-26;
+        /// <summary>Muon G-Factor: [] (2002 CODATA)</summary>
         public const double MuonGFactor = -2.0023318396;
 
+        /// <summary>Tau Mass: [] (2002 CODATA)</summary>
         public const double TauMass = 3.16777e-27;
+        /// <summary>Tau Mass Energy Equivalent: [] (2002 CODATA)</summary>
         public const double TauMassEnergyEquivalent = 2.84705e-10;
+        /// <summary>Tau Molar Mass: [] (2002 CODATA)</summary>
         public const double TauMolarMass = 1.90768e-3;
+        /// <summary>Tau Compton Wavelength: [] (2002 CODATA)</summary>
         public const double TauComptonWavelength = 0.69772e-15;
 
+        /// <summary>Proton Mass: [] (2002 CODATA)</summary>
         public const double ProtonMass = 1.67262171e-27;
+        /// <summary>Proton Mass Energy Equivalent: [] (2002 CODATA)</summary>
         public const double ProtonMassEnergyEquivalent = 1.50327743e-10;
+        /// <summary>Proton Molar Mass: [] (2002 CODATA)</summary>
         public const double ProtonMolarMass = 1.00727646688e-3;
+        /// <summary>Proton Compton Wavelength: [] (2002 CODATA)</summary>
         public const double ProtonComptonWavelength = 1.3214098555e-15;
+        /// <summary>Proton Magnetic Moment: [] (2002 CODATA)</summary>
         public const double ProtonMagneticMoment = 1.41060671e-26;
+        /// <summary>Proton G-Factor: [] (2002 CODATA)</summary>
         public const double ProtonGFactor = 5.585694701;
+        /// <summary>Proton Shielded Magnetic Moment: [] (2002 CODATA)</summary>
         public const double ShieldedProtonMagneticMoment = 1.41057047e-26;
+        /// <summary>Proton Gyro-Magnetic Ratio: [] (2002 CODATA)</summary>
         public const double ProtonGyromagneticRatio = 2.67522205e8;
+        /// <summary>Proton Shielded Gyro-Magnetic Moment: [] (2002 CODATA)</summary>
         public const double ShieldedProtonGyromagneticMoment = 2.67515333e8;
 
+        /// <summary>Neutron Mass: [] (2002 CODATA)</summary>
         public const double NeutronMass = 1.67492728e-27;
+        /// <summary>Neutron Mass Energy Equivalent: [] (2002 CODATA)</summary>
         public const double NeutronMassEnegryEquivalent = 1.50534957e-10;
+        /// <summary>Neutron Molar Mass: [] (2002 CODATA)</summary>
         public const double NeutronMolarMass = 1.00866491560e-3;
+        /// <summary>Neuron Compton Wavelength: [] (2002 CODATA)</summary>
         public const double NeutronComptonWavelength = 1.3195909067e-1;
+        /// <summary>Neutron Magnetic Moment: [] (2002 CODATA)</summary>
         public const double NeutronMagneticMoment = -0.96623645e-26;
+        /// <summary>Neutron G-Factor: [] (2002 CODATA)</summary>
         public const double NeutronGFactor = -3.82608546;
+        /// <summary>Neutron Gyro-Magnetic Ratio: [] (2002 CODATA)</summary>
         public const double NeutronGyromagneticRatio = 1.83247183e8;
 
+        /// <summary>Deuteron Mass: [] (2002 CODATA)</summary>
         public const double DeuteronMass = 3.34358335e-27;
+        /// <summary>Deuteron Mass Energy Equivalent: [] (2002 CODATA)</summary>
         public const double DeuteronMassEnegryEquivalent = 3.00506285e-10;
+        /// <summary>Deuteron Molar Mass: [] (2002 CODATA)</summary>
         public const double DeuteronMolarMass = 2.01355321270e-3;
+        /// <summary>Deuteron Magnetic Moment: [] (2002 CODATA)</summary>
         public const double DeuteronMagneticMoment = 0.433073482e-26;
 
+        /// <summary>Helion Mass: [] (2002 CODATA)</summary>
         public const double HelionMass = 5.00641214e-27;
+        /// <summary>Helion Mass Energy Equivalent: [] (2002 CODATA)</summary>
         public const double HelionMassEnegryEquivalent = 4.49953884e-10;
+        /// <summary>Helion Molar Mass: [] (2002 CODATA)</summary>
         public const double HelionMolarMass = 3.0149322434e-3;
-        //public const double  = ;
-        //public const double  = ;
-        //public const double  = ;
     }
 }

@@ -2,7 +2,7 @@
 // Math.NET Iridium, part of the Math.NET Project
 // http://mathnet.opensourcedotnet.info
 //
-// Copyright (c) 2002-2007, Christoph Rüegg, http://christoph.ruegg.name
+// Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
 //
 // Contribution: Fn.IntLog2 by Ben Houston, http://www.exocortex.org
 //						

@@ -2,7 +2,7 @@
 // Math.NET Iridium, part of the Math.NET Project
 // http://mathnet.opensourcedotnet.info
 //
-// Copyright (c) 2002-2007, Christoph Rüegg, http://christoph.ruegg.name
+// Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
 //						
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
@@ -30,44 +30,44 @@ namespace MathNet.Numerics
 	{
         #region Angle Conversion
         /// <summary>
-        /// Converts a degree (360-periodic) angle to a radian (2*Pi-periodic) angle. 
+        /// Converts a degree (360-periodic) angle to a radian (2*Pi-periodic) angle.
         /// </summary>
         public static double DegreeToRadian(double degree)
         {
-            return degree / 180 * Math.PI;
+            return degree * Constants.Degree;
         }
         /// <summary>
-        /// Converts a radian (2*Pi-periodic) angle to a degree (360-periodic) angle. 
+        /// Converts a radian (2*Pi-periodic) angle to a degree (360-periodic) angle.
         /// </summary>
         public static double RadianToDegree(double radian)
         {
-            return radian / Math.PI * 180;
+            return radian / Constants.Degree;
         }
         /// <summary>
-        /// Converts a newgrad (400-periodic) angle to a radian (2*Pi-periodic) angle. 
+        /// Converts a newgrad (400-periodic) angle to a radian (2*Pi-periodic) angle.
         /// </summary>
-        public static double NewgradToRadian(double newgrad)
+        public static double GradToRadian(double newgrad)
         {
-            return newgrad / 200 * Math.PI;
+            return newgrad * Constants.Grad;
         }
         /// <summary>
-        /// Converts a radian (2*Pi-periodic) angle to a newgrad (400-periodic) angle. 
+        /// Converts a radian (2*Pi-periodic) angle to a newgrad (400-periodic) angle.
         /// </summary>
-        public static double RadianToNewgrad(double radian)
+        public static double RadianToGrad(double radian)
         {
-            return radian / Math.PI * 200;
+            return radian / Constants.Grad;
         }
         /// <summary>
-        /// Converts a degree (360-periodic) angle to a newgrad (400-periodic) angle. 
+        /// Converts a degree (360-periodic) angle to a newgrad (400-periodic) angle.
         /// </summary>
-        public static double DegreeToNewgrad(double degree)
+        public static double DegreeToGrad(double degree)
         {
             return degree / 9 * 10;
         }
         /// <summary>
-        /// Converts a newgrad (400-periodic) angle to a degree (360-periodic) angle. 
+        /// Converts a newgrad (400-periodic) angle to a degree (360-periodic) angle.
         /// </summary>
-        public static double NewgradToDegree(double newgrad)
+        public static double GradToDegree(double newgrad)
         {
             return newgrad / 10 * 9;
         }

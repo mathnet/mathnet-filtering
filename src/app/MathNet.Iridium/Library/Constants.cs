@@ -2,7 +2,7 @@
 // Math.NET Iridium, part of the Math.NET Project
 // http://mathnet.opensourcedotnet.info
 //
-// Copyright (c) 2002-2007, Christoph Rüegg, http://christoph.ruegg.name
+// Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
 //						
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
@@ -80,9 +80,9 @@ namespace MathNet.Numerics
         public const double TwoInvSqrtPi = 1.1283791670955125738961589031215451716881012586580d;
 
         /// <summary>(pi)/180</summary>
-        public const double Degree = 0.0174532925199432957692369076848861271344287188854172545609719144017100911460344944368d;
+        public const double Degree = 0.017453292519943295769236907684886127134428718885417d;
         /// <summary>(pi)/200</summary>
-        public const double NewDegree = Pi / 200d;
+        public const double Grad = 0.015707963267948966192313216916397514420985846996876d;
 
         /// <summary>Catalan constant</summary>
         /// <remarks>Sum(k=0 -> inf){ (-1)^k/(2*k + 1)2 }</remarks>

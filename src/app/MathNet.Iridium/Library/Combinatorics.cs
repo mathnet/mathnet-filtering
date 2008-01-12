@@ -2,7 +2,7 @@
 // Math.NET Iridium, part of the Math.NET Project
 // http://mathnet.opensourcedotnet.info
 //
-// Copyright (c) 2002-2007, Christoph Rüegg, http://christoph.ruegg.name
+// Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
 //                          Joannes Vermorel, http://www.vermorel.com
 //						
 // This program is free software; you can redistribute it and/or modify
@@ -19,6 +19,7 @@
 // License along with this program; if not, write to the Free Software
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
+
 using System;
 using System.Collections.Generic;
 using System.Text;
