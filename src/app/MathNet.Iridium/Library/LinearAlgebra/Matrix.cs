@@ -60,25 +60,29 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <summary>Array for internal storage of elements.</summary>
         private double[][] _data;
 
-        #region Constructors and static constructive methods
-
-        /// <param name="m">Number of rows.</param>
-        /// <param name="n">Number of columns.</param>
-        public static double[][] CreateMatrixData(int m, int n)
+        /// <summary>Gets the number of rows.</summary>
+        public int RowCount
         {
-            double[][] data = new double[m][];
-            for(int i = 0; i < m; i++)
-            {
-                data[i] = new double[n];
-            }
-            return data;
+            get { return _rowCount; }
         }
 
-        public static void GetRowColumnCount(double[][] data, out int rows, out int columns)
+        /// <summary>Gets the number of columns.</summary>
+        public int ColumnCount
         {
-            rows = data.Length;
-            columns = (rows == 0) ? 0 : data[0].Length;
+            get { return _columnCount; }
         }
+
+        /// <summary>Gets or set the element indexed by <c>(i, j)</c>
+        /// in the <c>Matrix</c>.</summary>
+        /// <param name="i">Row index.</param>
+        /// <param name="j">Column index.</param>
+        public double this[int i, int j]
+        {
+            get { return _data[i][j]; }
+            set { _data[i][j] = value; }
+        }
+
+        #region Data -> Matrix: Constructors and static constructive methods
 
         /// <summary>Construct an m-by-n matrix of zeros. </summary>
         /// <param name="m">Number of rows.</param>
@@ -288,20 +292,117 @@ namespace MathNet.Numerics.LinearAlgebra
 
         #endregion //  Constructors
 
-        /// <summary>Gets the number of rows.</summary>
-        public int RowCount
+        #region Matrix -> Data: Back Conversions
+
+        /// <summary>
+        /// Copies the internal data structure to a 2-dimensional array.
+        /// </summary>
+        public double[,] CopyToArray()
         {
-            get { return _rowCount; }
+            double[,] newData = new double[_rowCount, _columnCount];
+            for(int i = 0; i < _rowCount; i++)
+                for(int j = 0; i < _columnCount; j++)
+                    newData[i, j] = _data[i][j];
+            return newData;
         }
 
-        /// <summary>Gets the number of columns.</summary>
-        public int ColumnCount
+        /// <summary>
+        /// Copies the internal data structure to a jagged rectangular array.
+        /// </summary>
+        /// <returns></returns>
+        public double[][] CopyToJaggedArray()
         {
-            get { return _columnCount; }
+            return CloneMatrixData(_data);
         }
 
+        /// <summary>
+        /// Returns the internal data structure array.
+        /// </summary>
+        public double[][] GetArray()
+        {
+            return _data;
+        }
 
-        #region	 Public Methods
+        /// <summary>Implicit convertion to a <c>double[,]</c> array.</summary>
+        [Obsolete("Convert to double[][] instead.")]
+        public static explicit operator double[,](Matrix m)
+        {
+            return m.CopyToArray();
+        }
+
+        /// <summary>Implicit convertion to a <c>double[][]</c> array.</summary>
+        public static implicit operator double[][](Matrix m)
+        {
+            return m._data;
+        }
+
+        /// <summary>
+        /// Explicit convertion to a <c>double[]</c> array of a single column matrix.
+        /// </summary>
+        /// <param name="m">Exactly one column expected.</param>
+        public static explicit operator double[](Matrix m)
+        {
+            if(m.ColumnCount != 1) throw new InvalidOperationException(
+                Resources.ArgumentMatrixSingleColumn);
+
+            double[] array = new double[m.RowCount];
+            for(int i = 0; i < m.RowCount; i++)
+                array[i] = m[i, 0];
+
+            return array;
+        }
+
+        /// <summary>
+        /// Excplicit conversion to a <c>double</c> scalar of a single column and row (1-by-1) matrix.
+        /// </summary>
+        /// <param name="m">1-by-1 Matrix</param>
+        public static explicit operator double(Matrix m)
+        {
+            if(m.ColumnCount != 1 || m.RowCount != 1) throw new InvalidOperationException(
+                Resources.ArgumentMatrixSingleColumnRow);
+
+            return m[0, 0];
+        }
+        #endregion
+
+        #region Internal Data Stucture
+
+        /// <param name="m">Number of rows.</param>
+        /// <param name="n">Number of columns.</param>
+        public static double[][] CreateMatrixData(int m, int n)
+        {
+            double[][] data = new double[m][];
+            for(int i = 0; i < m; i++)
+            {
+                data[i] = new double[n];
+            }
+            return data;
+        }
+
+        public static double[][] CloneMatrixData(double[][] data)
+        {
+            int rows, columns;
+            GetRowColumnCount(data, out rows, out columns);
+            double[][] newData = new double[rows][];
+            for(int i = 0; i < rows; i++)
+            {
+                double[] col = new double[columns];
+                for(int j = 0; j < columns; j++)
+                {
+                    col[j] = data[i][j];
+                }
+                newData[i] = col;
+            }
+            return newData;
+        }
+
+        public static void GetRowColumnCount(double[][] data, out int rows, out int columns)
+        {
+            rows = data.Length;
+            columns = (rows == 0) ? 0 : data[0].Length;
+        }
+
+        #endregion
 
         #region Sub-matrices operation
 
@@ -795,6 +896,8 @@ namespace MathNet.Numerics.LinearAlgebra
 
         #endregion
 
+        #region Linear Algebra
+
         /// <summary>Solve A*X = B against a Least Square (L2) criterion.</summary>
         /// <param name="B">right hand side</param>
         /// <returns>solution if A is square, least squares solution otherwise.</returns>
@@ -910,19 +1013,9 @@ namespace MathNet.Numerics.LinearAlgebra
             return t;
         }
 
-        #endregion //  Public Methods
+        #endregion
 
-        #region Operator Overloading
-
-        /// <summary>Gets or set the element indexed by <c>(i, j)</c>
-        /// in the <c>Matrix</c>.</summary>
-        /// <param name="i">Row index.</param>
-        /// <param name="j">Column index.</param>
-        public double this[int i, int j]
-        {
-            get { return _data[i][j]; }
-            set { _data[i][j] = value; }
-        }
+        #region Arithmetic Operator Overloading
 
         /// <summary>Addition of matrices</summary>
         public static Matrix operator +(Matrix m1, Matrix m2)
@@ -1001,54 +1094,9 @@ namespace MathNet.Numerics.LinearAlgebra
             return s * m;
         }
 
-        /// <summary>Implicit convertion to a <c>double[,]</c> array.</summary>
-        [Obsolete("Convert to double[][] instead.")]
-        public static explicit operator double[,](Matrix m)
-        {
-            double[,] newData = new double[m.RowCount, m.ColumnCount];
-            for(int i = 0; i < m.RowCount; i++)
-                for(int j = 0; i < m.ColumnCount; j++)
-                    newData[i, j] = m[i, j];
-            return newData;
-        }
-
-        /// <summary>Implicit convertion to a <c>double[][]</c> array.</summary>
-        public static implicit operator double[][](Matrix m)
-        {
-            return m._data;
-        }
-
-        /// <summary>
-        /// Explicit convertion to a <c>double[]</c> array of a single column matrix.
-        /// </summary>
-        /// <param name="m">Exactly one column expected.</param>
-        public static explicit operator double[](Matrix m)
-        {
-            if(m.ColumnCount != 1) throw new InvalidOperationException(
-                Resources.ArgumentMatrixSingleColumn);
-
-            double[] array = new double[m.RowCount];
-            for(int i = 0; i < m.RowCount; i++)
-                array[i] = m[i, 0];
-
-            return array;
-        }
-
-        /// <summary>
-        /// Excplicit conversion to a <c>double</c> scalar of a single column and row (1-by-1) matrix.
-        /// </summary>
-        /// <param name="m">1-by-1 Matrix</param>
-        public static explicit operator double(Matrix m)
-        {
-            if(m.ColumnCount != 1 || m.RowCount != 1) throw new InvalidOperationException(
-                Resources.ArgumentMatrixSingleColumnRow);
-
-            return m[0, 0];
-        }
-
         #endregion   //Operator Overloading
 
-        #region	 Private Methods
+        #region Various Helpers & Infrastructure
 
         /// <summary>Check if size(A) == size(B) *</summary>
         private static void CheckMatchingMatrixDimensions(IMatrix A, IMatrix B)
@@ -1058,24 +1106,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 throw new ArgumentException(Resources.ArgumentMatrixSameDimensions);
             }
         }
-        #endregion //  Private Methods
-
-        private static double[][] CloneMatrixData(double[][] data)
-        {
-            int rows, columns;
-            GetRowColumnCount(data, out rows, out columns);
-            double[][] newData = new double[rows][];
-            for(int i = 0; i < rows; i++)
-            {
-                double[] col = new double[columns];
-                for(int j = 0; j < columns; j++)
-                {
-                    col[j] = data[i][j];
-                }
-                newData[i] = col;
-            }
-            return newData;
-        }
+        
         /// <summary>Returns a deep copy of this instance.</summary>
         public Matrix Clone()
         {
@@ -1118,5 +1149,7 @@ namespace MathNet.Numerics.LinearAlgebra
             }
             return sb.ToString();
         }
+
+        #endregion
     }
 }
