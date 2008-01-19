@@ -202,7 +202,7 @@ namespace MathNet.Numerics
         }
         #endregion
 
-        #region Combinatorics: Applied Generation
+        #region Combinatorics: Applied Random Generation
         /// <summary>
         /// Randomly permutes <c>array</c> to <c>target</c>.
         /// Both arrays should have the same size but can not be the same instance.
