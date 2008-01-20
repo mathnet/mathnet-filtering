@@ -1,4 +1,4 @@
-<Project DefaultTargets="PrintEnvironmentInfo" InitialTargets="_CheckForInvalidConfigurationAndPlatform;GetPaths;VerifyPaths" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="PrintEnvironmentInfo" InitialTargets="_CheckForInvalidConfigurationAndPlatform;GetRevisionNumber;GetPaths;VerifyPaths" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <Import Project="$(MSBuildBinPath)\Microsoft.Common.targets" />
   <Import Project="tools\MSBuild.Community.Tasks\MSBuild.Community.Tasks.Targets"/>
@@ -15,26 +15,35 @@
     <RootPath>$(MSBuildProjectDirectory)\</RootPath>
   </PropertyGroup>
 
-  <!-- Repository Paths -->
+  <!-- Structure Paths -->
   <PropertyGroup>
     <ConfigPath>$(RootPath)config\</ConfigPath>
     <LibraryPath>$(RootPath)lib\</LibraryPath>
     <ToolsPath>$(RootPath)tools\</ToolsPath>
     <SourcePath>$(RootPath)src\</SourcePath>
-    <AppSourcePath>$(RootPath)app\</AppSourcePath>
-    <TestSourcePath>$(RootPath)test\</TestSourcePath>
+    <AppSourcePath>$(SourcePath)app\</AppSourcePath>
+    <TestSourcePath>$(SourcePath)test\</TestSourcePath>
+  </PropertyGroup>
+
+  <!-- Package-Specific Structure Paths - If Available -->
+  <PropertyGroup Condition="'$(PackageName)'!='' AND '$(PackageTestName)'!=''">
+    <PackageAppSourcePath>$(AppSourcePath)$(PackageName)\</PackageAppSourcePath>
+    <PackageTestSourcePath>$(TestSourcePath)$(PackageTestName)\</PackageTestSourcePath>
   </PropertyGroup>
 
   <!-- Temporary Paths -->
   <PropertyGroup>
     <BuildPath>$(RootPath)build\</BuildPath>
+    <BuildReleasePath>$(BuildPath)Release\</BuildReleasePath>
+    <BuildDebugPath>$(BuildPath)Debug\</BuildDebugPath>
     <PackPath>$(RootPath)pack\</PackPath>
     <PackReleasePath>$(PackPath)Binaries\Release\</PackReleasePath>
     <PackDebugPath>$(PackPath)Binaries\Debug\</PackDebugPath>
     <PackAppSourcesPath>$(PackPath)Sources\</PackAppSourcesPath>
     <PackTestSourcesPath>$(PackPath)Tests\</PackTestSourcesPath>
+    <PackLibraryPath>$(PackPath)Lib\</PackLibraryPath>
   </PropertyGroup>
-  
+
   <!-- Tool Paths -->
   <PropertyGroup>
     <SubversionPath>$(ToolsPath)subversion\bin\</SubversionPath>
@@ -43,7 +52,7 @@
     <SimianPath>$(ToolsPath)simian\</SimianPath>
     <FxCopPath>$(ToolsPath)FxCop\</FxCopPath>
   </PropertyGroup>
-  
+
   <!-- Tools -->
   <ItemGroup>
     <SubversionExe Include="$(SubversionPath)svn.exe" />
@@ -52,17 +61,23 @@
     <SimianExe Include="$(SimianPath)simian.exe" />
     <FxCopExe Include="$(FxCopPath)FxCopCmd.exe" />
   </ItemGroup>
-  
-  <!-- Strong Name -->
-  <ItemGroup>
-    <StrongNameKeyPublic Include="$(ConfigPath)mathnet_public.snk" />
-    <StrongNameKeyPrivate Include="$(ConfigPath)mathnet_private.snk" />
-    <StrongNameTestKey Include="$(ConfigPath)personal_test.snk" />
-    <CertificatePublic Include="$(ConfigPath)mathnet_public.cer" />
-  </ItemGroup>
 
+  <!-- Strong Name -->
+  <PropertyGroup>
+    <StrongNameKeyPublicToken>c061a3ec32cc0c6f</StrongNameKeyPublicToken>
+    <StrongNameKeyPublicFullName>$(ConfigPath)mathnet_public.snk</StrongNameKeyPublicFullName>
+    <StrongNameKeyPrivateFullName>$(ConfigPath)mathnet_private.snk</StrongNameKeyPrivateFullName>
+    <StrongNameTestKeyPublicFullName>$(ConfigPath)personal_test_public.snk</StrongNameTestKeyPublicFullName>
+    <StrongNameTestKeyPrivateFullName>$(ConfigPath)personal_test_private.snk</StrongNameTestKeyPrivateFullName>
+    <CertificatePublicFullName>$(ConfigPath)mathnet_public.cer</CertificatePublicFullName>
+    <CertificateName>Math.NET Project</CertificateName>
+  </PropertyGroup>
   <ItemGroup>
-    <ExeTools Include="$(ToolsDir)**\*.exe" />
+    <StrongNameKeyPublic Include="$(StrongNameKeyPublicFullName)" />
+    <StrongNameKeyPrivate Include="$(StrongNameKeyPrivateFullName)" />
+    <StrongNameTestKeyPublic Include="$(StrongNameTestKeyPublicFullName)" />
+    <StrongNameTestKeyPrivate Include="$(StrongNameTestKeyPrivateFullName)" />
+    <CertificatePublic Include="$(CertificatePublicFullName)" />
   </ItemGroup>
 
   <Target Name="GetPaths">
@@ -93,9 +108,20 @@
     <Error Text="Strong name public key not found, expected at @(StrongNameKeyPublic)" Condition="!Exists(@(StrongNameKeyPublic))" />
   </Target>
 
+  <Target Name="GetRevisionNumber">
+    <SvnInfo LocalPath="$(MSBuildProjectDirectory)">
+      <Output TaskParameter="Revision" PropertyName="RevisionNumber" />
+    </SvnInfo>
+  </Target>
+
   <Target Name="PrintEnvironmentInfo">
 
-    <Message Text="$(NL)REPOSITORY PATHS" />
+    <Message Text="$(NL)== VERSION ==" />
+    <Message Text="Subversion Revision: $(RevisionNumber)" />
+    <Message Text="Package Name: $(PackageName)" Condition="'$(PackageName)'!=''" />
+    <Message Text="Package Version: $(PackageVersionNumber)" Condition="'$(PackageVersionNumber)'!=''" />
+
+    <Message Text="$(NL)== REPOSITORY PATHS ==" />
     <Message Text="RootPath=$(RootPath)" />
     <Message Text="ConfigPath=$(ConfigPath)" />
     <Message Text="LibraryPath=$(LibraryPath)" />
@@ -104,15 +130,16 @@
     <Message Text="AppSourcePath=$(AppSourcePath)" />
     <Message Text="TestSourcePath=$(TestSourcePath)" />
 
-    <Message Text="$(NL)TEMPORARY PATHS" />
+    <Message Text="$(NL)== TEMPORARY PATHS ==" />
     <Message Text="BuildPath=$(BuildPath)" />
     <Message Text="PackPath=$(PackPath)" />
+    <Message Text="PackPackagePath=$(PackPackagePath)" />
     <Message Text="PackReleasePath=$(PackReleasePath)" />
     <Message Text="PackDebugPath=$(PackDebugPath)" />
     <Message Text="PackAppSourcesPath=$(PackAppSourcesPath)" />
     <Message Text="PackTestSourcesPath=$(PackTestSourcesPath)" />
 
-    <Message Text="$(NL)TOOL PATHS" />
+    <Message Text="$(NL)== TOOL PATHS ==" />
     <Message Text="SubversionExe=@(SubversionExe)" />
     <Message Text="NUnitExe=@(NUnitExe)" />
     <Message Text="NCoverExe=@(NCoverExe)" />
@@ -121,9 +148,11 @@
     <Message Text="StrongNameExe=@(StrongNameExe)" />
     <Message Text="SignToolExe=@(SignToolExe)" />
 
-    <Message Text="$(NL)MISC" />
+    <Message Text="$(NL)== MISC ==" />
     <Message Text="StrongName Private Key Available" Condition="Exists(@(StrongNameKeyPrivate))" />
     <Message Text="StrongName Private Key Not Available" Condition="!Exists(@(StrongNameKeyPrivate))" />
+    <Message Text="PackageAppSourcePath=$(PackageAppSourcePath)" Condition="'$(PackageName)'!=''" />
+    <Message Text="PackageTestSourcePath=$(PackageTestSourcePath)" Condition="'$(PackageName)'!=''" />
 
   </Target>
   
