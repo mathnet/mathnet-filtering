@@ -30,7 +30,7 @@ using System.Security;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Math.NET Project")]
 [assembly: AssemblyProduct("Math.NET")]
-[assembly: AssemblyCopyright("Copyright © 2006, Math.NET Project")]
+[assembly: AssemblyCopyright("Copyright © 2008, Math.NET Project")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -55,5 +55,5 @@ using System.Security;
 [assembly: Guid("1386fccc-7816-4311-a04b-25227138e8b3")]
 [assembly: ComVisible(true)]
 
-[assembly: AssemblyVersion("2007.8.9.*")] // even = release
-[assembly: AssemblyFileVersion("2007.8.9.0")]
+[assembly: AssemblyVersion("1.0.0.*")] // even = release
+[assembly: AssemblyFileVersion("1.0.0.0")]

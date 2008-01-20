@@ -1,33 +1,38 @@
-﻿using System.Reflection;
+﻿// Math.NET Iridium, part of the Math.NET Project
+// http://mathnet.opensourcedotnet.info
+//
+// Copyright (c) 2002-2008, Christoph Rüegg,  http://christoph.ruegg.name
+//                          Joannes Vermorel, http://www.vermorel.com
+//						
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as published 
+// by the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public 
+// License along with this program; if not, write to the Free Software
+// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-[assembly: AssemblyTitle("PerformanceAnalysis")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Math.NET Iridium - Performance Analysis")]
+[assembly: AssemblyDescription("http://mathnet.opensourcedotnet.info/")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Luzern")]
-[assembly: AssemblyProduct("PerformanceAnalysis")]
-[assembly: AssemblyCopyright("Copyright © Luzern 2007")]
+[assembly: AssemblyCompany("Math.NET Project")]
+[assembly: AssemblyProduct("Math.NET")]
+[assembly: AssemblyCopyright("Copyright © 2008, Math.NET Project")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
-// Setting ComVisible to false makes the types in this assembly not visible 
-// to COM components.  If you need to access a type in this assembly from 
-// COM, set the ComVisible attribute to true on that type.
 [assembly: ComVisible(false)]
-
-// The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("d9d903f3-d278-4d1c-aaf5-43950da44ca9")]
 
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.0.0.*")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
