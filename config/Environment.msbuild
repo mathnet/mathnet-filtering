@@ -1,7 +1,7 @@
 <Project DefaultTargets="PrintEnvironmentInfo" InitialTargets="_CheckForInvalidConfigurationAndPlatform;GetRevisionNumber;GetPaths;VerifyPaths" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <Import Project="$(MSBuildBinPath)\Microsoft.Common.targets" />
-  <Import Project="tools\MSBuild.Community.Tasks\MSBuild.Community.Tasks.Targets"/>
+  <Import Project="..\tools\MSBuild.Community.Tasks\MSBuild.Community.Tasks.Targets"/>
 
   <!-- Ascii Constants -->
   <PropertyGroup>
