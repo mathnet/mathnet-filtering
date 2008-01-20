@@ -1,0 +1,243 @@
+<Project DefaultTargets="PrintEnvironmentInfo" InitialTargets="GetPackagePaths" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup Condition="'$(RootPath)'==''">
+    <RootPath>$(MSBuildProjectDirectory)\..\</RootPath>
+  </PropertyGroup>
+  
+  <Import Project="Environment.msbuild"/>
+  
+  <!-- ### PACKAGE DEPENDING PROPERTIES ### -->
+  <PropertyGroup Condition="'$(PackageName)'!='' AND '$(PackageTestName)'!=''">
+    <PackageIterationNumberFileFullName>$(ConfigPath)$(PackageName).Iteration.txt</PackageIterationNumberFileFullName>
+  </PropertyGroup>
+
+  <!-- ### PACKAGE SOURCES ### -->
+  <ItemGroup Condition="'$(PackageName)'!='' AND '$(PackageTestName)'!=''">
+    
+    <PackageAppProjects Include="$(PackageAppSourcePath)**\*.csproj" />
+    <PackageTestProjects Include="$(PackageTestSourcePath)**\*.csproj" />
+    
+    <PackageAssemblyInfo Include="$(PackageAppSourcePath)**\AssemblyInfo.cs" />
+    <PackageAssemblyInfo Include="$(PackageTestSourcePath)**\AssemblyInfo.cs" />
+    
+    <PackageAppSource Include="
+                      $(PackageAppSourcePath)**\*.cs;
+                      $(PackageAppSourcePath)**\*.csproj;
+                      $(PackageAppSourcePath)**\*public.snk;
+                      $(PackageAppSourcePath)**\*.resx;
+                      $(PackageAppSourcePath)**\*.txt;
+                      $(PackageAppSourcePath)**\*.xml;
+                      $(PackageAppSourcePath)**\*.pdb"
+                      Exclude="
+                      $(PackageAppSourcePath)**\obj\**\*.*;
+                      $(PackageAppSourcePath)**\bin\**\*.*;
+                      $(PackageAppSourcePath)**\_OLD\**\*.*;
+                      $(PackageAppSourcePath)**\.svn\**\*.*" />
+    <PackageTestSource Include="
+                      $(PackageTestSourcePath)**\*.cs;
+                      $(PackageTestSourcePath)**\*.csproj;
+                      $(PackageTestSourcePath)**\*public.snk;
+                      $(PackageTestSourcePath)**\*.resx;
+                      $(PackageTestSourcePath)**\*.txt;
+                      $(PackageTestSourcePath)**\*.xml;
+                      $(PackageTestSourcePath)**\*.pdb"
+                      Exclude="
+                      $(PackageTestSourcePath)**\obj\**\*.*;
+                      $(PackageTestSourcePath)**\bin\**\*.*;
+                      $(PackageTestSourcePath)**\_OLD\**\*.*;
+                      $(PackageTestSourcePath)**\.svn\**\*.*" />
+    
+  </ItemGroup>
+  
+  <!-- ### PACKAGE VERSION ### -->
+  
+  <Target Name="GetIterationNumber" Condition="'$(PackageIterationNumberFileFullName)'!=''">
+    <ReadLinesFromFile File="$(PackageIterationNumberFileFullName)">
+      <Output TaskParameter="Lines" ItemName="PackageIterationNumberFileContent"/>
+    </ReadLinesFromFile>
+    <CreateProperty Value="@(PackageIterationNumberFileContent->'%(Identity)')">
+      <Output TaskParameter="Value" PropertyName="PackageIterationNumber" />
+    </CreateProperty>
+  </Target>
+
+  <Target Name="GetVersionNumber" DependsOnTargets="GetIterationNumber;GetRevisionNumber" Condition="'$(PackageName)'!=''">
+    <Time>
+      <Output TaskParameter="Year" PropertyName="Year" />
+      <Output TaskParameter="Month" PropertyName="Month" />
+    </Time>
+    <CreateProperty Value="$(Year).$(Month).$(PackageIterationNumber).$(RevisionNumber)">
+      <Output TaskParameter="Value" PropertyName="PackageVersionNumber" />
+    </CreateProperty>
+  </Target>
+
+  <Target Name="WriteVersion" Condition="'$(PackageVersionNumber)'!=''">
+    <FileUpdate
+      Regex="(\d+)\.(\d+)\.(\d+)\.([\d*]+)"
+      ReplacementText="$(PackageVersionNumber)"
+      Files="@(PackageAssemblyInfo)"
+      />
+  </Target>
+
+  <Target Name="ResetVersion">
+    <Exec Command="$(QUOT)@(SubversionExe)$(QUOT) revert $(QUOT)%(PackageAssemblyInfo.FullPath)$(QUOT)" />
+  </Target>
+
+  <Target Name="GetPackagePaths" DependsOnTargets="GetVersionNumber" Condition="'$(PackageName)'!=''">
+    <CreateProperty Value="$(PackageName)-$(PackageVersionNumber)">
+      <Output TaskParameter="Value" PropertyName="PackName"/>
+    </CreateProperty>
+    <CreateProperty Value="$(PackPath)$(PackName)\">
+      <Output TaskParameter="Value" PropertyName="PackPackagePath" />
+    </CreateProperty>
+
+    <CreateProperty Value="$(PackPackagePath)Binaries\Release\">
+      <Output TaskParameter="Value" PropertyName="PackReleasePath" />
+    </CreateProperty>
+    <CreateProperty Value="$(PackPackagePath)Binaries\Debug\">
+      <Output TaskParameter="Value" PropertyName="PackDebugPath" />
+    </CreateProperty>
+    <CreateProperty Value="$(PackPackagePath)Sources\">
+      <Output TaskParameter="Value" PropertyName="PackAppSourcesPath" />
+    </CreateProperty>
+    <CreateProperty Value="$(PackPackagePath)Tests\">
+      <Output TaskParameter="Value" PropertyName="PackTestSourcesPath" />
+    </CreateProperty>
+    <CreateProperty Value="$(PackPackagePath)Lib\">
+      <Output TaskParameter="Value" PropertyName="PackLibraryPath" />
+    </CreateProperty>
+  </Target>
+
+  <!-- ### PACKAGE PROJECT FILE ### -->
+
+  <Target Name="PatchProjectsPack" Condition="'$(PackPackagePath)'!=''">
+
+    <CreateItem Include="$(PackPackagePath)**\*.csproj">
+      <Output TaskParameter="Include" ItemName="PackProjectFiles" />
+    </CreateItem>
+    
+    <FileUpdate
+      Regex="&lt;SignAssembly&gt;true&lt;/SignAssembly&gt;"
+      ReplacementText="&lt;SignAssembly&gt;false&lt;/SignAssembly&gt;"
+      Files="@(PackProjectFiles)"
+      />
+    <FileUpdate
+      Regex="\.\.\\\.\.\\lib"
+      ReplacementText="Lib"
+      Files="@(PackProjectFiles)"
+      />
+    <FileUpdate
+      Regex="\.\.\\app\\$(PackageName)\\"
+      ReplacementText="Sources\"
+      Files="@(PackProjectFiles)"
+      />
+    <FileUpdate
+      Regex="\.\.\\\.\.\\build"
+      ReplacementText="Build"
+      Files="@(PackProjectFiles)"
+      />
+  </Target>
+
+  <!-- ### STRONG NAME: TEST KEYS ### -->
+  
+  <Target Name="EnsurePersonalTestKeyAvailable" Condition="!Exists(@(StrongNameTestKeyPublic)) OR !Exists(@(StrongNameTestKeyPrivate))">
+    <Message Text="$(NL)No personal test key found. Generating a new personal test key.$(NL)" />
+    <Exec Command="$(QUOT)@(StrongNameExe)$(QUOT) -k $(QUOT)$(StrongNameTestKeyPrivateFullName)$(QUOT)" />
+    <Exec Command="$(QUOT)@(StrongNameExe)$(QUOT) -p $(QUOT)$(StrongNameTestKeyPrivateFullName)$(QUOT) $(QUOT)$(StrongNameTestKeyPublicFullName)$(QUOT)" />
+    <Error Condition="!Exists(@(StrongNameTestKeyPublic)) OR !Exists(@(StrongNameTestKeyPrivate))" Text="Generating a personal test key failed." />
+    <CallTarget Targets="RegisterPersonalTestKey" />
+  </Target>
+
+  <Target Name="DeletePersonalTestKey" Condition="Exists(@(StrongNameTestKeyPublic)) OR Exists(@(StrongNameTestKeyPrivate))">
+    <Message Text="$(NL)Deleting personal test key.$(NL)" />
+    <CallTarget Targets="UnregisterPersonalTestKey" />
+    <Delete Files="@(StrongNameTestKeyPublic)" />
+    <Delete Files="@(StrongNameTestKeyPrivate)" />
+  </Target>
+
+  <Target Name="ForceCreateNewPersonalTestKey">
+    <CallTarget Targets="DeletePersonalTestKey" />
+    <CallTarget Targets="EnsurePersonalTestKeyAvailable" />
+  </Target>
+
+  <Target Name="RegisterPersonalTestKey">
+    <Exec Command="$(QUOT)@(StrongNameExe)$(QUOT) -Vr *,$(StrongNameKeyPublicToken) $(QUOT)@(StrongNameTestKeyPublic)$(QUOT)" />
+  </Target>
+
+  <Target Name="UnregisterPersonalTestKey">
+    <Exec Command="$(QUOT)@(StrongNameExe)$(QUOT) -Vu *,$(StrongNameKeyPublicToken)" />
+  </Target>
+
+  <Target Name="UnregisterAllKeys">
+    <Exec Command="$(QUOT)@(StrongNameExe)$(QUOT) -Vx"/>
+  </Target>
+  
+  <!-- ### STRONG NAME: TEST SIGNING ### -->
+
+  <Target Name="TestSign" DependsOnTargets="EnsurePersonalTestKeyAvailable">
+    <Exec Command="$(QUOT)@(StrongNameExe)$(QUOT) -TS %(PrimaryAssembly.Identity) $(QUOT)@(StrongNameTestKeyPrivate)$(QUOT)" />
+  </Target>
+  
+  <!-- ### STRONG NAME: RELEASE SIGNING (if private key available) ### -->
+
+  <Target Name="ReleaseFinalSign">
+    <Error Condition="!Exists('@(StrongNameKeyPrivate)')" Text="Private Key not available. Can't sign and thus can't release. Contact the project admin."/>
+    <Exec Command="$(QUOT)@(StrongNameExe)$(QUOT) -R %(PrimaryAssembly.Identity) $(QUOT)@(StrongNameKeyPrivate)$(QUOT)"/>
+  </Target>
+
+  <Target Name="ReleaseCertificateSign" DependsOnTargets="ReleaseFinalSign">
+    <Exec Command="$(QUOT)@(SignToolExe)$(QUOT) sign /n $(QUOT)$(CertificateName)$(QUOT) /d $(QUOT)$(PackageDescription)$(QUOT) /du $(QUOT)$(PackageUrl)$(QUOT) /t $(QUOT)http://timestamp.verisign.com/scripts/timestamp.dll$(QUOT) %(PrimaryAssembly.Identity)" />
+  </Target>
+  
+  <!-- ### BUILD: CLEAN ### -->
+
+  <Target Name="CustomClean">
+    <RemoveDir Directories="$(BuildReleasePath);$(BuildDebugPath)" />
+    <MakeDir Directories="$(BuildReleasePath);$(BuildDebugPath)" />
+    <CallTarget Targets="CleanPack" />
+  </Target>
+  
+  <!-- ### PACKING ### -->
+
+  <Target Name="PreparePack">
+    
+    <MakeDir Directories="$(PackPath)" />
+    
+    <!-- Binaries -->
+    <Message Text="$(NL)Packing Binaries.$(NL)" />
+    <MakeDir Directories="$(PackReleasePath);$(PackDebugPath)" />
+    <CreateItem Include="$(BuildReleasePath)**\*.*">
+      <Output TaskParameter="Include" ItemName="AllBinaryReleaseFiles" />
+    </CreateItem>
+    <Copy SourceFiles="@(AllBinaryReleaseFiles)" DestinationFiles="@(AllBinaryReleaseFiles->'$(PackReleasePath)%(RecursiveDir)%(Filename)%(Extension)')"/>
+    <CreateItem Include="$(BuildDebugPath)**\*.*">
+      <Output TaskParameter="Include" ItemName="AllBinaryDebugFiles" />
+    </CreateItem>
+    <Copy SourceFiles="@(AllBinaryDebugFiles)" DestinationFiles="@(AllBinaryDebugFiles->'$(PackDebugPath)%(RecursiveDir)%(Filename)%(Extension)')"/>
+
+    <!-- Included Libraries -->
+    <Message Text="$(NL)Packing Libraries.$(NL)" />
+    <MakeDir Directories="$(PackLibraryPath)"/>
+    <Copy SourceFiles="@(PackageLibraries)" DestinationFiles="@(PackageLibraries->'$(PackLibraryPath)%(RecursiveDir)%(Filename)%(Extension)')" />
+    
+    <!-- Source -->
+    <Message Text="$(NL)Packing Sources.$(NL)" />
+    <MakeDir Directories="$(PackAppSourcesPath);$(PackTestSourcesPath)" />
+    <Copy SourceFiles="@(PackageAppSource)" DestinationFiles="@(PackageAppSource->'$(PackAppSourcesPath)%(RecursiveDir)%(Filename)%(Extension)')" />
+    <Copy SourceFiles="@(PackageTestSource)" DestinationFiles="@(PackageTestSource->'$(PackTestSourcesPath)%(RecursiveDir)%(Filename)%(Extension)')" />
+    
+  </Target>
+
+  <Target Name="ZipPack">
+    <CreateItem Include="$(PackPath)**\*.*">
+      <Output TaskParameter="Include" ItemName="ZipFiles" />
+    </CreateItem>
+    <Zip Files="@(ZipFiles)"
+         WorkingDirectory="$(PackPath)"
+         ZipFileName="$(RootPath)$(PackName).zip" />
+  </Target>
+
+  <Target Name="CleanPack">
+    <RemoveDir Directories="$(PackPath)" />
+  </Target>
+  
+</Project>

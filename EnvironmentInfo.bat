@@ -1,6 +1,6 @@
 @echo off
 cls
 
-msbuild Environment.msbuild /t:PrintEnvironmentInfo
+msbuild config\Environment.msbuild /t:PrintEnvironmentInfo
 
 pause

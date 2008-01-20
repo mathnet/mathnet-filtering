@@ -1,0 +1,79 @@
+<Project DefaultTargets="PrintEnvironmentInfo;PrintIridiumInfo" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup Condition="'$(RootPath)'==''">
+    <RootPath>$(MSBuildProjectDirectory)\..\</RootPath>
+  </PropertyGroup>
+
+  <!-- Iridium Specific -->
+  <PropertyGroup>
+    <PackageName>MathNet.Iridium</PackageName>
+    <PackageTestName>$(PackageName).Test</PackageTestName>
+    <PackageDescription>Math.NET Iridium Library</PackageDescription>
+    <PackageUrl>http://mathnet.opensourcedotnet.info/</PackageUrl>
+  </PropertyGroup>
+
+  <Import Project="MathNet.Common.msbuild" />
+
+  <!-- Iridium Referenced Libraries -->
+  <ItemGroup>
+    <PackageLibraries Include="
+                      $(LibraryPath)**\nunit\*.*" />
+    <!-- not yet used: "$(LibraryPath)**\C5\*.*" -->
+  </ItemGroup>
+
+  <!-- Iridium Primary Assemblies -->
+  <ItemGroup>
+    <PrimaryAssembly Include="
+                     $(BuildReleasePath)MathNet.Iridium.dll;
+                     $(BuildDebugPath)MathNet.Iridium.dll" />
+  </ItemGroup>
+
+  <Target Name="PrintIridiumInfo">
+    <Message Text="$(NL)Libraries:"/>
+    <Message Text="$(TAB)%(PackageLibraries.RecursiveDir)%(FileName)%(Extension)" />
+
+    <Message Text="$(NL)App Projects:"/>
+    <Message Text="$(TAB)%(PackageAppProjects.RecursiveDir)%(FileName)%(Extension)" />
+
+    <Message Text="$(NL)Test Projects:"/>
+    <Message Text="$(TAB)%(PackageTestProjects.RecursiveDir)%(FileName)%(Extension)" />
+
+    <Message Text="$(NL)AssemblyInfo:"/>
+    <Message Text="$(TAB)%(PackageAssemblyInfo.RecursiveDir)%(FileName)%(Extension)" />
+    
+  </Target>
+
+  <Target Name="CustomBuild" DependsOnTargets="EnsurePersonalTestKeyAvailable">
+
+    <MSBuild Projects="@(PackageAppProjects)" Properties="Configuration=Release" Targets="Build" />
+    <MSBuild Projects="@(PackageAppProjects)" Properties="Configuration=Debug" Targets="Build" />
+
+    <MSBuild Projects="@(PackageTestProjects)" Properties="Configuration=Release" Targets="Build" />
+    <MSBuild Projects="@(PackageTestProjects)" Properties="Configuration=Debug" Targets="Build" />
+
+    <CallTarget Targets="TestSign" />
+
+  </Target>
+
+  <Target Name="CustomRebuild" DependsOnTargets="CustomClean;CustomBuild" />
+
+  <Target Name="CustomRelease">
+
+    <Error Condition="!Exists('@(StrongNameKeyPrivate)')" Text="Private Key not available. Can't sign and thus can't release. Contact the project admin."/>
+    
+    <CallTarget Targets="CustomClean" />
+    <CallTarget Targets="WriteVersion" />
+    <CallTarget Targets="CustomBuild" />
+    <CallTarget Targets="ResetVersion" />
+
+    <CallTarget Targets="ReleaseFinalSign" />
+    <CallTarget Targets="ReleaseCertificateSign" />
+
+    <CallTarget Targets="PreparePack" />
+    <CallTarget Targets="PatchProjectsPack" />
+    <CallTarget Targets="ZipPack" />
+    <RemoveDir Directories="$(PackPath)" />
+
+  </Target>
+
+</Project>
