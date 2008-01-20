@@ -151,6 +151,8 @@
     <Message Text="$(NL)== MISC ==" />
     <Message Text="StrongName Private Key Available" Condition="Exists(@(StrongNameKeyPrivate))" />
     <Message Text="StrongName Private Key Not Available" Condition="!Exists(@(StrongNameKeyPrivate))" />
+    <Message Text="StrongName Private Test Key Available" Condition="Exists(@(StrongNameTestKeyPrivate))" />
+    <Message Text="StrongName Private Test Key Not Available" Condition="!Exists(@(StrongNameTestKeyPrivate))" />
     <Message Text="PackageAppSourcePath=$(PackageAppSourcePath)" Condition="'$(PackageName)'!=''" />
     <Message Text="PackageTestSourcePath=$(PackageTestSourcePath)" Condition="'$(PackageName)'!=''" />
 
