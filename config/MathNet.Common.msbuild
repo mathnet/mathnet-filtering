@@ -3,9 +3,9 @@
   <PropertyGroup Condition="'$(RootPath)'==''">
     <RootPath>$(MSBuildProjectDirectory)\..\</RootPath>
   </PropertyGroup>
-  
+
   <Import Project="Environment.msbuild"/>
-  
+
   <!-- ### PACKAGE DEPENDING PROPERTIES ### -->
   <PropertyGroup Condition="'$(PackageName)'!='' AND '$(PackageTestName)'!=''">
     <PackageIterationNumberFileFullName>$(ConfigPath)$(PackageName).Iteration.txt</PackageIterationNumberFileFullName>
@@ -13,13 +13,13 @@
 
   <!-- ### PACKAGE SOURCES ### -->
   <ItemGroup Condition="'$(PackageName)'!='' AND '$(PackageTestName)'!=''">
-    
+
     <PackageAppProjects Include="$(PackageAppSourcePath)**\*.csproj" />
     <PackageTestProjects Include="$(PackageTestSourcePath)**\*.csproj" />
-    
+
     <PackageAssemblyInfo Include="$(PackageAppSourcePath)**\AssemblyInfo.cs" />
     <PackageAssemblyInfo Include="$(PackageTestSourcePath)**\AssemblyInfo.cs" />
-    
+
     <PackageAppSource Include="
                       $(PackageAppSourcePath)**\*.cs;
                       $(PackageAppSourcePath)**\*.csproj;
@@ -46,11 +46,11 @@
                       $(PackageTestSourcePath)**\bin\**\*.*;
                       $(PackageTestSourcePath)**\_OLD\**\*.*;
                       $(PackageTestSourcePath)**\.svn\**\*.*" />
-    
+
   </ItemGroup>
-  
+
   <!-- ### PACKAGE VERSION ### -->
-  
+
   <Target Name="GetIterationNumber" Condition="'$(PackageIterationNumberFileFullName)'!=''">
     <ReadLinesFromFile File="$(PackageIterationNumberFileFullName)">
       <Output TaskParameter="Lines" ItemName="PackageIterationNumberFileContent"/>
@@ -114,7 +114,7 @@
     <CreateItem Include="$(PackPackagePath)**\*.csproj">
       <Output TaskParameter="Include" ItemName="PackProjectFiles" />
     </CreateItem>
-    
+
     <FileUpdate
       Regex="&lt;SignAssembly&gt;true&lt;/SignAssembly&gt;"
       ReplacementText="&lt;SignAssembly&gt;false&lt;/SignAssembly&gt;"
@@ -138,7 +138,7 @@
   </Target>
 
   <!-- ### STRONG NAME: TEST KEYS ### -->
-  
+
   <Target Name="EnsurePersonalTestKeyAvailable" Condition="!Exists(@(StrongNameTestKeyPublic)) OR !Exists(@(StrongNameTestKeyPrivate))">
     <Message Text="$(NL)No personal test key found. Generating a new personal test key.$(NL)" />
     <Exec Command="$(QUOT)@(StrongNameExe)$(QUOT) -k $(QUOT)$(StrongNameTestKeyPrivateFullName)$(QUOT)" />
@@ -170,13 +170,13 @@
   <Target Name="UnregisterAllKeys">
     <Exec Command="$(QUOT)@(StrongNameExe)$(QUOT) -Vx"/>
   </Target>
-  
+
   <!-- ### STRONG NAME: TEST SIGNING ### -->
 
   <Target Name="TestSign" DependsOnTargets="EnsurePersonalTestKeyAvailable">
     <Exec Command="$(QUOT)@(StrongNameExe)$(QUOT) -TS %(PrimaryAssembly.Identity) $(QUOT)@(StrongNameTestKeyPrivate)$(QUOT)" />
   </Target>
-  
+
   <!-- ### STRONG NAME: RELEASE SIGNING (if private key available) ### -->
 
   <Target Name="ReleaseFinalSign">
@@ -187,7 +187,7 @@
   <Target Name="ReleaseCertificateSign" DependsOnTargets="ReleaseFinalSign">
     <Exec Command="$(QUOT)@(SignToolExe)$(QUOT) sign /n $(QUOT)$(CertificateName)$(QUOT) /d $(QUOT)$(PackageDescription)$(QUOT) /du $(QUOT)$(PackageUrl)$(QUOT) /t $(QUOT)http://timestamp.verisign.com/scripts/timestamp.dll$(QUOT) %(PrimaryAssembly.Identity)" />
   </Target>
-  
+
   <!-- ### BUILD: CLEAN ### -->
 
   <Target Name="CustomClean">
@@ -195,13 +195,13 @@
     <MakeDir Directories="$(BuildReleasePath);$(BuildDebugPath)" />
     <CallTarget Targets="CleanPack" />
   </Target>
-  
+
   <!-- ### PACKING ### -->
 
   <Target Name="PreparePack">
-    
+
     <MakeDir Directories="$(PackPath)" />
-    
+
     <!-- Binaries -->
     <Message Text="$(NL)Packing Binaries.$(NL)" />
     <MakeDir Directories="$(PackReleasePath);$(PackDebugPath)" />
@@ -218,13 +218,13 @@
     <Message Text="$(NL)Packing Libraries.$(NL)" />
     <MakeDir Directories="$(PackLibraryPath)"/>
     <Copy SourceFiles="@(PackageLibraries)" DestinationFiles="@(PackageLibraries->'$(PackLibraryPath)%(RecursiveDir)%(Filename)%(Extension)')" />
-    
+
     <!-- Source -->
     <Message Text="$(NL)Packing Sources.$(NL)" />
     <MakeDir Directories="$(PackAppSourcesPath);$(PackTestSourcesPath)" />
     <Copy SourceFiles="@(PackageAppSource)" DestinationFiles="@(PackageAppSource->'$(PackAppSourcesPath)%(RecursiveDir)%(Filename)%(Extension)')" />
     <Copy SourceFiles="@(PackageTestSource)" DestinationFiles="@(PackageTestSource->'$(PackTestSourcesPath)%(RecursiveDir)%(Filename)%(Extension)')" />
-    
+
   </Target>
 
   <Target Name="ZipPack">
@@ -239,5 +239,113 @@
   <Target Name="CleanPack">
     <RemoveDir Directories="$(PackPath)" />
   </Target>
-  
+
+  <!-- ### DOCUMENTATION ### -->
+
+  <ItemGroup>
+    <FrameworkAssemblyFolders Include="$(WINDIR)\Microsoft.NET\Framework\v2.0.50727\*.dll"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <DocumentationIconFiles Include="$(SandcastlePresentationPath)icons\**\*.*" Exclude="$(SandcastlePresentationPath)icons\**\.svn\**"/>
+    <DocumentationScriptFiles Include="$(SandcastlePresentationPath)scripts\**\*.*" Exclude="$(SandcastlePresentationPath)scripts\**\.svn\**"/>
+    <DocumentationStyleFiles Include="$(SandcastlePresentationPath)styles\**\*.*" Exclude="$(SandcastlePresentationPath)styles\**\.svn\**"/>
+  </ItemGroup>
+
+  <Target Name="DocumentationFrameworkReflection" Condition="!Exists('$(DocFrameworkReflectionPath)')">
+    <MakeDir Directories="$(DocTempPath)" Condition="!Exists('$(DocTempPath)')" />
+    <MakeDir Directories="$(DocFrameworkReflectionPath)" Condition="!Exists('$(DocFrameworkReflectionPath)')" />
+    <CreateItem Include="@(FrameworkAssemblyFolders->'%(FullPath)')">
+      <Output TaskParameter="Include" ItemName="FrameworkAssemblies" />
+    </CreateItem>
+    <Exec Command="$(QUOT)@(SandcastleMrefBuilderExe)$(QUOT) $(QUOT)%(FrameworkAssemblies.FullPath)$(QUOT) /out:$(QUOT)$(DocTempPath)%(FrameworkAssemblies.FileName).xml$(QUOT)" WorkingDirectory="$(SandcastleToolsPath)" ContinueOnError="true" IgnoreExitCode="true" />
+    <Exec Command="$(QUOT)@(SandcastleXslTransformExe)$(QUOT) /xsl:$(QUOT)$(SandcastleTransformsPath)ApplyVSDocModel.xsl$(QUOT) /xsl:$(QUOT)$(SandcastleTransformsPath)\AddFriendlyFilenames.xsl$(QUOT) $(QUOT)$(DocTempPath)%(FrameworkAssemblies.FileName).xml$(QUOT) /out:$(QUOT)$(DocFrameworkReflectionPath)%(FrameworkAssemblies.FileName).xml$(QUOT) /arg:IncludeAllMembersTopic=true /arg:IncludeInheritedOverloadTopics=true" WorkingDirectory="$(SandcastleToolsPath)" ContinueOnError="true" IgnoreExitCode="true" />
+    <RemoveDir Directories="$(DocTempPath)" />
+  </Target>
+
+  <Target Name="DocumentationTemplates" Condition="!Exists('$(DocPath)icons\')">
+    <Copy SourceFiles="@(DocumentationIconFiles)" DestinationFiles="@(DocumentationIconFiles->'$(DocPath)icons\%(RecursiveDir)%(FileName)%(Extension)')"/>
+    <Copy SourceFiles="@(DocumentationScriptFiles)" DestinationFiles="@(DocumentationScriptFiles->'$(DocPath)scripts\%(RecursiveDir)%(FileName)%(Extension)')"/>
+    <Copy SourceFiles="@(DocumentationStyleFiles)" DestinationFiles="@(DocumentationStyleFiles->'$(DocPath)styles\%(RecursiveDir)%(FileName)%(Extension)')"/>
+    <MakeDir Directories="$(DocHtmlPath);$(DocPath)media;$(DocPath)intellisense"/>
+  </Target>
+
+  <Target Name="DocumentationReinitialize">
+    <RemoveDir Directories="$(DocPath)" Condition="Exists('$(DocPath)')" />
+    <MakeDir Directories="$(DocPath)" />
+    <CallTarget Targets="DocumentationTemplates;DocumentationFrameworkReflection" />
+  </Target>
+
+  <Target Name="DocumentationClean">
+    <RemoveDir Directories="$(DocTempPath)" Condition="Exists('$(DocTempPath)')"/>
+    <RemoveDir Directories="$(DocReflectionPath)" Condition="Exists('$(DocReflectionPath)')"/>
+    <RemoveDir Directories="$(DocManifestPath)" Condition="Exists('$(DocManifestPath)')"/>
+    <RemoveDir Directories="$(DocCommentsPath)" Condition="Exists('$(DocCommentsPath)')"/>
+    <Delete Files="$(DocPath)\*.chm;" />
+  </Target>
+
+  <Target Name="DocumentationReflection">
+    <MakeDir Directories="$(DocTempPath)" Condition="!Exists('$(DocTempPath)')" />
+    <MakeDir Directories="$(DocReflectionPath)" Condition="!Exists('$(DocReflectionPath)')" />
+    <Exec Command="$(QUOT)@(SandcastleMrefBuilderExe)$(QUOT) $(QUOT)%(PrimaryReleaseAssemblies.FullPath)$(QUOT) /out:$(QUOT)$(DocTempPath)%(PrimaryReleaseAssemblies.FileName).xml$(QUOT)" WorkingDirectory="$(SandcastleToolsPath)" />
+    <Exec Command="$(QUOT)@(SandcastleXslTransformExe)$(QUOT) /xsl:$(QUOT)$(SandcastleTransformsPath)ApplyVSDocModel.xsl$(QUOT) /xsl:$(QUOT)$(SandcastleTransformsPath)\AddFriendlyFilenames.xsl$(QUOT) $(QUOT)$(DocTempPath)%(PrimaryReleaseAssemblies.FileName).xml$(QUOT) /out:$(QUOT)$(DocReflectionPath)%(PrimaryReleaseAssemblies.FileName).xml$(QUOT) /arg:IncludeAllMembersTopic=true /arg:IncludeInheritedOverloadTopics=true" WorkingDirectory="$(SandcastleToolsPath)" />
+    <RemoveDir Directories="$(DocTempPath)" />
+  </Target>
+
+  <Target Name="DocumentationManifest" DependsOnTargets="DocumentationReflection">
+    <MakeDir Directories="$(DocManifestPath)" Condition="!Exists('$(DocManifestPath)')" />
+    <Exec Command="$(QUOT)@(SandcastleXslTransformExe)$(QUOT) /xsl:$(QUOT)$(SandcastleTransformsPath)ReflectionToManifest.xsl$(QUOT) $(QUOT)$(DocReflectionPath)%(PrimaryReleaseAssemblies.FileName).xml$(QUOT) /out:$(QUOT)$(DocManifestPath)%(PrimaryReleaseAssemblies.FileName).xml$(QUOT)" WorkingDirectory="$(SandcastleToolsPath)" />
+  </Target>
+
+  <Target Name="DocumentationComments">
+    <MakeDir Directories="$(DocCommentsPath)" Condition="!Exists('$(DocCommentsPath)')" />
+    <Copy SourceFiles="@(PrimaryReleaseAssemblies->'%(RootDir)%(Directory)%(FileName).xml')" DestinationFiles="@(PrimaryReleaseAssemblies->'$(DocCommentsPath)%(FileName).xml')" />
+  </Target>
+
+  <Target Name="DocumentationHtml"
+          Inputs="$(DocManifestPath)*.xml;$(DocReflectionPath)*.xml;$(DocCommentsPath)*.xml"
+          Outputs="$(DocHtmlPath)*.htm"
+          DependsOnTargets="DocumentationManifest;DocumentationComments">
+    <CreateItem Include="$(DocManifestPath)*.xml">
+      <Output TaskParameter="Include" ItemName="DocumentationManifestXml" />
+    </CreateItem>
+    <Exec Command="$(QUOT)@(SandcastleBuildAssemblerExe)$(QUOT) /config:$(QUOT)$(SandcastlePresentationPath)configuration\sandcastle.config$(QUOT) @(DocumentationManifestXml->'%(FullPath)')" WorkingDirectory="$(SandcastleToolsPath)" />
+  </Target>
+
+  <Target Name="DocumentationChm"
+          Inputs="$(DocHtmlPath)*.htm;$(DocReflectionPath)*.xml"
+          Outputs="$(DocPath)\$(PackName).chm;$(DocTempPath)\Toc.xml"
+          DependsOnTargets="DocumentationHtml">
+    
+    <Error Condition="!Exists('@(SandcastleHtmlHelpCompilerExe)')" Text="Microsoft HTML Help Workshop not found." />
+    
+    <CreateItem Include="$(DocReflectionPath)*.xml">
+      <Output TaskParameter="Include" ItemName="DocumentationReflectionXml" />
+    </CreateItem>
+
+    <MakeDir Directories="$(DocTempPath)"        Condition="!Exists('$(DocTempPath)')" />
+    <MakeDir Directories="$(DocTempPath)Html"    Condition="!Exists('$(DocTempPath)Html')" />
+    <MakeDir Directories="$(DocTempPath)Icons"   Condition="!Exists('$(DocTempPath)Icons')" />
+    <MakeDir Directories="$(DocTempPath)Scripts" Condition="!Exists('$(DocTempPath)Scripts')" />
+    <MakeDir Directories="$(DocTempPath)Styles"  Condition="!Exists('$(DocTempPath)Styles')" />
+    <MakeDir Directories="$(DocTempPath)Local"   Condition="!Exists('$(DocTempPath)Local')" />
+
+    <Exec Command="xcopy.exe $(DocPath)Icons\*   $(DocTempPath)Icons\ /y /r"   Condition="Exists('$(DocPath)Icons\')" />
+    <Exec Command="xcopy.exe $(DocPath)Scripts\* $(DocTempPath)Scripts\ /y /r" Condition="Exists('$(DocPath)Scripts\')" />
+    <Exec Command="xcopy.exe $(DocPath)Styles\*  $(DocTempPath)Styles\ /y /r"  Condition="Exists('$(DocPath)Styles\')" />
+    <Exec Command="xcopy.exe $(DocPath)Local\*   $(DocTempPath)Local\ /y /r"   Condition="Exists('$(DocPath)Local\')" />
+    
+    <Exec Command="$(QUOT)@(SandcastleXslTransformExe)$(QUOT) /xsl:$(QUOT)$(SandcastleTransformsPath)CreateVSToc.xsl$(QUOT) @(DocumentationReflectionXml->'%(FullPath)') /out:$(DocTempPath)\Toc.xml" WorkingDirectory="$(SandcastleToolsPath)" />
+
+    <Exec Command="$(QUOT)@(SandcastleChmBuilderExe)$(QUOT) /project:$(PackName) /html:$(DocHtmlPath) /lcid:1033 /toc:$(DocTempPath)Toc.xml /out:$(DocTempPath)" WorkingDirectory="$(SandcastleToolsPath)" />
+    <Exec Command="$(QUOT)@(SandcastleDBCSFixExe)$(QUOT) /d:$(DocTempPath) /l:1033" WorkingDirectory="$(SandcastleToolsPath)" />
+    
+    <Exec Command="$(QUOT)@(SandcastleHtmlHelpCompilerExe)$(QUOT) $(QUOT)$(DocTempPath)\$(PackName).hhp" IgnoreExitCode="true" />
+
+    <Copy SourceFiles="$(DocTempPath)\$(PackName).chm" DestinationFolder="$(DocPath)" />
+    
+    <RemoveDir Directories="$(DocTempPath)" />
+
+  </Target>
+
 </Project>

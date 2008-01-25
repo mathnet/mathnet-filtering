@@ -36,6 +36,13 @@
     <BuildPath>$(RootPath)build\</BuildPath>
     <BuildReleasePath>$(BuildPath)Release\</BuildReleasePath>
     <BuildDebugPath>$(BuildPath)Debug\</BuildDebugPath>
+    <DocPath>$(RootPath)doc\</DocPath>
+    <DocTempPath>$(DocPath)Temp\</DocTempPath>
+    <DocFrameworkReflectionPath>$(DocPath)FrameworkReflection\</DocFrameworkReflectionPath>
+    <DocReflectionPath>$(DocPath)Reflection\</DocReflectionPath>
+    <DocManifestPath>$(DocPath)Manifest\</DocManifestPath>
+    <DocCommentsPath>$(DocPath)Comments\</DocCommentsPath>
+    <DocHtmlPath>$(DocPath)Html\</DocHtmlPath>
     <PackPath>$(RootPath)pack\</PackPath>
     <PackReleasePath>$(PackPath)Binaries\Release\</PackReleasePath>
     <PackDebugPath>$(PackPath)Binaries\Debug\</PackDebugPath>
@@ -51,6 +58,10 @@
     <NCoverPath>$(ToolsPath)NCover\</NCoverPath>
     <SimianPath>$(ToolsPath)simian\</SimianPath>
     <FxCopPath>$(ToolsPath)FxCop\</FxCopPath>
+    <SandcastlePath>$(ToolsPath)Sandcastle\</SandcastlePath>
+    <SandcastleToolsPath>$(SandcastlePath)ProductionTools\</SandcastleToolsPath>
+    <SandcastleTransformsPath>$(SandcastlePath)ProductionTransforms\</SandcastleTransformsPath>
+    <SandcastlePresentationPath>$(SandcastlePath)Presentation\vs2005\</SandcastlePresentationPath>
   </PropertyGroup>
 
   <!-- Tools -->
@@ -60,6 +71,12 @@
     <NCoverExe Include="$(NCoverPath)NCover.Console.exe" />
     <SimianExe Include="$(SimianPath)simian.exe" />
     <FxCopExe Include="$(FxCopPath)FxCopCmd.exe" />
+    <SandcastleMrefBuilderExe Include="$(SandcastleToolsPath)MrefBuilder.exe" />
+    <SandcastleXslTransformExe Include="$(SandcastleToolsPath)XslTransform.exe" />
+    <SandcastleBuildAssemblerExe Include="$(SandcastleToolsPath)BuildAssembler.exe" />
+    <SandcastleChmBuilderExe Include="$(SandcastleToolsPath)ChmBuilder.exe" />
+    <SandcastleDBCSFixExe Include="$(SandcastleToolsPath)DBCSFix.exe" />
+    <SandcastleHtmlHelpCompilerExe Include="$(PROGRAMFILES)\Html Help Workshop\hhc.exe" />
   </ItemGroup>
 
   <!-- Strong Name -->

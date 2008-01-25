@@ -23,9 +23,11 @@
 
   <!-- Iridium Primary Assemblies -->
   <ItemGroup>
+    <PrimaryDebugAssemblies Include="$(BuildDebugPath)MathNet.Iridium.dll" />
+    <PrimaryReleaseAssemblies Include="$(BuildReleasePath)MathNet.Iridium.dll" />
     <PrimaryAssembly Include="
-                     $(BuildReleasePath)MathNet.Iridium.dll;
-                     $(BuildDebugPath)MathNet.Iridium.dll" />
+                     @(PrimaryDebugAssemblies);
+                     @(PrimaryReleaseAssemblies)" />
   </ItemGroup>
 
   <Target Name="PrintIridiumInfo">
