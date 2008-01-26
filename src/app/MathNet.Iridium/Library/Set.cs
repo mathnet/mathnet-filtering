@@ -798,13 +798,23 @@ namespace MathNet.Numerics
         #endregion
     }
 
+    /// <summary>
+    /// Set Element Operations
+    /// </summary>
     public enum SetElementOperation
     {
+        /// <summary>Add elements to the set</summary>
         Added,
+        /// <summary>Remove elements to the set</summary>
         Removed,
+        /// <summary>Move elements inside of the set</summary>
         Moved
     }
 
+    /// <summary>
+    /// Event argument used for notifying about changes in a set.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class SetChangedEventArgs<T> : EventArgs
     {
         private SetElementOperation op;
@@ -820,49 +830,86 @@ namespace MathNet.Numerics
             this.indexAfter = indexAfter;
         }
 
+        /// <summary>
+        /// Build changed event args when elevents have been moved inside of a set.
+        /// </summary>
+        /// <param name="element">The element which has been moved.</param>
+        /// <param name="indexBefore">The previous index of the moved element.</param>
+        /// <param name="indexAfter">The new index of the moved element.</param>
         public static SetChangedEventArgs<T> Moved(T element, int indexBefore, int indexAfter)
         {
             return new SetChangedEventArgs<T>(SetElementOperation.Moved, element, indexBefore, indexAfter);
         }
+        /// <summary>
+        /// Build changed event args when elevents have been added to a set.
+        /// </summary>
+        /// <param name="element">The element which as been added.</param>
+        /// <param name="index">The index where the element was added.</param>
         public static SetChangedEventArgs<T> Added(T element, int index)
         {
             return new SetChangedEventArgs<T>(SetElementOperation.Added, element, -1, index);
         }
+        /// <summary>
+        /// Build changed event args when elevents have been removed from a set.
+        /// </summary>
+        /// <param name="element">The element which has been removed.</param>
+        /// <param name="index">The previous index of the removed element.</param>
         public static SetChangedEventArgs<T> Removed(T element, int index)
         {
             return new SetChangedEventArgs<T>(SetElementOperation.Removed, element, index, -1);
         }
 
+        /// <summary>
+        /// The element that changed.
+        /// </summary>
         public T Element
         {
             get { return element; }
         }
 
+        /// <summary>
+        /// The operation that was applied to the element.
+        /// </summary>
         public SetElementOperation Operation
         {
             get { return op; }
         }
 
+        /// <summary>
+        /// True if the element was added to the set.
+        /// </summary>
         public bool ElementAdded
         {
             get { return op == SetElementOperation.Added; }
         }
 
+        /// <summary>
+        /// True if the element was removed from the set.
+        /// </summary>
         public bool ElementRemoved
         {
             get { return op == SetElementOperation.Removed; }
         }
 
+        /// <summary>
+        /// True if the element was moved inside of the set.
+        /// </summary>
         public bool ElementMoved
         {
             get { return op == SetElementOperation.Moved; }
         }
 
+        /// <summary>
+        /// The index of the element before the operation.
+        /// </summary>
         public int IndexBefore
         {
             get { return indexBefore; }
         }
 
+        /// <summary>
+        /// The index of the element after the operation.
+        /// </summary>
         public int IndexAfter
         {
             get { return indexAfter; }

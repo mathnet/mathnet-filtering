@@ -23,7 +23,6 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Runtime.InteropServices;
 
 using MathNet.Numerics.RandomSources;
 using MathNet.Numerics.Properties;
@@ -33,7 +32,6 @@ namespace MathNet.Numerics
     /// <summary>
     /// Static DoublePrecision Combinatorics Helper Class
     /// </summary>
-    [ComVisible(true)]
     public static class Combinatorics
     {
         #region Combinatorics: Counting
@@ -89,6 +87,12 @@ namespace MathNet.Numerics
 
         #region Combinatorics: Generate Randomly
         private static RandomSource _random = new SystemRandomSource();
+        /// <summary>
+        /// Random source supporting the randomized operations.
+        /// </summary>
+        /// <remarks>
+        /// The default value is a <see cref="SystemRandomSource"/>.
+        /// </remarks>
         public static RandomSource RandomSource
         {
             get { return _random; }
@@ -213,6 +217,8 @@ namespace MathNet.Numerics
         /// Shuffling an array is equivalent to generating a
         /// random permutation and applying this permutation to the array.
         /// </remarks>
+        /// <param name="source">The data list to shuffle.</param>
+        /// <param name="target">The resulting shuffled output data list.</param>
         public static void RandomShuffle<T>(IList<T> source, IList<T> target)
         {
             int len = Math.Min(source.Count, target.Count);
@@ -228,6 +234,7 @@ namespace MathNet.Numerics
         /// Shuffling an array is equivalent to generating a
         /// random permutation and applying this permutation to the array.
         /// </remarks>
+        /// <param name="array">The data list to shuffle.</param>
         public static void RandomShuffle<T>(IList<T> array)
         {
             T[] arrayCopy = new T[array.Count];
@@ -240,6 +247,7 @@ namespace MathNet.Numerics
         /// in random order without repetition.
         /// </summary>
         /// <param name="numberToSelect">The size of the subset. Must be smaller or equal to the array length.</param>
+        /// <param name="array">The data list to choose from.</param>
         public static T[] RandomSubsetVariation<T>(IList<T> array, int numberToSelect)
         {
             T[] ret = new T[numberToSelect];
@@ -254,6 +262,7 @@ namespace MathNet.Numerics
         /// in random order with repetition.
         /// </summary>
         /// <param name="numberToSelect">The size of the subset. Must be smaller or equal to the array length.</param>
+        /// <param name="array">The data list to choose from.</param>
         public static T[] RandomSubsetVariationWithRepetition<T>(IList<T> array, int numberToSelect)
         {
             T[] ret = new T[numberToSelect];
@@ -268,6 +277,7 @@ namespace MathNet.Numerics
         /// in preserved order without repetition.
         /// </summary>
         /// <param name="numberToSelect">The size of the subset. Must be smaller or equal to the array length.</param>
+        /// <param name="array">The data list to choose from.</param>
         public static T[] RandomSubsetCombination<T>(IList<T> array, int numberToSelect)
         {
             T[] ret = new T[numberToSelect];
@@ -283,6 +293,7 @@ namespace MathNet.Numerics
         /// in preserved order with repetition.
         /// </summary>
         /// <param name="numberToSelect">The size of the subset. Must be smaller or equal to the array length.</param>
+        /// <param name="array">The data list to choose from.</param>
         public static T[] RandomSubsetCombinationWithRepetition<T>(IList<T> array, int numberToSelect)
         {
             T[] ret = new T[numberToSelect];

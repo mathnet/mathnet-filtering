@@ -122,25 +122,40 @@ namespace MathNet.Numerics
         #endregion
 
         #region Accessors
+        /// <summary>
+        /// Normalize both numerator and denominator polynomials.
+        /// </summary>
         public void Normalize()
         {
             numerator.Normalize();
             denominator.Normalize();
         }
+        /// <summary>
+        /// The numerator polynomial.
+        /// </summary>
         public Polynomial Numerator
         {
             get { return numerator; }
             set { numerator = value; }
         }
+        /// <summary>
+        /// The denominator polynomial.
+        /// </summary>
         public Polynomial Denominator
         {
             get { return denominator; }
             set { denominator = value; }
         }
+        /// <summary>
+        /// The order of the numerator polynomial.
+        /// </summary>
         public int NumeratorOrder
         {
             get { return numerator.Order; }
         }
+        /// <summary>
+        /// The order of the denominator polynomial.
+        /// </summary>
         public int DenominatorOrder
         {
             get { return denominator.Order; }
@@ -300,6 +315,10 @@ namespace MathNet.Numerics
         #endregion
 
         #region Inplace Arithmetic Methods
+        /// <summary>
+        /// Create a new rational as the result of adding a rational to this rational.
+        /// </summary>
+        /// <param name="rational">The rational to add</param>
         public Rational Add(Rational rational)
         {
             if(denominator.Equals(rational.denominator))
@@ -308,15 +327,27 @@ namespace MathNet.Numerics
             Polynomial denom = denominator * rational.denominator;
             return new Rational(num, denom);
         }
+        /// <summary>
+        /// Add a polynomial directly inplace to this rational.
+        /// </summary>
+        /// <param name="polynomial">The polynomial to add.</param>
         public void AddInplace(Polynomial polynomial)
         {
             numerator.AddInplace(denominator * polynomial);
         }
+        /// <summary>
+        /// Add a floating point number directly inplace to this rational.
+        /// </summary>
+        /// <param name="n">The floating point number to add.</param>
         public void AddInplace(double n)
         {
             numerator.AddInplace(denominator * n);
         }
 
+        /// <summary>
+        /// Create a new rational as the result of subtracting a rational from this rational.
+        /// </summary>
+        /// <param name="rational">The rational to subtract.</param>
         public Rational Subtract(Rational rational)
         {
             if(denominator.Equals(rational.denominator))
@@ -325,44 +356,82 @@ namespace MathNet.Numerics
             Polynomial denom = denominator * rational.denominator;
             return new Rational(num, denom);
         }
+        /// <summary>
+        /// Subtract a polynomial directly inplace from this rational.
+        /// </summary>
+        /// <param name="polynomial">The polynomial to subtract.</param>
         public void SubtractInplace(Polynomial polynomial)
         {
             numerator.SubtractInplace(denominator * polynomial);
         }
+        /// <summary>
+        /// Subtract a floating point number directly inplace from this rational.
+        /// </summary>
+        /// <param name="n">The floating point number to subtract.</param>
         public void SubtractInplace(double n)
         {
             numerator.SubtractInplace(denominator * n);
         }
+        /// <summary>
+        /// Negate this rational directly inplace.
+        /// </summary>
         public void NegateInplace()
         {
             numerator.NegateInplace();
         }
 
+        /// <summary>
+        /// Create a new rational as the result of multiplying a rational to this rational.
+        /// </summary>
+        /// <param name="rational">The rational to multiply with.</param>
         public Rational Multiply(Rational rational)
         {
             return new Rational(numerator * rational.numerator, denominator * rational.denominator);
         }
+        /// <summary>
+        /// Create a new rational as the result of multiplying a polynomial to this rational.
+        /// </summary>
+        /// <param name="polynomial">The polynomial to multiply with.</param>
         public Rational Multiply(Polynomial polynomial)
         {
             return new Rational(numerator * polynomial, denominator.Clone());
         }
+        /// <summary>
+        /// Multiply a floating point number directly inplace to this rational.
+        /// </summary>
+        /// <param name="n">The floating point number to multiply with.</param>
         public void MultiplyInplace(double n)
         {
             numerator.MultiplyInplace(n);
         }
 
+        /// <summary>
+        /// Create a new rational as the result of dividing a rational from this rational.
+        /// </summary>
+        /// <param name="rational">The rational to divide with.</param>
         public Rational Divide(Rational rational)
         {
             return new Rational(numerator * rational.denominator, denominator * rational.numerator);
         }
+        /// <summary>
+        /// Create a new rational as the result of dividing a polynomial from this rational.
+        /// </summary>
+        /// <param name="polynomial">The polynomial to divide with.</param>
         public Rational Divide(Polynomial polynomial)
         {
             return new Rational(numerator.Clone(), denominator * polynomial);
         }
+        /// <summary>
+        /// Divide a floating point number directly inplace from this rational.
+        /// </summary>
+        /// <param name="n">The floating point number to divide with.</param>
         public void DivideInplace(double n)
         {
             denominator.MultiplyInplace(n);
         }
+        /// <summary>
+        /// Invert this rational directly inplace.
+        /// </summary>
         public void InvertInplace()
         {
             Polynomial temp = denominator;
@@ -372,6 +441,10 @@ namespace MathNet.Numerics
         #endregion
 
         #region Evaluation
+        /// <summary>
+        /// Evaluate the value of this rational at a given point.
+        /// </summary>
+        /// <param name="value">The point where to evaluate the rational</param>
         public double Evaluate(double value)
         {
             // TODO: correct Rational.Evaluate implementation

@@ -22,7 +22,6 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Runtime.InteropServices;
 
 namespace MathNet.Numerics
 {
@@ -31,7 +30,6 @@ namespace MathNet.Numerics
     /// </summary>
     /// <seealso cref="SiConstants"/>
     /// <seealso cref="SiPrefixes"/>
-    [ComVisible(true)]
     public static class Constants
     {
         /// <summary>e</summary>

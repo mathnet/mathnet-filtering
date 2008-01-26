@@ -35,17 +35,27 @@ namespace MathNet.Numerics.Transformations
         private InternalFFT _fft;
         private TransformationConvention _convention;
 
+        /// <summary>
+        /// Construct a real fourier transformation instance.
+        /// </summary>
         public RealFourierTransformation()
         {
             _fft = new InternalFFT();
             _convention = TransformationConvention.Default;
         }
+        /// <summary>
+        /// Construct a real fourier transformation instance with a given convention.
+        /// </summary>
+        /// <param name="convention">Fourier Transformation convention</param>
         public RealFourierTransformation(TransformationConvention convention)
         {
             _fft = new InternalFFT();
             _convention = convention;
         }
 
+        /// <summary>
+        /// Fourier Transformation Convention
+        /// </summary>
         public TransformationConvention Convention
         {
             get { return _convention; }
@@ -53,6 +63,8 @@ namespace MathNet.Numerics.Transformations
         }
 
         #region Scales
+        /// <param name="sampleRate">The sampling rate of the time-space data.</param>
+        /// <param name="numberOfSamples">Number of data samples.</param>
         public double[] GenerateTimeScale(double sampleRate, int numberOfSamples)
         {
             double[] scale = new double[numberOfSamples];
@@ -65,6 +77,8 @@ namespace MathNet.Numerics.Transformations
             return scale;
         }
 
+        /// <param name="sampleRate">The sampling rate of the time-space data.</param>
+        /// <param name="numberOfSamples">Number of data samples.</param>
         public double[] GenerateFrequencyScale(double sampleRate, int numberOfSamples)
         {
             double[] scale = new double[numberOfSamples];
@@ -92,6 +106,10 @@ namespace MathNet.Numerics.Transformations
         /// </summary>
         /// <param name="samples1">Real samples. Length must be a power of two.</param>
         /// <param name="samples2">Real samples. Length must be a power of two.</param>
+        /// <param name="fftReal1">Output for the first sample set, real part.</param>
+        /// <param name="fftImag1">Output for the first sample set, imaginary part</param>
+        /// <param name="fftReal2">Output for the second sample set, real part.</param>
+        /// <param name="fftImag2">Output for the second sample set, imaginary part.</param>
         public void TransformForward(double[] samples1, double[] samples2, 
             out double[] fftReal1, out double[] fftImag1, out double[] fftReal2, out double[] fftImag2)
         {
@@ -153,8 +171,10 @@ namespace MathNet.Numerics.Transformations
         /// </summary>
         /// <param name="fftReal1">Real part of the first vector in frequency space. Length must be a power of two.</param>
         /// <param name="fftImag1">Imaginary part of the first vector in frequency space. Length must be a power of two.</param>
-        /// <param name="fftReal1">Real part of the second vector in frequency space. Length must be a power of two.</param>
-        /// <param name="fftImag1">Imaginary part of the second vector in frequency space. Length must be a power of two.</param>
+        /// <param name="fftReal2">Real part of the second vector in frequency space. Length must be a power of two.</param>
+        /// <param name="fftImag2">Imaginary part of the second vector in frequency space. Length must be a power of two.</param>
+        /// <param name="samples1">Output samples for the first vector.</param>
+        /// <param name="samples2">Output samples for te second vector.</param>
         public void TransformBackward(double[] fftReal1, double[] fftImag1, double[] fftReal2, double[] fftImag2,
             out double[] samples1, out double[] samples2)
         {
@@ -198,6 +218,8 @@ namespace MathNet.Numerics.Transformations
         /// Size must be Power of Two.
         /// </summary>
         /// <param name="samples">Real samples. Length must be a power of two.</param>
+        /// <param name="fftReal">Output of the sample set, real part.</param>
+        /// <param name="fftImag">Output of the sample set, imaginary part.</param>
         public void TransformForward(double[] samples, out double[] fftReal, out double[] fftImag)
         {
             if(Fn.CeilingToPowerOf2(samples.Length) != samples.Length)
@@ -316,6 +338,9 @@ namespace MathNet.Numerics.Transformations
         /// The Data is expected to be ordered such that the last index changes most rapidly (in 2D this means row-by-row when indexing as [y,x]).
         /// </summary>
         /// <param name="samples">Real samples. Length must be a power of two in each dimension.</param>
+        /// <param name="fftReal">Output of the sample set, real part.</param>
+        /// <param name="fftImag">Output of the sample set, imaginary part.</param>
+        /// <param name="dimensionLengths">Sizes, must be Power of Two in each dimension</param>
         public void TransformForward(double[] samples, out double[] fftReal, out double[] fftImag, params int[] dimensionLengths)
         {
             for(int i = 0; i < dimensionLengths.Length; i++)

@@ -36,22 +36,37 @@ namespace MathNet.Numerics
         private readonly TFirst _first;
         private readonly TSecond _second;
 
+        /// <summary>
+        /// Construct a tuple
+        /// </summary>
+        /// <param name="first">The first tuple value</param>
+        /// <param name="second">The second tuple value</param>
         public Tuple(TFirst first, TSecond second)
         {
             _first = first;
             _second = second;
         }
 
+        /// <summary>
+        /// The first tuple value
+        /// </summary>
         public TFirst First
         {
             get { return _first; }
         }
 
+        /// <summary>
+        /// The second tuple value
+        /// </summary>
         public TSecond Second
         {
             get { return _second; }
         }
 
+        /// <summary>
+        /// True if the the first values of both tuples match and the second valus of both tuples match.
+        /// </summary>
+        /// <param name="other">The other tuple to compare with.</param>
         public bool Equals(Tuple<TFirst, TSecond> other)
         {
             return _first.Equals(other.First) && _second.Equals(other.Second);

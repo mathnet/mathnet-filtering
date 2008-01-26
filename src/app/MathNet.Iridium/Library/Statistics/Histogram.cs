@@ -111,6 +111,9 @@ namespace MathNet.Numerics.Statistics
             }
         }
 
+        /// <summary>
+        /// Sort the buckets.
+        /// </summary>
         public void Sort()
         {
             buckets.Sort();
@@ -253,7 +256,7 @@ namespace MathNet.Numerics.Statistics
 
 
         /// <summary>Returns the optimal variance histogram.</summary>
-        /// <param name="histSize">The number of buckets in the histogram.</param>
+        /// <param name="bucketCount">The number of buckets in the histogram.</param>
         /// <param name="distribution"><c>double</c> elements expected.</param>
         /// <remarks>Requires a computations time quadratic to 
         /// <c>distribution.Length</c>.</remarks>

@@ -816,7 +816,7 @@ namespace MathNet.Numerics
         /// Complex nan = Complex.Parse("NaN");
         /// Complex infinity = Complex.Parse("Infinity");
         /// </code>
-        /// This method is symmetric to <see cref="ToString"/>.
+        /// This method is symmetric to <see cref="Complex.ToString"/>.
         /// </remarks>
         public static Complex Parse(string complex)
         {

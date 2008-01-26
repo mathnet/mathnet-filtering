@@ -170,12 +170,16 @@ namespace MathNet.Numerics
         }
 
         /// <param name="maxNumbersBetween">The maximum count of numbers between the two numbers plus one ([a,a] -> 0, [a,a+e] -> 1, [a,a+2e] -> 2, ...).</param>
+        /// <param name="a">The first number</param>
+        /// <param name="b">The second number</param>
         public static bool AlmostEqual(double a, double b, int maxNumbersBetween)
         {
             return AlmostEqual(a, b, (ulong)maxNumbersBetween);
         }
 
         /// <param name="maxNumbersBetween">The maximum count of numbers between the two numbers plus one ([a,a] -> 0, [a,a+e] -> 1, [a,a+2e] -> 2, ...).</param>
+        /// <param name="a">The first number</param>
+        /// <param name="b">The second number</param>
         public static bool AlmostEqual(double a, double b, ulong maxNumbersBetween)
         {
             if(maxNumbersBetween < 0)
@@ -196,6 +200,10 @@ namespace MathNet.Numerics
             return between <= maxNumbersBetween;
         }
 
+        /// <param name="a">The first number</param>
+        /// <param name="b">The second number</param>
+        /// <param name="diff">The difference of the two numbers according to the Norm</param>
+        /// <param name="relativeAccuracy">The relative accuracy required for being almost equal.</param>
         public static bool AlmostEqualNorm(double a, double b, double diff, double relativeAccuracy)
         {
             if((a == 0 && Math.Abs(b) < relativeAccuracy)
@@ -206,21 +214,31 @@ namespace MathNet.Numerics
             return Math.Abs(diff) < relativeAccuracy * Math.Max(Math.Abs(a), Math.Abs(b));
         }
 
+        /// <param name="a">The first number</param>
+        /// <param name="b">The second number</param>
+        /// <param name="diff">The difference of the two numbers according to the Norm</param>
         public static bool AlmostEqualNorm(double a, double b, double diff)
         {
             return AlmostEqualNorm(a, b, diff, DefaultRelativeAccuracy);
         }
 
+        /// <param name="a">The first number</param>
+        /// <param name="b">The second number</param>
+        /// <param name="relativeAccuracy">The relative accuracy required for being almost equal.</param>
         public static bool AlmostEqual(double a, double b, double relativeAccuracy)
         {
             return AlmostEqualNorm(a, b, a - b, relativeAccuracy);
         }
 
+        /// <param name="a">The first number</param>
+        /// <param name="b">The second number</param>
         public static bool AlmostEqual(double a, double b)
         {
             return AlmostEqualNorm(a, b, a - b, DefaultRelativeAccuracy);
         }
 
+        /// <param name="x">The first vector</param>
+        /// <param name="y">The second vector</param>
         public static bool AlmostEqual(double[] x, double[] y)
         {
             if(x.Length != y.Length)

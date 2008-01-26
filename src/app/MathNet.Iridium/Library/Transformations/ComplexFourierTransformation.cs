@@ -35,17 +35,27 @@ namespace MathNet.Numerics.Transformations
         private InternalFFT _fft;
         private TransformationConvention _convention;
 
+        /// <summary>
+        /// Construct a complex fourier transformation instance.
+        /// </summary>
         public ComplexFourierTransformation()
         {
             _fft = new InternalFFT();
             _convention = TransformationConvention.Default;
         }
+        /// <summary>
+        /// Construct a complex fourier transformation instance with a given convention.
+        /// </summary>
+        /// <param name="convention">Fourier Transformation Convention</param>
         public ComplexFourierTransformation(TransformationConvention convention)
         {
             _fft = new InternalFFT();
             _convention = convention;
         }
 
+        /// <summary>
+        /// Fourier Transformation Convention
+        /// </summary>
         public TransformationConvention Convention
         {
             get { return _convention; }
@@ -53,7 +63,8 @@ namespace MathNet.Numerics.Transformations
         }
 
         #region Scales
-        /// <param name="numberOfSamplePairs">The real & complex numbers count together as only one sample.</param>
+        /// <param name="numberOfSamplePairs">The real &amp; complex numbers count together as only one sample.</param>
+        /// <param name="sampleRate">The sampling rate of the time-space data.</param>
         public double[] GenerateTimeScale(double sampleRate, int numberOfSamplePairs)
         {
             double[] scale = new double[numberOfSamplePairs];
@@ -66,7 +77,8 @@ namespace MathNet.Numerics.Transformations
             return scale;
         }
 
-        /// <param name="numberOfSamplePairs">The real & complex numbers count together as only one sample.</param>
+        /// <param name="numberOfSamplePairs">The real &amp; complex numbers count together as only one sample.</param>
+        /// <param name="sampleRate">The sampling rate of the time-space data.</param>
         public double[] GenerateFrequencyScale(double sampleRate, int numberOfSamplePairs)
         {
             double[] scale = new double[numberOfSamplePairs];
@@ -172,6 +184,7 @@ namespace MathNet.Numerics.Transformations
         /// The Data is expected to be ordered such that the last index changes most rapidly (in 2D this means row-by-row when indexing as [y,x]).
         /// </summary>
         /// <param name="samplePairs">Complex samples (even = real, odd = imaginary). Length must be a power of two in each dimension.</param>
+        /// <param name="dimensionLengths">Sizes, must be Power of Two in each dimension</param>
         public void TransformForward(double[] samplePairs, params int[] dimensionLengths)
         {
             for(int i=0;i<dimensionLengths.Length;i++)
@@ -191,6 +204,7 @@ namespace MathNet.Numerics.Transformations
         /// <see cref="Complex"/> type instances. However, if not, consider using the
         /// overloaded method with double pairs instead, it requires less internal copying.
         /// </remarks>
+        /// <param name="dimensionLengths">Sizes, must be Power of Two in each dimension</param>
         public void TransformForward(Complex[] samples, params int[] dimensionLengths)
         {
             for(int i = 0; i < dimensionLengths.Length; i++)
@@ -216,6 +230,7 @@ namespace MathNet.Numerics.Transformations
         /// The Data is expected to be ordered such that the last index changes most rapidly (in 2D this means row-by-row when indexing as [y,x]).
         /// </summary>
         /// <param name="samplePairs">Complex samples (even = real, odd = imaginary). Length must be a power of two in each dimension.</param>
+        /// <param name="dimensionLengths">Sizes, must be Power of Two in each dimension</param>
         public void TransformBackward(double[] samplePairs, params int[] dimensionLengths)
         {
             for(int i = 0; i < dimensionLengths.Length; i++)
@@ -235,6 +250,7 @@ namespace MathNet.Numerics.Transformations
         /// <see cref="Complex"/> type instances. However, if not, consider using the
         /// overloaded method with double pairs instead, it requires less internal copying.
         /// </remarks>
+        /// <param name="dimensionLengths">Sizes, must be Power of Two in each dimension</param>
         public void TransformBackward(Complex[] samples, params int[] dimensionLengths)
         {
             for(int i = 0; i < dimensionLengths.Length; i++)

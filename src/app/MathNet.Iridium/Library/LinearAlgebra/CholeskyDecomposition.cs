@@ -102,11 +102,11 @@ namespace MathNet.Numerics.LinearAlgebra
             return new Matrix(L);
         }
 
-        ///// <summary>Solve A*x = b</summary>
-        ///// <param name="b">A Vector with a dimension as high as the number of rows of A.</param>
-        ///// <returns>x so that L*L'*x = b</returns>
-        ///// <exception cref="System.ArgumentException">Matrix row dimensions must agree.</exception>
-        ///// <exception cref="System.SystemException">Matrix is not symmetric positive definite.</exception>
+        /// <summary>Solve A*x = b</summary>
+        /// <param name="b">A Vector with a dimension as high as the number of rows of A.</param>
+        /// <returns>x so that L*L'*x = b</returns>
+        /// <exception cref="System.ArgumentException">Matrix row dimensions must agree.</exception>
+        /// <exception cref="System.InvalidOperationException">Matrix is not symmetric positive definite.</exception>
         public double[] Solve(double[] b)
         {
             if(b.Length != L.Length)
@@ -141,11 +141,11 @@ namespace MathNet.Numerics.LinearAlgebra
             return x;
         }
 
-        ///// <summary>Solve A*X = B</summary>
-        ///// <param name="B">A Matrix with as many rows as A and any number of columns.</param>
-        ///// <returns>X so that L*L'*X = B</returns>
-        ///// <exception cref="System.ArgumentException">Matrix row dimensions must agree.</exception>
-        ///// <exception cref="System.SystemException">Matrix is not symmetric positive definite.</exception>
+        /// <summary>Solve A*X = B</summary>
+        /// <param name="B">A Matrix with as many rows as A and any number of columns.</param>
+        /// <returns>X so that L*L'*X = B</returns>
+        /// <exception cref="System.ArgumentException">Matrix row dimensions must agree.</exception>
+        /// <exception cref="System.InvalidOperationException">Matrix is not symmetric positive definite.</exception>
         public Matrix Solve(Matrix B)
         {
             if(B.RowCount != L.Length)

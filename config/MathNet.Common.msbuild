@@ -228,7 +228,7 @@
     <Copy SourceFiles="@(PackageTestSource)" DestinationFiles="@(PackageTestSource->'$(PackTestSourcesPath)%(RecursiveDir)%(Filename)%(Extension)')" />
 
     <!-- Documentation -->
-    <Copy SourceFiles="$(DocPath)\$(PackName).chm" DestinationFolder="$(PackPackagePath)" Condition="Exists('$(DocPath)\$(PackName).chm')" />
+    <Copy SourceFiles="$(DocPath)$(PackName).chm" DestinationFolder="$(PackPackagePath)" Condition="Exists('$(DocPath)$(PackName).chm')" />
     
   </Target>
 
@@ -287,7 +287,6 @@
     <RemoveDir Directories="$(DocManifestPath)" Condition="Exists('$(DocManifestPath)')"/>
     <RemoveDir Directories="$(DocCommentsPath)" Condition="Exists('$(DocCommentsPath)')"/>
     <RemoveDir Directories="$(DocHtmlPath)" Condition="Exists('$(DocHtmlPath)')"/>
-    <Delete Files="$(DocPath)\*.chm;" />
   </Target>
 
   <Target Name="DocumentationReflection" DependsOnTargets="DocumentationClean">

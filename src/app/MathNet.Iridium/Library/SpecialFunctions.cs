@@ -24,7 +24,6 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Runtime.InteropServices;
 
 using MathNet.Numerics.Properties;
 
@@ -33,7 +32,6 @@ namespace MathNet.Numerics
     /// <summary>
     /// Double-precision special functions toolkit.
     /// </summary>
-    [ComVisible(true)]
     public static class Fn
     {
         /// <summary> Returns <code>sqrt(a<sup>2</sup> + b<sup>2</sup>)</code> 
@@ -229,7 +227,7 @@ namespace MathNet.Numerics
         /// <code>
         /// long x,y,d;
         /// d = Fn.Gcd(45,18,out x, out y);
-        /// -> d == 9 && x == 1 && y == -2
+        /// -> d == 9 &amp;&amp; x == 1 &amp;&amp; y == -2
         /// </code>
         /// The gcd of 45 and 18 is 9: 18 = 2*9, 45 = 5*9. 9 = 1*45 -2*18, therefore x=1 and y=-2.
         /// </example>

@@ -29,7 +29,7 @@ using MathNet.Numerics.Properties;
 namespace MathNet.Numerics.Interpolation
 {
     /// <summary>
-    /// Lagrange Rational Interpolation using Bulirsch & Stoer's Algorithm.
+    /// Lagrange Rational Interpolation using Bulirsch &amp; Stoer's Algorithm.
     /// </summary>
     public class RationalInterpolationAlgorithm : IInterpolationAlgorithm
     {

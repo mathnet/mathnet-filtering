@@ -22,7 +22,6 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Runtime.InteropServices;
 
 namespace MathNet.Numerics
 {
@@ -31,7 +30,6 @@ namespace MathNet.Numerics
     /// </summary>
     /// <seealso cref="SiConstants"/>
     /// <seealso cref="Constants"/>
-    [ComVisible(true)]
     public static class SiPrefixes
     {
         /// <summary>1 000 000 000 000 000 000 000 000</summary>
