@@ -228,7 +228,7 @@
     <Copy SourceFiles="@(PackageTestSource)" DestinationFiles="@(PackageTestSource->'$(PackTestSourcesPath)%(RecursiveDir)%(Filename)%(Extension)')" />
 
     <!-- Documentation -->
-    <Copy SourceFiles="$(DocTempPath)\$(PackName).chm" DestinationFolder="$(PackPath)" Condition="Exists('$(DocTempPath)\$(PackName).chm')" />
+    <Copy SourceFiles="$(DocPath)\$(PackName).chm" DestinationFolder="$(PackPackagePath)" Condition="Exists('$(DocPath)\$(PackName).chm')" />
     
   </Target>
 
