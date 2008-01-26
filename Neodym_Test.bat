@@ -1,6 +1,6 @@
 @echo off
 cls
 
-tools\nunit\bin\nunit-console.exe build\Debug\Neodym.Test.dll
+msbuild config/MathNet.Neodym.msbuild /t:BuildVerificationUnitTests
 
 pause

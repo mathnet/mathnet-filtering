@@ -1,7 +1,6 @@
 @echo off
 cls
 
-msbuild Neodym.sln /p:Configuration=Release /t:Build
-msbuild Neodym.sln /p:Configuration=Debug /t:Build
+msbuild config/MathNet.Neodym.msbuild /t:CustomBuild
 
 pause
