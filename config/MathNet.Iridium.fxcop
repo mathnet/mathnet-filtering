@@ -22,10 +22,9 @@
  </ProjectOptions>
  <Targets>
   <AssemblyReferenceDirectories>
-   <Directory>$(ProjectDir)/../build/checkout/src/app/MathNet.Iridium/Library/bin/Debug/</Directory>
-   <Directory>$(ProjectDir)/src/app/MathNet.Iridium/Library/bin/Debug/</Directory>
+   <Directory>$(ProjectDir)/../build/Release/</Directory>
   </AssemblyReferenceDirectories>
-  <Target Name="$(ProjectDir)/build/Release/MathNet.Iridium.dll" Analyze="True">
+  <Target Name="$(ProjectDir)/../build/Release/MathNet.Iridium.dll" Analyze="True">
    <Modules>
     <Module Name="mathnet.iridium.dll" Analyze="True">
      <Namespaces>
