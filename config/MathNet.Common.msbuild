@@ -226,6 +226,9 @@
     <Copy SourceFiles="@(PackageAppSource)" DestinationFiles="@(PackageAppSource->'$(PackAppSourcesPath)%(RecursiveDir)%(Filename)%(Extension)')" />
     <Copy SourceFiles="@(PackageTestSource)" DestinationFiles="@(PackageTestSource->'$(PackTestSourcesPath)%(RecursiveDir)%(Filename)%(Extension)')" />
 
+    <!-- Documentation -->
+    <Copy SourceFiles="$(DocTempPath)\$(PackName).chm" DestinationFolder="$(PackPath)" Condition="Exists('$(DocTempPath)\$(PackName).chm')" />
+    
   </Target>
 
   <Target Name="ZipPack">

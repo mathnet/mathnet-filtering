@@ -71,6 +71,8 @@
     <CallTarget Targets="ReleaseFinalSign" />
     <CallTarget Targets="ReleaseCertificateSign" />
 
+    <CallTarget Targets="DocumentationChm" />
+
     <CallTarget Targets="PreparePack" />
     <CallTarget Targets="PatchProjectsPack" />
     <CallTarget Targets="ZipPack" />
