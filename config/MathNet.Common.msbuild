@@ -354,4 +354,18 @@
 
   </Target>
 
+  <!-- ### BUILD VERIFICATION ### -->
+
+  <Target Name="BuildVerificationFxCop" Condition="'$(PackageName)'!=''">
+    <MakeDir Directories="$(BuildVerificationPath)" Condition="!Exists('$(BuildVerificationPath)')" />
+    <Exec Command="$(QUOT)@(FxCopExe)$(QUOT) /project:$(ConfigPath)$(PackageName).fxcop /out:$(BuildVerificationPath)$(PackageName).fxcop-result.xml" ContinueOnError="true" />
+  </Target>
+
+  <Target Name="BuildVerificationSimian" Condition="'$(PackageName)'!=''">
+    <MakeDir Directories="$(BuildVerificationPath)" Condition="!Exists('$(BuildVerificationPath)')" />
+    <Exec Command="$(QUOT)@(SimianExe)$(QUOT) -recurse=..\src\app\$(PackageName)\*.cs -formatter=xml:$(BuildVerificationPath)$(PackageName).simian-result.xml" IgnoreExitCode="true" ContinueOnError="true" />
+  </Target>
+
+  <Target Name="BuildVerification" DependsOnTargets="BuildVerificationFxCop;BuildVerificationSimian" />
+  
 </Project>

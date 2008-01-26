@@ -23,6 +23,7 @@
     <SourcePath>$(RootPath)src\</SourcePath>
     <AppSourcePath>$(SourcePath)app\</AppSourcePath>
     <TestSourcePath>$(SourcePath)test\</TestSourcePath>
+    <BuildVerificationPath>$(RootPath)verification\</BuildVerificationPath>
   </PropertyGroup>
 
   <!-- Package-Specific Structure Paths - If Available -->

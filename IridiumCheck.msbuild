@@ -10,10 +10,6 @@
 
 	<Target Name="Check">
 
-		<Exec Command="tools\FxCop\FxCopCmd.exe /project:Iridium.fxcop /out:..\Iridium\artifact\fxcop-result.xml" ContinueOnError="true"/>
-
-		<Exec Command="tools\simian\simian.exe -recurse=src\app\MathNet.Iridium\*.cs -formatter=xml:..\Iridium\artifact\simian-result.xml" IgnoreExitCode="true" ContinueOnError="true"/>
-
 		<Copy SourceFiles="@(NUnitBin)" DestinationFolder="D:\integration\Math.NET\Iridium\work" SkipUnchangedFiles="true"/>
 		<Copy SourceFiles="@(NCoverBin)" DestinationFolder="D:\integration\Math.NET\Iridium\work" SkipUnchangedFiles="true"/>
 		<Copy SourceFiles="@(NUnitTargetFiles)" DestinationFolder="D:\integration\Math.NET\Iridium\work"/>
