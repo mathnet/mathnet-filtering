@@ -250,6 +250,9 @@ namespace MathNet.Numerics.Distributions
         #endregion
 
         #region Generator
+        /// <summary>
+        /// Generate a new random number according to this distribution.
+        /// </summary>
         public override int NextInt32()
         {
             double rnd = this.RandomSource.NextDouble();

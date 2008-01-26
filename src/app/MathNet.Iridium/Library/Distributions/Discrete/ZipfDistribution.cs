@@ -49,14 +49,19 @@ namespace MathNet.Numerics.Distributions
 
         private double skew;
 
-        /// <summary>Zipfian generator with a default 
-        /// <c>skew</c> equal to <c>2</c>.</summary>
+        /// <summary>
+        /// Zipfian generator with a default <c>skew</c> equal to <c>2</c>.
+        /// </summary>
         public ZipfDistribution()
         {
             this.skew = 2d;
             random = new SystemRandomSource();
         }
 
+        /// <summary>
+        /// Zipfian generator with a default <c>skew</c> equal to <c>2</c>.
+        /// </summary>
+        /// <param name="random">A <see cref="RandomSource"/> object.</param>
         public ZipfDistribution(RandomSource random)
         {
             this.skew = 2d;

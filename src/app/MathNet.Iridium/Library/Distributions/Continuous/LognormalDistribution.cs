@@ -238,6 +238,10 @@ namespace MathNet.Numerics.Distributions
             return 0.5 * (1.0 + Fn.Erf((Math.Log(x) - _mu) / (_sigma * Constants.Sqrt2)));
         }
 
+        /// <summary>
+        /// Inverse of the continuous cumulative distribution function of this probability distribution.
+        /// </summary>
+        /// <seealso cref="LognormalDistribution.CumulativeDistribution"/>
         public double InverseCumulativeDistribution(double x)
         {
             return Math.Exp(_sigma * Constants.Sqrt2 * Fn.ErfInverse(2.0 * x - 1.0) + _mu);

@@ -445,6 +445,13 @@ namespace MathNet.Numerics
             return real.GetHashCode() ^ imag.GetHashCode();
         }
 
+        /// <summary>
+        /// Compare this complex number with another complex number.
+        /// </summary>
+        /// <remarks>
+        /// The complex number's modulus takes precedence over the argument.
+        /// </remarks>
+        /// <param name="other">The complex number to compare with.</param>
         public int CompareTo(Complex other)
         {
             int res = Modulus.CompareTo(other.Modulus);
@@ -816,7 +823,7 @@ namespace MathNet.Numerics
         /// Complex nan = Complex.Parse("NaN");
         /// Complex infinity = Complex.Parse("Infinity");
         /// </code>
-        /// This method is symmetric to <see cref="Complex.ToString"/>.
+        /// This method is symmetric to <see cref="Complex.ToString()"/>.
         /// </remarks>
         public static Complex Parse(string complex)
         {
