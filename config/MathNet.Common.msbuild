@@ -268,7 +268,7 @@
     <Copy SourceFiles="@(DocumentationIconFiles)" DestinationFiles="@(DocumentationIconFiles->'$(DocPath)icons\%(RecursiveDir)%(FileName)%(Extension)')"/>
     <Copy SourceFiles="@(DocumentationScriptFiles)" DestinationFiles="@(DocumentationScriptFiles->'$(DocPath)scripts\%(RecursiveDir)%(FileName)%(Extension)')"/>
     <Copy SourceFiles="@(DocumentationStyleFiles)" DestinationFiles="@(DocumentationStyleFiles->'$(DocPath)styles\%(RecursiveDir)%(FileName)%(Extension)')"/>
-    <MakeDir Directories="$(DocHtmlPath);$(DocPath)media;$(DocPath)intellisense"/>
+    <MakeDir Directories="$(DocPath)Media;$(DocPath)Intellisense"/>
   </Target>
 
   <Target Name="DocumentationReinitialize">
