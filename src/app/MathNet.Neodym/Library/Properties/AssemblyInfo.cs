@@ -1,7 +1,7 @@
 ﻿// Math.NET Neodym, part of the Math.NET Project
 // http://mathnet.opensourcedotnet.info
 //
-// Copyright (c) 2001-2007, Christoph Rüegg,  http://christoph.ruegg.name
+// Copyright (c) 2001-2008, Christoph Rüegg,  http://christoph.ruegg.name
 //						
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -22,6 +22,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security.Permissions;
+using System.Security;
 
 [assembly: AssemblyTitle("Math.NET Neodym: Signal Prozessing Library")]
 [assembly: AssemblyDescription("http://mathnet.opensourcedotnet.info")]
@@ -32,12 +33,26 @@ using System.Security.Permissions;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
-[assembly: CLSCompliant(true)]
-[assembly: ComVisible(false)]
+[assembly: PermissionSet(SecurityAction.RequestOptional, Unrestricted = false)]
+[assembly: SecurityPermission(SecurityAction.RequestMinimum, Execution = true)]
+[assembly: SecurityPermission(SecurityAction.RequestOptional, SkipVerification = true)] // TODO: remove - temp. fixes NCover issue
+[assembly: SecurityPermission(SecurityAction.RequestRefuse, UnmanagedCode = true, Assertion = true, BindingRedirects = true)]
+[assembly: FileIOPermission(SecurityAction.RequestRefuse, Unrestricted = true)]
+[assembly: EnvironmentPermission(SecurityAction.RequestRefuse, Unrestricted = true)]
+[assembly: ReflectionPermission(SecurityAction.RequestRefuse, Unrestricted = true)]
+[assembly: RegistryPermission(SecurityAction.RequestRefuse, Unrestricted = true)]
+[assembly: System.Net.SocketPermission(SecurityAction.RequestRefuse, Unrestricted = true)]
+[assembly: System.Net.WebPermission(SecurityAction.RequestRefuse, Unrestricted = true)]
+[assembly: System.Net.DnsPermission(SecurityAction.RequestRefuse, Unrestricted = true)]
+[assembly: System.Net.Mail.SmtpPermission(SecurityAction.RequestRefuse, Unrestricted = true)]
+[assembly: System.Net.NetworkInformation.NetworkInformationPermission(SecurityAction.RequestRefuse, Unrestricted = true)]
 
-[assembly: SecurityPermission(SecurityAction.RequestRefuse)]
+[assembly: AllowPartiallyTrustedCallers]
+
+[assembly: CLSCompliant(true)]
 
 [assembly: Guid("4d30d62e-c708-411f-bc68-8da5621fcff7")]
+[assembly: ComVisible(false)]
 
-[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.0.0.*")] // even = release
 [assembly: AssemblyFileVersion("1.0.0.0")]

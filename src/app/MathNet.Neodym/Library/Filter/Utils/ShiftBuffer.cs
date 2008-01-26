@@ -2,7 +2,7 @@
 // Math.NET Neodym, part of the Math.NET Project
 // http://mathnet.opensourcedotnet.info
 //
-// Copyright (c) 2001-2007, Christoph Rüegg,  http://christoph.ruegg.name
+// Copyright (c) 2001-2008, Christoph Rüegg,  http://christoph.ruegg.name
 //						
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
