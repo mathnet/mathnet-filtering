@@ -28,6 +28,7 @@
     <PrimaryAssembly Include="
                      @(PrimaryDebugAssemblies);
                      @(PrimaryReleaseAssemblies)" />
+    <TestAssemblies Include="$(BuildDebugPath)Iridium.Test.dll" />
   </ItemGroup>
 
   <Target Name="PrintIridiumInfo">
@@ -70,6 +71,8 @@
 
     <CallTarget Targets="ReleaseFinalSign" />
     <CallTarget Targets="ReleaseCertificateSign" />
+
+    <CallTarget Targets="BuildVerificationUnitTests" ContinueOnError="false" />
 
     <CallTarget Targets="DocumentationChm" />
 

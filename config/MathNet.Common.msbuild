@@ -195,6 +195,7 @@
     <MakeDir Directories="$(BuildReleasePath);$(BuildDebugPath)" />
     <CallTarget Targets="CleanPack" />
     <CallTarget Targets="DocumentationClean" />
+    <CallTarget Targets="BuildVerificationClean" />
   </Target>
 
   <!-- ### PACKING ### -->
@@ -356,16 +357,34 @@
 
   <!-- ### BUILD VERIFICATION ### -->
 
+  <Target Name="BuildVerificationInitialize">
+    <Exec Command="regsvr32 $(NCoverPath)coverlib.dll" />
+  </Target>
+  
   <Target Name="BuildVerificationFxCop" Condition="'$(PackageName)'!=''">
     <MakeDir Directories="$(BuildVerificationPath)" Condition="!Exists('$(BuildVerificationPath)')" />
-    <Exec Command="$(QUOT)@(FxCopExe)$(QUOT) /project:$(ConfigPath)$(PackageName).fxcop /out:$(BuildVerificationPath)$(PackageName).fxcop-result.xml" ContinueOnError="true" />
+    <Exec Command="$(QUOT)@(FxCopExe)$(QUOT) /project:$(ConfigPath)$(PackageName).fxcop /out:$(BuildVerificationPath)$(PackageName).fxcop-result.xml" ContinueOnError="true" WorkingDirectory="$(BuildVerificationPath)" />
   </Target>
 
   <Target Name="BuildVerificationSimian" Condition="'$(PackageName)'!=''">
     <MakeDir Directories="$(BuildVerificationPath)" Condition="!Exists('$(BuildVerificationPath)')" />
-    <Exec Command="$(QUOT)@(SimianExe)$(QUOT) -recurse=..\src\app\$(PackageName)\*.cs -formatter=xml:$(BuildVerificationPath)$(PackageName).simian-result.xml" IgnoreExitCode="true" ContinueOnError="true" />
+    <Exec Command="$(QUOT)@(SimianExe)$(QUOT) -recurse=..\src\app\$(PackageName)\*.cs -formatter=xml:$(BuildVerificationPath)$(PackageName).simian-result.xml" IgnoreExitCode="true" ContinueOnError="true" WorkingDirectory="$(BuildVerificationPath)" />
   </Target>
 
-  <Target Name="BuildVerification" DependsOnTargets="BuildVerificationFxCop;BuildVerificationSimian" />
+  <Target Name="BuildVerificationUnitTests" Condition="'$(PackageName)'!=''">
+    <MakeDir Directories="$(BuildVerificationPath)" Condition="!Exists('$(BuildVerificationPath)')" />
+    <Exec Command="$(QUOT)@(NUnitExe)$(QUOT) /nologo /noshadow /xml=$(BuildVerificationPath)$(PackageName).nunit-result.xml @(TestAssemblies)" ContinueOnError="false" WorkingDirectory="$(BuildVerificationPath)" />
+  </Target>
+
+  <Target Name="BuildVerificationUnitTestsWithCoverage" Condition="'$(PackageName)'!=''">
+    <MakeDir Directories="$(BuildVerificationPath)" Condition="!Exists('$(BuildVerificationPath)')" />
+    <Exec Command="$(QUOT)@(NCoverExe)$(QUOT) $(QUOT)@(NUnitExe)$(QUOT) /nologo /noshadow /xml=$(BuildVerificationPath)$(PackageName).nunit-result.xml @(TestAssemblies) //x $(BuildVerificationPath)$(PackageName).ncover-result.xml //a @(PrimaryDebugAssemblies->'%(FileName)')" ContinueOnError="false" WorkingDirectory="$(BuildVerificationPath)" />
+  </Target>
+
+  <Target Name="BuildVerification" DependsOnTargets="BuildVerificationFxCop;BuildVerificationSimian;BuildVerificationUnitTestsWithCoverage" />
+
+  <Target Name="BuildVerificationClean">
+    <RemoveDir Directories="$(BuildVerificationPath)" Condition="Exists('$(BuildVerificationPath)')" />
+  </Target>
   
 </Project>
