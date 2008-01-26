@@ -29,7 +29,7 @@ using System.Security;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Math.NET Project")]
 [assembly: AssemblyProduct("Math.NET")]
-[assembly: AssemblyCopyright("Copyright © 2007, Math.NET Project")]
+[assembly: AssemblyCopyright("Copyright © 2008, Math.NET Project")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
