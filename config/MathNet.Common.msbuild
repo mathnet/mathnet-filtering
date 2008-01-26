@@ -282,6 +282,7 @@
     <RemoveDir Directories="$(DocReflectionPath)" Condition="Exists('$(DocReflectionPath)')"/>
     <RemoveDir Directories="$(DocManifestPath)" Condition="Exists('$(DocManifestPath)')"/>
     <RemoveDir Directories="$(DocCommentsPath)" Condition="Exists('$(DocCommentsPath)')"/>
+    <RemoveDir Directories="$(DocHtmlPath)" Condition="Exists('$(DocHtmlPath)')"/>
     <Delete Files="$(DocPath)\*.chm;" />
   </Target>
 
@@ -310,6 +311,7 @@
     <CreateItem Include="$(DocManifestPath)*.xml">
       <Output TaskParameter="Include" ItemName="DocumentationManifestXml" />
     </CreateItem>
+    <MakeDir Directories="$(DocHtmlPath)" Condition="!Exists('$(DocHtmlPath)')" />
     <Exec Command="$(QUOT)@(SandcastleBuildAssemblerExe)$(QUOT) /config:$(QUOT)$(SandcastlePresentationPath)configuration\sandcastle.config$(QUOT) @(DocumentationManifestXml->'%(FullPath)')" WorkingDirectory="$(SandcastleToolsPath)" />
   </Target>
 
