@@ -105,6 +105,9 @@
     <CreateProperty Value="$(PackPackagePath)Lib\">
       <Output TaskParameter="Value" PropertyName="PackLibraryPath" />
     </CreateProperty>
+    <CreateProperty Value="$(PackPackagePath)ForRedistribution\">
+      <Output TaskParameter="Value" PropertyName="PackRedistributePath" />
+    </CreateProperty>
   </Target>
 
   <!-- ### PACKAGE PROJECT FILE ### -->
@@ -205,7 +208,7 @@
     <MakeDir Directories="$(PackPath)" />
 
     <!-- Binaries -->
-    <Message Text="$(NL)Packing Binaries.$(NL)" />
+    <Message Text="$(NL)Packing Binaries:$(NL)" />
     <MakeDir Directories="$(PackReleasePath);$(PackDebugPath)" />
     <CreateItem Include="$(BuildReleasePath)**\*.*">
       <Output TaskParameter="Include" ItemName="AllBinaryReleaseFiles" />
@@ -217,19 +220,26 @@
     <Copy SourceFiles="@(AllBinaryDebugFiles)" DestinationFiles="@(AllBinaryDebugFiles->'$(PackDebugPath)%(RecursiveDir)%(Filename)%(Extension)')"/>
 
     <!-- Included Libraries -->
-    <Message Text="$(NL)Packing Libraries.$(NL)" />
+    <Message Text="$(NL)Packing Libraries:$(NL)" />
     <MakeDir Directories="$(PackLibraryPath)"/>
     <Copy SourceFiles="@(PackageLibraries)" DestinationFiles="@(PackageLibraries->'$(PackLibraryPath)%(RecursiveDir)%(Filename)%(Extension)')" />
 
     <!-- Source -->
-    <Message Text="$(NL)Packing Sources.$(NL)" />
+    <Message Text="$(NL)Packing Sources:$(NL)" />
     <MakeDir Directories="$(PackAppSourcesPath);$(PackTestSourcesPath)" />
     <Copy SourceFiles="@(PackageAppSource)" DestinationFiles="@(PackageAppSource->'$(PackAppSourcesPath)%(RecursiveDir)%(Filename)%(Extension)')" />
     <Copy SourceFiles="@(PackageTestSource)" DestinationFiles="@(PackageTestSource->'$(PackTestSourcesPath)%(RecursiveDir)%(Filename)%(Extension)')" />
 
     <!-- Documentation -->
+    <Message Text="$(NL)Packing Documentation:$(NL)" />
     <Copy SourceFiles="$(DocPath)$(PackName).chm" DestinationFolder="$(PackPackagePath)" Condition="Exists('$(DocPath)$(PackName).chm')" />
-    
+
+    <!-- Redistribute -->
+    <MakeDir Directories="$(PackRedistributePath)" />
+    <Message Text="$(NL)Packing Redistributable:$(NL)" />
+    <Copy SourceFiles="@(PrimaryReleaseAssemblies)" DestinationFiles="@(PrimaryReleaseAssemblies->'$(PackRedistributePath)%(FileName)%(Extension)')" />
+    <Copy SourceFiles="$(PackageAppSourcePath)$(PackageName).License.txt" DestinationFolder="$(PackRedistributePath)" />
+
   </Target>
 
   <Target Name="ZipPack">
@@ -322,9 +332,9 @@
           Inputs="$(DocHtmlPath)*.htm;$(DocReflectionPath)*.xml"
           Outputs="$(DocPath)\$(PackName).chm;$(DocTempPath)\Toc.xml"
           DependsOnTargets="DocumentationHtml">
-    
+
     <Error Condition="!Exists('@(SandcastleHtmlHelpCompilerExe)')" Text="Microsoft HTML Help Workshop not found." />
-    
+
     <CreateItem Include="$(DocReflectionPath)*.xml">
       <Output TaskParameter="Include" ItemName="DocumentationReflectionXml" />
     </CreateItem>
@@ -340,16 +350,16 @@
     <Exec Command="xcopy.exe $(DocPath)Scripts\* $(DocTempPath)Scripts\ /y /r" Condition="Exists('$(DocPath)Scripts\')" />
     <Exec Command="xcopy.exe $(DocPath)Styles\*  $(DocTempPath)Styles\ /y /r"  Condition="Exists('$(DocPath)Styles\')" />
     <Exec Command="xcopy.exe $(DocPath)Local\*   $(DocTempPath)Local\ /y /r"   Condition="Exists('$(DocPath)Local\')" />
-    
+
     <Exec Command="$(QUOT)@(SandcastleXslTransformExe)$(QUOT) /xsl:$(QUOT)$(SandcastleTransformsPath)CreateVSToc.xsl$(QUOT) @(DocumentationReflectionXml->'%(FullPath)') /out:$(DocTempPath)\Toc.xml" WorkingDirectory="$(SandcastleToolsPath)" />
 
     <Exec Command="$(QUOT)@(SandcastleChmBuilderExe)$(QUOT) /project:$(PackName) /html:$(DocHtmlPath) /lcid:1033 /toc:$(DocTempPath)Toc.xml /out:$(DocTempPath)" WorkingDirectory="$(SandcastleToolsPath)" />
     <Exec Command="$(QUOT)@(SandcastleDBCSFixExe)$(QUOT) /d:$(DocTempPath) /l:1033" WorkingDirectory="$(SandcastleToolsPath)" />
-    
+
     <Exec Command="$(QUOT)@(SandcastleHtmlHelpCompilerExe)$(QUOT) $(QUOT)$(DocTempPath)\$(PackName).hhp" IgnoreExitCode="true" />
 
     <Copy SourceFiles="$(DocTempPath)\$(PackName).chm" DestinationFolder="$(DocPath)" />
-    
+
     <RemoveDir Directories="$(DocTempPath)" />
 
   </Target>
@@ -359,7 +369,7 @@
   <Target Name="BuildVerificationInitialize">
     <Exec Command="regsvr32 $(NCoverPath)coverlib.dll" />
   </Target>
-  
+
   <Target Name="BuildVerificationFxCop" Condition="'$(PackageName)'!=''">
     <MakeDir Directories="$(BuildVerificationPath)" Condition="!Exists('$(BuildVerificationPath)')" />
     <Exec Command="$(QUOT)@(FxCopExe)$(QUOT) /project:$(ConfigPath)$(PackageName).fxcop /out:$(BuildVerificationPath)$(PackageName).fxcop-result.xml" ContinueOnError="true" WorkingDirectory="$(BuildVerificationPath)" />
@@ -385,5 +395,5 @@
   <Target Name="BuildVerificationClean">
     <RemoveDir Directories="$(BuildVerificationPath)" Condition="Exists('$(BuildVerificationPath)')" />
   </Target>
-  
+
 </Project>

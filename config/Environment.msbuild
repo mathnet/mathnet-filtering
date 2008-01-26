@@ -50,6 +50,7 @@
     <PackAppSourcesPath>$(PackPath)Sources\</PackAppSourcesPath>
     <PackTestSourcesPath>$(PackPath)Tests\</PackTestSourcesPath>
     <PackLibraryPath>$(PackPath)Lib\</PackLibraryPath>
+    <PackRedistributePath>$(PackPath)ForRedistribution\</PackRedistributePath>
   </PropertyGroup>
 
   <!-- Tool Paths -->
@@ -175,5 +176,5 @@
     <Message Text="PackageTestSourcePath=$(PackageTestSourcePath)" Condition="'$(PackageName)'!=''" />
 
   </Target>
-  
+
 </Project>
