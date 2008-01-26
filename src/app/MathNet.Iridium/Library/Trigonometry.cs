@@ -20,12 +20,14 @@
 #endregion
 
 using System;
+using System.Runtime.InteropServices;
 
 namespace MathNet.Numerics
 {
 	/// <summary>
 	/// Double-precision trigonometry toolkit.
 	/// </summary>
+    [ComVisible(true)]
 	public static class Trig
 	{
         #region Angle Conversion

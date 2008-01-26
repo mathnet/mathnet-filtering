@@ -53,7 +53,7 @@ using System.Security;
 [assembly: CLSCompliant(true)]
 
 [assembly: Guid("1386fccc-7816-4311-a04b-25227138e8b3")]
-[assembly: ComVisible(true)]
+[assembly: ComVisible(false)]
 
 [assembly: AssemblyVersion("1.0.0.*")] // even = release
 [assembly: AssemblyFileVersion("1.0.0.0")]

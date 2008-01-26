@@ -22,6 +22,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Runtime.InteropServices;
 
 namespace MathNet.Numerics
 {
@@ -30,6 +31,7 @@ namespace MathNet.Numerics
     /// </summary>
     /// <seealso cref="Constants"/>
     /// <seealso cref="SiPrefixes"/>
+    [ComVisible(true)]
     public static class SiConstants
     {
         /// <summary>Speed of Light in Vacuum: c_0 = 2.99792458e8 [m s^-1] (defined, exact; 2002 CODATA)</summary>

@@ -24,6 +24,8 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Runtime.InteropServices;
+
 using MathNet.Numerics.Properties;
 
 namespace MathNet.Numerics
@@ -31,6 +33,7 @@ namespace MathNet.Numerics
     /// <summary>
     /// Double-precision special functions toolkit.
     /// </summary>
+    [ComVisible(true)]
     public static class Fn
     {
         /// <summary> Returns <code>sqrt(a<sup>2</sup> + b<sup>2</sup>)</code> 

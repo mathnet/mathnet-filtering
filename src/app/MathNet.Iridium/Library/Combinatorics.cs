@@ -23,6 +23,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Runtime.InteropServices;
 
 using MathNet.Numerics.RandomSources;
 using MathNet.Numerics.Properties;
@@ -32,6 +33,7 @@ namespace MathNet.Numerics
     /// <summary>
     /// Static DoublePrecision Combinatorics Helper Class
     /// </summary>
+    [ComVisible(true)]
     public static class Combinatorics
     {
         #region Combinatorics: Counting
