@@ -194,6 +194,7 @@
     <RemoveDir Directories="$(BuildReleasePath);$(BuildDebugPath)" />
     <MakeDir Directories="$(BuildReleasePath);$(BuildDebugPath)" />
     <CallTarget Targets="CleanPack" />
+    <CallTarget Targets="DocumentationClean" />
   </Target>
 
   <!-- ### PACKING ### -->
@@ -284,7 +285,7 @@
     <Delete Files="$(DocPath)\*.chm;" />
   </Target>
 
-  <Target Name="DocumentationReflection">
+  <Target Name="DocumentationReflection" DependsOnTargets="DocumentationClean">
     <MakeDir Directories="$(DocTempPath)" Condition="!Exists('$(DocTempPath)')" />
     <MakeDir Directories="$(DocReflectionPath)" Condition="!Exists('$(DocReflectionPath)')" />
     <Exec Command="$(QUOT)@(SandcastleMrefBuilderExe)$(QUOT) $(QUOT)%(PrimaryReleaseAssemblies.FullPath)$(QUOT) /out:$(QUOT)$(DocTempPath)%(PrimaryReleaseAssemblies.FileName).xml$(QUOT)" WorkingDirectory="$(SandcastleToolsPath)" />
