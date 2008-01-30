@@ -37,24 +37,36 @@ namespace MathNet.Numerics.Interpolation
         private int order;
         private int effectiveOrder;
 
+        /// <summary>
+        /// Create a rational interpolation algorithm with the given order.
+        /// </summary>
         public RationalInterpolationAlgorithm(int order)
         {
             this.order = order;
             this.effectiveOrder = order;
         }
 
+        /// <summary>
+        /// Precompute/optimize the algoritm for the given sample set.
+        /// </summary>
         public void Prepare(SampleList samples)
         {
             this.samples = samples;
             this.effectiveOrder = Math.Min(order, samples.Count);
         }
 
+        /// <summary>
+        /// Interpolate at point t.
+        /// </summary>
         public double Interpolate(double t)
         {
             double error;
             return Interpolate(t, out error);
         }
 
+        /// <summary>
+        /// Interpolate at point t and return the estimated error as error-parameter.
+        /// </summary>
         public double Interpolate(double t, out double error)
         {
             if(samples == null)
@@ -113,11 +125,20 @@ namespace MathNet.Numerics.Interpolation
             return ret;
         }
 
+        /// <summary>
+        /// Extrapolate at point t.
+        /// </summary>
         public double Extrapolate(double t)
         {
             return Interpolate(t);
         }
 
+        /// <summary>
+        /// True if the alorithm supports error estimation.
+        /// </summary>
+        /// <remarks>
+        /// Always true for this algorithm.
+        /// </remarks>
         public bool SupportErrorEstimation
         {
             get { return true; }

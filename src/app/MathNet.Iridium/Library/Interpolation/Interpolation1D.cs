@@ -25,6 +25,9 @@ using MathNet.Numerics;
 
 namespace MathNet.Numerics.Interpolation
 {
+    /// <summary>
+    /// Interpolation Characteristics
+    /// </summary>
     public enum InterpolationMode : int
     {
         /// <summary>Polynomial Interpolation</summary>
@@ -35,6 +38,9 @@ namespace MathNet.Numerics.Interpolation
         Smooth = 8
     }
 
+    /// <summary>
+    /// Interpolation portal for the single dimension case.
+    /// </summary>
     public class InterpolationSingleDimension
     {
         private SampleList samples;
@@ -42,30 +48,51 @@ namespace MathNet.Numerics.Interpolation
         private bool dirty = true; //delay preparation until first evaluation
 
         #region Construction
+        /// <summary>
+        /// Initialize the portal with samples from a sample list.
+        /// </summary>
+        /// <remarks>
+        /// Uses the <see cref="PolynomialInterpolationAlgorithm"/>.
+        /// </remarks>
         public InterpolationSingleDimension(SampleList samples)
         {
             this.samples = samples;
             this.samples.SampleAltered += samples_SampleAltered;
             this.algorithm = new PolynomialInterpolationAlgorithm(4);
         }
+        /// <summary>
+        /// Initialize the portal with samples from a dictionary.
+        /// </summary>
+        /// <remarks>
+        /// Uses the <see cref="PolynomialInterpolationAlgorithm"/>.
+        /// </remarks>
         public InterpolationSingleDimension(IDictionary samples)
         {
             this.samples = new SampleList(samples);
             this.samples.SampleAltered += samples_SampleAltered;
             this.algorithm = new PolynomialInterpolationAlgorithm(4);
         }
+        /// <summary>
+        /// Initialize the portal with samples from a sample list and selects an algorithm that fits the chosen interpolation mode.
+        /// </summary>
         public InterpolationSingleDimension(SampleList samples, InterpolationMode mode)
         {
             this.samples = samples;
             this.samples.SampleAltered += samples_SampleAltered;
             this.algorithm = SelectAlgorithm(mode, 4);
         }
+        /// <summary>
+        /// Initialize the portal with samples from a sample list and selects an algorithm that fits the chosen interpolation mode with the given order.
+        /// </summary>
         public InterpolationSingleDimension(SampleList samples, InterpolationMode mode, int order)
         {
             this.samples = samples;
             this.samples.SampleAltered += samples_SampleAltered;
             this.algorithm = SelectAlgorithm(mode, order);
         }
+        /// <summary>
+        /// Initialize the portal with samples from a sample list and uses the specified algorithm.
+        /// </summary>
         public InterpolationSingleDimension(SampleList samples, IInterpolationAlgorithm algorithm)
         {
             this.samples = samples;
@@ -73,6 +100,9 @@ namespace MathNet.Numerics.Interpolation
             this.algorithm = algorithm;
         }
 
+        /// <summary>
+        /// Override this method to select custom interpolation algorithms.
+        /// </summary>
         protected virtual IInterpolationAlgorithm SelectAlgorithm(InterpolationMode mode, int order)
         {
             switch(mode)
@@ -88,7 +118,9 @@ namespace MathNet.Numerics.Interpolation
             }
         }
         #endregion
-
+        /// <summary>
+        /// Interpolate at point t.
+        /// </summary>
         public double Evaluate(double t)
         {
             if(dirty)
@@ -102,6 +134,9 @@ namespace MathNet.Numerics.Interpolation
                 return algorithm.Extrapolate(t);
         }
 
+        /// <summary>
+        /// Interpolate at point t and return the estimated error as a parameter.
+        /// </summary>
         public double Evaluate(double t, out double errorEstimation)
         {
             if(dirty)
@@ -112,6 +147,9 @@ namespace MathNet.Numerics.Interpolation
             return algorithm.Interpolate(t, out errorEstimation);
         }
 
+        /// <summary>
+        /// True if the selected algorithm supports error estimation.
+        /// </summary>
         public bool SupportErrorEstimation
         {
             get { return algorithm.SupportErrorEstimation; }

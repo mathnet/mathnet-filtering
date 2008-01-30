@@ -24,13 +24,31 @@ using MathNet.Numerics;
 
 namespace MathNet.Numerics.Interpolation
 {
-	public interface IInterpolationAlgorithm
-	{
-		void Prepare(SampleList samples);
-		double Interpolate(double t);
-		double Extrapolate(double t);
+    /// <summary>
+    /// Interpolation algorithm
+    /// </summary>
+    public interface IInterpolationAlgorithm
+    {
+        /// <summary>
+        /// Precompute/optimize the algoritm for the given sample set.
+        /// </summary>
+        void Prepare(SampleList samples);
+        /// <summary>
+        /// Interpolate at point t.
+        /// </summary>
+        double Interpolate(double t);
+        /// <summary>
+        /// Extrapolate at point t.
+        /// </summary>
+        double Extrapolate(double t);
 
-		bool SupportErrorEstimation {get;}
-		double Interpolate(double t, out double error);
-	}
+        /// <summary>
+        /// True if the alorithm supports error estimation.
+        /// </summary>
+        bool SupportErrorEstimation { get; }
+        /// <summary>
+        /// Interpolate at point t and return the estimated error as error-parameter.
+        /// </summary>
+        double Interpolate(double t, out double error);
+    }
 }
