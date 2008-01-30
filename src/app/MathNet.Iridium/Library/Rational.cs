@@ -67,24 +67,39 @@ namespace MathNet.Numerics
         #endregion
 
         #region .NET Integration: Hashing, Equality, Ordering, Cloning
+        /// <summary>
+        /// Serves as a hash function for rationals.
+        /// </summary>
         public override int GetHashCode()
         {
             return numerator.GetHashCode() ^ denominator.GetHashCode();
         }
+        /// <summary>
+        /// Check whether this rational is equal to another rational.
+        /// </summary>
         public override bool Equals(Object obj)
         {
             if(obj == null || !(obj is Rational))
                 return false;
             return Equals((Rational)obj);
         }
+        /// <summary>
+        /// Check whether this rational is equal to another rational.
+        /// </summary>
         public bool Equals(Rational rational)
         {
             return numerator.Equals(rational.numerator) && denominator.Equals(rational.denominator);
         }
+        /// <summary>
+        /// Check whether two rationals are equal.
+        /// </summary>
         public static bool Equals(Rational rational1, Rational rational2)
         {
             return rational1.Equals(rational2);
         }
+        /// <summary>
+        /// Compare this rational to another rational.
+        /// </summary>
         public int CompareTo(object obj)
         {
             if(obj == null)
@@ -93,6 +108,9 @@ namespace MathNet.Numerics
                 throw new ArgumentException(Resources.ArgumentTypeMismatch, "obj");
             return CompareTo((Rational)obj);
         }
+        /// <summary>
+        /// Compare this rational to another rational.
+        /// </summary>
         public int CompareTo(Rational rational)
         {
             int n = numerator.CompareTo(rational.numerator);
@@ -100,10 +118,16 @@ namespace MathNet.Numerics
                 n = denominator.CompareTo(rational.denominator);
             return n;
         }
+        /// <summary>
+        /// Create a copy of this rational.
+        /// </summary>
         object ICloneable.Clone()
         {
             return Clone();
         }
+        /// <summary>
+        /// Create a copy of this rational.
+        /// </summary>
         public Rational Clone()
         {
             return new Rational(this);
@@ -111,10 +135,16 @@ namespace MathNet.Numerics
         #endregion
 
         #region String Formatting and Parsing
+        /// <summary>
+        /// Format a human-readable string of this rational with the given string as base variable (e.g. "x").
+        /// </summary>
         public string ToString(string baseVariable)
         {
             return "(" + numerator.ToString(baseVariable) + ")/(" + denominator.ToString(baseVariable) + ")";
         }
+        /// <summary>
+        /// Format a human-readable string of this rational with "x" as base variable.
+        /// </summary>
         public override string ToString()
         {
             return ToString("x");
@@ -163,76 +193,121 @@ namespace MathNet.Numerics
         #endregion
 
         #region Operators
+        /// <summary>
+        /// Check whether two rationals have the same coefficients.
+        /// </summary>
         public static bool operator ==(Rational rational1, Rational rational2)
         {
             return rational1.Equals(rational2);
         }
+        /// <summary>
+        /// Check whether two rationals have different coefficients.
+        /// </summary>
         public static bool operator !=(Rational rational1, Rational rational2)
         {
             return !rational1.Equals(rational2);
         }
+        /// <summary>
+        /// Check wether a rational is bigger than another rational.
+        /// </summary>
         public static bool operator >(Rational rational1, Rational rational2)
         {
             return rational1.CompareTo(rational2) == 1;
         }
+        /// <summary>
+        /// Check wether a rational is smaller than another rational.
+        /// </summary>
         public static bool operator <(Rational rational1, Rational rational2)
         {
             return rational1.CompareTo(rational2) == -1;
         }
+        /// <summary>
+        /// Check wether a rational is bigger than or equal to another rational.
+        /// </summary>
         public static bool operator >=(Rational rational1, Rational rational2)
         {
             int res = rational1.CompareTo(rational2);
             return res == 1 || res == 0;
         }
+        /// <summary>
+        /// Check wether a rational is smaller than or equal to another rational.
+        /// </summary>
         public static bool operator <=(Rational rational1, Rational rational2)
         {
             int res = rational1.CompareTo(rational2);
             return res == -1 || res == 0;
         }
 
+        /// <summary>
+        /// Add a rational to a rational.
+        /// </summary>
         public static Rational operator +(Rational rational1, Rational rational2)
         {
             return rational1.Add(rational2);
         }
+        /// <summary>
+        /// Add a polynomial to a rational.
+        /// </summary>
         public static Rational operator +(Rational rational, Polynomial polynomial)
         {
             Rational ret = new Rational(rational);
             ret.AddInplace(polynomial);
             return ret;
         }
+        /// <summary>
+        /// Add a rational to a polynomial.
+        /// </summary>
         public static Rational operator +(Polynomial polynomial, Rational rational)
         {
             Rational ret = new Rational(rational);
             ret.AddInplace(polynomial);
             return ret;
         }
+        /// <summary>
+        /// Add a real number to a rational.
+        /// </summary>
         public static Rational operator +(Rational rational, double n)
         {
             Rational ret = new Rational(rational);
             ret.AddInplace(n);
             return ret;
         }
+        /// <summary>
+        /// Add a rational to a real number.
+        /// </summary>
         public static Rational operator +(double n, Rational rational)
         {
             Rational ret = new Rational(rational);
             ret.AddInplace(n);
             return ret;
         }
+        /// <summary>
+        /// (nop)
+        /// </summary>
         public static Rational operator +(Rational rational)
         {
             return rational;
         }
 
+        /// <summary>
+        /// Subtract a rational from a rational.
+        /// </summary>
         public static Rational operator -(Rational rational1, Rational rational2)
         {
             return rational1.Subtract(rational2);
         }
+        /// <summary>
+        /// Subtract a polynomial from a rational.
+        /// </summary>
         public static Rational operator -(Rational rational, Polynomial polynomial)
         {
             Rational ret = new Rational(rational);
             ret.SubtractInplace(polynomial);
             return ret;
         }
+        /// <summary>
+        /// Subtract a rational from a polynomial.
+        /// </summary>
         public static Rational operator -(Polynomial polynomial, Rational rational)
         {
             Rational ret = new Rational(rational);
@@ -240,12 +315,18 @@ namespace MathNet.Numerics
             ret.AddInplace(polynomial);
             return ret;
         }
+        /// <summary>
+        /// Subtract a real number from a rational.
+        /// </summary>
         public static Rational operator -(Rational rational, double n)
         {
             Rational ret = new Rational(rational);
             ret.SubtractInplace(n);
             return ret;
         }
+        /// <summary>
+        /// Subtract a rational from a real number.
+        /// </summary>
         public static Rational operator -(double n, Rational rational)
         {
             Rational ret = new Rational(rational);
@@ -253,6 +334,9 @@ namespace MathNet.Numerics
             ret.AddInplace(n);
             return ret;
         }
+        /// <summary>
+        /// Negate a rational.
+        /// </summary>
         public static Rational operator -(Rational rational)
         {
             Rational ret = new Rational(rational);
@@ -260,24 +344,39 @@ namespace MathNet.Numerics
             return ret;
         }
 
+        /// <summary>
+        /// Multiply/Convolute two rationals.
+        /// </summary>
         public static Rational operator *(Rational rational1, Rational rational2)
         {
             return rational1.Multiply(rational2);
         }
+        /// <summary>
+        /// Multiply/Convolute a rationals with a polynomial.
+        /// </summary>
         public static Rational operator *(Rational rational, Polynomial polynomial)
         {
             return rational.Multiply(polynomial);
         }
+        /// <summary>
+        /// Multiply/Convolute a polynomial with a rational.
+        /// </summary>
         public static Rational operator *(Polynomial polynomial, Rational rational)
         {
             return rational.Multiply(polynomial);
         }
+        /// <summary>
+        /// Stretch a rational with a real number factor.
+        /// </summary>
         public static Rational operator *(Rational rational, double n)
         {
             Rational ret = new Rational(rational);
             ret.MultiplyInplace(n);
             return ret;
         }
+        /// <summary>
+        /// Stretch a polynomial with a real number factor.
+        /// </summary>
         public static Rational operator *(double n, Rational rational)
         {
             Rational ret = new Rational(rational);
@@ -285,26 +384,41 @@ namespace MathNet.Numerics
             return ret;
         }
 
+        /// <summary>
+        /// Divide two rationals.
+        /// </summary>
         public static Rational operator /(Rational rational1, Rational rational2)
         {
             return rational1.Divide(rational2);
         }
+        /// <summary>
+        /// Divide a rational to a polynomial.
+        /// </summary>
         public static Rational operator /(Rational rational, Polynomial polynomial)
         {
             return rational.Divide(polynomial);
         }
+        /// <summary>
+        /// Divide a polynomial to a rational.
+        /// </summary>
         public static Rational operator /(Polynomial polynomial, Rational rational)
         {
             Rational ret = rational.Divide(polynomial);
             ret.InvertInplace();
             return ret;
         }
+        /// <summary>
+        /// Stretch a rational with a real number quotient.
+        /// </summary>
         public static Rational operator /(Rational rational, double n)
         {
             Rational ret = new Rational(rational);
             ret.DivideInplace(n);
             return ret;
         }
+        /// <summary>
+        /// Stretch a the inverse of a rational with a real number quotient.
+        /// </summary>
         public static Rational operator /(double n, Rational rational)
         {
             Rational ret = new Rational(rational);

@@ -41,9 +41,15 @@ namespace MathNet.Numerics
         private SampleList.KeyList keyList;
         private SampleList.ValueList valueList;
 
+        /// <summary>
+        /// Event which notifies when a sample has been altered.
+        /// </summary>
         public event EventHandler<SampleAlteredEventArgs> SampleAltered;
 
         #region Construction
+        /// <summary>
+        /// Create a new sample list.
+        /// </summary>
         public SampleList()
         {
             sampleCount = new int[16];
@@ -51,6 +57,9 @@ namespace MathNet.Numerics
             sampleX = new double[16];
             //size = 0;
         }
+        /// <summary>
+        /// Create a new sample list.
+        /// </summary>
         /// <param name="capacity">initial capacity</param>
         public SampleList(int capacity)
         {
@@ -61,6 +70,9 @@ namespace MathNet.Numerics
             sampleX = new double[capacity];
             //size = 0;
         }
+        /// <summary>
+        /// Create a new sample list.
+        /// </summary>
         public SampleList(IDictionary d)
             : this((d != null) ? d.Count : 16)
         {
@@ -71,6 +83,9 @@ namespace MathNet.Numerics
             Array.Sort(sampleT, sampleX);
             size = d.Count;
         }
+        /// <summary>
+        /// Create a new sample list.
+        /// </summary>
         public SampleList(IDictionary d, int capacity)
             : this((d != null) ? (capacity >= d.Count ? capacity : d.Count) : 16)
         {
@@ -320,7 +335,7 @@ namespace MathNet.Numerics
         }
 
         /// <summary>
-        /// Bisection Search Helper. Do not use this method directly, use <see cref="Locate"/> instead.
+        /// Bisection Search Helper. Do not use this method directly, use <see cref="Locate(double)"/> instead.
         /// </summary>
         private int LocateBisection(double t, int lowerIndex, int upperIndex)
         {
@@ -381,10 +396,16 @@ namespace MathNet.Numerics
         #endregion
 
         #region ICloneable Member
+        /// <summary>
+        /// Create a copy of this sample list.
+        /// </summary>
         object ICloneable.Clone()
         {
             return Clone();
         }
+        /// <summary>
+        /// Create a copy of this sample list.
+        /// </summary>
         public virtual SampleList Clone()
         {
             SampleList list = new SampleList(size);
@@ -461,10 +482,15 @@ namespace MathNet.Numerics
         {
             return ContainsT(Convert.ToDouble(key));
         }
+        /// <summary>
+        /// True if this sample list contains a sample at t
+        /// </summary>
         public bool ContainsT(double t)
         {
             return IndexOfT(t) != -1;
-        }
+        }/// <summary>
+        /// True if this sample list contains a sample value x
+        /// </summary>
         public bool ContainsX(double x)
         {
             return IndexOfX(x) != -1;

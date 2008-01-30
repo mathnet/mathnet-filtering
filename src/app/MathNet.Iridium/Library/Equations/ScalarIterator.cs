@@ -23,47 +23,47 @@ using System;
 
 namespace MathNet.Numerics.Equations
 {
-    public class ScalarIterator
-    {
-        IRealFunction f, fderiv;
+    //public class ScalarIterator
+    //{
+    //    IRealFunction f, fderiv;
 
-        public ScalarIterator(IRealFunction f)
-        {
-            this.f = f;
-        }
-        public ScalarIterator(IRealFunction f, IRealFunction derivative)
-        {
-            this.f = f;
-            this.fderiv = derivative;
-        }
+    //    public ScalarIterator(IRealFunction f)
+    //    {
+    //        this.f = f;
+    //    }
+    //    public ScalarIterator(IRealFunction f, IRealFunction derivative)
+    //    {
+    //        this.f = f;
+    //        this.fderiv = derivative;
+    //    }
 
-        /// <summary>Finds a solution of the equation f(x)=x near a given estimation.</summary>
-        /// <param name="estimation">Start value.</param>
-        /// <param name="relativeTolerance">Normalized tolerance, usually between 10^(-3) and 10^(-9).</param>
-        /// <param name="absoluteTolerance">Absolute tolerance, usually a few times of <see cref="System.Double.Epsilon"/>.</param>
-        /// <returns>z, one of the roots of f-x so that f(z)-z=0, or f(z)=z</returns>
-        public double FindFixpoint(double estimation, double relativeTolerance, double absoluteTolerance)
-        {
-            throw new NotImplementedException();
-        }
+    //    /// <summary>Finds a solution of the equation f(x)=x near a given estimation.</summary>
+    //    /// <param name="estimation">Start value.</param>
+    //    /// <param name="relativeTolerance">Normalized tolerance, usually between 10^(-3) and 10^(-9).</param>
+    //    /// <param name="absoluteTolerance">Absolute tolerance, usually a few times of <see cref="System.Double.Epsilon"/>.</param>
+    //    /// <returns>z, one of the roots of f-x so that f(z)-z=0, or f(z)=z</returns>
+    //    public double FindFixpoint(double estimation, double relativeTolerance, double absoluteTolerance)
+    //    {
+    //        throw new NotImplementedException();
+    //    }
 
-        /// <summary>Finds a solution of the equation f(x)=0 near a given estimation.</summary>
-        /// <param name="firstEstimation">First start value.</param>
-        /// <param name="secondEstimation">Second start value.</param>
-        /// <param name="relativeTolerance">Normalized tolerance, usually between 10^(-3) and 10^(-9).</param>
-        /// <param name="absoluteTolerance">Absolute tolerance, usually a few times of <see cref="System.Double.Epsilon"/>.</param>
-        /// <returns>z, one of the roots of f so that f(z)=0</returns>
-        /// <remarks>This method uses the Quasi-Newton-Raphson method in the secant-modification if no derivative is provided (that's why two start values are required), or the classic Newton-Raphson method if a derivative is provided (although usually not recommended).</remarks>
-        public double FindRoot(double firstEstimation, double secondEstimation, double relativeTolerance, double absoluteTolerance)
-        {
-            if(fderiv == null) //Quasi-Newton-Raphson using Secant Method
-            {
-                throw new NotImplementedException();
-            }
-            else //Newton-Raphson
-            {
-                throw new NotImplementedException();
-            }
-        }
-    }
+    //    /// <summary>Finds a solution of the equation f(x)=0 near a given estimation.</summary>
+    //    /// <param name="firstEstimation">First start value.</param>
+    //    /// <param name="secondEstimation">Second start value.</param>
+    //    /// <param name="relativeTolerance">Normalized tolerance, usually between 10^(-3) and 10^(-9).</param>
+    //    /// <param name="absoluteTolerance">Absolute tolerance, usually a few times of <see cref="System.Double.Epsilon"/>.</param>
+    //    /// <returns>z, one of the roots of f so that f(z)=0</returns>
+    //    /// <remarks>This method uses the Quasi-Newton-Raphson method in the secant-modification if no derivative is provided (that's why two start values are required), or the classic Newton-Raphson method if a derivative is provided (although usually not recommended).</remarks>
+    //    public double FindRoot(double firstEstimation, double secondEstimation, double relativeTolerance, double absoluteTolerance)
+    //    {
+    //        if(fderiv == null) //Quasi-Newton-Raphson using Secant Method
+    //        {
+    //            throw new NotImplementedException();
+    //        }
+    //        else //Newton-Raphson
+    //        {
+    //            throw new NotImplementedException();
+    //        }
+    //    }
+    //}
 }
