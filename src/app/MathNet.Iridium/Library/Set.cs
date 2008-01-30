@@ -25,66 +25,173 @@ using System.Collections.ObjectModel;
 
 namespace MathNet.Numerics
 {
+    /// <summary>
+    /// A generic typed set.
+    /// </summary>
     public interface ISet<T> : IList<T> where T : IEquatable<T>
     {
+        /// <summary>
+        /// Create an array with all elements of this set.
+        /// </summary>
         T[] ToArray();
-        /// <summary>Checks whether <c>c</c> is a subset of this set.</summary>
+        /// <summary>
+        /// Checks whether <c>c</c> is a subset of this set.
+        /// </summary>
         bool IsSubset(IEnumerable<T> c);
-        /// <summary>Checks whether this set is a subset of <c>c</c>, or if <c>c</c> is a superset of this set.</summary>
+        /// <summary>
+        /// Checks whether this set is a subset of <c>c</c>, or if <c>c</c> is a superset of this set.
+        /// </summary>
         bool IsSuperset(IEnumerable<T> c);
+        /// <summary>
+        /// Checks whether this set has elements that are also in <c>c</c>.
+        /// </summary>
+        /// <remarks>Ingnores duplicate elements.</remarks>
         bool HasEqualElements(IEnumerable<T> c);
+        /// <summary>
+        /// Check whether this set has an element witch matches the predicate.
+        /// </summary>
         bool Exists(Predicate<T> match);
+        /// <summary>
+        /// Check whether this set has an element witch matches the predicate, and returns it as foundItem-parameter.
+        /// </summary>
         bool Exists(Predicate<T> match, out T foundItem);
+        /// <summary>
+        /// Checks wether all elements of this set match the predicate.
+        /// </summary>
         bool TrueForAll(Predicate<T> match);
+        /// <summary>
+        /// Executes the action for all elements of this set.
+        /// </summary>
         void ForEach(Action<T> action);
+
+        /// <summary>
+        /// Finds an element of this set that matches the predicate.
+        /// </summary>
         T Find(Predicate<T> match);
+        /// <summary>
+        /// Finds the index of an element of this set that matches the predicate.
+        /// </summary>
         int FindIndex(Predicate<T> match);
+        /// <summary>
+        /// Finds the index (after startIndex) of an element of this set that matches the predicate.
+        /// </summary>
         int FindIndex(int startIndex, Predicate<T> match);
+        /// <summary>
+        /// Finds the index (between startIndex and startIndex+count-1) of an element of this set that matches the predicate.
+        /// </summary>
         int FindIndex(int startIndex, int count, Predicate<T> match);
+        /// <summary>
+        /// Finds the last element of this set that matches the predicate.
+        /// </summary>
         T FindLast(Predicate<T> match);
+        /// <summary>
+        /// Finds the index of the last element of this set that matches the predicate.
+        /// </summary>
         int FindLastIndex(Predicate<T> match);
+        /// <summary>
+        /// Finds the index (after startIndex) of the last element of this set that matches the predicate.
+        /// </summary>
         int FindLastIndex(int startIndex, Predicate<T> match);
+        /// <summary>
+        /// Finds the index (between startIndex and startIndex+count-1) of the last element of this set that matches the predicate.
+        /// </summary>
         int FindLastIndex(int startIndex, int count, Predicate<T> match);
+
+        /// <summary>
+        /// Finds the last index of element <c>item</c>.
+        /// </summary>
         int LastIndexOf(T item);
+        /// <summary>
+        /// Finds all elements of this set which match the predicate.
+        /// </summary>
         Set<T> FindAll(Predicate<T> match);
+        /// <summary>
+        /// Maps <c>convert</c> to all elements of this set.
+        /// </summary>
         Set<TOutput> ConvertAll<TOutput>(Converter<T, TOutput> convert) where TOutput : IEquatable<TOutput>;
 
+        /// <summary>
+        /// Add all elements in <c>range</c> to this set.
+        /// </summary>
         void AddRange(IEnumerable<T> range);
+        /// <summary>
+        /// Add <c>item</c> to this set, except if its already there.
+        /// </summary>
         void AddDistinct(T item);
+        /// <summary>
+        /// Add all elements in <c>range</c> to this set, but skips duplicates.
+        /// </summary>
         void AddRangeDistinct(IEnumerable<T> range);
+        /// <summary>
+        /// Remove al duplicate items from this set.
+        /// </summary>
         void RemoveDuplicates();
+        /// <summary>
+        /// Remove all elements that match the predicate from this set.
+        /// </summary>
+        /// <returns>The number of removed items.</returns>
         int RemoveAll(Predicate<T> match);
 
+        /// <summary>
+        /// True if the set is read-only.
+        /// </summary>
         bool IsReadonly { get;}
 
+        /// <summary>
+        /// Sort all elements of this set with respect to the comparer.
+        /// </summary>
         void Sort(IComparer<T> comparer);
+        /// <summary>
+        /// Sort the elements between index and index+count-1 of this set with respect to the comparer.
+        /// </summary>
         void Sort(int index, int count, IComparer<T> comparer);
     }
 
+    /// <summary>
+    /// A generic typed writeable set.
+    /// </summary>
     public class Set<T> : Collection<T>, ISet<T> where T : IEquatable<T>
     {
+        /// <summary>
+        /// Event that notifies whenever the set changes.
+        /// </summary>
         public event EventHandler<SetChangedEventArgs<T>> OnSetChanged;
-        protected ReadOnlySet<T> readonlyWrapper;
+        private ReadOnlySet<T> readonlyWrapper;
 
+        /// <summary>
+        /// Create a new set.
+        /// </summary>
         public Set()
         {
         }
 
+        /// <summary>
+        /// Create a new set.
+        /// </summary>
         public Set(IEnumerable<T> initial)
         {
             AddRange(initial);
         }
 
+        /// <summary>
+        /// Create a new set.
+        /// </summary>
         public Set(params T[] initial)
         {
             AddRange(initial);
         }
 
+        /// <summary>
+        /// Create a new set.
+        /// </summary>
         protected Set(IList<T> innerList)
             : base(innerList)
         {
         }
 
+        /// <summary>
+        /// Create a new set.
+        /// </summary>
         public Set(int initialCount)
         //    : base((IList<T>)(new T[initialCount]))
         {
@@ -94,21 +201,36 @@ namespace MathNet.Numerics
         }
 
         #region Factory Methods
+        /// <summary>
+        /// Override this when you derive from this class.
+        /// </summary>
         protected virtual Set<T> CreateNewSet()
         {
             return new Set<T>();
         }
+        /// <summary>
+        /// Override this when you derive from this class.
+        /// </summary>
         protected virtual ReadOnlySet<T> CreateNewReadOnlyWrapper(IList<T> list)
         {
             return new ReadOnlySet<T>(list);
         }
         #endregion
 
+        /// <summary>
+        /// True if the set is read-only.
+        /// </summary>
+        /// <remarks>
+        /// Always false with this implementation.
+        /// </remarks>
         public bool IsReadonly
         {
             get { return false; }
         }
 
+        /// <summary>
+        /// Provides a read-only wrapper to this set. The wrapper will stay connected to this set's items but can't change them.
+        /// </summary>
         public ReadOnlySet<T> AsReadOnly
         {
             get
@@ -119,6 +241,9 @@ namespace MathNet.Numerics
             }
         }
 
+        /// <summary>
+        /// Create an array with all elements of this set.
+        /// </summary>
         public T[] ToArray()
         {
             T[] array = new T[base.Count];
@@ -144,18 +269,27 @@ namespace MathNet.Numerics
         #endregion
 
         #region Element Manipulation
+        /// <summary>
+        /// Add all elements in <c>range</c> to this set.
+        /// </summary>
         public void AddRange(IEnumerable<T> range)
         {
             foreach(T item in range)
                 base.Add(item);
         }
 
+        /// <summary>
+        /// Add <c>item</c> to this set, except if its already there.
+        /// </summary>
         public void AddDistinct(T item)
         {
             if(!Contains(item))
                 base.Add(item);
         }
 
+        /// <summary>
+        /// Add all elements in <c>range</c> to this set, but skips duplicates.
+        /// </summary>
         public void AddRangeDistinct(IEnumerable<T> range)
         {
             foreach(T item in range)
@@ -163,6 +297,9 @@ namespace MathNet.Numerics
                     base.Add(item);
         }
 
+        /// <summary>
+        /// Remove al duplicate items from this set.
+        /// </summary>
         public void RemoveDuplicates()
         {
             Dictionary<T, object> table = new Dictionary<T, object>();
@@ -176,6 +313,9 @@ namespace MathNet.Numerics
             }
         }
 
+        /// <summary>
+        /// Replace elements starting from the first element with all elements in <c>range</c>.
+        /// </summary>
         public void ReplaceRange(IEnumerable<T> range)
         {
             int i = 0;
@@ -183,6 +323,9 @@ namespace MathNet.Numerics
                 base[i++] = item;
         }
 
+        /// <summary>
+        /// Called whenever an item is insert into this set.
+        /// </summary>
         protected override void InsertItem(int index, T item)
         {
             EventHandler<SetChangedEventArgs<T>> handler = OnSetChanged;
@@ -196,6 +339,9 @@ namespace MathNet.Numerics
                     handler(this, SetChangedEventArgs<T>.Moved(base[i], i - 1, i));
             }
         }
+        /// <summary>
+        /// Called whenever an item is removed from this set.
+        /// </summary>
         protected override void RemoveItem(int index)
         {
             EventHandler<SetChangedEventArgs<T>> handler = OnSetChanged;
@@ -209,6 +355,9 @@ namespace MathNet.Numerics
                     handler(this, SetChangedEventArgs<T>.Moved(base[i], i + 1, i));
             }
         }
+        /// <summary>
+        /// Called whenever an item is reset in this set.
+        /// </summary>
         protected override void SetItem(int index, T item)
         {
             EventHandler<SetChangedEventArgs<T>> handler = OnSetChanged;
@@ -251,7 +400,10 @@ namespace MathNet.Numerics
             return true;
         }
 
-        /// <remarks>ignores duplicate elements.</remarks>
+        /// <summary>
+        /// Checks whether this set has elements that are also in <c>c</c>.
+        /// </summary>
+        /// <remarks>Ingnores duplicate elements.</remarks>
         public bool HasEqualElements(IEnumerable<T> c)
         {
             // TODO: quite inelegant, find better algorithm.
@@ -282,6 +434,9 @@ namespace MathNet.Numerics
         {
             return Concatenate(this, c);
         }
+        /// <summary>
+        /// Concatenates this set with the items of <c>c</c>, by directly modifing this set.
+        /// </summary>
         public void ConcatenateInplace(IEnumerable<T> c)
         {
             AddRange(c);
@@ -308,6 +463,9 @@ namespace MathNet.Numerics
         {
             return Union(this, c);
         }
+        /// <summary>
+        /// Creates the union of this set with the items of <c>c</c>, by directly modifing this set.
+        /// </summary>
         public void UnionInplace(IEnumerable<T> c)
         {
             RemoveDuplicates();
@@ -336,6 +494,9 @@ namespace MathNet.Numerics
         {
             return Intersect(this, c);
         }
+        /// <summary>
+        /// Creates the intersection of this set with the items of <c>c</c>, by directly modifing this set.
+        /// </summary>
         public void IntersectInplace(IEnumerable<T> c)
         {
             Dictionary<T, object> table = new Dictionary<T, object>();
@@ -376,6 +537,9 @@ namespace MathNet.Numerics
         {
             return Subtract(this, c);
         }
+        /// <summary>
+        /// Creates the subtraction of this set with the items of <c>c</c>, by directly modifing this set.
+        /// </summary>
         public void SubtractInplace(IEnumerable<T> c)
         {
             Dictionary<T, object> table = new Dictionary<T, object>();
@@ -408,10 +572,16 @@ namespace MathNet.Numerics
         #endregion
 
         #region Lambdas
+        /// <summary>
+        /// Check whether this set has an element witch matches the predicate.
+        /// </summary>
         public bool Exists(Predicate<T> match)
         {
             return (FindIndex(match) != -1);
         }
+        /// <summary>
+        /// Check whether this set has an element witch matches the predicate, and returns it as foundItem-parameter.
+        /// </summary>
         public bool Exists(Predicate<T> match, out T foundItem)
         {
             int idx = FindIndex(match);
@@ -426,6 +596,9 @@ namespace MathNet.Numerics
                 return true;
             }
         }
+        /// <summary>
+        /// Checks wether all elements of this set match the predicate.
+        /// </summary>
         public bool TrueForAll(Predicate<T> match)
         {
             if(match == null) throw new ArgumentNullException("match");
@@ -435,6 +608,9 @@ namespace MathNet.Numerics
                     return false;
             return true;
         }
+        /// <summary>
+        /// Executes the action for all elements of this set.
+        /// </summary>
         public void ForEach(Action<T> action)
         {
             if(action == null) throw new ArgumentNullException("action");
@@ -443,6 +619,9 @@ namespace MathNet.Numerics
                 action(base[i]);
         }
         #region Find Lambdas
+        /// <summary>
+        /// Finds an element of this set that matches the predicate.
+        /// </summary>
         public T Find(Predicate<T> match)
         {
             if(match == null) throw new ArgumentNullException("match");
@@ -452,14 +631,23 @@ namespace MathNet.Numerics
                     return base[i];
             return default(T);
         }
+        /// <summary>
+        /// Finds the index of an element of this set that matches the predicate.
+        /// </summary>
         public int FindIndex(Predicate<T> match)
         {
             return FindIndex(0, base.Count, match);
         }
+        /// <summary>
+        /// Finds the index (after startIndex) of an element of this set that matches the predicate.
+        /// </summary>
         public int FindIndex(int startIndex, Predicate<T> match)
         {
             return FindIndex(startIndex, base.Count - startIndex, match);
         }
+        /// <summary>
+        /// Finds the index (between startIndex and startIndex+count-1) of an element of this set that matches the predicate.
+        /// </summary>
         public int FindIndex(int startIndex, int count, Predicate<T> match)
         {
             if(startIndex > base.Count) throw new ArgumentOutOfRangeException("startIndex");
@@ -472,6 +660,9 @@ namespace MathNet.Numerics
                     return i;
             return -1;
         }
+        /// <summary>
+        /// Finds the last element of this set that matches the predicate.
+        /// </summary>
         public T FindLast(Predicate<T> match)
         {
             if(match == null) throw new ArgumentNullException("match");
@@ -481,14 +672,23 @@ namespace MathNet.Numerics
                     return base[i];
             return default(T);
         }
+        /// <summary>
+        /// Finds the index of the last element of this set that matches the predicate.
+        /// </summary>
         public int FindLastIndex(Predicate<T> match)
         {
             return FindLastIndex(base.Count - 1, base.Count, match);
         }
+        /// <summary>
+        /// Finds the index (after startIndex) of the last element of this set that matches the predicate.
+        /// </summary>
         public int FindLastIndex(int startIndex, Predicate<T> match)
         {
             return FindLastIndex(startIndex, startIndex + 1, match);
         }
+        /// <summary>
+        /// Finds the index (between startIndex and startIndex+count-1) of the last element of this set that matches the predicate.
+        /// </summary>
         public int FindLastIndex(int startIndex, int count, Predicate<T> match)
         {
             if(startIndex >= base.Count) throw new ArgumentOutOfRangeException("startIndex");
@@ -501,6 +701,10 @@ namespace MathNet.Numerics
                     return i;
             return -1;
         }
+
+        /// <summary>
+        /// Finds the last index of element <c>item</c>.
+        /// </summary>
         public int LastIndexOf(T item)
         {
             for(int i = base.Count - 1; i >= 0; i--)
@@ -508,6 +712,9 @@ namespace MathNet.Numerics
                     return i;
             return -1;
         }
+        /// <summary>
+        /// Finds all elements of this set which match the predicate.
+        /// </summary>
         public Set<T> FindAll(Predicate<T> match)
         {
             if(match == null) throw new ArgumentNullException("match");
@@ -519,6 +726,9 @@ namespace MathNet.Numerics
             return found;
         }
         #endregion
+        /// <summary>
+        /// Remove all elements that match the predicate from this set.
+        /// </summary>
         /// <returns>The number of removed items.</returns>
         public int RemoveAll(Predicate<T> match)
         {
@@ -534,6 +744,9 @@ namespace MathNet.Numerics
         #endregion
 
         #region Converter
+        /// <summary>
+        /// Maps <c>convert</c> to all elements of this set.
+        /// </summary>
         public Set<TOutput> ConvertAll<TOutput>(Converter<T, TOutput> convert) where TOutput : IEquatable<TOutput>
         {
             Set<TOutput> ret = new Set<TOutput>();
@@ -544,10 +757,16 @@ namespace MathNet.Numerics
         #endregion
 
         #region Sorting
+        /// <summary>
+        /// Sort all elements of this set with respect to the comparer.
+        /// </summary>
         public void Sort(IComparer<T> comparer)
         {
             Sort(0, Count, comparer);
         }
+        /// <summary>
+        /// Sort the elements between index and index+count-1 of this set with respect to the comparer.
+        /// </summary>
         public void Sort(int index, int count, IComparer<T> comparer)
         {
             IList<T> items = Items;
@@ -568,10 +787,19 @@ namespace MathNet.Numerics
         #endregion
     }
 
+    /// <summary>
+    /// A generic typed set which is read-only.
+    /// </summary>
     public class ReadOnlySet<T> : ReadOnlyCollection<T>, ISet<T> where T : IEquatable<T>
     {
+        /// <summary>
+        /// Create a read-only set.
+        /// </summary>
         public ReadOnlySet(IList<T> list) : base(list) { }
 
+        /// <summary>
+        /// Create an array with all elements of this set.
+        /// </summary>
         public T[] ToArray()
         {
             T[] array = new T[base.Count];
@@ -579,11 +807,20 @@ namespace MathNet.Numerics
             return array;
         }
 
+        /// <summary>
+        /// Override this when you derive from this class.
+        /// </summary>
         protected virtual Set<T> CreateNewSet()
         {
             return new Set<T>();
         }
 
+        /// <summary>
+        /// True if the set is read-only.
+        /// </summary>
+        /// <remarks>
+        /// Always true in this implementation.
+        /// </remarks>
         public bool IsReadonly
         {
             get { return true; }
@@ -616,7 +853,10 @@ namespace MathNet.Numerics
             return true;
         }
 
-        /// <remarks>ignores duplicate elements.</remarks>
+        /// <summary>
+        /// Checks whether this set has elements that are also in <c>c</c>.
+        /// </summary>
+        /// <remarks>Ingnores duplicate elements.</remarks>
         public bool HasEqualElements(IEnumerable<T> c)
         {
             // TODO: quite inelegant, find better algorithm.
@@ -639,10 +879,16 @@ namespace MathNet.Numerics
         #endregion
 
         #region Lambdas
+        /// <summary>
+        /// Check whether this set has an element witch matches the predicate.
+        /// </summary>
         public bool Exists(Predicate<T> match)
         {
             return (FindIndex(match) != -1);
         }
+        /// <summary>
+        /// Check whether this set has an element witch matches the predicate, and returns it as foundItem-parameter.
+        /// </summary>
         public bool Exists(Predicate<T> match, out T foundItem)
         {
             int idx = FindIndex(match);
@@ -657,6 +903,9 @@ namespace MathNet.Numerics
                 return true;
             }
         }
+        /// <summary>
+        /// Checks wether all elements of this set match the predicate.
+        /// </summary>
         public bool TrueForAll(Predicate<T> match)
         {
             if(match == null)
@@ -666,6 +915,9 @@ namespace MathNet.Numerics
                     return false;
             return true;
         }
+        /// <summary>
+        /// Executes the action for all elements of this set.
+        /// </summary>
         public void ForEach(Action<T> action)
         {
             if(action == null)
@@ -674,6 +926,9 @@ namespace MathNet.Numerics
                 action(base[i]);
         }
         #region Find Lambdas
+        /// <summary>
+        /// Finds an element of this set that matches the predicate.
+        /// </summary>
         public T Find(Predicate<T> match)
         {
             if(match == null)
@@ -683,14 +938,23 @@ namespace MathNet.Numerics
                     return base[i];
             return default(T);
         }
+        /// <summary>
+        /// Finds the index of an element of this set that matches the predicate.
+        /// </summary>
         public int FindIndex(Predicate<T> match)
         {
             return FindIndex(0, base.Count, match);
         }
+        /// <summary>
+        /// Finds the index (after startIndex) of an element of this set that matches the predicate.
+        /// </summary>
         public int FindIndex(int startIndex, Predicate<T> match)
         {
             return FindIndex(startIndex, base.Count - startIndex, match);
         }
+        /// <summary>
+        /// Finds the index (between startIndex and startIndex+count-1) of an element of this set that matches the predicate.
+        /// </summary>
         public int FindIndex(int startIndex, int count, Predicate<T> match)
         {
             if(startIndex > base.Count)
@@ -705,6 +969,9 @@ namespace MathNet.Numerics
                     return i;
             return -1;
         }
+        /// <summary>
+        /// Finds the last element of this set that matches the predicate.
+        /// </summary>
         public T FindLast(Predicate<T> match)
         {
             if(match == null)
@@ -714,14 +981,23 @@ namespace MathNet.Numerics
                     return base[i];
             return default(T);
         }
+        /// <summary>
+        /// Finds the index of the last element of this set that matches the predicate.
+        /// </summary>
         public int FindLastIndex(Predicate<T> match)
         {
             return FindLastIndex(base.Count - 1, base.Count, match);
         }
+        /// <summary>
+        /// Finds the index (after startIndex) of the last element of this set that matches the predicate.
+        /// </summary>
         public int FindLastIndex(int startIndex, Predicate<T> match)
         {
             return FindLastIndex(startIndex, startIndex + 1, match);
         }
+        /// <summary>
+        /// Finds the index (between startIndex and startIndex+count-1) of the last element of this set that matches the predicate.
+        /// </summary>
         public int FindLastIndex(int startIndex, int count, Predicate<T> match)
         {
             if(startIndex >= base.Count)
@@ -736,6 +1012,9 @@ namespace MathNet.Numerics
                     return i;
             return -1;
         }
+        /// <summary>
+        /// Finds the last index of element <c>item</c>.
+        /// </summary>
         public int LastIndexOf(T item)
         {
             for(int i = base.Count - 1; i >= 0; i--)
@@ -743,6 +1022,9 @@ namespace MathNet.Numerics
                     return i;
             return -1;
         }
+        /// <summary>
+        /// Finds all elements of this set which match the predicate.
+        /// </summary>
         public Set<T> FindAll(Predicate<T> match)
         {
             if(match == null) throw new ArgumentNullException("match");
@@ -757,30 +1039,79 @@ namespace MathNet.Numerics
         #endregion
 
         #region Not Supported
+        /// <summary>
+        /// Add all elements in <c>range</c> to this set.
+        /// </summary>
+        /// <remarks>
+        /// This is not supported by this implementation.
+        /// </remarks>
+        /// <exception cref="NotSupportedException" />
         void ISet<T>.AddRange(IEnumerable<T> range)
         {
             throw new NotSupportedException();
         }
+        /// <summary>
+        /// Add <c>item</c> to this set, except if its already there.
+        /// </summary>
+        /// <remarks>
+        /// This is not supported by this implementation.
+        /// </remarks>
+        /// <exception cref="NotSupportedException" />
         void ISet<T>.AddDistinct(T item)
         {
             throw new NotSupportedException();
         }
+        /// <summary>
+        /// Add all elements in <c>range</c> to this set, but skips duplicates.
+        /// </summary>
+        /// <remarks>
+        /// This is not supported by this implementation.
+        /// </remarks>
+        /// <exception cref="NotSupportedException" />
         void ISet<T>.AddRangeDistinct(IEnumerable<T> range)
         {
             throw new NotSupportedException();
         }
+        /// <summary>
+        /// Remove al duplicate items from this set.
+        /// </summary>
+        /// <remarks>
+        /// This is not supported by this implementation.
+        /// </remarks>
+        /// <exception cref="NotSupportedException" />
         void ISet<T>.RemoveDuplicates()
         {
             throw new NotSupportedException();
         }
+        /// <summary>
+        /// Remove all elements that match the predicate from this set.
+        /// </summary>
+        /// <remarks>
+        /// This is not supported by this implementation.
+        /// </remarks>
+        /// <exception cref="NotSupportedException" />
         int ISet<T>.RemoveAll(Predicate<T> match)
         {
             throw new NotSupportedException();
         }
+        /// <summary>
+        /// Sort all elements of this set with respect to the comparer.
+        /// </summary>
+        /// <remarks>
+        /// This is not supported by this implementation.
+        /// </remarks>
+        /// <exception cref="NotSupportedException" />
         void ISet<T>.Sort(IComparer<T> comparer)
         {
             throw new NotSupportedException();
         }
+        /// <summary>
+        /// Sort the elements between index and index+count-1 of this set with respect to the comparer.
+        /// </summary>
+        /// <remarks>
+        /// This is not supported by this implementation.
+        /// </remarks>
+        /// <exception cref="NotSupportedException" />
         void ISet<T>.Sort(int index, int count, IComparer<T> comparer)
         {
             throw new NotSupportedException();
@@ -788,6 +1119,9 @@ namespace MathNet.Numerics
         #endregion
 
         #region Converter
+        /// <summary>
+        /// Maps <c>convert</c> to all elements of this set.
+        /// </summary>
         public Set<TOutput> ConvertAll<TOutput>(Converter<T, TOutput> convert) where TOutput : IEquatable<TOutput>
         {
             Set<TOutput> ret = new Set<TOutput>();
