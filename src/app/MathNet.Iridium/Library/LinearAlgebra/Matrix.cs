@@ -155,7 +155,8 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <summary>Constructs a matrix from a jagged 2-D array, directly using the provided array as internal data structure.</summary>
         /// <param name="A">Two-dimensional jagged array of doubles.</param>
         /// <exception cref="System.ArgumentException">All rows must have the same length.</exception>
-        /// <seealso cref="Create"/>
+        /// <seealso cref="Matrix.Create(double[][])"/>
+        /// <seealso cref="Matrix.Create(double[,])"/>
         public Matrix(double[][] A)
         {
             _data = A;
@@ -367,6 +368,11 @@ namespace MathNet.Numerics.LinearAlgebra
 
         #region Internal Data Stucture
 
+        /// <summary>
+        /// Create the internal matrix data structure for a matrix of the given size.
+        /// Initializing matrices directly on the internal structure may be faster
+        /// than accessing the cells through the matrix class.
+        /// </summary>
         /// <param name="m">Number of rows.</param>
         /// <param name="n">Number of columns.</param>
         public static double[][] CreateMatrixData(int m, int n)
@@ -379,6 +385,9 @@ namespace MathNet.Numerics.LinearAlgebra
             return data;
         }
 
+        /// <summary>
+        /// Creates a copy of a given internal matrix data structure.
+        /// </summary>
         public static double[][] CloneMatrixData(double[][] data)
         {
             int rows, columns;
@@ -396,6 +405,9 @@ namespace MathNet.Numerics.LinearAlgebra
             return newData;
         }
 
+        /// <summary>
+        /// Tries to find out the row column count of a given internal matrix data structure.
+        /// </summary>
         public static void GetRowColumnCount(double[][] data, out int rows, out int columns)
         {
             rows = data.Length;
@@ -1113,20 +1125,32 @@ namespace MathNet.Numerics.LinearAlgebra
             return new Matrix(CloneMatrixData(_data));
         }
 
+        /// <summary>
+        /// Creates an exact copy of this matrix.
+        /// </summary>
         object ICloneable.Clone()
         {
             return Clone();
         }
 
+        /// <summary>
+        /// Returns true if two matrices are almost equal (with some given relative accuracy).
+        /// </summary>
         public static bool AlmostEqual(Matrix X, Matrix Y, double relativeAccuracy)
         {
             return Number.AlmostEqualNorm(X.Norm1(), Y.Norm1(), (X - Y).Norm1(), relativeAccuracy);
         }
+        /// <summary>
+        /// Returns true if two matrices are almost equal.
+        /// </summary>
         public static bool AlmostEqual(Matrix X, Matrix Y)
         {
             return Number.AlmostEqualNorm(X.Norm1(), Y.Norm1(), (X - Y).Norm1(), 10 * Number.DefaultRelativeAccuracy);
         }
 
+        /// <summary>
+        /// Formats this matrix to a human-readable string
+        /// </summary>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();

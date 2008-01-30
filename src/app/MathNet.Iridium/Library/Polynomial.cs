@@ -90,6 +90,9 @@ namespace MathNet.Numerics
             if(coefficients.Length <= order)
                 ResizeOptimalForOrder(order);
         }
+        /// <summary>
+        /// Normalizes the polynomial's order and resizes its data structure to that order.
+        /// </summary>
         public void Normalize()
         {
             NormalizeOrder();
@@ -110,23 +113,40 @@ namespace MathNet.Numerics
         #endregion
 
         #region .NET Integration: Hashing, Equality, Ordering, Cloning
+        /// <summary>
+        /// Serves as a hash function for polynomials.
+        /// </summary>
         public override int GetHashCode()
         {
             return coefficients.GetHashCode();
         }
+        /// <summary>
+        /// Check whether this polynomial is equal to another polynomial.
+        /// </summary>
         public override bool Equals(Object obj)
         {
             Polynomial p = obj as Polynomial;
             return p == null ? false : Equals(p);
         }
+        /// <summary>
+        /// Check whether this polynomial is equal to another polynomial.
+        /// </summary>
         public bool Equals(Polynomial polynomial)
         {
             return CompareTo(polynomial) == 0;
         }
+        /// <summary>
+        /// Check whether two polynomials are equal.
+        /// </summary>
         public static bool Equals(Polynomial polynomial1, Polynomial polynomial2)
         {
+            if(polynomial1 == null)
+                return polynomial2 == null;
             return polynomial1.Equals(polynomial2);
         }
+        /// <summary>
+        /// Compare this polynomial to another polynomial.
+        /// </summary>
         public int CompareTo(object obj)
         {
             if(obj == null)
@@ -135,6 +155,9 @@ namespace MathNet.Numerics
                 throw new ArgumentException(Resources.ArgumentTypeMismatch, "obj");
             return CompareTo((Polynomial)obj);
         }
+        /// <summary>
+        /// Compare this polynomial to another polynomial.
+        /// </summary>
         public int CompareTo(Polynomial polynomial)
         {
             int i = this.Order;
@@ -154,10 +177,16 @@ namespace MathNet.Numerics
             }
             return 0;
         }
+        /// <summary>
+        /// Create a copy of this polynomial.
+        /// </summary>
         object ICloneable.Clone()
         {
             return Clone();
         }
+        /// <summary>
+        /// Create a copy of this polynomial.
+        /// </summary>
         public Polynomial Clone()
         {
             return new Polynomial(this);
@@ -165,6 +194,9 @@ namespace MathNet.Numerics
         #endregion
 
         #region String Formatting and Parsing
+        /// <summary>
+        /// Format a human-readable string of this polynomial with the given string as base variable (e.g. "x").
+        /// </summary>
         public string ToString(string baseVariable)
         {
             StringBuilder builder = new StringBuilder();
@@ -190,6 +222,9 @@ namespace MathNet.Numerics
                 builder.Append("0");
             return builder.ToString();
         }
+        /// <summary>
+        /// Format a human-readable string of this polynomial with "x" as base variable.
+        /// </summary>
         public override string ToString()
         {
             return ToString("x");
@@ -197,14 +232,23 @@ namespace MathNet.Numerics
         #endregion
 
         #region Accessors
+        /// <summary>
+        /// The size of the internal coefficients data structure.
+        /// </summary>
         public int Size
         {
             get { return coefficients.Length; }
         }
+        /// <summary>
+        /// The order of this polynomial.
+        /// </summary>
         public int Order
         {
             get { return order; }
         }
+        /// <summary>
+        /// Get/set the coefficient for the given power.
+        /// </summary>
         public double this[int power]
         {
             get
@@ -228,68 +272,107 @@ namespace MathNet.Numerics
         #endregion
 
         #region Operators
+        /// <summary>
+        /// Check whether two polynomials have the same coefficients.
+        /// </summary>
         public static bool operator ==(Polynomial polynomial1, Polynomial polynomial2)
         {
             return polynomial1.Equals(polynomial2);
         }
+        /// <summary>
+        /// Check whether two polynomials have different coefficients.
+        /// </summary>
         public static bool operator !=(Polynomial polynomial1, Polynomial polynomial2)
         {
             return !polynomial1.Equals(polynomial2);
         }
+        /// <summary>
+        /// Check wether a polynomial is bigger than another polynomial.
+        /// </summary>
         public static bool operator >(Polynomial polynomial1, Polynomial polynomial2)
         {
             return polynomial1.CompareTo(polynomial2) == 1;
         }
+        /// <summary>
+        /// Check wether a polynomial is smaller than another polynomial.
+        /// </summary>
         public static bool operator <(Polynomial polynomial1, Polynomial polynomial2)
         {
             return polynomial1.CompareTo(polynomial2) == -1;
         }
+        /// <summary>
+        /// Check wether a polynomial is bigger than or equal to another polynomial.
+        /// </summary>
         public static bool operator >=(Polynomial polynomial1, Polynomial polynomial2)
         {
             int res = polynomial1.CompareTo(polynomial2);
             return res == 1 || res == 0;
         }
+        /// <summary>
+        /// Check wether a polynomial is smaller than or equal to another polynomial.
+        /// </summary>
         public static bool operator <=(Polynomial polynomial1, Polynomial polynomial2)
         {
             int res = polynomial1.CompareTo(polynomial2);
             return res == -1 || res == 0;
         }
 
+        /// <summary>
+        /// Add a polynomials to a polynomial.
+        /// </summary>
         public static Polynomial operator +(Polynomial polynomial1, Polynomial polynomial2)
         {
             Polynomial ret = new Polynomial(polynomial1);
             ret.AddInplace(polynomial2);
             return ret;
         }
+        /// <summary>
+        /// Add a real number to a polynomial.
+        /// </summary>
         public static Polynomial operator +(Polynomial polynomial, double n)
         {
             Polynomial ret = new Polynomial(polynomial);
             ret.AddInplace(n);
             return ret;
         }
+        /// <summary>
+        /// Add a polynomial to a real number.
+        /// </summary>
         public static Polynomial operator +(double n, Polynomial polynomial)
         {
             Polynomial ret = new Polynomial(polynomial);
             ret.AddInplace(n);
             return ret;
         }
+        /// <summary>
+        /// (nop)
+        /// </summary>
         public static Polynomial operator +(Polynomial polynomial)
         {
             return polynomial;
         }
 
+        /// <summary>
+        /// Subtract a polynomial from another polynomial.
+        /// </summary>
         public static Polynomial operator -(Polynomial polynomial1, Polynomial polynomial2)
         {
             Polynomial ret = new Polynomial(polynomial1);
             ret.SubtractInplace(polynomial2);
             return ret;
         }
+        /// <summary>
+        /// Subtract a real number from a polynomial.
+        /// </summary>
         public static Polynomial operator -(Polynomial polynomial, double n)
         {
             Polynomial ret = new Polynomial(polynomial);
             ret.SubtractInplace(n);
             return ret;
         }
+        /// <summary>
+        /// Subtract a polynomial from a real number.
+        /// </summary>
         public static Polynomial operator -(double n, Polynomial polynomial)
         {
             Polynomial ret = new Polynomial(polynomial);
@@ -297,6 +380,9 @@ namespace MathNet.Numerics
             ret.AddInplace(n);
             return ret;
         }
+        /// <summary>
+        /// Negate a polynomial.
+        /// </summary>
         public static Polynomial operator -(Polynomial polynomial)
         {
             Polynomial ret = new Polynomial(polynomial);
@@ -304,16 +390,25 @@ namespace MathNet.Numerics
             return ret;
         }
 
+        /// <summary>
+        /// Multiply/Convolute two polynomials.
+        /// </summary>
         public static Polynomial operator *(Polynomial polynomial1, Polynomial polynomial2)
         {
             return polynomial1.Multiply(polynomial2);
         }
+        /// <summary>
+        /// Stretch a polynomial with a real number factor.
+        /// </summary>
         public static Polynomial operator *(Polynomial polynomial, double n)
         {
             Polynomial ret = new Polynomial(polynomial);
             ret.MultiplyInplace(n);
             return ret;
         }
+        /// <summary>
+        /// Stretch a polynomial with a real number factor.
+        /// </summary>
         public static Polynomial operator *(double n, Polynomial polynomial)
         {
             Polynomial ret = new Polynomial(polynomial);
@@ -321,6 +416,12 @@ namespace MathNet.Numerics
             return ret;
         }
 
+        /// <summary>
+        /// Stretch a polynomial with a real number quotient.
+        /// </summary>
+        /// <remarks>
+        /// The quotient must not be null.
+        /// </remarks>
         /// <exception cref="System.DivideByZeroException" />
         public static Polynomial operator /(Polynomial polynomial, double n)
         {
@@ -368,6 +469,9 @@ namespace MathNet.Numerics
         #endregion
 
         #region Multiplication
+        /// <summary>
+        /// Multiply two small polynomials.
+        /// </summary>
         public Polynomial MultiplySlow(Polynomial polynomial)
         {
             double[] coeff = new double[1 + Order + polynomial.Order];
@@ -376,6 +480,12 @@ namespace MathNet.Numerics
                     coeff[i + j] += coefficients[i] * polynomial.coefficients[j];
             return new Polynomial(coeff);
         }
+        /// <summary>
+        /// Multiply two polynomials.
+        /// </summary>
+        /// <remarks>
+        /// If both polynomials have an order > 3, the faster karatsua algorithm is used.
+        /// </remarks>
         public Polynomial Multiply(Polynomial polynomial)
         {
             int orderMin = Math.Min(Order, polynomial.Order);
@@ -477,6 +587,9 @@ namespace MathNet.Numerics
         #endregion
 
         #region Division
+        /// <summary>
+        /// Divides this polynomial with anoter polynomial.
+        /// </summary>
         public Rational Divide(Polynomial polynomial)
         {
             return new Rational(Clone(), polynomial.Clone());
