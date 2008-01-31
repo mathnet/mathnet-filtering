@@ -37,6 +37,9 @@ namespace MathNet.Numerics
         private readonly double qarg; //polar notation
 
         #region Constructors
+        /// <summary>
+        /// Create a quarternion.
+        /// </summary>
         public Quaternion(double real, double imagX, double imagY, double imagZ)
         {
             qx = imagX;
@@ -47,6 +50,9 @@ namespace MathNet.Numerics
             qabs = Math.Sqrt(qnorm);
             qarg = Math.Acos(real / qabs);
         }
+        /// <summary>
+        /// Create a quarternion.
+        /// </summary>
         internal Quaternion(double real, double imagX, double imagY, double imagZ, double abs, double norm, double arg)
         {
             qx = imagX;
@@ -69,13 +75,17 @@ namespace MathNet.Numerics
         #endregion
 
         #region .NET Integration: Hashing, Equality, Ordering, Cloning
-
+        /// <summary>
+        /// Compares this quaternion with another quaternion.
+        /// </summary>
         public int CompareTo(object obj)
         {
             // TODO:  Implementierung von Quaternion.CompareTo hinzufügen
             return 0;
         }
-
+        /// <summary>
+        /// Creates a copy of this quaternion.
+        /// </summary>
         public object Clone()
         {
             // TODO:  Implementierung von Quaternion.Clone hinzufügen
@@ -184,54 +194,93 @@ namespace MathNet.Numerics
         #endregion
 
         #region Operators
+        /// <summary>
+        /// (nop)
+        /// </summary>
         public static Quaternion operator +(Quaternion q)
         {
             return q;
         }
+        /// <summary>
+        /// Negate a quaternion.
+        /// </summary>
         public static Quaternion operator -(Quaternion q)
         {
             return q.Negate();
         }
+        /// <summary>
+        /// Add a quaternion to a quaternion.
+        /// </summary>
         public static Quaternion operator +(Quaternion q1, Quaternion q2)
         {
             return q1.Add(q2);
         }
+        /// <summary>
+        /// Add a floating point number to a quaternion.
+        /// </summary>
         public static Quaternion operator +(Quaternion q1, double d)
         {
             return q1.Add(d);
         }
+        /// <summary>
+        /// Subtract a quaternion from a quaternion.
+        /// </summary>
         public static Quaternion operator -(Quaternion q1, Quaternion q2)
         {
             return q1.Subtract(q2);
         }
+        /// <summary>
+        /// Subtract a floating point number from a quaternion.
+        /// </summary>
         public static Quaternion operator -(Quaternion q1, double d)
         {
             return q1.Subtract(d);
         }
+        /// <summary>
+        /// Multiplay a quaternion with a quaternion.
+        /// </summary>
         public static Quaternion operator *(Quaternion q1, Quaternion q2)
         {
             return q1.Multiply(q2);
         }
+        /// <summary>
+        /// Multiplay a floating point number with a quaternion.
+        /// </summary>
         public static Quaternion operator *(Quaternion q1, double d)
         {
             return q1.Multiply(d);
         }
+        /// <summary>
+        /// Divide a quaternion by a quaternion.
+        /// </summary>
         public static Quaternion operator /(Quaternion q1, Quaternion q2)
         {
             return q1.Divide(q2);
         }
+        /// <summary>
+        /// Divide a quaternion by a floating point number.
+        /// </summary>
         public static Quaternion operator /(Quaternion q1, double d)
         {
             return q1.Divide(d);
         }
+        /// <summary>
+        /// Raise a quaternion to a quaternion.
+        /// </summary>
         public static Quaternion operator ^(Quaternion q1, Quaternion q2)
         {
             return q1.Pow(q2);
         }
+        /// <summary>
+        /// Raise a quaternion to a floating point number.
+        /// </summary>
         public static Quaternion operator ^(Quaternion q1, double d)
         {
             return q1.Pow(d);
         }
+        /// <summary>
+        /// Convert a floating point number to a quaternion.
+        /// </summary>
         public static implicit operator Quaternion(double d)
         {
             return new Quaternion(d, 0, 0, 0);
@@ -240,28 +289,46 @@ namespace MathNet.Numerics
 
         #region Arithmetic Methods
         #region Additive
+        /// <summary>
+        /// Add a quaternion to this quaternion.
+        /// </summary>
         public Quaternion Add(Quaternion q)
         {
             return new Quaternion(qw + q.qw, qx + q.qx, qy + q.qy, qz + q.qz);
         }
+        /// <summary>
+        /// Add a floating point number to this quaternion.
+        /// </summary>
         public Quaternion Add(double r)
         {
             return new Quaternion(qw + r, qx, qy, qz);
         }
+        /// <summary>
+        /// SUbtract a quaternion from this quaternion.
+        /// </summary>
         public Quaternion Subtract(Quaternion q)
         {
             return new Quaternion(qw - q.qw, qx - q.qx, qy - q.qy, qz - q.qz);
         }
+        /// <summary>
+        /// Subtract a floating point number from this quaternion.
+        /// </summary>
         public Quaternion Subtract(double r)
         {
             return new Quaternion(qw - r, qx, qy, qz);
         }
+        /// <summary>
+        /// Negate this quaternion.
+        /// </summary>
         public Quaternion Negate()
         {
             return new Quaternion(-qw, -qx, -qy, -qz, qabs, qnorm, Math.PI - qarg);
         }
         #endregion
         #region Multiplicative
+        /// <summary>
+        /// Multiply a quaternion with this quaternion.
+        /// </summary>
         public Quaternion Multiply(Quaternion q)
         {
             double ci = +qx * q.qw + qy * q.qz - qz * q.qy + qw * q.qx;
@@ -270,6 +337,9 @@ namespace MathNet.Numerics
             double cr = -qx * q.qx - qy * q.qy - qz * q.qz + qw * q.qw;
             return new Quaternion(cr, ci, cj, ck);
         }
+        /// <summary>
+        /// Multiply a floating point number to this quaternion.
+        /// </summary>
         public Quaternion Multiply(double d)
         {
             return new Quaternion(d * qw, d * qx, d * qy, d * qz);
@@ -293,6 +363,9 @@ namespace MathNet.Numerics
         {
             return new Quaternion(qw / d, qx / d, qy / d, qz / d);
         }
+        /// <summary>
+        /// Inverts this quaternion.
+        /// </summary>
         public Quaternion Inverse()
         {
             if(qabs == 1d)
@@ -310,6 +383,9 @@ namespace MathNet.Numerics
             return a.Subtract(b).Abs;
         }
 
+        /// <summary>
+        /// Conjugate this quaternion.
+        /// </summary>
         public Quaternion Conjugate()
         {
             return new Quaternion(qw, -qx, -qy, -qz, qabs, qnorm, qarg);
