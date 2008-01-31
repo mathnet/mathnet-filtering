@@ -45,6 +45,7 @@ namespace MathNet.Numerics
     /// </summary>
     public static class Number
     {
+        /// <summary>2^(-1074)</summary>
         public const double SmallestNumberGreaterThanZero = double.Epsilon;
         /// <summary>2^(-53)</summary>
         public static readonly double RelativeAccuracy = EpsilonOf(1.0);
@@ -58,6 +59,7 @@ namespace MathNet.Numerics
         /// </summary>
         /// <returns>Relative Epsilon (positive double or NaN).</returns>
         /// <remarks>Evaluates the <b>negative</b> epsilon. The more common positive epsilon is equal to two times this negative epsilon.</remarks>
+        /// <seealso cref="PositiveEpsilonOf(double)"/>
         public static double EpsilonOf(double value)
         {
             if(double.IsInfinity(value) || double.IsNaN(value))
@@ -75,6 +77,12 @@ namespace MathNet.Numerics
                 return value - BitConverter.Int64BitsToDouble(signed64);
         }
 
+        /// <summary>
+        /// Evaluates the minimum distance to the next distinguishable number near the argument value.
+        /// </summary>
+        /// <returns>Relative Epsilon (positive double or NaN)</returns>
+        /// <remarks>Evaluates the <b>positive</b> epsilon. See also <see cref="EpsilonOf"/></remarks>
+        /// <seealso cref="EpsilonOf(double)"/>
         public static double PositiveEpsilonOf(double value)
         {
             return 2 * EpsilonOf(value);
@@ -144,6 +152,9 @@ namespace MathNet.Numerics
             return (a >= b) ? ua - ub : ub - ua;
         }
 
+        /// <summary>
+        /// Maps a double to an unsigned long integer which provides lexicographical ordering.
+        /// </summary>
         [CLSCompliant(false)]
         public static ulong ToLexicographicalOrderedUInt64(double value)
         {
@@ -152,18 +163,27 @@ namespace MathNet.Numerics
             return (signed64 >= 0) ? unsigned64 : 0x8000000000000000 - unsigned64;
         }
 
+        /// <summary>
+        /// Maps a double to an signed long integer which provides lexicographical ordering.
+        /// </summary>
         public static long ToLexicographicalOrderedInt64(double value)
         {
             long signed64 = BitConverter.DoubleToInt64Bits(value);
             return (signed64 >= 0) ? signed64 : (long)(0x8000000000000000 - (ulong)signed64);
         }
 
+        /// <summary>
+        /// Converts a long integer in signed-magnitude format to an unsigned long integer in two-complement format.
+        /// </summary>
         [CLSCompliant(false)]
         public static ulong SignedMagnitudeToTwosComplementUInt64(long value)
         {
             return (value >= 0) ? (ulong)value : 0x8000000000000000 - (ulong)value;
         }
 
+        /// <summary>
+        /// Converts an unsigned long integer in two-complement to a long integer in signed-magnitude format format.
+        /// </summary>
         public static long SignedMagnitudeToTwosComplementInt64(long value)
         {
             return (value >= 0) ? value : (long)(0x8000000000000000 - (ulong)value);
@@ -180,6 +200,7 @@ namespace MathNet.Numerics
         /// <param name="maxNumbersBetween">The maximum count of numbers between the two numbers plus one ([a,a] -> 0, [a,a+e] -> 1, [a,a+2e] -> 2, ...).</param>
         /// <param name="a">The first number</param>
         /// <param name="b">The second number</param>
+        [CLSCompliant(false)]
         public static bool AlmostEqual(double a, double b, ulong maxNumbersBetween)
         {
             if(maxNumbersBetween < 0)

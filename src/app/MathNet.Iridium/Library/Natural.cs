@@ -136,6 +136,9 @@ namespace MathNet.Numerics
         #endregion
 
         #region Conversion
+        /// <summary>
+        /// Create a natural number from an unsigned long integer.
+        /// </summary>
         [CLSCompliant(false)]
         public static Natural From(ulong number)
         {
@@ -143,6 +146,9 @@ namespace MathNet.Numerics
             n.AddCoefficientInplace(number, 0);
             return n;
         }
+        /// <summary>
+        /// Create a natural number from an unsigned integer.
+        /// </summary>
         [CLSCompliant(false)]
         public static Natural From(uint number)
         {
@@ -152,35 +158,56 @@ namespace MathNet.Numerics
         }
         #endregion
         #region Constants
+        /// <summary>
+        /// Natural number representing zero.
+        /// </summary>
         public static Natural Zero
         {
             get { return new Natural(0); } //TODO: cache
         }
+        /// <summary>
+        /// Natural number representing one.
+        /// </summary>
         public static Natural One
         {
             get { return From(1); } //TODO: cache
         }
+        /// <summary>
+        /// Natural number representing two.
+        /// </summary>
         public static Natural Two
         {
             get { return From(2); } //TODO: cache
         }
         #endregion
 
+        /// <summary>
+        /// True if this natural number represents zero.
+        /// </summary>
         public bool IsZero
         {
             get { return _bound == 0; }
         }
 
         #region Addition
+        /// <summary>
+        /// Add a natural number to a natural number.
+        /// </summary>
         public static Natural operator +(Natural a, Natural b)
         {
             return a.Add(b);
         }
 
+        /// <summary>
+        /// Add a natural number to this natural number.
+        /// </summary>
         public Natural Add(Natural number)
         {
             return Add(number, 0);
         }
+        /// <summary>
+        /// Add an unsigned integer to this natural number.
+        /// </summary>
         [CLSCompliant(false)]
         public Natural Add(Natural number, uint carry)
         {
@@ -215,20 +242,32 @@ namespace MathNet.Numerics
         }
         #endregion
         #region Subtraction
+        /// <summary>
+        /// Subtract a natural number from a natural number.
+        /// </summary>
         public static Natural operator -(Natural a, Natural b)
         {
             return a.Subtract(b);
         }
 
+        /// <summary>
+        /// Subtract a natural number from this natural number.
+        /// </summary>
         public Natural Subtract(Natural number)
         {
             bool underflow;
             return Subtract(number, 0, out underflow);
         }
+        /// <summary>
+        /// Subtract a natural number from this number, and returns the underfow state with the <c>underflow</c>-parameter.
+        /// </summary>
         public Natural Subtract(Natural number, out bool underflow)
         {
             return Subtract(number, 0, out underflow);
         }
+        /// <summary>
+        /// Subtract a natural number with a carry-over unsigned integer from this number, and returns the underfow state with the <c>underflow</c>-parameter.
+        /// </summary>
         [CLSCompliant(false)]
         public Natural Subtract(Natural number, uint carry, out bool underflow)
         {
@@ -318,11 +357,17 @@ namespace MathNet.Numerics
         }
         #endregion
         #region Multiplication
+        /// <summary>
+        /// Multiply a natural number with another natural number.
+        /// </summary>
         public static Natural operator *(Natural a, Natural b)
         {
             return a.Multiply(b);
         }
 
+        /// <summary>
+        /// Stretch this natural number by an integer factor.
+        /// </summary>
         [CLSCompliant(false)]
         public Natural Multiply(uint factor)
         {
@@ -334,6 +379,9 @@ namespace MathNet.Numerics
             return ret;
         }
 
+        /// <summary>
+        /// Multiply this natural number with another natural number.
+        /// </summary>
         public Natural Multiply(Natural number)
         {
             if(Math.Max(_bound, number._bound) < 12)
@@ -394,7 +442,9 @@ namespace MathNet.Numerics
         #endregion
 
         #region Equatable, Comparable, Min/Max, Operators
-
+        /// <summary>
+        /// Checks whether this natural number is equal to another natural number.
+        /// </summary>
         public bool Equals(Natural other)
         {
             if(_bound != other._bound)
@@ -405,6 +455,9 @@ namespace MathNet.Numerics
             return true;
         }
 
+        /// <summary>
+        /// Compares this natural number with another natural number.
+        /// </summary>
         public int CompareTo(Natural other)
         {
             if(_bound < other._bound)
@@ -421,27 +474,45 @@ namespace MathNet.Numerics
             return 0;
         }
 
+        /// <summary>
+        /// Check whether a natural number is smaller than another natural number.
+        /// </summary>
         public static bool operator <(Natural a, Natural b)
         {
             return a.CompareTo(b) == -1;
         }
+        /// <summary>
+        /// Check whether a natural number is bigger than another natural number.
+        /// </summary>
         public static bool operator >(Natural a, Natural b)
         {
             return a.CompareTo(b) == 1;
         }
+        /// <summary>
+        /// Check whether a natural number is smaller than or equal to another natural number.
+        /// </summary>
         public static bool operator <=(Natural a, Natural b)
         {
             return a.CompareTo(b) != 1;
         }
+        /// <summary>
+        /// Check whether a natural number is bigger than or equal to another natural number.
+        /// </summary>
         public static bool operator >=(Natural a, Natural b)
         {
             return a.CompareTo(b) != -1;
         }
-
+        
+        /// <summary>
+        /// Returns the smaller of two natural numbers.
+        /// </summary>
         public static Natural Min(Natural a, Natural b)
         {
             return a.CompareTo(b) == -1 ? a : b;
         }
+        /// <summary>
+        /// Returns the bigger of two natural numbers.
+        /// </summary>
         public static Natural Max(Natural a, Natural b)
         {
             return a.CompareTo(b) == -1 ? b : a;

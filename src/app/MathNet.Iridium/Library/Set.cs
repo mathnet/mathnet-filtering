@@ -133,11 +133,6 @@ namespace MathNet.Numerics
         int RemoveAll(Predicate<T> match);
 
         /// <summary>
-        /// True if the set is read-only.
-        /// </summary>
-        bool IsReadonly { get;}
-
-        /// <summary>
         /// Sort all elements of this set with respect to the comparer.
         /// </summary>
         void Sort(IComparer<T> comparer);
@@ -216,17 +211,6 @@ namespace MathNet.Numerics
             return new ReadOnlySet<T>(list);
         }
         #endregion
-
-        /// <summary>
-        /// True if the set is read-only.
-        /// </summary>
-        /// <remarks>
-        /// Always false with this implementation.
-        /// </remarks>
-        public bool IsReadonly
-        {
-            get { return false; }
-        }
 
         /// <summary>
         /// Provides a read-only wrapper to this set. The wrapper will stay connected to this set's items but can't change them.
@@ -813,17 +797,6 @@ namespace MathNet.Numerics
         protected virtual Set<T> CreateNewSet()
         {
             return new Set<T>();
-        }
-
-        /// <summary>
-        /// True if the set is read-only.
-        /// </summary>
-        /// <remarks>
-        /// Always true in this implementation.
-        /// </remarks>
-        public bool IsReadonly
-        {
-            get { return true; }
         }
 
         #region Subsets
