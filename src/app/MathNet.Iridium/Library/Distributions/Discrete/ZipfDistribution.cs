@@ -68,7 +68,9 @@ namespace MathNet.Numerics.Distributions
             this.random = random;
         }
 
-        /// <summary>Zipfian generator with the provided <c>skew</c>.</summary>
+        /// <summary>
+        /// Create a zipf distribution with the provided skew.
+        /// </summary>
         public ZipfDistribution(double skew)
         {
             if(skew <= 1d) throw new ArgumentOutOfRangeException("skew", skew,
@@ -78,6 +80,9 @@ namespace MathNet.Numerics.Distributions
             random = new SystemRandomSource();
         }
 
+        /// <summary>
+        /// Create a zipf distribution with the provided skew and seed.
+        /// </summary>
         public ZipfDistribution(double skew, int seed)
         {
             if(skew <= 1d) throw new ArgumentOutOfRangeException("skew", skew,
@@ -87,7 +92,9 @@ namespace MathNet.Numerics.Distributions
             random = new SystemRandomSource(seed);
         }
 
-        /// <summary>Gets or sets the skew of the zipfian distribution.</summary>
+        /// <summary>
+        /// Gets or sets the skew of the zipfian distribution.
+        /// </summary>
         public double Skew
         {
             get { return skew; }
@@ -99,7 +106,9 @@ namespace MathNet.Numerics.Distributions
             }
         }
 
-        /// <summary>Returns the next zipfian deviate.</summary>
+        /// <summary>
+        /// Returns the next zipfian deviate.
+        /// </summary>
         public double Next()
         {
             /* A transformation method (similar to the exponential
