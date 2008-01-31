@@ -45,14 +45,18 @@ namespace MathNet.Numerics.Statistics
         /// </summary>
         bool areBucketsSorted;
 
-        /// <summary>Constructs an empty <c>Histogram</c>.</summary>
+        /// <summary>
+        /// Constructs an empty <c>Histogram</c>.
+        /// </summary>
         public Histogram()
         {
             buckets = new ArrayList();
             areBucketsSorted = true;
         }
 
-        /// <summary>Adds a <c>Bucket</c> to the <c>Histogram</c>.</summary>
+        /// <summary>
+        /// Adds a <c>Bucket</c> to the <c>Histogram</c>.
+        /// </summary>
         public void Add(Bucket bucket)
         {
             buckets.Add(bucket);
@@ -136,13 +140,17 @@ namespace MathNet.Numerics.Statistics
             }
         }
 
-        /// <summary>Gets the number of buckets.</summary>
+        /// <summary>
+        /// Gets the number of buckets.
+        /// </summary>
         public int Count
         {
             get { return buckets.Count; }
         }
 
-        /// <summary>Gets the sum of the bucket depths.</summary>
+        /// <summary>
+        /// Gets the sum of the bucket depths.
+        /// </summary>
         public double TotalDepth
         {
             get
@@ -155,7 +163,9 @@ namespace MathNet.Numerics.Statistics
             }
         }
 
-        /// <summary>Prints the buckets contained in the <see cref="Histogram"/>.</summary>
+        /// <summary>
+        /// Prints the buckets contained in the <see cref="Histogram"/>.
+        /// </summary>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
@@ -165,7 +175,9 @@ namespace MathNet.Numerics.Statistics
             return sb.ToString();
         }
 
-
+        /// <summary>
+        /// Returns the optimal dispersion histogram.
+        /// </summary>
         public static Histogram OptimalDispersion(int bucketCount, ICollection distribution)
         {
             if(distribution.Count < Math.Max(bucketCount, 2))
@@ -255,7 +267,9 @@ namespace MathNet.Numerics.Statistics
         }
 
 
-        /// <summary>Returns the optimal variance histogram.</summary>
+        /// <summary>
+        /// Returns the optimal variance histogram.
+        /// </summary>
         /// <param name="bucketCount">The number of buckets in the histogram.</param>
         /// <param name="distribution"><c>double</c> elements expected.</param>
         /// <remarks>Requires a computations time quadratic to 
@@ -343,7 +357,9 @@ namespace MathNet.Numerics.Statistics
             return histogram;
         }
 
-
+        /// <summary>
+        /// Returns the optimal freedom histogram.
+        /// </summary>
         public static Histogram OptimalFreedom(int bucketCount, ICollection distribution)
         {
             if(distribution.Count < Math.Max(bucketCount, 2))
@@ -414,6 +430,9 @@ namespace MathNet.Numerics.Statistics
             return histogram;
         }
 
+        /// <summary>
+        /// Returns the optimal squared freedom histogram.
+        /// </summary>
         public static Histogram OptimalSquaredFreedom(int histSize, ICollection distribution)
         {
             if(distribution.Count < Math.Max(histSize, 2))
@@ -486,7 +505,10 @@ namespace MathNet.Numerics.Statistics
         }
     }
 
-    /// <summary>An <see cref="Histogram"/> is build from a serie of <see cref="Bucket"/>s.</summary>
+    /// <summary>
+    /// A <see cref="Histogram"/> consists of a series of <see cref="Bucket"/>s, 
+    /// each representing a region limited by an upper and a lower bound.
+    /// </summary>
     [Serializable]
     public class Bucket : IComparable, ICloneable
     {
@@ -538,7 +560,9 @@ namespace MathNet.Numerics.Statistics
         /// <summary>Number of points inside the <c>Bucket</c>.</summary>
         double depth;
 
-        /// <summary>Constructor.</summary>
+        /// <summary>
+        /// Create a new Bucket.
+        /// </summary>
         public Bucket(double lowerBound, double upperBound)
         {
             Debug.Assert(lowerBound <= upperBound,
@@ -549,7 +573,9 @@ namespace MathNet.Numerics.Statistics
             //depth = 0;
         }
 
-        /// <summary>Full constructor.</summary>
+        /// <summary>
+        /// Create a new Bucket.
+        /// </summary>
         public Bucket(double lowerBound, double upperBound, double depth)
         {
             this.lowerBound = lowerBound;
@@ -557,7 +583,9 @@ namespace MathNet.Numerics.Statistics
             this.depth = depth;
         }
 
-        /// <summary>Deep copy constructor.</summary>
+        /// <summary>
+        /// Deep copy constructor.
+        /// </summary>
         private Bucket(Bucket bucket)
         {
             this.lowerBound = bucket.lowerBound;
@@ -565,35 +593,52 @@ namespace MathNet.Numerics.Statistics
             this.depth = bucket.depth;
         }
 
+        /// <summary>
+        /// Lower Bound of the Bucket.
+        /// </summary>
         public double LowerBound
         {
             get { return lowerBound; }
             set { lowerBound = value; }
         }
 
+        /// <summary>
+        /// Upper Bound of the Bucket.
+        /// </summary>
         public double UpperBound
         {
             get { return upperBound; }
             set { upperBound = value; }
         }
 
+        /// <summary>
+        /// Width of the Bucket.
+        /// </summary>
         public double Width
         {
             get { return upperBound - lowerBound; }
         }
 
+        /// <summary>
+        /// Depth of the Bucket.
+        /// </summary>
         public double Depth
         {
             get { return depth; }
             set { depth = value; }
         }
 
+        /// <summary>
+        /// Default comparer.
+        /// </summary>
         public static IComparer DefaultPointComparer
         {
             get { return pointComparer; }
         }
 
-        /// <summary>Comparison of two disjoint buckets.</summary>
+        /// <summary>
+        /// Comparison of two disjoint buckets.
+        /// </summary>
         public int CompareTo(object bkt)
         {
             Bucket bucket = (Bucket)bkt;
@@ -609,12 +654,17 @@ namespace MathNet.Numerics.Statistics
             else return -1;
         }
 
-        /// <summary>Returns a deep copy of this instance.</summary>
+        /// <summary>
+        /// Creates a deep copy of this bucket.
+        /// </summary>
         public object Clone()
         {
             return new Bucket(this);
         }
 
+        /// <summary>
+        /// Checks whether two Buckets are equal.
+        /// </summary>
         public override bool Equals(object obj)
         {
             if(!(obj is Bucket)) return false;
@@ -625,6 +675,10 @@ namespace MathNet.Numerics.Statistics
                 && (this.depth == b.depth);
         }
 
+        /// <summary>
+        /// Formats a human-readable string for this bucket.
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return "[" + this.lowerBound + ";" + this.upperBound + "]";
