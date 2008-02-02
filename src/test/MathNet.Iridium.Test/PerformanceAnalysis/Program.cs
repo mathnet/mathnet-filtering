@@ -111,8 +111,8 @@ namespace PerformanceAnalysis
 
                 Console.WriteLine("Warm Up...");
 
-                Matrix maw = new Matrix(sampleMatrices[sizes.Length-1]);
-                Matrix mxw = new Matrix(sampleVectors[sizes.Length - 1]);
+                Matrix maw = Matrix.Create(sampleMatrices[sizes.Length - 1]);
+                Matrix mxw = Matrix.Create(sampleVectors[sizes.Length - 1]);
 
                 maw.Solve(mxw);
 
@@ -122,8 +122,8 @@ namespace PerformanceAnalysis
 
                 for(int i = 0; i < sizes.Length; i++)
                 {
-                    Matrix ma = new Matrix(sampleMatrices[i]);
-                    Matrix mx = new Matrix(sampleVectors[i]);
+                    Matrix ma = Matrix.Create(sampleMatrices[i]);
+                    Matrix mx = Matrix.Create(sampleVectors[i]);
                     stopwatch.Reset();
 
                     ma.Solve(mx);
