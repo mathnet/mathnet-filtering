@@ -14,7 +14,7 @@
 	<item id="netcfTechnologyAttribute">kbNetCompactFramewk</item>
 	<item id="netcfDocSetAttribute">NetCompactFramework</item>
 
-  	<!-- header -->
+  <!-- header -->
 	<item id="header"><font color="DarkGray"></font><p/> </item>
 
 	<!-- alert titles -->
@@ -174,6 +174,6 @@
 <item id="feedbackcss">feedbackcss</item>
 <item id="copyrightStatement"><include item="copyrightText"/></item>
 
-<item id="copyrightText">&#169; 2005 Microsoft Corporation. All rights reserved.</item> 
+<item id="copyrightText">&#169; Math.NET Project. All rights reserved.</item> 
 
 </content>
