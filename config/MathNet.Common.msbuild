@@ -73,11 +73,14 @@
     <CreateProperty Value="$(Year).$(Month).$(PackageIterationNumber).$(RevisionNumber)">
       <Output TaskParameter="Value" PropertyName="PackageVersionNumber" />
     </CreateProperty>
+    <CreateProperty Value="$(PackageVersionNumber)-$(TimeTag)">
+      <Output TaskParameter="Value" PropertyName="PackageVersionTagNumber" />
+    </CreateProperty>
     <WriteLinesToFile File="$(PackageAutoVersionNumberFileFullName)"
                       Lines="$(PackageVersionNumber)"
                       Overwrite="True" />
     <WriteLinesToFile File="$(PackageAutoVersionTagNumberFileFullName)"
-                      Lines="$(PackageVersionNumber)-$(TimeTag)"
+                      Lines="$(PackageVersionTagNumber)"
                       Overwrite="True" />
   </Target>
 
