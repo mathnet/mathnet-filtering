@@ -26,15 +26,27 @@ using MathNet.SignalProcessing.Filter.Utils;
 
 namespace MathNet.SignalProcessing.Filter.Median
 {
+    /// <summary>
+    /// Median-Filters are non-linear filters, returning
+    /// the median of a sample window as output. Median-Filters
+    /// perform well for denoise-applications where it's
+    /// important to not loose sharp steps/edges.
+    /// </summary>
     public class OnlineMedianFilter : OnlineFilter
     {
         private OrderedShiftBuffer _buffer;
 
+        /// <summary>
+        /// Create a Median Filter
+        /// </summary>
         public OnlineMedianFilter(int windowSize)
         {
             _buffer = new OrderedShiftBuffer(windowSize);
         }
 
+        /// <summary>
+        /// Process a single sample.
+        /// </summary>
         public override double ProcessSample(double sample)
         {
             _buffer.Append(sample);
@@ -48,6 +60,9 @@ namespace MathNet.SignalProcessing.Filter.Median
             }
         }
 
+        /// <summary>
+        /// Reset internal state.
+        /// </summary>
         public override void Reset()
         {
             _buffer.Clear();
