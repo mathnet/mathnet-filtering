@@ -42,7 +42,7 @@
 	<!-- code labels -->
 	<item id="CSharpLabel">C#</item>
 	<item id="VisualBasicLabel">Visual Basic</item>
-	<item id="ManagedCPlusPlusLabel">Visual C++</item>
+	<item id="ManagedCPlusPlusLabel">C++/CLI</item>
 	<item id="JSharpLabel">J#</item>
 	<item id="JScriptLabel">JScript</item>
 
@@ -90,7 +90,7 @@
   <item id="VisualBasic">Visual Basic</item>
   <item id="VBScript">Visual Basic Script</item>
   <item id="CSharp">C#</item>
-  <item id="ManagedCPlusPlus">Visual C++</item>
+  <item id="ManagedCPlusPlus">C++/CLI</item>
   <item id="JSharp">J#</item>
   <item id="JScript">JScript</item>
   <item id="xmlLang">Xml</item>

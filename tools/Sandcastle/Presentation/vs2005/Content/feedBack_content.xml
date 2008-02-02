@@ -12,12 +12,12 @@
 
    <!-- feedback values for sandcastle scenario -->
 
-   <item id="feedback_alias"></item>
+   <item id="feedback_alias">DevDocs@opensourcedotnet.info</item>
    <item id="feedback_product">Math.NET Project</item>
    <item id="feedback_deliverable"></item>
    <item id="feedback_fileVersion"></item>
    <item id="feedback_topicVersion"></item>
-   <item id="feedback_body"></item>
+   <item id="feedback_body">%0dThe%20Math.NET%20team%20uses%20your%20feedback%20to%20improve%20documentation.%0d</item>
    <item id="feedback_feedBackText"> on this topic.</item>
    <item id="feedback_ratings">false</item>	
 
