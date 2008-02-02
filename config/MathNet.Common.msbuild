@@ -110,36 +110,6 @@
     </CreateProperty>
   </Target>
 
-  <!-- ### PACKAGE PROJECT FILE ### -->
-
-  <Target Name="PatchProjectsPack" Condition="'$(PackPackagePath)'!=''">
-
-    <CreateItem Include="$(PackPackagePath)**\*.csproj">
-      <Output TaskParameter="Include" ItemName="PackProjectFiles" />
-    </CreateItem>
-
-    <FileUpdate
-      Regex="&lt;SignAssembly&gt;true&lt;/SignAssembly&gt;"
-      ReplacementText="&lt;SignAssembly&gt;false&lt;/SignAssembly&gt;"
-      Files="@(PackProjectFiles)"
-      />
-    <FileUpdate
-      Regex="\.\.\\\.\.\\lib"
-      ReplacementText="Lib"
-      Files="@(PackProjectFiles)"
-      />
-    <FileUpdate
-      Regex="\.\.\\app\\$(PackageName)\\"
-      ReplacementText="Sources\"
-      Files="@(PackProjectFiles)"
-      />
-    <FileUpdate
-      Regex="\.\.\\\.\.\\build"
-      ReplacementText="Build"
-      Files="@(PackProjectFiles)"
-      />
-  </Target>
-
   <!-- ### STRONG NAME: TEST KEYS ### -->
 
   <Target Name="EnsurePersonalTestKeyAvailable" Condition="!Exists(@(StrongNameTestKeyPublic)) OR !Exists(@(StrongNameTestKeyPrivate))">
@@ -191,7 +161,7 @@
     <Exec Command="$(QUOT)@(SignToolExe)$(QUOT) sign /n $(QUOT)$(CertificateName)$(QUOT) /d $(QUOT)$(PackageDescription)$(QUOT) /du $(QUOT)$(PackageUrl)$(QUOT) /t $(QUOT)http://timestamp.verisign.com/scripts/timestamp.dll$(QUOT) %(PrimaryAssembly.Identity)" />
   </Target>
 
-  <!-- ### BUILD: CLEAN ### -->
+  <!-- ### CUSTOM BUILD ### -->
 
   <Target Name="CustomClean">
     <RemoveDir Directories="$(BuildReleasePath);$(BuildDebugPath)" />
@@ -235,9 +205,14 @@
     <Copy SourceFiles="$(DocPath)$(PackName).chm" DestinationFolder="$(PackPackagePath)" Condition="Exists('$(DocPath)$(PackName).chm')" />
 
     <!-- Redistribute -->
-    <MakeDir Directories="$(PackRedistributePath)" />
     <Message Text="$(NL)Packing Redistributable:$(NL)" />
+    <Message Text="$(TAB)%(PrimaryReleaseResources.RecursiveDir)%(FileName)%(Extension)" Importance="high" />
+    <MakeDir Directories="$(PackRedistributePath)" />
+    <CreateItem Include="@(PrimaryReleaseAssemblies->'%(RootDir)%(Directory)**\%(FileName).resources.dll')">
+      <Output TaskParameter="Include" ItemName="PrimaryReleaseResources"/>
+    </CreateItem>
     <Copy SourceFiles="@(PrimaryReleaseAssemblies)" DestinationFiles="@(PrimaryReleaseAssemblies->'$(PackRedistributePath)%(FileName)%(Extension)')" />
+    <Copy SourceFiles="@(PrimaryReleaseResources)" DestinationFiles="@(PrimaryReleaseResources->'$(PackRedistributePath)%(RecursiveDir)%(FileName)%(Extension)')" />
     <Copy SourceFiles="$(PackageAppSourcePath)$(PackageName).License.txt" DestinationFolder="$(PackRedistributePath)" />
 
   </Target>
@@ -253,6 +228,40 @@
 
   <Target Name="CleanPack">
     <RemoveDir Directories="$(PackPath)" />
+  </Target>
+
+  <Target Name="PatchProjectsPack" Condition="'$(PackPackagePath)'!=''">
+
+    <CreateItem Include="$(PackPackagePath)**\*.csproj">
+      <Output TaskParameter="Include" ItemName="PackProjectFiles" />
+    </CreateItem>
+
+    <FileUpdate
+      Regex="&lt;SignAssembly&gt;true&lt;/SignAssembly&gt;"
+      ReplacementText="&lt;SignAssembly&gt;false&lt;/SignAssembly&gt;"
+      Files="@(PackProjectFiles)"
+      />
+    <FileUpdate
+      Regex="MATHNET-BEGIN-TESTSIGNING.*MATHNET-END-TESTSIGNING"
+      ReplacementText="MATHNET-TESTSIGNING-PLACEHOLDER"
+      SingleLine="True" 
+      Files="@(PackProjectFiles)"
+      />
+    <FileUpdate
+      Regex="\.\.\\\.\.\\lib"
+      ReplacementText="Lib"
+      Files="@(PackProjectFiles)"
+      />
+    <FileUpdate
+      Regex="\.\.\\app\\$(PackageName)\\"
+      ReplacementText="Sources\"
+      Files="@(PackProjectFiles)"
+      />
+    <FileUpdate
+      Regex="\.\.\\\.\.\\build"
+      ReplacementText="Build"
+      Files="@(PackProjectFiles)"
+      />
   </Target>
 
   <!-- ### DOCUMENTATION ### -->
