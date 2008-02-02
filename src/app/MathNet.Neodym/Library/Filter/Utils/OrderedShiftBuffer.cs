@@ -36,6 +36,9 @@ namespace MathNet.SignalProcessing.Filter.Utils
         private LinkedList<double> _ordered;
         private LinkedList<LinkedListNode<double>> _shift;
 
+        /// <summary>
+        /// Create an ordered shift buffer.
+        /// </summary>
         public OrderedShiftBuffer(int length)
         {
             _len = length;
@@ -45,21 +48,33 @@ namespace MathNet.SignalProcessing.Filter.Utils
             _shift = new LinkedList<LinkedListNode<double>>();
         }
 
+        /// <summary>
+        /// The number of samples currently loaded in the buffer.
+        /// </summary>
         public int ActualCount
         {
             get { return _shift.Count; }
         }
 
+        /// <summary>
+        /// True if the buffer is filled completely and thus in normal operation.
+        /// </summary>
         public bool IsInitialized
         {
             get { return _initialized; }
         }
 
+        /// <summary>
+        /// The number of samples required for this buffer to operate normally.
+        /// </summary>
         public int InitializedCount
         {
             get { return _len; }
         }
 
+        /// <summary>
+        /// Append a single sample to the buffer.
+        /// </summary>
         public void Append(double value)
         {
             LinkedListNode<double> node = new LinkedListNode<double>(value);
@@ -88,6 +103,9 @@ namespace MathNet.SignalProcessing.Filter.Utils
             _ordered.AddLast(node);
         }
 
+        /// <summary>
+        /// Remove all samples from the buffer.
+        /// </summary>
         public void Clear()
         {
             _initialized = false;
@@ -95,6 +113,9 @@ namespace MathNet.SignalProcessing.Filter.Utils
             _ordered.Clear();
         }
 
+        /// <summary>
+        /// The current median of all samples currently in the buffer.
+        /// </summary>
         public double Median
         {
             get
@@ -107,6 +128,9 @@ namespace MathNet.SignalProcessing.Filter.Utils
             }
         }
 
+        /// <summary>
+        /// Iterate over all samples, ordered by value.
+        /// </summary>
         public IEnumerable<double> ByValueOrder
         {
             get
@@ -120,6 +144,9 @@ namespace MathNet.SignalProcessing.Filter.Utils
             }
         }
 
+        /// <summary>
+        /// Iterate over all samples, ordered by insertion order.
+        /// </summary>
         public IEnumerable<double> ByInsertOrder
         {
             get
