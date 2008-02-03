@@ -11,8 +11,8 @@
   <EnableMultithreadedLoad>True</EnableMultithreadedLoad>
   <EnableMultithreadedAnalysis>True</EnableMultithreadedAnalysis>
   <SourceLookup>True</SourceLookup>
-  <AnalysisExceptionsThreshold>10</AnalysisExceptionsThreshold>
-  <RuleExceptionsThreshold>1</RuleExceptionsThreshold>
+  <AnalysisExceptionsThreshold>100</AnalysisExceptionsThreshold>
+  <RuleExceptionsThreshold>10</RuleExceptionsThreshold>
   <Spelling Locale="en-us" />
   <VersionAware>False</VersionAware>
   <OverrideRuleVisibilities>False</OverrideRuleVisibilities>
@@ -21,9 +21,6 @@
   <DeadlockDetectionTimeout>120</DeadlockDetectionTimeout>
  </ProjectOptions>
  <Targets>
-  <AssemblyReferenceDirectories>
-   <Directory>$(ProjectDir)/../build/Release/</Directory>
-  </AssemblyReferenceDirectories>
   <Target Name="$(ProjectDir)/../build/Release/MathNet.Iridium.dll" Analyze="True">
    <Modules>
     <Module Name="mathnet.iridium.dll" Analyze="True">
@@ -31,20 +28,20 @@
       <Namespace Name="" Analyze="True">
        <Types>
         <Type Name="&lt;Module&gt;" Analyze="True" />
-        <Type Name="&lt;PrivateImplementationDetails&gt;{DF4B387A-210A-410D-801B-0DE2A540CA67}" Analyze="True">
+        <Type Name="&lt;PrivateImplementationDetails&gt;{818BD32C-04E4-48F5-839C-055C91CF8D46}" Analyze="True">
          <Members>
-          <Member Name="$$method0x600052f-1" Analyze="True" />
-          <Member Name="$$method0x6000532-1" Analyze="True" />
-          <Member Name="$$method0x60005bd-1" Analyze="True" />
-          <Member Name="$$method0x60005bd-2" Analyze="True" />
-          <Member Name="$$method0x60005bd-3" Analyze="True" />
-          <Member Name="$$method0x60005bd-4" Analyze="True" />
+          <Member Name="$$method0x6000528-1" Analyze="True" />
+          <Member Name="$$method0x600052b-1" Analyze="True" />
+          <Member Name="$$method0x60005b6-1" Analyze="True" />
+          <Member Name="$$method0x60005b6-2" Analyze="True" />
+          <Member Name="$$method0x60005b6-3" Analyze="True" />
+          <Member Name="$$method0x60005b6-4" Analyze="True" />
          </Members>
         </Type>
-        <Type Name="&lt;PrivateImplementationDetails&gt;{DF4B387A-210A-410D-801B-0DE2A540CA67}+__StaticArrayInitTypeSize=256" Analyze="True" />
-        <Type Name="&lt;PrivateImplementationDetails&gt;{DF4B387A-210A-410D-801B-0DE2A540CA67}+__StaticArrayInitTypeSize=32" Analyze="True" />
-        <Type Name="&lt;PrivateImplementationDetails&gt;{DF4B387A-210A-410D-801B-0DE2A540CA67}+__StaticArrayInitTypeSize=40" Analyze="True" />
-        <Type Name="&lt;PrivateImplementationDetails&gt;{DF4B387A-210A-410D-801B-0DE2A540CA67}+__StaticArrayInitTypeSize=48" Analyze="True" />
+        <Type Name="&lt;PrivateImplementationDetails&gt;{818BD32C-04E4-48F5-839C-055C91CF8D46}+__StaticArrayInitTypeSize=256" Analyze="True" />
+        <Type Name="&lt;PrivateImplementationDetails&gt;{818BD32C-04E4-48F5-839C-055C91CF8D46}+__StaticArrayInitTypeSize=32" Analyze="True" />
+        <Type Name="&lt;PrivateImplementationDetails&gt;{818BD32C-04E4-48F5-839C-055C91CF8D46}+__StaticArrayInitTypeSize=40" Analyze="True" />
+        <Type Name="&lt;PrivateImplementationDetails&gt;{818BD32C-04E4-48F5-839C-055C91CF8D46}+__StaticArrayInitTypeSize=48" Analyze="True" />
        </Types>
       </Namespace>
       <Namespace Name="MathNet.Numerics" Analyze="True">
@@ -554,11 +551,6 @@
           <Member Name="FindLastIndex(System.Predicate`1&lt;T&gt;):System.Int32" Analyze="True" />
           <Member Name="ForEach(System.Action`1&lt;T&gt;):System.Void" Analyze="True" />
           <Member Name="HasEqualElements(System.Collections.Generic.IEnumerable`1&lt;T&gt;):System.Boolean" Analyze="True" />
-          <Member Name="IsReadonly" Analyze="True">
-           <Accessors>
-            <Accessor Name="get_IsReadonly():System.Boolean" Analyze="True" />
-           </Accessors>
-          </Member>
           <Member Name="IsSubset(System.Collections.Generic.IEnumerable`1&lt;T&gt;):System.Boolean" Analyze="True" />
           <Member Name="IsSuperset(System.Collections.Generic.IEnumerable`1&lt;T&gt;):System.Boolean" Analyze="True" />
           <Member Name="LastIndexOf(T):System.Int32" Analyze="True" />
@@ -952,11 +944,6 @@
           <Member Name="FindLastIndex(System.Predicate`1&lt;T&gt;):System.Int32" Analyze="True" />
           <Member Name="ForEach(System.Action`1&lt;T&gt;):System.Void" Analyze="True" />
           <Member Name="HasEqualElements(System.Collections.Generic.IEnumerable`1&lt;T&gt;):System.Boolean" Analyze="True" />
-          <Member Name="IsReadonly" Analyze="True">
-           <Accessors>
-            <Accessor Name="get_IsReadonly():System.Boolean" Analyze="True" />
-           </Accessors>
-          </Member>
           <Member Name="IsSubset(System.Collections.Generic.IEnumerable`1&lt;T&gt;):System.Boolean" Analyze="True" />
           <Member Name="IsSuperset(System.Collections.Generic.IEnumerable`1&lt;T&gt;):System.Boolean" Analyze="True" />
           <Member Name="LastIndexOf(T):System.Int32" Analyze="True" />
@@ -1265,11 +1252,6 @@
           <Member Name="Intersect(System.Collections.Generic.IEnumerable`1&lt;T&gt;):MathNet.Numerics.Set`1&lt;T&gt;" Analyze="True" />
           <Member Name="Intersect(System.Collections.Generic.IEnumerable`1&lt;T&gt;,System.Collections.Generic.IEnumerable`1&lt;T&gt;):MathNet.Numerics.Set`1&lt;T&gt;" Analyze="True" />
           <Member Name="IntersectInplace(System.Collections.Generic.IEnumerable`1&lt;T&gt;):System.Void" Analyze="True" />
-          <Member Name="IsReadonly" Analyze="True">
-           <Accessors>
-            <Accessor Name="get_IsReadonly():System.Boolean" Analyze="True" />
-           </Accessors>
-          </Member>
           <Member Name="IsSubset(System.Collections.Generic.IEnumerable`1&lt;T&gt;):System.Boolean" Analyze="True" />
           <Member Name="IsSuperset(System.Collections.Generic.IEnumerable`1&lt;T&gt;):System.Boolean" Analyze="True" />
           <Member Name="LastIndexOf(T):System.Int32" Analyze="True" />
@@ -1405,7 +1387,7 @@
           <Member Name="ProtonMolarMass" Analyze="True" />
           <Member Name="QuantumOfCirculation" Analyze="True" />
           <Member Name="RydbergConstant" Analyze="True" />
-          <Member Name="ShieldedProtonGyromagneticMoment" Analyze="True" />
+          <Member Name="ShieldedProtonGyromagneticRatio" Analyze="True" />
           <Member Name="ShieldedProtonMagneticMoment" Analyze="True" />
           <Member Name="SpeedOfLight" Analyze="True" />
           <Member Name="TauComptonWavelength" Analyze="True" />
@@ -2906,20 +2888,6 @@
             <Accessor Name="set_Skew(System.Double):System.Void" Analyze="True" />
            </Accessors>
           </Member>
-         </Members>
-        </Type>
-       </Types>
-      </Namespace>
-      <Namespace Name="MathNet.Numerics.Equations" Analyze="True">
-       <Types>
-        <Type Name="ScalarIterator" Analyze="True">
-         <Members>
-          <Member Name=".ctor(MathNet.Numerics.IRealFunction)" Analyze="True" />
-          <Member Name=".ctor(MathNet.Numerics.IRealFunction,MathNet.Numerics.IRealFunction)" Analyze="True" />
-          <Member Name="f" Analyze="True" />
-          <Member Name="fderiv" Analyze="True" />
-          <Member Name="FindFixpoint(System.Double,System.Double,System.Double):System.Double" Analyze="True" />
-          <Member Name="FindRoot(System.Double,System.Double,System.Double,System.Double):System.Double" Analyze="True" />
          </Members>
         </Type>
        </Types>
