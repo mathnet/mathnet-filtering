@@ -235,12 +235,14 @@ namespace MathNet.Numerics.LinearAlgebra
         public static Matrix Identity(int m, int n)
         {
             double[][] data = new double[m][];
-            int count = Math.Min(m, n);
-            for(int i = 0; i < count; i++)
+            for(int i = 0; i < m; i++)
             {
                 double[] col = new double[n];
-                col[i] = 1.0;
                 data[i] = col;
+                if(i < n)
+                {
+                    col[i] = 1.0;
+                }
             }
             return new Matrix(data);
         }
