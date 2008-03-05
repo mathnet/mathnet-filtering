@@ -263,7 +263,7 @@ namespace MathNet.Numerics.Distributions
             int index = 0;
             while(_cdf[index] < rnd)
                 index++;
-            return index;
+            return index + _first;
         }
         #endregion
     }
