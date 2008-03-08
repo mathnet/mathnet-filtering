@@ -45,7 +45,7 @@ namespace Neodym.Test
         [Test]
         public void TestWhiteGaussianNoiseIsWhite()
         {
-            for(int z = 0; z < 25; z++) // run test 25 times to be sure
+            for(int z = 0; z < 10; z++) // run test 10 times to be sure
             {
                 IChannelSource source = new WhiteGaussianNoiseSource();
 
