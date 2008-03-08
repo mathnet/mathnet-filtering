@@ -22,7 +22,7 @@
 using System;
 using MathNet.Numerics.RandomSources;
 
-namespace MathNet.Numerics.Distributions.Continuous
+namespace MathNet.Numerics.Distributions
 {
     /// <summary>
     /// Provides generation of levy skew alpha-stable distributed random numbers.
