@@ -45,11 +45,11 @@ namespace MathNet.SignalProcessing.DataSources
         /// </summary>
         public
         SinusoidalSource(
-            double samplingRate, 
-            double frequency, 
-            double amplitude, 
-            double phase, 
-            double mean, 
+            double samplingRate,
+            double frequency,
+            double amplitude,
+            double phase,
+            double mean,
             int delay
             )
         {

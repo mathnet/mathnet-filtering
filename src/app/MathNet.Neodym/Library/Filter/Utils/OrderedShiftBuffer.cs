@@ -31,15 +31,18 @@ namespace MathNet.SignalProcessing.Filter.Utils
     /// </summary>
     public class OrderedShiftBuffer
     {
-        private readonly int _len, _mid;
-        private bool _initialized;
-        private LinkedList<double> _ordered;
-        private LinkedList<LinkedListNode<double>> _shift;
+        readonly int _len, _mid;
+        bool _initialized;
+        LinkedList<double> _ordered;
+        LinkedList<LinkedListNode<double>> _shift;
 
         /// <summary>
         /// Create an ordered shift buffer.
         /// </summary>
-        public OrderedShiftBuffer(int length)
+        public
+        OrderedShiftBuffer(
+            int length
+            )
         {
             _len = length;
             _mid = length >> 1; // 4 items -> 3rd item; 5 items -> 3rd item; 6 items -> 4th item etc.
@@ -75,7 +78,11 @@ namespace MathNet.SignalProcessing.Filter.Utils
         /// <summary>
         /// Append a single sample to the buffer.
         /// </summary>
-        public void Append(double value)
+        public
+        void
+        Append(
+            double value
+            )
         {
             LinkedListNode<double> node = new LinkedListNode<double>(value);
             _shift.AddFirst(node);
@@ -106,7 +113,9 @@ namespace MathNet.SignalProcessing.Filter.Utils
         /// <summary>
         /// Remove all samples from the buffer.
         /// </summary>
-        public void Clear()
+        public
+        void
+        Clear()
         {
             _initialized = false;
             _shift.Clear();
@@ -123,7 +132,9 @@ namespace MathNet.SignalProcessing.Filter.Utils
                 int mid = _initialized ? _mid : (_ordered.Count >> 1);
                 LinkedListNode<double> next = _ordered.First;
                 for(int i = 0; i < mid; i++)
+                {
                     next = next.Next;
+                }
                 return next.Value;
             }
         }

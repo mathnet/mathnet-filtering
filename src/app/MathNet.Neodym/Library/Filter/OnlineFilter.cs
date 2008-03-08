@@ -35,7 +35,14 @@ namespace MathNet.SignalProcessing.Filter
         /// <summary>
         /// Create a filter to remove high frequencies in online processing scenarios.
         /// </summary>
-        public static OnlineFilter CreateLowpass(ImpulseResponse mode, double sampleRate, double cutoffRate, int order)
+        public static
+        OnlineFilter
+        CreateLowpass(
+            ImpulseResponse mode,
+            double sampleRate,
+            double cutoffRate,
+            int order
+            )
         {
             if(mode == ImpulseResponse.Finite)
             {
@@ -56,9 +63,20 @@ namespace MathNet.SignalProcessing.Filter
         /// <summary>
         /// Create a filter to remove high frequencies in online processing scenarios.
         /// </summary>
-        public static OnlineFilter CreateLowpass(ImpulseResponse mode, double sampleRate, double cutoffRate)
+        public static
+        OnlineFilter
+        CreateLowpass(
+            ImpulseResponse mode,
+            double sampleRate,
+            double cutoffRate
+            )
         {
-            return CreateLowpass(mode, sampleRate, cutoffRate, mode == ImpulseResponse.Finite ? 64 : 4);
+            return CreateLowpass(
+                mode,
+                sampleRate,
+                cutoffRate,
+                mode == ImpulseResponse.Finite ? 64 : 4 // order
+                );
         }
         #endregion
 
@@ -66,7 +84,14 @@ namespace MathNet.SignalProcessing.Filter
         /// <summary>
         /// Create a filter to remove low frequencies in online processing scenarios.
         /// </summary>
-        public static OnlineFilter CreateHighpass(ImpulseResponse mode, double sampleRate, double cutoffRate, int order)
+        public static
+        OnlineFilter
+        CreateHighpass(
+            ImpulseResponse mode,
+            double sampleRate,
+            double cutoffRate,
+            int order
+            )
         {
             if(mode == ImpulseResponse.Finite)
             {
@@ -87,9 +112,20 @@ namespace MathNet.SignalProcessing.Filter
         /// <summary>
         /// Create a filter to remove low frequencies in online processing scenarios.
         /// </summary>
-        public static OnlineFilter CreateHighpass(ImpulseResponse mode, double sampleRate, double cutoffRate)
+        public static
+        OnlineFilter
+        CreateHighpass(
+            ImpulseResponse mode,
+            double sampleRate,
+            double cutoffRate
+            )
         {
-            return CreateHighpass(mode, sampleRate, cutoffRate, mode == ImpulseResponse.Finite ? 64 : 4);
+            return CreateHighpass(
+                mode,
+                sampleRate,
+                cutoffRate,
+                mode == ImpulseResponse.Finite ? 64 : 4 // order
+                );
         }
         #endregion
 
@@ -97,7 +133,15 @@ namespace MathNet.SignalProcessing.Filter
         /// <summary>
         /// Create a filter to remove low and high frequencies in online processing scenarios.
         /// </summary>
-        public static OnlineFilter CreateBandpass(ImpulseResponse mode, double sampleRate, double cutoffLowRate, double cutoffHighRate, int order)
+        public static
+        OnlineFilter
+        CreateBandpass(
+            ImpulseResponse mode,
+            double sampleRate,
+            double cutoffLowRate,
+            double cutoffHighRate,
+            int order
+            )
         {
             if(mode == ImpulseResponse.Finite)
             {
@@ -117,9 +161,22 @@ namespace MathNet.SignalProcessing.Filter
         /// <summary>
         /// Create a filter to remove low and high frequencies in online processing scenarios.
         /// </summary>
-        public static OnlineFilter CreateBandpass(ImpulseResponse mode, double sampleRate, double cutoffLowRate, double cutoffHighRate)
+        public static
+        OnlineFilter
+        CreateBandpass(
+            ImpulseResponse mode,
+            double sampleRate,
+            double cutoffLowRate,
+            double cutoffHighRate
+            )
         {
-            return CreateBandpass(mode, sampleRate, cutoffLowRate, cutoffHighRate, mode == ImpulseResponse.Finite ? 64 : 4);
+            return CreateBandpass(
+                mode,
+                sampleRate,
+                cutoffLowRate,
+                cutoffHighRate,
+                mode == ImpulseResponse.Finite ? 64 : 4 // order
+                );
         }
         #endregion
 
@@ -127,7 +184,15 @@ namespace MathNet.SignalProcessing.Filter
         /// <summary>
         /// Create a filter to remove middle (all but low and high) frequencies in online processing scenarios.
         /// </summary>
-        public static OnlineFilter CreateBandstop(ImpulseResponse mode, double sampleRate, double cutoffLowRate, double cutoffHighRate, int order)
+        public static
+        OnlineFilter
+        CreateBandstop(
+            ImpulseResponse mode,
+            double sampleRate,
+            double cutoffLowRate,
+            double cutoffHighRate,
+            int order
+            )
         {
             if(mode == ImpulseResponse.Finite)
             {
@@ -147,9 +212,22 @@ namespace MathNet.SignalProcessing.Filter
         /// <summary>
         /// Create a filter to remove middle (all but low and high) frequencies in online processing scenarios.
         /// </summary>
-        public static OnlineFilter CreateBandstop(ImpulseResponse mode, double sampleRate, double cutoffLowRate, double cutoffHighRate)
+        public static
+        OnlineFilter
+        CreateBandstop(
+            ImpulseResponse mode,
+            double sampleRate,
+            double cutoffLowRate,
+            double cutoffHighRate
+            )
         {
-            return CreateBandstop(mode, sampleRate, cutoffLowRate, cutoffHighRate, mode == ImpulseResponse.Finite ? 64 : 4);
+            return CreateBandstop(
+                mode,
+                sampleRate,
+                cutoffLowRate,
+                cutoffHighRate,
+                mode == ImpulseResponse.Finite ? 64 : 4 // order
+                );
         }
         #endregion
 
@@ -162,7 +240,11 @@ namespace MathNet.SignalProcessing.Filter
         /// response but also in a longer delay.
         /// </param>
         /// <remarks>The denoise filter is implemented as an unweighted median filter.</remarks>
-        public static OnlineFilter CreateDenoise(int order)
+        public static
+        OnlineFilter
+        CreateDenoise(
+            int order
+            )
         {
             return new Median.OnlineMedianFilter(order);
         }
@@ -170,7 +252,9 @@ namespace MathNet.SignalProcessing.Filter
         /// Create a filter to remove noise in online processing scenarios.
         /// </summary>
         /// <remarks>The denoise filter is implemented as an unweighted median filter.</remarks>
-        public static OnlineFilter CreateDenoise()
+        public static
+        OnlineFilter
+        CreateDenoise()
         {
             return CreateDenoise(7);
         }
@@ -179,21 +263,33 @@ namespace MathNet.SignalProcessing.Filter
         /// <summary>
         /// Process a single sample.
         /// </summary>
-        public abstract double ProcessSample(double sample);
+        public abstract
+        double
+        ProcessSample(
+            double sample
+            );
 
         /// <summary>
         /// Reset internal state (not coefficients!).
         /// </summary>
-        public abstract void Reset();
+        public abstract
+        void
+        Reset();
 
         /// <summary>
         /// Process a sequence of sample.
         /// </summary>
-        public virtual double[] ProcessSamples(double[] samples)
+        public virtual
+        double[]
+        ProcessSamples(
+            double[] samples
+            )
         {
             double[] ret = new double[samples.Length];
             for(int i = 0; i < samples.Length; i++)
+            {
                 ret[i] = ProcessSample(samples[i]);
+            }
             return ret;
         }
     }

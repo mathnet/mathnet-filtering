@@ -34,12 +34,15 @@ namespace MathNet.SignalProcessing.Filter.Median
     /// </summary>
     public class OnlineMedianFilter : OnlineFilter
     {
-        private OrderedShiftBuffer _buffer;
+        OrderedShiftBuffer _buffer;
 
         /// <summary>
         /// Create a Median Filter
         /// </summary>
-        public OnlineMedianFilter(int windowSize)
+        public
+        OnlineMedianFilter(
+            int windowSize
+            )
         {
             _buffer = new OrderedShiftBuffer(windowSize);
         }
@@ -47,7 +50,11 @@ namespace MathNet.SignalProcessing.Filter.Median
         /// <summary>
         /// Process a single sample.
         /// </summary>
-        public override double ProcessSample(double sample)
+        public override
+        double
+        ProcessSample(
+            double sample
+            )
         {
             _buffer.Append(sample);
             try
@@ -63,7 +70,9 @@ namespace MathNet.SignalProcessing.Filter.Median
         /// <summary>
         /// Reset internal state.
         /// </summary>
-        public override void Reset()
+        public override
+        void
+        Reset()
         {
             _buffer.Clear();
         }

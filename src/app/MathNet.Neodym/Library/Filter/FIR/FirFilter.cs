@@ -24,57 +24,72 @@ using System.Collections.Generic;
 
 namespace MathNet.SignalProcessing.Filter.FIR
 {
-	/// <summary>
-	/// Finite Impulse Response (FIR) Filters are based on
-	/// fourier series and implemented using a discrete
-	/// convolution equation. FIR Filters are always
-	/// online, stable and causal. 
-	/// </summary>
+    /// <summary>
+    /// Finite Impulse Response (FIR) Filters are based on
+    /// fourier series and implemented using a discrete
+    /// convolution equation. FIR Filters are always
+    /// online, stable and causal. 
+    /// </summary>
     /// <remarks>
     /// System Descripton: H(z) = a0 + a1*z^-1 + a2*z^-2 + ...
     /// </remarks>
-	public class OnlineFirFilter : OnlineFilter
-	{
-		private double[] _coefficients;
-        private double[] _buffer;
-        private int _offset;
-        private readonly int _size;
+    public class OnlineFirFilter : OnlineFilter
+    {
+        double[] _coefficients;
+        double[] _buffer;
+        int _offset;
+        readonly int _size;
 
-		/// <summary>
-		/// Finite Impulse Response (FIR) Filter.
-		/// </summary>
-		public OnlineFirFilter(IList<double> coefficients)
-		{
+        /// <summary>
+        /// Finite Impulse Response (FIR) Filter.
+        /// </summary>
+        public
+        OnlineFirFilter(
+            IList<double> coefficients
+            )
+        {
             _size = coefficients.Count;
             _offset = 0;
+            _buffer = new double[_size];
             _coefficients = new double[_size << 1];
             for(int i = 0; i < _size; i++)
+            {
                 _coefficients[i] = _coefficients[_size + i] = coefficients[i];
-            _buffer = new double[_size];
-		}
+            }
+        }
 
-		/// <summary>
-		/// Process a single sample.
-		/// </summary>
-		public override double ProcessSample(double sample)
-		{
+        /// <summary>
+        /// Process a single sample.
+        /// </summary>
+        public override
+        double
+        ProcessSample(
+            double sample
+            )
+        {
             _offset = (_offset != 0) ? _offset - 1 : _size - 1;
             _buffer[_offset] = sample;
 
             double acc = 0;
             for(int i = 0, j = _size - _offset; i < _size; i++, j++)
+            {
                 acc += _buffer[i] * _coefficients[j];
+            }
 
             return acc;
-		}
+        }
 
-		/// <summary>
-		/// Reset internal state (not coefficients!).
-		/// </summary>
-		public override void Reset()
-		{
+        /// <summary>
+        /// Reset internal state (not coefficients!).
+        /// </summary>
+        public override
+        void
+        Reset()
+        {
             for(int i = 0; i < _buffer.Length; i++)
+            {
                 _buffer[i] = 0d;
-		}
+            }
+        }
     }
 }
