@@ -228,7 +228,8 @@
     <Copy SourceFiles="@(PrimaryReleaseAssemblies)" DestinationFiles="@(PrimaryReleaseAssemblies->'$(PackRedistributePath)%(FileName)%(Extension)')" />
     <Copy SourceFiles="@(PrimaryReleaseResources)" DestinationFiles="@(PrimaryReleaseResources->'$(PackRedistributePath)%(RecursiveDir)%(FileName)%(Extension)')" />
     <Copy SourceFiles="$(PackageAppSourcePath)$(PackageName).License.txt" DestinationFolder="$(PackRedistributePath)" />
-
+    <Copy SourceFiles="@(PackageRedistributeLibraries)" DestinationFiles="@(PackageRedistributeLibraries->'$(PackRedistributePath)%(RecursiveDir)%(Filename)%(Extension)')" />
+    
   </Target>
 
   <Target Name="ZipPack">

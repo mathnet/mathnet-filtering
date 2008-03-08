@@ -18,6 +18,15 @@
   <ItemGroup>
     <PackageLibraries Include="
                       $(LibraryPath)**\nunit\*.*" />
+    <PackageLibraries Include="
+                      $(LibraryPath)**\Math.NET-Iridium\*.dll;
+                      $(LibraryPath)**\Math.NET-Iridium\*.txt;
+                      $(LibraryPath)**\Math.NET-Iridium\de\*.dll;
+                      $(LibraryPath)**\Math.NET-Iridium\es\*.dll;
+                      $(LibraryPath)**\Math.NET-Iridium\fr\*.dll" />
+    <PackageRedistributeLibraries Include="
+                      $(LibraryPath)Math.NET-Iridium\**\*.dll;
+                      $(LibraryPath)Math.NET-Iridium\**\*.txt;" />
   </ItemGroup>
 
   <!-- Iridium Primary Assemblies -->
