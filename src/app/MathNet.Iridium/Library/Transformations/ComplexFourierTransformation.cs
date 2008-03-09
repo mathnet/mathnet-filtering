@@ -24,21 +24,22 @@ using MathNet.Numerics.Properties;
 
 namespace MathNet.Numerics.Transformations
 {
-	/// <summary>
-	/// <para>The <c>ComplexFourierTransformation</c> provides algorithms
-	/// for one, two and three dimensional fast fourier transformations
+    /// <summary>
+    /// <para>The <c>ComplexFourierTransformation</c> provides algorithms
+    /// for one, two and three dimensional fast fourier transformations
     /// (FFT) on complex vectors.</para>
     /// <para>This class caches precomputations locally, thus consider reusing/caching it.</para>
-	/// </summary>
-	public class ComplexFourierTransformation
-	{
-        private InternalFFT _fft;
-        private TransformationConvention _convention;
+    /// </summary>
+    public class ComplexFourierTransformation
+    {
+        InternalFFT _fft;
+        TransformationConvention _convention;
 
         /// <summary>
         /// Construct a complex fourier transformation instance.
         /// </summary>
-        public ComplexFourierTransformation()
+        public
+        ComplexFourierTransformation()
         {
             _fft = new InternalFFT();
             _convention = TransformationConvention.Default;
@@ -47,7 +48,10 @@ namespace MathNet.Numerics.Transformations
         /// Construct a complex fourier transformation instance with a given convention.
         /// </summary>
         /// <param name="convention">Fourier Transformation Convention</param>
-        public ComplexFourierTransformation(TransformationConvention convention)
+        public
+        ComplexFourierTransformation(
+            TransformationConvention convention
+            )
         {
             _fft = new InternalFFT();
             _convention = convention;
@@ -65,7 +69,12 @@ namespace MathNet.Numerics.Transformations
         #region Scales
         /// <param name="numberOfSamplePairs">The real &amp; complex numbers count together as only one sample.</param>
         /// <param name="sampleRate">The sampling rate of the time-space data.</param>
-        public double[] GenerateTimeScale(double sampleRate, int numberOfSamplePairs)
+        public
+        double[]
+        GenerateTimeScale(
+            double sampleRate,
+            int numberOfSamplePairs
+            )
         {
             double[] scale = new double[numberOfSamplePairs];
             double t = 0, step = 1.0 / sampleRate;
@@ -79,7 +88,12 @@ namespace MathNet.Numerics.Transformations
 
         /// <param name="numberOfSamplePairs">The real &amp; complex numbers count together as only one sample.</param>
         /// <param name="sampleRate">The sampling rate of the time-space data.</param>
-        public double[] GenerateFrequencyScale(double sampleRate, int numberOfSamplePairs)
+        public
+        double[]
+        GenerateFrequencyScale(
+            double sampleRate,
+            int numberOfSamplePairs
+            )
         {
             double[] scale = new double[numberOfSamplePairs];
             double f = 0, step = sampleRate / numberOfSamplePairs;
@@ -104,10 +118,15 @@ namespace MathNet.Numerics.Transformations
         /// Inplace Forward Transformation in one dimension. Size must be Power of Two.
         /// </summary>
         /// <param name="samplePairs">Complex samples (even = real, odd = imaginary). Length must be a power of two.</param>
-        public void TransformForward(double[] samplePairs)
+        public
+        void
+        TransformForward(
+            double[] samplePairs
+            )
         {
             if(Fn.CeilingToPowerOf2(samplePairs.Length) != samplePairs.Length)
                 throw new ArgumentException(Resources.ArgumentPowerOfTwo, "samplePairs");
+
             _fft.DiscreteFourierTransform(samplePairs, true, _convention);
         }
 
@@ -120,10 +139,15 @@ namespace MathNet.Numerics.Transformations
         /// <see cref="Complex"/> type instances. However, if not, consider using the
         /// overloaded method with double pairs instead, it requires less internal copying.
         /// </remarks>
-        public void TransformForward(Complex[] samples)
+        public
+        void
+        TransformForward(
+            Complex[] samples
+            )
         {
             if(Fn.CeilingToPowerOf2(samples.Length) != samples.Length)
                 throw new ArgumentException(Resources.ArgumentPowerOfTwo, "samples");
+
             double[] samplePairs = new double[samples.Length << 1];
             for(int i = 0, j = 0; i < samples.Length; i++, j += 2)
             {
@@ -142,10 +166,15 @@ namespace MathNet.Numerics.Transformations
         /// Inplace Backward Transformation in one dimension. Size must be Power of Two.
         /// </summary>
         /// <param name="samplePairs">Complex samples (even = real, odd = imaginary). Length must be a power of two.</param>
-        public void TransformBackward(double[] samplePairs)
+        public
+        void
+        TransformBackward(
+            double[] samplePairs
+            )
         {
             if(Fn.CeilingToPowerOf2(samplePairs.Length) != samplePairs.Length)
                 throw new ArgumentException(Resources.ArgumentPowerOfTwo, "samplePairs");
+
             _fft.DiscreteFourierTransform(samplePairs, false, _convention);
         }
 
@@ -158,10 +187,15 @@ namespace MathNet.Numerics.Transformations
         /// <see cref="Complex"/> type instances. However, if not, consider using the
         /// overloaded method with double pairs instead, it requires less internal copying.
         /// </remarks>
-        public void TransformBackward(Complex[] samples)
+        public
+        void
+        TransformBackward(
+            Complex[] samples
+            )
         {
             if(Fn.CeilingToPowerOf2(samples.Length) != samples.Length)
                 throw new ArgumentException(Resources.ArgumentPowerOfTwo, "samplePairs");
+
             double[] samplePairs = new double[samples.Length << 1];
             for(int i = 0, j = 0; i < samples.Length; i++, j += 2)
             {
@@ -185,11 +219,21 @@ namespace MathNet.Numerics.Transformations
         /// </summary>
         /// <param name="samplePairs">Complex samples (even = real, odd = imaginary). Length must be a power of two in each dimension.</param>
         /// <param name="dimensionLengths">Sizes, must be Power of Two in each dimension</param>
-        public void TransformForward(double[] samplePairs, params int[] dimensionLengths)
+        public
+        void
+        TransformForward(
+            double[] samplePairs,
+            params int[] dimensionLengths
+            )
         {
-            for(int i=0;i<dimensionLengths.Length;i++)
+            for(int i = 0; i < dimensionLengths.Length; i++)
+            {
                 if(Fn.CeilingToPowerOf2(dimensionLengths[i]) != dimensionLengths[i])
+                {
                     throw new ArgumentException(Resources.ArgumentPowerOfTwoEveryDimension, "dimensionLengths");
+                }
+            }
+
             _fft.DiscreteFourierTransformMultiDim(samplePairs, dimensionLengths, true, _convention);
         }
 
@@ -205,11 +249,21 @@ namespace MathNet.Numerics.Transformations
         /// overloaded method with double pairs instead, it requires less internal copying.
         /// </remarks>
         /// <param name="dimensionLengths">Sizes, must be Power of Two in each dimension</param>
-        public void TransformForward(Complex[] samples, params int[] dimensionLengths)
+        public
+        void
+        TransformForward(
+            Complex[] samples,
+            params int[] dimensionLengths
+            )
         {
             for(int i = 0; i < dimensionLengths.Length; i++)
+            {
                 if(Fn.CeilingToPowerOf2(dimensionLengths[i]) != dimensionLengths[i])
+                {
                     throw new ArgumentException(Resources.ArgumentPowerOfTwoEveryDimension, "dimensionLengths");
+                }
+            }
+
             double[] samplePairs = new double[samples.Length << 1];
             for(int i = 0, j = 0; i < samples.Length; i++, j += 2)
             {
@@ -231,11 +285,21 @@ namespace MathNet.Numerics.Transformations
         /// </summary>
         /// <param name="samplePairs">Complex samples (even = real, odd = imaginary). Length must be a power of two in each dimension.</param>
         /// <param name="dimensionLengths">Sizes, must be Power of Two in each dimension</param>
-        public void TransformBackward(double[] samplePairs, params int[] dimensionLengths)
+        public
+        void
+        TransformBackward(
+            double[] samplePairs,
+            params int[] dimensionLengths
+            )
         {
             for(int i = 0; i < dimensionLengths.Length; i++)
+            {
                 if(Fn.CeilingToPowerOf2(dimensionLengths[i]) != dimensionLengths[i])
+                {
                     throw new ArgumentException(Resources.ArgumentPowerOfTwoEveryDimension, "dimensionLengths");
+                }
+            }
+
             _fft.DiscreteFourierTransformMultiDim(samplePairs, dimensionLengths, false, _convention);
         }
 
@@ -251,11 +315,21 @@ namespace MathNet.Numerics.Transformations
         /// overloaded method with double pairs instead, it requires less internal copying.
         /// </remarks>
         /// <param name="dimensionLengths">Sizes, must be Power of Two in each dimension</param>
-        public void TransformBackward(Complex[] samples, params int[] dimensionLengths)
+        public
+        void
+        TransformBackward(
+            Complex[] samples,
+            params int[] dimensionLengths
+            )
         {
             for(int i = 0; i < dimensionLengths.Length; i++)
+            {
                 if(Fn.CeilingToPowerOf2(dimensionLengths[i]) != dimensionLengths[i])
+                {
                     throw new ArgumentException(Resources.ArgumentPowerOfTwoEveryDimension, "dimensionLengths");
+                }
+            }
+
             double[] samplePairs = new double[samples.Length << 1];
             for(int i = 0, j = 0; i < samples.Length; i++, j += 2)
             {

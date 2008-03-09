@@ -24,21 +24,22 @@ using MathNet.Numerics.Properties;
 
 namespace MathNet.Numerics.Transformations
 {
-	/// <summary>
+    /// <summary>
     /// <para>The <c>RealFourierTransformation</c> provides algorithms
-	/// for one, two and three dimensional fast fourier transformations
+    /// for one, two and three dimensional fast fourier transformations
     /// (FFT) on real vectors.</para>
     /// <para>This class caches precomputations locally, thus consider reusing/caching it.</para>
-	/// </summary>
-	public class RealFourierTransformation
+    /// </summary>
+    public class RealFourierTransformation
     {
-        private InternalFFT _fft;
-        private TransformationConvention _convention;
+        InternalFFT _fft;
+        TransformationConvention _convention;
 
         /// <summary>
         /// Construct a real fourier transformation instance.
         /// </summary>
-        public RealFourierTransformation()
+        public
+        RealFourierTransformation()
         {
             _fft = new InternalFFT();
             _convention = TransformationConvention.Default;
@@ -47,7 +48,10 @@ namespace MathNet.Numerics.Transformations
         /// Construct a real fourier transformation instance with a given convention.
         /// </summary>
         /// <param name="convention">Fourier Transformation convention</param>
-        public RealFourierTransformation(TransformationConvention convention)
+        public
+        RealFourierTransformation(
+            TransformationConvention convention
+            )
         {
             _fft = new InternalFFT();
             _convention = convention;
@@ -65,7 +69,12 @@ namespace MathNet.Numerics.Transformations
         #region Scales
         /// <param name="sampleRate">The sampling rate of the time-space data.</param>
         /// <param name="numberOfSamples">Number of data samples.</param>
-        public double[] GenerateTimeScale(double sampleRate, int numberOfSamples)
+        public
+        double[]
+        GenerateTimeScale(
+            double sampleRate,
+            int numberOfSamples
+            )
         {
             double[] scale = new double[numberOfSamples];
             double t = 0, step = 1.0 / sampleRate;
@@ -79,7 +88,12 @@ namespace MathNet.Numerics.Transformations
 
         /// <param name="sampleRate">The sampling rate of the time-space data.</param>
         /// <param name="numberOfSamples">Number of data samples.</param>
-        public double[] GenerateFrequencyScale(double sampleRate, int numberOfSamples)
+        public
+        double[]
+        GenerateFrequencyScale(
+            double sampleRate,
+            int numberOfSamples
+            )
         {
             double[] scale = new double[numberOfSamples];
             double f = 0, step = sampleRate / numberOfSamples;
@@ -110,8 +124,16 @@ namespace MathNet.Numerics.Transformations
         /// <param name="fftImag1">Output for the first sample set, imaginary part</param>
         /// <param name="fftReal2">Output for the second sample set, real part.</param>
         /// <param name="fftImag2">Output for the second sample set, imaginary part.</param>
-        public void TransformForward(double[] samples1, double[] samples2, 
-            out double[] fftReal1, out double[] fftImag1, out double[] fftReal2, out double[] fftImag2)
+        public
+        void
+        TransformForward(
+            double[] samples1,
+            double[] samples2,
+            out double[] fftReal1,
+            out double[] fftImag1,
+            out double[] fftReal2,
+            out double[] fftImag2
+            )
         {
             if(samples1.Length != samples2.Length)
                 throw new ArgumentException(Resources.ArgumentVectorsSameLengths, "samples2");
@@ -129,7 +151,7 @@ namespace MathNet.Numerics.Transformations
                 complex[j] = samples1[i];
                 complex[j + 1] = samples2[i];
             }
-            
+
             // Transform complex vector
 
             _fft.DiscreteFourierTransform(complex, true, _convention);
@@ -175,8 +197,16 @@ namespace MathNet.Numerics.Transformations
         /// <param name="fftImag2">Imaginary part of the second vector in frequency space. Length must be a power of two.</param>
         /// <param name="samples1">Output samples for the first vector.</param>
         /// <param name="samples2">Output samples for te second vector.</param>
-        public void TransformBackward(double[] fftReal1, double[] fftImag1, double[] fftReal2, double[] fftImag2,
-            out double[] samples1, out double[] samples2)
+        public
+        void
+        TransformBackward(
+            double[] fftReal1,
+            double[] fftImag1,
+            double[] fftReal2,
+            double[] fftImag2,
+            out double[] samples1,
+            out double[] samples2
+            )
         {
             if(fftReal1.Length != fftImag1.Length || fftReal2.Length != fftImag2.Length || fftReal1.Length != fftReal2.Length)
                 throw new ArgumentException(Resources.ArgumentVectorsSameLengths);
@@ -220,7 +250,13 @@ namespace MathNet.Numerics.Transformations
         /// <param name="samples">Real samples. Length must be a power of two.</param>
         /// <param name="fftReal">Output of the sample set, real part.</param>
         /// <param name="fftImag">Output of the sample set, imaginary part.</param>
-        public void TransformForward(double[] samples, out double[] fftReal, out double[] fftImag)
+        public
+        void
+        TransformForward(
+            double[] samples,
+            out double[] fftReal,
+            out double[] fftImag
+            )
         {
             if(Fn.CeilingToPowerOf2(samples.Length) != samples.Length)
                 throw new ArgumentException(Resources.ArgumentPowerOfTwo, "samples");
@@ -283,7 +319,13 @@ namespace MathNet.Numerics.Transformations
         /// Outplace Backward Transformation in one dimension.
         /// Size must be Power of Two.
         /// </summary>
-        public void TransformBackward(double[] fftReal, double[] fftImag, out double[] samples)
+        public
+        void
+        TransformBackward(
+            double[] fftReal,
+            double[] fftImag,
+            out double[] samples
+            )
         {
             if(fftReal.Length != fftImag.Length)
                 throw new ArgumentException(Resources.ArgumentVectorsSameLengths);
@@ -317,7 +359,7 @@ namespace MathNet.Numerics.Transformations
                 h2i = 0.5 * (fftReal[i] - fftReal[numSamples - i]);
 
                 samples[j] = h1r + wr * h2r + wi * h2i;
-                samples[j+1] = h1i + wr * h2i - wi * h2r;
+                samples[j + 1] = h1i + wr * h2i - wi * h2r;
                 samples[length - j] = h1r - wr * h2r - wi * h2i;
                 samples[length + 1 - j] = -h1i + wr * h2i - wi * h2r;
 
@@ -341,12 +383,23 @@ namespace MathNet.Numerics.Transformations
         /// <param name="fftReal">Output of the sample set, real part.</param>
         /// <param name="fftImag">Output of the sample set, imaginary part.</param>
         /// <param name="dimensionLengths">Sizes, must be Power of Two in each dimension</param>
-        public void TransformForward(double[] samples, out double[] fftReal, out double[] fftImag, params int[] dimensionLengths)
+        public
+        void
+        TransformForward(
+            double[] samples,
+            out double[] fftReal,
+            out double[] fftImag,
+            params int[] dimensionLengths
+            )
         {
             for(int i = 0; i < dimensionLengths.Length; i++)
+            {
                 if(Fn.CeilingToPowerOf2(dimensionLengths[i]) != dimensionLengths[i])
+                {
                     throw new ArgumentException(Resources.ArgumentPowerOfTwoEveryDimension, "dimensionLengths");
-            
+                }
+            }
+
             // TODO: Implement real version (at the moment this is just a wrapper to the complex version)!
 
             double[] samplePairs = new double[samples.Length << 1];
@@ -355,9 +408,9 @@ namespace MathNet.Numerics.Transformations
                 samplePairs[j] = samples[i];
                 //samplePairs[j + 1] = 0.0;
             }
-            
+
             _fft.DiscreteFourierTransformMultiDim(samplePairs, dimensionLengths, true, _convention);
-            
+
             fftReal = new double[samples.Length];
             fftImag = new double[samples.Length];
             for(int i = 0, j = 0; i < samples.Length; i++, j += 2)
@@ -372,13 +425,24 @@ namespace MathNet.Numerics.Transformations
         /// Size must be Power of Two in each dimension.
         /// The Data is expected to be ordered such that the last index changes most rapidly (in 2D this means row-by-row when indexing as [y,x]).
         /// </summary>
-        public void TransformBackward(double[] fftReal, double[] fftImag, out double[] samples, params int[] dimensionLengths)
+        public
+        void
+        TransformBackward(
+            double[] fftReal,
+            double[] fftImag,
+            out double[] samples,
+            params int[] dimensionLengths
+            )
         {
             if(fftReal.Length != fftImag.Length)
                 throw new ArgumentException(Resources.ArgumentVectorsSameLengths);
             for(int i = 0; i < dimensionLengths.Length; i++)
+            {
                 if(Fn.CeilingToPowerOf2(dimensionLengths[i]) != dimensionLengths[i])
+                {
                     throw new ArgumentException(Resources.ArgumentPowerOfTwoEveryDimension, "dimensionLengths");
+                }
+            }
 
             // TODO: Implement real version (at the moment this is just a wrapper to the complex version)!
 
@@ -394,7 +458,7 @@ namespace MathNet.Numerics.Transformations
             samples = new double[fftReal.Length];
             for(int i = 0, j = 0; i < samples.Length; i++, j += 2)
             {
-                samples[i] = samplePairs[j]; 
+                samples[i] = samplePairs[j];
             }
         }
         #endregion

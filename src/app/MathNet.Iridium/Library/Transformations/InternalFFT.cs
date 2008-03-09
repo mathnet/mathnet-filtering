@@ -24,6 +24,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Diagnostics;
 
 namespace MathNet.Numerics.Transformations
 {
@@ -32,19 +33,36 @@ namespace MathNet.Numerics.Transformations
     /// </summary>
     internal class InternalFFT
     {
-        private const int maxLength = 1048576;
-        private const int minLength = 1;
-        private const int maxBits = 20; //12;
-        private const int minBits = 0;
+        const int maxLength = 1048576;
+        const int minLength = 1;
+        const int maxBits = 20; //12;
+        const int minBits = 0;
 
-        public void DiscreteFourierTransform(double[] samples, bool forward, TransformationConvention convention)
+        int[][] _reversedBitsLookup = new int[maxBits][];
+        double[,][] _realCoefficients = new double[maxBits + 1, 2][];
+        double[,][] _imagCoefficients = new double[maxBits + 1, 2][];
+
+        public
+        void
+        DiscreteFourierTransform(
+            double[] samples,
+            bool forward,
+            TransformationConvention convention
+            )
         {
             ReorderSamples(samples);
             DanielsonLanczosTransform(samples, forward, convention);
             Rescale(samples, forward, convention);
         }
 
-        public void DiscreteFourierTransformMultiDim(double[] samples, int[] dimensions, bool forward, TransformationConvention convention)
+        public
+        void
+        DiscreteFourierTransformMultiDim(
+            double[] samples,
+            int[] dimensions,
+            bool forward,
+            TransformationConvention convention
+            )
         {
             int rank = dimensions.Length;
             int n, nprev = 1, step, stride;
@@ -66,7 +84,11 @@ namespace MathNet.Numerics.Transformations
 
         #region Sample Reordering (Step 1)
         /// <param name="samples">Complex samples (even = real, odd = imaginary). Length must be a power of two.</param>
-        public void ReorderSamples(double[] samples)
+        internal
+        void
+        ReorderSamples(
+            double[] samples
+            )
         {
             int numSamplePairs = samples.Length >> 1;
             int[] reversedBits = ReverseBits(Fn.IntLog2(numSamplePairs));
@@ -92,11 +114,17 @@ namespace MathNet.Numerics.Transformations
         /// <param name="samples">Complex samples (even = real, odd = imaginary). Length must be a power of two in every dimension.</param>
         /// <param name="stride">Current dimension lengths * steps (steps: next method parameter).</param>
         /// <param name="step">2 * Product of all previous dimension lengths. (times 2 because of the complex sample pairs)</param>
-        public void ReorderSamplesMultiDim(double[] samples, int stride, int step)
+        internal
+        void
+        ReorderSamplesMultiDim(
+            double[] samples,
+            int stride,
+            int step
+            )
         {
             int numSamplePairs = stride / step;
             int[] reversedBits = ReverseBits(Fn.IntLog2(numSamplePairs));
-            for(int i2 = 0, i=0; i2 < stride; i2 += step, i++)
+            for(int i2 = 0, i = 0; i2 < stride; i2 += step, i++)
             {
                 int swap = reversedBits[i] * step;
                 if(swap > i2)
@@ -124,7 +152,13 @@ namespace MathNet.Numerics.Transformations
         /// <param name="forward">true for forward transformation, false for (unscaled) backward/inverse transform.</param>
         /// <param name="convention">FFT Convention to be used</param>
         /// <remarks>The returned results in backward/inverse mode are not scaled yet; scale them using <see cref="Rescale"/> afterwards.</remarks>
-        public void DanielsonLanczosTransform(double[] samples, bool forward, TransformationConvention convention)
+        internal
+        void
+        DanielsonLanczosTransform(
+            double[] samples,
+            bool forward,
+            TransformationConvention convention
+            )
         {
             int levels = Fn.IntLog2(samples.Length >> 1);
 
@@ -141,7 +175,7 @@ namespace MathNet.Numerics.Transformations
                 double[] realCosine = RealCosineCoefficients(level, forward);
                 double[] imagSine = ImaginarySineCoefficients(level, forward);
 
-                for(int j = 0, jj=0; jj < M; j++, jj+=2)
+                for(int j = 0, jj = 0; jj < M; j++, jj += 2)
                 {
                     double uR = realCosine[j];
                     double uI = expSignConvention * imagSine[j];
@@ -151,25 +185,33 @@ namespace MathNet.Numerics.Transformations
                         int odd = even + M;
 
                         double re = samples[odd];
-                        double im = samples[odd+1];
+                        double im = samples[odd + 1];
 
                         double tmpr = re * uR - im * uI;
                         double tmpi = re * uI + im * uR;
 
                         re = samples[even];
-                        im = samples[even+1];
+                        im = samples[even + 1];
 
                         samples[even] = re + tmpr;
-                        samples[even+1] = im + tmpi;
+                        samples[even + 1] = im + tmpi;
 
                         samples[odd] = re - tmpr;
-                        samples[odd+1] = im - tmpi;
+                        samples[odd + 1] = im - tmpi;
                     }
                 }
             }
         }
 
-        public void DanielsonLanczosTransformMultiDim(double[] samples, int stride, int step, bool forward, TransformationConvention convention)
+        internal
+        void
+        DanielsonLanczosTransformMultiDim(
+            double[] samples,
+            int stride,
+            int step,
+            bool forward,
+            TransformationConvention convention
+            )
         {
             int levels = Fn.IntLog2(stride / step);
 
@@ -214,81 +256,56 @@ namespace MathNet.Numerics.Transformations
                 }
             }
         }
-
-        //public void DanielsonLanczosTransform(double[] samples, bool forward)
-        //{
-        //    int length = samples.Length;
-        //    int levels = Fn.IntLog2(length) - 1;
-
-        //    // precompute coefficients if they're not already there.
-        //    BuildCoefficientsForLevels(levels);
-
-        //    int N = 2;
-        //    for(int level = 1; level <= levels; level++)
-        //    {
-        //        int M = N;
-        //        N <<= 1;
-
-        //        double[] realCosine = RealCosineCoefficients(level, forward);
-        //        double[] imagSine = ImaginarySineCoefficients(level, forward);
-
-        //        for(int j = 0; j < M; j += 2)
-        //        {
-        //            double uR = realCosine[j / 2];
-        //            double uI = imagSine[j / 2];
-
-        //            for(int even = j; even < length; even += N)
-        //            {
-        //                int odd = even + M;
-
-        //                double r = samples[odd];
-        //                double i = samples[odd + 1];
-
-        //                double odduR = r * uR - i * uI;
-        //                double odduI = r * uI + i * uR;
-
-        //                r = samples[even];
-        //                i = samples[even + 1];
-
-        //                samples[even] = r + odduR;
-        //                samples[even + 1] = i + odduI;
-
-        //                samples[odd] = r - odduR;
-        //                samples[odd + 1] = i - odduI;
-        //            }
-        //        }
-        //    }
-        //}
         #endregion
 
         #region Rescaling (Step 3)
-        public void Rescale(double[] samples, bool forward, TransformationConvention convention)
+        internal
+        void
+        Rescale(
+            double[] samples,
+            bool forward,
+            TransformationConvention convention
+            )
         {
             if((convention & TransformationConvention.NoScaling) > 0)
+            {
                 return;
+            }
+
             bool asymmetric = (convention & TransformationConvention.AsymmetricScaling) > 0;
             if(forward && asymmetric)
+            {
                 return;
+            }
+
             double factor = 2.0 / samples.Length;
             if(!asymmetric)
+            {
                 factor = Math.Sqrt(factor);
+            }
+
             for(int i = 0; i < samples.Length; i++)
+            {
                 samples[i] *= factor;
+            }
         }
         #endregion
 
         #region Precomputation: Reverse Bits
-        private int[][] reversedBitsLookup = new int[maxBits][];
-        
         /// <summary>
         /// Permutates <c>numberOfBits</c> in ascending order
         /// and reverses each element's bits afterwards.
         /// </summary>
-        public int[] ReverseBits(int numberOfBits)
+        internal
+        int[]
+        ReverseBits(
+            int numberOfBits
+            )
         {
-            System.Diagnostics.Debug.Assert(numberOfBits >= minBits);
-            System.Diagnostics.Debug.Assert(numberOfBits <= maxBits);
-            if(reversedBitsLookup[numberOfBits - 1] == null)
+            Debug.Assert(numberOfBits >= minBits);
+            Debug.Assert(numberOfBits <= maxBits);
+
+            if(_reversedBitsLookup[numberOfBits - 1] == null)
             {
                 int len = Fn.IntPow2(numberOfBits);
                 int[] reversedBits = new int[len];
@@ -303,52 +320,72 @@ namespace MathNet.Numerics.Transformations
                     }
                     reversedBits[i] = newBits;
                 }
-                reversedBitsLookup[numberOfBits - 1] = reversedBits;
+                _reversedBitsLookup[numberOfBits - 1] = reversedBits;
             }
-            return reversedBitsLookup[numberOfBits - 1];
+            return _reversedBitsLookup[numberOfBits - 1];
         }
         #endregion
 
         #region Precomputation: Real/Imag Coefficients (Complex Rotation)
-        private double[,][] realCoefficients = new double[maxBits + 1, 2][];
-        private double[,][] imagCoefficients = new double[maxBits + 1, 2][];
-
         /// <summary>
         /// Evaluates complex rotation coefficients if not already available
         /// and returns the (real) cosine lookup table.
         /// </summary>
-        public double[] RealCosineCoefficients(int level, bool forward)
+        internal
+        double[]
+        RealCosineCoefficients(
+            int level,
+            bool forward
+            )
         {
-            if(realCoefficients[level, 0] == null)
+            if(_realCoefficients[level, 0] == null)
+            {
                 BuildCoefficientsForLevels(level);
-            return realCoefficients[level, forward ? 0 : 1];
+            }
+
+            return _realCoefficients[level, forward ? 0 : 1];
         }
 
         /// <summary>
         /// Evaluates complex rotation coefficients if not already available
         /// and returns the (imaginary) sine lookup table.
         /// </summary>
-        public double[] ImaginarySineCoefficients(int level, bool forward)
+        internal
+        double[]
+        ImaginarySineCoefficients(
+            int level,
+            bool forward
+            )
         {
-            if(imagCoefficients[level, 0] == null)
+            if(_imagCoefficients[level, 0] == null)
+            {
                 BuildCoefficientsForLevels(level);
-            return imagCoefficients[level, forward ? 0 : 1];
+            }
+
+            return _imagCoefficients[level, forward ? 0 : 1];
         }
 
         /// <summary>
         /// Evaluates complex rotation coefficients if not already available.
         /// </summary>
-        private void BuildCoefficientsForLevels(int levels)
+        void
+        BuildCoefficientsForLevels(
+            int levels
+            )
         {
-            if(realCoefficients[levels, 0] != null)
+            if(_realCoefficients[levels, 0] != null)
+            {
                 return;
+            }
 
             int M = 1;
             double uRealFw, uImagFw, uRealBw, uImagBw, angle, wRreal, wImag, uwI;
             for(int level = 1; level <= levels; level++, M <<= 1)
             {
-                if(realCoefficients[level, 0] != null)
+                if(_realCoefficients[level, 0] != null)
+                {
                     continue;
+                }
 
                 uRealFw = uRealBw = 1;
                 uImagFw = uImagBw = 0;
@@ -378,15 +415,19 @@ namespace MathNet.Numerics.Transformations
                     uImagBw = uwI;
                 }
 
-                realCoefficients[level, 0] = realForward;
-                imagCoefficients[level, 0] = imagForward;
-                realCoefficients[level, 1] = realBackward;
-                imagCoefficients[level, 1] = imagBackward;
+                _realCoefficients[level, 0] = realForward;
+                _imagCoefficients[level, 0] = imagForward;
+                _realCoefficients[level, 1] = realBackward;
+                _imagCoefficients[level, 1] = imagBackward;
             }
         }
         #endregion
 
-        public double[] ExtendToPowerOf2Length(double[] samples)
+        public
+        double[]
+        ExtendToPowerOf2Length(
+            double[] samples
+            )
         {
             int newlen = Fn.CeilingToPowerOf2(samples.Length);
             double[] ret = new double[newlen];
