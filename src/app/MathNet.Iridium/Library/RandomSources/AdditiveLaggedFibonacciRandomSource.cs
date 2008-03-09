@@ -68,104 +68,63 @@ namespace MathNet.Numerics.RandomSources
     ///   associated <see cref="ShortLag"/> and <see cref="LongLag"/> properties. Some popular pairs are presented on 
     ///   <a href="http://en.wikipedia.org/wiki/Lagged_Fibonacci_generator">Wikipedia - Lagged Fibonacci generator</a>.
     /// </remarks>
-    public class AdditiveLaggedFibonacciRandomSource : RandomSource
+    public class AdditiveLaggedFibonacciRandomSource :
+        RandomSource
     {
-        #region class fields
         /// <summary>
         /// Represents the multiplier that computes a double-precision floating point number greater than or equal to 0.0 
         ///   and less than 1.0 when it gets applied to a nonnegative 32-bit signed integer.
         /// </summary>
-        private const double IntToDoubleMultiplier = 1.0 / ((double)int.MaxValue + 1.0);
+        const double IntToDoubleMultiplier = 1.0 / ((double)int.MaxValue + 1.0);
 
         /// <summary>
         /// Represents the multiplier that computes a double-precision floating point number greater than or equal to 0.0 
         ///   and less than 1.0  when it gets applied to a 32-bit unsigned integer.
         /// </summary>
-        private const double UIntToDoubleMultiplier = 1.0 / ((double)uint.MaxValue + 1.0);
-        #endregion
-
-        #region instance fields
-        /// <summary>
-        /// Gets or sets the short lag of the Lagged Fibonacci pseudo-random number generator.
-        /// </summary>
-        /// <remarks>Call <see cref="IsValidShortLag"/> to determine whether a value is valid and therefor assignable.</remarks>
-        public int ShortLag
-        {
-            get
-            {
-                return _shortLag;
-            }
-            set
-            {
-                if(this.IsValidShortLag(value))
-                {
-                    _shortLag = value;
-                }
-            }
-        }
+        const double UIntToDoubleMultiplier = 1.0 / ((double)uint.MaxValue + 1.0);
 
         /// <summary>
         /// Stores the short lag of the Lagged Fibonacci pseudo-random number generator.
         /// </summary>
-        private int _shortLag;
-
-        /// <summary>
-        /// Gets or sets the long lag of the Lagged Fibonacci pseudo-random number generator.
-        /// </summary>
-        /// <remarks>Call <see cref="IsValidLongLag"/> to determine whether a value is valid and therefor assignable.</remarks>
-        public int LongLag
-        {
-            get
-            {
-                return _longLag;
-            }
-            set
-            {
-                if(this.IsValidLongLag(value))
-                {
-                    _longLag = value;
-                    this.Reset();
-                }
-            }
-        }
+        int _shortLag;
 
         /// <summary>
         /// Stores the long lag of the Lagged Fibonacci pseudo-random number generator.
         /// </summary>
-        private int _longLag;
+        int _longLag;
 
         /// <summary>
         /// Stores an array of <see cref="_longLag"/> random numbers
         /// </summary>
-        private uint[] _x;
+        uint[] _x;
 
         /// <summary>
         /// Stores an index for the random number array element that will be accessed next.
         /// </summary>
-        private int _i;
+        int _i;
 
         /// <summary>
         /// Stores the used seed value.
         /// </summary>
-        private uint _seed;
+        uint _seed;
 
         /// <summary>
         /// Stores an <see cref="UInt32"/> used to generate up to 32 random <see cref="Boolean"/> values.
         /// </summary>
-        private uint _bitBuffer;
+        uint _bitBuffer;
 
         /// <summary>
         /// Stores how many random <see cref="Boolean"/> values still can be generated from <see cref="_bitBuffer"/>.
         /// </summary>
-        private int _bitCount;
-        #endregion
+        int _bitCount;
 
-        #region construction
+
         /// <summary>
         /// Initializes a new instance of the <see cref="AdditiveLaggedFibonacciRandomSource"/> class, using a time-dependent default 
         ///   seed value.
         /// </summary>
-        public AdditiveLaggedFibonacciRandomSource()
+        public
+        AdditiveLaggedFibonacciRandomSource()
             : this((uint)Math.Abs(Environment.TickCount))
         {
         }
@@ -177,7 +136,10 @@ namespace MathNet.Numerics.RandomSources
         /// A number used to calculate a starting value for the pseudo-random number sequence.
         /// If a negative number is specified, the absolute value of the number is used. 
         /// </param>
-        public AdditiveLaggedFibonacciRandomSource(int seed)
+        public
+        AdditiveLaggedFibonacciRandomSource(
+            int seed
+            )
             : this((uint)Math.Abs(seed))
         {
         }
@@ -189,16 +151,17 @@ namespace MathNet.Numerics.RandomSources
         /// An unsigned number used to calculate a starting value for the pseudo-random number sequence.
         /// </param>
         [CLSCompliant(false)]
-        public AdditiveLaggedFibonacciRandomSource(uint seed)
+        public
+        AdditiveLaggedFibonacciRandomSource(
+            uint seed
+            )
         {
             _seed = seed;
             _shortLag = 418;
             _longLag = 1279;
-            this.ResetGenerator();
+            ResetGenerator();
         }
-        #endregion
 
-        #region instance methods
         /// <summary>
         /// Determines whether the specified value is valid for parameter <see cref="ShortLag"/>.
         /// </summary>
@@ -206,7 +169,11 @@ namespace MathNet.Numerics.RandomSources
         /// <returns>
         /// <see langword="true"/> if value is greater than 0; otherwise, <see langword="false"/>.
         /// </returns>
-        public bool IsValidShortLag(int value)
+        public
+        bool
+        IsValidShortLag(
+            int value
+            )
         {
             return value > 0;
         }
@@ -218,15 +185,21 @@ namespace MathNet.Numerics.RandomSources
         /// <returns>
         /// <see langword="true"/> if value is greater than <see cref="ShortLag"/>; otherwise, <see langword="false"/>.
         /// </returns>
-        public bool IsValidLongLag(int value)
+        public
+        bool
+        IsValidLongLag(
+            int value
+            )
         {
             return value > _shortLag;
         }
 
         /// <summary>
-        /// Resets the <see cref="AdditiveLaggedFibonacciRandomSource"/>, so that it produces the same pseudo-random number sequence again.
+        /// Resets the <see cref="AdditiveLaggedFibonacciRandomSource"/>,
+        /// so that it produces the same pseudo-random number sequence again.
         /// </summary>
-        private void ResetGenerator()
+        void
+        ResetGenerator()
         {
             MersenneTwisterRandomSource gen = new MersenneTwisterRandomSource(_seed);
             _x = new uint[_longLag];
@@ -248,7 +221,8 @@ namespace MathNet.Numerics.RandomSources
         /// Generated random numbers are 32-bit unsigned integers greater than or equal to <see cref="UInt32.MinValue"/> 
         ///   and less than or equal to <see cref="UInt32.MaxValue"/>.
         /// </remarks>
-        private void Fill()
+        void
+        Fill()
         {
             // two loops to avoid costly modulo operations
             for(int j = 0; j < _shortLag; ++j)
@@ -270,11 +244,13 @@ namespace MathNet.Numerics.RandomSources
         ///   less than or equal to <see cref="UInt32.MaxValue"/>.
         /// </returns>
         [CLSCompliant(false)]
-        public uint NextUInt()
+        public
+        uint
+        NextUInt()
         {
             if(_i >= _longLag)
             {
-                this.Fill();
+                Fill();
             }
             return _x[_i++];
         }
@@ -286,35 +262,18 @@ namespace MathNet.Numerics.RandomSources
         /// A 32-bit signed integer greater than or equal to 0, and less than or equal to <see cref="Int32.MaxValue"/>; 
         ///   that is, the range of return values includes 0 and <paramref name="Int32.MaxValue"/>.
         /// </returns>
-        public int NextInclusiveMaxValue()
+        public
+        int
+        NextInclusiveMaxValue()
         {
             // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
             if(_i >= _longLag)
             {
-                this.Fill();
+                Fill();
             }
             uint x = _x[_i++];
 
             return (int)(x >> 1);
-        }
-        #endregion
-
-        #region overridden Generator members
-        /// <summary>
-        /// Gets a value indicating whether the <see cref="AdditiveLaggedFibonacciRandomSource"/> can be reset, so that it produces the 
-        ///   same pseudo-random number sequence again.
-        /// </summary>
-        public override bool CanReset
-        {
-            get { return true; }
-        }
-
-        /// <summary>
-        /// Resets the <see cref="AdditiveLaggedFibonacciRandomSource"/>, so that it produces the same pseudo-random number sequence again.
-        /// </summary>
-        public override void Reset()
-        {
-            ResetGenerator();
         }
 
         /// <summary>
@@ -324,12 +283,14 @@ namespace MathNet.Numerics.RandomSources
         /// A 32-bit signed integer greater than or equal to 0, and less than <see cref="Int32.MaxValue"/>; that is, 
         ///   the range of return values includes 0 but not <paramref name="Int32.MaxValue"/>.
         /// </returns>
-        public override int Next()
+        public override
+        int
+        Next()
         {
             // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
             if(_i >= _longLag)
             {
-                this.Fill();
+                Fill();
             }
             uint x = _x[_i++];
 
@@ -337,7 +298,7 @@ namespace MathNet.Numerics.RandomSources
             // Exclude Int32.MaxValue from the range of return values.
             if(result == Int32.MaxValue)
             {
-                return this.Next();
+                return Next();
             }
             else
             {
@@ -359,7 +320,11 @@ namespace MathNet.Numerics.RandomSources
         /// <exception cref="ArgumentOutOfRangeException">
         /// <paramref name="maxValue"/> is less than 0. 
         /// </exception>
-        public override int Next(int maxValue)
+        public override
+        int
+        Next(
+            int maxValue
+            )
         {
             if(maxValue < 0)
             {
@@ -371,7 +336,7 @@ namespace MathNet.Numerics.RandomSources
             // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
             if(_i >= _longLag)
             {
-                this.Fill();
+                Fill();
             }
             uint x = _x[_i++];
 
@@ -399,7 +364,12 @@ namespace MathNet.Numerics.RandomSources
         /// <exception cref="ArgumentOutOfRangeException">
         /// <paramref name="minValue"/> is greater than <paramref name="maxValue"/>.
         /// </exception>
-        public override int Next(int minValue, int maxValue)
+        public override
+        int
+        Next(
+            int minValue,
+            int maxValue
+            )
         {
             if(minValue > maxValue)
             {
@@ -411,7 +381,7 @@ namespace MathNet.Numerics.RandomSources
             // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
             if(_i >= _longLag)
             {
-                this.Fill();
+                Fill();
             }
             uint x = _x[_i++];
 
@@ -439,12 +409,14 @@ namespace MathNet.Numerics.RandomSources
         /// A double-precision floating point number greater than or equal to 0.0, and less than 1.0; that is, 
         ///   the range of return values includes 0.0 but not 1.0.
         /// </returns>
-        public override double NextDouble()
+        public override
+        double
+        NextDouble()
         {
             // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
             if(_i >= _longLag)
             {
-                this.Fill();
+                Fill();
             }
             uint x = _x[_i++];
 
@@ -470,7 +442,11 @@ namespace MathNet.Numerics.RandomSources
         /// <exception cref="ArgumentOutOfRangeException">
         /// <paramref name="maxValue"/> is less than 0. 
         /// </exception>
-        public override double NextDouble(double maxValue)
+        public override
+        double
+        NextDouble(
+            double maxValue
+            )
         {
             if(maxValue < 0.0)
             {
@@ -482,7 +458,7 @@ namespace MathNet.Numerics.RandomSources
             // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
             if(_i >= _longLag)
             {
-                this.Fill();
+                Fill();
             }
             uint x = _x[_i++];
 
@@ -518,12 +494,21 @@ namespace MathNet.Numerics.RandomSources
         /// The range between <paramref name="minValue"/> and <paramref name="maxValue"/> must be less than
         ///   or equal to <see cref="Double.MaxValue"/>.
         /// </exception>
-        public override double NextDouble(double minValue, double maxValue)
+        public override
+        double
+        NextDouble(
+            double minValue,
+            double maxValue
+            )
         {
             if(minValue > maxValue)
             {
-                string message = string.Format(null, Resources.ArgumentOutOfRangeGreaterEqual,
-                    "maxValue", "minValue");
+                string message = string.Format(
+                    Resources.ArgumentOutOfRangeGreaterEqual,
+                    "maxValue",
+                    "minValue"
+                    );
+
                 throw new ArgumentOutOfRangeException("maxValue", maxValue, message);
             }
 
@@ -531,15 +516,20 @@ namespace MathNet.Numerics.RandomSources
 
             if(range == double.PositiveInfinity)
             {
-                string message = string.Format(null, Resources.ArgumentRangeLessEqual,
-                    "minValue", "maxValue", "Double.MaxValue");
+                string message = string.Format(
+                    Resources.ArgumentRangeLessEqual,
+                    "minValue",
+                    "maxValue",
+                    "Double.MaxValue"
+                    );
+
                 throw new ArgumentException(message);
             }
 
             // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
             if(_i >= _longLag)
             {
-                this.Fill();
+                Fill();
             }
             uint x = _x[_i++];
 
@@ -557,7 +547,9 @@ namespace MathNet.Numerics.RandomSources
         /// </remarks>
         /// </remarks>
         /// <returns>A <see cref="Boolean"/> value.</returns>
-        public override bool NextBoolean()
+        public override
+        bool
+        NextBoolean()
         {
             if(_bitCount == 0)
             {
@@ -565,7 +557,7 @@ namespace MathNet.Numerics.RandomSources
                 // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
                 if(_i >= _longLag)
                 {
-                    this.Fill();
+                    Fill();
                 }
                 _bitBuffer = _x[_i++];
 
@@ -590,11 +582,19 @@ namespace MathNet.Numerics.RandomSources
         /// <exception cref="ArgumentNullException">
         /// <paramref name="buffer"/> is a null reference (<see langword="Nothing"/> in Visual Basic). 
         /// </exception>
-        public override void NextBytes(byte[] buffer)
+        public override
+        void
+        NextBytes(
+            byte[] buffer
+            )
         {
             if(buffer == null)
             {
-                string message = string.Format(null, Resources.ArgumentNull, "buffer");
+                string message = string.Format(
+                    Resources.ArgumentNull,
+                    "buffer"
+                    );
+
                 throw new ArgumentNullException("buffer", message);
             }
 
@@ -606,7 +606,7 @@ namespace MathNet.Numerics.RandomSources
                 // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
                 if(_i >= _longLag)
                 {
-                    this.Fill();
+                    Fill();
                 }
                 w = _x[_i++];
 
@@ -622,7 +622,7 @@ namespace MathNet.Numerics.RandomSources
                 // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
                 if(_i >= _longLag)
                 {
-                    this.Fill();
+                    Fill();
                 }
                 w = _x[_i++];
 
@@ -641,6 +641,61 @@ namespace MathNet.Numerics.RandomSources
                 }
             }
         }
-        #endregion
+
+        /// <summary>
+        /// Resets the <see cref="AdditiveLaggedFibonacciRandomSource"/>,
+        /// so that it produces the same pseudo-random number sequence again.
+        /// </summary>
+        public override
+        void
+        Reset()
+        {
+            ResetGenerator();
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether the <see cref="AdditiveLaggedFibonacciRandomSource"/> can be reset,
+        /// so that it produces the same pseudo-random number sequence again.
+        /// </summary>
+        public override bool CanReset
+        {
+            get { return true; }
+        }
+
+        /// <summary>
+        /// Gets or sets the short lag of the Lagged Fibonacci pseudo-random number generator.
+        /// </summary>
+        /// <remarks>Call <see cref="IsValidShortLag"/> to determine whether a value is valid and therefor assignable.</remarks>
+        public int ShortLag
+        {
+            get { return _shortLag; }
+            set
+            {
+                if(this.IsValidShortLag(value))
+                {
+                    _shortLag = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the long lag of the Lagged Fibonacci pseudo-random number generator.
+        /// </summary>
+        /// <remarks>Call <see cref="IsValidLongLag"/> to determine whether a value is valid and therefor assignable.</remarks>
+        public int LongLag
+        {
+            get
+            {
+                return _longLag;
+            }
+            set
+            {
+                if(this.IsValidLongLag(value))
+                {
+                    _longLag = value;
+                    this.Reset();
+                }
+            }
+        }
     }
 }

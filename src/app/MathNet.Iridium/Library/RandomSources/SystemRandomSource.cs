@@ -49,36 +49,35 @@ namespace MathNet.Numerics.RandomSources
     /// The <see cref="SystemRandomSource"/> type internally uses an instance of the <see cref="System.Random"/> type 
     ///   to generate pseudo-random numbers.
     /// </remarks>
-    public class SystemRandomSource : RandomSource
+    public class SystemRandomSource :
+        RandomSource
     {
-        #region instance fields
         /// <summary>
         /// Stores an instance of <see cref="System.Random"/> type that is used to generate random numbers.
         /// </summary>
-        private System.Random _generator;
+        Random _generator;
 
         /// <summary>
         /// Stores the used seed value.
         /// </summary>
-        private int _seed;
+        int _seed;
 
         /// <summary>
         /// Stores an <see cref="Int32"/> used to generate up to 31 random <see cref="Boolean"/> values.
         /// </summary>
-        private int _bitBuffer;
+        int _bitBuffer;
 
         /// <summary>
         /// Stores how many random <see cref="Boolean"/> values still can be generated from <see cref="_bitBuffer"/>.
         /// </summary>
-        private int _bitCount;
-        #endregion
+        int _bitCount;
 
-        #region construction
         /// <summary>
         /// Initializes a new instance of the <see cref="SystemRandomSource"/> class, using a time-dependent default 
         ///   seed value.
         /// </summary>
-        public SystemRandomSource()
+        public
+        SystemRandomSource()
             : this(Environment.TickCount)
         {
         }
@@ -90,53 +89,38 @@ namespace MathNet.Numerics.RandomSources
         /// A number used to calculate a starting value for the pseudo-random number sequence.
         /// If a negative number is specified, the absolute value of the number is used. 
         /// </param>
-        public SystemRandomSource(int seed)
+        public
+        SystemRandomSource(
+            int seed
+            )
         {
             _seed = Math.Abs(seed);
-            this.ResetGenerator();
+            ResetGenerator();
         }
-        #endregion
 
-        #region instance methods
         /// <summary>
         /// Resets the <see cref="SystemRandomSource"/>, so that it produces the same pseudo-random number sequence again.
         /// </summary>
-        private void ResetGenerator()
+        void
+        ResetGenerator()
         {
             // Create a new Random object using the same seed.
-            _generator = new System.Random(_seed);
+            _generator = new Random(_seed);
 
             // Reset helper variables used for generation of random bools.
             _bitBuffer = 0;
             _bitCount = 0;
         }
-        #endregion
-
-        #region overridden Generator members
-        /// <summary>
-        /// Gets a value indicating whether the <see cref="SystemRandomSource"/> can be reset, so that it produces the 
-        ///   same pseudo-random number sequence again.
-        /// </summary>
-        public override bool CanReset
-        {
-            get { return true; }
-        }
-
-        /// <summary>
-        /// Resets the <see cref="SystemRandomSource"/>, so that it produces the same pseudo-random number sequence again.
-        /// </summary>
-        public override void Reset()
-        {
-            ResetGenerator();
-        }
-
+        
         /// <summary>
         /// Returns a nonnegative random number.
         /// </summary>
         /// <returns>
         /// A 32-bit signed integer greater than or equal to zero and less than <see cref="Int32.MaxValue"/>.
         /// </returns>
-        public override int Next()
+        public override
+        int
+        Next()
         {
             return _generator.Next();
         }
@@ -155,7 +139,11 @@ namespace MathNet.Numerics.RandomSources
         /// <exception cref="ArgumentOutOfRangeException">
         /// <paramref name="maxValue"/> is less than 0. 
         /// </exception>
-        public override int Next(int maxValue)
+        public override
+        int
+        Next(
+            int maxValue
+            )
         {
             return _generator.Next(maxValue);
         }
@@ -179,7 +167,12 @@ namespace MathNet.Numerics.RandomSources
         /// <exception cref="ArgumentOutOfRangeException">
         /// <paramref name="minValue"/> is greater than <paramref name="maxValue"/>.
         /// </exception>
-        public override int Next(int minValue, int maxValue)
+        public override
+        int
+        Next(
+            int minValue,
+            int maxValue
+            )
         {
             return _generator.Next(minValue, maxValue);
         }
@@ -191,7 +184,9 @@ namespace MathNet.Numerics.RandomSources
         /// A double-precision floating point number greater than or equal to 0.0, and less than 1.0; that is, 
         ///   the range of return values includes 0.0 but not 1.0.
         /// </returns>
-        public override double NextDouble()
+        public override
+        double
+        NextDouble()
         {
             return _generator.NextDouble();
         }
@@ -210,12 +205,20 @@ namespace MathNet.Numerics.RandomSources
         /// <exception cref="ArgumentOutOfRangeException">
         /// <paramref name="maxValue"/> is less than 0. 
         /// </exception>
-        public override double NextDouble(double maxValue)
+        public override
+        double
+        NextDouble(
+            double maxValue
+            )
         {
             if(maxValue < 0)
             {
-                string message = string.Format(null, Resources.ArgumentOutOfRangeGreaterEqual,
-                    "maxValue", "0.0");
+                string message = string.Format(
+                    Resources.ArgumentOutOfRangeGreaterEqual,
+                    "maxValue",
+                    "0.0"
+                    );
+
                 throw new ArgumentOutOfRangeException("maxValue", maxValue, message);
             }
 
@@ -249,12 +252,21 @@ namespace MathNet.Numerics.RandomSources
         /// The range between <paramref name="minValue"/> and <paramref name="maxValue"/> is greater than
         ///   <see cref="Double.MaxValue"/>.
         /// </exception>
-        public override double NextDouble(double minValue, double maxValue)
+        public override
+        double
+        NextDouble(
+            double minValue,
+            double maxValue
+            )
         {
             if(minValue > maxValue)
             {
-                string message = string.Format(null, Resources.ArgumentOutOfRangeGreaterEqual,
-                    "maxValue", "minValue");
+                string message = string.Format(
+                    Resources.ArgumentOutOfRangeGreaterEqual,
+                    "maxValue",
+                    "minValue"
+                    );
+
                 throw new ArgumentOutOfRangeException("maxValue", maxValue, message);
             }
 
@@ -262,8 +274,13 @@ namespace MathNet.Numerics.RandomSources
 
             if(range == double.PositiveInfinity)
             {
-                string message = string.Format(null, Resources.ArgumentRangeLessEqual,
-                    "minValue", "maxValue", "Double.MaxValue");
+                string message = string.Format(
+                    Resources.ArgumentRangeLessEqual,
+                    "minValue",
+                    "maxValue",
+                    "Double.MaxValue"
+                    );
+
                 throw new ArgumentException(message);
             }
 
@@ -277,7 +294,9 @@ namespace MathNet.Numerics.RandomSources
         /// Buffers 31 random bits (1 int) for future calls, so a new random number is only generated every 31 calls.
         /// </remarks>
         /// <returns>A <see cref="Boolean"/> value.</returns>
-        public override bool NextBoolean()
+        public override
+        bool
+        NextBoolean()
         {
             if(_bitCount == 0)
             {
@@ -305,10 +324,32 @@ namespace MathNet.Numerics.RandomSources
         /// <exception cref="ArgumentNullException">
         /// <paramref name="buffer"/> is a null reference (<see langword="Nothing"/> in Visual Basic). 
         /// </exception>
-        public override void NextBytes(byte[] buffer)
+        public override
+        void
+        NextBytes(
+            byte[] buffer
+            )
         {
             _generator.NextBytes(buffer);
         }
-        #endregion
+
+        /// <summary>
+        /// Resets the <see cref="SystemRandomSource"/>, so that it produces the same pseudo-random number sequence again.
+        /// </summary>
+        public override
+        void
+        Reset()
+        {
+            ResetGenerator();
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether the <see cref="SystemRandomSource"/> can be reset, so that it produces the 
+        ///   same pseudo-random number sequence again.
+        /// </summary>
+        public override bool CanReset
+        {
+            get { return true; }
+        }
     }
 }

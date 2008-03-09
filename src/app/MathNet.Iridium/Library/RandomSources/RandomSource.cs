@@ -42,25 +42,14 @@ using MathNet.Numerics.Distributions;
 
 namespace MathNet.Numerics.RandomSources
 {
+    // TODO (cdr, 2008-03-09): Refactor (either interface or share code)
+
     /// <summary>
     /// Declares common functionality for all random number generators.
     /// </summary>
-    public abstract class RandomSource : IContinuousGenerator
+    public abstract class RandomSource :
+        IContinuousGenerator
     {
-        /// <summary>
-        /// Gets a value indicating whether the random number generator can be reset, so that it produces the same 
-        ///   random number sequence again.
-        /// </summary>
-        public abstract bool CanReset
-        {
-            get;
-        }
-
-        /// <summary>
-        /// Resets the random number generator, so that it produces the same random number sequence again.
-        /// </summary>
-        public abstract void Reset();
-
         /// <summary>
         /// Returns a nonnegative random number less than <see cref="Int32.MaxValue"/>.
         /// </summary>
@@ -68,7 +57,9 @@ namespace MathNet.Numerics.RandomSources
         /// A 32-bit signed integer greater than or equal to 0, and less than <see cref="Int32.MaxValue"/>; that is, 
         ///   the range of return values includes 0 but not <paramref name="Int32.MaxValue"/>.
         /// </returns>
-        public abstract int Next();
+        public abstract
+        int
+        Next();
 
         /// <summary>
         /// Returns a nonnegative random number less than the specified maximum.
@@ -81,7 +72,11 @@ namespace MathNet.Numerics.RandomSources
         /// A 32-bit signed integer greater than or equal to 0, and less than <paramref name="maxValue"/>; that is, 
         ///   the range of return values includes 0 but not <paramref name="maxValue"/>. 
         /// </returns>
-        public abstract int Next(int maxValue);
+        public abstract
+        int
+        Next(
+            int maxValue
+            );
 
         /// <summary>
         /// Returns a random number within the specified range. 
@@ -98,7 +93,12 @@ namespace MathNet.Numerics.RandomSources
         ///   <paramref name="maxValue"/>; that is, the range of return values includes <paramref name="minValue"/> but 
         ///   not <paramref name="maxValue"/>. 
         /// </returns>
-        public abstract int Next(int minValue, int maxValue);
+        public abstract
+        int
+        Next(
+            int minValue,
+            int maxValue
+            );
 
         /// <summary>
         /// Returns a nonnegative floating point random number less than 1.0.
@@ -107,7 +107,9 @@ namespace MathNet.Numerics.RandomSources
         /// A double-precision floating point number greater than or equal to 0.0, and less than 1.0; that is, 
         ///   the range of return values includes 0.0 but not 1.0. 
         /// </returns>
-        public abstract double NextDouble();
+        public abstract
+        double
+        NextDouble();
 
         /// <summary>
         /// Returns a nonnegative floating point random number less than the specified maximum.
@@ -120,7 +122,11 @@ namespace MathNet.Numerics.RandomSources
         /// A double-precision floating point number greater than or equal to 0.0, and less than <paramref name="maxValue"/>; 
         ///   that is, the range of return values includes 0 but not <paramref name="maxValue"/>. 
         /// </returns>
-        public abstract double NextDouble(double maxValue);
+        public abstract
+        double
+        NextDouble(
+            double maxValue
+            );
 
         /// <summary>
         /// Returns a floating point random number within the specified range. 
@@ -141,7 +147,12 @@ namespace MathNet.Numerics.RandomSources
         ///   <paramref name="maxValue"/>; that is, the range of return values includes <paramref name="minValue"/> but 
         ///   not <paramref name="maxValue"/>. 
         /// </returns>
-        public abstract double NextDouble(double minValue, double maxValue);
+        public abstract
+        double
+        NextDouble(
+            double minValue,
+            double maxValue
+            );
 
         /// <summary>
         /// Returns a random Boolean value.
@@ -150,7 +161,9 @@ namespace MathNet.Numerics.RandomSources
         /// Buffers 31 random bits for future calls, so the random number generator is only invoked once in every 31 calls.
         /// </remarks>
         /// <returns>A <see cref="Boolean"/> value.</returns>
-        public abstract bool NextBoolean();
+        public abstract
+        bool
+        NextBoolean();
 
         /// <summary>
         /// Fills the elements of a specified array of bytes with random numbers. 
@@ -160,6 +173,27 @@ namespace MathNet.Numerics.RandomSources
         ///   equal to <see cref="Byte.MaxValue"/>.
         /// </remarks>
         /// <param name="buffer">An array of bytes to contain random numbers.</param>
-        public abstract void NextBytes(byte[] buffer);
+        public abstract
+        void
+        NextBytes(
+            byte[] buffer
+            );
+
+
+        /// <summary>
+        /// Resets the random number generator, so that it produces the same random number sequence again.
+        /// </summary>
+        public abstract
+        void
+        Reset();
+
+        /// <summary>
+        /// Gets a value indicating whether the random number generator can be reset, so that it produces the same 
+        ///   random number sequence again.
+        /// </summary>
+        public abstract bool CanReset
+        {
+            get;
+        }
     }
 }

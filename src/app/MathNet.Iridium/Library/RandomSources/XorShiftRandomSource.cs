@@ -85,83 +85,80 @@ namespace MathNet.Numerics.RandomSources
     ///   and the theoretical background on xorshift random number generators published by George Marsaglia 
     ///   in this paper "<a href="http://www.jstatsoft.org/v08/i14/xorshift.pdf">Xorshift RNGs</a>".
     /// </remarks>
-    public class XorShiftRandomSource : RandomSource
+    public class XorShiftRandomSource :
+        RandomSource
     {
-        #region class fields
         /// <summary>
         /// Represents the seed for the <see cref="_y"/> variable. This field is constant.
         /// </summary>
         /// <remarks>The value of this constant is 362436069.</remarks>
-        private const uint SeedY = 362436069;
+        const uint SeedY = 362436069;
 
         /// <summary>
         /// Represents the seed for the <see cref="_z"/> variable. This field is constant.
         /// </summary>
         /// <remarks>The value of this constant is 521288629.</remarks>
-        private const uint SeedZ = 521288629;
+        const uint SeedZ = 521288629;
 
         /// <summary>
         /// Represents the seed for the <see cref="_w"/> variable. This field is constant.
         /// </summary>
         /// <remarks>The value of this constant is 88675123.</remarks>
-        private const uint SeedW = 88675123;
+        const uint SeedW = 88675123;
 
         /// <summary>
         /// Represents the multiplier that computes a double-precision floating point number greater than or equal to 0.0 
         ///   and less than 1.0 when it gets applied to a nonnegative 32-bit signed integer.
         /// </summary>
-        private const double IntToDoubleMultiplier = 1.0 / ((double)int.MaxValue + 1.0);
+        const double IntToDoubleMultiplier = 1.0 / ((double)int.MaxValue + 1.0);
 
         /// <summary>
         /// Represents the multiplier that computes a double-precision floating point number greater than or equal to 0.0 
         ///   and less than 1.0  when it gets applied to a 32-bit unsigned integer.
         /// </summary>
-        private const double UIntToDoubleMultiplier = 1.0 / ((double)uint.MaxValue + 1.0);
-        #endregion
+        const double UIntToDoubleMultiplier = 1.0 / ((double)uint.MaxValue + 1.0);
 
-        #region instance fields
         /// <summary>
         /// Stores the last but three unsigned random number. 
         /// </summary>
-        private uint _x;
+        uint _x;
 
         /// <summary>
         /// Stores the last but two unsigned random number. 
         /// </summary>
-        private uint _y;
+        uint _y;
 
         /// <summary>
         /// Stores the last but one unsigned random number. 
         /// </summary>
-        private uint _z;
+        uint _z;
 
         /// <summary>
         /// Stores the last generated unsigned random number. 
         /// </summary>
-        private uint _w;
+        uint _w;
 
         /// <summary>
         /// Stores the used seed value.
         /// </summary>
-        private uint _seed;
+        uint _seed;
 
         /// <summary>
         /// Stores an <see cref="UInt32"/> used to generate up to 32 random <see cref="Boolean"/> values.
         /// </summary>
-        private uint _bitBuffer;
+        uint _bitBuffer;
 
         /// <summary>
         /// Stores how many random <see cref="Boolean"/> values still can be generated from <see cref="_bitBuffer"/>.
         /// </summary>
-        private int _bitCount;
-        #endregion
+        int _bitCount;
 
-        #region construction
         /// <summary>
         /// Initializes a new instance of the <see cref="XorShiftRandomSource"/> class, using a time-dependent default 
         ///   seed value.
         /// </summary>
-        public XorShiftRandomSource()
+        public
+        XorShiftRandomSource()
             : this((uint)Math.Abs(Environment.TickCount))
         {
         }
@@ -173,7 +170,10 @@ namespace MathNet.Numerics.RandomSources
         /// A number used to calculate a starting value for the pseudo-random number sequence.
         /// If a negative number is specified, the absolute value of the number is used. 
         /// </param>
-        public XorShiftRandomSource(int seed)
+        public
+        XorShiftRandomSource(
+            int seed
+            )
             : this((uint)Math.Abs(seed))
         {
         }
@@ -185,18 +185,21 @@ namespace MathNet.Numerics.RandomSources
         /// An unsigned number used to calculate a starting value for the pseudo-random number sequence.
         /// </param>
         [CLSCompliant(false)]
-        public XorShiftRandomSource(uint seed)
+        public
+        XorShiftRandomSource(
+            uint seed
+            )
         {
             _seed = seed;
-            this.ResetGenerator();
+            ResetGenerator();
         }
-        #endregion
 
-        #region instance methods
         /// <summary>
-        /// Resets the <see cref="XorShiftRandomSource"/>, so that it produces the same pseudo-random number sequence again.
+        /// Resets the <see cref="XorShiftRandomSource"/>,
+        /// so that it produces the same pseudo-random number sequence again.
         /// </summary>
-        private void ResetGenerator()
+        void
+        ResetGenerator()
         {
             // "The seed set for xor128 is four 32-bit integers x,y,z,w not all 0, ..." (George Marsaglia)
             // To meet that requirement the y, z, w seeds are constant values greater 0.
@@ -218,7 +221,9 @@ namespace MathNet.Numerics.RandomSources
         ///   less than or equal to <see cref="UInt32.MaxValue"/>.
         /// </returns>
         [CLSCompliant(false)]
-        public uint NextUInt()
+        public
+        uint
+        NextUInt()
         {
             uint t = (_x ^ (_x << 11));
             _x = _y;
@@ -234,7 +239,9 @@ namespace MathNet.Numerics.RandomSources
         /// A 32-bit signed integer greater than or equal to 0, and less than or equal to <see cref="Int32.MaxValue"/>; 
         ///   that is, the range of return values includes 0 and <paramref name="Int32.MaxValue"/>.
         /// </returns>
-        public int NextInclusiveMaxValue()
+        public
+        int
+        NextInclusiveMaxValue()
         {
             // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
             uint t = (_x ^ (_x << 11));
@@ -245,25 +252,6 @@ namespace MathNet.Numerics.RandomSources
 
             return (int)(w >> 1);
         }
-        #endregion
-
-        #region overridden Generator members
-        /// <summary>
-        /// Gets a value indicating whether the <see cref="XorShiftRandomSource"/> can be reset, so that it produces the 
-        ///   same pseudo-random number sequence again.
-        /// </summary>
-        public override bool CanReset
-        {
-            get { return true; }
-        }
-
-        /// <summary>
-        /// Resets the <see cref="XorShiftRandomSource"/>, so that it produces the same pseudo-random number sequence again.
-        /// </summary>
-        public override void Reset()
-        {
-            ResetGenerator();
-        }
 
         /// <summary>
         /// Returns a nonnegative random number less than <see cref="Int32.MaxValue"/>.
@@ -272,7 +260,9 @@ namespace MathNet.Numerics.RandomSources
         /// A 32-bit signed integer greater than or equal to 0, and less than <see cref="Int32.MaxValue"/>; that is, 
         ///   the range of return values includes 0 but not <paramref name="Int32.MaxValue"/>.
         /// </returns>
-        public override int Next()
+        public override
+        int
+        Next()
         {
             // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
             uint t = (_x ^ (_x << 11));
@@ -285,7 +275,7 @@ namespace MathNet.Numerics.RandomSources
             // Exclude Int32.MaxValue from the range of return values.
             if(result == Int32.MaxValue)
             {
-                return this.Next();
+                return Next();
             }
             else
             {
@@ -307,12 +297,20 @@ namespace MathNet.Numerics.RandomSources
         /// <exception cref="ArgumentOutOfRangeException">
         /// <paramref name="maxValue"/> is less than 0. 
         /// </exception>
-        public override int Next(int maxValue)
+        public override
+        int
+        Next(
+            int maxValue
+            )
         {
             if(maxValue < 0)
             {
-                string message = string.Format(null, Resources.ArgumentOutOfRangeGreaterEqual,
-                    "maxValue", "0");
+                string message = string.Format(
+                    Resources.ArgumentOutOfRangeGreaterEqual,
+                    "maxValue",
+                    "0"
+                    );
+
                 throw new ArgumentOutOfRangeException("maxValue", maxValue, message);
             }
 
@@ -347,12 +345,21 @@ namespace MathNet.Numerics.RandomSources
         /// <exception cref="ArgumentOutOfRangeException">
         /// <paramref name="minValue"/> is greater than <paramref name="maxValue"/>.
         /// </exception>
-        public override int Next(int minValue, int maxValue)
+        public override
+        int
+        Next(
+            int minValue,
+            int maxValue
+            )
         {
             if(minValue > maxValue)
             {
-                string message = string.Format(null, Resources.ArgumentOutOfRangeGreaterEqual,
-                   "maxValue", "minValue");
+                string message = string.Format(
+                    Resources.ArgumentOutOfRangeGreaterEqual,
+                   "maxValue",
+                   "minValue"
+                   );
+
                 throw new ArgumentOutOfRangeException("maxValue", maxValue, message);
             }
 
@@ -386,7 +393,9 @@ namespace MathNet.Numerics.RandomSources
         /// A double-precision floating point number greater than or equal to 0.0, and less than 1.0; that is, 
         ///   the range of return values includes 0.0 but not 1.0.
         /// </returns>
-        public override double NextDouble()
+        public override
+        double
+        NextDouble()
         {
             // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
             uint t = (_x ^ (_x << 11));
@@ -417,12 +426,20 @@ namespace MathNet.Numerics.RandomSources
         /// <exception cref="ArgumentOutOfRangeException">
         /// <paramref name="maxValue"/> is less than 0. 
         /// </exception>
-        public override double NextDouble(double maxValue)
+        public override
+        double
+        NextDouble(
+            double maxValue
+            )
         {
             if(maxValue < 0.0)
             {
-                string message = string.Format(null, Resources.ArgumentOutOfRangeGreaterEqual,
-                    "maxValue", "0.0");
+                string message = string.Format(
+                    Resources.ArgumentOutOfRangeGreaterEqual,
+                    "maxValue",
+                    "0.0"
+                    );
+
                 throw new ArgumentOutOfRangeException("maxValue", maxValue, message);
             }
 
@@ -465,12 +482,21 @@ namespace MathNet.Numerics.RandomSources
         /// The range between <paramref name="minValue"/> and <paramref name="maxValue"/> is greater than
         ///   <see cref="Double.MaxValue"/>.
         /// </exception>
-        public override double NextDouble(double minValue, double maxValue)
+        public override
+        double
+        NextDouble(
+            double minValue,
+            double maxValue
+            )
         {
             if(minValue > maxValue)
             {
-                string message = string.Format(null, Resources.ArgumentOutOfRangeGreaterEqual,
-                    "maxValue", "minValue");
+                string message = string.Format(
+                    Resources.ArgumentOutOfRangeGreaterEqual,
+                    "maxValue",
+                    "minValue"
+                    );
+
                 throw new ArgumentOutOfRangeException("maxValue", maxValue, message);
             }
 
@@ -478,8 +504,13 @@ namespace MathNet.Numerics.RandomSources
 
             if(range == double.PositiveInfinity)
             {
-                string message = string.Format(null, Resources.ArgumentRangeLessEqual,
-                    "minValue", "maxValue", "Double.MaxValue");
+                string message = string.Format(
+                    Resources.ArgumentRangeLessEqual,
+                    "minValue",
+                    "maxValue",
+                    "Double.MaxValue"
+                    );
+
                 throw new ArgumentException(message);
             }
 
@@ -504,7 +535,9 @@ namespace MathNet.Numerics.RandomSources
         /// </remarks>
         /// </remarks>
         /// <returns>A <see cref="Boolean"/> value.</returns>
-        public override bool NextBoolean()
+        public override
+        bool
+        NextBoolean()
         {
             if(_bitCount == 0)
             {
@@ -537,11 +570,19 @@ namespace MathNet.Numerics.RandomSources
         /// <exception cref="ArgumentNullException">
         /// <paramref name="buffer"/> is a null reference (<see langword="Nothing"/> in Visual Basic). 
         /// </exception>
-        public override void NextBytes(byte[] buffer)
+        public override
+        void
+        NextBytes(
+            byte[] buffer
+            )
         {
             if(buffer == null)
             {
-                string message = string.Format(null, Resources.ArgumentNull, "buffer");
+                string message = string.Format(
+                    Resources.ArgumentNull,
+                    "buffer"
+                    );
+
                 throw new ArgumentNullException("buffer", message);
             }
 
@@ -598,6 +639,24 @@ namespace MathNet.Numerics.RandomSources
             _z = z;
             _w = w;
         }
-        #endregion
+
+        /// <summary>
+        /// Resets the <see cref="XorShiftRandomSource"/>, so that it produces the same pseudo-random number sequence again.
+        /// </summary>
+        public override
+        void
+        Reset()
+        {
+            ResetGenerator();
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether the <see cref="XorShiftRandomSource"/> can be reset, so that it produces the 
+        ///   same pseudo-random number sequence again.
+        /// </summary>
+        public override bool CanReset
+        {
+            get { return true; }
+        }
     }
 }
