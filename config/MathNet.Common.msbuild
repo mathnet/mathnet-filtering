@@ -396,7 +396,7 @@
 
   <Target Name="BuildVerificationFxCop" Condition="'$(PackageName)'!=''">
     <MakeDir Directories="$(BuildVerificationPath)" Condition="!Exists('$(BuildVerificationPath)')" />
-    <Exec Command="$(QUOT)@(FxCopExe)$(QUOT) /project:$(ConfigPath)$(PackageName).fxcop /dict:$(ConfigPath)MathNet.Dictionary.xml /out:$(BuildVerificationPath)$(PackageName).fxcop-result.xml" ContinueOnError="true" WorkingDirectory="$(BuildVerificationPath)" />
+    <Exec Command="$(QUOT)@(FxCopExe)$(QUOT) /project:$(ConfigPath)$(PackageName).fxcop /dic:$(ConfigPath)MathNet.Dictionary.xml /out:$(BuildVerificationPath)$(PackageName).fxcop-result.xml" ContinueOnError="true" WorkingDirectory="$(BuildVerificationPath)" />
   </Target>
 
   <Target Name="BuildVerificationSimian" Condition="'$(PackageName)'!=''">
