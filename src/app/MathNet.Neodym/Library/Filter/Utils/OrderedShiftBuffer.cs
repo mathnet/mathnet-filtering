@@ -46,7 +46,6 @@ namespace MathNet.SignalProcessing.Filter.Utils
         {
             _len = length;
             _mid = length >> 1; // 4 items -> 3rd item; 5 items -> 3rd item; 6 items -> 4th item etc.
-            _initialized = false;
             _ordered = new LinkedList<double>();
             _shift = new LinkedList<LinkedListNode<double>>();
         }

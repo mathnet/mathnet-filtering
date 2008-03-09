@@ -285,6 +285,11 @@ namespace MathNet.SignalProcessing.Filter
             double[] samples
             )
         {
+            if(null == samples)
+            {
+                return null;
+            }
+
             double[] ret = new double[samples.Length];
             for(int i = 0; i < samples.Length; i++)
             {

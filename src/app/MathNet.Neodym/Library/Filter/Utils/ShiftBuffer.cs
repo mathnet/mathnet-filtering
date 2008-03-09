@@ -51,6 +51,9 @@ namespace MathNet.SignalProcessing.Filter.Utils
             double[] buffer
             )
         {
+            if(null == buffer)
+                throw new ArgumentNullException("buffer");
+
             _size = buffer.Length;
             _buffer = buffer;
         }
@@ -87,6 +90,9 @@ namespace MathNet.SignalProcessing.Filter.Utils
             double[] samples
             )
         {
+            if(null == samples)
+                throw new ArgumentNullException("samples");
+
             int len = Math.Min(samples.Length, _size);
             double sum = 0;
             int j = _offset;
@@ -110,6 +116,9 @@ namespace MathNet.SignalProcessing.Filter.Utils
             int count
             )
         {
+            if(null == samples)
+                throw new ArgumentNullException("samples");
+
             int end = Math.Min(
                 Math.Min(samples.Length, _size + sampleOffset),
                 count + sampleOffset

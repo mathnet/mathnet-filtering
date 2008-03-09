@@ -20,6 +20,7 @@
 #endregion
 
 using System;
+using MathNet.SignalProcessing.Properties;
 
 namespace MathNet.SignalProcessing.Filter.IIR
 {
@@ -48,12 +49,13 @@ namespace MathNet.SignalProcessing.Filter.IIR
             double[] coefficients
             )
         {
+            if(null == coefficients)
+                throw new ArgumentNullException("coefficients");
             if((coefficients.Length & 1) != 0)
-                throw new ArgumentException("Even number of coefficients required", "coefficients");
+                throw new ArgumentException(Resources.ArgumentEvenNumberOfCoefficients, "coefficients");
 
             _size = coefficients.Length;
             _halfSize = _size >> 1;
-            _offset = 0;
             _leftCoefficients = new double[_size];
             _rightCoefficients = new double[_size];
             for(int i = 0; i < _halfSize; i++)

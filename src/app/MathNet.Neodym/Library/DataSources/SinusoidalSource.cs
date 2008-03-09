@@ -57,7 +57,7 @@ namespace MathNet.SignalProcessing.DataSources
             _mean = mean;
             _amplitude = amplitude;
             _phaseStep = frequency / samplingRate * _pi2;
-            _nextPhase = -delay * _phaseStep;
+            _nextPhase = phase - delay * _phaseStep;
         }
 
         /// <summary>

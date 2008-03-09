@@ -49,7 +49,6 @@ namespace MathNet.SignalProcessing.Filter.FIR
             )
         {
             _size = coefficients.Count;
-            _offset = 0;
             _buffer = new double[_size];
             _coefficients = new double[_size << 1];
             for(int i = 0; i < _size; i++)

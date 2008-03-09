@@ -26,7 +26,7 @@ namespace MathNet.SignalProcessing.DataSources
     /// <summary>
     /// Generators for sinusidual and theoretical signal vectors. 
     /// </summary>
-    public class SignalGenerator
+    public static class SignalGenerator
     {
         /// <summary>
         /// Create a Sine Signal Sample Vector.
