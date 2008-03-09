@@ -49,18 +49,19 @@ namespace MathNet.Numerics.Distributions
     /// </remarks>
     public sealed class ArbitraryDistribution : DiscreteDistribution
     {
-        private int _first;
-        private double[] _pmf;
-        private double[] _cdf;
-        private int _last, _n;
-        private double _mean, _variance;
+        int _first;
+        double[] _pmf;
+        double[] _cdf;
+        int _last, _n;
+        double _mean, _variance;
 
         #region Construction
         /// <summary>
         /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
         /// as underlying random number generator.
         /// </summary>
-        public ArbitraryDistribution()
+        public
+        ArbitraryDistribution()
             : base()
         {
             SetDistributionParameters(0, 1.0);
@@ -74,7 +75,10 @@ namespace MathNet.Numerics.Distributions
         /// <exception cref="ArgumentNullException">
         /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
-        public ArbitraryDistribution(RandomSource random)
+        public
+        ArbitraryDistribution(
+            RandomSource random
+            )
             : base(random)
         {
             SetDistributionParameters(0, 1.0);
@@ -84,7 +88,11 @@ namespace MathNet.Numerics.Distributions
         /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
         /// as underlying random number generator.
         /// </summary>
-        public ArbitraryDistribution(int offset, params double[] probabilityMass)
+        public
+        ArbitraryDistribution(
+            int offset,
+            params double[] probabilityMass
+            )
             : base()
         {
             SetDistributionParameters(offset, probabilityMass);
@@ -119,7 +127,12 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Configure all distribution parameters.
         /// </summary>
-        public void SetDistributionParameters(int offset, params double[] probabilityMass)
+        public
+        void
+        SetDistributionParameters(
+            int offset,
+            params double[] probabilityMass
+            )
         {
             if(!IsValidParameterSet(offset, probabilityMass))
                 throw new ArgumentOutOfRangeException();
@@ -159,7 +172,12 @@ namespace MathNet.Numerics.Distributions
         /// <returns>
         /// <see langword="true"/> if the probabilities sum up to 1; otherwise, <see langword="false"/>.
         /// </returns>
-        public static bool IsValidParameterSet(int offset, params double[] probabilityMass)
+        public static
+        bool
+        IsValidParameterSet(
+            int offset,
+            params double[] probabilityMass
+            )
         {
             if(null == probabilityMass)
                 throw new ArgumentNullException("probabilityMass");
@@ -227,7 +245,11 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Discrete probability mass function (pmf) of this probability distribution.
         /// </summary>
-        public override double ProbabilityMass(int x)
+        public override
+        double
+        ProbabilityMass(
+            int x
+            )
         {
             if(x < _first || x > _last)
                 return 0.0;
@@ -237,7 +259,11 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Continuous cumulative distribution function (cdf) of this probability distribution.
         /// </summary>
-        public override double CumulativeDistribution(double x)
+        public override
+        double
+        CumulativeDistribution(
+            double x
+            )
         {
             if(x < _first)
                 return 0.0;
@@ -253,11 +279,15 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Generate a new random number according to this distribution.
         /// </summary>
-        public override int NextInt32()
+        public override
+        int
+        NextInt32()
         {
             double rnd = this.RandomSource.NextDouble();
             if(rnd >= _cdf[_n - 1])
+            {
                 return _last;
+            }
 
             // TODO: consider using binary search instead
             int index = 0;

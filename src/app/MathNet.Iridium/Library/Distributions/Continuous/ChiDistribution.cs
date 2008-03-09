@@ -51,17 +51,18 @@ namespace MathNet.Numerics.Distributions
     /// </remarks>
     public sealed class ChiDistribution : ContinuousDistribution
     {
-        private int _degreesOfFreedom;
-        private StandardDistribution _standard;
-        private double _lngammaDegreesOfFreedomHalf;
-        private double? _mean;
+        int _degreesOfFreedom;
+        StandardDistribution _standard;
+        double _lngammaDegreesOfFreedomHalf;
+        double? _mean;
 
         #region Construction
         /// <summary>
         /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
         /// as underlying random number generator.
         /// </summary>
-        public ChiDistribution()
+        public
+        ChiDistribution()
             : base()
         {
             _standard = new StandardDistribution(this.RandomSource);
@@ -76,7 +77,10 @@ namespace MathNet.Numerics.Distributions
         /// <exception cref="ArgumentNullException">
         /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
-        public ChiDistribution(RandomSource random)
+        public
+        ChiDistribution(
+            RandomSource random
+            )
             : base(random)
         {
             _standard = new StandardDistribution(random);
@@ -87,7 +91,10 @@ namespace MathNet.Numerics.Distributions
         /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
         /// as underlying random number generator.
         /// </summary>
-        public ChiDistribution(int degreesOfFreedom)
+        public
+        ChiDistribution(
+            int degreesOfFreedom
+            )
             : base()
         {
             _standard = new StandardDistribution(this.RandomSource);
@@ -121,7 +128,11 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Configure all distribution parameters.
         /// </summary>
-        public void SetDistributionParameters(int degreesOfFreedom)
+        public
+        void
+        SetDistributionParameters(
+            int degreesOfFreedom
+            )
         {
             if(!IsValidParameterSet(degreesOfFreedom))
                 throw new ArgumentOutOfRangeException();
@@ -137,7 +148,11 @@ namespace MathNet.Numerics.Distributions
         /// <returns>
         /// <see langword="true"/> if degreesOfFreedom is greater than 0.0; otherwise, <see langword="false"/>.
         /// </returns>
-        public static bool IsValidParameterSet(int degreesOfFreedom)
+        public static
+        bool
+        IsValidParameterSet(
+            int degreesOfFreedom
+            )
         {
             return degreesOfFreedom > 0.0;
         }
@@ -210,7 +225,11 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Continuous probability density function (pdf) of this probability distribution.
         /// </summary>
-        public override double ProbabilityDensity(double x)
+        public override
+        double
+        ProbabilityDensity(
+            double x
+            )
         {
             return Math.Exp((1.0 - 0.5 * _degreesOfFreedom) * Constants.Ln2 + (_degreesOfFreedom - 1) * Math.Log(x) - (0.5 * x * x) - _lngammaDegreesOfFreedomHalf);
         }
@@ -218,7 +237,11 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Continuous cumulative distribution function (cdf) of this probability distribution.
         /// </summary>
-        public override double CumulativeDistribution(double x)
+        public override
+        double
+        CumulativeDistribution(
+            double x
+            )
         {
             return Fn.GammaRegularized(0.5 * _degreesOfFreedom, 0.5 * x * x);
         }
@@ -229,7 +252,9 @@ namespace MathNet.Numerics.Distributions
         /// Returns a chi distributed floating point random number.
         /// </summary>
         /// <returns>A chi distributed double-precision floating point number.</returns>
-        public override double NextDouble()
+        public override
+        double
+        NextDouble()
         {
             double sum = 0.0;
             for(int i = 0; i < _degreesOfFreedom; i++)

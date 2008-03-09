@@ -67,17 +67,18 @@ namespace MathNet.Numerics.Distributions
     /// </remarks>
     public sealed class TriangularDistribution : ContinuousDistribution
     {
-        private double _a;
-        private double _b;
-        private double _c;
-        private double _diff, _lowerPart, _upperPart, helper3, helper4;
+        double _a;
+        double _b;
+        double _c;
+        double _diff, _lowerPart, _upperPart, helper3, helper4;
 
         #region Construction
         /// <summary>
         /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
         /// as underlying random number generator.
         /// </summary>
-        public TriangularDistribution()
+        public
+        TriangularDistribution()
             : base()
         {
             SetDistributionParameters(0.0, 1.0, 0.5);
@@ -91,7 +92,10 @@ namespace MathNet.Numerics.Distributions
         /// <exception cref="ArgumentNullException">
         /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
-        public TriangularDistribution(RandomSource random)
+        public
+        TriangularDistribution(
+            RandomSource random
+            )
             : base(random)
         {
             SetDistributionParameters(0.0, 1.0, 0.5);
@@ -101,7 +105,12 @@ namespace MathNet.Numerics.Distributions
         /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
         /// as underlying random number generator.
         /// </summary>
-        public TriangularDistribution(double lowerLimit, double upperLimit, double center)
+        public
+        TriangularDistribution(
+            double lowerLimit,
+            double upperLimit,
+            double center
+            )
             : base()
         {
             SetDistributionParameters(lowerLimit, upperLimit, center);
@@ -145,7 +154,13 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Configure all distribution parameters.
         /// </summary>
-        public void SetDistributionParameters(double lowerLimit, double upperLimit, double center)
+        public
+        void
+        SetDistributionParameters(
+            double lowerLimit,
+            double upperLimit,
+            double center
+            )
         {
             if(!IsValidParameterSet(lowerLimit, upperLimit, center))
                 throw new ArgumentOutOfRangeException();
@@ -167,7 +182,13 @@ namespace MathNet.Numerics.Distributions
         /// <returns>
         /// <see langword="true"/> if both shape and rate are greater than 0.0; otherwise, <see langword="false"/>.
         /// </returns>
-        public static bool IsValidParameterSet(double lowerLimit, double upperLimit, double center)
+        public static
+        bool
+        IsValidParameterSet(
+            double lowerLimit,
+            double upperLimit,
+            double center
+            )
         {
             return lowerLimit < upperLimit && lowerLimit <= center && center <= upperLimit;
         }
@@ -236,7 +257,11 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Continuous probability density function (pdf) of this probability distribution.
         /// </summary>
-        public override double ProbabilityDensity(double x)
+        public override
+        double
+        ProbabilityDensity(
+            double x
+            )
         {
             if(x <= _a)
                 return 0.0;
@@ -250,7 +275,11 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Continuous cumulative distribution function (cdf) of this probability distribution.
         /// </summary>
-        public override double CumulativeDistribution(double x)
+        public override
+        double
+        CumulativeDistribution(
+            double x
+            )
         {
             if(x <= _a)
                 return 0.0;
@@ -273,7 +302,9 @@ namespace MathNet.Numerics.Distributions
         /// Returns a triangular distributed floating point random number.
         /// </summary>
         /// <returns>A triangular distributed double-precision floating point number.</returns>
-        public override double NextDouble()
+        public override
+        double
+        NextDouble()
         {
             double genNum = this.RandomSource.NextDouble();
             if(genNum <= _lowerPart / _diff)

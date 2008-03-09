@@ -104,14 +104,15 @@ namespace MathNet.Numerics.Distributions
     /// </remarks>
     public sealed class GeometricDistribution : DiscreteDistribution
     {
-        private double _p;
+        double _p;
 
         #region Construction
         /// <summary>
         /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
         /// as underlying random number generator.
         /// </summary>
-        public GeometricDistribution()
+        public
+        GeometricDistribution()
             : base()
         {
             SetDistributionParameters(0.5);
@@ -125,7 +126,10 @@ namespace MathNet.Numerics.Distributions
         /// <exception cref="ArgumentNullException">
         /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
-        public GeometricDistribution(RandomSource random)
+        public
+        GeometricDistribution(
+            RandomSource random
+            )
             : base(random)
         {
             SetDistributionParameters(0.5);
@@ -135,7 +139,10 @@ namespace MathNet.Numerics.Distributions
         /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
         /// as underlying random number generator.
         /// </summary>
-        public GeometricDistribution(double probabilityOfSuccess)
+        public
+        GeometricDistribution(
+            double probabilityOfSuccess
+            )
             : base()
         {
             SetDistributionParameters(probabilityOfSuccess);
@@ -155,7 +162,11 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Configure all distribution parameters.
         /// </summary>
-        public void SetDistributionParameters(double probabilityOfSuccess)
+        public
+        void
+        SetDistributionParameters(
+            double probabilityOfSuccess
+            )
         {
             if(!IsValidParameterSet(probabilityOfSuccess))
                 throw new ArgumentOutOfRangeException("probabilityOfSuccess");
@@ -169,7 +180,11 @@ namespace MathNet.Numerics.Distributions
         /// <returns>
         /// <see langword="true"/> if value is greater than or equal to 0.0, and less than or equal to 1.0; otherwise, <see langword="false"/>.
         /// </returns>
-        public static bool IsValidParameterSet(double probabilityOfSuccess)
+        public static
+        bool
+        IsValidParameterSet(
+            double probabilityOfSuccess
+            )
         {
             return probabilityOfSuccess >= 0.0 && probabilityOfSuccess <= 1.0;
         }
@@ -227,7 +242,11 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Discrete probability mass function (pmf) of this probability distribution.
         /// </summary>
-        public override double ProbabilityMass(int x)
+        public override
+        double
+        ProbabilityMass(
+            int x
+            )
         {
             return _p * Math.Pow(1.0 - _p, x - 1);
         }
@@ -235,7 +254,11 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Continuous cumulative distribution function (cdf) of this probability distribution.
         /// </summary>
-        public override double CumulativeDistribution(double x)
+        public override
+        double
+        CumulativeDistribution(
+            double x
+            )
         {
             return 1.0 - Math.Pow(1.0 - _p, x);
         }
@@ -246,7 +269,9 @@ namespace MathNet.Numerics.Distributions
         /// Returns a geometric distributed floating point random number.
         /// </summary>
         /// <returns>A geometric distributed double-precision floating point number.</returns>
-        public override int NextInt32()
+        public override
+        int
+        NextInt32()
         {
             // TODO: Implement direct transformation instead of simulation
             int samples;

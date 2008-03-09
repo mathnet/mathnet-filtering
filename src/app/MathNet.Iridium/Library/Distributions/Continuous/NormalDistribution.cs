@@ -44,16 +44,17 @@ namespace MathNet.Numerics.Distributions
     /// </remarks>
     public sealed class NormalDistribution : ContinuousDistribution
     {
-        private double _mu;
-        private double _sigma;
-        private StandardDistribution _standard;
+        double _mu;
+        double _sigma;
+        StandardDistribution _standard;
 
         #region Construction
         /// <summary>
         /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
         /// as underlying random number generator.
         /// </summary>
-        public NormalDistribution()
+        public
+        NormalDistribution()
             : base()
         {
             _standard = new StandardDistribution(this.RandomSource);
@@ -68,7 +69,10 @@ namespace MathNet.Numerics.Distributions
         /// <exception cref="ArgumentNullException">
         /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
-        public NormalDistribution(RandomSource random)
+        public
+        NormalDistribution(
+            RandomSource random
+            )
             : base(random)
         {
             _standard = new StandardDistribution(random);
@@ -79,7 +83,11 @@ namespace MathNet.Numerics.Distributions
         /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
         /// as underlying random number generator.
         /// </summary>
-        public NormalDistribution(double mu, double sigma)
+        public
+        NormalDistribution(
+            double mu,
+            double sigma
+            )
             : base()
         {
             _standard = new StandardDistribution(this.RandomSource);
@@ -122,7 +130,12 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Configure all distribution parameters.
         /// </summary>
-        public void SetDistributionParameters(double mu, double sigma)
+        public
+        void
+        SetDistributionParameters(
+            double mu,
+            double sigma
+            )
         {
             if(!IsValidParameterSet(mu, sigma))
                 throw new ArgumentOutOfRangeException();
@@ -137,7 +150,12 @@ namespace MathNet.Numerics.Distributions
         /// <returns>
         /// <see langword="true"/> if sigma is greater than 0.0; otherwise, <see langword="false"/>.
         /// </returns>
-        public static bool IsValidParameterSet(double mu, double sigma)
+        public static
+        bool
+        IsValidParameterSet(
+            double mu,
+            double sigma
+            )
         {
             return sigma > 0.0;
         }
@@ -195,7 +213,11 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Continuous probability density function (pdf) of this probability distribution.
         /// </summary>
-        public override double ProbabilityDensity(double x)
+        public override
+        double
+        ProbabilityDensity(
+            double x
+            )
         {
             double xmu = x - _mu;
             return Constants.InvSqrt2Pi / _sigma * Math.Exp(xmu * xmu / (-2.0 * _sigma * _sigma));
@@ -204,7 +226,11 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Continuous cumulative distribution function (cdf) of this probability distribution.
         /// </summary>
-        public override double CumulativeDistribution(double x)
+        public override
+        double
+        CumulativeDistribution(
+            double x
+            )
         {
             return 0.5 * (1.0 + Fn.Erf((x - _mu) / (_sigma * Constants.Sqrt2)));
         }
@@ -213,7 +239,11 @@ namespace MathNet.Numerics.Distributions
         /// Inverse of the continuous cumulative distribution function of this probability distribution.
         /// </summary>
         /// <seealso cref="NormalDistribution.CumulativeDistribution"/>
-        public double InverseCumulativeDistribution(double x)
+        public
+        double
+        InverseCumulativeDistribution(
+            double x
+            )
         {
             return _sigma * Constants.Sqrt2 * Fn.ErfInverse(2.0 * x - 1.0) + _mu;
         }
@@ -224,7 +254,9 @@ namespace MathNet.Numerics.Distributions
         /// Returns a normal/gaussian distributed floating point random number.
         /// </summary>
         /// <returns>A normal distributed double-precision floating point number.</returns>
-        public override double NextDouble()
+        public override
+        double
+        NextDouble()
         {
             return _mu + _standard.NextDouble() * _sigma;
         }

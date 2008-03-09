@@ -52,14 +52,15 @@ namespace MathNet.Numerics.Distributions
     /// </remarks>
     public sealed class BernoulliDistribution : DiscreteDistribution
     {
-        private double _p;
+        double _p;
 
         #region Construction
         /// <summary>
         /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
         /// as underlying random number generator.
         /// </summary>
-        public BernoulliDistribution()
+        public
+        BernoulliDistribution()
             : base()
         {
             SetDistributionParameters(0.5);
@@ -73,7 +74,10 @@ namespace MathNet.Numerics.Distributions
         /// <exception cref="ArgumentNullException">
         /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
-        public BernoulliDistribution(RandomSource random)
+        public
+        BernoulliDistribution(
+            RandomSource random
+            )
             : base(random)
         {
             SetDistributionParameters(0.5);
@@ -83,7 +87,10 @@ namespace MathNet.Numerics.Distributions
         /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
         /// as underlying random number generator.
         /// </summary>
-        public BernoulliDistribution(double probabilityOfSuccess)
+        public
+        BernoulliDistribution(
+            double probabilityOfSuccess
+            )
             : base()
         {
             SetDistributionParameters(probabilityOfSuccess);
@@ -103,7 +110,11 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Configure all distribution parameters.
         /// </summary>
-        public void SetDistributionParameters(double probabilityOfSuccess)
+        public
+        void
+        SetDistributionParameters(
+            double probabilityOfSuccess
+            )
         {
             if(!IsValidParameterSet(probabilityOfSuccess))
                 throw new ArgumentOutOfRangeException("probabilityOfSuccess");
@@ -117,7 +128,11 @@ namespace MathNet.Numerics.Distributions
         /// <returns>
         /// <see langword="true"/> if value is greater than or equal to 0.0, and less than or equal to 1.0; otherwise, <see langword="false"/>.
         /// </returns>
-        public static bool IsValidParameterSet(double probabilityOfSuccess)
+        public static
+        bool
+        IsValidParameterSet(
+            double probabilityOfSuccess
+            )
         {
             return probabilityOfSuccess >= 0.0 && probabilityOfSuccess <= 1.0;
         }
@@ -182,24 +197,40 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Discrete probability mass function (pmf) of this probability distribution.
         /// </summary>
-        public override double ProbabilityMass(int x)
+        public override
+        double
+        ProbabilityMass(
+            int x
+            )
         {
             if(x == 1)
+            {
                 return _p;
+            }
             if(x == 0)
+            {
                 return 1 - _p;
+            }
             return 0;
         }
 
         /// <summary>
         /// Continuous cumulative distribution function (cdf) of this probability distribution.
         /// </summary>
-        public override double CumulativeDistribution(double x)
+        public override
+        double
+        CumulativeDistribution(
+            double x
+            )
         {
             if(x < 0)
+            {
                 return 0;
+            }
             if(x < 1)
+            {
                 return 1 - _p;
+            }
             return 1;
         }
 
@@ -210,12 +241,15 @@ namespace MathNet.Numerics.Distributions
         /// Returns a bernoulli distributed random number.
         /// </summary>
         /// <returns>A bernoulli distributed 32-bit signed integer.</returns>
-        public override int NextInt32()
+        public override
+        int
+        NextInt32()
         {
             if(this.RandomSource.NextDouble() < _p)
+            {
                 return 1;
-            else
-                return 0;
+            }
+            return 0;
         }
         #endregion
     }

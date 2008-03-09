@@ -109,15 +109,16 @@ namespace MathNet.Numerics.Distributions
     /// </remarks>
     public sealed class PoissonDistribution : DiscreteDistribution
     {
-        private double _lambda;
-        private double _helper1;
+        double _lambda;
+        double _helper1;
 
         #region construction
         /// <summary>
         /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
         /// as underlying random number generator.
         /// </summary>
-        public PoissonDistribution()
+        public
+        PoissonDistribution()
             : base()
         {
             SetDistributionParameters(1.0);
@@ -131,7 +132,10 @@ namespace MathNet.Numerics.Distributions
         /// <exception cref="ArgumentNullException">
         /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
-        public PoissonDistribution(RandomSource random)
+        public
+        PoissonDistribution(
+            RandomSource random
+            )
             : base(random)
         {
             SetDistributionParameters(1.0);
@@ -141,7 +145,10 @@ namespace MathNet.Numerics.Distributions
         /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
         /// as underlying random number generator.
         /// </summary>
-        public PoissonDistribution(double lambda)
+        public
+        PoissonDistribution(
+            double lambda
+            )
             : base()
         {
             SetDistributionParameters(lambda);
@@ -161,7 +168,11 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Configure all distribution parameters.
         /// </summary>
-        public void SetDistributionParameters(double lambda)
+        public
+        void
+        SetDistributionParameters(
+            double lambda
+            )
         {
             if(!IsValidParameterSet(lambda))
                 throw new ArgumentOutOfRangeException("lambda");
@@ -176,7 +187,11 @@ namespace MathNet.Numerics.Distributions
         /// <returns>
         /// <see langword="true"/> if value is greater than 0.0; otherwise, <see langword="false"/>.
         /// </returns>
-        public static bool IsValidParameterSet(double lambda)
+        public static
+        bool
+        IsValidParameterSet(
+            double lambda
+            )
         {
             return lambda > 0.0;
         }
@@ -234,15 +249,27 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Discrete probability mass function (pmf) of this probability distribution.
         /// </summary>
-        public override double ProbabilityMass(int x)
+        public override
+        double
+        ProbabilityMass(
+            int x
+            )
         {
-            return Math.Exp(-_lambda + x * Math.Log(_lambda) - Fn.FactorialLn(x));
+            return Math.Exp(
+                -_lambda
+                + x * Math.Log(_lambda)
+                - Fn.FactorialLn(x)
+                );
         }
 
         /// <summary>
         /// Continuous cumulative distribution function (cdf) of this probability distribution.
         /// </summary>
-        public override double CumulativeDistribution(double x)
+        public override
+        double
+        CumulativeDistribution(
+            double x
+            )
         {
             return 1.0 - Fn.GammaRegularized(x + 1, _lambda);
         }
@@ -253,7 +280,9 @@ namespace MathNet.Numerics.Distributions
         /// Returns a poisson distributed random number.
         /// </summary>
         /// <returns>A poisson distributed 32-bit signed integer.</returns>
-        public override int NextInt32()
+        public override
+        int
+        NextInt32()
         {
             int count = 0;
             for(double product = this.RandomSource.NextDouble(); product >= _helper1; product *= this.RandomSource.NextDouble())

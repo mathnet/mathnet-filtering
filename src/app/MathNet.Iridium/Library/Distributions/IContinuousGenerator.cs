@@ -32,10 +32,12 @@ namespace MathNet.Numerics.Distributions
         /// Generates the next <see cref="Double"/> floating-point numbers.
         /// </summary>
         double NextDouble();
+
         /// <summary>
         /// True if the generator is reproducible, i.e. te same sequence can be generated again.
         /// </summary>
         bool CanReset { get;}
+
         /// <summary>
         /// Resets the number generator, so that it produces the same sequence again.
         /// </summary>

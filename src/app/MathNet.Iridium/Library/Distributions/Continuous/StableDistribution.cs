@@ -283,7 +283,11 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Continuous probability density function (pdf) of this probability distribution.
         /// </summary>
-        public override double ProbabilityDensity(double x)
+        public override
+        double
+        ProbabilityDensity(
+            double x
+            )
         {
             throw new NotSupportedException(); // not supported yet
         }
@@ -291,7 +295,11 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Continuous cumulative distribution function (cdf) of this probability distribution.
         /// </summary>
-        public override double CumulativeDistribution(double x)
+        public override
+        double
+        CumulativeDistribution(
+            double x
+            )
         {
             throw new NotSupportedException(); // not supported yet
         }
@@ -302,7 +310,9 @@ namespace MathNet.Numerics.Distributions
         /// Returns an alpha-stable distributed floating point random number.
         /// </summary>
         /// <returns>An alpha-stable distributed double-precision floating point number.</returns>
-        public override double NextDouble()
+        public override
+        double
+        NextDouble()
         {
             double randTheta = _uniformDistribution.NextDouble();
             double randW = _exponentialDistribution.NextDouble();

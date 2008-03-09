@@ -102,17 +102,18 @@ namespace MathNet.Numerics.Distributions
     /// </remarks>
     public sealed class HypergeometricDistribution : DiscreteDistribution
     {
-        private int _N;
-        private int _M;
-        private int _n;
-        private double _p;
+        int _N;
+        int _M;
+        int _n;
+        double _p;
 
         #region Construction
         /// <summary>
         /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
         /// as underlying random number generator.
         /// </summary>
-        public HypergeometricDistribution()
+        public
+        HypergeometricDistribution()
             : base()
         {
             SetDistributionParameters(2, 1, 1);
@@ -126,7 +127,10 @@ namespace MathNet.Numerics.Distributions
         /// <exception cref="ArgumentNullException">
         /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
-        public HypergeometricDistribution(RandomSource random)
+        public
+        HypergeometricDistribution(
+            RandomSource random
+            )
             : base(random)
         {
             SetDistributionParameters(2, 1, 1);
@@ -136,7 +140,12 @@ namespace MathNet.Numerics.Distributions
         /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
         /// as underlying random number generator.
         /// </summary>
-        public HypergeometricDistribution(int populationSize, int favoredItems, int numberOfSamples)
+        public
+        HypergeometricDistribution(
+            int populationSize,
+            int favoredItems,
+            int numberOfSamples
+            )
             : base()
         {
             SetDistributionParameters(populationSize, favoredItems, numberOfSamples);
@@ -174,7 +183,13 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Configure all distribution parameters.
         /// </summary>
-        public void SetDistributionParameters(int populationSize, int favoredItems, int numberOfSamples)
+        public
+        void
+        SetDistributionParameters(
+            int populationSize,
+            int favoredItems,
+            int numberOfSamples
+            )
         {
             if(!IsValidParameterSet(populationSize, favoredItems, numberOfSamples))
                 throw new ArgumentOutOfRangeException();
@@ -191,10 +206,19 @@ namespace MathNet.Numerics.Distributions
         /// <returns>
         /// <see langword="true"/> if values are greater than or equal to 0.0 and both favored items and number of samples are not bigger than the population size; otherwise, <see langword="false"/>.
         /// </returns>
-        public static bool IsValidParameterSet(int populationSize, int favoredItems, int numberOfSamples)
+        public static
+        bool
+        IsValidParameterSet(
+            int populationSize,
+            int favoredItems,
+            int numberOfSamples
+            )
         {
-            return populationSize >= 0 && favoredItems >= 0 && favoredItems <= populationSize
-                                        && numberOfSamples >= 0 && numberOfSamples <= populationSize;
+            return populationSize >= 0
+                && favoredItems >= 0
+                && favoredItems <= populationSize
+                && numberOfSamples >= 0
+                && numberOfSamples <= populationSize;
         }
         #endregion
 
@@ -258,16 +282,27 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Discrete probability mass function (pmf) of this probability distribution.
         /// </summary>
-        public override double ProbabilityMass(int x)
+        public override
+        double
+        ProbabilityMass(
+            int x
+            )
         {
-            return Math.Exp(Fn.BinomialCoefficientLn(_M, x) + Fn.BinomialCoefficientLn(_N - _M, _n - x)
-                - Fn.BinomialCoefficientLn(_N, _n));
+            return Math.Exp(
+                Fn.BinomialCoefficientLn(_M, x)
+                + Fn.BinomialCoefficientLn(_N - _M, _n - x)
+                - Fn.BinomialCoefficientLn(_N, _n)
+                );
         }
 
         /// <summary>
         /// Continuous cumulative distribution function (cdf) of this probability distribution.
         /// </summary>
-        public override double CumulativeDistribution(double x)
+        public override
+        double
+        CumulativeDistribution(
+            double x
+            )
         {
             double cdf;
             double pdf;
@@ -290,7 +325,9 @@ namespace MathNet.Numerics.Distributions
         /// Returns a geometric distributed floating point random number.
         /// </summary>
         /// <returns>A geometric distributed double-precision floating point number.</returns>
-        public override int NextInt32()
+        public override
+        int
+        NextInt32()
         {
             throw new NotImplementedException();
         }

@@ -59,15 +59,16 @@ namespace MathNet.Numerics.Distributions
     /// </remarks>
     public sealed class ExponentialDistribution : ContinuousDistribution
     {
-        private double _rate;
-        private double _helper1;
+        double _rate;
+        double _helper1;
 
         #region Construction
         /// <summary>
         /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
         /// as underlying random number generator.
         /// </summary>
-        public ExponentialDistribution()
+        public
+        ExponentialDistribution()
             : base()
         {
             SetDistributionParameters(1.0);
@@ -81,7 +82,10 @@ namespace MathNet.Numerics.Distributions
         /// <exception cref="ArgumentNullException">
         /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
-        public ExponentialDistribution(RandomSource random)
+        public
+        ExponentialDistribution(
+            RandomSource random
+            )
             : base(random)
         {
             SetDistributionParameters(1.0);
@@ -91,7 +95,10 @@ namespace MathNet.Numerics.Distributions
         /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
         /// as underlying random number generator.
         /// </summary>
-        public ExponentialDistribution(double rate)
+        public
+        ExponentialDistribution(
+            double rate
+            )
             : base()
         {
             SetDistributionParameters(rate);
@@ -111,7 +118,11 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Configure all distribution parameters.
         /// </summary>
-        public void SetDistributionParameters(double rate)
+        public
+        void
+        SetDistributionParameters(
+            double rate
+            )
         {
             if(!IsValidParameterSet(rate))
                 throw new ArgumentOutOfRangeException();
@@ -126,7 +137,11 @@ namespace MathNet.Numerics.Distributions
         /// <returns>
         /// <see langword="true"/> if value is greater than 0.0; otherwise, <see langword="false"/>.
         /// </returns>
-        public static bool IsValidParameterSet(double rate)
+        public static
+        bool
+        IsValidParameterSet(
+            double rate
+            )
         {
             return rate > 0.0;
         }
@@ -184,7 +199,11 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Continuous probability density function (pdf) of this probability distribution.
         /// </summary>
-        public override double ProbabilityDensity(double x)
+        public override
+        double
+        ProbabilityDensity(
+            double x
+            )
         {
             return _rate * Math.Exp(-_rate * x);
         }
@@ -192,7 +211,11 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Continuous cumulative distribution function (cdf) of this probability distribution.
         /// </summary>
-        public override double CumulativeDistribution(double x)
+        public override
+        double
+        CumulativeDistribution(
+            double x
+            )
         {
             return 1.0 - Math.Exp(-_rate * x);
         }
@@ -203,7 +226,9 @@ namespace MathNet.Numerics.Distributions
         /// Returns a exponential distributed floating point random number.
         /// </summary>
         /// <returns>A exponential distributed double-precision floating point number.</returns>
-        public override double NextDouble()
+        public override
+        double
+        NextDouble()
         {
             // Subtract random number from 1.0 to avoid Math.Log(0.0)
             return _helper1 * Math.Log(1.0 - this.RandomSource.NextDouble());

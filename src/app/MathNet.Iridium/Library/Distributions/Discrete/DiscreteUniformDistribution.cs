@@ -53,16 +53,17 @@ namespace MathNet.Numerics.Distributions
     /// </remarks>
     public sealed class DiscreteUniformDistribution : DiscreteDistribution
     {
-        private int _a;
-        private int _b;
-        private int _n;
+        int _a;
+        int _b;
+        int _n;
 
         #region Construction
         /// <summary>
         /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
         /// as underlying random number generator.
         /// </summary>
-        public DiscreteUniformDistribution()
+        public
+        DiscreteUniformDistribution()
             : base()
         {
             SetDistributionParameters(0, 1);
@@ -76,7 +77,10 @@ namespace MathNet.Numerics.Distributions
         /// <exception cref="ArgumentNullException">
         /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
-        public DiscreteUniformDistribution(RandomSource random)
+        public
+        DiscreteUniformDistribution(
+            RandomSource random
+            )
             : base(random)
         {
             SetDistributionParameters(0, 1);
@@ -86,7 +90,11 @@ namespace MathNet.Numerics.Distributions
         /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
         /// as underlying random number generator.
         /// </summary>
-        public DiscreteUniformDistribution(int lowerLimit, int upperLimit)
+        public
+        DiscreteUniformDistribution(
+            int lowerLimit,
+            int upperLimit
+            )
             : base()
         {
             SetDistributionParameters(lowerLimit, upperLimit);
@@ -119,7 +127,12 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Configure all distribution parameters.
         /// </summary>
-        public void SetDistributionParameters(int lowerLimit, int upperLimit)
+        public
+        void
+        SetDistributionParameters(
+            int lowerLimit,
+            int upperLimit
+            )
         {
             if(!IsValidParameterSet(lowerLimit, upperLimit))
                 throw new ArgumentOutOfRangeException();
@@ -135,7 +148,12 @@ namespace MathNet.Numerics.Distributions
         /// <returns>
         /// <see langword="true"/> if lowerLimit &lt;= upperLimit; otherwise, <see langword="false"/>.
         /// </returns>
-        public static bool IsValidParameterSet(int lowerLimit, int upperLimit)
+        public static
+        bool
+        IsValidParameterSet(
+            int lowerLimit,
+            int upperLimit
+            )
         {
             return lowerLimit <= upperLimit;
         }
@@ -193,22 +211,36 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Discrete probability mass function (pmf) of this probability distribution.
         /// </summary>
-        public override double ProbabilityMass(int x)
+        public override
+        double
+        ProbabilityMass(
+            int x
+            )
         {
             if(_a <= x && x <= _b)
+            {
                 return 1.0 / _n;
+            }
             return 0.0;
         }
 
         /// <summary>
         /// Continuous cumulative distribution function (cdf) of this probability distribution.
         /// </summary>
-        public override double CumulativeDistribution(double x)
+        public override
+        double
+        CumulativeDistribution(
+            double x
+            )
         {
             if(x < _a)
+            {
                 return 0.0;
+            }
             if(x <= _b)
+            {
                 return (x - _a + 1.0) / _n;
+            }
             return 1.0;
         }
         #endregion
@@ -218,7 +250,9 @@ namespace MathNet.Numerics.Distributions
         /// Returns a uniformly distributed floating point random number.
         /// </summary>
         /// <returns>A uniformly distributed double-precision floating point number.</returns>
-        public override int NextInt32()
+        public override
+        int
+        NextInt32()
         {
             return this.RandomSource.Next(_a, _b + 1);
         }

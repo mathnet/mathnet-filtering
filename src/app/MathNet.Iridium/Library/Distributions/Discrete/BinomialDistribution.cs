@@ -52,15 +52,16 @@ namespace MathNet.Numerics.Distributions
     /// </remarks>
     public sealed class BinomialDistribution : DiscreteDistribution
     {
-        private double _p;
-        private int _n;
+        double _p;
+        int _n;
 
         #region Construction
         /// <summary>
         /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
         /// as underlying random number generator.
         /// </summary>
-        public BinomialDistribution()
+        public
+        BinomialDistribution()
             : base()
         {
             SetDistributionParameters(0.5, 1);
@@ -74,7 +75,10 @@ namespace MathNet.Numerics.Distributions
         /// <exception cref="ArgumentNullException">
         /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
-        public BinomialDistribution(RandomSource random)
+        public
+        BinomialDistribution(
+            RandomSource random
+            )
             : base(random)
         {
             SetDistributionParameters(0.5, 1);
@@ -84,7 +88,11 @@ namespace MathNet.Numerics.Distributions
         /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
         /// as underlying random number generator.
         /// </summary>
-        public BinomialDistribution(double probabilityOfSuccess, int numberOfTrials)
+        public
+        BinomialDistribution(
+            double probabilityOfSuccess,
+            int numberOfTrials
+            )
             : base()
         {
             SetDistributionParameters(probabilityOfSuccess, numberOfTrials);
@@ -114,7 +122,12 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Configure all distribution parameters.
         /// </summary>
-        public void SetDistributionParameters(double probabilityOfSuccess, int numberOfTrials)
+        public
+        void
+        SetDistributionParameters(
+            double probabilityOfSuccess,
+            int numberOfTrials
+            )
         {
             if(!IsValidParameterSet(probabilityOfSuccess, numberOfTrials))
                 throw new ArgumentOutOfRangeException();
@@ -130,7 +143,12 @@ namespace MathNet.Numerics.Distributions
         /// <see langword="true"/> if probabilityOfSuccess is greater than or equal to 0.0, and less than or equal to 1.0,
         /// and numberOfTrials is greater than or equal to 0; otherwise, <see langword="false"/>.
         /// </returns>
-        public static bool IsValidParameterSet(double probabilityOfSuccess, int numberOfTrials)
+        public static
+        bool
+        IsValidParameterSet(
+            double probabilityOfSuccess,
+            int numberOfTrials
+            )
         {
             return (probabilityOfSuccess >= 0.0 && probabilityOfSuccess <= 1.0)
                 && (numberOfTrials >= 0);
@@ -189,7 +207,11 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Discrete probability mass function (pmf) of this probability distribution.
         /// </summary>
-        public override double ProbabilityMass(int x)
+        public override
+        double
+        ProbabilityMass(
+            int x
+            )
         {
             return Fn.BinomialCoefficient(_n, x) * Math.Pow(_p, x) * Math.Pow(1 - _p, _n - x);
         }
@@ -197,7 +219,11 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Continuous cumulative distribution function (cdf) of this probability distribution.
         /// </summary>
-        public override double CumulativeDistribution(double x)
+        public override
+        double
+        CumulativeDistribution(
+            double x
+            )
         {
             return Fn.BetaRegularized(_n - x, x + 1, 1 - _p);
         }
@@ -208,7 +234,9 @@ namespace MathNet.Numerics.Distributions
         /// Returns a bernoulli distributed random number.
         /// </summary>
         /// <returns>A bernoulli distributed 32-bit signed integer.</returns>
-        public override int NextInt32()
+        public override
+        int
+        NextInt32()
         {
             // TODO: Implement direct transformation instead of simulation
             int successes = 0;

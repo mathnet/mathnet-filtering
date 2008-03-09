@@ -52,15 +52,16 @@ namespace MathNet.Numerics.Distributions
     /// </remarks>
     public sealed class CauchyLorentzDistribution : ContinuousDistribution
     {
-        private double _location;
-        private double _scale;
+        double _location;
+        double _scale;
 
         #region Construction
         /// <summary>
         /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
         /// as underlying random number generator.
         /// </summary>
-        public CauchyLorentzDistribution()
+        public
+        CauchyLorentzDistribution()
             : base()
         {
             SetDistributionParameters(0.0, 1.0);
@@ -74,7 +75,10 @@ namespace MathNet.Numerics.Distributions
         /// <exception cref="ArgumentNullException">
         /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
-        public CauchyLorentzDistribution(RandomSource random)
+        public
+        CauchyLorentzDistribution(
+            RandomSource random
+            )
             : base(random)
         {
             SetDistributionParameters(0.0, 1.0);
@@ -84,7 +88,11 @@ namespace MathNet.Numerics.Distributions
         /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
         /// as underlying random number generator.
         /// </summary>
-        public CauchyLorentzDistribution(double location, double scale)
+        public
+        CauchyLorentzDistribution(
+            double location,
+            double scale
+            )
             : base()
         {
             SetDistributionParameters(location, scale);
@@ -113,7 +121,12 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Configure all distribution parameters.
         /// </summary>
-        public void SetDistributionParameters(double location, double scale)
+        public
+        void
+        SetDistributionParameters(
+            double location,
+            double scale
+            )
         {
             if(!IsValidParameterSet(location, scale))
                 throw new ArgumentOutOfRangeException();
@@ -128,7 +141,12 @@ namespace MathNet.Numerics.Distributions
         /// <returns>
         /// <see langword="true"/> if scale is greater than 0.0; otherwise, <see langword="false"/>.
         /// </returns>
-        public static bool IsValidParameterSet(double location, double scale)
+        public static
+        bool
+        IsValidParameterSet(
+            double location,
+            double scale
+            )
         {
             return scale > 0;
         }
@@ -195,7 +213,11 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Continuous probability density function (pdf) of this probability distribution.
         /// </summary>
-        public override double ProbabilityDensity(double x)
+        public override
+        double
+        ProbabilityDensity(
+            double x
+            )
         {
             double a = (x - _location) / _scale;
             return 1.0 / (Constants.Pi * _scale * (1.0 + a * a));
@@ -204,7 +226,11 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Continuous cumulative distribution function (cdf) of this probability distribution.
         /// </summary>
-        public override double CumulativeDistribution(double x)
+        public override
+        double
+        CumulativeDistribution(
+            double x
+            )
         {
             return Constants.InvPi * Trig.InverseTangent((x - _location) / _scale) + 0.5;
         }
@@ -215,7 +241,9 @@ namespace MathNet.Numerics.Distributions
         /// Returns a cauchy distributed floating point random number.
         /// </summary>
         /// <returns>A cauchy distributed double-precision floating point number.</returns>
-        public override double NextDouble()
+        public override
+        double 
+        NextDouble()
         {
             return _location + _scale * Trig.Tangent(Constants.Pi * (this.RandomSource.NextDouble() - 0.5));
         }

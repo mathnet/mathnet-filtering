@@ -46,13 +46,14 @@ namespace MathNet.Numerics.Distributions
     public sealed class StandardDistribution : ContinuousDistribution
     {
         double? _extraNormal;
-        
+
         #region Construction
         /// <summary>
         /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
         /// as underlying random number generator.
         /// </summary>
-        public StandardDistribution()
+        public
+        StandardDistribution()
             : base()
         {
         }
@@ -65,7 +66,10 @@ namespace MathNet.Numerics.Distributions
         /// <exception cref="ArgumentNullException">
         /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
-        public StandardDistribution(RandomSource random)
+        public
+        StandardDistribution(
+            RandomSource random
+            )
             : base(random)
         {
         }
@@ -123,7 +127,11 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Continuous probability density function (pdf) of this probability distribution.
         /// </summary>
-        public override double  ProbabilityDensity(double x)
+        public override
+        double
+        ProbabilityDensity(
+            double x
+            )
         {
             return Constants.InvSqrt2Pi * Math.Exp(x * x / -2.0);
         }
@@ -131,7 +139,11 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Continuous cumulative distribution function (cdf) of this probability distribution.
         /// </summary>
-        public override double CumulativeDistribution(double x)
+        public override
+        double
+        CumulativeDistribution(
+            double x
+            )
         {
             return 0.5 * (1.0 + Fn.Erf(x * Constants.Sqrt1_2));
         }
@@ -140,7 +152,11 @@ namespace MathNet.Numerics.Distributions
         /// Inverse of the continuous cumulative distribution function of this probability distribution.
         /// </summary>
         /// <seealso cref="StandardDistribution.CumulativeDistribution"/>
-        public double InverseCumulativeDistribution(double x)
+        public
+        double
+        InverseCumulativeDistribution(
+            double x
+            )
         {
             return Constants.Sqrt1_2 * Fn.ErfInverse(2.0 * x - 1.0);
         }
@@ -151,7 +167,9 @@ namespace MathNet.Numerics.Distributions
         /// Returns a standard distributed floating point random number.
         /// </summary>
         /// <returns>A standard distributed double-precision floating point number.</returns>
-        public override double NextDouble()
+        public override
+        double
+        NextDouble()
         {
             // Note that this method generate two gaussian deviates
             // at once. The additional deviate is recorded in

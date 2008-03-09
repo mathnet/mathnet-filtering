@@ -52,18 +52,19 @@ namespace MathNet.Numerics.Distributions
     /// </remarks>
     public sealed class BetaDistribution : ContinuousDistribution
     {
-        private double _alpha;
-        private double _beta;
-        private GammaDistribution _gammaAlpha;
-        private GammaDistribution _gammaBeta;
-        private double _lnbetaAlphaBeta;
+        double _alpha;
+        double _beta;
+        GammaDistribution _gammaAlpha;
+        GammaDistribution _gammaBeta;
+        double _lnbetaAlphaBeta;
 
         #region Construction
         /// <summary>
         /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
         /// as underlying random number generator.
         /// </summary>
-        public BetaDistribution()
+        public
+        BetaDistribution()
             : base()
         {
             _gammaAlpha = new GammaDistribution(this.RandomSource);
@@ -79,7 +80,10 @@ namespace MathNet.Numerics.Distributions
         /// <exception cref="ArgumentNullException">
         /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
-        public BetaDistribution(RandomSource random)
+        public
+        BetaDistribution(
+            RandomSource random
+            )
             : base(random)
         {
             _gammaAlpha = new GammaDistribution(random);
@@ -91,7 +95,11 @@ namespace MathNet.Numerics.Distributions
         /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
         /// as underlying random number generator.
         /// </summary>
-        public BetaDistribution(double alpha, double beta)
+        public
+        BetaDistribution(
+            double alpha,
+            double beta
+            )
             : base()
         {
             _gammaAlpha = new GammaDistribution(this.RandomSource);
@@ -136,7 +144,12 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Configure all distribution parameters.
         /// </summary>
-        public void SetDistributionParameters(double alpha, double beta)
+        public
+        void
+        SetDistributionParameters(
+            double alpha,
+            double beta
+            )
         {
             if(!IsValidParameterSet(alpha, beta))
                 throw new ArgumentOutOfRangeException();
@@ -154,7 +167,12 @@ namespace MathNet.Numerics.Distributions
         /// <returns>
         /// <see langword="true"/> if both alpha and beta are greater than 0.0; otherwise, <see langword="false"/>.
         /// </returns>
-        public static bool IsValidParameterSet(double alpha, double beta)
+        public static
+        bool
+        IsValidParameterSet(
+            double alpha,
+            double beta
+            )
         {
             return alpha > 0.0 && beta > 0.0;
         }
@@ -221,15 +239,27 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Continuous probability density function (pdf) of this probability distribution.
         /// </summary>
-        public override double ProbabilityDensity(double x)
+        public override
+        double
+        ProbabilityDensity(
+            double x
+            )
         {
-            return Math.Exp((_alpha - 1.0) * Math.Log(x) + (_beta - 1.0) * Math.Log(1 - x) - _lnbetaAlphaBeta);
+            return Math.Exp(
+                (_alpha - 1.0) * Math.Log(x)
+                + (_beta - 1.0) * Math.Log(1 - x)
+                - _lnbetaAlphaBeta
+                );
         }
 
         /// <summary>
         /// Continuous cumulative distribution function (cdf) of this probability distribution.
         /// </summary>
-        public override double CumulativeDistribution(double x)
+        public override
+        double
+        CumulativeDistribution(
+            double x
+            )
         {
             return Fn.BetaRegularized(_alpha, _beta, x);
         }
@@ -240,7 +270,9 @@ namespace MathNet.Numerics.Distributions
         /// Returns a beta distributed floating point random number.
         /// </summary>
         /// <returns>A beta distributed double-precision floating point number.</returns>
-        public override double NextDouble()
+        public override
+        double
+        NextDouble()
         {
             double x = _gammaAlpha.NextDouble();
 

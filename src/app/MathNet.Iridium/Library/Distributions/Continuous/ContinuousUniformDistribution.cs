@@ -52,16 +52,17 @@ namespace MathNet.Numerics.Distributions
     /// </remarks>
     public sealed class ContinuousUniformDistribution : ContinuousDistribution
     {
-        private double _a;
-        private double _b;
-        private double _diff;
+        double _a;
+        double _b;
+        double _diff;
 
         #region Construction
         /// <summary>
         /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
         /// as underlying random number generator.
         /// </summary>
-        public ContinuousUniformDistribution()
+        public
+        ContinuousUniformDistribution()
             : base()
         {
             SetDistributionParameters(0.0, 1.0);
@@ -75,7 +76,10 @@ namespace MathNet.Numerics.Distributions
         /// <exception cref="ArgumentNullException">
         /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
-        public ContinuousUniformDistribution(RandomSource random)
+        public
+        ContinuousUniformDistribution(
+            RandomSource random
+            )
             : base(random)
         {
             SetDistributionParameters(0.0, 1.0);
@@ -85,7 +89,11 @@ namespace MathNet.Numerics.Distributions
         /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
         /// as underlying random number generator.
         /// </summary>
-        public ContinuousUniformDistribution(double lowerLimit, double upperLimit)
+        public
+        ContinuousUniformDistribution(
+            double lowerLimit,
+            double upperLimit
+            )
             : base()
         {
             SetDistributionParameters(lowerLimit, upperLimit);
@@ -118,7 +126,12 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Configure all distribution parameters.
         /// </summary>
-        public void SetDistributionParameters(double lowerLimit, double upperLimit)
+        public
+        void
+        SetDistributionParameters(
+            double lowerLimit,
+            double upperLimit
+            )
         {
             if(!IsValidParameterSet(lowerLimit, upperLimit))
                 throw new ArgumentOutOfRangeException();
@@ -134,7 +147,12 @@ namespace MathNet.Numerics.Distributions
         /// <returns>
         /// <see langword="true"/> if lowerLimit &lt;= upperLimit; otherwise, <see langword="false"/>.
         /// </returns>
-        public static bool IsValidParameterSet(double lowerLimit, double upperLimit)
+        public static
+        bool
+        IsValidParameterSet(
+            double lowerLimit,
+            double upperLimit
+            )
         {
             return lowerLimit <= upperLimit;
         }
@@ -192,7 +210,11 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Continuous probability density function (pdf) of this probability distribution.
         /// </summary>
-        public override double ProbabilityDensity(double x)
+        public override
+        double
+        ProbabilityDensity(
+            double x
+            )
         {
             if(_a <= x && x <= _b)
                 return 1.0 / _diff;
@@ -202,7 +224,11 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Continuous cumulative distribution function (cdf) of this probability distribution.
         /// </summary>
-        public override double CumulativeDistribution(double x)
+        public override
+        double
+        CumulativeDistribution(
+            double x
+            )
         {
             if(x < _a)
                 return 0.0;
@@ -217,7 +243,9 @@ namespace MathNet.Numerics.Distributions
         /// Returns a uniformly distributed floating point random number.
         /// </summary>
         /// <returns>A uniformly distributed double-precision floating point number.</returns>
-        public override double NextDouble()
+        public override
+        double
+        NextDouble()
         {
             return _a + this.RandomSource.NextDouble() * _diff;
         }

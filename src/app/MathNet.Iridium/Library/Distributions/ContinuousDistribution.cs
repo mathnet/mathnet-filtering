@@ -47,37 +47,18 @@ namespace MathNet.Numerics.Distributions
     /// Declares common functionality for all continuous random number
     /// distributions based on a random source.
     /// </summary>
-    public abstract class ContinuousDistribution : IContinuousGenerator, IContinuousProbabilityDistribution
+    public abstract class ContinuousDistribution :
+        IContinuousGenerator,
+        IContinuousProbabilityDistribution
     {
-        #region instance fields
-        /// <summary>
-        /// Gets or sets a <see cref="RandomSource"/> object that can be used
-        /// as underlying random number generator.
-        /// </summary>
-        public virtual RandomSource RandomSource
-        {
-            get { return _random; }
-            set { _random = value; }
-        }
+        RandomSource _random;
 
-        private RandomSource _random;
-
-        /// <summary>
-        /// Gets a value indicating whether the random number distribution can be reset,
-        /// so that it produces the same  random number sequence again.
-        /// </summary>
-        public bool CanReset
-        {
-            get { return _random.CanReset; }
-        }
-        #endregion
-
-        #region construction
         /// <summary>
         /// Initializes a new instance of the <see cref="ContinuousDistribution"/> class, using a 
         /// <see cref="SystemRandomSource"/> as underlying random number generator.
         /// </summary>
-        protected ContinuousDistribution()
+        protected
+        ContinuousDistribution()
             : this(new SystemRandomSource())
         {
         }
@@ -90,7 +71,10 @@ namespace MathNet.Numerics.Distributions
         /// <exception cref="ArgumentNullException">
         ///     <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
-        protected ContinuousDistribution(RandomSource random)
+        protected
+        ContinuousDistribution(
+            RandomSource random
+            )
         {
             if(random == null)
             {
@@ -99,19 +83,43 @@ namespace MathNet.Numerics.Distributions
             }
             _random = random;
         }
-        #endregion
 
-        #region instance methods
+        /// <summary>
+        /// Returns a distributed floating point random number.
+        /// </summary>
+        /// <returns>A distributed double-precision floating point number.</returns>
+        public abstract
+        double
+        NextDouble();
+
+        /// <summary>
+        /// Continuous probability density function (pdf) of this probability distribution.
+        /// </summary>
+        public abstract
+        double
+        ProbabilityDensity(
+            double x
+            );
+
+        /// <summary>
+        /// Continuous cumulative distribution function (cdf) of this probability distribution.
+        /// </summary>
+        public abstract
+        double
+        CumulativeDistribution(
+            double x
+            );
+
         /// <summary>
         /// Resets the random number distribution, so that it produces the same random number sequence again.
         /// </summary>
-        public void Reset()
+        public
+        void
+        Reset()
         {
             _random.Reset();
         }
-        #endregion
 
-        #region abstract members
         /// <summary>
         /// Lower limit of a random variable with this probability distribution.
         /// </summary>
@@ -161,20 +169,22 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Returns a distributed floating point random number.
+        /// Gets or sets a <see cref="RandomSource"/> object that can be used
+        /// as underlying random number generator.
         /// </summary>
-        /// <returns>A distributed double-precision floating point number.</returns>
-        public abstract double NextDouble();
+        public virtual RandomSource RandomSource
+        {
+            get { return _random; }
+            set { _random = value; }
+        }
 
         /// <summary>
-        /// Continuous probability density function (pdf) of this probability distribution.
+        /// Gets a value indicating whether the random number distribution can be reset,
+        /// so that it produces the same  random number sequence again.
         /// </summary>
-        public abstract double ProbabilityDensity(double x);
-
-        /// <summary>
-        /// Continuous cumulative distribution function (cdf) of this probability distribution.
-        /// </summary>
-        public abstract double CumulativeDistribution(double x);
-        #endregion
+        public bool CanReset
+        {
+            get { return _random.CanReset; }
+        }
     }
 }

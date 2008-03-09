@@ -52,19 +52,20 @@ namespace MathNet.Numerics.Distributions
     /// </remarks>
     public sealed class GammaDistribution : ContinuousDistribution
     {
-        private double _alpha;
-        private double _theta;
-        private double _helper1;
-        private double _helper2;
-        private double _lngammaAlpha;
-        private double _alphaLnTheta;
+        double _alpha;
+        double _theta;
+        double _helper1;
+        double _helper2;
+        double _lngammaAlpha;
+        double _alphaLnTheta;
 
         #region Construction
         /// <summary>
         /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
         /// as underlying random number generator.
         /// </summary>
-        public GammaDistribution()
+        public
+        GammaDistribution()
             : base()
         {
             SetDistributionParameters(1.0, 1.0);
@@ -78,7 +79,10 @@ namespace MathNet.Numerics.Distributions
         /// <exception cref="ArgumentNullException">
         /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
-        public GammaDistribution(RandomSource random)
+        public
+        GammaDistribution(
+            RandomSource random
+            )
             : base(random)
         {
             SetDistributionParameters(1.0, 1.0);
@@ -88,7 +92,11 @@ namespace MathNet.Numerics.Distributions
         /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
         /// as underlying random number generator.
         /// </summary>
-        public GammaDistribution(double alpha, double theta)
+        public
+        GammaDistribution(
+            double alpha,
+            double theta
+            )
             : base()
         {
             SetDistributionParameters(alpha, theta);
@@ -117,7 +125,12 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Configure all distribution parameters.
         /// </summary>
-        public void SetDistributionParameters(double alpha, double theta)
+        public
+        void
+        SetDistributionParameters(
+            double alpha,
+            double theta
+            )
         {
             if(!IsValidParameterSet(alpha, theta))
                 throw new ArgumentOutOfRangeException();
@@ -136,7 +149,12 @@ namespace MathNet.Numerics.Distributions
         /// <returns>
         /// <see langword="true"/> if both alpha and theta are greater than 0.0; otherwise, <see langword="false"/>.
         /// </returns>
-        public static bool IsValidParameterSet(double alpha, double theta)
+        public static
+        bool
+        IsValidParameterSet(
+            double alpha,
+            double theta
+            )
         {
             return (alpha > 0) && (theta > 0);
         }
@@ -194,7 +212,11 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Continuous probability density function (pdf) of this probability distribution.
         /// </summary>
-        public override double ProbabilityDensity(double x)
+        public override
+        double
+        ProbabilityDensity(
+            double x
+            )
         {
             return Math.Exp((_alpha - 1) * Math.Log(x) - x / _theta - _lngammaAlpha - _alphaLnTheta);
         }
@@ -202,7 +224,11 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Continuous cumulative distribution function (cdf) of this probability distribution.
         /// </summary>
-        public override double CumulativeDistribution(double x)
+        public override
+        double
+        CumulativeDistribution(
+            double x
+            )
         {
             return Fn.GammaRegularized(_alpha, x / _theta);
         }
@@ -213,7 +239,9 @@ namespace MathNet.Numerics.Distributions
         /// Returns a gamma distributed floating point random number.
         /// </summary>
         /// <returns>A gamma distributed double-precision floating point number.</returns>
-        public override double NextDouble()
+        public override
+        double
+        NextDouble()
         {
             double xi, eta, gen1, gen2;
             do

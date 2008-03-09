@@ -32,30 +32,37 @@ namespace MathNet.Numerics.Distributions
         /// Continuous probability density function (pdf) of this probability distribution.
         /// </summary>
         double ProbabilityDensity(double x);
+
         /// <summary>
         /// Continuous cumulative distribution function (cdf) of this probability distribution.
         /// </summary>
         double CumulativeDistribution(double x);
+
         /// <summary>
         /// The expected value of a random variable with this probability distribution.
         /// </summary>
         double Mean { get;}
+
         /// <summary>
         /// Average of the squared distances to the expected value of a random variable with this probability distribution.
         /// </summary>
         double Variance { get;}
+
         /// <summary>
         /// The value separating the lower half part from the upper half part of a random variable with this probability distribution.
         /// </summary>
         double Median { get;}
+
         /// <summary>
         /// Lower limit of a random variable with this probability distribution.
         /// </summary>
         double Minimum { get;}
+
         /// <summary>
         /// Upper limit of a random variable with this probability distribution.
         /// </summary>
         double Maximum { get;}
+
         /// <summary>
         /// Measure of the asymmetry of this probability distribution.
         /// </summary>

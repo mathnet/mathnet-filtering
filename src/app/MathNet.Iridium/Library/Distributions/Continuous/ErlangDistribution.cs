@@ -52,16 +52,17 @@ namespace MathNet.Numerics.Distributions
     /// </remarks>
     public sealed class ErlangDistribution : ContinuousDistribution
     {
-        private int _shape;
-        private double _rate;
-        private double _helper1;
+        int _shape;
+        double _rate;
+        double _helper1;
 
         #region Construction
         /// <summary>
         /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
         /// as underlying random number generator.
         /// </summary>
-        public ErlangDistribution()
+        public
+        ErlangDistribution()
             : base()
         {
             SetDistributionParameters(1, 1.0);
@@ -75,7 +76,10 @@ namespace MathNet.Numerics.Distributions
         /// <exception cref="ArgumentNullException">
         /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
-        public ErlangDistribution(RandomSource random)
+        public
+        ErlangDistribution(
+            RandomSource random
+            )
             : base(random)
         {
             SetDistributionParameters(1, 1.0);
@@ -85,7 +89,11 @@ namespace MathNet.Numerics.Distributions
         /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
         /// as underlying random number generator.
         /// </summary>
-        public ErlangDistribution(int shape, double rate)
+        public
+        ErlangDistribution(
+            int shape,
+            double rate
+            )
             : base()
         {
             SetDistributionParameters(shape, rate);
@@ -114,7 +122,12 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Configure all distribution parameters.
         /// </summary>
-        public void SetDistributionParameters(int shape, double rate)
+        public
+        void
+        SetDistributionParameters(
+            int shape,
+            double rate
+            )
         {
             if(!IsValidParameterSet(shape, rate))
                 throw new ArgumentOutOfRangeException();
@@ -130,7 +143,12 @@ namespace MathNet.Numerics.Distributions
         /// <returns>
         /// <see langword="true"/> if both shape and rate are greater than 0.0; otherwise, <see langword="false"/>.
         /// </returns>
-        public static bool IsValidParameterSet(int shape, double rate)
+        public static
+        bool
+        IsValidParameterSet(
+            int shape,
+            double rate
+            )
         {
             return shape > 0 && rate > 0.0;
         }
@@ -191,7 +209,11 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Continuous probability density function (pdf) of this probability distribution.
         /// </summary>
-        public override double ProbabilityDensity(double x)
+        public override
+        double
+        ProbabilityDensity(
+            double x
+            )
         {
             return Math.Exp(_shape * Math.Log(_rate) + (_shape - 1) * Math.Log(x) - _rate * x - Fn.FactorialLn(_shape - 1));
         }
@@ -199,7 +221,11 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Continuous cumulative distribution function (cdf) of this probability distribution.
         /// </summary>
-        public override double CumulativeDistribution(double x)
+        public override
+        double
+        CumulativeDistribution(
+            double x
+            )
         {
             return Fn.GammaRegularized(_shape, _rate * x);
         }
@@ -210,7 +236,9 @@ namespace MathNet.Numerics.Distributions
         /// Returns a erlang distributed floating point random number.
         /// </summary>
         /// <returns>A erlang distributed double-precision floating point number.</returns>
-        public override double NextDouble()
+        public override
+        double
+        NextDouble()
         {
             double product = 1.0;
             for(int i = 0; i < _shape; i++)

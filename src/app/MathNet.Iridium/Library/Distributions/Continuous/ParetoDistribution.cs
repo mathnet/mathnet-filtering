@@ -52,16 +52,17 @@ namespace MathNet.Numerics.Distributions
     /// </remarks>
     public sealed class ParetoDistribution : ContinuousDistribution
     {
-        private double _location;
-        private double _shape;
-        private double helper1;
+        double _location;
+        double _shape;
+        double helper1;
 
         #region Construction
         /// <summary>
         /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
         /// as underlying random number generator.
         /// </summary>
-        public ParetoDistribution()
+        public
+        ParetoDistribution()
             : base()
         {
             SetDistributionParameters(1.0, 1.0);
@@ -75,7 +76,10 @@ namespace MathNet.Numerics.Distributions
         /// <exception cref="ArgumentNullException">
         /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
-        public ParetoDistribution(RandomSource random)
+        public
+        ParetoDistribution(
+            RandomSource random
+            )
             : base(random)
         {
             SetDistributionParameters(1.0, 1.0);
@@ -85,7 +89,11 @@ namespace MathNet.Numerics.Distributions
         /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
         /// as underlying random number generator.
         /// </summary>
-        public ParetoDistribution(double location, double shape)
+        public
+        ParetoDistribution(
+            double location,
+            double shape
+            )
             : base()
         {
             SetDistributionParameters(location, shape);
@@ -114,7 +122,12 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Configure all distribution parameters.
         /// </summary>
-        public void SetDistributionParameters(double location, double shape)
+        public
+        void
+        SetDistributionParameters(
+            double location,
+            double shape
+            )
         {
             if(!IsValidParameterSet(location, shape))
                 throw new ArgumentOutOfRangeException();
@@ -130,7 +143,12 @@ namespace MathNet.Numerics.Distributions
         /// <returns>
         /// <see langword="true"/> if both location and shape are greater than 0.0; otherwise, <see langword="false"/>.
         /// </returns>
-        public static bool IsValidParameterSet(double location, double shape)
+        public static
+        bool
+        IsValidParameterSet(
+            double location,
+            double shape
+            )
         {
             return location > 0.0 && shape > 0.0; ;
         }
@@ -212,7 +230,11 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Continuous probability density function (pdf) of this probability distribution.
         /// </summary>
-        public override double ProbabilityDensity(double x)
+        public override
+        double
+        ProbabilityDensity(
+            double x
+            )
         {
             return Math.Exp(Math.Log(_shape) + _shape * Math.Log(_location) - (_shape + 1.0) * Math.Log(x));
         }
@@ -220,7 +242,11 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Continuous cumulative distribution function (cdf) of this probability distribution.
         /// </summary>
-        public override double CumulativeDistribution(double x)
+        public override
+        double
+        CumulativeDistribution(
+            double x
+            )
         {
             return 1.0 - Math.Pow(_location / x, _shape);
         }
@@ -231,7 +257,9 @@ namespace MathNet.Numerics.Distributions
         /// Returns a pareto distributed floating point random number.
         /// </summary>
         /// <returns>A pareto distributed double-precision floating point number.</returns>
-        public override double NextDouble()
+        public override
+        double
+        NextDouble()
         {
             return _location / Math.Pow(1.0 - this.RandomSource.NextDouble(), this.helper1);
         }
