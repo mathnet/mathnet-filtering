@@ -97,6 +97,11 @@ namespace Iridium.Test
             Assert.AreEqual(0.0, piI.Real, 1e-8, "Re{ln(-1)} = 0");
             Assert.AreEqual(Constants.Pi, piI.Imag, 1e-8, "Im{ln(-1)} = Pi");
 
+            Complex zero = Complex.Zero;
+            Complex lnZero = zero.NaturalLogarithm();
+            Assert.AreEqual(double.NegativeInfinity, lnZero.Real, "Re{ln(0)} = -infinity");
+            Assert.AreEqual(0, lnZero.Imag, "Im{ln(0)} = 0");
+
         }
     }
 }

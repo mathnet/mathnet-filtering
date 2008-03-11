@@ -36,8 +36,10 @@ namespace MathNet.Numerics.LinearAlgebra
     {
         /// <summary>Gets the number of rows.</summary>
         int RowCount { get; }
+
         /// <summary>Gets the number of columns.</summary>
         int ColumnCount { get; }
+
         /// <summary>Gets or set the element indexed by <c>(i, j)</c>
         /// in the <c>Matrix</c>.</summary>
         /// <param name="i">Row index.</param>
@@ -52,13 +54,15 @@ namespace MathNet.Numerics.LinearAlgebra
     /// Helpers to handle sub-matrices are also provided.
     /// </remarks>
     [Serializable]
-    public class Matrix : ICloneable, IMatrix
+    public class Matrix :
+        IMatrix,
+        ICloneable
     {
-        private int _rowCount;
-        private int _columnCount;
+        int _rowCount;
+        int _columnCount;
 
         /// <summary>Array for internal storage of elements.</summary>
-        private double[][] _data;
+        double[][] _data;
 
         /// <summary>Gets the number of rows.</summary>
         public int RowCount
@@ -79,25 +83,55 @@ namespace MathNet.Numerics.LinearAlgebra
         public double this[int i, int j]
         {
             get { return _data[i][j]; }
-            set { _data[i][j] = value; }
+            set
+            {
+                _data[i][j] = value;
+
+                // NOTE (cdr, 2008-03-11): The folloing line is cheap,
+                // but still expensive if this setter is called
+                // a lot of times.
+                // - We should recomment out users to build the internal
+                //   jagged array first and then create the matrix for it;
+                //   or to get the internal double[][] handle.
+                // - Consider to omit it here and make the users call
+                //   ResetComputations() after they finished chaniging the matrix.
+                ResetOnDemandComputations();
+            }
         }
+
+        OnDemandComputation<LUDecomposition> _luDecompositionOnDemand;
+        OnDemandComputation<QRDecomposition> _qrDecompositionOnDemand;
+        OnDemandComputation<CholeskyDecomposition> _choleskyDecompositionOnDemand;
+        OnDemandComputation<SingularValueDecomposition> _singularValueDecompositionOnDemand;
+        OnDemandComputation<EigenvalueDecomposition> _eigenValueDecompositionOnDemand;
+        OnDemandComputation<double> _traceOnDemand;
 
         #region Data -> Matrix: Constructors and static constructive methods
 
         /// <summary>Construct an m-by-n matrix of zeros. </summary>
         /// <param name="m">Number of rows.</param>
         /// <param name="n">Number of columns.</param>
-        public Matrix(int m, int n)
+        public
+        Matrix(
+            int m,
+            int n
+            )
         {
             _data = CreateMatrixData(m, n);
             _rowCount = m;
             _columnCount = n;
+
+            InitOnDemandComputations();
         }
 
         /// <summary>Constructs a m-by-m square matrix.</summary>
         /// <param name="m">Size of the square matrix.</param>
         /// <param name="s">Diagonal value.</param>
-        public Matrix(int m, double s)
+        public
+        Matrix(
+            int m,
+            double s
+            )
         {
             _data = new double[m][];
             _rowCount = m;
@@ -109,13 +143,20 @@ namespace MathNet.Numerics.LinearAlgebra
                 col[i] = s;
                 _data[i] = col;
             }
+
+            InitOnDemandComputations();
         }
 
         /// <summary>Construct an m-by-n constant matrix.</summary>
         /// <param name="m">Number of rows.</param>
         /// <param name="n">Number of columns.</param>
         /// <param name="s">Fill the matrix with this scalar value.</param>
-        public Matrix(int m, int n, double s)
+        public
+        Matrix(
+            int m,
+            int n,
+            double s
+            )
         {
             _data = new double[m][];
             _rowCount = m;
@@ -130,12 +171,34 @@ namespace MathNet.Numerics.LinearAlgebra
                 }
                 _data[i] = col;
             }
+
+            InitOnDemandComputations();
+        }
+
+        /// <summary>Constructs a matrix from a jagged 2-D array, directly using the provided array as internal data structure.</summary>
+        /// <param name="A">Two-dimensional jagged array of doubles.</param>
+        /// <exception cref="System.ArgumentException">All rows must have the same length.</exception>
+        /// <seealso cref="Matrix.Create(double[][])"/>
+        /// <seealso cref="Matrix.Create(double[,])"/>
+        public
+        Matrix(
+            double[][] A
+            )
+        {
+            _data = A;
+            GetRowColumnCount(_data, out _rowCount, out _columnCount);
+
+            InitOnDemandComputations();
         }
 
         /// <summary>Constructs a matrix from a 2-D array by deep-copying the provided array to the internal data structure.</summary>
         /// <param name="A">Two-dimensional array of doubles.</param>
         [Obsolete("Use 'Matrix.Create(double[,])' or 'new Matrix(double[][])' instead")]
-        public Matrix(double[,] A)
+        [CLSCompliant(false)]
+        public
+        Matrix(
+            double[,] A
+            )
         {
             _rowCount = A.GetLength(0);
             _columnCount = A.GetLength(1);
@@ -150,24 +213,19 @@ namespace MathNet.Numerics.LinearAlgebra
                 }
                 _data[i] = col;
             }
-        }
 
-        /// <summary>Constructs a matrix from a jagged 2-D array, directly using the provided array as internal data structure.</summary>
-        /// <param name="A">Two-dimensional jagged array of doubles.</param>
-        /// <exception cref="System.ArgumentException">All rows must have the same length.</exception>
-        /// <seealso cref="Matrix.Create(double[][])"/>
-        /// <seealso cref="Matrix.Create(double[,])"/>
-        public Matrix(double[][] A)
-        {
-            _data = A;
-            GetRowColumnCount(_data, out _rowCount, out _columnCount);
+            InitOnDemandComputations();
         }
 
         /// <summary>Construct a matrix from a one-dimensional packed array</summary>
         /// <param name="vals">One-dimensional array of doubles, packed by columns (ala Fortran).</param>
         /// <param name="m">Number of rows.</param>
         /// <exception cref="System.ArgumentException">Array length must be a multiple of m.</exception>
-        public Matrix(double[] vals, int m)
+        public
+        Matrix(
+            double[] vals,
+            int m
+            )
         {
             _rowCount = m;
             if(m == 0)
@@ -198,11 +256,29 @@ namespace MathNet.Numerics.LinearAlgebra
                 }
                 _data[i] = col;
             }
+
+            InitOnDemandComputations();
         }
 
         /// <summary>Constructs a matrix from a copy of a 2-D array by deep-copy.</summary>
         /// <param name="A">Two-dimensional array of doubles.</param>
-        public static Matrix Create(double[,] A)
+        public static
+        Matrix
+        Create(
+            double[][] A
+            )
+        {
+            return new Matrix(CloneMatrixData(A));
+        }
+
+        /// <summary>Constructs a matrix from a copy of a 2-D array by deep-copy.</summary>
+        /// <param name="A">Two-dimensional array of doubles.</param>
+        [CLSCompliant(false)]
+        public static
+        Matrix
+        Create(
+            double[,] A
+            )
         {
             int rows = A.GetLength(0);
             int columns = A.GetLength(1);
@@ -221,18 +297,16 @@ namespace MathNet.Numerics.LinearAlgebra
             return new Matrix(newData);
         }
 
-        /// <summary>Constructs a matrix from a copy of a 2-D array by deep-copy.</summary>
-        /// <param name="A">Two-dimensional array of doubles.</param>
-        public static Matrix Create(double[][] A)
-        {
-            return new Matrix(CloneMatrixData(A));
-        }
-
         /// <summary>Generates identity matrix</summary>
         /// <param name="m">Number of rows.</param>
         /// <param name="n">Number of columns.</param>
         /// <returns>An m-by-n matrix with ones on the diagonal and zeros elsewhere.</returns>
-        public static Matrix Identity(int m, int n)
+        public static
+        Matrix
+        Identity(
+            int m,
+            int n
+            )
         {
             double[][] data = new double[m][];
             for(int i = 0; i < m; i++)
@@ -251,7 +325,11 @@ namespace MathNet.Numerics.LinearAlgebra
         /// Generates an m-by-m matrix filled with 1.
         /// </summary>
         /// <param name="m">Number of rows = Number of columns</param>
-        public static Matrix Ones(int m)
+        public static
+        Matrix
+        Ones(
+            int m
+            )
         {
             return new Matrix(m, m, 1.0);
         }
@@ -260,7 +338,11 @@ namespace MathNet.Numerics.LinearAlgebra
         /// Generates an m-by-m matrix filled with 0.
         /// </summary>
         /// <param name="m">Number of rows = Number of columns</param>
-        public static Matrix Zeros(int m)
+        public static
+        Matrix
+        Zeros(
+            int m
+            )
         {
             return new Matrix(m, m);
         }
@@ -270,14 +352,22 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="n">Number of columns.</param>
         /// <param name="randomDistribution">Continuous Random Distribution or Source</param>
         /// <returns>An m-by-n matrix with elements distributed according to the provided distribution.</returns>
-        public static Matrix Random(int m, int n, IContinuousGenerator randomDistribution)
+        public static
+        Matrix
+        Random(
+            int m,
+            int n,
+            IContinuousGenerator randomDistribution
+            )
         {
             double[][] data = new double[m][];
             for(int i = 0; i < m; i++)
             {
                 double[] col = new double[n];
                 for(int j = 0; j < n; j++)
+                {
                     col[j] = randomDistribution.NextDouble();
+                }
                 data[i] = col;
             }
             return new Matrix(data);
@@ -288,7 +378,12 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="n">Number of columns.</param>
         /// <returns>An m-by-n matrix with uniformly distributed
         /// random elements in <c>[0, 1)</c> interval.</returns>
-        public static Matrix Random(int m, int n)
+        public static
+        Matrix
+        Random(
+            int m,
+            int n
+            )
         {
             return Random(m, n, new RandomSources.SystemRandomSource());
         }
@@ -300,12 +395,18 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <summary>
         /// Copies the internal data structure to a 2-dimensional array.
         /// </summary>
-        public double[,] CopyToArray()
+        public
+        double[,]
+        CopyToArray()
         {
             double[,] newData = new double[_rowCount, _columnCount];
             for(int i = 0; i < _rowCount; i++)
+            {
                 for(int j = 0; i < _columnCount; j++)
+                {
                     newData[i, j] = _data[i][j];
+                }
+            }
             return newData;
         }
 
@@ -313,7 +414,9 @@ namespace MathNet.Numerics.LinearAlgebra
         /// Copies the internal data structure to a jagged rectangular array.
         /// </summary>
         /// <returns></returns>
-        public double[][] CopyToJaggedArray()
+        public
+        double[][]
+        CopyToJaggedArray()
         {
             return CloneMatrixData(_data);
         }
@@ -321,20 +424,28 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <summary>
         /// Returns the internal data structure array.
         /// </summary>
-        public double[][] GetArray()
+        public
+        double[][]
+        GetArray()
         {
             return _data;
         }
 
         /// <summary>Implicit convertion to a <c>double[,]</c> array.</summary>
         [Obsolete("Convert to double[][] instead.")]
-        public static explicit operator double[,](Matrix m)
+        public static explicit
+        operator double[,](
+            Matrix m
+            )
         {
             return m.CopyToArray();
         }
 
         /// <summary>Implicit convertion to a <c>double[][]</c> array.</summary>
-        public static implicit operator double[][](Matrix m)
+        public static implicit
+        operator double[][](
+            Matrix m
+            )
         {
             return m._data;
         }
@@ -343,7 +454,10 @@ namespace MathNet.Numerics.LinearAlgebra
         /// Explicit convertion to a <c>double[]</c> array of a single column matrix.
         /// </summary>
         /// <param name="m">Exactly one column expected.</param>
-        public static explicit operator double[](Matrix m)
+        public static explicit
+        operator double[](
+            Matrix m
+            )
         {
             if(m.ColumnCount != 1) throw new InvalidOperationException(
                 Resources.ArgumentMatrixSingleColumn);
@@ -359,7 +473,10 @@ namespace MathNet.Numerics.LinearAlgebra
         /// Excplicit conversion to a <c>double</c> scalar of a single column and row (1-by-1) matrix.
         /// </summary>
         /// <param name="m">1-by-1 Matrix</param>
-        public static explicit operator double(Matrix m)
+        public static explicit
+        operator double(
+            Matrix m
+            )
         {
             if(m.ColumnCount != 1 || m.RowCount != 1) throw new InvalidOperationException(
                 Resources.ArgumentMatrixSingleColumnRow);
@@ -377,7 +494,12 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </summary>
         /// <param name="m">Number of rows.</param>
         /// <param name="n">Number of columns.</param>
-        public static double[][] CreateMatrixData(int m, int n)
+        public static
+        double[][]
+        CreateMatrixData(
+            int m,
+            int n
+            )
         {
             double[][] data = new double[m][];
             for(int i = 0; i < m; i++)
@@ -390,7 +512,11 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <summary>
         /// Creates a copy of a given internal matrix data structure.
         /// </summary>
-        public static double[][] CloneMatrixData(double[][] data)
+        public static
+        double[][]
+        CloneMatrixData(
+            double[][] data
+            )
         {
             int rows, columns;
             GetRowColumnCount(data, out rows, out columns);
@@ -410,7 +536,13 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <summary>
         /// Tries to find out the row column count of a given internal matrix data structure.
         /// </summary>
-        public static void GetRowColumnCount(double[][] data, out int rows, out int columns)
+        public static
+        void
+        GetRowColumnCount(
+            double[][] data,
+            out int rows,
+            out int columns
+            )
         {
             rows = data.Length;
             columns = (rows == 0) ? 0 : data[0].Length;
@@ -427,14 +559,25 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="j1">Last column index (inclusive).</param>
         /// <returns>A(i0:i1,j0:j1)</returns>
         /// <exception cref="System.IndexOutOfRangeException">Submatrix indices</exception>
-        public virtual Matrix GetMatrix(int i0, int i1, int j0, int j1)
+        public virtual
+        Matrix
+        GetMatrix(
+            int i0,
+            int i1,
+            int j0,
+            int j1
+            )
         {
             double[][] newData = CreateMatrixData(i1 - i0 + 1, j1 - j0 + 1);
             try
             {
                 for(int i = i0; i <= i1; i++)
+                {
                     for(int j = j0; j <= j1; j++)
+                    {
                         newData[i - i0][j - j0] = _data[i][j];
+                    }
+                }
             }
             catch(IndexOutOfRangeException e)
             {
@@ -448,14 +591,23 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="c">Array of column indices.</param>
         /// <returns>A(r(:),c(:))</returns>
         /// <exception cref="System.IndexOutOfRangeException">Submatrix indices.</exception>
-        public virtual Matrix GetMatrix(int[] r, int[] c)
+        public virtual
+        Matrix
+        GetMatrix(
+            int[] r,
+            int[] c
+            )
         {
             double[][] newData = CreateMatrixData(r.Length, c.Length);
             try
             {
                 for(int i = 0; i < r.Length; i++)
+                {
                     for(int j = 0; j < c.Length; j++)
+                    {
                         newData[i][j] = _data[r[i]][c[j]];
+                    }
+                }
             }
             catch(IndexOutOfRangeException e)
             {
@@ -470,14 +622,24 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="c">Array of column indices.</param>
         /// <returns>A(i0:i1,c(:))</returns>
         /// <exception cref="System.IndexOutOfRangeException">Submatrix indices.</exception>
-        public virtual Matrix GetMatrix(int i0, int i1, int[] c)
+        public virtual
+        Matrix
+        GetMatrix(
+            int i0,
+            int i1,
+            int[] c
+            )
         {
             double[][] newData = CreateMatrixData(i1 - i0 + 1, c.Length);
             try
             {
                 for(int i = i0; i <= i1; i++)
+                {
                     for(int j = 0; j < c.Length; j++)
+                    {
                         newData[i - i0][j] = _data[i][c[j]];
+                    }
+                }
             }
             catch(IndexOutOfRangeException e)
             {
@@ -492,14 +654,24 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="j1">Last column index (inclusive).</param>
         /// <returns>A(r(:),j0:j1)</returns>
         /// <exception cref="System.IndexOutOfRangeException">Submatrix indices.</exception>
-        public virtual Matrix GetMatrix(int[] r, int j0, int j1)
+        public virtual
+        Matrix
+        GetMatrix(
+            int[] r,
+            int j0,
+            int j1
+            )
         {
             double[][] newData = CreateMatrixData(r.Length, j1 - j0 + 1);
             try
             {
                 for(int i = 0; i < r.Length; i++)
+                {
                     for(int j = j0; j <= j1; j++)
+                    {
                         newData[i][j - j0] = _data[r[i]][j];
+                    }
+                }
             }
             catch(IndexOutOfRangeException e)
             {
@@ -515,18 +687,31 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="j1">Last column index (inclusive).</param>
         /// <param name="X">A(i0:i1,j0:j1)</param>
         /// <exception cref="System.IndexOutOfRangeException">Submatrix indices.</exception>
-        public virtual void SetMatrix(int i0, int i1, int j0, int j1, IMatrix X)
+        public virtual
+        void
+        SetMatrix(
+            int i0,
+            int i1,
+            int j0,
+            int j1,
+            IMatrix X
+            )
         {
             try
             {
                 for(int i = i0; i <= i1; i++)
+                {
                     for(int j = j0; j <= j1; j++)
+                    {
                         _data[i][j] = X[i - i0, j - j0];
+                    }
+                }
             }
             catch(IndexOutOfRangeException e)
             {
                 throw new IndexOutOfRangeException(Resources.ArgumentMatrixIndexOutOfRange, e);
             }
+            ResetOnDemandComputations();
         }
 
         /// <summary>Sets a submatrix.</summary>
@@ -534,18 +719,29 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="c">Array of column indices.</param>
         /// <param name="X">A(r(:),c(:))</param>
         /// <exception cref="System.IndexOutOfRangeException">Submatrix indices</exception>
-        public virtual void SetMatrix(int[] r, int[] c, IMatrix X)
+        public virtual
+        void
+        SetMatrix(
+            int[] r,
+            int[] c,
+            IMatrix X
+            )
         {
             try
             {
                 for(int i = 0; i < r.Length; i++)
+                {
                     for(int j = 0; j < c.Length; j++)
+                    {
                         _data[r[i]][c[j]] = X[i, j];
+                    }
+                }
             }
             catch(IndexOutOfRangeException e)
             {
                 throw new IndexOutOfRangeException(Resources.ArgumentMatrixIndexOutOfRange, e);
             }
+            ResetOnDemandComputations();
         }
 
         /// <summary>Sets a submatrix.</summary>
@@ -554,18 +750,30 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="j1">Last column index (inclusive).</param>
         /// <param name="X">A(r(:),j0:j1)</param>
         /// <exception cref="System.IndexOutOfRangeException">Submatrix indices</exception>
-        public virtual void SetMatrix(int[] r, int j0, int j1, IMatrix X)
+        public virtual
+        void
+        SetMatrix(
+            int[] r,
+            int j0,
+            int j1,
+            IMatrix X
+            )
         {
             try
             {
                 for(int i = 0; i < r.Length; i++)
+                {
                     for(int j = j0; j <= j1; j++)
+                    {
                         _data[r[i]][j] = X[i, j - j0];
+                    }
+                }
             }
             catch(IndexOutOfRangeException e)
             {
                 throw new IndexOutOfRangeException(Resources.ArgumentMatrixIndexOutOfRange, e);
             }
+            ResetOnDemandComputations();
         }
 
         /// <summary>Set a submatrix.</summary>
@@ -574,18 +782,30 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="c">Array of column indices.</param>
         /// <param name="X">A(i0:i1,c(:))</param>
         /// <exception cref="System.IndexOutOfRangeException">Submatrix indices.</exception>
-        public virtual void SetMatrix(int i0, int i1, int[] c, IMatrix X)
+        public virtual
+        void
+        SetMatrix(
+            int i0,
+            int i1,
+            int[] c,
+            IMatrix X
+            )
         {
             try
             {
                 for(int i = i0; i <= i1; i++)
+                {
                     for(int j = 0; j < c.Length; j++)
+                    {
                         _data[i][c[j]] = X[i - i0, j];
+                    }
+                }
             }
             catch(IndexOutOfRangeException e)
             {
                 throw new IndexOutOfRangeException(Resources.ArgumentMatrixIndexOutOfRange, e);
             }
+            ResetOnDemandComputations();
         }
 
 
@@ -595,8 +815,11 @@ namespace MathNet.Numerics.LinearAlgebra
 
         /// <summary>One norm</summary>
         /// <returns>Maximum column sum.</returns>
-        public double Norm1()
+        public
+        double
+        Norm1()
         {
+            // TODO (cdr, 2008-03-11): Change to property, consider cached on-demand.
             double f = 0;
             for(int j = 0; j < _columnCount; j++)
             {
@@ -612,15 +835,21 @@ namespace MathNet.Numerics.LinearAlgebra
 
         /// <summary>Two norm</summary>
         /// <returns>Maximum singular value.</returns>
-        public double Norm2()
+        public
+        double
+        Norm2()
         {
-            return (new SingularValueDecomposition(this).Norm2());
+            // TODO (cdr, 2008-03-11): Change to property.
+            return SingularValueDecomposition.Norm2();
         }
 
         /// <summary>Infinity norm</summary>
         /// <returns>Maximum row sum.</returns>
-        public double NormInf()
+        public
+        double
+        NormInf()
         {
+            // TODO (cdr, 2008-03-11): Change to property, consider cached on-demand.
             double f = 0;
             for(int i = 0; i < _rowCount; i++)
             {
@@ -636,8 +865,11 @@ namespace MathNet.Numerics.LinearAlgebra
 
         /// <summary>Frobenius norm</summary>
         /// <returns>Sqrt of sum of squares of all elements.</returns>
-        public double NormF()
+        public
+        double
+        NormF()
         {
+            // TODO (cdr, 2008-03-11): Change to property
             double f = 0;
             for(int i = 0; i < _rowCount; i++)
             {
@@ -656,7 +888,11 @@ namespace MathNet.Numerics.LinearAlgebra
 
         /// <summary>In place addition of <c>m</c> to this <c>Matrix</c>.</summary>
         /// <seealso cref="operator + (Matrix, Matrix)"/>
-        public virtual void Add(IMatrix m)
+        public virtual
+        void
+        Add(
+            IMatrix m
+            )
         {
             CheckMatchingMatrixDimensions(this, m);
 
@@ -667,11 +903,17 @@ namespace MathNet.Numerics.LinearAlgebra
                     _data[i][j] += m[i, j];
                 }
             }
+
+            ResetOnDemandComputations();
         }
 
         /// <summary>Multiplies in place this <c>Matrix</c> by a scalar.</summary>
         /// <seealso cref="operator * (double, Matrix)"/>
-        public virtual void Multiply(double s)
+        public virtual
+        void
+        Multiply(
+            double s
+            )
         {
             for(int i = 0; i < _rowCount; i++)
             {
@@ -680,6 +922,8 @@ namespace MathNet.Numerics.LinearAlgebra
                     _data[i][j] *= s;
                 }
             }
+
+            ResetOnDemandComputations();
         }
 
         /// <summary>In place linear algebraic matrix multiplication, D * A where
@@ -687,7 +931,11 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="diagonal">Diagonal values of D.</param>
         /// <exception cref="ArgumentNullException"><c>diagonal</c> must not be null.</exception>
         /// <exception cref="ArgumentException">Matrix inner dimensions must agree.</exception>
-        public virtual void Multiply(double[] diagonal)
+        public virtual
+        void
+        Multiply(
+            double[] diagonal
+            )
         {
             if(diagonal == null)
                 throw new ArgumentNullException("diagonal", string.Format(Resources.ArgumentNull, "diagonal"));
@@ -702,12 +950,18 @@ namespace MathNet.Numerics.LinearAlgebra
                     _data[i][j] *= d;
                 }
             }
+
+            ResetOnDemandComputations();
         }
 
         /// <summary>Linear algebraic matrix multiplication, A * B</summary>
         /// <exception cref="ArgumentNullException">B must not be null.</exception>
         /// <exception cref="ArgumentException">Matrix inner dimensions must agree.</exception>
-        public Matrix Multiply(Matrix B)
+        public
+        Matrix
+        Multiply(
+            Matrix B
+            )
         {
             if(B == null)
                 throw new ArgumentNullException("B", string.Format(Resources.ArgumentNull, "B"));
@@ -743,7 +997,11 @@ namespace MathNet.Numerics.LinearAlgebra
 
         /// <summary>In place subtraction of <c>m</c> to this <c>Matrix</c>.</summary>
         /// <seealso cref="operator - (Matrix, Matrix)"/>
-        public virtual void Subtract(IMatrix m)
+        public virtual
+        void
+        Subtract(
+            IMatrix m
+            )
         {
             CheckMatchingMatrixDimensions(this, m);
 
@@ -754,11 +1012,21 @@ namespace MathNet.Numerics.LinearAlgebra
                     _data[i][j] -= m[i, j];
                 }
             }
+
+            ResetOnDemandComputations();
         }
 
         /// <summary>In place transposition of this <c>Matrix</c>.</summary>
         /// <seealso cref="Transpose(IMatrix)"/>
-        public virtual void Transpose()
+        /// <remarks>
+        /// In case of non-quadratic matrices, this operation replaces the
+        /// internal data structure. Hence, if you hold a reference to it
+        /// for faster access, you'll need to get a new reference to it
+        /// using <see cref="GetArray"/>.
+        /// </remarks>
+        public virtual
+        void
+        Transpose()
         {
             // TODO: test this method
             int m = _rowCount;
@@ -768,28 +1036,40 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 // No need for array copy
                 for(int i = 0; i < m; i++)
+                {
                     for(int j = i + 1; j < n; j++)
                     {
                         double thisIJ = this[i, j];
                         _data[i][j] = _data[j][i];
                         _data[j][i] = thisIJ;
                     }
+                }
             }
             else
             {
                 double[][] newData = CreateMatrixData(n, m);
                 for(int i = 0; i < m; i++)
+                {
                     for(int j = 0; j < n; j++)
+                    {
                         newData[j][i] = _data[i][j];
+                    }
+                }
 
                 _data = newData;
                 _rowCount = n;
                 _columnCount = m;
             }
+
+            ResetOnDemandComputations();
         }
 
         /// <summary>Gets the transposition of the provided <c>Matrix</c>.</summary>
-        public static Matrix Transpose(IMatrix m)
+        public static
+        Matrix
+        Transpose(
+            IMatrix m
+            )
         {
             double[][] newData = CreateMatrixData(m.ColumnCount, m.RowCount);
             for(int i = 0; i < m.RowCount; i++)
@@ -803,7 +1083,9 @@ namespace MathNet.Numerics.LinearAlgebra
         }
 
         /// <summary>In place unary minus of the <c>Matrix</c>.</summary>
-        public virtual void UnaryMinus()
+        public virtual
+        void
+        UnaryMinus()
         {
             for(int i = 0; i < _rowCount; i++)
             {
@@ -812,6 +1094,8 @@ namespace MathNet.Numerics.LinearAlgebra
                     _data[i][j] = -_data[i][j];
                 }
             }
+
+            ResetOnDemandComputations();
         }
 
         #endregion
@@ -821,49 +1105,87 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <summary>In place element-by-element multiplication.</summary>
         /// <remarks>This instance and <c>m</c> must have the same dimensions.</remarks>
         /// <seealso cref="ArrayMultiply(IMatrix, IMatrix)"/>
-        public void ArrayMultiply(IMatrix m)
+        public
+        void
+        ArrayMultiply(
+            IMatrix m
+            )
         {
             CheckMatchingMatrixDimensions(this, m);
 
             for(int i = 0; i < _rowCount; i++)
+            {
                 for(int j = 0; j < _columnCount; j++)
+                {
                     _data[i][j] *= m[i, j];
+                }
+            }
+
+            ResetOnDemandComputations();
         }
 
         /// <summary>Element-by-element multiplication.</summary>
         /// <remarks><c>m1</c> and <c>m2</c> must have the same dimensions.</remarks>
         /// <seealso cref="ArrayMultiply(IMatrix )"/>
-        public static Matrix ArrayMultiply(IMatrix m1, IMatrix m2)
+        public static
+        Matrix
+        ArrayMultiply(
+            IMatrix m1,
+            IMatrix m2
+            )
         {
             CheckMatchingMatrixDimensions(m1, m2);
 
             double[][] newData = CreateMatrixData(m1.RowCount, m1.ColumnCount);
             for(int i = 0; i < m1.RowCount; i++)
+            {
                 for(int j = 0; j < m1.ColumnCount; j++)
+                {
                     newData[i][j] = m1[i, j] * m2[i, j];
+                }
+            }
 
             return new Matrix(newData);
         }
 
         /// <summary>In place element-by-element right division, <c>A ./= B</c>.</summary>
-        public void ArrayDivide(IMatrix m)
+        public
+        void
+        ArrayDivide(
+            IMatrix m
+            )
         {
             CheckMatchingMatrixDimensions(this, m);
 
             for(int i = 0; i < _rowCount; i++)
+            {
                 for(int j = 0; j < _columnCount; j++)
+                {
                     _data[i][j] /= m[i, j];
+                }
+            }
+
+            ResetOnDemandComputations();
         }
 
         /// <summary>Element-by-element right division, <c>C = A./B</c>.</summary>
-        public static Matrix ArrayDivide(IMatrix m1, IMatrix m2)
+        public static
+        Matrix
+        ArrayDivide(
+            IMatrix m1,
+            IMatrix m2
+            )
         {
             CheckMatchingMatrixDimensions(m1, m2);
 
             double[][] newData = CreateMatrixData(m1.RowCount, m1.ColumnCount);
             for(int i = 0; i < m1.RowCount; i++)
+            {
                 for(int j = 0; j < m1.ColumnCount; j++)
+                {
                     newData[i][j] = m1[i, j] / m2[i, j];
+                }
+            }
 
             return new Matrix(newData);
         }
@@ -874,38 +1196,88 @@ namespace MathNet.Numerics.LinearAlgebra
 
         /// <summary>LU Decomposition</summary>
         /// <seealso cref="LUDecomposition"/>
-        public virtual LUDecomposition LUD()
+        public LUDecomposition LUDecomposition
         {
-            return new LUDecomposition(this);
+            get { return _luDecompositionOnDemand.Compute(); }
+        }
+
+        /// <summary>QR Decomposition</summary>
+        /// <seealso cref="QRDecomposition"/>
+        public QRDecomposition QRDecomposition
+        {
+            get { return _qrDecompositionOnDemand.Compute(); }
+        }
+
+        /// <summary>Cholesky Decomposition</summary>
+        /// <seealso cref="CholeskyDecomposition"/>
+        public CholeskyDecomposition CholeskyDecomposition
+        {
+            get { return _choleskyDecompositionOnDemand.Compute(); }
+        }
+
+        /// <summary>Singular Value Decomposition</summary>
+        /// <seealso cref="SingularValueDecomposition"/>
+        public SingularValueDecomposition SingularValueDecomposition
+        {
+            get { return _singularValueDecompositionOnDemand.Compute(); }
+        }
+
+        /// <summary>Eigenvalue Decomposition</summary>
+        /// <seealso cref="EigenvalueDecomposition"/>
+        public EigenvalueDecomposition EigenvalueDecomposition
+        {
+            get { return _eigenValueDecompositionOnDemand.Compute(); }
+        }
+
+        /// <summary>LU Decomposition</summary>
+        /// <seealso cref="LUDecomposition"/>
+        [Obsolete("Use the LUDecomposition property instead.")]
+        public virtual
+        LUDecomposition
+        LUD()
+        {
+            return _luDecompositionOnDemand.Compute();
         }
 
         /// <summary>QR Decomposition</summary>
         /// <returns>QRDecomposition</returns>
         /// <seealso cref="QRDecomposition"/>
-        public virtual QRDecomposition QRD()
+        [Obsolete("Use the QRDecomposition property instead.")]
+        public virtual
+        QRDecomposition
+        QRD()
         {
-            return new QRDecomposition(this);
+            return _qrDecompositionOnDemand.Compute();
         }
 
         /// <summary>Cholesky Decomposition</summary>
         /// <seealso cref="CholeskyDecomposition"/>
-        public virtual CholeskyDecomposition chol()
+        [Obsolete("Use the CholeskyDecomposition property instead.")]
+        public virtual
+        CholeskyDecomposition
+        chol()
         {
-            return new CholeskyDecomposition(this);
+            return _choleskyDecompositionOnDemand.Compute();
         }
 
         /// <summary>Singular Value Decomposition</summary>
         /// <seealso cref="SingularValueDecomposition"/>
-        public virtual SingularValueDecomposition SVD()
+        [Obsolete("Use the SingularValueDecomposition property instead.")]
+        public virtual
+        SingularValueDecomposition
+        SVD()
         {
-            return new SingularValueDecomposition(this);
+            return _singularValueDecompositionOnDemand.Compute();
         }
 
         /// <summary>Eigenvalue Decomposition</summary>
         /// <seealso cref="EigenvalueDecomposition"/>
-        public virtual EigenvalueDecomposition Eigen()
+        [Obsolete("Use the EigenvalueDecomposition property instead.")]
+        public virtual
+        EigenvalueDecomposition
+        Eigen()
         {
-            return new EigenvalueDecomposition(this);
+            return _eigenValueDecompositionOnDemand.Compute();
         }
 
         #endregion
@@ -916,20 +1288,30 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="B">right hand side</param>
         /// <returns>solution if A is square, least squares solution otherwise.</returns>
         /// <exception cref="InvalidOperationException">Matrix rank is deficient.</exception>
-        public virtual Matrix Solve(Matrix B)
+        public virtual
+        Matrix
+        Solve(
+            Matrix B
+            )
         {
-            return (_rowCount == _columnCount ? (new LUDecomposition(this)).Solve(B) : (new QRDecomposition(this)).Solve(B));
+            return (_rowCount == _columnCount)
+                ? LUDecomposition.Solve(B)
+                : QRDecomposition.Solve(B);
         }
 
         /// <summary>Solve A*X = B against a Least Absolute Deviation (L1) criterion.</summary>
         /// <param name="B">right hand side</param>
         /// <returns>The implementation relies on the IRLS (iterated Re-weighted Least Square) algorithm.</returns>
         /// <exception cref="InvalidOperationException">Matrix rank is deficient.</exception>
-        public virtual Matrix SolveRobust(Matrix B)
+        public virtual
+        Matrix
+        SolveRobust(
+            Matrix B
+            )
         {
             if(_rowCount == _columnCount)
             {
-                return ((new LUDecomposition(this)).Solve(B));
+                return LUDecomposition.Solve(B);
             }
 
             double eta = 1.0e-12; // cut-off value to avoid instabilities in the IRLS convergence
@@ -943,7 +1325,9 @@ namespace MathNet.Numerics.LinearAlgebra
             // G is a diagonal matrix - G is initialized as the identity matrix
             double[] G = new double[A.RowCount];
             for(int i = 0; i < G.Length; i++)
+            {
                 G[i] = 1;
+            }
 
             //IRLS loop
             double maxChange = double.MaxValue;
@@ -983,48 +1367,61 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <summary>Solve X*A = B, which is also A'*X' = B'</summary>
         /// <param name="B">right hand side</param>
         /// <returns>solution if A is square, least squares solution otherwise.</returns>
-        public virtual Matrix SolveTranspose(Matrix B)
+        public virtual
+        Matrix
+        SolveTranspose(
+            Matrix B
+            )
         {
             return Transpose(this).Solve(Transpose(B));
         }
 
         /// <summary>Matrix inverse or pseudoinverse.</summary>
         /// <returns> inverse(A) if A is square, pseudoinverse otherwise.</returns>
-        public virtual Matrix Inverse()
+        public virtual
+        Matrix
+        Inverse()
         {
             return Solve(Identity(_rowCount, _rowCount));
         }
 
         /// <summary>Matrix determinant</summary>
-        public virtual double Determinant()
+        public virtual
+        double
+        Determinant()
         {
-            return new LUDecomposition(this).Determinant();
+            // TODO (cdr, 2008-03-11): Change to property
+            return LUDecomposition.Determinant();
         }
 
         /// <summary>Matrix rank</summary>
         /// <returns>effective numerical rank, obtained from SVD.</returns>
-        public virtual int Rank()
+        public virtual
+        int
+        Rank()
         {
-            return new SingularValueDecomposition(this).Rank();
+            // TODO (cdr, 2008-03-11): Change to property
+            return SingularValueDecomposition.Rank();
         }
 
         /// <summary>Matrix condition (2 norm)</summary>
         /// <returns>ratio of largest to smallest singular value.</returns>
-        public virtual double Condition()
+        public virtual
+        double
+        Condition()
         {
-            return new SingularValueDecomposition(this).Condition();
+            // TODO (cdr, 2008-03-11): Change to property
+            return SingularValueDecomposition.Condition();
         }
 
         /// <summary>Matrix trace.</summary>
         /// <returns>sum of the diagonal elements.</returns>
-        public virtual double Trace()
+        public virtual
+        double
+        Trace()
         {
-            double t = 0;
-            for(int i = 0; i < Math.Min(_rowCount, _columnCount); i++)
-            {
-                t += _data[i][i];
-            }
-            return t;
+            // TODO (cdr, 2008-03-11): Change to property
+            return _traceOnDemand.Compute();
         }
 
         #endregion
@@ -1032,7 +1429,12 @@ namespace MathNet.Numerics.LinearAlgebra
         #region Arithmetic Operator Overloading
 
         /// <summary>Addition of matrices</summary>
-        public static Matrix operator +(Matrix m1, Matrix m2)
+        public static
+        Matrix
+        operator +(
+            Matrix m1,
+            Matrix m2
+            )
         {
             CheckMatchingMatrixDimensions(m1, m2);
 
@@ -1048,7 +1450,12 @@ namespace MathNet.Numerics.LinearAlgebra
         }
 
         /// <summary>Subtraction of matrices</summary>
-        public static Matrix operator -(Matrix m1, Matrix m2)
+        public static
+        Matrix
+        operator -(
+            Matrix m1,
+            Matrix m2
+            )
         {
             CheckMatchingMatrixDimensions(m1, m2);
 
@@ -1065,7 +1472,12 @@ namespace MathNet.Numerics.LinearAlgebra
 
         /// <summary>Linear algebraic matrix multiplication.</summary>
         /// <exception cref="System.ArgumentException">Matrix inner dimensions must agree.</exception>
-        public static Matrix operator *(Matrix m1, Matrix m2)
+        public static
+        Matrix
+        operator *(
+            Matrix m1,
+            Matrix m2
+            )
         {
             if(m2.RowCount != m1.ColumnCount)
             {
@@ -1089,7 +1501,12 @@ namespace MathNet.Numerics.LinearAlgebra
         }
 
         /// <summary>Multiplication of a matrix by a scalar, C = s*A</summary>
-        public static Matrix operator *(double s, Matrix m)
+        public static
+        Matrix
+        operator *(
+            double s,
+            Matrix m
+            )
         {
             double[][] newData = CreateMatrixData(m.RowCount, m.ColumnCount);
             for(int i = 0; i < m.RowCount; i++)
@@ -1103,7 +1520,12 @@ namespace MathNet.Numerics.LinearAlgebra
         }
 
         /// <summary>Multiplication of a matrix by a scalar, C = s*A</summary>
-        public static Matrix operator *(Matrix m, double s)
+        public static
+        Matrix
+        operator *(
+            Matrix m,
+            double s
+            )
         {
             return s * m;
         }
@@ -1113,16 +1535,23 @@ namespace MathNet.Numerics.LinearAlgebra
         #region Various Helpers & Infrastructure
 
         /// <summary>Check if size(A) == size(B) *</summary>
-        private static void CheckMatchingMatrixDimensions(IMatrix A, IMatrix B)
+        private static
+        void
+        CheckMatchingMatrixDimensions(
+            IMatrix A,
+            IMatrix B
+            )
         {
             if(A.RowCount != B.RowCount || A.ColumnCount != B.ColumnCount)
             {
                 throw new ArgumentException(Resources.ArgumentMatrixSameDimensions);
             }
         }
-        
+
         /// <summary>Returns a deep copy of this instance.</summary>
-        public Matrix Clone()
+        public
+        Matrix
+        Clone()
         {
             return new Matrix(CloneMatrixData(_data));
         }
@@ -1130,7 +1559,8 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <summary>
         /// Creates an exact copy of this matrix.
         /// </summary>
-        object ICloneable.Clone()
+        object
+        ICloneable.Clone()
         {
             return Clone();
         }
@@ -1138,14 +1568,25 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <summary>
         /// Returns true if two matrices are almost equal (with some given relative accuracy).
         /// </summary>
-        public static bool AlmostEqual(Matrix X, Matrix Y, double relativeAccuracy)
+        public static
+        bool
+        AlmostEqual(
+            Matrix X,
+            Matrix Y,
+            double relativeAccuracy
+            )
         {
             return Number.AlmostEqualNorm(X.Norm1(), Y.Norm1(), (X - Y).Norm1(), relativeAccuracy);
         }
         /// <summary>
         /// Returns true if two matrices are almost equal.
         /// </summary>
-        public static bool AlmostEqual(Matrix X, Matrix Y)
+        public static
+        bool
+        AlmostEqual(
+            Matrix X,
+            Matrix Y
+            )
         {
             return Number.AlmostEqualNorm(X.Norm1(), Y.Norm1(), (X - Y).Norm1(), 10 * Number.DefaultRelativeAccuracy);
         }
@@ -1153,29 +1594,120 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <summary>
         /// Formats this matrix to a human-readable string
         /// </summary>
-        public override string ToString()
+        public override
+        string
+        ToString()
         {
             StringBuilder sb = new StringBuilder();
             for(int i = 0; i < _rowCount; i++)
             {
                 if(i == 0)
+                {
                     sb.Append("[[");
+                }
                 else
+                {
                     sb.Append(" [");
+                }
+
                 for(int j = 0; j < _columnCount; j++)
                 {
                     if(j != 0)
+                    {
                         sb.Append(',');
+                    }
                     sb.Append(_data[i][j]);
                 }
+
                 if(i == _rowCount - 1)
+                {
                     sb.Append("]]");
+                }
                 else
+                {
                     sb.AppendLine("]");
+                }
             }
             return sb.ToString();
         }
 
+        #endregion
+
+        #region OnDemandComputations
+        void
+        InitOnDemandComputations()
+        {
+            _luDecompositionOnDemand = new OnDemandComputation<LUDecomposition>(ComputeLUDecomposition);
+            _qrDecompositionOnDemand = new OnDemandComputation<QRDecomposition>(ComputeQRDecomposition);
+            _choleskyDecompositionOnDemand = new OnDemandComputation<CholeskyDecomposition>(ComputeCholeskyDecomposition);
+            _singularValueDecompositionOnDemand = new OnDemandComputation<SingularValueDecomposition>(ComputeSingularValueDecomposition);
+            _eigenValueDecompositionOnDemand = new OnDemandComputation<EigenvalueDecomposition>(ComputeEigenValueDecomposition);
+            _traceOnDemand = new OnDemandComputation<double>(ComputeTrace);
+        }
+
+        void
+        ResetOnDemandComputations()
+        {
+            _luDecompositionOnDemand.Reset();
+            _qrDecompositionOnDemand.Reset();
+            _choleskyDecompositionOnDemand.Reset();
+            _singularValueDecompositionOnDemand.Reset();
+            _eigenValueDecompositionOnDemand.Reset();
+            _traceOnDemand.Reset();
+        }
+
+        /// <summary>
+        /// Reset various internal computations.
+        /// Call this method after you made changes directly
+        /// on the the internal double[][] data structure.
+        /// </summary>
+        public
+        void
+        ResetComputations()
+        {
+            ResetOnDemandComputations();
+        }
+
+        LUDecomposition
+        ComputeLUDecomposition()
+        {
+            return new LUDecomposition(this);
+        }
+
+        QRDecomposition
+        ComputeQRDecomposition()
+        {
+            return new QRDecomposition(this);
+        }
+
+        CholeskyDecomposition
+        ComputeCholeskyDecomposition()
+        {
+            return new CholeskyDecomposition(this);
+        }
+
+        SingularValueDecomposition
+        ComputeSingularValueDecomposition()
+        {
+            return new SingularValueDecomposition(this);
+        }
+
+        EigenvalueDecomposition
+        ComputeEigenValueDecomposition()
+        {
+            return new EigenvalueDecomposition(this);
+        }
+
+        double
+        ComputeTrace()
+        {
+            double t = 0;
+            for(int i = 0; i < Math.Min(_rowCount, _columnCount); i++)
+            {
+                t += _data[i][i];
+            }
+            return t;
+        }
         #endregion
     }
 }

@@ -42,10 +42,11 @@ namespace MathNet.Numerics.LinearAlgebra
     [Serializable]
     public class QRDecomposition
     {
-        #region Class variables
-
         /// <summary>Array for internal storage of decomposition.</summary>
-        private double[][] QR;
+        double[][] QR;
+
+        /// <summary>Array for internal storage of diagonal of R.</summary>
+        double[] Rdiag;
 
         /// <summary>Row dimensions.</summary>
         private int m
@@ -59,17 +60,18 @@ namespace MathNet.Numerics.LinearAlgebra
             get { return QR[0].Length; }
         }
 
-        /// <summary>Array for internal storage of diagonal of R.</summary>
-        private double[] Rdiag;
-
-        #endregion //  Class variables
-
-        #region Constructor
+        OnDemandComputation<bool> _fullRankOnDemand;
+        OnDemandComputation<Matrix> _householderVectorsOnDemand;
+        OnDemandComputation<Matrix> _upperTriangularFactorOnDemand;
+        OnDemandComputation<Matrix> _orthogonalFactorOnDemand;
 
         /// <summary>QR Decomposition, computed by Householder reflections.</summary>
         /// <remarks>Provides access to R, the Householder vectors and computes Q.</remarks>
         /// <param name="A">Rectangular matrix</param>
-        public QRDecomposition(Matrix A)
+        public
+        QRDecomposition(
+            Matrix A
+            )
         {
             // TODO: it is usually considered as a poor practice to execute algorithms within a constructor.
 
@@ -117,11 +119,9 @@ namespace MathNet.Numerics.LinearAlgebra
                 }
                 Rdiag[k] = -nrm;
             }
+
+            InitOnDemandComputations();
         }
-
-        #endregion //  Constructor
-
-        #region Public Properties
 
         /// <summary>Indicates whether the matrix is full rank.</summary>
         /// <returns><c>true</c> if R, and hence A, has full rank.</returns>
@@ -129,12 +129,7 @@ namespace MathNet.Numerics.LinearAlgebra
         {
             get
             {
-                for(int j = 0; j < n; j++)
-                {
-                    if(Rdiag[j] == 0)
-                        return false;
-                }
-                return true;
+                return _fullRankOnDemand.Compute();
             }
         }
 
@@ -144,25 +139,7 @@ namespace MathNet.Numerics.LinearAlgebra
         {
             get
             {
-                // TODO: bad behavior of this property
-                // this property does not always return the same matrix
-
-                double[][] H = Matrix.CreateMatrixData(m, n);
-                for(int i = 0; i < m; i++)
-                {
-                    for(int j = 0; j < n; j++)
-                    {
-                        if(i >= j)
-                        {
-                            H[i][j] = QR[i][j];
-                        }
-                        else
-                        {
-                            H[i][j] = 0.0;
-                        }
-                    }
-                }
-                return new Matrix(H);
+                return _householderVectorsOnDemand.Compute();
             }
         }
 
@@ -171,29 +148,7 @@ namespace MathNet.Numerics.LinearAlgebra
         {
             get
             {
-                // TODO: bad behavior of this property
-                // this property does not always return the same matrix
-
-                double[][] R = Matrix.CreateMatrixData(n, n);
-                for(int i = 0; i < n; i++)
-                {
-                    for(int j = 0; j < n; j++)
-                    {
-                        if(i < j)
-                        {
-                            R[i][j] = QR[i][j];
-                        }
-                        else if(i == j)
-                        {
-                            R[i][j] = Rdiag[i];
-                        }
-                        else
-                        {
-                            R[i][j] = 0.0;
-                        }
-                    }
-                }
-                return new Matrix(R);
+                return _upperTriangularFactorOnDemand.Compute();
             }
         }
 
@@ -202,47 +157,20 @@ namespace MathNet.Numerics.LinearAlgebra
         {
             get
             {
-                // TODO: bad behavior of this property
-                // this property does not always return the same matrix
-
-                double[][] Q = Matrix.CreateMatrixData(m, n);
-                for(int k = n - 1; k >= 0; k--)
-                {
-                    for(int i = 0; i < m; i++)
-                    {
-                        Q[i][k] = 0.0;
-                    }
-                    Q[k][k] = 1.0;
-                    for(int j = k; j < n; j++)
-                    {
-                        if(QR[k][k] != 0)
-                        {
-                            double s = 0.0;
-                            for(int i = k; i < m; i++)
-                            {
-                                s += QR[i][k] * Q[i][j];
-                            }
-                            s = (-s) / QR[k][k];
-                            for(int i = k; i < m; i++)
-                            {
-                                Q[i][j] += s * QR[i][k];
-                            }
-                        }
-                    }
-                }
-                return new Matrix(Q);
+                return _orthogonalFactorOnDemand.Compute();
             }
         }
-        #endregion //  Public Properties
-
-        #region Public Methods
 
         /// <summary>Least squares solution of A*X = B</summary>
         /// <param name="B">A Matrix with as many rows as A and any number of columns.</param>
         /// <returns>X that minimizes the two norm of Q*R*X-B.</returns>
         /// <exception cref="System.ArgumentException">Matrix row dimensions must agree.</exception>
         /// <exception cref="System.SystemException"> Matrix is rank deficient.</exception>
-        public Matrix Solve(Matrix B)
+        public
+        Matrix
+        Solve(
+            Matrix B
+            )
         {
             if(B.RowCount != m)
                 throw new ArgumentException(Resources.ArgumentMatrixSameRowDimension, "B");
@@ -289,6 +217,103 @@ namespace MathNet.Numerics.LinearAlgebra
             return (new Matrix(X).GetMatrix(0, n - 1, 0, nx - 1));
         }
 
-        #endregion //  Public Methods
+        void
+        InitOnDemandComputations()
+        {
+            _fullRankOnDemand = new OnDemandComputation<bool>(ComputeFullRank);
+            _householderVectorsOnDemand = new OnDemandComputation<Matrix>(ComputeHouseholderVectors);
+            _upperTriangularFactorOnDemand = new OnDemandComputation<Matrix>(ComputeUpperTriangularFactor);
+            _orthogonalFactorOnDemand = new OnDemandComputation<Matrix>(ComputeOrthogonalFactor);
+        }
+
+        bool
+        ComputeFullRank()
+        {
+            for(int j = 0; j < n; j++)
+            {
+                if(Rdiag[j] == 0)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        Matrix
+        ComputeHouseholderVectors()
+        {
+            double[][] H = Matrix.CreateMatrixData(m, n);
+            for(int i = 0; i < m; i++)
+            {
+                for(int j = 0; j < n; j++)
+                {
+                    if(i >= j)
+                    {
+                        H[i][j] = QR[i][j];
+                    }
+                    else
+                    {
+                        H[i][j] = 0.0;
+                    }
+                }
+            }
+            return new Matrix(H);
+        }
+
+        Matrix
+        ComputeUpperTriangularFactor()
+        {
+            double[][] R = Matrix.CreateMatrixData(n, n);
+            for(int i = 0; i < n; i++)
+            {
+                for(int j = 0; j < n; j++)
+                {
+                    if(i < j)
+                    {
+                        R[i][j] = QR[i][j];
+                    }
+                    else if(i == j)
+                    {
+                        R[i][j] = Rdiag[i];
+                    }
+                    else
+                    {
+                        R[i][j] = 0.0;
+                    }
+                }
+            }
+            return new Matrix(R);
+        }
+
+        Matrix
+        ComputeOrthogonalFactor()
+        {
+            double[][] Q = Matrix.CreateMatrixData(m, n);
+            for(int k = n - 1; k >= 0; k--)
+            {
+                for(int i = 0; i < m; i++)
+                {
+                    Q[i][k] = 0.0;
+                }
+                Q[k][k] = 1.0;
+                for(int j = k; j < n; j++)
+                {
+                    if(QR[k][k] != 0)
+                    {
+                        double s = 0.0;
+                        for(int i = k; i < m; i++)
+                        {
+                            s += QR[i][k] * Q[i][j];
+                        }
+                        s = (-s) / QR[k][k];
+                        for(int i = k; i < m; i++)
+                        {
+                            Q[i][j] += s * QR[i][k];
+                        }
+                    }
+                }
+            }
+            return new Matrix(Q);
+        }
     }
 }

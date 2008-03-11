@@ -220,7 +220,7 @@ namespace Iridium.Test
             {
                 Matrix matrix = Matrix.Random(10, 8 + random.Next(5));
 
-                SingularValueDecomposition svd = matrix.SVD();
+                SingularValueDecomposition svd = matrix.SingularValueDecomposition;
 
                 Matrix U = svd.LeftSingularVectors;
                 Matrix Vt = svd.RightSingularVectors; Vt.Transpose();
@@ -670,25 +670,25 @@ namespace Iridium.Test
             NumericAssert.AreAlmostEqual(0.0 * A, Z, "Multiply(double)");
 
             A = new Matrix(columnwise, 4);
-            QRDecomposition QR = A.QRD();
+            QRDecomposition QR = A.QRDecomposition;
             R = QR.R;
             NumericAssert.AreAlmostEqual(A, QR.Q * R, "QRDecomposition");
 
-            SingularValueDecomposition SVD = A.SVD();
+            SingularValueDecomposition SVD = A.SingularValueDecomposition;
             NumericAssert.AreAlmostEqual(A, SVD.LeftSingularVectors * (SVD.S * Matrix.Transpose(SVD.RightSingularVectors)), "SingularValueDecomposition");
             
             DEF = new Matrix(rankdef);
             NumericAssert.AreAlmostEqual(DEF.Rank(), Math.Min(DEF.RowCount, DEF.ColumnCount) - 1, "Rank");
 
             B = new Matrix(condmat);
-            SVD = B.SVD();
+            SVD = B.SingularValueDecomposition;
             double[] singularvalues = SVD.SingularValues;
             NumericAssert.AreAlmostEqual(B.Condition(), singularvalues[0] / singularvalues[Math.Min(B.RowCount, B.ColumnCount) - 1], "Condition");
             
             int n = A.ColumnCount;
             A = A.GetMatrix(0, n - 1, 0, n - 1);
             A[0, 0] = 0.0;
-            LUDecomposition LU = A.LUD();
+            LUDecomposition LU = A.LUDecomposition;
             NumericAssert.AreAlmostEqual(A.GetMatrix(LU.Pivot, 0, n - 1), LU.L * LU.U, "LUDecomposition");
             
             X = A.Inverse();
@@ -700,20 +700,20 @@ namespace Iridium.Test
             NumericAssert.AreAlmostEqual(SQ.Solve(SOL), O, "Solve");
             
             A = new Matrix(pvals);
-            CholeskyDecomposition Chol = A.chol();
+            CholeskyDecomposition Chol = A.CholeskyDecomposition;
             Matrix L = Chol.GetL();
             NumericAssert.AreAlmostEqual(A, L * Matrix.Transpose(L), "CholeskyDecomposition");
             
             X = Chol.Solve(Matrix.Identity(3, 3));
             NumericAssert.AreAlmostEqual(A * X, Matrix.Identity(3, 3), "CholeskyDecomposition Solve");
-            
-            EigenvalueDecomposition Eig = A.Eigen();
+
+            EigenvalueDecomposition Eig = A.EigenvalueDecomposition;
             Matrix D = Eig.BlockDiagonal;
             Matrix V = Eig.EigenVectors;
             NumericAssert.AreAlmostEqual(A * V, V * D, "EigenvalueDecomposition (symmetric)");
             
             A = new Matrix(evals);
-            Eig = A.Eigen();
+            Eig = A.EigenvalueDecomposition;
             D = Eig.BlockDiagonal;
             V = Eig.EigenVectors;
             NumericAssert.AreAlmostEqual(A * V, V * D, "EigenvalueDecomposition (nonsymmetric)");

@@ -46,32 +46,203 @@ namespace MathNet.Numerics.LinearAlgebra
     [Serializable]
     public class EigenvalueDecomposition
     {
-        #region	 Class variables
-
         /// <summary>Row and column dimension (square matrix).</summary>
-        private int n;
+        int n;
 
         /// <summary>Symmetry flag.</summary>
-        private bool isSymmetric;
+        bool isSymmetric;
 
         /// <summary>Arrays for internal storage of eigenvalues.</summary>
-        private double[] d, e;
+        double[] d, e;
 
         /// <summary>Array for internal storage of eigenvectors.</summary>
-        private Matrix V;
+        double[][] V;
 
         /// <summary>Array for internal storage of nonsymmetric Hessenberg form.</summary>
-        private double[][] H;
+        double[][] H;
 
         /// <summary>Working storage for nonsymmetric algorithm.</summary>
-        private double[] ort;
+        double[] ort;
 
-        #endregion
+        [NonSerialized()]
+        double cdivr, cdivi;
 
-        #region Private Methods
+        OnDemandComputation<Matrix> _blockDiagonalOnDemand;
+        OnDemandComputation<Matrix> _eigenVectorsOnDemand;
+        OnDemandComputation<Complex[]> _eigenValuesOnDemand;
 
-        // Symmetric Householder reduction to tridiagonal form.
-        private void tred2()
+        /// <summary>Check for symmetry, then construct the eigenvalue decomposition</summary>
+        /// <remarks>Provides access to D and V</remarks>
+        /// <param name="Arg">Square matrix</param>
+        public
+        EigenvalueDecomposition(
+            Matrix Arg
+            )
+        {
+            double[][] A = Arg;
+            n = Arg.ColumnCount;
+            V = Matrix.CreateMatrixData(n, n);
+            d = new double[n];
+            e = new double[n];
+
+            isSymmetric = true;
+            for(int j = 0; (j < n) & isSymmetric; j++)
+            {
+                for(int i = 0; (i < n) & isSymmetric; i++)
+                {
+                    isSymmetric = (A[i][j] == A[j][i]);
+                }
+            }
+
+            if(isSymmetric)
+            {
+                for(int i = 0; i < n; i++)
+                {
+                    for(int j = 0; j < n; j++)
+                    {
+                        V[i][j] = A[i][j];
+                    }
+                }
+
+                SymmetricTridiagonalize();
+
+                SymmetricDiagonalize();
+            }
+            else
+            {
+                H = Matrix.CreateMatrixData(n, n);
+                ort = new double[n];
+
+                for(int j = 0; j < n; j++)
+                {
+                    for(int i = 0; i < n; i++)
+                    {
+                        H[i][j] = A[i][j];
+                    }
+                }
+
+                NonsymmetricReduceToHessenberg();
+
+                NonsymmetricReduceHessenberToRealSchur();
+            }
+
+            InitOnDemandComputations();
+        }
+
+        /// <summary>Constructs the eigenvalue decomposition from a symmetrical, 
+        /// tridiagonal matrix.</summary>
+        public
+        EigenvalueDecomposition(
+            double[] d,
+            double[] e
+            )
+        {
+            // TODO: unit test missing for EigenvalueDecomposition constructor.
+
+            n = d.Length;
+            V = Matrix.CreateMatrixData(n, n);
+
+            this.d = new double[n];
+            Array.Copy(d, 0, this.d, 0, n);
+
+            this.e = new double[n];
+            Array.Copy(e, 0, this.e, 1, n - 1);
+
+            for(int i = 0; i < n; i++)
+            {
+                V[i][i] = 1;
+            }
+
+            SymmetricDiagonalize();
+
+            InitOnDemandComputations();
+        }
+
+        /// <summary>Gets the eigenvalues.</summary>
+        /// <returns>diag(D)</returns>
+        public Complex[] EigenValues
+        {
+            get { return _eigenValuesOnDemand.Compute(); }
+        }
+
+        /// <summary>Gets the real part of the eigenvalues.</summary>
+        /// <returns>real(diag(D))</returns>
+        public double[] RealEigenvalues
+        {
+            get { return d; }
+        }
+        /// <summary>Gets the imaginary part of the eigenvalues</summary>
+        /// <returns>imag(diag(D))</returns>
+        public double[] ImagEigenvalues
+        {
+            get { return e; }
+        }
+
+        /// <summary>Gets the block diagonal eigenvalue matrix</summary>
+        public Matrix BlockDiagonal
+        {
+            get { return _blockDiagonalOnDemand.Compute(); }
+        }
+
+        /// <summary>Returns the eigenvector matrix</summary>
+        public Matrix EigenVectors
+        {
+            get { return _eigenVectorsOnDemand.Compute(); }
+        }
+
+        void
+        InitOnDemandComputations()
+        {
+            _blockDiagonalOnDemand = new OnDemandComputation<Matrix>(ComputeBlockDiagonalMatrix);
+            _eigenValuesOnDemand = new OnDemandComputation<Complex[]>(ComputeEigenValues);
+            _eigenVectorsOnDemand = new OnDemandComputation<Matrix>(ComputeEigentVectors);
+        }
+
+        Complex[]
+        ComputeEigenValues()
+        {
+            Complex[] eigenvalues = new Complex[n];
+            for(int i = 0; i < eigenvalues.Length; i++)
+            {
+                eigenvalues[i] = Complex.FromRealImaginary(d[i], e[i]);
+            }
+            return eigenvalues;
+        }
+
+        Matrix
+        ComputeBlockDiagonalMatrix()
+        {
+            double[][] D = Matrix.CreateMatrixData(n, n);
+            for(int i = 0; i < n; i++)
+            {
+                for(int j = 0; j < n; j++)
+                {
+                    D[i][j] = 0.0;
+                }
+                D[i][i] = d[i];
+                if(e[i] > 0)
+                {
+                    D[i][i + 1] = e[i];
+                }
+                else if(e[i] < 0)
+                {
+                    D[i][i - 1] = e[i];
+                }
+            }
+            return new Matrix(D);
+        }
+
+        Matrix
+        ComputeEigentVectors()
+        {
+            return new Matrix(V);
+        }
+
+        /// <summary>
+        /// Symmetric Householder reduction to tridiagonal form.
+        /// </summary>
+        void
+        SymmetricTridiagonalize()
         {
             //  This is derived from the Algol procedures tred2 by
             //  Bowdler, Martin, Reinsch, and Wilkinson, Handbook for
@@ -80,7 +251,7 @@ namespace MathNet.Numerics.LinearAlgebra
 
             for(int j = 0; j < n; j++)
             {
-                d[j] = V[n - 1, j];
+                d[j] = V[n - 1][j];
             }
 
             // Householder reduction to tridiagonal form.
@@ -100,9 +271,9 @@ namespace MathNet.Numerics.LinearAlgebra
                     e[i] = d[i - 1];
                     for(int j = 0; j < i; j++)
                     {
-                        d[j] = V[i - 1, j];
-                        V[i, j] = 0.0;
-                        V[j, i] = 0.0;
+                        d[j] = V[i - 1][j];
+                        V[i][j] = 0.0;
+                        V[j][i] = 0.0;
                     }
                 }
                 else
@@ -133,12 +304,12 @@ namespace MathNet.Numerics.LinearAlgebra
                     for(int j = 0; j < i; j++)
                     {
                         f = d[j];
-                        V[j, i] = f;
-                        g = e[j] + V[j, j] * f;
+                        V[j][i] = f;
+                        g = e[j] + V[j][j] * f;
                         for(int k = j + 1; k <= i - 1; k++)
                         {
-                            g += V[k, j] * d[k];
-                            e[k] += V[k, j] * f;
+                            g += V[k][j] * d[k];
+                            e[k] += V[k][j] * f;
                         }
                         e[j] = g;
                     }
@@ -159,10 +330,10 @@ namespace MathNet.Numerics.LinearAlgebra
                         g = e[j];
                         for(int k = j; k <= i - 1; k++)
                         {
-                            V[k, j] -= (f * e[k] + g * d[k]);
+                            V[k][j] -= (f * e[k] + g * d[k]);
                         }
-                        d[j] = V[i - 1, j];
-                        V[i, j] = 0.0;
+                        d[j] = V[i - 1][j];
+                        V[i][j] = 0.0;
                     }
                 }
                 d[i] = h;
@@ -172,44 +343,47 @@ namespace MathNet.Numerics.LinearAlgebra
 
             for(int i = 0; i < n - 1; i++)
             {
-                V[n - 1, i] = V[i, i];
-                V[i, i] = 1.0;
+                V[n - 1][i] = V[i][i];
+                V[i][i] = 1.0;
                 double h = d[i + 1];
                 if(h != 0.0)
                 {
                     for(int k = 0; k <= i; k++)
                     {
-                        d[k] = V[k, i + 1] / h;
+                        d[k] = V[k][i + 1] / h;
                     }
                     for(int j = 0; j <= i; j++)
                     {
                         double g = 0.0;
                         for(int k = 0; k <= i; k++)
                         {
-                            g += V[k, i + 1] * V[k, j];
+                            g += V[k][i + 1] * V[k][j];
                         }
                         for(int k = 0; k <= i; k++)
                         {
-                            V[k, j] -= g * d[k];
+                            V[k][j] -= g * d[k];
                         }
                     }
                 }
                 for(int k = 0; k <= i; k++)
                 {
-                    V[k, i + 1] = 0.0;
+                    V[k][i + 1] = 0.0;
                 }
             }
             for(int j = 0; j < n; j++)
             {
-                d[j] = V[n - 1, j];
-                V[n - 1, j] = 0.0;
+                d[j] = V[n - 1][j];
+                V[n - 1][j] = 0.0;
             }
-            V[n - 1, n - 1] = 1.0;
+            V[n - 1][n - 1] = 1.0;
             e[0] = 0.0;
         }
 
-        // Symmetric tridiagonal QL algorithm.
-        private void tql2()
+        /// <summary>
+        /// Symmetric tridiagonal QL algorithm.
+        /// </summary>
+        void
+        SymmetricDiagonalize()
         {
             //  This is derived from the Algol procedures tql2, by
             //  Bowdler, Martin, Reinsch, and Wilkinson, Handbook for
@@ -296,9 +470,9 @@ namespace MathNet.Numerics.LinearAlgebra
 
                             for(int k = 0; k < n; k++)
                             {
-                                h = V[k, i + 1];
-                                V[k, i + 1] = s * V[k, i] + c * h;
-                                V[k, i] = c * V[k, i] - s * h;
+                                h = V[k][i + 1];
+                                V[k][i + 1] = s * V[k][i] + c * h;
+                                V[k][i] = c * V[k][i] - s * h;
                             }
                         }
                         p = (-s) * s2 * c3 * el1 * e[l] / dl1;
@@ -333,17 +507,19 @@ namespace MathNet.Numerics.LinearAlgebra
                     d[i] = p;
                     for(int j = 0; j < n; j++)
                     {
-                        p = V[j, i];
-                        V[j, i] = V[j, k];
-                        V[j, k] = p;
+                        p = V[j][i];
+                        V[j][i] = V[j][k];
+                        V[j][k] = p;
                     }
                 }
             }
         }
 
-        // Nonsymmetric reduction to Hessenberg form.
-
-        private void orthes()
+        /// <summary>
+        /// Nonsymmetric reduction to Hessenberg form.
+        /// </summary>
+        void
+        NonsymmetricReduceToHessenberg()
         {
             //  This is derived from the Algol procedures orthes and ortran,
             //  by Martin and Wilkinson, Handbook for Auto. Comp.,
@@ -423,7 +599,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 for(int j = 0; j < n; j++)
                 {
-                    V[i, j] = (i == j ? 1.0 : 0.0);
+                    V[i][j] = (i == j ? 1.0 : 0.0);
                 }
             }
 
@@ -440,46 +616,24 @@ namespace MathNet.Numerics.LinearAlgebra
                         double g = 0.0;
                         for(int i = m; i <= high; i++)
                         {
-                            g += ort[i] * V[i, j];
+                            g += ort[i] * V[i][j];
                         }
                         // Double division avoids possible underflow
                         g = (g / ort[m]) / H[m][m - 1];
                         for(int i = m; i <= high; i++)
                         {
-                            V[i, j] += g * ort[i];
+                            V[i][j] += g * ort[i];
                         }
                     }
                 }
             }
         }
 
-
-        [NonSerialized()]
-        private double cdivr, cdivi;
-
-        // Complex scalar division.
-        private void cdiv(double xr, double xi, double yr, double yi)
-        {
-            double r, d;
-            if(Math.Abs(yr) > Math.Abs(yi))
-            {
-                r = yi / yr;
-                d = yr + r * yi;
-                cdivr = (xr + r * xi) / d;
-                cdivi = (xi - r * xr) / d;
-            }
-            else
-            {
-                r = yr / yi;
-                d = yi + r * yr;
-                cdivr = (r * xr + xi) / d;
-                cdivi = (r * xi - xr) / d;
-            }
-        }
-
-
-        // Nonsymmetric reduction from Hessenberg to real Schur form.
-        private void hqr2()
+        /// <summary>
+        /// Nonsymmetric reduction from Hessenberg to real Schur form.
+        /// </summary>
+        void
+        NonsymmetricReduceHessenberToRealSchur()
         {
             //  This is derived from the Algol procedure hqr2,
             //  by Martin and Wilkinson, Handbook for Auto. Comp.,
@@ -608,9 +762,9 @@ namespace MathNet.Numerics.LinearAlgebra
 
                         for(int i = low; i <= high; i++)
                         {
-                            z = V[i, n - 1];
-                            V[i, n - 1] = q * z + p * V[i, n];
-                            V[i, n] = q * V[i, n] - p * z;
+                            z = V[i][n - 1];
+                            V[i][n - 1] = q * z + p * V[i][n];
+                            V[i][n] = q * V[i][n] - p * z;
                         }
 
                         // Complex pair
@@ -777,28 +931,30 @@ namespace MathNet.Numerics.LinearAlgebra
 
                             for(int i = 0; i <= Math.Min(n, k + 3); i++)
                             {
-                                p = x * H[i][k] + y * H[i][k + 1];
+                                double[] Hi = H[i];
+                                p = x * Hi[k] + y * Hi[k + 1];
                                 if(notlast)
                                 {
-                                    p = p + z * H[i][k + 2];
-                                    H[i][k + 2] = H[i][k + 2] - p * r;
+                                    p = p + z * Hi[k + 2];
+                                    Hi[k + 2] = Hi[k + 2] - p * r;
                                 }
-                                H[i][k] = H[i][k] - p;
-                                H[i][k + 1] = H[i][k + 1] - p * q;
+                                Hi[k] = Hi[k] - p;
+                                Hi[k + 1] = Hi[k + 1] - p * q;
                             }
 
                             // Accumulate transformations
 
                             for(int i = low; i <= high; i++)
                             {
-                                p = x * V[i, k] + y * V[i, k + 1];
+                                double[] Vi = V[i];
+                                p = x * Vi[k] + y * Vi[k + 1];
                                 if(notlast)
                                 {
-                                    p = p + z * V[i, k + 2];
-                                    V[i, k + 2] = V[i, k + 2] - p * r;
+                                    p = p + z * Vi[k + 2];
+                                    Vi[k + 2] = Vi[k + 2] - p * r;
                                 }
-                                V[i, k] = V[i, k] - p;
-                                V[i, k + 1] = V[i, k + 1] - p * q;
+                                Vi[k] = Vi[k] - p;
+                                Vi[k + 1] = Vi[k + 1] - p * q;
                             }
                         } // (s != 0)
                     } // k loop
@@ -983,7 +1139,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     for(int j = i; j < nn; j++)
                     {
-                        V[i, j] = H[i][j];
+                        V[i][j] = H[i][j];
                     }
                 }
             }
@@ -997,165 +1153,41 @@ namespace MathNet.Numerics.LinearAlgebra
                     z = 0.0;
                     for(int k = low; k <= Math.Min(j, high); k++)
                     {
-                        z = z + V[i, k] * H[k][j];
+                        z = z + V[i][k] * H[k][j];
                     }
-                    V[i, j] = z;
+                    V[i][j] = z;
                 }
             }
         }
 
-        #endregion //  Private Methods
-
-        #region Constructor
-
-        /// <summary>Check for symmetry, then construct the eigenvalue decomposition</summary>
-        /// <remarks>Provides access to D and V</remarks>
-        /// <param name="Arg">Square matrix</param>
-        public EigenvalueDecomposition(Matrix Arg)
+        /// <summary>
+        /// Complex scalar division.
+        /// </summary>
+        void
+        cdiv(
+            double xr,
+            double xi,
+            double yr,
+            double yi
+            )
         {
-            double[][] A = Arg;
-            n = Arg.ColumnCount;
-            V = new Matrix(n, n);
-            d = new double[n];
-            e = new double[n];
+            // TODO (cdr, 2008-03-11): Refactor
 
-            isSymmetric = true;
-            for(int j = 0; (j < n) & isSymmetric; j++)
+            double r, d;
+            if(Math.Abs(yr) > Math.Abs(yi))
             {
-                for(int i = 0; (i < n) & isSymmetric; i++)
-                {
-                    isSymmetric = (A[i][j] == A[j][i]);
-                }
-            }
-
-            if(isSymmetric)
-            {
-                for(int i = 0; i < n; i++)
-                {
-                    for(int j = 0; j < n; j++)
-                    {
-                        V[i, j] = A[i][j];
-                    }
-                }
-
-                // Tridiagonalize.
-                tred2();
-
-                // Diagonalize.
-                tql2();
+                r = yi / yr;
+                d = yr + r * yi;
+                cdivr = (xr + r * xi) / d;
+                cdivi = (xi - r * xr) / d;
             }
             else
             {
-                H = Matrix.CreateMatrixData(n, n);
-                ort = new double[n];
-
-                for(int j = 0; j < n; j++)
-                {
-                    for(int i = 0; i < n; i++)
-                    {
-                        H[i][j] = A[i][j];
-                    }
-                }
-
-                // Reduce to Hessenberg form.
-                orthes();
-
-                // Reduce Hessenberg to real Schur form.
-                hqr2();
+                r = yr / yi;
+                d = yi + r * yr;
+                cdivr = (r * xr + xi) / d;
+                cdivi = (r * xi - xr) / d;
             }
         }
-
-        /// <summary>Constructs the eigenvalue decomposition from a symmetrical, 
-        /// tridiagonal matrix.</summary>
-        public EigenvalueDecomposition(double[] d, double[] e)
-        {
-            // TODO: unit test missing for EigenvalueDecomposition constructor.
-
-            n = d.Length;
-            V = new Matrix(n, n);
-
-            this.d = new double[n];
-            Array.Copy(d, 0, this.d, 0, n);
-
-            this.e = new double[n];
-            Array.Copy(e, 0, this.e, 1, n - 1);
-
-            for(int i = 0; i < n; i++)
-            {
-                V[i, i] = 1;
-            }
-
-            // Diagonalize.
-            tql2();
-        }
-
-        #endregion //  Constructor
-
-        #region Public Properties
-        /// <summary>Gets the eigenvalues.</summary>
-        /// <returns>diag(D)</returns>
-        public Complex[] EigenValues
-        {
-            get
-            {
-                // TODO: bad design for 'EigenValues' property
-                // the method does not always return the same vector.
-
-                Complex[] eigenvalues = new Complex[n];
-                for(int i = 0; i < eigenvalues.Length; i++)
-                    eigenvalues[i] = Complex.FromRealImaginary(d[i], e[i]);
-
-                return eigenvalues;
-            }
-        }
-
-        /// <summary>Gets the real part of the eigenvalues.</summary>
-        /// <returns>real(diag(D))</returns>
-        public double[] RealEigenvalues
-        {
-            get { return d; }
-        }
-        /// <summary>Gets the imaginary part of the eigenvalues</summary>
-        /// <returns>imag(diag(D))</returns>
-        public double[] ImagEigenvalues
-        {
-            get { return e; }
-        }
-        /// <summary>Gets the block diagonal eigenvalue matrix</summary>
-        public Matrix BlockDiagonal
-        {
-            get
-            {
-                // TODO: bad behavior of this property
-                // this method does not always return the *same* matrix
-
-                double[][] D = Matrix.CreateMatrixData(n, n);
-                for(int i = 0; i < n; i++)
-                {
-                    for(int j = 0; j < n; j++)
-                    {
-                        D[i][j] = 0.0;
-                    }
-                    D[i][i] = d[i];
-                    if(e[i] > 0)
-                    {
-                        D[i][i + 1] = e[i];
-                    }
-                    else if(e[i] < 0)
-                    {
-                        D[i][i - 1] = e[i];
-                    }
-                }
-                return new Matrix(D);
-            }
-        }
-
-        /// <summary>Returns the eigenvector matrix</summary>
-        public Matrix EigenVectors
-        {
-            get { return this.V; }
-        }
-
-        #endregion
     }
 }

@@ -42,31 +42,35 @@ namespace MathNet.Numerics.LinearAlgebra
     [Serializable]
     public class LUDecomposition
     {
-        #region Class variables
-
         /// <summary>Array for internal storage of decomposition.</summary>
-        private double[][] LU;
+        double[][] LU;
 
         /// <summary>Row dimensions.</summary>
-        private readonly int _rowCount;
+        readonly int _rowCount;
 
         /// <summary>Column dimensions.</summary>
-        private readonly int _columnCount;
+        readonly int _columnCount;
 
         /// <summary>Pivot sign.</summary>
-        private int pivsign;
+        int pivsign;
 
         /// <summary>Internal storage of pivot vector.</summary>
-        private int[] piv;
+        int[] piv;
 
-        #endregion
-
-        #region Constructor
+        OnDemandComputation<bool> _isNonSingularOnDemand;
+        OnDemandComputation<Matrix> _lowerTriangularFactorOnDemand;
+        OnDemandComputation<Matrix> _upperTriangularFactorOnDemand;
+        OnDemandComputation<int[]> _pivotOnDemand;
+        OnDemandComputation<double[]> _pivotDoubleOnDemand;
+        OnDemandComputation<double> _determinantOnDemand;
 
         /// <summary>LU Decomposition</summary>
         /// <param name="A">Rectangular matrix</param>
         /// <returns>Structure to access L, U and piv.</returns>
-        public LUDecomposition(Matrix A)
+        public
+        LUDecomposition(
+            Matrix A
+            )
         {
             // TODO: it is usually considered as a poor practice to execute algorithms within a constructor.
 
@@ -145,133 +149,50 @@ namespace MathNet.Numerics.LinearAlgebra
                     }
                 }
             }
-        }
-        #endregion //  Constructor
 
-        #region Public Properties
+            InitOnDemandComputations();
+        }
+
         /// <summary>Indicates whether the matrix is nonsingular.</summary>
         /// <returns><c>true</c> if U, and hence A, is nonsingular.</returns>
         public bool IsNonSingular
         {
-            get
-            {
-                for(int j = 0; j < _columnCount; j++)
-                    if(LU[j][j] == 0) return false;
-
-                return true;
-            }
+            get { return _isNonSingularOnDemand.Compute(); }
         }
 
         /// <summary>Gets lower triangular factor.</summary>
         public Matrix L
         {
-            get
-            {
-                // TODO: bad behavior of this property
-                // this property does not always return the same matrix
-
-                double[][] L = Matrix.CreateMatrixData(_rowCount, _columnCount);
-                for(int i = 0; i < L.Length; i++)
-                {
-                    for(int j = 0; j < _columnCount; j++)
-                    {
-                        if(i > j)
-                        {
-                            L[i][j] = LU[i][j];
-                        }
-                        else if(i == j)
-                        {
-                            L[i][j] = 1.0;
-                        }
-                        else
-                        {
-                            L[i][j] = 0.0;
-                        }
-                    }
-                }
-                return new Matrix(L);
-            }
+            get { return _lowerTriangularFactorOnDemand.Compute(); }
         }
 
         /// <summary>Gets upper triangular factor.</summary>
         public Matrix U
         {
-            get
-            {
-                // TODO: bad behavior of this property
-                // this property does not always return the same matrix
-
-                double[][] U = Matrix.CreateMatrixData(_columnCount, _columnCount);
-                for(int i = 0; i < _columnCount; i++)
-                {
-                    for(int j = 0; j < _columnCount; j++)
-                    {
-                        if(i <= j)
-                        {
-                            U[i][j] = LU[i][j];
-                        }
-                        else
-                        {
-                            U[i][j] = 0.0;
-                        }
-                    }
-                }
-                return new Matrix(U);
-            }
+            get { return _upperTriangularFactorOnDemand.Compute(); }
         }
 
         /// <summary>Gets pivot permutation vector</summary>
         public int[] Pivot
         {
-            get
-            {
-                // TODO: bad behavior of this property
-                // this property does not always return the same matrix
-
-                int[] p = new int[_rowCount];
-                for(int i = 0; i < _rowCount; i++)
-                {
-                    p[i] = piv[i];
-                }
-                return p;
-            }
+            get { return _pivotOnDemand.Compute(); }
         }
 
         /// <summary>Returns pivot permutation vector as a one-dimensional double array.</summary>
         public double[] DoublePivot
         {
-            get
-            {
-                // TODO: bad behavior of this property
-                // this property does not always return the same matrix
-
-                double[] vals = new double[_rowCount];
-                for(int i = 0; i < _rowCount; i++)
-                {
-                    vals[i] = (double)piv[i];
-                }
-                return vals;
-            }
+            get { return _pivotDoubleOnDemand.Compute(); }
         }
-
-        #endregion
-
-        #region Public Methods
 
         /// <summary>Determinant</summary>
         /// <returns>det(A)</returns>
         /// <exception cref="System.ArgumentException">Matrix must be square</exception>
-        public double Determinant()
+        public
+        double
+        Determinant()
         {
-            if(_rowCount != _columnCount)
-                throw new System.ArgumentException(Resources.ArgumentMatrixSquare);
-
-            double d = (double)pivsign;
-            for(int j = 0; j < _columnCount; j++)
-            {
-                d *= LU[j][j];
-            }
-            return d;
+            // TODO (cdr, 2008-03-11): Change to property
+            return _determinantOnDemand.Compute();
         }
 
         /// <summary>Solve A*X = B</summary>
@@ -279,7 +200,11 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <returns>X so that L*U*X = B(piv,:)</returns>
         /// <exception cref="System.ArgumentException">Matrix row dimensions must agree.</exception>
         /// <exception cref="System.SystemException">Matrix is singular.</exception>
-        public Matrix Solve(Matrix B)
+        public
+        Matrix
+        Solve(
+            Matrix B
+            )
         {
             if(B.RowCount != _rowCount)
                 throw new ArgumentException(Resources.ArgumentMatrixSameRowDimension, "B");
@@ -320,6 +245,111 @@ namespace MathNet.Numerics.LinearAlgebra
             return Xmat;
         }
 
-        #endregion //  Public Methods
+        void
+        InitOnDemandComputations()
+        {
+            _isNonSingularOnDemand = new OnDemandComputation<bool>(ComputeIsNonSingular);
+            _lowerTriangularFactorOnDemand = new OnDemandComputation<Matrix>(ComputeLowerTriangularFactor);
+            _upperTriangularFactorOnDemand = new OnDemandComputation<Matrix>(ComputeUpperTriangularFactor);
+            _pivotOnDemand = new OnDemandComputation<int[]>(ComputePivot);
+            _pivotDoubleOnDemand = new OnDemandComputation<double[]>(ComputePivotDouble);
+            _determinantOnDemand = new OnDemandComputation<double>(ComputeDeterminant);
+        }
+
+        bool
+        ComputeIsNonSingular()
+        {
+            for(int j = 0; j < _columnCount; j++)
+            {
+                if(LU[j][j] == 0)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        Matrix
+        ComputeLowerTriangularFactor()
+        {
+            double[][] L = Matrix.CreateMatrixData(_rowCount, _columnCount);
+            for(int i = 0; i < L.Length; i++)
+            {
+                for(int j = 0; j < _columnCount; j++)
+                {
+                    if(i > j)
+                    {
+                        L[i][j] = LU[i][j];
+                    }
+                    else if(i == j)
+                    {
+                        L[i][j] = 1.0;
+                    }
+                    else
+                    {
+                        L[i][j] = 0.0;
+                    }
+                }
+            }
+            return new Matrix(L);
+        }
+
+        Matrix
+        ComputeUpperTriangularFactor()
+        {
+            double[][] U = Matrix.CreateMatrixData(_columnCount, _columnCount);
+            for(int i = 0; i < _columnCount; i++)
+            {
+                for(int j = 0; j < _columnCount; j++)
+                {
+                    if(i <= j)
+                    {
+                        U[i][j] = LU[i][j];
+                    }
+                    else
+                    {
+                        U[i][j] = 0.0;
+                    }
+                }
+            }
+            return new Matrix(U);
+        }
+
+        int[]
+        ComputePivot()
+        {
+            int[] p = new int[_rowCount];
+            for(int i = 0; i < _rowCount; i++)
+            {
+                p[i] = piv[i];
+            }
+            return p;
+        }
+
+        double[]
+        ComputePivotDouble()
+        {
+            double[] vals = new double[_rowCount];
+            for(int i = 0; i < _rowCount; i++)
+            {
+                vals[i] = (double)piv[i];
+            }
+            return vals;
+        }
+
+        double
+        ComputeDeterminant()
+        {
+            if(_rowCount != _columnCount)
+                throw new System.ArgumentException(Resources.ArgumentMatrixSquare);
+
+            double d = (double)pivsign;
+            for(int j = 0; j < _columnCount; j++)
+            {
+                d *= LU[j][j];
+            }
+            return d;
+        }
     }
 }

@@ -42,19 +42,17 @@ namespace MathNet.Numerics.LinearAlgebra
     [Serializable]
     public class SingularValueDecomposition
     {
-        #region Class variables
-
         /// <summary>Matrices for internal storage of U and V.</summary>
-        private Matrix U, V;
+        double[][] U, V;
 
         /// <summary>Array for internal storage of singular values.</summary>
-        private double[] s;
+        double[] s;
 
         /// <summary>Row dimensions.</summary>
-        private int m;
+        int m;
 
         /// <summary>Column dimensions.</summary>
-        private int n;
+        int n;
 
         /// <summary>Indicates whether all the results provided by the
         /// method or properties should be transposed.</summary>
@@ -63,30 +61,44 @@ namespace MathNet.Numerics.LinearAlgebra
         /// m &gt;= n, but in fact, it is easy to handle the case m &lt; n
         /// by transposing all the results.
         /// </remarks>
-        private bool transpose;
+        bool transpose;
 
-        #endregion   //Class variables
-
-        #region Constructor
+        OnDemandComputation<Matrix> _diagonalSingularValuesOnDemand;
+        OnDemandComputation<Matrix> _leftSingularVectorsOnDemand;
+        OnDemandComputation<Matrix> _rightSingularVectorsOnDemand;
+        OnDemandComputation<int> _rankOnDemand;
 
         /// <summary>Construct the singular value decomposition.</summary>
         /// <remarks>Provides access to U, S and V.</remarks>
         /// <param name="Arg">Rectangular matrix</param>
-        public SingularValueDecomposition(Matrix Arg)
+        public
+        SingularValueDecomposition(
+            Matrix Arg
+            )
         {
             transpose = (Arg.RowCount < Arg.ColumnCount);
 
             // Derived from LINPACK code.
-            // Initialize. 
-            Matrix A = Arg.Clone();
-            if(transpose) A.Transpose();
+            // Initialize.
+            double[][] A;
+            if(transpose)
+            {
+                // copy of internal data, independent of Arg
+                A = Matrix.Transpose(Arg).GetArray();
+                m = Arg.ColumnCount;
+                n = Arg.RowCount;
+            }
+            else
+            {
+                A = Arg.CopyToJaggedArray();
+                m = Arg.RowCount;
+                n = Arg.ColumnCount;
+            }
 
-            m = A.RowCount;
-            n = A.ColumnCount;
             int nu = Math.Min(m, n);
             s = new double[Math.Min(m + 1, n)];
-            U = new Matrix(m, nu);
-            V = new Matrix(n, n);
+            U = Matrix.CreateMatrixData(m, nu);
+            V = Matrix.CreateMatrixData(n, n);
 
             double[] e = new double[n];
             double[] work = new double[m];
@@ -109,19 +121,19 @@ namespace MathNet.Numerics.LinearAlgebra
                     s[k] = 0;
                     for(int i = k; i < m; i++)
                     {
-                        s[k] = Fn.Hypot(s[k], A[i, k]);
+                        s[k] = Fn.Hypot(s[k], A[i][k]);
                     }
                     if(s[k] != 0.0)
                     {
-                        if(A[k, k] < 0.0)
+                        if(A[k][k] < 0.0)
                         {
                             s[k] = -s[k];
                         }
                         for(int i = k; i < m; i++)
                         {
-                            A[i, k] /= s[k];
+                            A[i][k] /= s[k];
                         }
-                        A[k, k] += 1.0;
+                        A[k][k] += 1.0;
                     }
                     s[k] = -s[k];
                 }
@@ -135,19 +147,19 @@ namespace MathNet.Numerics.LinearAlgebra
                         double t = 0;
                         for(int i = k; i < m; i++)
                         {
-                            t += A[i, k] * A[i, j];
+                            t += A[i][k] * A[i][j];
                         }
-                        t = (-t) / A[k, k];
+                        t = (-t) / A[k][k];
                         for(int i = k; i < m; i++)
                         {
-                            A[i, j] += t * A[i, k];
+                            A[i][j] += t * A[i][k];
                         }
                     }
 
                     // Place the k-th row of A into e for the
                     // subsequent calculation of the row transformation.
 
-                    e[j] = A[k, j];
+                    e[j] = A[k][j];
                 }
                 if(wantu & (k < nct))
                 {
@@ -157,7 +169,7 @@ namespace MathNet.Numerics.LinearAlgebra
 
                     for(int i = k; i < m; i++)
                     {
-                        U[i, k] = A[i, k];
+                        U[i][k] = A[i][k];
                     }
                 }
                 if(k < nrt)
@@ -197,7 +209,7 @@ namespace MathNet.Numerics.LinearAlgebra
                         {
                             for(int i = k + 1; i < m; i++)
                             {
-                                work[i] += e[j] * A[i, j];
+                                work[i] += e[j] * A[i][j];
                             }
                         }
                         for(int j = k + 1; j < n; j++)
@@ -205,7 +217,7 @@ namespace MathNet.Numerics.LinearAlgebra
                             double t = (-e[j]) / e[k + 1];
                             for(int i = k + 1; i < m; i++)
                             {
-                                A[i, j] += t * work[i];
+                                A[i][j] += t * work[i];
                             }
                         }
                     }
@@ -217,7 +229,7 @@ namespace MathNet.Numerics.LinearAlgebra
 
                         for(int i = k + 1; i < n; i++)
                         {
-                            V[i, k] = e[i];
+                            V[i][k] = e[i];
                         }
                     }
                 }
@@ -228,7 +240,7 @@ namespace MathNet.Numerics.LinearAlgebra
             int p = Math.Min(n, m + 1);
             if(nct < n)
             {
-                s[nct] = A[nct, nct];
+                s[nct] = A[nct][nct];
             }
             if(m < p)
             {
@@ -236,7 +248,7 @@ namespace MathNet.Numerics.LinearAlgebra
             }
             if(nrt + 1 < p)
             {
-                e[nrt] = A[nrt, p - 1];
+                e[nrt] = A[nrt][p - 1];
             }
             e[p - 1] = 0.0;
 
@@ -248,9 +260,9 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     for(int i = 0; i < m; i++)
                     {
-                        U[i, j] = 0.0;
+                        U[i][j] = 0.0;
                     }
-                    U[j, j] = 1.0;
+                    U[j][j] = 1.0;
                 }
                 for(int k = nct - 1; k >= 0; k--)
                 {
@@ -261,31 +273,31 @@ namespace MathNet.Numerics.LinearAlgebra
                             double t = 0;
                             for(int i = k; i < m; i++)
                             {
-                                t += U[i, k] * U[i, j];
+                                t += U[i][k] * U[i][j];
                             }
-                            t = (-t) / U[k, k];
+                            t = (-t) / U[k][k];
                             for(int i = k; i < m; i++)
                             {
-                                U[i, j] += t * U[i, k];
+                                U[i][j] += t * U[i][k];
                             }
                         }
                         for(int i = k; i < m; i++)
                         {
-                            U[i, k] = -U[i, k];
+                            U[i][k] = -U[i][k];
                         }
-                        U[k, k] = 1.0 + U[k, k];
+                        U[k][k] = 1.0 + U[k][k];
                         for(int i = 0; i < k - 1; i++)
                         {
-                            U[i, k] = 0.0;
+                            U[i][k] = 0.0;
                         }
                     }
                     else
                     {
                         for(int i = 0; i < m; i++)
                         {
-                            U[i, k] = 0.0;
+                            U[i][k] = 0.0;
                         }
-                        U[k, k] = 1.0;
+                        U[k][k] = 1.0;
                     }
                 }
             }
@@ -303,20 +315,20 @@ namespace MathNet.Numerics.LinearAlgebra
                             double t = 0;
                             for(int i = k + 1; i < n; i++)
                             {
-                                t += V[i, k] * V[i, j];
+                                t += V[i][k] * V[i][j];
                             }
-                            t = (-t) / V[k + 1, k];
+                            t = (-t) / V[k + 1][k];
                             for(int i = k + 1; i < n; i++)
                             {
-                                V[i, j] += t * V[i, k];
+                                V[i][j] += t * V[i][k];
                             }
                         }
                     }
                     for(int i = 0; i < n; i++)
                     {
-                        V[i, k] = 0.0;
+                        V[i][k] = 0.0;
                     }
-                    V[k, k] = 1.0;
+                    V[k][k] = 1.0;
                 }
             }
 
@@ -415,9 +427,9 @@ namespace MathNet.Numerics.LinearAlgebra
                                 {
                                     for(int i = 0; i < n; i++)
                                     {
-                                        t = cs * V[i, j] + sn * V[i, p - 1];
-                                        V[i, p - 1] = (-sn) * V[i, j] + cs * V[i, p - 1];
-                                        V[i, j] = t;
+                                        t = cs * V[i][j] + sn * V[i][p - 1];
+                                        V[i][p - 1] = (-sn) * V[i][j] + cs * V[i][p - 1];
+                                        V[i][j] = t;
                                     }
                                 }
                             }
@@ -443,9 +455,9 @@ namespace MathNet.Numerics.LinearAlgebra
                                 {
                                     for(int i = 0; i < m; i++)
                                     {
-                                        t = cs * U[i, j] + sn * U[i, k - 1];
-                                        U[i, k - 1] = (-sn) * U[i, j] + cs * U[i, k - 1];
-                                        U[i, j] = t;
+                                        t = cs * U[i][j] + sn * U[i][k - 1];
+                                        U[i][k - 1] = (-sn) * U[i][j] + cs * U[i][k - 1];
+                                        U[i][j] = t;
                                     }
                                 }
                             }
@@ -499,9 +511,9 @@ namespace MathNet.Numerics.LinearAlgebra
                                 {
                                     for(int i = 0; i < n; i++)
                                     {
-                                        t = cs * V[i, j] + sn * V[i, j + 1];
-                                        V[i, j + 1] = (-sn) * V[i, j] + cs * V[i, j + 1];
-                                        V[i, j] = t;
+                                        t = cs * V[i][j] + sn * V[i][j + 1];
+                                        V[i][j + 1] = (-sn) * V[i][j] + cs * V[i][j + 1];
+                                        V[i][j] = t;
                                     }
                                 }
                                 t = Fn.Hypot(f, g);
@@ -516,9 +528,9 @@ namespace MathNet.Numerics.LinearAlgebra
                                 {
                                     for(int i = 0; i < m; i++)
                                     {
-                                        t = cs * U[i, j] + sn * U[i, j + 1];
-                                        U[i, j + 1] = (-sn) * U[i, j] + cs * U[i, j + 1];
-                                        U[i, j] = t;
+                                        t = cs * U[i][j] + sn * U[i][j + 1];
+                                        U[i][j + 1] = (-sn) * U[i][j] + cs * U[i][j + 1];
+                                        U[i][j] = t;
                                     }
                                 }
                             }
@@ -541,7 +553,7 @@ namespace MathNet.Numerics.LinearAlgebra
                                 {
                                     for(int i = 0; i <= pp; i++)
                                     {
-                                        V[i, k] = -V[i, k];
+                                        V[i][k] = -V[i][k];
                                     }
                                 }
                             }
@@ -561,14 +573,18 @@ namespace MathNet.Numerics.LinearAlgebra
                                 {
                                     for(int i = 0; i < n; i++)
                                     {
-                                        t = V[i, k + 1]; V[i, k + 1] = V[i, k]; V[i, k] = t;
+                                        t = V[i][k + 1];
+                                        V[i][k + 1] = V[i][k];
+                                        V[i][k] = t;
                                     }
                                 }
                                 if(wantu && (k < m - 1))
                                 {
                                     for(int i = 0; i < m; i++)
                                     {
-                                        t = U[i, k + 1]; U[i, k + 1] = U[i, k]; U[i, k] = t;
+                                        t = U[i][k + 1];
+                                        U[i][k + 1] = U[i][k];
+                                        U[i][k] = t;
                                     }
                                 }
                                 k++;
@@ -584,14 +600,13 @@ namespace MathNet.Numerics.LinearAlgebra
             if(transpose)
             {
                 // swaping U and V
-                Matrix T = V;
+                double[][] T = V;
                 V = U;
                 U = T;
             }
-        }
-        #endregion	//Constructor
 
-        #region Public Properties
+            InitOnDemandComputations();
+        }
 
         /// <summary>Gets the one-dimensional array of singular values.</summary>
         /// <returns>diagonal of S.</returns>
@@ -606,60 +621,92 @@ namespace MathNet.Numerics.LinearAlgebra
             get
             {
                 // TODO: bad name for this property
-                // TODO: bad behavior of this property
-                // this property does not always return the same matrix
-
-                double[][] X = Matrix.CreateMatrixData(n, n);
-                for(int i = 0; i < n; i++)
-                {
-                    for(int j = 0; j < n; j++)
-                    {
-                        X[i][j] = 0.0;
-                    }
-
-                    X[i][i] = this.s[i];
-                }
-
-                return new Matrix(X); ;
+                return _diagonalSingularValuesOnDemand.Compute();
             }
         }
 
         /// <summary>Gets the left singular vectors (U matrix).</summary>
         public Matrix LeftSingularVectors
         {
-            get { return U; }
+            get { return _leftSingularVectorsOnDemand.Compute(); }
         }
 
         /// <summary>Gets the right singular vectors (V matrix).</summary>
         public Matrix RightSingularVectors
         {
-            get { return V; }
+            get { return _rightSingularVectorsOnDemand.Compute(); }
         }
-
-        #endregion //  Public Properties
-
-        #region	 Public Methods
 
         /// <summary>Two norm.</summary>
         /// <returns>max(S)</returns>
-        public double Norm2()
+        public
+        double
+        Norm2()
         {
+            // TODO (cdr, 2008-03-11): Change to property
             return s[0];
         }
 
         /// <summary>Two norm condition number.</summary>
         /// <returns>max(S)/min(S)</returns>
-        public double Condition()
+        public
+        double
+        Condition()
         {
+            // TODO (cdr, 2008-03-11): Change to property
             return s[0] / s[Math.Min(m, n) - 1];
         }
 
-        /// <summary>Effective numerical matrix rank.</summary>
-        /// <returns>Number of nonnegligible singular values.</returns>
-        public int Rank()
+        /// <summary>Effective numerical matrix rank - Number of nonnegligible singular values.</summary>
+        public
+        int
+        Rank()
         {
-            double eps = Number.PositiveRelativeAccuracy;
-            double tol = Math.Max(m, n) * s[0] * eps;
+            // TODO (cdr, 2008-03-11): Change to property
+            return _rankOnDemand.Compute();
+        }
+
+        void
+        InitOnDemandComputations()
+        {
+            _diagonalSingularValuesOnDemand = new OnDemandComputation<Matrix>(ComputeDiagonalSingularValues);
+            _leftSingularVectorsOnDemand = new OnDemandComputation<Matrix>(ComputeLeftSingularVectors);
+            _rightSingularVectorsOnDemand = new OnDemandComputation<Matrix>(ComputeRightSingularVectors);
+            _rankOnDemand = new OnDemandComputation<int>(ComputeRank);
+        }
+
+        Matrix
+        ComputeDiagonalSingularValues()
+        {
+            double[][] X = Matrix.CreateMatrixData(n, n);
+            for(int i = 0; i < n; i++)
+            {
+                for(int j = 0; j < n; j++)
+                {
+                    X[i][j] = 0.0;
+                }
+
+                X[i][i] = this.s[i];
+            }
+            return new Matrix(X);
+        }
+
+        Matrix
+        ComputeLeftSingularVectors()
+        {
+            return new Matrix(U);
+        }
+
+        Matrix
+        ComputeRightSingularVectors()
+        {
+            return new Matrix(V);
+        }
+
+        int
+        ComputeRank()
+        {
+            double tol = Math.Max(m, n) * s[0] * Number.PositiveRelativeAccuracy;
             int r = 0;
             for(int i = 0; i < s.Length; i++)
             {
@@ -670,6 +717,6 @@ namespace MathNet.Numerics.LinearAlgebra
             }
             return r;
         }
-        #endregion   //Public Methods
+
     }
 }

@@ -39,15 +39,18 @@ namespace MathNet.Numerics.LinearAlgebra
     public class CholeskyDecomposition
     {
         /// <summary>Array for internal storage of decomposition.</summary>
-        private double[][] L;
+        double[][] L;
 
         /// <summary>Symmetric and positive definite flag.</summary>
-        private readonly bool _isSymmetricPositiveDefinite;
+        readonly bool _isSymmetricPositiveDefinite;
 
         /// <summary>Cholesky algorithm for symmetric and positive definite matrix.</summary>
         /// <param name="Arg">Square, symmetric matrix.</param>
         /// <returns>Structure to access L and isspd flag.</returns>
-        public CholeskyDecomposition(Matrix Arg)
+        public
+        CholeskyDecomposition(
+            Matrix Arg
+            )
         {
             if(Arg.RowCount != Arg.ColumnCount)
                 throw new InvalidOperationException(Resources.ArgumentMatrixSquare);
@@ -76,7 +79,7 @@ namespace MathNet.Numerics.LinearAlgebra
 
                 diagonal = A[i][i] - diagonal;
                 L[i][i] = Math.Sqrt(Math.Max(diagonal, 0.0));
-                
+
                 _isSymmetricPositiveDefinite &= (diagonal > 0.0); // ensure positive definite
 
                 // zero out resulting upper triangle.
@@ -97,7 +100,9 @@ namespace MathNet.Numerics.LinearAlgebra
 
         /// <summary>Return triangular factor.</summary>
         /// <returns>L</returns>
-        public Matrix GetL()
+        public
+        Matrix
+        GetL()
         {
             return new Matrix(L);
         }
@@ -107,7 +112,11 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <returns>x so that L*L'*x = b</returns>
         /// <exception cref="System.ArgumentException">Matrix row dimensions must agree.</exception>
         /// <exception cref="System.InvalidOperationException">Matrix is not symmetric positive definite.</exception>
-        public double[] Solve(double[] b)
+        public
+        double[]
+        Solve(
+            double[] b
+            )
         {
             if(b.Length != L.Length)
                 throw new ArgumentException(Resources.ArgumentMatrixSameRowDimension, "b");
@@ -146,7 +155,11 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <returns>X so that L*L'*X = B</returns>
         /// <exception cref="System.ArgumentException">Matrix row dimensions must agree.</exception>
         /// <exception cref="System.InvalidOperationException">Matrix is not symmetric positive definite.</exception>
-        public Matrix Solve(Matrix B)
+        public
+        Matrix
+        Solve(
+            Matrix B
+            )
         {
             if(B.RowCount != L.Length)
                 throw new ArgumentException(Resources.ArgumentMatrixSameRowDimension, "B");
