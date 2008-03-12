@@ -101,7 +101,9 @@ namespace MathNet.Numerics
             get
             {
                 if(realImaginaryComparer == null)
+                {
                     realImaginaryComparer = new RealImaginaryLexComparer();
+                }
                 return realImaginaryComparer;
             }
         }
@@ -114,7 +116,9 @@ namespace MathNet.Numerics
             get
             {
                 if(modulusArgumentComparer == null)
+                {
                     modulusArgumentComparer = new ModulusArgumentLexComparer();
+                }
                 return modulusArgumentComparer;
             }
         }
@@ -127,15 +131,17 @@ namespace MathNet.Numerics
             get
             {
                 if(argumentModulusComparer == null)
+                {
                     argumentModulusComparer = new ArgumentModulusLexComparer();
+                }
                 return argumentModulusComparer;
             }
         }
 
         #endregion
 
-        private double real;
-        private double imag;
+        double real;
+        double imag;
 
         private Complex(double real, double imag)
         {
@@ -145,23 +151,28 @@ namespace MathNet.Numerics
 
         #region Normalization
         // TODO: method NormalizeToUnityOrNull is never called.
-        private void NormalizeToUnityOrNull()
+        void
+        NormalizeToUnityOrNull()
         {
             if(double.IsPositiveInfinity(real) && double.IsPositiveInfinity(imag))
             {
-                real = Constants.Sqrt1_2; imag = Constants.Sqrt1_2;
+                real = Constants.Sqrt1_2;
+                imag = Constants.Sqrt1_2;
             }
             else if(double.IsPositiveInfinity(real) && double.IsNegativeInfinity(imag))
             {
-                real = Constants.Sqrt1_2; imag = -Constants.Sqrt1_2;
+                real = Constants.Sqrt1_2;
+                imag = -Constants.Sqrt1_2;
             }
             else if(double.IsNegativeInfinity(real) && double.IsPositiveInfinity(imag))
             {
-                real = -Constants.Sqrt1_2; imag = -Constants.Sqrt1_2;
+                real = -Constants.Sqrt1_2;
+                imag = -Constants.Sqrt1_2;
             }
             else if(double.IsNegativeInfinity(real) && double.IsNegativeInfinity(imag))
             {
-                real = -Constants.Sqrt1_2; imag = Constants.Sqrt1_2;
+                real = -Constants.Sqrt1_2;
+                imag = Constants.Sqrt1_2;
             }
             else
             {
@@ -185,7 +196,12 @@ namespace MathNet.Numerics
 
         /// <summary>Constructs a <c>Complex</c> from its real
         /// and imaginary parts.</summary>
-        public static Complex FromRealImaginary(double real, double imag)
+        public static
+        Complex
+        FromRealImaginary(
+            double real,
+            double imag
+            )
         {
             return new Complex(real, imag);
         }
@@ -194,12 +210,20 @@ namespace MathNet.Numerics
         /// argument.</summary>
         /// <param name="modulus">Must be non-negative.</param>
         /// <param name="argument">Real number.</param>
-        public static Complex FromModulusArgument(double modulus, double argument)
+        public static
+        Complex
+        FromModulusArgument(
+            double modulus,
+            double argument
+            )
         {
             if(modulus < 0d) throw new ArgumentOutOfRangeException("modulus", modulus,
                                  Resources.ArgumentNotNegative);
 
-            return new Complex(modulus * Math.Cos(argument), modulus * Math.Sin(argument));
+            return new Complex(
+                modulus * Math.Cos(argument),
+                modulus * Math.Sin(argument)
+                );
         }
 
         /// <summary>Represents the zero value. This field is constant.</summary>
@@ -425,22 +449,32 @@ namespace MathNet.Numerics
         #region Equality & Hashing
 
         /// <summary>Indicates whether <c>obj</c> is equal to this instance.</summary>
-        public override bool Equals(object obj)
+        public override
+        bool
+        Equals(
+            object obj
+            )
         {
             return (obj is Complex) && this.Equals((Complex)obj);
         }
 
         /// <summary>Indicates whether <c>z</c> is equal to this instance.</summary>
-        public bool Equals(Complex other)
+        public
+        bool
+        Equals(
+            Complex other
+            )
         {
-            if(IsNaN || other.IsNaN)
-                return false;
-            else
-                return real == other.real && imag == other.imag;
+            return !IsNaN
+                && !other.IsNaN
+                && (real == other.real)
+                && (imag == other.imag);
         }
 
         /// <summary>Gets the hashcode of this <c>Complex</c>.</summary>
-        public override int GetHashCode()
+        public override
+        int
+        GetHashCode()
         {
             return real.GetHashCode() ^ imag.GetHashCode();
         }
@@ -452,13 +486,18 @@ namespace MathNet.Numerics
         /// The complex number's modulus takes precedence over the argument.
         /// </remarks>
         /// <param name="other">The complex number to compare with.</param>
-        public int CompareTo(Complex other)
+        public
+        int
+        CompareTo(
+            Complex other
+            )
         {
             int res = Modulus.CompareTo(other.Modulus);
             if(res != 0)
+            {
                 return res;
-            else
-                return Argument.CompareTo(other.Argument);
+            }
+            return Argument.CompareTo(other.Argument);
         }
 
         #endregion
@@ -579,228 +618,452 @@ namespace MathNet.Numerics
 
 
         #region Trigonometric Functions
+
         /// <summary>Trigonometric Sine (sin, Sinus) of this <c>Complex</c>.</summary>
-        public Complex Sine()
+        public
+        Complex
+        Sine()
         {
             if(IsReal)
+            {
                 return new Complex(Trig.Sine(real), 0d);
-            return new Complex(Trig.Sine(real) * Trig.HyperbolicCosine(imag), Trig.Cosine(real) * Trig.HyperbolicSine(imag));
+            }
+
+            return new Complex(
+                Trig.Sine(real) * Trig.HyperbolicCosine(imag),
+                Trig.Cosine(real) * Trig.HyperbolicSine(imag)
+                );
         }
+
         /// <summary>Trigonometric Cosine (cos, Cosinus) of this <c>Complex</c>.</summary>
-        public Complex Cosine()
+        public
+        Complex
+        Cosine()
         {
             if(IsReal)
+            {
                 return new Complex(Trig.Cosine(real), 0d);
-            return new Complex(Trig.Cosine(real) * Trig.HyperbolicCosine(imag), -Trig.Sine(real) * Trig.HyperbolicSine(imag));
+            }
+
+            return new Complex(
+                Trig.Cosine(real) * Trig.HyperbolicCosine(imag),
+                -Trig.Sine(real) * Trig.HyperbolicSine(imag)
+                );
         }
+
         /// <summary>Trigonometric Tangent (tan, Tangens) of this <c>Complex</c>.</summary>
-        public Complex Tangent()
+        public
+        Complex
+        Tangent()
         {
             if(IsReal)
+            {
                 return new Complex(Trig.Tangent(real), 0d);
+            }
+
             double cosr = Trig.Cosine(real);
             double sinhi = Trig.HyperbolicSine(imag);
             double denom = cosr * cosr + sinhi * sinhi;
-            return new Complex(Trig.Sine(real) * cosr / denom, sinhi * Trig.HyperbolicCosine(imag) / denom);
+
+            return new Complex(
+                Trig.Sine(real) * cosr / denom,
+                sinhi * Trig.HyperbolicCosine(imag) / denom
+                );
         }
+
         /// <summary>Trigonometric Cotangent (cot, Cotangens) of this <c>Complex</c>.</summary>
-        public Complex Cotangent()
+        public
+        Complex
+        Cotangent()
         {
             if(IsReal)
+            {
                 return new Complex(Trig.Cotangent(real), 0d);
+            }
+
             double sinr = Trig.Sine(real);
             double sinhi = Trig.HyperbolicSine(imag);
             double denom = sinr * sinr + sinhi * sinhi;
-            return new Complex(sinr * Trig.Cosine(real) / denom, -sinhi * Trig.HyperbolicCosine(imag) / denom);
+
+            return new Complex(
+                sinr * Trig.Cosine(real) / denom,
+                -sinhi * Trig.HyperbolicCosine(imag) / denom
+                );
         }
+
         /// <summary>Trigonometric Secant (sec, Sekans) of this <c>Complex</c>.</summary>
-        public Complex Secant()
+        public
+        Complex
+        Secant()
         {
             if(IsReal)
+            {
                 return new Complex(Trig.Secant(real), 0d);
+            }
+
             double cosr = Trig.Cosine(real);
             double sinhi = Trig.HyperbolicSine(imag);
             double denom = cosr * cosr + sinhi * sinhi;
-            return new Complex(cosr * Trig.HyperbolicCosine(imag) / denom, Trig.Sine(real) * sinhi / denom);
+
+            return new Complex(
+                cosr * Trig.HyperbolicCosine(imag) / denom,
+                Trig.Sine(real) * sinhi / denom
+                );
         }
+
         /// <summary>Trigonometric Cosecant (csc, Cosekans) of this <c>Complex</c>.</summary>
-        public Complex Cosecant()
+        public
+        Complex
+        Cosecant()
         {
             if(IsReal)
+            {
                 return new Complex(Trig.Cosecant(real), 0d);
+            }
+
             double sinr = Trig.Sine(real);
             double sinhi = Trig.HyperbolicSine(imag);
             double denom = sinr * sinr + sinhi * sinhi;
-            return new Complex(sinr * Trig.HyperbolicCosine(imag) / denom, -Trig.Cosine(real) * sinhi / denom);
+
+            return new Complex(
+                sinr * Trig.HyperbolicCosine(imag) / denom,
+                -Trig.Cosine(real) * sinhi / denom
+                );
         }
+
         #endregion
+
         #region Trigonometric Arcus Functions
+
         /// <summary>Trigonometric Arcus Sine (asin, Arkussinus) of this <c>Complex</c>.</summary>
-        public Complex InverseSine()
+        public
+        Complex
+        InverseSine()
         {
             return -Complex.I * ((1 - this.Square()).SquareRoot() + Complex.I * this).NaturalLogarithm();
         }
+
         /// <summary>Trigonometric Arcus Cosine (acos, Arkuscosinus) of this <c>Complex</c>.</summary>
-        public Complex InverseCosine()
+        public
+        Complex
+        InverseCosine()
         {
             return -Complex.I * (this + Complex.I * (1 - this.Square()).SquareRoot()).NaturalLogarithm();
         }
+
         /// <summary>Trigonometric Arcus Tangent (atan, Arkustangens) of this <c>Complex</c>.</summary>
-        public Complex InverseTangent()
+        public
+        Complex
+        InverseTangent()
         {
             Complex iz = new Complex(-imag, real); //I*this
             return new Complex(0, 0.5) * ((1 - iz).NaturalLogarithm() - (1 + iz).NaturalLogarithm());
         }
+
         /// <summary>Trigonometric Arcus Cotangent (acot, Arkuscotangens) of this <c>Complex</c>.</summary>
-        public Complex InverseCotangent()
+        public
+        Complex
+        InverseCotangent()
         {
             Complex iz = new Complex(-imag, real); //I*this
             return new Complex(0, 0.5) * ((1 + iz).NaturalLogarithm() - (1 - iz).NaturalLogarithm()) + Math.PI / 2;
         }
+
         /// <summary>Trigonometric Arcus Secant (asec, Arkussekans) of this <c>Complex</c>.</summary>
-        public Complex InverseSecant()
+        public
+        Complex
+        InverseSecant()
         {
             Complex inv = 1 / this;
             return -Complex.I * (inv + Complex.I * (1 - inv.Square()).SquareRoot()).NaturalLogarithm();
         }
+
         /// <summary>Trigonometric Arcus Cosecant (acsc, Arkuscosekans) of this <c>Complex</c>.</summary>
-        public Complex InverseCosecant()
+        public
+        Complex
+        InverseCosecant()
         {
             Complex inv = 1 / this;
             return -Complex.I * (Complex.I * inv + (1 - inv.Square()).SquareRoot()).NaturalLogarithm();
         }
+
         #endregion
+
         #region Trigonometric Hyperbolic Functions
+
         /// <summary>Trigonometric Hyperbolic Sine (sinh, Sinus hyperbolicus) of this <c>Complex</c>.</summary>
-        public Complex HyperbolicSine()
+        public
+        Complex
+        HyperbolicSine()
         {
             if(IsReal)
+            {
                 return new Complex(Trig.HyperbolicSine(real), 0d);
-            return new Complex(Trig.HyperbolicSine(real) * Trig.Cosine(imag), Trig.HyperbolicCosine(real) * Trig.Sine(imag));
+            }
+
+            return new Complex(
+                Trig.HyperbolicSine(real) * Trig.Cosine(imag),
+                Trig.HyperbolicCosine(real) * Trig.Sine(imag)
+                );
         }
+
         /// <summary>Trigonometric Hyperbolic Cosine (cosh, Cosinus hyperbolicus) of this <c>Complex</c>.</summary>
-        public Complex HyperbolicCosine()
+        public
+        Complex
+        HyperbolicCosine()
         {
             if(IsReal)
+            {
                 return new Complex(Trig.HyperbolicCosine(real), 0d);
-            return new Complex(Trig.HyperbolicCosine(real) * Trig.Cosine(imag), Trig.HyperbolicSine(real) * Trig.Sine(imag));
+            }
+
+            return new Complex(
+                Trig.HyperbolicCosine(real) * Trig.Cosine(imag),
+                Trig.HyperbolicSine(real) * Trig.Sine(imag)
+                );
         }
+
         /// <summary>Trigonometric Hyperbolic Tangent (tanh, Tangens hyperbolicus) of this <c>Complex</c>.</summary>
-        public Complex HyperbolicTangent()
+        public
+        Complex
+        HyperbolicTangent()
         {
             if(IsReal)
+            {
                 return new Complex(Trig.HyperbolicTangent(real), 0d);
+            }
+
             double cosi = Trig.Cosine(imag);
             double sinhr = Trig.HyperbolicSine(real);
             double denom = cosi * cosi + sinhr * sinhr;
-            return new Complex(Trig.HyperbolicCosine(real) * sinhr / denom, cosi * Trig.Sine(imag) / denom);
+
+            return new Complex(
+                Trig.HyperbolicCosine(real) * sinhr / denom,
+                cosi * Trig.Sine(imag) / denom
+                );
         }
+
         /// <summary>Trigonometric Hyperbolic Cotangent (coth, Cotangens hyperbolicus) of this <c>Complex</c>.</summary>
-        public Complex HyperbolicCotangent()
+        public
+        Complex
+        HyperbolicCotangent()
         {
             if(IsReal)
+            {
                 return new Complex(Trig.HyperbolicCotangent(real), 0d);
+            }
+
             double sini = Trig.Sine(imag);
             double sinhr = Trig.HyperbolicSine(real);
             double denom = sini * sini + sinhr * sinhr;
-            return new Complex(sinhr * Trig.HyperbolicCosine(real) / denom, sini * Trig.Cosine(imag) / denom);
+
+            return new Complex(
+                sinhr * Trig.HyperbolicCosine(real) / denom,
+                sini * Trig.Cosine(imag) / denom
+                );
         }
+
         /// <summary>Trigonometric Hyperbolic Secant (sech, Secans hyperbolicus) of this <c>Complex</c>.</summary>
-        public Complex HyperbolicSecant()
+        public
+        Complex
+        HyperbolicSecant()
         {
             if(IsReal)
+            {
                 return new Complex(Trig.HyperbolicSecant(real), 0d);
+            }
+
             Complex exp = this.Exponential();
             return 2 * exp / (exp.Square() + 1);
         }
+
         /// <summary>Trigonometric Hyperbolic Cosecant (csch, Cosecans hyperbolicus) of this <c>Complex</c>.</summary>
-        public Complex HyperbolicCosecant()
+        public
+        Complex
+        HyperbolicCosecant()
         {
             if(IsReal)
+            {
                 return new Complex(Trig.HyperbolicCosecant(real), 0d);
+            }
+
             Complex exp = this.Exponential();
             return 2 * exp / (exp.Square() - 1);
         }
+
         #endregion
+
         #region Trigonometric Hyperbolic Area Functions
+
         /// <summary>Trigonometric Hyperbolic Area Sine (asinh, reasinus hyperbolicus) of this <c>Complex</c>.</summary>
-        public Complex InverseHyperbolicSine()
+        public
+        Complex
+        InverseHyperbolicSine()
         {
             return (this + (this.Square() + 1).SquareRoot()).NaturalLogarithm();
         }
+
         /// <summary>Trigonometric Hyperbolic Area Cosine (acosh, Areacosinus hyperbolicus) of this <c>Complex</c>.</summary>
-        public Complex InverseHyperbolicCosine()
+        public
+        Complex
+        InverseHyperbolicCosine()
         {
             return (this + (this - 1).SquareRoot() * (this + 1).SquareRoot()).NaturalLogarithm();
         }
+
         /// <summary>Trigonometric Hyperbolic Area Tangent (atanh, Areatangens hyperbolicus) of this <c>Complex</c>.</summary>
-        public Complex InverseHyperbolicTangent()
+        public
+        Complex
+        InverseHyperbolicTangent()
         {
             return 0.5 * ((1 + this).NaturalLogarithm() - (1 - this).NaturalLogarithm());
         }
+
         /// <summary>Trigonometric Hyperbolic Area Cotangent (acoth, Areacotangens hyperbolicus) of this <c>Complex</c>.</summary>
-        public Complex InverseHyperbolicCotangent()
+        public
+        Complex
+        InverseHyperbolicCotangent()
         {
             return 0.5 * ((this + 1).NaturalLogarithm() - (this - 1).NaturalLogarithm());
         }
+
         /// <summary>Trigonometric Hyperbolic Area Secant (asech, Areasekans hyperbolicus) of this <c>Complex</c>.</summary>
-        public Complex InverseHyperbolicSecant()
+        public
+        Complex
+        InverseHyperbolicSecant()
         {
             Complex inv = 1 / this;
             return (inv + (inv - 1).SquareRoot() * (inv + 1).SquareRoot()).NaturalLogarithm();
         }
+
         /// <summary>Trigonometric Hyperbolic Area Cosecant (acsch, Areacosekans hyperbolicus) of this <c>Complex</c>.</summary>
-        public Complex InverseHyperbolicCosecant()
+        public
+        Complex
+        InverseHyperbolicCosecant()
         {
             Complex inv = 1 / this;
             return (inv + (inv.Square() + 1).SquareRoot()).NaturalLogarithm();
         }
+
         #endregion
 
+
         #region Exponential Functions
+
         /// <summary>Exponential of this <c>Complex</c> (exp(x), E^x).</summary>
-        public Complex Exponential()
+        public
+        Complex
+        Exponential()
         {
             double exp = Math.Exp(real);
             if(IsReal)
+            {
                 return new Complex(exp, 0d);
-            return new Complex(exp * Trig.Cosine(imag), exp * Trig.Sine(imag));
+            }
+
+            return new Complex(
+                exp * Trig.Cosine(imag),
+                exp * Trig.Sine(imag)
+                );
         }
+
         /// <summary>Natural Logarithm of this <c>Complex</c> (Base E).</summary>
-        public Complex NaturalLogarithm()
+        public
+        Complex
+        NaturalLogarithm()
         {
             if(IsRealNonNegative)
+            {
                 return new Complex(Math.Log(real), 0d);
-            return new Complex(0.5d * Math.Log(ModulusSquared), Argument);
+            }
+
+            return new Complex(
+                0.5d * Math.Log(ModulusSquared),
+                Argument
+                );
         }
+
         /// <summary>Raise this <c>Complex</c> to the given value.</summary>
-        public Complex Power(Complex exponent)
+        public
+        Complex
+        Power(
+            Complex exponent
+            )
         {
+            if(IsZero)
+            {
+                if(exponent.IsZero)
+                {
+                    return Complex.One;
+                }
+                if(exponent.Real > 0)
+                {
+                    return Complex.Zero;
+                }
+                if(exponent.Real < 0)
+                {
+                    if(Number.AlmostEqual(0d, exponent.Imag))
+                    {
+                        return Complex.FromRealImaginary(double.PositiveInfinity, 0d);
+                    }
+                    return Complex.FromRealImaginary(double.PositiveInfinity, double.PositiveInfinity);
+                }
+                return Complex.NaN;
+            }
+
             return (exponent * NaturalLogarithm()).Exponential();
         }
+
         /// <summary>Raise this <c>Complex</c> to the inverse of the given value.</summary>
-        public Complex Root(Complex rootexponent)
+        public
+        Complex
+        Root(
+            Complex rootexponent
+            )
         {
-            return ((1 / rootexponent) * NaturalLogarithm()).Exponential();
+            return Power(1 / rootexponent);
         }
+
         /// <summary>The Square (power 2) of this <c>Complex</c></summary>
-        public Complex Square()
+        public
+        Complex
+        Square()
         {
             if(IsReal)
+            {
                 return new Complex(real * real, 0d);
-            return new Complex(real * real - imag * imag, 2 * real * imag);
+            }
+
+            return new Complex(
+                real * real - imag * imag,
+                2 * real * imag
+                );
         }
+
         /// <summary>The Square Root (power 1/2) of this <c>Complex</c></summary>
-        public Complex SquareRoot()
+        public
+        Complex
+        SquareRoot()
         {
             if(IsRealNonNegative)
+            {
                 return new Complex(Math.Sqrt(real), 0d);
+            }
+
             double mod = Modulus;
             if(imag > 0 || imag == 0 && real < 0)
-                return new Complex(Constants.Sqrt1_2 * Math.Sqrt(mod + real), Constants.Sqrt1_2 * Math.Sqrt(mod - real));
-            else
-                return new Complex(Constants.Sqrt1_2 * Math.Sqrt(mod + real), -Constants.Sqrt1_2 * Math.Sqrt(mod - real));
+            {
+                return new Complex(
+                    Constants.Sqrt1_2 * Math.Sqrt(mod + real),
+                    Constants.Sqrt1_2 * Math.Sqrt(mod - real)
+                    );
+            }
+            return new Complex(
+                Constants.Sqrt1_2 * Math.Sqrt(mod + real),
+                -Constants.Sqrt1_2 * Math.Sqrt(mod - real)
+                );
         }
+
         #endregion
 
 

@@ -25,6 +25,7 @@ using System.Text;
 
 using NUnit.Framework;
 
+using MathNet.Numerics;
 using MathNet.Numerics.LinearAlgebra;
 
 namespace Iridium.Test
@@ -32,6 +33,22 @@ namespace Iridium.Test
     [TestFixture]
     public class BugRegression
     {
+        [Test]
+        public void IRID77_NegativeComplexLogarithm()
+        {
+            Complex minusOne = -Complex.One;
+            Complex piI = minusOne.NaturalLogarithm();
+
+            Assert.AreEqual(0.0, piI.Real, 1e-8, "Re{ln(-1)} = 0");
+            Assert.AreEqual(Constants.Pi, piI.Imag, 1e-8, "Im{ln(-1)} = Pi");
+
+            Complex zero = Complex.Zero;
+            Complex lnZero = zero.NaturalLogarithm();
+
+            Assert.AreEqual(double.NegativeInfinity, lnZero.Real, "Re{ln(0)} = -infinity");
+            Assert.AreEqual(0, lnZero.Imag, "Im{ln(0)} = 0");
+        }
+
         [Test]
         public void IRID90_CholeskySolve()
         {
@@ -56,6 +73,14 @@ namespace Iridium.Test
             NumericAssert.AreAlmostEqual(i, test2a, "2A");
             Matrix inv2b = m2.Inverse();
             NumericAssert.AreAlmostEqual(inv2a, inv2b, "2B");
+        }
+
+        [Test]
+        public void IRID107_ComplexPowerAtZero()
+        {
+            Complex zeroPowTwo = Complex.Zero.Power(2);
+            Assert.AreEqual(0d, zeroPowTwo.Real, "Re{(0)^(2)} = 0");
+            Assert.AreEqual(0d, zeroPowTwo.Imag, "Im{(0)^(2)} = 0");
         }
     }
 }
