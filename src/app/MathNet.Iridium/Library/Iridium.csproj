@@ -51,6 +51,7 @@
     <Compile Include="Distributions\Continuous\ChiDistribution.cs" />
     <Compile Include="Distributions\Continuous\ErlangDistribution.cs" />
     <Compile Include="Distributions\Continuous\ExponentialDistribution.cs" />
+    <Compile Include="Distributions\Continuous\FisherSnedecorDistribution.cs" />
     <Compile Include="Distributions\Continuous\GammaDistribution.cs" />
     <Compile Include="Distributions\Continuous\LaplaceDistribution.cs" />
     <Compile Include="Distributions\Continuous\LognormalDistribution.cs" />

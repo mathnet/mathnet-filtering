@@ -211,6 +211,10 @@ namespace Iridium.Test
             TestContinuousDistributionShapeMatchesCumulativeDensity(
                 new ErlangDistribution(2, 2.0),
                 0.0, 10.0, 10, 100000, 0.01, "ErlangDistribution(2,2.0)");
+
+            TestContinuousDistributionShapeMatchesCumulativeDensity(
+                new FisherSnedecorDistribution(100, 100),
+                0.0, 2.0, 10, 100000, 0.01, "FisherSnedecorDistribution(100,100)");
         }
     }
 }
