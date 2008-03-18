@@ -41,7 +41,7 @@ namespace MathNet.SignalProcessing.DataSources
         const double _pi2 = 2 * Math.PI;
 
         /// <summary>
-        /// Create a new on-demand sinus sample source with te given parameters.
+        /// Create a new on-demand sinus sample source with the given parameters.
         /// </summary>
         public
         SinusoidalSource(
@@ -61,7 +61,7 @@ namespace MathNet.SignalProcessing.DataSources
         }
 
         /// <summary>
-        /// Create a new on-demand sinus sample source with te given parameters an zero phase and mean.
+        /// Create a new on-demand sinus sample source with the given parameters an zero phase and mean.
         /// </summary>
         public
         SinusoidalSource(

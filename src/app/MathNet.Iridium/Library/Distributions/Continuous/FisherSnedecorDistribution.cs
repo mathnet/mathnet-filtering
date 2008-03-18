@@ -275,7 +275,7 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// Returns a beta distributed floating point random number.
         /// </summary>
-        /// <returns>A beta distributed double-precision floating point number.</returns>
+        /// <returns>An F-distributed double-precision floating point number.</returns>
         public override
         double
         NextDouble()
