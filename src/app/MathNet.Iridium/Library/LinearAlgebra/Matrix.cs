@@ -808,6 +808,32 @@ namespace MathNet.Numerics.LinearAlgebra
             ResetOnDemandComputations();
         }
 
+      /// <summary>Tensor Product of this and another Matrix.</summary>
+      /// <param name="B">The matric to be operated on.</param>
+      /// <returns>Tensor product of this and the given Matrix.</returns>
+        public virtual
+          Matrix
+          TensorProduct(Matrix B)
+        {
+          // Matrix to be created
+          Matrix outMat = new Matrix(this.RowCount * B.RowCount, this.ColumnCount * B.ColumnCount);
+
+          for (int i = 0; i < this.RowCount; i++)
+          {
+            int rowOffset = i * B.RowCount;
+            for (int j = 0; j < this.ColumnCount; j++)
+            {
+              int colOffset = j * B.ColumnCount;
+              Matrix partMat = _data[i][j] * B;
+
+              outMat.SetMatrix(rowOffset, rowOffset + B.RowCount - 1, colOffset, colOffset + B.RowCount - 1, partMat);
+
+            }
+          }
+          return outMat;
+        }
+
+
 
         #endregion
 
