@@ -55,6 +55,7 @@
     <Compile Include="Filter\IIR\IirCoefficients.cs" />
     <Compile Include="Filter\IIR\IirFilter.cs" />
     <Compile Include="Filter\ImpulseResponse.cs" />
+    <Compile Include="Filter\Kalman\IKalmanFilter.cs" />
     <Compile Include="Filter\Median\MedianFilter.cs" />
     <Compile Include="Filter\OnlineFilter.cs" />
     <Compile Include="Filter\Utils\ShiftBuffer.cs" />
@@ -75,6 +76,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Filter\Kalman" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- MATHNET-BEGIN-TESTSIGNING -->
