@@ -70,7 +70,11 @@
     <CallTarget Targets="ResetVersion" />
 
     <CallTarget Targets="ReleaseFinalSign" />
+    <!--
+    Certificate Signing disabled because the automatic certificate validation
+    would cause network access (to download the revocation lists). See IRID-110.
     <CallTarget Targets="ReleaseCertificateSign" />
+    -->
 
     <CallTarget Targets="BuildVerificationUnitTests" ContinueOnError="false" />
 
