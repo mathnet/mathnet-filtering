@@ -808,33 +808,6 @@ namespace MathNet.Numerics.LinearAlgebra
             ResetOnDemandComputations();
         }
 
-      /// <summary>Tensor Product of this and another Matrix.</summary>
-      /// <param name="B">The matric to be operated on.</param>
-      /// <returns>Tensor product of this and the given Matrix.</returns>
-        public virtual
-          Matrix
-          TensorProduct(Matrix B)
-        {
-          // Matrix to be created
-          Matrix outMat = new Matrix(this.RowCount * B.RowCount, this.ColumnCount * B.ColumnCount);
-
-          for (int i = 0; i < this.RowCount; i++)
-          {
-            int rowOffset = i * B.RowCount;
-            for (int j = 0; j < this.ColumnCount; j++)
-            {
-              int colOffset = j * B.ColumnCount;
-              Matrix partMat = _data[i][j] * B;
-
-              outMat.SetMatrix(rowOffset, rowOffset + B.RowCount - 1, colOffset, colOffset + B.RowCount - 1, partMat);
-
-            }
-          }
-          return outMat;
-        }
-
-
-
         #endregion
 
         #region Norms computations
@@ -1042,6 +1015,26 @@ namespace MathNet.Numerics.LinearAlgebra
             ResetOnDemandComputations();
         }
 
+        /// <summary>In place unary minus of the <c>Matrix</c>.</summary>
+        public virtual
+        void
+        UnaryMinus()
+        {
+            for(int i = 0; i < _rowCount; i++)
+            {
+                for(int j = 0; j < _columnCount; j++)
+                {
+                    _data[i][j] = -_data[i][j];
+                }
+            }
+
+            ResetOnDemandComputations();
+        }
+
+        #endregion
+
+        #region Additional elementary operations
+
         /// <summary>In place transposition of this <c>Matrix</c>.</summary>
         /// <seealso cref="Transpose(IMatrix)"/>
         /// <remarks>
@@ -1108,20 +1101,36 @@ namespace MathNet.Numerics.LinearAlgebra
             return new Matrix(newData);
         }
 
-        /// <summary>In place unary minus of the <c>Matrix</c>.</summary>
+        /// <summary>Kronecker/Tensor Product of this and another matrix.</summary>
+        /// <param name="B">The matrix to be operated on.</param>
+        /// <returns>Kronecker Product of this and the given matrix.</returns>
         public virtual
-        void
-        UnaryMinus()
+        Matrix
+        TensorProduct(
+            Matrix B
+            )
         {
-            for(int i = 0; i < _rowCount; i++)
+            // Matrix to be created
+            Matrix outMat = new Matrix(this.RowCount * B.RowCount, this.ColumnCount * B.ColumnCount);
+
+            for(int i = 0; i < this.RowCount; i++)
             {
-                for(int j = 0; j < _columnCount; j++)
+                int rowOffset = i * B.RowCount;
+                for(int j = 0; j < this.ColumnCount; j++)
                 {
-                    _data[i][j] = -_data[i][j];
+                    int colOffset = j * B.ColumnCount;
+                    Matrix partMat = _data[i][j] * B;
+
+                    outMat.SetMatrix(
+                        rowOffset,
+                        rowOffset + B.RowCount - 1,
+                        colOffset,
+                        colOffset + B.RowCount - 1,
+                        partMat
+                        );
                 }
             }
-
-            ResetOnDemandComputations();
+            return outMat;
         }
 
         #endregion
