@@ -120,4 +120,7 @@
   <data name="ArgumentEvenNumberOfCoefficients" xml:space="preserve">
     <value>Even number of coefficients required.</value>
   </data>
+  <data name="InvalidWindowFunctionException" xml:space="preserve">
+    <value>Windowing function is not valid.</value>
+  </data>
 </root>

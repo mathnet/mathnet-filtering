@@ -66,6 +66,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Windowing\HammingWindow.cs" />
+    <Compile Include="Windowing\HannWindow.cs" />
+    <Compile Include="Windowing\CosineWindow.cs" />
+    <Compile Include="Windowing\BartlettWindow.cs" />
+    <Compile Include="Windowing\GaussWindow.cs" />
+    <Compile Include="Windowing\BartlettHannWindow.cs" />
+    <Compile Include="Windowing\BlackmanWindow.cs" />
+    <Compile Include="Windowing\BlackmanHarrisWindow.cs" />
+    <Compile Include="Windowing\BlackmanNuttallWindow.cs" />
+    <Compile Include="Windowing\FlatTopWindow.cs" />
+    <Compile Include="Windowing\NuttallWindow.cs" />
+    <Compile Include="Windowing\TriangularWindow.cs" />
+    <Compile Include="Windowing\LanczosWindow.cs" />
+    <Compile Include="Windowing\RectangularWindow.cs" />
+    <Compile Include="Windowing\Window.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\mathnet_public.snk" />
@@ -76,9 +91,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Filter\Kalman" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- MATHNET-BEGIN-TESTSIGNING -->

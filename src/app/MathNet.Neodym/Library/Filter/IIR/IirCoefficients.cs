@@ -30,44 +30,6 @@ namespace MathNet.SignalProcessing.Filter.IIR
     /// </summary>
     public static class IirCoefficients
     {
-        static
-        double[]
-        BuildCoefficients(
-            double beta,
-            double gamma,
-            double alpha,
-            double mu,
-            double sigma
-            )
-        {
-            return new double[] {
-                2d*alpha,
-                2d*gamma,
-                -2d*beta,
-                1,
-                mu,
-                sigma
-                };
-        }
-
-        static
-        void
-        BetaGamma(
-            out double beta,
-            out double gamma,
-            out double theta,
-            double sampling,
-            double cutoff,
-            double lowHalfPower,
-            double highHalfPower
-            )
-        {
-            double tan = Math.Tan(Math.PI * (highHalfPower - lowHalfPower) / sampling);
-            beta = 0.5d * (1 - tan) / (1 + tan);
-            theta = 2 * Math.PI * cutoff / sampling;
-            gamma = (0.5d + beta) * Math.Cos(theta);
-        }
-
         /// <summary>
         /// Calculates IIR LowPass Filter Coefficients.
         /// </summary>
@@ -211,5 +173,44 @@ namespace MathNet.SignalProcessing.Filter.IIR
                 1 // sigma
                 );
         }
+
+        static
+        double[]
+        BuildCoefficients(
+            double beta,
+            double gamma,
+            double alpha,
+            double mu,
+            double sigma
+            )
+        {
+            return new double[] {
+                2d*alpha,
+                2d*gamma,
+                -2d*beta,
+                1,
+                mu,
+                sigma
+                };
+        }
+
+        static
+        void
+        BetaGamma(
+            out double beta,
+            out double gamma,
+            out double theta,
+            double sampling,
+            double cutoff,
+            double lowHalfPower,
+            double highHalfPower
+            )
+        {
+            double tan = Math.Tan(Math.PI * (highHalfPower - lowHalfPower) / sampling);
+            beta = 0.5d * (1 - tan) / (1 + tan);
+            theta = 2 * Math.PI * cutoff / sampling;
+            gamma = (0.5d + beta) * Math.Cos(theta);
+        }
+
     }
 }
