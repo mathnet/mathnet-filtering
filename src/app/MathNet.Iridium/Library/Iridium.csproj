@@ -109,6 +109,7 @@
     <Compile Include="RandomSources\SystemRandomSource.cs" />
     <Compile Include="RandomSources\XorShiftRandomSource.cs" />
     <Compile Include="Rational.cs" />
+    <Compile Include="Ratios.cs" />
     <Compile Include="SampleList.cs" />
     <Compile Include="Set.cs" />
     <Compile Include="SiConstants.cs" />
