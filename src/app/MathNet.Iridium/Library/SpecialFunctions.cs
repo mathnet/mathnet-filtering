@@ -486,6 +486,20 @@ namespace MathNet.Numerics
 
         #endregion
 
+        /// <summary>
+        /// Normalized Sinc (sinus cardinalis) Function.
+        /// </summary>
+        /// <remarks>sinc(x) = sin(pi * x) / (pi * x)</remarks>
+        public static
+        double
+        Sinc(
+            double x
+            )
+        {
+            double a = Math.PI * x;
+            return Math.Sin(a) / a;
+        }
+
         #region Gamma Functions
 
         /// <summary>
