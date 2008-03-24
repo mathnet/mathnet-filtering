@@ -60,10 +60,16 @@ namespace MathNet.Numerics
         /// <returns>Relative Epsilon (positive double or NaN).</returns>
         /// <remarks>Evaluates the <b>negative</b> epsilon. The more common positive epsilon is equal to two times this negative epsilon.</remarks>
         /// <seealso cref="PositiveEpsilonOf(double)"/>
-        public static double EpsilonOf(double value)
+        public static
+        double
+        EpsilonOf(
+            double value
+            )
         {
             if(double.IsInfinity(value) || double.IsNaN(value))
+            {
                 return double.NaN;
+            }
 
             long signed64 = BitConverter.DoubleToInt64Bits(value);
             if(signed64 == 0)
@@ -71,10 +77,11 @@ namespace MathNet.Numerics
                 signed64++;
                 return BitConverter.Int64BitsToDouble(signed64) - value;
             }
-            else if(signed64-- < 0)
+            if(signed64-- < 0)
+            {
                 return BitConverter.Int64BitsToDouble(signed64) - value;
-            else
-                return value - BitConverter.Int64BitsToDouble(signed64);
+            }
+            return value - BitConverter.Int64BitsToDouble(signed64);
         }
 
         /// <summary>
@@ -83,7 +90,11 @@ namespace MathNet.Numerics
         /// <returns>Relative Epsilon (positive double or NaN)</returns>
         /// <remarks>Evaluates the <b>positive</b> epsilon. See also <see cref="EpsilonOf"/></remarks>
         /// <seealso cref="EpsilonOf(double)"/>
-        public static double PositiveEpsilonOf(double value)
+        public static
+        double
+        PositiveEpsilonOf(
+            double value
+            )
         {
             return 2 * EpsilonOf(value);
         }
@@ -95,20 +106,35 @@ namespace MathNet.Numerics
         /// The incrementation step length depends on the provided value.
         /// Increment(double.MaxValue) will return positive infinity.
         /// </remarks>
-        public static double Increment(double value)
+        public static
+        double
+        Increment(
+            double value
+            )
         {
             if(double.IsInfinity(value) || double.IsNaN(value))
+            {
                 return value;
+            }
 
             long signed64 = BitConverter.DoubleToInt64Bits(value);
             if(signed64 < 0)
+            {
                 signed64--;
+            }
             else
+            {
                 signed64++;
+            }
             if(signed64 == -9223372036854775808) // = "-0", make it "+0"
+            {
                 return 0;
+            }
             value = BitConverter.Int64BitsToDouble(signed64);
-            return double.IsNaN(value) ? double.NaN : value;
+
+            return double.IsNaN(value)
+                ? double.NaN
+                : value;
         }
 
         /// <summary>
@@ -118,20 +144,35 @@ namespace MathNet.Numerics
         /// The decrementation step length depends on the provided value.
         /// Decrement(double.MinValue) will return negative infinity.
         /// </remarks>
-        public static double Decrement(double value)
+        public static
+        double
+        Decrement(
+            double value
+            )
         {
             if(double.IsInfinity(value) || double.IsNaN(value))
+            {
                 return value;
+            }
 
             long signed64 = BitConverter.DoubleToInt64Bits(value);
             if(signed64 == 0)
+            {
                 return -double.Epsilon;
+            }
             if(signed64 < 0)
+            {
                 signed64++;
+            }
             else
+            {
                 signed64--;
+            }
             value = BitConverter.Int64BitsToDouble(signed64);
-            return double.IsNaN(value) ? double.NaN : value;
+
+            return double.IsNaN(value)
+                ? double.NaN
+                : value;
         }
 
         /// <summary>
@@ -139,7 +180,12 @@ namespace MathNet.Numerics
         /// </summary>
         /// <remarks>The second number is included in the number, thus two equal numbers evaluate to zero and two neighbour numbers evaluate to one. Therefore, what is returned is actually the count of numbers between plus 1.</remarks>
         [CLSCompliant(false)]
-        public static ulong NumbersBetween(double a, double b)
+        public static
+        ulong
+        NumbersBetween(
+            double a,
+            double b
+            )
         {
             if(double.IsNaN(a) || double.IsInfinity(a))
                 throw new ArgumentException(Resources.ArgumentNotInfinityNaN, "a");
@@ -149,50 +195,84 @@ namespace MathNet.Numerics
             ulong ua = ToLexicographicalOrderedUInt64(a);
             ulong ub = ToLexicographicalOrderedUInt64(b);
 
-            return (a >= b) ? ua - ub : ub - ua;
+            return (a >= b)
+                ? ua - ub
+                : ub - ua;
         }
 
         /// <summary>
         /// Maps a double to an unsigned long integer which provides lexicographical ordering.
         /// </summary>
         [CLSCompliant(false)]
-        public static ulong ToLexicographicalOrderedUInt64(double value)
+        public static
+        ulong
+        ToLexicographicalOrderedUInt64(
+            double value
+            )
         {
             long signed64 = BitConverter.DoubleToInt64Bits(value);
             ulong unsigned64 = (ulong)signed64;
-            return (signed64 >= 0) ? unsigned64 : 0x8000000000000000 - unsigned64;
+
+            return (signed64 >= 0)
+                ? unsigned64
+                : 0x8000000000000000 - unsigned64;
         }
 
         /// <summary>
         /// Maps a double to an signed long integer which provides lexicographical ordering.
         /// </summary>
-        public static long ToLexicographicalOrderedInt64(double value)
+        public static
+        long
+        ToLexicographicalOrderedInt64(
+            double value
+            )
         {
             long signed64 = BitConverter.DoubleToInt64Bits(value);
-            return (signed64 >= 0) ? signed64 : (long)(0x8000000000000000 - (ulong)signed64);
+
+            return (signed64 >= 0)
+                ? signed64
+                : (long)(0x8000000000000000 - (ulong)signed64);
         }
 
         /// <summary>
         /// Converts a long integer in signed-magnitude format to an unsigned long integer in two-complement format.
         /// </summary>
         [CLSCompliant(false)]
-        public static ulong SignedMagnitudeToTwosComplementUInt64(long value)
+        public static
+        ulong
+        SignedMagnitudeToTwosComplementUInt64(
+            long value
+            )
         {
-            return (value >= 0) ? (ulong)value : 0x8000000000000000 - (ulong)value;
+            return (value >= 0)
+                ? (ulong)value
+                : 0x8000000000000000 - (ulong)value;
         }
 
         /// <summary>
         /// Converts an unsigned long integer in two-complement to a long integer in signed-magnitude format format.
         /// </summary>
-        public static long SignedMagnitudeToTwosComplementInt64(long value)
+        public static
+        long
+        SignedMagnitudeToTwosComplementInt64(
+            long value
+            )
         {
-            return (value >= 0) ? value : (long)(0x8000000000000000 - (ulong)value);
+            return (value >= 0)
+                ? value
+                : (long)(0x8000000000000000 - (ulong)value);
         }
 
         /// <param name="maxNumbersBetween">The maximum count of numbers between the two numbers plus one ([a,a] -> 0, [a,a+e] -> 1, [a,a+2e] -> 2, ...).</param>
         /// <param name="a">The first number</param>
         /// <param name="b">The second number</param>
-        public static bool AlmostEqual(double a, double b, int maxNumbersBetween)
+        public static
+        bool
+        AlmostEqual(
+            double a,
+            double b,
+            int maxNumbersBetween
+            )
         {
             return AlmostEqual(a, b, (ulong)maxNumbersBetween);
         }
@@ -201,21 +281,33 @@ namespace MathNet.Numerics
         /// <param name="a">The first number</param>
         /// <param name="b">The second number</param>
         [CLSCompliant(false)]
-        public static bool AlmostEqual(double a, double b, ulong maxNumbersBetween)
+        public static
+        bool
+        AlmostEqual(
+            double a,
+            double b,
+            ulong maxNumbersBetween
+            )
         {
             if(maxNumbersBetween < 0)
                 throw new ArgumentException(Resources.ArgumentNotNegative, "maxNumbersBetween");
 
             // NaN's should never equal to anything
             if(double.IsNaN(a) || double.IsNaN(b)) //(a != a || b != b)
+            {
                 return false;
+            }
 
             if(a == b)
+            {
                 return true;
+            }
 
             // false, if only one of them is infinity or they differ on the infinity sign
             if(double.IsInfinity(a) || double.IsInfinity(b))
+            {
                 return false;
+            }
 
             ulong between = NumbersBetween(a, b);
             return between <= maxNumbersBetween;
@@ -225,7 +317,14 @@ namespace MathNet.Numerics
         /// <param name="b">The second number</param>
         /// <param name="diff">The difference of the two numbers according to the Norm</param>
         /// <param name="relativeAccuracy">The relative accuracy required for being almost equal.</param>
-        public static bool AlmostEqualNorm(double a, double b, double diff, double relativeAccuracy)
+        public static
+        bool
+        AlmostEqualNorm(
+            double a,
+            double b,
+            double diff,
+            double relativeAccuracy
+            )
         {
             if((a == 0 && Math.Abs(b) < relativeAccuracy)
                 || (b == 0 && Math.Abs(a) < relativeAccuracy))
@@ -238,7 +337,13 @@ namespace MathNet.Numerics
         /// <param name="a">The first number</param>
         /// <param name="b">The second number</param>
         /// <param name="diff">The difference of the two numbers according to the Norm</param>
-        public static bool AlmostEqualNorm(double a, double b, double diff)
+        public static
+        bool
+        AlmostEqualNorm(
+            double a,
+            double b,
+            double diff
+            )
         {
             return AlmostEqualNorm(a, b, diff, DefaultRelativeAccuracy);
         }
@@ -246,29 +351,51 @@ namespace MathNet.Numerics
         /// <param name="a">The first number</param>
         /// <param name="b">The second number</param>
         /// <param name="relativeAccuracy">The relative accuracy required for being almost equal.</param>
-        public static bool AlmostEqual(double a, double b, double relativeAccuracy)
+        public static
+        bool
+        AlmostEqual(
+            double a,
+            double b,
+            double relativeAccuracy
+            )
         {
             return AlmostEqualNorm(a, b, a - b, relativeAccuracy);
         }
 
         /// <param name="a">The first number</param>
         /// <param name="b">The second number</param>
-        public static bool AlmostEqual(double a, double b)
+        public static
+        bool
+        AlmostEqual(
+            double a,
+            double b
+            )
         {
             return AlmostEqualNorm(a, b, a - b, DefaultRelativeAccuracy);
         }
 
         /// <param name="x">The first vector</param>
         /// <param name="y">The second vector</param>
-        public static bool AlmostEqual(double[] x, double[] y)
+        public static
+        bool
+        AlmostEqual(
+            double[] x,
+            double[] y
+            )
         {
             if(x.Length != y.Length)
+            {
                 return false;
+            }
+
             for(int i = 0; i < x.Length; i++)
             {
                 if(!AlmostEqual(x[i], y[i]))
+                {
                     return false;
+                }
             }
+
             return true;
         }
     }

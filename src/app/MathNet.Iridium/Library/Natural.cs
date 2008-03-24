@@ -43,33 +43,42 @@ namespace MathNet.Numerics
     /// </summary>
     public class Natural : IEquatable<Natural>, IComparable<Natural>
     {
-        private const byte _radixBits = 32;
-        private const ulong _radix = ((ulong)1) << _radixBits;
-        private const uint _bound32 = 1; //(uint)Math.Ceiling(32d / _radixBits);
-        private const uint _bound64 = 2; //(uint)Math.Ceiling(64d / _radixBits);
+        const byte _radixBits = 32;
+        const ulong _radix = ((ulong)1) << _radixBits;
+        const uint _bound32 = 1; //(uint)Math.Ceiling(32d / _radixBits);
+        const uint _bound64 = 2; //(uint)Math.Ceiling(64d / _radixBits);
 
-        private uint _bound;
-        private uint[] _coeff;
+        uint _bound;
+        uint[] _coeff;
 
-        private Natural(uint bound)
+        Natural(
+            uint bound
+            )
         {
             //_bound = 0; //bound;
             _coeff = new uint[bound];
         }
-        private Natural(uint[] coeff)
+
+        Natural(
+            uint[] coeff
+            )
         {
             _coeff = coeff;
             _bound = (uint)coeff.LongLength;
             Normalize();
         }
-        private Natural(uint bound, uint[] coeff)
+        
+        Natural(
+            uint bound,
+            uint[] coeff
+            )
         {
             _coeff = coeff;
             _bound = Math.Min(bound, (uint)coeff.LongLength);
             Normalize();
         }
 
-        private uint this[uint idx]
+        uint this[uint idx]
         {
             get { return idx < _bound ? _coeff[idx] : 0; }
             set
@@ -106,14 +115,17 @@ namespace MathNet.Numerics
         /// <summary>
         /// Normalizes the bound to get rid of leading zeros.
         /// </summary>
-        private void Normalize()
+        void
+        Normalize()
         {
             for(uint i = _bound - 1; i >= 0; i--)
+            {
                 if(_coeff[i] != 0)
                 {
                     _bound = i + 1;
                     return;
                 }
+            }
             _bound = 0;
         }
 
@@ -121,13 +133,18 @@ namespace MathNet.Numerics
         /// Resizes the coefficient array if required.
         /// </summary>
         /// <param name="requiredBound">The bound that has to be supported.</param>
-        private void ExtendCapacity(uint requiredBound)
+        void
+        ExtendCapacity(
+            uint requiredBound
+            )
         {
             if(requiredBound > _coeff.LongLength)
             {
                 uint[] nc = new uint[requiredBound];
                 for(uint i = 0; i < _bound; i++)
+                {
                     nc[i] = _coeff[i];
+                }
                 _coeff = nc;
             }
         }
@@ -136,28 +153,41 @@ namespace MathNet.Numerics
         #endregion
 
         #region Conversion
+
         /// <summary>
         /// Create a natural number from an unsigned long integer.
         /// </summary>
         [CLSCompliant(false)]
-        public static Natural From(ulong number)
+        public static
+        Natural
+        From(
+            ulong number
+            )
         {
             Natural n = new Natural(_bound64);
             n.AddCoefficientInplace(number, 0);
             return n;
         }
+
         /// <summary>
         /// Create a natural number from an unsigned integer.
         /// </summary>
         [CLSCompliant(false)]
-        public static Natural From(uint number)
+        public static
+        Natural
+        From(
+            uint number
+            )
         {
             Natural n = new Natural(_bound32);
             n.AddCoefficientInplace(number, 0);
             return n;
         }
+
         #endregion
+
         #region Constants
+
         /// <summary>
         /// Natural number representing zero.
         /// </summary>
@@ -165,6 +195,7 @@ namespace MathNet.Numerics
         {
             get { return new Natural(0); } //TODO: cache
         }
+
         /// <summary>
         /// Natural number representing one.
         /// </summary>
@@ -172,6 +203,7 @@ namespace MathNet.Numerics
         {
             get { return From(1); } //TODO: cache
         }
+
         /// <summary>
         /// Natural number representing two.
         /// </summary>
@@ -179,6 +211,7 @@ namespace MathNet.Numerics
         {
             get { return From(2); } //TODO: cache
         }
+
         #endregion
 
         /// <summary>
@@ -189,11 +222,18 @@ namespace MathNet.Numerics
             get { return _bound == 0; }
         }
 
+
         #region Addition
+
         /// <summary>
         /// Add a natural number to a natural number.
         /// </summary>
-        public static Natural operator +(Natural a, Natural b)
+        public static
+        Natural
+        operator +(
+            Natural a,
+            Natural b
+            )
         {
             return a.Add(b);
         }
@@ -201,15 +241,25 @@ namespace MathNet.Numerics
         /// <summary>
         /// Add a natural number to this natural number.
         /// </summary>
-        public Natural Add(Natural number)
+        public
+        Natural
+        Add(
+            Natural number
+            )
         {
             return Add(number, 0);
         }
+
         /// <summary>
         /// Add an unsigned integer to this natural number.
         /// </summary>
         [CLSCompliant(false)]
-        public Natural Add(Natural number, uint carry)
+        public
+        Natural
+        Add(
+            Natural number,
+            uint carry
+            )
         {
             uint len = 1 + Math.Max(_bound, number._bound);
             Natural ret = new Natural(len);
@@ -228,7 +278,11 @@ namespace MathNet.Numerics
             return ret;
         }
 
-        private void AddCoefficientInplace(ulong coeff, uint exponent)
+        void
+        AddCoefficientInplace(
+            ulong coeff,
+            uint exponent
+            )
         {
             long sum = (long)_coeff[exponent] + (long)coeff;
             while(sum >= (long)_radix)
@@ -240,12 +294,20 @@ namespace MathNet.Numerics
             _coeff[exponent] = (uint)sum;
             Normalize();
         }
+
         #endregion
+
         #region Subtraction
+
         /// <summary>
         /// Subtract a natural number from a natural number.
         /// </summary>
-        public static Natural operator -(Natural a, Natural b)
+        public static
+        Natural
+        operator -(
+            Natural a,
+            Natural b
+            )
         {
             return a.Subtract(b);
         }
@@ -253,23 +315,40 @@ namespace MathNet.Numerics
         /// <summary>
         /// Subtract a natural number from this natural number.
         /// </summary>
-        public Natural Subtract(Natural number)
+        public
+        Natural
+        Subtract(
+            Natural number
+            )
         {
             bool underflow;
             return Subtract(number, 0, out underflow);
         }
+
         /// <summary>
         /// Subtract a natural number from this number, and returns the underfow state with the <c>underflow</c>-parameter.
         /// </summary>
-        public Natural Subtract(Natural number, out bool underflow)
+        public
+        Natural
+        Subtract(
+            Natural number,
+            out bool underflow
+            )
         {
             return Subtract(number, 0, out underflow);
         }
+
         /// <summary>
         /// Subtract a natural number with a carry-over unsigned integer from this number, and returns the underfow state with the <c>underflow</c>-parameter.
         /// </summary>
         [CLSCompliant(false)]
-        public Natural Subtract(Natural number, uint carry, out bool underflow)
+        public
+        Natural
+        Subtract(
+            Natural number,
+            uint carry,
+            out bool underflow
+            )
         {
             uint len = Math.Max(_bound, number._bound);
             Natural ret = new Natural(len);
@@ -294,12 +373,22 @@ namespace MathNet.Numerics
             return ret;
         }
 
-        private void SubtractCoefficientInplace(ulong coeff, uint exponent)
+        void
+        SubtractCoefficientInplace(
+            ulong coeff,
+            uint exponent
+            )
         {
             bool underflow;
             SubtractCoefficientInplace(coeff, exponent, out underflow);
         }
-        private void SubtractCoefficientInplace(ulong coeff, uint exponent, out bool underflow)
+
+        void
+        SubtractCoefficientInplace(
+            ulong coeff,
+            uint exponent,
+            out bool underflow
+            )
         {
             long sum = (long)_coeff[exponent] - (long)coeff;
             while(sum < 0)
@@ -318,17 +407,25 @@ namespace MathNet.Numerics
             underflow = false;
             Normalize();
         }
+
         #endregion
+
         #region Shifting
+
         /// <summary>
         /// Multiplies this number with the <seealso cref="Radix"/> to the power of the given exponent (fast shifting operation)
         /// </summary>
-        private Natural ShiftUp(uint exponent)
+        Natural
+        ShiftUp(
+            uint exponent
+            )
         {
             uint len = _bound + exponent;
             Natural ret = new Natural(len);
             for(uint i = 0; i < _bound; i++)
+            {
                 ret._coeff[i + exponent] = _coeff[i];
+            }
             return ret;
         }
 
@@ -337,30 +434,48 @@ namespace MathNet.Numerics
         /// </summary>
         /// <param name="exponent"></param>
         /// <returns></returns>
-        private Natural ShiftDown(uint exponent)
+        Natural
+        ShiftDown(
+            uint exponent
+            )
         {
             if(exponent >= _bound)
+            {
                 return Zero;
+            }
             uint len = _bound - exponent;
             Natural ret = new Natural(len);
             for(uint i = 0; i < _bound; i++)
+            {
                 ret._coeff[i] = _coeff[i + exponent];
+            }
             return ret;
         }
 
         /// <summary>
         /// Set all coefficients of exponents higher than or equal to the given exponent to zero.
         /// </summary>
-        private Natural Restrict(uint exponent)
+        Natural
+        Restrict(
+            uint exponent
+            )
         {
             return new Natural(exponent, _coeff);
         }
+
         #endregion
+
         #region Multiplication
+
         /// <summary>
         /// Multiply a natural number with another natural number.
         /// </summary>
-        public static Natural operator *(Natural a, Natural b)
+        public static
+        Natural
+        operator *(
+            Natural a,
+            Natural b
+            )
         {
             return a.Multiply(b);
         }
@@ -369,12 +484,18 @@ namespace MathNet.Numerics
         /// Stretch this natural number by an integer factor.
         /// </summary>
         [CLSCompliant(false)]
-        public Natural Multiply(uint factor)
+        public
+        Natural
+        Multiply(
+            uint factor
+            )
         {
             uint len = _bound + _bound32;
             Natural ret = new Natural(len);
             for(uint i = 0; i < _bound; i++)
+            {
                 ret.AddCoefficientInplace((ulong)_coeff[i] * factor, i);
+            }
             ret.Normalize();
             return ret;
         }
@@ -382,31 +503,48 @@ namespace MathNet.Numerics
         /// <summary>
         /// Multiply this natural number with another natural number.
         /// </summary>
-        public Natural Multiply(Natural number)
+        public
+        Natural
+        Multiply(
+            Natural number
+            )
         {
             if(Math.Max(_bound, number._bound) < 12)
+            {
                 return MultiplySmall(number);
-            else
-                return MultiplyLarge(number);
+            }
+            return MultiplyLarge(number);
         }
+
         /// <summary>
         /// Multiplies two small naturals with the school book algorithm; O(n^2)
         /// </summary>
-        private Natural MultiplySmall(Natural number)
+        Natural
+        MultiplySmall(
+            Natural number
+            )
         {
             uint len = _bound + number._bound + 2;
             Natural ret = new Natural(len);
             for(uint i = 0; i < _bound; i++)
+            {
                 for(uint j = 0; j < number._bound; j++)
+                {
                     ret.AddCoefficientInplace((ulong)_coeff[i] * number._coeff[j], i + j);
+                }
+            }
             ret.Normalize();
             return ret;
         }
+
         /// <summary>
         /// Multiplies two large naturals with the karatsuba algorithm; O(n^1.59).
         /// Could be extended with FFT based algorithms by Schönhage/Strassen in future versions; O(nlognloglogn).
         /// </summary>
-        private Natural MultiplyLarge(Natural number)
+        Natural
+        MultiplyLarge(
+            Natural number
+            )
         {
             uint len = Math.Max(_bound, number._bound);
             uint k = (uint)Math.Ceiling(0.5 * len);
@@ -420,8 +558,11 @@ namespace MathNet.Numerics
             Natural p0 = q1 - (q0 + q2);
             return (q2.ShiftUp(k) + p0).ShiftUp(k) + q0;
         }
+
         #endregion
+
         #region Division
+
         //private Tuple<Natural, Natural> DivmodSmall(Natural number)
         //{
         //    Natural b = this;
@@ -439,37 +580,62 @@ namespace MathNet.Numerics
 
 
         //}
+
         #endregion
 
+
         #region Equatable, Comparable, Min/Max, Operators
+
         /// <summary>
         /// Checks whether this natural number is equal to another natural number.
         /// </summary>
-        public bool Equals(Natural other)
+        public
+        bool
+        Equals(
+            Natural other
+            )
         {
             if(_bound != other._bound)
+            {
                 return false;
+            }
             for(uint i = 0; i < _bound; i++)
+            {
                 if(_coeff[i] != other._coeff[i])
+                {
                     return false;
+                }
+            }
             return true;
         }
 
         /// <summary>
         /// Compares this natural number with another natural number.
         /// </summary>
-        public int CompareTo(Natural other)
+        public
+        int
+        CompareTo(
+            Natural other
+            )
         {
             if(_bound < other._bound)
+            {
                 return -1;
+            }
             if(_bound > other._bound)
+            {
                 return 1;
+            }
             for(uint i = _bound - 1; i >= 0; i--)
             {
                 if(_coeff[i] < other._coeff[i])
+                {
                     return -1;
+                }
                 if(_coeff[i] > other._coeff[i])
+                {
                     return 1;
+                }
             }
             return 0;
         }
@@ -477,28 +643,51 @@ namespace MathNet.Numerics
         /// <summary>
         /// Check whether a natural number is smaller than another natural number.
         /// </summary>
-        public static bool operator <(Natural a, Natural b)
+        public static
+        bool
+        operator <(
+            Natural a,
+            Natural b
+            )
         {
             return a.CompareTo(b) == -1;
         }
+
         /// <summary>
         /// Check whether a natural number is bigger than another natural number.
         /// </summary>
-        public static bool operator >(Natural a, Natural b)
+        public static
+        bool
+        operator >(
+            Natural a,
+            Natural b
+            )
         {
             return a.CompareTo(b) == 1;
         }
+
         /// <summary>
         /// Check whether a natural number is smaller than or equal to another natural number.
         /// </summary>
-        public static bool operator <=(Natural a, Natural b)
+        public static
+        bool
+        operator <=(
+            Natural a,
+            Natural b
+            )
         {
             return a.CompareTo(b) != 1;
         }
+
         /// <summary>
         /// Check whether a natural number is bigger than or equal to another natural number.
         /// </summary>
-        public static bool operator >=(Natural a, Natural b)
+        public static
+        bool
+        operator >=(
+            Natural a,
+            Natural b
+            )
         {
             return a.CompareTo(b) != -1;
         }
@@ -506,17 +695,29 @@ namespace MathNet.Numerics
         /// <summary>
         /// Returns the smaller of two natural numbers.
         /// </summary>
-        public static Natural Min(Natural a, Natural b)
+        public static
+        Natural
+        Min(
+            Natural a,
+            Natural b
+            )
         {
             return a.CompareTo(b) == -1 ? a : b;
         }
+
         /// <summary>
         /// Returns the bigger of two natural numbers.
         /// </summary>
-        public static Natural Max(Natural a, Natural b)
+        public static
+        Natural
+        Max(
+            Natural a,
+            Natural b
+            )
         {
             return a.CompareTo(b) == -1 ? b : a;
         }
+
         #endregion
     }
 }
