@@ -676,6 +676,16 @@ namespace MathNet.Numerics.Statistics
         }
 
         /// <summary>
+        /// Provides a hash code for this bucket.
+        /// </summary>
+        public override int GetHashCode()
+        {
+            return lowerBound.GetHashCode()
+                ^ upperBound.GetHashCode()
+                ^ depth.GetHashCode();
+        }
+
+        /// <summary>
         /// Formats a human-readable string for this bucket.
         /// </summary>
         /// <returns></returns>

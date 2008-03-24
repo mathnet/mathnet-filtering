@@ -101,7 +101,7 @@ namespace MathNet.Numerics.Interpolation
                     den = ho - c[i + 1];
                     if(den == 0)
                     {
-#warning: Check sign (positive or negative infinity?)
+                        // TODO (cdr, 2006-06-09): Check sign (positive or negative infinity?)
                         error = 0;
                         return double.PositiveInfinity; //or is it NegativeInfinity?
                     }
