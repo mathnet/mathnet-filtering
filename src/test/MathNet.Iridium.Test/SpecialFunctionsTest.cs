@@ -194,5 +194,15 @@ namespace Iridium.Test
             NumericAssert.AreAlmostEqual(.7775340561, Fn.BetaRegularized(7.0, 1.2, 0.95), 1e-6, "C7");
             NumericAssert.AreAlmostEqual(1.000000000, Fn.BetaRegularized(7.0, 1.2, 1.0), 1e-6, "C8");
         }
+
+        [Test]
+        public void TestSpecialFunctions_Sinc()
+        {
+            // Test at integers:
+            for(int i = -10; i < 10; i++)
+            {
+                NumericAssert.AreAlmostEqual((i == 0) ? 1.0 : 0.0, Fn.Sinc(i), "sinc(" + i.ToString() + ")");
+            }
+        }
     }
 }

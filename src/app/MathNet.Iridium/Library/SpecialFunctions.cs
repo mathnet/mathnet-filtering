@@ -496,8 +496,23 @@ namespace MathNet.Numerics
             double x
             )
         {
+            if(double.IsNaN(x))
+            {
+                return double.NaN;
+            }
+            if(double.IsInfinity(x))
+            {
+                return 0.0;
+            }
+
             double a = Math.PI * x;
-            return Math.Sin(a) / a;
+            double sinc = Math.Sin(a) / a;
+
+            if(double.IsInfinity(sinc) || double.IsNaN(sinc))
+            {
+                return 1.0;
+            }
+            return sinc;
         }
 
         #region Gamma Functions
