@@ -49,6 +49,7 @@
     <Compile Include="Distributions\Continuous\ChiSquareDistribution.cs" />
     <Compile Include="Distributions\Continuous\ContinuousUniformDistribution.cs" />
     <Compile Include="Distributions\Continuous\ChiDistribution.cs" />
+    <Compile Include="Distributions\Continuous\StudentsTDistribution.cs" />
     <Compile Include="Distributions\Continuous\ErlangDistribution.cs" />
     <Compile Include="Distributions\Continuous\ExponentialDistribution.cs" />
     <Compile Include="Distributions\Continuous\FisherSnedecorDistribution.cs" />

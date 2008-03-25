@@ -215,6 +215,38 @@ namespace Iridium.Test
             TestContinuousDistributionShapeMatchesCumulativeDensity(
                 new FisherSnedecorDistribution(100, 100),
                 0.0, 2.0, 10, 100000, 0.01, "FisherSnedecorDistribution(100,100)");
+
+            TestContinuousDistributionShapeMatchesCumulativeDensity(
+                new StudentsTDistribution(2),
+                -2.0, 5.0, 10, 100000, 0.01, "StudentsTDistribution(2)");
+        }
+
+        [Test]
+        public void TestContinuousDistributions_StudensT()
+        {
+            StudentsTDistribution d = new StudentsTDistribution(2);
+
+            // PDF - Evaluated in Maple with "stats[statevalf,pdf,studentst[2]](x);"
+            NumericAssert.AreAlmostEqual(0.3535533906, d.ProbabilityDensity(0.0), 1e-7, "pdf(0)");
+            NumericAssert.AreAlmostEqual(0.1924500897, d.ProbabilityDensity(1.0), 1e-7, "pdf(1)");
+            NumericAssert.AreAlmostEqual(0.06804138174, d.ProbabilityDensity(2.0), 1e-7, "pdf(2)");
+            NumericAssert.AreAlmostEqual(0.02741012223, d.ProbabilityDensity(3.0), 1e-7, "pdf(3)");
+            NumericAssert.AreAlmostEqual(0.01309457002, d.ProbabilityDensity(4.0), 1e-7, "pdf(4)");
+            NumericAssert.AreAlmostEqual(0.1924500897, d.ProbabilityDensity(-1.0), 1e-7, "pdf(-1)");
+            NumericAssert.AreAlmostEqual(0.06804138174, d.ProbabilityDensity(-2.0), 1e-7, "pdf(-2)");
+            NumericAssert.AreAlmostEqual(0.02741012223, d.ProbabilityDensity(-3.0), 1e-7, "pdf(-3)");
+            NumericAssert.AreAlmostEqual(0.01309457002, d.ProbabilityDensity(-4.0), 1e-7, "pdf(-4)");
+
+            // CDF - Evaluated in Maple with "stats[statevalf,cdf,studentst[2]](x);"
+            NumericAssert.AreAlmostEqual(0.5000000000, d.CumulativeDistribution(0.0), "cdf(0)");
+            NumericAssert.AreAlmostEqual(0.7886751346, d.CumulativeDistribution(1.0), 1e-6, "cdf(1)");
+            NumericAssert.AreAlmostEqual(0.9082482905, d.CumulativeDistribution(2.0), 1e-7, "cdf(2)");
+            NumericAssert.AreAlmostEqual(0.9522670169, d.CumulativeDistribution(3.0), 1e-7, "cdf(3)");
+            NumericAssert.AreAlmostEqual(0.9714045208, d.CumulativeDistribution(4.0), 1e-7, "cdf(4)");
+            NumericAssert.AreAlmostEqual(0.2113248654, d.CumulativeDistribution(-1.0), 1e-6, "cdf(-1)");
+            NumericAssert.AreAlmostEqual(0.09175170954, d.CumulativeDistribution(-2.0), 1e-6, "cdf(-2)");
+            NumericAssert.AreAlmostEqual(0.04773298313, d.CumulativeDistribution(-3.0), 1e-6, "cdf(-3)");
+            NumericAssert.AreAlmostEqual(0.02859547921, d.CumulativeDistribution(-4.0), 1e-6, "cdf(-4)");
         }
     }
 }
