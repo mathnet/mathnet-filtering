@@ -123,4 +123,13 @@
   <data name="InvalidWindowFunctionException" xml:space="preserve">
     <value>Windowing function is not valid.</value>
   </data>
+  <data name="KFStateNotColumnVector" xml:space="preserve">
+    <value>Kalman Filter state must be a column vector.</value>
+  </data>
+  <data name="KFCovarianceNotSquare" xml:space="preserve">
+    <value>Covariance matrix must be square.</value>
+  </data>
+  <data name="KFCovarianceIncorrectSize" xml:space="preserve">
+    <value>Covariance Matrix must have same number of row/cols as state variable.</value>
+  </data>
 </root>
