@@ -222,6 +222,40 @@ namespace Iridium.Test
         }
 
         [Test]
+        public void TestContinuousDistributions_FisherSnedecor()
+        {
+            FisherSnedecorDistribution d = new FisherSnedecorDistribution(100, 100);
+
+            // PDF - Evaluated in Maple with "stats[statevalf,pdf,fratio[100,100]](x);"
+            NumericAssert.AreAlmostEqual(0.0, d.ProbabilityDensity(0.00), 1e-7, "pdf(0.00)");
+            NumericAssert.AreAlmostEqual(0.1102042201e-1, d.ProbabilityDensity(0.50), 1e-6, "pdf(0.50)");
+            NumericAssert.AreAlmostEqual(0.9462174566, d.ProbabilityDensity(0.75), 1e-6, "pdf(0.75)");
+            NumericAssert.AreAlmostEqual(1.989730935, d.ProbabilityDensity(1.00), 1e-6, "pdf(1.00)");
+            NumericAssert.AreAlmostEqual(0.8553281091, d.ProbabilityDensity(1.25), 1e-6, "pdf(1.25)");
+            NumericAssert.AreAlmostEqual(0.1722918542, d.ProbabilityDensity(1.50), 1e-6, "pdf(1.50)");
+            NumericAssert.AreAlmostEqual(0.2755105502e-2, d.ProbabilityDensity(2.00), 1e-6, "pdf(2.00)");
+            NumericAssert.AreAlmostEqual(0.6858025452e-13, d.ProbabilityDensity(5.00), 1e-6, "pdf(5.00)");
+
+            // CDF - Evaluated in Maple with "stats[statevalf,cdr,fratio[100,100]](x);"
+            NumericAssert.AreAlmostEqual(0.0, d.CumulativeDistribution(0.00), 1e-6, "cdf(0.00)");
+            NumericAssert.AreAlmostEqual(0.309136863e-3, d.CumulativeDistribution(0.50), 1e-6, "cdf(0.50)");
+            NumericAssert.AreAlmostEqual(0.7602003436e-1, d.CumulativeDistribution(0.75), 1e-6, "cdf(0.75)");
+            NumericAssert.AreAlmostEqual(0.5000000000, d.CumulativeDistribution(1.00), 1e-6, "cdf(1.00)");
+            NumericAssert.AreAlmostEqual(0.8668843977, d.CumulativeDistribution(1.25), 1e-6, "cdf(1.25)");
+            NumericAssert.AreAlmostEqual(0.9780695579, d.CumulativeDistribution(1.50), 1e-6, "cdf(1.50)");
+            NumericAssert.AreAlmostEqual(0.9996908631, d.CumulativeDistribution(2.00), 1e-6, "cdf(2.00)");
+            NumericAssert.AreAlmostEqual(1.0, d.CumulativeDistribution(5.00), 1e-6, "cdf(5.00)");
+
+            FisherSnedecorDistribution dOne = new FisherSnedecorDistribution(1, 5);
+            Assert.IsTrue(double.IsPositiveInfinity(dOne.ProbabilityDensity(0.00)), "pdf[1,5](0.00)");
+            NumericAssert.AreAlmostEqual(0.0, dOne.CumulativeDistribution(0.00), "cdf[1,5](0.00)");
+
+            FisherSnedecorDistribution dTwo = new FisherSnedecorDistribution(2, 5);
+            NumericAssert.AreAlmostEqual(1.0, dTwo.ProbabilityDensity(0.00), "pdf[2,5](0.00)");
+            NumericAssert.AreAlmostEqual(0.0, dTwo.CumulativeDistribution(0.00), "cdf[2,5](0.00)");
+        }
+
+        [Test]
         public void TestContinuousDistributions_StudensT()
         {
             StudentsTDistribution d = new StudentsTDistribution(2);

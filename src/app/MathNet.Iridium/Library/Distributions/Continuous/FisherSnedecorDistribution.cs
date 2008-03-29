@@ -39,7 +39,9 @@ namespace MathNet.Numerics.Distributions
         ChiSquareDistribution _chiSquaredAlpha;
         ChiSquareDistribution _chiSquaredBeta;
         double _alphabeta;
-        double _betafactor;
+        double _pdfScaleLn;
+        double _pdfExponent1;
+        double _pdfExponent2;
 
         #region Construction
         /// <summary>
@@ -141,8 +143,19 @@ namespace MathNet.Numerics.Distributions
             _beta = beta;
             _chiSquaredAlpha.SetDistributionParameters(alpha);
             _chiSquaredBeta.SetDistributionParameters(beta);
+
+            double alphaHalf = 0.5 * alpha;
+            double betaHalf = 0.5 * beta;
+
             _alphabeta = (double)beta / (double)alpha;
-            _betafactor = 1d / Fn.Beta(0.5 * alpha, 0.5 * beta);
+
+            _pdfScaleLn =
+                alphaHalf * Math.Log(alpha)
+                + betaHalf * Math.Log(beta)
+                - Fn.BetaLn(alphaHalf, betaHalf);
+            _pdfExponent1 = alphaHalf - 1.0;
+            _pdfExponent2 = -alphaHalf - betaHalf;
+
         }
 
         /// <summary>
@@ -246,13 +259,27 @@ namespace MathNet.Numerics.Distributions
             double x
             )
         {
-            double xa = _alpha * x;
-            double m = xa / (xa + _beta);
+            if(Number.AlmostEqual(0.0, x))
+            {
+                if(1 == _alpha)
+                {
+                    return double.PositiveInfinity;
+                }
+                if(2 == _alpha)
+                {
+                    return 1.0;
+                }
+                return 0.0;
+            }
 
-            return _betafactor
-                * Math.Pow(m, 0.5 * _alpha)
-                * Math.Pow(1d - m, 0.5 * _beta)
-                / x;
+            double ln1 = Math.Log(x);
+            double ln2 = Math.Log(_alpha * x + _beta);
+
+            return Math.Exp(
+                _pdfScaleLn
+                + _pdfExponent1 * ln1
+                + _pdfExponent2 * ln2
+                );
         }
 
         /// <summary>
