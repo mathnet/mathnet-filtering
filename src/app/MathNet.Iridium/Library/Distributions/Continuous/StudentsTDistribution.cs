@@ -80,10 +80,7 @@ namespace MathNet.Numerics.Distributions
         /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
         /// as underlying random number generator.
         /// </summary>
-        /// <param name="location">mu-parameter</param>
-        /// <param name="scale">c-parameter</param>
-        /// <param name="exponent">alpha-parameter</param>
-        /// <param name="skewness">beta-parameter</param>
+        /// <param name="degreesOfFreedom">nu-parameter</param>
         public
         StudentsTDistribution(
             int degreesOfFreedom
@@ -217,7 +214,6 @@ namespace MathNet.Numerics.Distributions
 
         /// <summary>
         /// Gets the skewness of generated random numbers.
-        /// </summary>
         /// Throws <see cref="NotSupportedException"/> if <see cref="DegreesOfFreedom"/> &lt;= 4,
         /// since the value is not defined in this case.
         /// </summary>
