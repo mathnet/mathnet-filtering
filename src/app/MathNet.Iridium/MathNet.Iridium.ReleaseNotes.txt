@@ -13,7 +13,7 @@ SUMMARY
 - Linear Algebra: Matrix Kronecker product, new Vector class, perf (caching)
 - Core: Sinc function, neper/decibel ratio routines.
 - Probability Distributions: New: Student's-T, F, Skew-Alpha Stable.
-- Assemblies no longer signed by certifices (because verification caused network access)
+- Assemblies no longer signed with a certificate (because verification caused network access)
 
 
 NEW FEATURES
@@ -38,8 +38,8 @@ FIXED BUGS
 ----------
 
 IRID-107: Core - Complex: Unexpected power behavior at zero
-IRID-97: Linear Algebra - Matrix.Identity allocation bug in non-square cases
-IRID-98: Probability Distributions - ArbitraryDistribution NextInt32 does not consider offset.
+IRID-97:  Linear Algebra - Matrix.Identity allocation bug in non-square cases
+IRID-98:  Probability Distributions - ArbitraryDistribution NextInt32 does not consider offset.
 
 
 OTHER
