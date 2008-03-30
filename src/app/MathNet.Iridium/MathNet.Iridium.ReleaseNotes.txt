@@ -1,16 +1,118 @@
-==== Math.NET Iridium (Numerics) - r9 2007 ???? (v2007.?.?) ====
-Author: Christoph Ruegg, Joannes Vermorel
+========================================================================================
+==== Math.NET Iridium (Numerics) - 2008.3.12.405 (2008 March Release, Iteration 12) ====
+========================================================================================
+
+Team: Christoph Rüegg, Joannès Vermorel, Matthew Kitchin
+New Contributions: Mike Shugai
 http://mathnet.opensourcedotnet.info
 
-What's new in release 9?
-- Various improvements in Linear Algebra package
+SUMMARY
+-------
+
+- 3 Bugs fixed (see below)
+- Linear Algebra: Matrix Kronecker product, new Vector class, perf (caching)
+- Core: Sinc function, neper/decibel ratio routines.
+- Probability Distributions: New: Student's-T, F, Skew-Alpha Stable.
+- Assemblies no longer signed by certifices (because verification caused network access)
+
+
+NEW FEATURES
+------------
+
+IRID-113: Core - Neper and Decibel Helper and Factors
+IRID-116: Core - Sinc Function
+IRID-111: Linear Algebra - Matrix Kronecker Tensor Product
+IRID-59:  Linear Algebra - New Vector class (related to the Matrix class)
+IRID-99:  Probability Distributions - New Distribution: Skew Alpha Stable Distribution
+IRID-108: Probability Distributions - New Distribution: F-Distribution
+IRID-109: Probability Distributions - New Distribution: Student's-T
+
+
+ENHANCEMENTS
+------------
+
+IRID-106: Linear Algebra - Cache for on-demand computations (like decompositions)
+
+
+FIXED BUGS
+----------
+
+IRID-107: Core - Complex: Unexpected power behavior at zero
+IRID-97: Linear Algebra - Matrix.Identity allocation bug in non-square cases
+IRID-98: Probability Distributions - ArbitraryDistribution NextInt32 does not consider offset.
+
+
+OTHER
+-----
+
+IRID-110: Remove Certificate Signing (cert validation causes network access)
+
+
+
+===========================================================================================
+==== Math.NET Iridium (Numerics) - 2008.2.10.364 (2008 February Release, Iteration 10) ====
+===========================================================================================
+
+Team: Christoph Ruegg, Joannes Vermorel
+http://mathnet.opensourcedotnet.info
+
+SUMMARY
+-------
+
+- 8 Bugs fixed (see below)
+- Performance: The linear algebra implementation has ben optimized, resulting in nearly 50% perf gain.
 - New Robust Linear Regression (IRLS algorithm)
+- Api References: Inline Xml Documentation has been improved (but is still far from where we'd like it to be).
+- Security: The released binaries now have a strong name, are locked down with code access security and allow
+  partial trusted callers. We now use test-signing internally. Also, the official assemblies are now signed with a certificate.
+- Build/Release Integration: We now moved completely to custom msbuild targets, releases are now fully automated
+  (incl. documentation generation) and the continuous integration system has been upgraded.
+  Since releasing is now much easier, you can expect new releases more often.
 
 
-?????? to be completed ??????
+NEW FEATURES
+------------
+
+IRID-32: Core - Provide Constants + Update Scientific Constants to CODATA 2007
+IRID-87: Probability Distributions - InverseCumulativeDistribution for LogNormal
 
 
+ENHANCEMENTS
+------------
+
+IRID-82: Documentation - Update inline XML documentation
+IRID-91: Linear Algebra - Conversion to double[,]
+IRID-96: Linear Algebra - Use jagged arrays as internal data structure. 50% Perf Gain.
+IRID-78: Transformations - Increase Supported FFT Sample Size to 2097152
+
+
+FIXED BUGS
+----------
+
+IRID-77: Core - Complex number natural log bug
+IRID-89: Core - Regularized Beta Function returns inverted result in some cases
+IRID-92: Core - Polynomial copy constructor doesn't set order field
+IRID-90: Linear Algebra - Inverting Matrix via Cholesky and LUD - different results.
+IRID-88: Probability Distributions - ErlangDistribution number generator produces unexpected shape
+IRID-85: Probability Distributions - Distribution Constructor Bug: Beta, Chi, ChiSquare, LogNormal, Normal
+IRID-86: Probability Distributions - NormalDistribution Class
+IRID-72: Statistics - Accumulator bug fixed (patch provided)
+
+
+OTHER
+-----
+
+IRID-93: Core - Signing, Strong Name, Code Access Security
+IRID-94: Core - Release Automation
+IRID-95: Core - Rename Newgrad, NewDegree -> Grad
+IRID-7:  Unit Tests - Restore temporarely removed Unit Tests
+
+
+
+=================================================================
 ==== Math.NET Iridium (Numerics) - r8 2007 MARCH (v2007.3.8) ====
+=================================================================
+
 Author: Christoph Ruegg, Joannes Vermorel
 http://mathnet.opensourcedotnet.info
 
