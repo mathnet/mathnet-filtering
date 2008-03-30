@@ -205,7 +205,10 @@
     <value>Array length must be a multiple of {0}.</value>
   </data>
   <data name="ArgumentVectorsSameLengths" xml:space="preserve">
-    <value>All vectors must have the same length.</value>
+    <value>All vectors must have the same dimensionality.</value>
+  </data>
+  <data name="ArgumentVectorThreeDimensional" xml:space="preserve">
+    <value>The vector must have 3 dimensions.</value>
   </data>
   <data name="InvalidOperationAccumulatorEmpty" xml:space="preserve">
     <value>The operation could not be performed because the accumulator is empty.</value>

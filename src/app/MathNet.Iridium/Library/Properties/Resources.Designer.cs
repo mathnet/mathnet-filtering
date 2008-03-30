@@ -322,11 +322,20 @@ namespace MathNet.Numerics.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to All vectors must have the same length..
+        ///   Looks up a localized string similar to All vectors must have the same dimensionality..
         /// </summary>
         internal static string ArgumentVectorsSameLengths {
             get {
                 return ResourceManager.GetString("ArgumentVectorsSameLengths", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The vector must have 3 dimensions..
+        /// </summary>
+        internal static string ArgumentVectorThreeDimensional {
+            get {
+                return ResourceManager.GetString("ArgumentVectorThreeDimensional", resourceCulture);
             }
         }
         

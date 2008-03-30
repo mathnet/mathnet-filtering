@@ -1101,25 +1101,25 @@ namespace MathNet.Numerics.LinearAlgebra
             return new Matrix(newData);
         }
 
-        /// <summary>Kronecker/Tensor Product of this and another matrix.</summary>
-        /// <param name="B">The matrix to be operated on.</param>
-        /// <returns>Kronecker Product of this and the given matrix.</returns>
-        public virtual
+        /// <summary>Kronecker Product of two matrices.</summary>
+        public static
         Matrix
-        TensorProduct(
+        KroneckerProduct(
+            Matrix A,
             Matrix B
             )
         {
             // Matrix to be created
-            Matrix outMat = new Matrix(this.RowCount * B.RowCount, this.ColumnCount * B.ColumnCount);
+            Matrix outMat = new Matrix(A.RowCount * B.RowCount, A.ColumnCount * B.ColumnCount);
+            double[][] Adata = A._data;
 
-            for(int i = 0; i < this.RowCount; i++)
+            for(int i = 0; i < A.RowCount; i++)
             {
                 int rowOffset = i * B.RowCount;
-                for(int j = 0; j < this.ColumnCount; j++)
+                for(int j = 0; j < A.ColumnCount; j++)
                 {
                     int colOffset = j * B.ColumnCount;
-                    Matrix partMat = _data[i][j] * B;
+                    Matrix partMat = Adata[i][j] * B;
 
                     outMat.SetMatrix(
                         rowOffset,
@@ -1131,6 +1131,18 @@ namespace MathNet.Numerics.LinearAlgebra
                 }
             }
             return outMat;
+        }
+
+        /// <summary>Tensor Product (Kronecker) of this and another matrix.</summary>
+        /// <param name="B">The matrix to operate on.</param>
+        /// <returns>Kronecker Product of this and the given matrix.</returns>
+        public
+        Matrix
+        TensorMultiply(
+            Matrix B
+            )
+        {
+            return KroneckerProduct(this, B);
         }
 
         #endregion
