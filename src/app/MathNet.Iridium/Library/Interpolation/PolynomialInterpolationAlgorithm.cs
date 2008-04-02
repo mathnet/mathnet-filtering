@@ -112,8 +112,16 @@ namespace MathNet.Numerics.Interpolation
         {
             closestIndex = Math.Max(samples.Locate(t), 0);
             int ret = Math.Min(Math.Max(closestIndex - (effectiveOrder - 1) / 2, 0), samples.Count - effectiveOrder);
-            if(Math.Abs(t - samples.GetT(closestIndex)) > Math.Abs(t - samples.GetT(closestIndex + 1)))
-                closestIndex++;
+            if(closestIndex < (effectiveOrder - 1))
+            {
+                double dist1 = Math.Abs(t - samples.GetT(closestIndex));
+                double dist2 = Math.Abs(t - samples.GetT(closestIndex + 1));
+
+                if(dist1 > dist2)
+                {
+                    closestIndex++;
+                }
+            }
             return ret;
         }
 

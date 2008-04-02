@@ -27,6 +27,7 @@ using NUnit.Framework;
 
 using MathNet.Numerics;
 using MathNet.Numerics.LinearAlgebra;
+using MathNet.Numerics.Interpolation;
 
 namespace Iridium.Test
 {
@@ -81,6 +82,24 @@ namespace Iridium.Test
             Complex zeroPowTwo = Complex.Zero.Power(2);
             Assert.AreEqual(0d, zeroPowTwo.Real, "Re{(0)^(2)} = 0");
             Assert.AreEqual(0d, zeroPowTwo.Imag, "Im{(0)^(2)} = 0");
+        }
+
+        [Test]
+        public void IRID119_PolynomialExtrapolatePositiveDirection()
+        {
+            double[] x = new double[] { -6.060771484, -5.855378418, -1.794238281, -1.229428711, 0.89935791, 2.912121582, 4.699230957, 4.788347168, 7.728830566, 11.70989502 };
+            double[] y = new double[] { 0.959422052, 0.959447861, 0.959958017, 0.960028946, 0.960323274, 0.960636258, 0.960914195, 0.960928023, 0.96138531, 0.962004483 };
+
+            PolynomialInterpolationAlgorithm pia = new PolynomialInterpolationAlgorithm(10);
+            SampleList sl = new SampleList(10);
+
+            for(int i=0;i<10;i++)
+            {
+                sl.Add(x[i],y[i]);
+            }
+           
+            pia.Prepare(sl);
+            NumericAssert.AreAlmostEqual(0.9622, pia.Extrapolate(12), 1e-3, "extrapolate(12)");
         }
     }
 }
