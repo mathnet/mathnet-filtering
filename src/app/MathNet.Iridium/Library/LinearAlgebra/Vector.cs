@@ -152,7 +152,15 @@ namespace MathNet.Numerics.LinearAlgebra
             double[] components
             )
         {
-            return (new Vector(components)).Clone();
+            if(null == components)
+            {
+                throw new ArgumentNullException("components");
+            }
+
+            double[] newData = new double[components.Length];
+            components.CopyTo(newData, 0);
+
+            return new Vector(newData);
         }
 
         /// <summary>
@@ -1014,7 +1022,7 @@ namespace MathNet.Numerics.LinearAlgebra
         object
         ICloneable.Clone()
         {
-            return Clone();
+            return Create(_data);
         }
 
         /// <summary>
