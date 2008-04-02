@@ -549,6 +549,30 @@ namespace MathNet.Numerics
         }
 
         /// <summary>
+        /// Returns the gamma function for real values (except at 0, -1, -2, ...).
+        /// For numeric stability, consider to use GammaLn for positive values.
+        /// </summary>
+        /// <returns>A value Gamma(value) for value != 0,-1,-2,...</returns>
+        public static
+        double
+        Gamma(
+            double value
+            )
+        {
+            if(value > 0.0)
+            {
+                return Math.Exp(GammaLn(value));
+            }
+            double reflection = 1.0 - value;
+            double s = Math.Sin(Math.PI * reflection);
+            if(Number.AlmostEqual(0.0, s))
+            {
+                return double.NaN; // pole, undefined
+            }
+            return Math.PI / (s * Math.Exp(GammaLn(reflection)));
+        }
+
+        /// <summary>
         /// Obsolete. Please use GammaRegularized instead, with the same parameters (method was renamed).
         /// </summary>
         [Obsolete("Renamed to GammaRegularized; Hence please migrate to GammaRegularized.")]

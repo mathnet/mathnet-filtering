@@ -93,6 +93,41 @@ namespace Iridium.Test
         }
 
         [Test]
+        public void TestSpecialFunctions_Gamma()
+        {
+            // ensure poles return NaN
+            Assert.IsTrue(double.IsNaN(Fn.Gamma(0.0)), "A1");
+            Assert.IsTrue(double.IsNaN(Fn.Gamma(-1.0)), "A2");
+            Assert.IsTrue(double.IsNaN(Fn.Gamma(-2.0)), "A3");
+            Assert.IsTrue(double.IsNaN(Fn.Gamma(-20.0)), "A4");
+            Assert.IsFalse(double.IsNaN(Fn.Gamma(-20.0000000001)), "A4b");
+
+            // Compare Gamma with Maple: "evalf(GAMMA(x),20);"
+            NumericAssert.AreAlmostEqual(999.42377248459546611, Fn.Gamma(0.001), 1e-15, "B1");
+            NumericAssert.AreAlmostEqual(99.432585119150603714, Fn.Gamma(0.01), 1e-14, "B2");
+            NumericAssert.AreAlmostEqual(9.5135076986687318363, Fn.Gamma(0.1), 1e-13, "B3");
+            NumericAssert.AreAlmostEqual(4.5908437119988030532, Fn.Gamma(0.2), 1e-13, "B4");
+            NumericAssert.AreAlmostEqual(2.2181595437576882231, Fn.Gamma(0.4), 1e-13, "B5");
+            NumericAssert.AreAlmostEqual(1.4891922488128171024, Fn.Gamma(0.6), 1e-13, "B6");
+            NumericAssert.AreAlmostEqual(1.0686287021193193549, Fn.Gamma(0.9), 1e-14, "B7");
+            NumericAssert.AreAlmostEqual(1.0005782056293586480, Fn.Gamma(0.999), 1e-15, "B8");
+            NumericAssert.AreAlmostEqual(1.0, Fn.Gamma(1.0), 1e-13, "B9");
+            NumericAssert.AreAlmostEqual(.99942377248459546611, Fn.Gamma(1.001), 1e-15, "B10");
+            NumericAssert.AreAlmostEqual(.88622692545275801365, Fn.Gamma(1.5), 1e-14, "B11");
+            NumericAssert.AreAlmostEqual(.96176583190738741941, Fn.Gamma(1.9), 1e-14, "B12");
+            NumericAssert.AreAlmostEqual(1.0, Fn.Gamma(2.0), 1e-15, "B13");
+            NumericAssert.AreAlmostEqual(362880.0, Fn.Gamma(10.0), 1e-12, "B14");
+            NumericAssert.AreAlmostEqual(1159686.4489708177739, Fn.Gamma(10.51), 1e-12, "B15");
+            NumericAssert.AreAlmostEqual(.93326215443944152682e156, Fn.Gamma(100), 1e-9, "B16");
+            NumericAssert.AreAlmostEqual(-100.58719796441077919, Fn.Gamma(-0.01), 1e-14, "B17");
+            NumericAssert.AreAlmostEqual(-10.686287021193193549, Fn.Gamma(-0.1), 1e-14, "B18");
+            NumericAssert.AreAlmostEqual(-3.5449077018110320546, Fn.Gamma(-0.5), 1e-14, "B19");
+            NumericAssert.AreAlmostEqual(4.8509571405220973902, Fn.Gamma(-1.2), 1e-14, "B20");
+            NumericAssert.AreAlmostEqual(-49.547903041431840399, Fn.Gamma(-2.01), 1e-13, "B21");
+            NumericAssert.AreAlmostEqual(-.10234011287149294961e-155, Fn.Gamma(-100.01), 1e-9, "B22");
+        }
+
+        [Test]
         public void TestSpecialFunctions_Erf()
         {
             // Compare Erf with Maple: "evalf(erf(x),20);"
