@@ -365,6 +365,39 @@ namespace MathNet.Numerics
 
         #endregion
 
+        #region Sinc
+
+        /// <summary>
+        /// Normalized Sinc (sinus cardinalis) Function.
+        /// </summary>
+        /// <remarks>sinc(x) = sin(pi * x) / (pi * x)</remarks>
+        public static
+        double
+        Sinc(
+            double x
+            )
+        {
+            if(double.IsNaN(x))
+            {
+                return double.NaN;
+            }
+            if(double.IsInfinity(x))
+            {
+                return 0.0;
+            }
+
+            double a = Math.PI * x;
+            double sinc = Math.Sin(a) / a;
+
+            if(double.IsInfinity(sinc) || double.IsNaN(sinc))
+            {
+                return 1.0;
+            }
+            return sinc;
+        }
+
+        #endregion
+
         #region Factorial, Binomial Coefficient
 
         /// <summary>
@@ -419,30 +452,54 @@ namespace MathNet.Numerics
             )
         {
             if(value < 0)
+            {
                 throw new ArgumentOutOfRangeException("value", Resources.ArgumentPositive);
+            }
 
             if(value >= FactorialPrecompSize)
             {
                 return Math.Exp(GammaLn(value + 1.0));
             }
-            if(factorialPrecomp == null)
-            {
-                factorialPrecomp = new double[FactorialPrecompSize] 
-                    {1d, 1d, 2d, 6d, 24d, 120d, 720d, 5040d, 40320d, 362880d, 3628800d,
-                        39916800d, 479001600d, 6227020800d, 87178291200d, 1307674368000d,
-                        20922789888000d, 355687428096000d, 6402373705728000d,
-                        121645100408832000d, 2432902008176640000d, 51090942171709440000d,
-                        1124000727777607680000d, 25852016738884976640000d, 620448401733239439360000d,
-                        15511210043330985984000000d, 403291461126605635584000000d,
-                        10888869450418352160768000000d, 304888344611713860501504000000d,
-                        8841761993739701954543616000000d, 265252859812191058636308480000000d,
-                        8222838654177922817725562880000000d};
-            }
             return factorialPrecomp[value];
         }
 
-        static double[] factorialPrecomp;
+        #region Precomputed Static Array
         const int FactorialPrecompSize = 32;
+        static double[] factorialPrecomp = new double[] {
+            1d,
+            1d,
+            2d,
+            6d,
+            24d,
+            120d,
+            720d,
+            5040d,
+            40320d,
+            362880d,
+            3628800d,
+            39916800d,
+            479001600d,
+            6227020800d,
+            87178291200d,
+            1307674368000d,
+            20922789888000d,
+            355687428096000d,
+            6402373705728000d,
+            121645100408832000d,
+            2432902008176640000d,
+            51090942171709440000d,
+            1124000727777607680000d,
+            25852016738884976640000d,
+            620448401733239439360000d,
+            15511210043330985984000000d,
+            403291461126605635584000000d,
+            10888869450418352160768000000d,
+            304888344611713860501504000000d,
+            8841761993739701954543616000000d,
+            265252859812191058636308480000000d,
+            8222838654177922817725562880000000d
+        };
+        #endregion
 
         /// <summary>
         /// Returns the binomial coefficient of n and k as a double precision number.
@@ -485,35 +542,6 @@ namespace MathNet.Numerics
         }
 
         #endregion
-
-        /// <summary>
-        /// Normalized Sinc (sinus cardinalis) Function.
-        /// </summary>
-        /// <remarks>sinc(x) = sin(pi * x) / (pi * x)</remarks>
-        public static
-        double
-        Sinc(
-            double x
-            )
-        {
-            if(double.IsNaN(x))
-            {
-                return double.NaN;
-            }
-            if(double.IsInfinity(x))
-            {
-                return 0.0;
-            }
-
-            double a = Math.PI * x;
-            double sinc = Math.Sin(a) / a;
-
-            if(double.IsInfinity(sinc) || double.IsNaN(sinc))
-            {
-                return 1.0;
-            }
-            return sinc;
-        }
 
         #region Gamma Functions
 
@@ -901,6 +929,78 @@ namespace MathNet.Numerics
             7.784695709041462e-03, 3.224671290700398e-01,
             2.445134137142996e+00, 3.754408661907416e+00
             };
+
+        #endregion
+
+        #region Harmonic Numbers
+
+        /// <summary>
+        /// Evaluates the n-th harmonic number Hn = sum(1/k,k=1..n).
+        /// </summary>
+        /// <param name="n">n >= 0</param>
+        /// <remarks>
+        /// See <a http="http://en.wikipedia.org/wiki/Harmonic_Number">Wikipedia - Harmonic Number</a>
+        /// </remarks>
+        public static
+        double
+        HarmonicNumber(
+            int n
+            )
+        {
+            if(n < 0)
+            {
+                throw new ArgumentOutOfRangeException("n", Resources.ArgumentNotNegative); ;
+            }
+            if(n >= HarmonicPrecompSize)
+            {
+                double n2 = n*n;
+                double n4 = n2*n2;
+                return Constants.EulerGamma
+                    + Math.Log(n)
+                    + 0.5 / n
+                    - 1.0 / (12.0 * n2)
+                    + 1.0 / (120.0 * n4);
+            }
+            return harmonicPrecomp[n];
+        }
+
+        #region Precomputed Static Array
+        const int HarmonicPrecompSize = 32;
+        static double[] harmonicPrecomp = new double[] {
+            0.0,
+            1.0,
+            1.5,
+            1.833333333333333333333333,
+            2.083333333333333333333333,
+            2.283333333333333333333333,
+            2.45,
+            2.592857142857142857142857,
+            2.717857142857142857142857,
+            2.828968253968253968253968,
+            2.928968253968253968253968,
+            3.019877344877344877344877,
+            3.103210678210678210678211,
+            3.180133755133755133755134,
+            3.251562326562326562326562,
+            3.318228993228993228993229,
+            3.380728993228993228993229,
+            3.439552522640757934875582,
+            3.495108078196313490431137,
+            3.547739657143681911483769,
+            3.597739657143681911483769,
+            3.645358704762729530531388,
+            3.690813250217274985076843,
+            3.734291511086840202468147,
+            3.775958177753506869134814,
+            3.815958177753506869134814,
+            3.854419716215045330673275,
+            3.891456753252082367710312,
+            3.927171038966368081996027,
+            3.961653797587057737168440,
+            3.994987130920391070501774,
+            4.027245195436520102759838
+        };
+        #endregion
 
         #endregion
     }

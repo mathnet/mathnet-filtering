@@ -243,7 +243,7 @@ namespace Iridium.Test
         [Test]
         public void TestSpecialFunctions_Factorial()
         {
-            // exact factorial
+            // exact
             double factorial = 1.0;
             for(int i=1;i<32;i++)
             {
@@ -251,12 +251,35 @@ namespace Iridium.Test
                 NumericAssert.AreAlmostEqual(factorial, Fn.Factorial(i), "Factorial: " + i.ToString());
             }
 
-            // not exact, based on gamma
+            // approximation
             for(int i = 32; i < 90; i++)
             {
                 factorial *= i;
                 NumericAssert.AreAlmostEqual(factorial, Fn.Factorial(i), 1e-10, "Factorial: " + i.ToString());
             }
+        }
+
+        [Test]
+        public void TestSpecialFunctions_HarmonicNumber()
+        {
+            // exact
+            double sum = 0.0;
+            for(int i = 1; i < 32; i++)
+            {
+                sum += 1.0 / i;
+                NumericAssert.AreAlmostEqual(sum, Fn.HarmonicNumber(i), "H" + i.ToString());
+            }
+
+            // approximation
+            for(int i = 32; i < 90; i++)
+            {
+                sum += 1.0 / i;
+                NumericAssert.AreAlmostEqual(sum, Fn.HarmonicNumber(i), 1e-10, "H" + i.ToString());
+            }
+
+            // Compare with Maple: "evalf(sum(1/k,k=1..x),20)"
+            NumericAssert.AreAlmostEqual(12.090146129863427948, Fn.HarmonicNumber(100000), 1e-10, "H100000");
+            NumericAssert.AreAlmostEqual(18.997896413853898325, Fn.HarmonicNumber(100000000), 1e-10, "H100000000");
         }
     }
 }
