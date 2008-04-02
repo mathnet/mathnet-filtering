@@ -252,9 +252,9 @@ namespace Iridium.Test
         [Test]
         public void TestContinuousDistributions_FisherSnedecor()
         {
-            //TestContinuousDistributionShapeMatchesCumulativeDensity(
-            //    new FisherSnedecorDistribution(100, 100),
-            //    0.0, 2.0, 10, 100000, 0.01, "FisherSnedecorDistribution(100,100)");
+            TestContinuousDistributionShapeMatchesCumulativeDensity(
+                new FisherSnedecorDistribution(10, 5),
+                0.0, 3.0, 10, 100000, 0.01, "FisherSnedecorDistribution(10,5)");
 
             FisherSnedecorDistribution d = new FisherSnedecorDistribution(100, 100);
 
