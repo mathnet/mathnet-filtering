@@ -302,8 +302,8 @@ namespace MathNet.Numerics.Transformations
             int numberOfBits
             )
         {
-            Debug.Assert(numberOfBits >= minBits);
-            Debug.Assert(numberOfBits <= maxBits);
+            //Debug.Assert(numberOfBits >= minBits);
+            //Debug.Assert(numberOfBits <= maxBits);
 
             if(_reversedBitsLookup[numberOfBits - 1] == null)
             {
