@@ -545,7 +545,7 @@ namespace MathNet.Numerics
             {
                 ser += (coefficient[j] / ++y);
             }
-            return -temp + Math.Log(2.50662827463100005 * ser / x);
+            return -temp + Math.Log(2.5066282746310005 * ser / x);
         }
 
         /// <summary>
