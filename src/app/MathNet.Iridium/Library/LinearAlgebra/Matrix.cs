@@ -402,7 +402,7 @@ namespace MathNet.Numerics.LinearAlgebra
             double[,] newData = new double[_rowCount, _columnCount];
             for(int i = 0; i < _rowCount; i++)
             {
-                for(int j = 0; i < _columnCount; j++)
+                for(int j = 0; j < _columnCount; j++)
                 {
                     newData[i, j] = _data[i][j];
                 }
