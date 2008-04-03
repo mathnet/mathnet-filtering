@@ -55,7 +55,10 @@
     <Compile Include="Filter\IIR\IirCoefficients.cs" />
     <Compile Include="Filter\IIR\IirFilter.cs" />
     <Compile Include="Filter\ImpulseResponse.cs" />
+    <Compile Include="Filter\Kalman\DiscreteKalmanFilter.cs" />
     <Compile Include="Filter\Kalman\IKalmanFilter.cs" />
+    <Compile Include="Filter\Kalman\InformationFilter.cs" />
+    <Compile Include="Filter\Kalman\SquareRootFilter.cs" />
     <Compile Include="Filter\Median\MedianFilter.cs" />
     <Compile Include="Filter\OnlineFilter.cs" />
     <Compile Include="Filter\Utils\ShiftBuffer.cs" />

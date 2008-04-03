@@ -117,40 +117,59 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ArgumentEvenNumberOfCoefficients" xml:space="preserve">
-    <value>Even number of coefficients required.</value>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="xhu" type="System.Byte[], mscorlib">
+    <value>
+        OTY5LjMzMDA2ODkyCTEzMjQuNTE0NzU4OTQJMTYzNy4wNzk5NzQ5MgkxOTczLjcwMTUyMTg3CTIyNjEu
+        NTk2NjA5NDUJMjU3My42NDcyNDkwOQkyOTAxLjc1MzI5NDY1CTMyNTguNjc0NDc2NDcNCjEzLjM4MzUx
+        MTM2CTIxLjUyMjgwODQxCTEwLjkyNzI5OTQ3CTIxLjMyODY4NDYxCTkuMjQzNzAzMzQJMjAuMjY0ODI4
+        MzYJMTMuNTk0MTk3NjEJMjAuOTMyNzA3MDINCg==
+</value>
   </data>
-  <data name="InvalidWindowFunctionException" xml:space="preserve">
-    <value>Windowing function is not valid.</value>
+  <data name="zks" type="System.Byte[], mscorlib">
+    <value>
+        MjkwLjE2ODUxMDM5CTY1NC41NTYzMzc5Mwk5NjguOTcxNDEyODAJMTMyNS4wOTE5NzE2MQkxNjM2LjM1
+        OTQ3Njc1CTE5NzQuMzkwNTMxNDgJMjI2MC44MDc3MDU1MwkyNTc0LjM2MTE5NzUwCTI5MDEuMzIyODU0
+        NjIJMzI1OS4xNDcwOTA5OA0K
+</value>
   </data>
-  <data name="KFStateNotColumnVector" xml:space="preserve">
-    <value>Kalman Filter state must be a column vector.</value>
+  <data name="xhp" type="System.Byte[], mscorlib">
+    <value>
+        MTAxOC45NDQxNjU0NwkxMjM3LjAwMDI5NjE4CTE3NTQuOTcwOTI3MTYJMTg1NS42MjU5NjQzMAkyNDAw
+        LjI3NTIxNDAzCTI0NDYuNDcwNjc2MjUJMjk3OC45NDM4MTYzMQkzMTczLjYzNzI0Njc1DQoxOC4yMTkz
+        OTEzOAkxMy4zODM1MTEzNgkyMS41MjI4MDg0MQkxMC45MjcyOTk0NwkyMS4zMjg2ODQ2MQk5LjI0Mzcw
+        MzM0CTIwLjI2NDgyODM2CTEzLjU5NDE5NzYxDQo=
+</value>
   </data>
-  <data name="KFCovarianceNotSquare" xml:space="preserve">
-    <value>Covariance matrix must be square.</value>
+  <data name="Phu" type="System.Byte[], mscorlib">
+    <value>
+        MjkuNzg0Njg5MDAJMi45MDMxMTAwNQkyOS44MDM0Mjc3NAkyLjc3MTg3MjcxCTI5LjgxNzc2Njc5CTIu
+        Njc5ODg2ODcJMjkuODI1OTU1NzYJMi42MjczOTYwNQkyOS44MzAzMDM3MgkyLjU5OTUyNjE3CTI5Ljgz
+        MjUyNTEwCTIuNTg1Mjg3MzgJMjkuODMzNjM3NzEJMi41NzgxNTU2NwkyOS44MzQxODk0NAkyLjU3NDYx
+        OTE1DQoyLjkwMzExMDA1CTEuMDA2Mzk5NTIJMi43NzE4NzI3MQkxLjkyMDEyMDcwCTIuNjc5ODg2ODcJ
+        Mi41MTAyMTQ3OQkyLjYyNzM5NjA1CTIuODQ2Njc3NzYJMi41OTk1MjYxNwkzLjAyNTMyMDQ2CTIuNTg1
+        Mjg3MzgJMy4xMTY1ODk0NQkyLjU3ODE1NTY3CTMuMTYyMzAyODcJMi41NzQ2MTkxNQkzLjE4NDk3MTU3
+        DQo=
+</value>
   </data>
-  <data name="KFCovarianceIncorrectSize" xml:space="preserve">
-    <value>Covariance Matrix must have same number of row/cols as state variable.</value>
+  <data name="Php" type="System.Byte[], mscorlib">
+    <value>
+        NDE1MC4wMDAwMDAwMAk0MDQuNTAwMDAwMDAJNDU0OC40Njg4OTk1Mgk0MjMuMDMxMTAwNDgJNDkwOC43
+        MjY2MTcyMAk0NDEuMTc0Mjg2NzYJNTE0MS4wOTkxNTg1MQk0NTIuODg0MTgyNzIJNTI3My41OTI5MDI4
+        Mwk0NTkuNTYwOTUxMzEJNTM0My45Mzk1MzUwMAk0NjMuMTA1OTM1NDAJNTM3OS44Nzk3OTg0NQk0NjQu
+        OTE3MDc2MjkJNTM5Ny44ODEwMTEyNgk0NjUuODI0MjEzMDENCjQwNC41MDAwMDAwMAk0MC4xNTAwMDAw
+        MAk0MjMuMDMxMTAwNDgJNDEuMDA2Mzk5NTIJNDQxLjE3NDI4Njc2CTQxLjkyMDEyMDcwCTQ1Mi44ODQx
+        ODI3Mgk0Mi41MTAyMTQ3OQk0NTkuNTYwOTUxMzEJNDIuODQ2Njc3NzYJNDYzLjEwNTkzNTQwCTQzLjAy
+        NTMyMDQ2CTQ2NC45MTcwNzYyOQk0My4xMTY1ODk0NQk0NjUuODI0MjEzMDEJNDMuMTYyMzAyODcNCg==
+</value>
   </data>
-  <data name="KFStateTransitionMalformed" xml:space="preserve">
-    <value>State Transition should be square matrix with same rows/cols as state variables.</value>
+  <data name="r" xml:space="preserve">
+    <value>30.0</value>
   </data>
-  <data name="KFNoiseCouplingMalformed" xml:space="preserve">
-    <value>Noise coupling matrix should have number of rows equal to number of state variables, and columns equal to process noise rows.</value>
+  <data name="T" xml:space="preserve">
+    <value>20.0</value>
   </data>
-  <data name="KFNoiseCovarianceMalformed" xml:space="preserve">
-    <value>Noise Covariance matrix should be square.</value>
-  </data>
-  <data name="KFSquareNoiseCouplingMalformed" xml:space="preserve">
-    <value>Square noise covariance matrices should have same number of rows/cols as state variables.</value>
-  </data>
-  <data name="KFMeasurementVectorMalformed" xml:space="preserve">
-    <value>Measurements should be a single column matrix.</value>
-  </data>
-  <data name="KFMeasureSensitivityMalformed" xml:space="preserve">
-    <value>Measurement sensitivity matrix should contain same number of rows as measurement matrix and columns as there are state variables.</value>
-  </data>
-  <data name="KFMeasureCovarainceMalformed" xml:space="preserve">
-    <value>Measurement covariance should be a square matrix with rows/cols equal to number of measurements.</value>
+  <data name="Q" xml:space="preserve">
+    <value>0.1</value>
   </data>
 </root>

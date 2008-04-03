@@ -97,11 +97,74 @@ namespace MathNet.SignalProcessing.Properties {
 		}
 		
 		/// <summary>
+		///   Looks up a localized string similar to Measurement covariance should be a square matrix with rows/cols equal to number of measurements..
+		/// </summary>
+		internal static string KFMeasureCovarainceMalformed {
+			get {
+				return ResourceManager.GetString("KFMeasureCovarainceMalformed", resourceCulture);
+			}
+		}
+		
+		/// <summary>
+		///   Looks up a localized string similar to Measurements should be a single column matrix..
+		/// </summary>
+		internal static string KFMeasurementVectorMalformed {
+			get {
+				return ResourceManager.GetString("KFMeasurementVectorMalformed", resourceCulture);
+			}
+		}
+		
+		/// <summary>
+		///   Looks up a localized string similar to Measurement sensitivity matrix should contain same number of rows as measurement matrix and columns as there are state variables..
+		/// </summary>
+		internal static string KFMeasureSensitivityMalformed {
+			get {
+				return ResourceManager.GetString("KFMeasureSensitivityMalformed", resourceCulture);
+			}
+		}
+		
+		/// <summary>
+		///   Looks up a localized string similar to Noise coupling matrix should have number of rows equal to number of state variables, and columns equal to process noise rows..
+		/// </summary>
+		internal static string KFNoiseCouplingMalformed {
+			get {
+				return ResourceManager.GetString("KFNoiseCouplingMalformed", resourceCulture);
+			}
+		}
+		
+		/// <summary>
+		///   Looks up a localized string similar to Noise Covariance matrix should be square..
+		/// </summary>
+		internal static string KFNoiseCovarianceMalformed {
+			get {
+				return ResourceManager.GetString("KFNoiseCovarianceMalformed", resourceCulture);
+			}
+		}
+		
+		/// <summary>
+		///   Looks up a localized string similar to Square noise covariance matrices should have same number of rows/cols as state variables..
+		/// </summary>
+		internal static string KFSquareNoiseCouplingMalformed {
+			get {
+				return ResourceManager.GetString("KFSquareNoiseCouplingMalformed", resourceCulture);
+			}
+		}
+		
+		/// <summary>
 		///   Looks up a localized string similar to Kalman Filter state must be a column vector..
 		/// </summary>
 		internal static string KFStateNotColumnVector {
 			get {
 				return ResourceManager.GetString("KFStateNotColumnVector", resourceCulture);
+			}
+		}
+		
+		/// <summary>
+		///   Looks up a localized string similar to State Transition should be square matrix with same rows/cols as state variables..
+		/// </summary>
+		internal static string KFStateTransitionMalformed {
+			get {
+				return ResourceManager.GetString("KFStateTransitionMalformed", resourceCulture);
 			}
 		}
 	}
