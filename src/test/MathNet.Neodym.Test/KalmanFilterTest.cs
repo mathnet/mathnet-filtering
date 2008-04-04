@@ -190,7 +190,7 @@ namespace Neodym.Test
 				string[] allVals = thisLine.Split("\t".ToCharArray());
 				for (int i=0; i<allVals.Length; i++)
 				{
-					double tmp = Double.Parse(allVals[i]);
+					double tmp = Double.Parse(allVals[i], System.Globalization.NumberFormatInfo.InvariantInfo);
 					dblVals.Add(tmp);
 				}
 				dblLines.Add(dblVals.ToArray());
