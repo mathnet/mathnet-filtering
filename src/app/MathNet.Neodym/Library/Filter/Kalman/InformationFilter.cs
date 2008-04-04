@@ -254,10 +254,17 @@ namespace MathNet.SignalProcessing.Filter.Kalman
 		#endregion
 		
 		#region Protected members
+		/// <summary>
+		/// Inverse of covariance matrix.
+		/// </summary>
 		protected Matrix J;
-		
+		/// <summary>
+		/// State of information filter.
+		/// </summary>
 		protected Matrix y;
-		
+		/// <summary>
+		/// Identity matrix used in operations.
+		/// </summary>
 		protected Matrix I;
 		#endregion
 	}

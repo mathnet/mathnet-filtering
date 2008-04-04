@@ -283,11 +283,17 @@ namespace MathNet.SignalProcessing.Filter.Kalman
 		#endregion // UDU Decomposition
 
 		#region Protected Members
-		
+		/// <summary>
+		/// Upper unit triangular matrix of decomposed covariance.
+		/// </summary>
 		protected Matrix U;
-		
+		/// <summary>
+		/// Diagonal matrix of decomposed covariance.
+		/// </summary>
 		protected Matrix D;
-		
+		/// <summary>
+		/// State estimate of system.
+		/// </summary>
 		protected Matrix x;
 		
 		#endregion // Protected Members
