@@ -55,6 +55,7 @@ namespace MathNet.Numerics.Interpolation
         /// <remarks>
         /// Uses the <see cref="PolynomialInterpolationAlgorithm"/>.
         /// </remarks>
+        /// <param name="samples">Sample Points.</param>
         public
         InterpolationSingleDimension(
             SampleList samples
@@ -89,6 +90,7 @@ namespace MathNet.Numerics.Interpolation
         /// <remarks>
         /// Uses the <see cref="PolynomialInterpolationAlgorithm"/>.
         /// </remarks>
+        /// <param name="samples">Sample Points.</param>
         public
         InterpolationSingleDimension(
             IDictionary samples
@@ -102,6 +104,8 @@ namespace MathNet.Numerics.Interpolation
         /// <summary>
         /// Initialize the portal with samples from a sample list and selects an algorithm that fits the chosen interpolation mode.
         /// </summary>
+        /// <param name="samples">Sample Points.</param>
+        /// <param name="mode">Interpolation Mode.</param>
         public
         InterpolationSingleDimension(
             SampleList samples,
@@ -118,6 +122,7 @@ namespace MathNet.Numerics.Interpolation
         /// </summary>
         /// <param name="t">keys t, where x=f(t) or (t,x).</param>
         /// <param name="x">values x, where x=f(t) or (t,x).</param>
+        /// <param name="mode">Interpolation Mode.</param>
         public
         InterpolationSingleDimension(
             double[] t,
@@ -132,6 +137,9 @@ namespace MathNet.Numerics.Interpolation
         /// <summary>
         /// Initialize the portal with samples from a sample list and selects an algorithm that fits the chosen interpolation mode with the given order.
         /// </summary>
+        /// <param name="samples">Sample Points.</param>
+        /// <param name="mode">Interpolation Mode.</param>
+        /// <param name="maximumOrder">Maximum Interpolation Order.</param>
         public
         InterpolationSingleDimension(
             SampleList samples,
@@ -150,6 +158,8 @@ namespace MathNet.Numerics.Interpolation
         /// </summary>
         /// <param name="t">keys t, where x=f(t) or (t,x).</param>
         /// <param name="x">values x, where x=f(t) or (t,x).</param>
+        /// <param name="mode">Interpolation Mode.</param>
+        /// <param name="maximumOrder">Maximum Interpolation Order.</param>
         public
         InterpolationSingleDimension(
             double[] t,
@@ -166,6 +176,8 @@ namespace MathNet.Numerics.Interpolation
         /// <summary>
         /// Initialize the portal with samples from a sample list and uses the specified algorithm.
         /// </summary>
+        /// <param name="samples">Sample Points.</param>
+        /// <param name="algorithm">Interpolation Algorithm.</param>
         public
         InterpolationSingleDimension(
             SampleList samples,
@@ -180,6 +192,9 @@ namespace MathNet.Numerics.Interpolation
         /// <summary>
         /// Initialize the portal with samples from points (t, x(t)) and uses the specified algorithm.
         /// </summary>
+        /// <param name="t">keys t, where x=f(t) or (t,x).</param>
+        /// <param name="x">values x, where x=f(t) or (t,x).</param>
+        /// <param name="algorithm">Interpolation Algorithm.</param>
         public
         InterpolationSingleDimension(
             double[] t,
@@ -194,6 +209,7 @@ namespace MathNet.Numerics.Interpolation
         /// <summary>
         /// Override this method to select custom interpolation algorithms.
         /// </summary>
+        /// <param name="mode">Interpolation Mode.</param>
         protected virtual
         IInterpolationAlgorithm
         SelectAlgorithm(
