@@ -1,4 +1,44 @@
 ========================================================================================
+==== Math.NET Iridium (Numerics) - 2008.4.14.425 (2008 April Release, Iteration 14) ====
+========================================================================================
+
+Team: Christoph Rüegg, Joannès Vermorel, Matthew Kitchin
+http://mathnet.opensourcedotnet.info
+
+SUMMARY
+-------
+
+- 3 Bugs fixed (see below)
+- Better special function precision (Gamma, Beta, Erf, Distributions etc.)
+- New direct gamma function, new harmonic number function
+- Interpolation: usability enhancements.
+
+
+NEW FEATURES
+------------
+
+IRID-122: Core - New direct Gamma function (additional to GammaLn) with negative value support
+IRID-123: Core - New Special Function: Harmonic Numbers
+
+
+ENHANCEMENTS
+------------
+
+IRID-121: Core - Better numerical precision for Gamma function
+IRID-125: Interpolation - Additional interpolation and sample list constructors for double arrays.
+IRID-126: Interpolation - Better interpolation order access and defaults
+
+
+FIXED BUGS
+----------
+
+IRID-119: Interpolation - Polynomial Extrapolation in positive direction throws IndexOutOfRangeException
+IRID-120: Linear Algebra - Infinite recursion
+IRID-124: Linear Algebra - Matrix.CopyToArray - wrong indexer in inner loop condition.
+
+
+
+========================================================================================
 ==== Math.NET Iridium (Numerics) - 2008.3.12.405 (2008 March Release, Iteration 12) ====
 ========================================================================================
 
