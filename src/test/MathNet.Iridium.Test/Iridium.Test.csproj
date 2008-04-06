@@ -40,8 +40,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BugRegression.cs" />
+    <Compile Include="CodeSamples.cs" />
     <Compile Include="CombinatoricsTest.cs" />
     <Compile Include="DistributionTest.cs" />
+    <Compile Include="InterpolationTest.cs" />
     <Compile Include="NumericAssert.cs" />
     <Compile Include="SetTest.cs" />
     <Compile Include="ComplexTest.cs" />

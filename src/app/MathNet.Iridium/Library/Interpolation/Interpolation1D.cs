@@ -43,108 +43,214 @@ namespace MathNet.Numerics.Interpolation
     /// </summary>
     public class InterpolationSingleDimension
     {
-        private SampleList samples;
-        private IInterpolationAlgorithm algorithm;
-        private bool dirty = true; //delay preparation until first evaluation
+        SampleList _samples;
+        IInterpolationAlgorithm _algorithm;
+        bool _dirty = true; //delay preparation until first evaluation
 
         #region Construction
+
         /// <summary>
         /// Initialize the portal with samples from a sample list.
         /// </summary>
         /// <remarks>
         /// Uses the <see cref="PolynomialInterpolationAlgorithm"/>.
         /// </remarks>
-        public InterpolationSingleDimension(SampleList samples)
+        public
+        InterpolationSingleDimension(
+            SampleList samples
+            )
         {
-            this.samples = samples;
-            this.samples.SampleAltered += samples_SampleAltered;
-            this.algorithm = new PolynomialInterpolationAlgorithm(4);
+            _samples = samples;
+            _samples.SampleAltered += samples_SampleAltered;
+            _algorithm = new PolynomialInterpolationAlgorithm(); 
         }
+
+        /// <summary>
+        /// Initialize the portal with samples from points (t, x(t)).
+        /// </summary>
+        /// <remarks>
+        /// Uses the <see cref="PolynomialInterpolationAlgorithm"/>.
+        /// </remarks>
+        /// <param name="t">keys t, where x=f(t) or (t,x).</param>
+        /// <param name="x">values x, where x=f(t) or (t,x).</param>
+        public
+        InterpolationSingleDimension(
+            double[] t,
+            double[] x
+            )
+        {
+            _samples = new SampleList(t, x);
+            _algorithm = new PolynomialInterpolationAlgorithm();
+        }
+
         /// <summary>
         /// Initialize the portal with samples from a dictionary.
         /// </summary>
         /// <remarks>
         /// Uses the <see cref="PolynomialInterpolationAlgorithm"/>.
         /// </remarks>
-        public InterpolationSingleDimension(IDictionary samples)
+        public
+        InterpolationSingleDimension(
+            IDictionary samples
+            )
         {
-            this.samples = new SampleList(samples);
-            this.samples.SampleAltered += samples_SampleAltered;
-            this.algorithm = new PolynomialInterpolationAlgorithm(4);
+            _samples = new SampleList(samples);
+            _algorithm = new PolynomialInterpolationAlgorithm();
         }
+
+
         /// <summary>
         /// Initialize the portal with samples from a sample list and selects an algorithm that fits the chosen interpolation mode.
         /// </summary>
-        public InterpolationSingleDimension(SampleList samples, InterpolationMode mode)
+        public
+        InterpolationSingleDimension(
+            SampleList samples,
+            InterpolationMode mode
+            )
         {
-            this.samples = samples;
-            this.samples.SampleAltered += samples_SampleAltered;
-            this.algorithm = SelectAlgorithm(mode, 4);
+            _samples = samples;
+            _samples.SampleAltered += samples_SampleAltered;
+            _algorithm = SelectAlgorithm(mode);
         }
+
+        /// <summary>
+        /// Initialize the portal with samples from points (t, x(t)) and selects an algorithm that fits the chosen interpolation mode.
+        /// </summary>
+        /// <param name="t">keys t, where x=f(t) or (t,x).</param>
+        /// <param name="x">values x, where x=f(t) or (t,x).</param>
+        public
+        InterpolationSingleDimension(
+            double[] t,
+            double[] x,
+            InterpolationMode mode
+            )
+        {
+            _samples = new SampleList(t, x);
+            _algorithm = SelectAlgorithm(mode);
+        }
+
         /// <summary>
         /// Initialize the portal with samples from a sample list and selects an algorithm that fits the chosen interpolation mode with the given order.
         /// </summary>
-        public InterpolationSingleDimension(SampleList samples, InterpolationMode mode, int order)
+        public
+        InterpolationSingleDimension(
+            SampleList samples,
+            InterpolationMode mode,
+            int maximumOrder
+            )
         {
-            this.samples = samples;
-            this.samples.SampleAltered += samples_SampleAltered;
-            this.algorithm = SelectAlgorithm(mode, order);
+            _samples = samples;
+            _samples.SampleAltered += samples_SampleAltered;
+            _algorithm = SelectAlgorithm(mode);
+            _algorithm.MaximumOrder = maximumOrder;
         }
+
+        /// <summary>
+        /// Initialize the portal with samples from points (t, x(t)) and selects an algorithm that fits the chosen interpolation mode with the given order.
+        /// </summary>
+        /// <param name="t">keys t, where x=f(t) or (t,x).</param>
+        /// <param name="x">values x, where x=f(t) or (t,x).</param>
+        public
+        InterpolationSingleDimension(
+            double[] t,
+            double[] x,
+            InterpolationMode mode,
+            int maximumOrder
+            )
+        {
+            _samples = new SampleList(t, x);
+            _algorithm = SelectAlgorithm(mode);
+            _algorithm.MaximumOrder = maximumOrder;
+        }
+
         /// <summary>
         /// Initialize the portal with samples from a sample list and uses the specified algorithm.
         /// </summary>
-        public InterpolationSingleDimension(SampleList samples, IInterpolationAlgorithm algorithm)
+        public
+        InterpolationSingleDimension(
+            SampleList samples,
+            IInterpolationAlgorithm algorithm
+            )
         {
-            this.samples = samples;
-            this.samples.SampleAltered += samples_SampleAltered;
-            this.algorithm = algorithm;
+            _samples = samples;
+            _samples.SampleAltered += samples_SampleAltered;
+            _algorithm = algorithm;
+        }
+
+        /// <summary>
+        /// Initialize the portal with samples from points (t, x(t)) and uses the specified algorithm.
+        /// </summary>
+        public
+        InterpolationSingleDimension(
+            double[] t,
+            double[] x,
+            IInterpolationAlgorithm algorithm
+            )
+        {
+            _samples = new SampleList(t, x);
+            _algorithm = algorithm;
         }
 
         /// <summary>
         /// Override this method to select custom interpolation algorithms.
         /// </summary>
-        protected virtual IInterpolationAlgorithm SelectAlgorithm(InterpolationMode mode, int order)
+        protected virtual
+        IInterpolationAlgorithm
+        SelectAlgorithm(
+            InterpolationMode mode
+            )
         {
             switch(mode)
             {
                 case InterpolationMode.ExpectNoPoles:
-                    return new PolynomialInterpolationAlgorithm(order);
+                    return new PolynomialInterpolationAlgorithm();
                 case InterpolationMode.ExpectPoles:
-                    return new RationalInterpolationAlgorithm(order);
-                //case InterpolationMode.Smooth:
-                //    return new CubicSplineInterpolationAlgorithm(order);
+                    return new RationalInterpolationAlgorithm();
+                case InterpolationMode.Smooth:
+                    throw new NotImplementedException();
                 default:
-                    return new PolynomialInterpolationAlgorithm(order);
+                    return new PolynomialInterpolationAlgorithm();
             }
         }
+
         #endregion
+
         /// <summary>
         /// Interpolate at point t.
         /// </summary>
-        public double Evaluate(double t)
+        public
+        double
+        Evaluate(
+            double t
+            )
         {
-            if(dirty)
+            if(_dirty)
             {
-                algorithm.Prepare(samples);
-                dirty = false;
+                _algorithm.Prepare(_samples);
+                _dirty = false;
             }
-            if(samples.MinT <= t && t <= samples.MaxT)
-                return algorithm.Interpolate(t);
+            if(_samples.MinT <= t && t <= _samples.MaxT)
+                return _algorithm.Interpolate(t);
             else
-                return algorithm.Extrapolate(t);
+                return _algorithm.Extrapolate(t);
         }
 
         /// <summary>
         /// Interpolate at point t and return the estimated error as a parameter.
         /// </summary>
-        public double Evaluate(double t, out double errorEstimation)
+        public
+        double
+        Evaluate(
+            double t,
+            out double errorEstimation
+            )
         {
-            if(dirty)
+            if(_dirty)
             {
-                algorithm.Prepare(samples);
-                dirty = false;
+                _algorithm.Prepare(_samples);
+                _dirty = false;
             }
-            return algorithm.Interpolate(t, out errorEstimation);
+            return _algorithm.Interpolate(t, out errorEstimation);
         }
 
         /// <summary>
@@ -152,12 +258,16 @@ namespace MathNet.Numerics.Interpolation
         /// </summary>
         public bool SupportErrorEstimation
         {
-            get { return algorithm.SupportErrorEstimation; }
+            get { return _algorithm.SupportErrorEstimation; }
         }
 
-        private void samples_SampleAltered(object sender, SampleList.SampleAlteredEventArgs e)
+        void
+        samples_SampleAltered(
+            object sender,
+            SampleList.SampleAlteredEventArgs e
+            )
         {
-            dirty = true; //require new preparation
+            _dirty = true; //require new preparation
         }
     }
 }

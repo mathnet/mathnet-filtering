@@ -31,34 +31,100 @@ namespace MathNet.Numerics.Interpolation
     /// <summary>
     /// Lagrange Polynomial Interpolation using Neville's Algorithm.
     /// </summary>
-    public class PolynomialInterpolationAlgorithm : IInterpolationAlgorithm
+    public class PolynomialInterpolationAlgorithm :
+        IInterpolationAlgorithm
     {
-        private SampleList samples;
-        private int order;
-        private int effectiveOrder;
+        SampleList _samples;
+        int _maximumOrder;
+        int _effectiveOrder;
 
         /// <summary>
-        /// Create a polynomial interpolation algorithm with the given order.
+        /// Create a polynomial interpolation algorithm with full order.
         /// </summary>
-        public PolynomialInterpolationAlgorithm(int order)
+        public
+        PolynomialInterpolationAlgorithm()
         {
-            this.order = order;
-            this.effectiveOrder = order;
+            _maximumOrder = int.MaxValue;
+            _effectiveOrder = -1;
+        }
+
+        /// <summary>
+        /// Create a polynomial interpolation algorithm with the given maximum order.
+        /// </summary>
+        public
+        PolynomialInterpolationAlgorithm(
+            int maximumOrder
+            )
+        {
+            _maximumOrder = maximumOrder;
+            _effectiveOrder = -1;
         }
 
         /// <summary>
         /// Precompute/optimize the algoritm for the given sample set.
         /// </summary>
-        public void Prepare(SampleList samples)
+        public
+        void
+        Prepare(
+            SampleList samples
+            )
         {
-            this.samples = samples;
-            this.effectiveOrder = Math.Min(order, samples.Count);
+            if(null == samples)
+            {
+                throw new ArgumentNullException("samples");
+            }
+
+            _samples = samples;
+            _effectiveOrder = Math.Min(_maximumOrder, samples.Count);
+        }
+
+        /// <summary>
+        /// The maxium interpolation order.
+        /// </summary>
+        /// <seealso cref="EffectiveOrder"/>
+        public int MaximumOrder
+        {
+            get { return _maximumOrder; }
+            set
+            {
+                if(value < 0)
+                {
+                    throw new ArgumentOutOfRangeException("value");
+                }
+                if(_maximumOrder == value)
+                {
+                    return;
+                }
+
+                if(null == _samples)
+                {
+                    _maximumOrder = value;
+                    _effectiveOrder = -1;
+                    return;
+                }
+
+                _maximumOrder = value;
+                _effectiveOrder = Math.Min(value, _samples.Count);
+            }
+        }
+
+        /// <summary>
+        /// The interpolation order that is effectively used.
+        /// </summary>
+        /// <seealso cref="MaximumOrder"/>
+        public int EffectiveOrder
+        {
+            get { return _effectiveOrder; }
         }
 
         /// <summary>
         /// Interpolate at point t.
         /// </summary>
-        public double Interpolate(double t)
+        public
+        double
+        Interpolate(
+            double t
+            )
         {
             double error;
             return Interpolate(t, out error);
@@ -67,55 +133,75 @@ namespace MathNet.Numerics.Interpolation
         /// <summary>
         /// Interpolate at point t and return the estimated error as error-parameter.
         /// </summary>
-        public double Interpolate(double t, out double error)
+        public
+        double
+        Interpolate(
+            double t,
+            out double error
+            )
         {
-            if(samples == null)
+            if(null == _samples)
+            {
                 throw new InvalidOperationException(Resources.InvalidOperationNoSamplesProvided);
+            }
 
             int closestIndex;
             int offset = SuggestOffset(t, out closestIndex);
-            double[] c = new double[effectiveOrder];
-            double[] d = new double[effectiveOrder];
+            double[] c = new double[_effectiveOrder];
+            double[] d = new double[_effectiveOrder];
             int ns = closestIndex - offset;
             double den, ho, hp;
             double x = 0;
             error = 0;
 
-            if(samples.GetT(closestIndex) == t)
-                return samples.GetX(closestIndex);
-
-            for(int i = 0; i < effectiveOrder; i++)
+            if(_samples.GetT(closestIndex) == t)
             {
-                c[i] = samples.GetX(offset + i);
+                return _samples.GetX(closestIndex);
+            }
+
+            for(int i = 0; i < _effectiveOrder; i++)
+            {
+                c[i] = _samples.GetX(offset + i);
                 d[i] = c[i];
             }
 
-            x = samples.GetX(offset + ns--);
-            for(int level = 1; level < effectiveOrder; level++)
+            x = _samples.GetX(offset + ns--);
+            for(int level = 1; level < _effectiveOrder; level++)
             {
-                for(int i = 0; i < effectiveOrder - level; i++)
+                for(int i = 0; i < _effectiveOrder - level; i++)
                 {
-                    ho = samples.GetT(offset + i) - t;
-                    hp = samples.GetT(offset + i + level) - t;
+                    ho = _samples.GetT(offset + i) - t;
+                    hp = _samples.GetT(offset + i + level) - t;
                     den = (c[i + 1] - d[i]) / (ho - hp);
                     d[i] = hp * den;
                     c[i] = ho * den;
                 }
-                error = (2 * (ns + 1) < (effectiveOrder - level) ? c[ns + 1] : d[ns--]);
+                error = (2 * (ns + 1) < (_effectiveOrder - level) ? c[ns + 1] : d[ns--]);
                 x += error;
             }
 
             return x;
         }
 
-        private int SuggestOffset(double t, out int closestIndex)
+        int
+        SuggestOffset(
+            double t,
+            out int closestIndex
+            )
         {
-            closestIndex = Math.Max(samples.Locate(t), 0);
-            int ret = Math.Min(Math.Max(closestIndex - (effectiveOrder - 1) / 2, 0), samples.Count - effectiveOrder);
-            if(closestIndex < (samples.Count - 1))
+            closestIndex = Math.Max(_samples.Locate(t), 0);
+            int ret = Math.Min(
+                Math.Max(
+                    closestIndex - (_effectiveOrder - 1) / 2,
+                    0
+                    ),
+                _samples.Count - _effectiveOrder
+                );
+
+            if(closestIndex < (_samples.Count - 1))
             {
-                double dist1 = Math.Abs(t - samples.GetT(closestIndex));
-                double dist2 = Math.Abs(t - samples.GetT(closestIndex + 1));
+                double dist1 = Math.Abs(t - _samples.GetT(closestIndex));
+                double dist2 = Math.Abs(t - _samples.GetT(closestIndex + 1));
 
                 if(dist1 > dist2)
                 {
@@ -128,7 +214,11 @@ namespace MathNet.Numerics.Interpolation
         /// <summary>
         /// Extrapolate at point t.
         /// </summary>
-        public double Extrapolate(double t)
+        public
+        double
+        Extrapolate(
+            double t
+            )
         {
             return Interpolate(t);
         }
