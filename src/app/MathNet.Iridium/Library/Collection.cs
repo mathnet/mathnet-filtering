@@ -138,7 +138,7 @@ namespace MathNet.Numerics
                 {
                     ICollection c1Bis = c1;
                     c1 = c2;
-                    c2 = c1;
+                    c2 = c1Bis;
                 }
 
                 Hashtable table = new Hashtable(c1.Count);
