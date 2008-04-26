@@ -143,13 +143,8 @@ namespace MathNet.Numerics
         double real;
         double imag;
 
-        private Complex(double real, double imag)
-        {
-            this.real = real;
-            this.imag = imag;
-        }
-
         #region Normalization
+
         // TODO: method NormalizeToUnityOrNull is never called.
         void
         NormalizeToUnityOrNull()
@@ -190,9 +185,20 @@ namespace MathNet.Numerics
                 }
             }
         }
+
         #endregion
 
         #region Constructors and Constants
+
+        public
+        Complex(
+            double real,
+            double imag
+            )
+        {
+            this.real = real;
+            this.imag = imag;
+        }
 
         /// <summary>Constructs a <c>Complex</c> from its real
         /// and imaginary parts.</summary>
@@ -217,8 +223,14 @@ namespace MathNet.Numerics
             double argument
             )
         {
-            if(modulus < 0d) throw new ArgumentOutOfRangeException("modulus", modulus,
-                                 Resources.ArgumentNotNegative);
+            if(modulus < 0d)
+            {
+                throw new ArgumentOutOfRangeException(
+                    "modulus",
+                    modulus,
+                    Resources.ArgumentNotNegative
+                    );
+            }
 
             return new Complex(
                 modulus * Math.Cos(argument),
@@ -344,8 +356,14 @@ namespace MathNet.Numerics
             get { return Math.Sqrt(real * real + imag * imag); }
             set
             {
-                if(value < 0d) throw new ArgumentOutOfRangeException("value", value,
-                                   Resources.ArgumentNotNegative);
+                if(value < 0d)
+                {
+                    throw new ArgumentOutOfRangeException(
+                        "value",
+                        value,
+                        Resources.ArgumentNotNegative
+                        );
+                }
 
                 if(double.IsInfinity(value))
                 {
@@ -379,8 +397,14 @@ namespace MathNet.Numerics
             get { return real * real + imag * imag; }
             set
             {
-                if(value < 0d) throw new ArgumentOutOfRangeException("value", value,
-                                   Resources.ArgumentNotNegative);
+                if(value < 0d)
+                {
+                    throw new ArgumentOutOfRangeException(
+                        "value",
+                        value,
+                        Resources.ArgumentNotNegative
+                        );
+                }
 
                 if(double.IsInfinity(value))
                 {
@@ -413,9 +437,13 @@ namespace MathNet.Numerics
             get
             {
                 if(imag == 0 && real < 0)
+                {
                     return Math.PI;
+                }
                 if(imag == 0 && real >= 0)
+                {
                     return 0;
+                }
                 return Math.Atan2(imag, real);
             }
             set
@@ -586,7 +614,9 @@ namespace MathNet.Numerics
         public static Complex operator /(Complex dividend, Complex divisor)
         {
             if(divisor.IsZero)
+            {
                 return Complex.Infinity;
+            }
             double z2mod = divisor.ModulusSquared;
             return new Complex((dividend.real * divisor.real + dividend.imag * divisor.imag) / z2mod, (dividend.imag * divisor.real - dividend.real * divisor.imag) / z2mod);
         }
@@ -595,7 +625,9 @@ namespace MathNet.Numerics
         public static Complex operator /(double dividend, Complex divisor)
         {
             if(divisor.IsZero)
+            {
                 return Complex.Infinity;
+            }
             double zmod = divisor.ModulusSquared;
             return new Complex(dividend * divisor.real / zmod, -dividend * divisor.imag / zmod);
         }
@@ -604,7 +636,9 @@ namespace MathNet.Numerics
         public static Complex operator /(Complex dividend, double divisor)
         {
             if(divisor == 0)
+            {
                 return Complex.Infinity;
+            }
             return new Complex(dividend.real / divisor, dividend.imag / divisor);
         }
 
@@ -1107,27 +1141,54 @@ namespace MathNet.Numerics
         /// <summary>Formats this <c>Complex</c> into a <c>string</c>.</summary>
         public string ToString(NumberFormatInfo numberFormat)
         {
-            if(IsInfinity) return "Infinity";
+            if(IsInfinity)
+            {
+                return "Infinity";
+            }
 
-            if(IsNaN) return numberFormat.NaNSymbol;
+            if(IsNaN)
+            {
+                return numberFormat.NaNSymbol;
+            }
 
-            if(imag == 0) return real.ToString(numberFormat);
+            if(imag == 0)
+            {
+                return real.ToString(numberFormat);
+            }
 
             // note: there's a difference between the negative sign and the subtraction operator!
             if(real == 0)
             {
-                if(imag == 1) return "I";
-                if(imag == -1) return numberFormat.NegativeSign + "I";
-                if(imag < 0) return numberFormat.NegativeSign + "I*" + (-imag).ToString(numberFormat);
+                if(imag == 1)
+                {
+                    return "I";
+                }
+                if(imag == -1)
+                {
+                    return numberFormat.NegativeSign + "I";
+                }
+                if(imag < 0)
+                {
+                    return numberFormat.NegativeSign + "I*" + (-imag).ToString(numberFormat);
+                }
 
                 return "I*" + imag.ToString(numberFormat);
             }
             else
             {
-                if(imag == 1) return real.ToString(numberFormat) + "+I";
-                if(imag == -1) return real.ToString(numberFormat) + "-I";
-                if(imag < 0) return real.ToString(numberFormat) + "-I*"
-                    + (-imag).ToString(numberFormat);
+                if(imag == 1)
+                {
+                    return real.ToString(numberFormat) + "+I";
+                }
+                if(imag == -1)
+                {
+                    return real.ToString(numberFormat) + "-I";
+                }
+                if(imag < 0)
+                {
+                    return real.ToString(numberFormat) + "-I*"
+                       + (-imag).ToString(numberFormat);
+                }
 
                 return real.ToString() + "+I*" + imag.ToString(numberFormat);
             }
@@ -1140,7 +1201,11 @@ namespace MathNet.Numerics
             string source;
             NumberFormatInfo numberFormat;
 
-            public ComplexParser(string complex, NumberFormatInfo numberFormat)
+            public
+            ComplexParser(
+                string complex,
+                NumberFormatInfo numberFormat
+                )
             {
                 this.numberFormat = numberFormat;
                 this.source = complex.ToLower().Trim();
@@ -1148,11 +1213,14 @@ namespace MathNet.Numerics
             }
 
             #region Infrastructure
-            private char Consume()
+
+            char
+            Consume()
             {
                 return source[cursor++];
             }
-            private char LookAheadCharacterOrNull
+
+            char LookAheadCharacterOrNull
             {
                 get
                 {
@@ -1162,7 +1230,8 @@ namespace MathNet.Numerics
                         return '\0';
                 }
             }
-            private char LookAheadCharacter
+
+            char LookAheadCharacter
             {
                 get
                 {
@@ -1172,39 +1241,59 @@ namespace MathNet.Numerics
                         throw new ArgumentException(Resources.ArgumentParseComplexNumber, "complex");
                 }
             }
+
             #endregion
 
             #region Scanners
-            private Complex ScanComplex()
+
+            Complex
+            ScanComplex()
             {
                 if(source.Equals("i"))
+                {
                     return Complex.I;
+                }
                 if(source.Equals(numberFormat.NaNSymbol.ToLower()))
+                {
                     return Complex.NaN;
+                }
                 if(source.Equals("infinity") || source.Equals("infty"))
+                {
                     return Complex.Infinity;
+                }
+
                 ScanSkipWhitespace();
                 Complex complex = ScanSignedComplexNumberPart();
                 ScanSkipWhitespace();
                 if(IsSign(LookAheadCharacterOrNull))
+                {
                     complex += ScanSignedComplexNumberPart();
+                }
                 return complex;
             }
-            private Complex ScanSignedComplexNumberPart()
+
+            Complex
+            ScanSignedComplexNumberPart()
             {
                 bool negativeSign = false;
                 if(IsSign(LookAheadCharacterOrNull))
                 {
                     if(IsNegativeSign(LookAheadCharacter))
+                    {
                         negativeSign = true;
+                    }
                     Consume();
                     ScanSkipWhitespace();
                 }
                 if(negativeSign)
+                {
                     return -ScanComplexNumberPart();
+                }
                 return ScanComplexNumberPart();
             }
-            private Complex ScanComplexNumberPart()
+
+            Complex
+            ScanComplexNumberPart()
             {
                 bool imaginary = false;
                 if(IsI(LookAheadCharacter))
@@ -1212,12 +1301,16 @@ namespace MathNet.Numerics
                     Consume();
                     ScanSkipWhitespace();
                     if(IsMult(LookAheadCharacterOrNull))
+                    {
                         Consume();
+                    }
                     ScanSkipWhitespace();
                     imaginary = true;
                 }
                 if(!IsNumber(LookAheadCharacterOrNull) && !IsSign(LookAheadCharacterOrNull))
+                {
                     return new Complex(0d, 1d);
+                }
                 double part = ScanNumber();
                 ScanSkipWhitespace();
                 if(IsMult(LookAheadCharacterOrNull))
@@ -1232,15 +1325,23 @@ namespace MathNet.Numerics
                     imaginary = true;
                 }
                 if(imaginary)
+                {
                     return new Complex(0d, part);
+                }
                 else
+                {
                     return new Complex(part, 0d);
+                }
             }
-            private double ScanNumber()
+
+            double
+            ScanNumber()
             {
                 StringBuilder sb = new StringBuilder();
                 if(IsSign(LookAheadCharacter))
+                {
                     sb.Append(Consume());
+                }
                 ScanSkipWhitespace();
                 ScanInteger(sb);
                 ScanSkipWhitespace();
@@ -1255,66 +1356,120 @@ namespace MathNet.Numerics
                     Consume();
                     sb.Append('e');
                     if(IsSign(LookAheadCharacter))
+                    {
                         sb.Append(Consume());
+                    }
                     ScanInteger(sb);
                 }
-                return double.Parse(sb.ToString(), NumberStyles.AllowDecimalPoint | NumberStyles.AllowExponent | NumberStyles.AllowLeadingSign, numberFormat);
+                return double.Parse(
+                    sb.ToString(),
+                    NumberStyles.AllowDecimalPoint | NumberStyles.AllowExponent | NumberStyles.AllowLeadingSign,
+                    numberFormat
+                    );
             }
-            private void ScanInteger(StringBuilder sb)
+
+            void
+            ScanInteger(
+                StringBuilder sb
+                )
             {
                 sb.Append(Consume());
                 while(IsNumber(LookAheadCharacterOrNull) || IsGroup(LookAheadCharacterOrNull))
                 {
                     char c = Consume();
                     if(!IsGroup(c))
+                    {
                         sb.Append(c);
+                    }
                 }
             }
-            private void ScanSkipWhitespace()
+
+            void
+            ScanSkipWhitespace()
             {
                 while(cursor < source.Length && !IsNotWhiteSpace(LookAheadCharacter))
+                {
                     Consume();
+                }
             }
+
             #endregion
 
             #region Indicators
-            private bool IsNotWhiteSpace(char c)
+
+            bool
+            IsNotWhiteSpace(
+                char c
+                )
             {
                 return IsNumber(c) || IsDecimal(c) || IsE(c) || IsI(c) || IsSign(c) || IsMult(c);
             }
-            private bool IsNumber(char c)
+            
+            bool
+            IsNumber(
+                char c
+                )
             {
                 // TODO: consider using numberFormat.NativeDigits
                 return c >= '0' && c <= '9';
             }
-            private bool IsDecimal(char c)
+            
+            bool
+            IsDecimal(
+                char c
+                )
             {
                 return numberFormat.NumberDecimalSeparator.Equals(c.ToString());
             }
-            private bool IsGroup(char c)
+
+            bool
+            IsGroup(
+                char c
+                )
             {
                 return numberFormat.NumberGroupSeparator.Equals(c.ToString());
             }
-            private bool IsE(char c)
+
+            bool
+            IsE(
+                char c
+                )
             {
                 return c == 'e';
             }
-            private bool IsI(char c)
+
+            bool
+            IsI(
+                char c
+                )
             {
                 return c == 'i' || c == 'j';
             }
-            private bool IsSign(char c)
+
+            bool
+            IsSign(
+                char c
+                )
             {
                 return numberFormat.PositiveSign.Equals(c.ToString()) || numberFormat.NegativeSign.Equals(c.ToString());
             }
-            private bool IsNegativeSign(char c)
+
+            bool
+            IsNegativeSign(
+                char c
+                )
             {
                 return numberFormat.NegativeSign.Equals(c.ToString());
             }
-            private bool IsMult(char c)
+
+            bool
+            IsMult(
+                char c
+                )
             {
                 return c == '*';
             }
+
             #endregion
 
             public Complex Complex
