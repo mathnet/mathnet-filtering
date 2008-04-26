@@ -18,6 +18,7 @@
 // License along with this program; if not, write to the Free Software
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
+
 using System;
 using MathNet.Numerics.LinearAlgebra;
 using MathNet.SignalProcessing.Properties;
@@ -37,6 +38,7 @@ namespace MathNet.SignalProcessing.Filter.Kalman
     /// </summary>
     public interface IKalmanFilter
     {
+
         /// <summary>
         /// The covariance of the current state estimate.
         /// </summary>
@@ -44,6 +46,7 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         {
             get;
         }
+
         /// <summary>
         /// The current best estimate of the state of the system.
         /// </summary>
@@ -57,6 +60,7 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         /// </summary>
         /// <param name="F">The state transition matrix.</param>
         void Predict(Matrix F);
+
         /// <summary>
         /// Perform a prediction of the next state of the system.
         /// </summary>
@@ -64,8 +68,8 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         /// <param name="G">The linear equations to describe the effect of the noise
         /// on the system.</param>
         /// <param name="Q">The covariance of the noise acting on the system.</param>
-
         void Predict(Matrix F, Matrix G, Matrix Q);
+
         /// <summary>
         /// Updates the state estimate and covariance of the system based on the
         /// given measurement.
@@ -75,6 +79,7 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         /// measurements and state variables.</param>
         /// <param name="R">The covariance matrix of the measurements.</param>
         void Update(Matrix z, Matrix H, Matrix R);
+
     }
 
     /// <summary>
@@ -83,6 +88,7 @@ namespace MathNet.SignalProcessing.Filter.Kalman
     /// </summary>
     internal abstract class KalmanFilter
     {
+
         /// <summary>
         /// Checks that a state vector and covariance matrix are of the correct
         /// dimensions.
@@ -92,12 +98,11 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         /// <exception cref="System.ArgumentException">Thrown when the x0 matrix is not
         /// a column vector, or when the P0 matrix is not a square matrix of the same order
         /// as the number of state variables.</exception>
-        public
-            static
-            void
-            CheckInitialParameters(
-                Matrix x0,
-                Matrix P0
+        public static
+        void
+        CheckInitialParameters(
+            Matrix x0,
+            Matrix P0
             )
         {
             // x0 should be a column vector
@@ -124,14 +129,13 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         /// and rows as Q.</item>
         /// <item>Q is non-square.</item>
         /// </list></exception>
-        public
-            static
-            void
-            CheckPredictParameters(
-                Matrix F,
-                Matrix G,
-                Matrix Q,
-                IKalmanFilter filter
+        public static
+        void
+        CheckPredictParameters(
+            Matrix F,
+            Matrix G,
+            Matrix Q,
+            IKalmanFilter filter
             )
         {
             // State transition should be n-by-n matrix (n is number of state variables)
@@ -154,13 +158,12 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         /// <exception cref="System.ArgumentException">Thrown when either transition
         /// or process noise matrices are non-square and/or have a number of rows/cols not
         /// equal to the number of state variables for the filter.</exception>
-        public
-            static
-            void
-            CheckPredictParameters(
-                Matrix F,
-                Matrix Q,
-                IKalmanFilter filter
+        public static
+        void
+        CheckPredictParameters(
+            Matrix F,
+            Matrix Q,
+            IKalmanFilter filter
             )
         {
             // State transition should be n-by-n matrix (n is number of state variables)
@@ -178,12 +181,11 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         /// <exception cref="System.ArgumentException">Thrown when the transition
         /// matrix is non-square or does not have the same number of rows/cols as there
         /// are state variables in the given filter.</exception>
-        public
-            static
-            void
-            CheckPredictParameters(
-                Matrix F,
-                IKalmanFilter filter
+        public static
+        void
+        CheckPredictParameters(
+            Matrix F,
+            IKalmanFilter filter
             )
         {
             // State transition should be n-by-n matrix (n is number of state variables)
@@ -201,14 +203,13 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         /// <list type="bullet"><item>z is not a column vector.</item>
         /// <item>H does not have same number of rows as z and columns as R.</item>
         /// <item>R is non square.</item></list></exception>
-        public
-            static
-            void
-            CheckUpdateParameters(
-                Matrix z,
-                Matrix H,
-                Matrix R,
-                IKalmanFilter filter
+        public static
+        void
+        CheckUpdateParameters(
+            Matrix z,
+            Matrix H,
+            Matrix R,
+            IKalmanFilter filter
             )
         {
             if(z.ColumnCount != 1)

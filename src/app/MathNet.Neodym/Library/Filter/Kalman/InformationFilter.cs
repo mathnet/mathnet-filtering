@@ -33,9 +33,12 @@ namespace MathNet.SignalProcessing.Filter.Kalman
     /// prediction, and a less complex update. This makes it suitable for situations
     /// where large numbers of measurements are used for state estimates, or when
     /// the state of the system does not need to be known too frequently.</remarks>
-    public class InformationFilter : IKalmanFilter
+    public class InformationFilter :
+        IKalmanFilter
     {
+
         #region Public members
+
         /// <summary>
         /// The covariance of the current state estimate.
         /// </summary>
@@ -65,13 +68,14 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         #endregion
 
         #region Contructors
+
         /// <summary>
         /// Creates an Information Filter from a given Kalman Filter.
         /// </summary>
         /// <param name="kf">The filter used to derive the information filter.</param>
         public
-            InformationFilter(
-                IKalmanFilter kf
+        InformationFilter(
+            IKalmanFilter kf
             )
         {
             this.J = kf.Cov.Inverse();
@@ -85,12 +89,13 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         /// <param name="x0">Initial estimate of state variables.</param>
         /// <param name="P0">Covaraince of state variable estimates.</param>
         public
-            InformationFilter(
-                Matrix x0,
-                Matrix P0
+        InformationFilter(
+            Matrix x0,
+            Matrix P0
             )
         {
             KalmanFilter.CheckInitialParameters(x0, P0);
+
             this.J = P0.Inverse();
             this.y = this.J * x0;
             this.I = Matrix.Identity(this.y.RowCount, this.y.RowCount);
@@ -108,13 +113,14 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         /// Otherwise, in relation to the given state/covariance should satisfy:<BR></BR>
         /// <C>cov = J = P0 ^ -1, state = y = J * x0.</C></remarks>
         public
-            InformationFilter(
-                Matrix state,
-                Matrix cov,
-                bool inverted
+        InformationFilter(
+            Matrix state,
+            Matrix cov,
+            bool inverted
             )
         {
             KalmanFilter.CheckInitialParameters(state, cov);
+
             if(inverted)
             {
                 this.J = cov;
@@ -140,12 +146,13 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         /// transition matrix does not have the same number of row/columns as there
         /// are variables in the state vector.</exception>
         public
-            void
-            Predict(
-                Matrix F
+        void
+        Predict(
+            Matrix F
             )
         {
             KalmanFilter.CheckPredictParameters(F, this);
+
             // Easier just to convert back to discrete form....
             Matrix P = this.J.Inverse();
             Matrix x = P * this.y;
@@ -170,10 +177,10 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         /// this case, is a square matrix corresponding to the state transition and
         /// the state of the system.</remarks>
         public
-            void
-            Predict(
-                Matrix F,
-                Matrix Q
+        void
+        Predict(
+            Matrix F,
+            Matrix Q
             )
         {
             // We will need these matrices more than once...
@@ -202,11 +209,11 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         /// the effect on the system of that plant noise.
         /// </remarks>
         public
-            void
-            Predict(
-                Matrix F,
-                Matrix G,
-                Matrix Q
+        void
+        Predict(
+            Matrix F,
+            Matrix G,
+            Matrix Q
             )
         {
             // Some matrices we will need a bit
@@ -235,14 +242,15 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         /// <exception cref="System.ArgumentException">Thrown when given matrices
         /// are of the incorrect size.</exception>
         public
-            void
-            Update(
-                Matrix z,
-                Matrix H,
-                Matrix R
+        void
+        Update(
+            Matrix z,
+            Matrix H,
+            Matrix R
             )
         {
             KalmanFilter.CheckUpdateParameters(z, H, R, this);
+
             // Fiddle with the matrices
             Matrix HT = Matrix.Transpose(H);
             Matrix RI = R.Inverse();
@@ -251,21 +259,26 @@ namespace MathNet.SignalProcessing.Filter.Kalman
             this.y = this.y + (HT * RI * z);
             this.J = this.J + (HT * RI * H);
         }
+
         #endregion
 
         #region Protected members
+
         /// <summary>
         /// Inverse of covariance matrix.
         /// </summary>
         protected Matrix J;
+
         /// <summary>
         /// State of information filter.
         /// </summary>
         protected Matrix y;
+
         /// <summary>
         /// Identity matrix used in operations.
         /// </summary>
         protected Matrix I;
+
         #endregion
     }
 }

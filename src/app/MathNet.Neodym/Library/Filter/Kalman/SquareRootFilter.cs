@@ -35,9 +35,12 @@ namespace MathNet.SignalProcessing.Filter.Kalman
     /// form, and uses a Thornton UD update and a Bierman observational update algorithm.
     /// This means that there are no square roots performed as part of this.</para>
     /// </remarks>
-    public class SquareRootFilter : IKalmanFilter
+    public class SquareRootFilter :
+        IKalmanFilter
     {
+
         #region Public fields
+
         /// <summary>
         /// The estimate of the current state of the system.
         /// </summary>
@@ -57,18 +60,20 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         #endregion // Public fields
 
         #region Constructors
+
         /// <summary>
         /// Creates a square root filter with given initial state.
         /// </summary>
         /// <param name="x0">Initial state estimate.</param>
         /// <param name="P0">Covariance of initial state estimate.</param>
         public
-            SquareRootFilter(
-                Matrix x0,
-                Matrix P0
+        SquareRootFilter(
+            Matrix x0,
+            Matrix P0
             )
         {
             KalmanFilter.CheckInitialParameters(x0, P0);
+
             // Decompose the covariance matrix
             Matrix[] UDU = UDUDecomposition(P0);
             this.U = UDU[0];
@@ -79,6 +84,7 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         #endregion // Constructors
 
         #region Kalman Filter Prediction
+
         /// <summary>
         /// Performs a prediction of the state of the system after a given transition.
         /// </summary>
@@ -87,9 +93,9 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         /// transition matrix does not have the same number of row/columns as there
         /// are variables in the state vector.</exception>
         public
-            void
-            Predict(
-                Matrix F
+        void
+        Predict(
+            Matrix F
             )
         {
             KalmanFilter.CheckPredictParameters(F, this);
@@ -108,28 +114,32 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         /// <exception cref="System.ArgumentException">Thrown when the given matrices
         /// are not the correct dimensions.</exception>
         public
-            void
-            Predict(
-                Matrix F,
-                Matrix G,
-                Matrix Q
+        void
+        Predict(
+            Matrix F,
+            Matrix G,
+            Matrix Q
             )
         {
             KalmanFilter.CheckPredictParameters(F, G, Q, this);
 
             // Update the state.. that is easy!!
             this.x = F * this.x;
+
             // Get all the sized and create storage
             int n = this.x.RowCount;
             int p = G.ColumnCount;
             Matrix outD = new Matrix(n, n);      // Updated diagonal matrix
             Matrix outU = Matrix.Identity(n, n); // Updated upper unit triangular
+
             // Get the UD Decomposition of the process noise matrix
             Matrix[] UDU = UDUDecomposition(Q);
             Matrix Uq = UDU[0];
             Matrix Dq = UDU[1];
+
             // Combine it with the noise coupling matrix
             Matrix Gh = G * Uq;
+
             // Convert state transition matrix
             Matrix PhiU = F * (new Matrix(this.U));
 
@@ -190,11 +200,11 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         /// <exception cref="System.ArgumentException">Thrown when given matrices
         /// are of the incorrect size.</exception>
         public
-            void
-            Update(
-                Matrix z,
-                Matrix H,
-                Matrix R
+        void
+        Update(
+            Matrix z,
+            Matrix H,
+            Matrix R
             )
         {
             // Diagonalise the given covariance matrix R
@@ -214,7 +224,12 @@ namespace MathNet.SignalProcessing.Filter.Kalman
             }
         }
 
-        private void Update(double z, Matrix H, double R)
+        void
+        Update(
+            double z,
+            Matrix H,
+            double R
+            )
         {
             Matrix a = Matrix.Transpose(U) * Matrix.Transpose(H);
             Matrix b = this.D * a;
@@ -244,7 +259,11 @@ namespace MathNet.SignalProcessing.Filter.Kalman
 
         #region UDU Decomposition
 
-        private static Matrix[] UDUDecomposition(Matrix Arg)
+        static
+        Matrix[]
+        UDUDecomposition(
+            Matrix Arg
+            )
         {
             // Initialise some values
             int n = Arg.RowCount;     // Number of elements in matrix
@@ -283,14 +302,17 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         #endregion // UDU Decomposition
 
         #region Protected Members
+
         /// <summary>
         /// Upper unit triangular matrix of decomposed covariance.
         /// </summary>
         protected Matrix U;
+
         /// <summary>
         /// Diagonal matrix of decomposed covariance.
         /// </summary>
         protected Matrix D;
+
         /// <summary>
         /// State estimate of system.
         /// </summary>
@@ -298,6 +320,4 @@ namespace MathNet.SignalProcessing.Filter.Kalman
 
         #endregion // Protected Members
     }
-
-
 }

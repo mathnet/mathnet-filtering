@@ -18,6 +18,7 @@
 // License along with this program; if not, write to the Free Software
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
+
 using System;
 using MathNet.Numerics.LinearAlgebra;
 
@@ -42,9 +43,12 @@ namespace MathNet.SignalProcessing.Filter.Kalman
     ///             P(k|k) = (I-K(k)*H(k))*P(k|k-1)
     ///             x(k|k) = x(k|k-1)+K(k)*(z(k)-H(k)*x(k|k-1))
     /// </code></remarks>
-    public class DiscreteKalmanFilter : IKalmanFilter
+    public class DiscreteKalmanFilter :
+        IKalmanFilter
     {
+
         #region Public Fields
+
         /// <summary>
         /// The covariance of the current state of the filter. Higher covariances
         /// indicate a lower confidence in the state estimate.
@@ -53,6 +57,7 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         {
             get { return this.P; }
         }
+
         /// <summary>
         /// The best estimate of the current state of the system.
         /// </summary>
@@ -64,10 +69,12 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         #endregion // Public Fields
 
         #region Protected Members
+
         /// <summary>
         /// The current state of the system.
         /// </summary>
         protected Matrix x;
+
         /// <summary>
         /// The current covariance of the estimated state of the system.
         /// </summary>
@@ -76,6 +83,7 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         #endregion
 
         #region Constructors
+
         /// <summary>
         /// Creates a new Discrete Time Kalman Filter with the given values for
         /// the initial state and the covariance of that state.
@@ -84,9 +92,10 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         /// <param name="P0">The covariance of the initial state estimate. If unsure
         /// about initial state, set to a large value</param>
         public
-            DiscreteKalmanFilter(
-                Matrix x0,
-                Matrix P0)
+        DiscreteKalmanFilter(
+            Matrix x0,
+            Matrix P0
+            )
         {
             KalmanFilter.CheckInitialParameters(x0, P0);
 
@@ -106,12 +115,13 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         /// transition matrix does not have the same number of row/columns as there
         /// are variables in the state vector.</exception>
         public
-            void
-            Predict(
+        void
+        Predict(
             Matrix F
-        )
+            )
         {
             KalmanFilter.CheckPredictParameters(F, this);
+
             this.x = F * this.x;
             this.P = (F * P * Matrix.Transpose(F));
         }
@@ -129,13 +139,14 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         /// this case, is a square matrix corresponding to the state transition and
         /// the state of the system.</remarks>
         public
-            void
-            Predict(
+        void
+        Predict(
             Matrix F,
             Matrix Q
-        )
+            )
         {
             KalmanFilter.CheckPredictParameters(F, Q, this);
+
             // Predict the state
             this.x = F * x;
             this.P = (F * P * Matrix.Transpose(F)) + Q;
@@ -156,15 +167,17 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         /// the effect on the system of that plant noise.
         /// </remarks>
         public
-            void
-            Predict(
+        void
+        Predict(
             Matrix F,
             Matrix G,
             Matrix Q
-        )
+            )
         {
             KalmanFilter.CheckPredictParameters(F, G, Q, this);
-            this.x = F * x;      // State prediction
+
+            // State prediction
+            this.x = F * x;      
             // Covariance update
             this.P = (F * P * Matrix.Transpose(F)) + (G * Q * Matrix.Transpose(G));
         }
@@ -184,14 +197,15 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         /// <exception cref="System.ArgumentException">Thrown when given matrices
         /// are of the incorrect size.</exception>
         public
-            void
-            Update(
+        void
+        Update(
             Matrix z,
             Matrix H,
             Matrix R
-        )
+            )
         {
             KalmanFilter.CheckUpdateParameters(z, H, R, this);
+
             // We need to use transpose of H a couple of times.
             Matrix Ht = Matrix.Transpose(H);
             Matrix I = Matrix.Identity(x.RowCount, x.RowCount);
