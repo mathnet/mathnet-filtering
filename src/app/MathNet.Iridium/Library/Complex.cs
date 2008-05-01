@@ -28,7 +28,9 @@ using MathNet.Numerics.Properties;
 
 namespace MathNet.Numerics
 {
-    /// <summary>Complex numbers class.</summary>
+    /// <summary>
+    /// Complex numbers class.
+    /// </summary>
     /// <remarks>
     /// <p>The class <c>Complex</c> provides all elementary operations
     /// on complex numbers. All the operators <c>+</c>, <c>-</c>,
@@ -190,6 +192,10 @@ namespace MathNet.Numerics
 
         #region Constructors and Constants
 
+        /// <summary>
+        /// Constructs a <c>Complex</c> from its real
+        /// and imaginary parts.
+        /// </summary>
         public
         Complex(
             double real,
@@ -200,8 +206,10 @@ namespace MathNet.Numerics
             this.imag = imag;
         }
 
-        /// <summary>Constructs a <c>Complex</c> from its real
-        /// and imaginary parts.</summary>
+        /// <summary>
+        /// Constructs a <c>Complex</c> from its real
+        /// and imaginary parts.
+        /// </summary>
         public static
         Complex
         FromRealImaginary(
@@ -212,8 +220,10 @@ namespace MathNet.Numerics
             return new Complex(real, imag);
         }
 
-        /// <summary>Constructs a <c>Complex</c> from its modulus and
-        /// argument.</summary>
+        /// <summary>
+        /// Constructs a <c>Complex</c> from its modulus and
+        /// argument.
+        /// </summary>
         /// <param name="modulus">Must be non-negative.</param>
         /// <param name="argument">Real number.</param>
         public static
@@ -238,89 +248,119 @@ namespace MathNet.Numerics
                 );
         }
 
-        /// <summary>Represents the zero value. This field is constant.</summary>
+        /// <summary>
+        /// Represents the zero value. This field is constant.
+        /// </summary>
         public static Complex Zero
         {
             get { return new Complex(0d, 0d); }
         }
 
-        /// <summary>Indicates whether the <c>Complex</c> is zero.</summary>
+        /// <summary>
+        /// Indicates whether the <c>Complex</c> is zero.
+        /// </summary>
         public bool IsZero
         {
             get { return real == 0 && imag == 0; }
         }
 
-        /// <summary>Represents the <c>1</c> value. This field is constant.</summary>
+        /// <summary>
+        /// Represents the <c>1</c> value. This field is constant.
+        /// </summary>
         public static Complex One
         {
             get { return new Complex(1d, 0d); }
         }
 
-        /// <summary>Indicates whether the <c>Complex</c> is one.</summary>
+        /// <summary>
+        /// Indicates whether the <c>Complex</c> is one.
+        /// </summary>
         public bool IsOne
         {
             get { return real == 1 && imag == 0; }
         }
 
-        /// <summary>Represents the imaginary unit number. This field is constant.</summary>
+        /// <summary>
+        /// Represents the imaginary unit number. This field is constant.
+        /// </summary>
         public static Complex I
         {
             get { return new Complex(0d, 1d); }
         }
 
-        /// <summary>Indicates whether the <c>Complex</c> is the imaginary unit.</summary>
+        /// <summary>
+        /// Indicates whether the <c>Complex</c> is the imaginary unit.
+        /// </summary>
         public bool IsI
         {
             get { return real == 0 && imag == 1; }
         }
 
-        /// <summary>Represents a value that is not a number. This field is constant.</summary>
+        /// <summary>
+        /// Represents a value that is not a number. This field is constant.
+        /// </summary>
         public static Complex NaN
         {
             get { return new Complex(double.NaN, double.NaN); }
         }
 
-        /// <summary>Indicates whether the provided <c>Complex</c> evaluates to a
-        /// value that is not a number.</summary>
+        /// <summary>
+        /// Indicates whether the provided <c>Complex</c> evaluates to a
+        /// value that is not a number.
+        /// </summary>
         public bool IsNaN
         {
             get { return double.IsNaN(real) || double.IsNaN(imag); }
         }
 
-        /// <summary>Represents the infinity value. This field is constant.</summary>
-        /// <remarks>The semantic associated to this value is a <c>Complex</c> of 
+        /// <summary>
+        /// Represents the infinity value. This field is constant.
+        /// </summary>
+        /// <remarks>
+        /// The semantic associated to this value is a <c>Complex</c> of 
         /// infinite real and imaginary part. If you need more formal complex
         /// number handling (according to the Riemann Sphere and the extended
         /// complex plane C*, or using directed infinity) please check out the
         /// alternative MathNet.PreciseNumerics and MathNet.Symbolics packages
-        /// instead.</remarks>
+        /// instead.
+        /// </remarks>
         public static Complex Infinity
         {
             get { return new Complex(double.PositiveInfinity, double.PositiveInfinity); }
         }
 
-        /// <summary>Indicates the provided <c>Complex</c> evaluates to an
-        /// infinite value.</summary>
-        /// <remarks>True if it either evaluates to a complex infinity
-        /// or to a directed infinity.</remarks>
+        /// <summary>
+        /// Indicates the provided <c>Complex</c> evaluates to an
+        /// infinite value.
+        /// </summary>
+        /// <remarks>
+        /// True if it either evaluates to a complex infinity
+        /// or to a directed infinity.
+        /// </remarks>
         public bool IsInfinity
         {
             get { return double.IsInfinity(real) || double.IsInfinity(imag); }
         }
 
-        /// <summary>Indicates the provided <c>Complex</c> is real.</summary>
+        /// <summary>
+        /// Indicates the provided <c>Complex</c> is real.
+        /// </summary>
         public bool IsReal
         {
             get { return imag == 0; }
         }
 
-        /// <summary>Indicates the provided <c>Complex</c> is real and not negative, that is >= 0.</summary>
+        /// <summary>
+        /// Indicates the provided <c>Complex</c> is real and not negative, that is >= 0.
+        /// </summary>
         public bool IsRealNonNegative
         {
             get { return imag == 0 && real >= 0; }
         }
 
-        /// <summary>Indicates the provided <c>Complex</c> is imaginary.</summary>
+        /// <summary>
+        /// Indicates the provided <c>Complex</c> is imaginary.
+        /// </summary>
         public bool IsImaginary
         {
             get { return real == 0; }
@@ -330,7 +370,9 @@ namespace MathNet.Numerics
 
         #region Cartesian and Polar Components
 
-        /// <summary>Gets or sets the real part of this <c>Complex</c>.</summary>
+        /// <summary>
+        /// Gets or sets the real part of this <c>Complex</c>.
+        /// </summary>
         /// <seealso cref="Imag"/>
         public double Real
         {
@@ -338,7 +380,9 @@ namespace MathNet.Numerics
             set { real = value; }
         }
 
-        /// <summary>Gets or sets the imaginary part of this <c>Complex</c>.</summary>
+        /// <summary>
+        /// Gets or sets the imaginary part of this <c>Complex</c>.
+        /// </summary>
         /// <seealso cref="Real"/>
         public double Imag
         {
@@ -346,10 +390,16 @@ namespace MathNet.Numerics
             set { imag = value; }
         }
 
-        /// <summary>Gets or sets the modulus of this <c>Complex</c>.</summary>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown if an attempt
-        /// is made to set a negative modulus.</exception>
-        /// <remarks>If this <c>Complex</c> is zero when the modulus is set, the Complex is assumed to be positive real with an argument of zero.</remarks>
+        /// <summary>
+        /// Gets or sets the modulus of this <c>Complex</c>.
+        /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown if an attempt is made to set a negative modulus.
+        /// </exception>
+        /// <remarks>
+        /// If this <c>Complex</c> is zero when the modulus is set,
+        /// the Complex is assumed to be positive real with an argument of zero.
+        /// </remarks>
         /// <seealso cref="Argument"/>
         public double Modulus
         {
@@ -387,10 +437,16 @@ namespace MathNet.Numerics
             }
         }
 
-        /// <summary>Gets or sets the squared modulus of this <c>Complex</c>.</summary>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown if an attempt
-        /// is made to set a negative modulus.</exception>
-        /// <remarks>If this <c>Complex</c> is zero when the modulus is set, the Complex is assumed to be positive real with an argument of zero.</remarks>
+        /// <summary>
+        /// Gets or sets the squared modulus of this <c>Complex</c>.
+        /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// Thrown if an attempt is made to set a negative modulus.
+        /// </exception>
+        /// <remarks>
+        /// If this <c>Complex</c> is zero when the modulus is set,
+        /// the Complex is assumed to be positive real with an argument of zero.
+        /// </remarks>
         /// <seealso cref="Argument"/>
         public double ModulusSquared
         {
@@ -428,10 +484,14 @@ namespace MathNet.Numerics
             }
         }
 
-        /// <summary>Gets or sets the argument of this <c>Complex</c>.</summary>
-        /// <remarks>Argument always returns a value bigger than negative Pi and
+        /// <summary>
+        /// Gets or sets the argument of this <c>Complex</c>.
+        /// </summary>
+        /// <remarks>
+        /// Argument always returns a value bigger than negative Pi and
         /// smaller or equal to Pi. If this <c>Complex</c> is zero, the Complex
-        /// is assumed to be positive real with an argument of zero.</remarks>
+        /// is assumed to be positive real with an argument of zero.
+        /// </remarks>
         public double Argument
         {
             get
@@ -456,8 +516,11 @@ namespace MathNet.Numerics
 
         #endregion
 
-        /// <summary>Gets or sets the conjugate of this <c>Complex</c>.</summary>
-        /// <remarks>The semantic of <i>setting the conjugate</i> is such that
+        /// <summary>
+        /// Gets or sets the conjugate of this <c>Complex</c>.
+        /// </summary>
+        /// <remarks>
+        /// The semantic of <i>setting the conjugate</i> is such that
         /// <code>
         /// // a, b of type Complex
         /// a.Conjugate = b;
@@ -476,7 +539,9 @@ namespace MathNet.Numerics
 
         #region Equality & Hashing
 
-        /// <summary>Indicates whether <c>obj</c> is equal to this instance.</summary>
+        /// <summary>
+        /// Indicates whether <c>obj</c> is equal to this instance.
+        /// </summary>
         public override
         bool
         Equals(
@@ -486,7 +551,9 @@ namespace MathNet.Numerics
             return (obj is Complex) && this.Equals((Complex)obj);
         }
 
-        /// <summary>Indicates whether <c>z</c> is equal to this instance.</summary>
+        /// <summary>
+        /// Indicates whether <c>z</c> is equal to this instance.
+        /// </summary>
         public
         bool
         Equals(
@@ -499,7 +566,9 @@ namespace MathNet.Numerics
                 && (imag == other.imag);
         }
 
-        /// <summary>Gets the hashcode of this <c>Complex</c>.</summary>
+        /// <summary>
+        /// Gets the hashcode of this <c>Complex</c>.
+        /// </summary>
         public override
         int
         GetHashCode()
@@ -532,85 +601,113 @@ namespace MathNet.Numerics
 
         #region Operators
 
-        /// <summary>Equality test.</summary>
+        /// <summary>
+        /// Equality test.
+        /// </summary>
         public static bool operator ==(Complex complex1, Complex complex2)
         {
             return complex1.Equals(complex2);
         }
 
-        /// <summary>Inequality test.</summary>
+        /// <summary>
+        /// Inequality test.
+        /// </summary>
         public static bool operator !=(Complex complex1, Complex complex2)
         {
             return !complex1.Equals(complex2);
         }
 
-        /// <summary>Unary addition.</summary>
+        /// <summary>
+        /// Unary addition.
+        /// </summary>
         public static Complex operator +(Complex summand)
         {
             return summand;
         }
 
-        /// <summary>Unary minus.</summary>
+        /// <summary>
+        /// Unary minus.
+        /// </summary>
         public static Complex operator -(Complex subtrahend)
         {
             return new Complex(-subtrahend.real, -subtrahend.imag);
         }
 
-        /// <summary>Complex addition.</summary>
+        /// <summary>
+        /// Complex addition.
+        /// </summary>
         public static Complex operator +(Complex summand1, Complex summand2)
         {
             return new Complex(summand1.real + summand2.real, summand1.imag + summand2.imag);
         }
 
-        /// <summary>Complex subtraction.</summary>
+        /// <summary>
+        /// Complex subtraction.
+        /// </summary>
         public static Complex operator -(Complex minuend, Complex subtrahend)
         {
             return new Complex(minuend.real - subtrahend.real, minuend.imag - subtrahend.imag);
         }
 
-        /// <summary>Complex addition.</summary>
+        /// <summary>
+        /// Complex addition.
+        /// </summary>
         public static Complex operator +(Complex summand1, double summand2)
         {
             return new Complex(summand1.real + summand2, summand1.imag);
         }
 
-        /// <summary>Complex subtraction.</summary>
+        /// <summary>
+        /// Complex subtraction.
+        /// </summary>
         public static Complex operator -(Complex minuend, double subtrahend)
         {
             return new Complex(minuend.real - subtrahend, minuend.imag);
         }
 
-        /// <summary>Complex addition.</summary>
+        /// <summary>
+        /// Complex addition.
+        /// </summary>
         public static Complex operator +(double summand1, Complex summand2)
         {
             return new Complex(summand2.real + summand1, summand2.imag);
         }
 
-        /// <summary>Complex subtraction.</summary>
+        /// <summary>
+        /// Complex subtraction.
+        /// </summary>
         public static Complex operator -(double minuend, Complex subtrahend)
         {
             return new Complex(minuend - subtrahend.real, -subtrahend.imag);
         }
 
-        /// <summary>Complex multiplication.</summary>
+        /// <summary>
+        /// Complex multiplication.
+        /// </summary>
         public static Complex operator *(Complex multiplicand, Complex multiplier)
         {
             return new Complex(multiplicand.real * multiplier.real - multiplicand.imag * multiplier.imag, multiplicand.real * multiplier.imag + multiplicand.imag * multiplier.real);
         }
 
-        /// <summary>Complex multiplication.</summary>
+        /// <summary>
+        /// Complex multiplication.
+        /// </summary>
         public static Complex operator *(double multiplicand, Complex multiplier)
         {
             return new Complex(multiplier.real * multiplicand, multiplier.imag * multiplicand);
         }
 
-        /// <summary>Complex multiplication.</summary>
+        /// <summary>
+        /// Complex multiplication.
+        /// </summary>
         public static Complex operator *(Complex multiplicand, double multiplier)
         {
             return new Complex(multiplicand.real * multiplier, multiplicand.imag * multiplier);
         }
 
-        /// <summary>Complex division.</summary>
+        /// <summary>
+        /// Complex division.
+        /// </summary>
         public static Complex operator /(Complex dividend, Complex divisor)
         {
             if(divisor.IsZero)
@@ -621,7 +718,9 @@ namespace MathNet.Numerics
             return new Complex((dividend.real * divisor.real + dividend.imag * divisor.imag) / z2mod, (dividend.imag * divisor.real - dividend.real * divisor.imag) / z2mod);
         }
 
-        /// <summary>Complex division.</summary>
+        /// <summary>
+        /// Complex division.
+        /// </summary>
         public static Complex operator /(double dividend, Complex divisor)
         {
             if(divisor.IsZero)
@@ -632,7 +731,9 @@ namespace MathNet.Numerics
             return new Complex(dividend * divisor.real / zmod, -dividend * divisor.imag / zmod);
         }
 
-        /// <summary>Complex division.</summary>
+        /// <summary>
+        /// Complex division.
+        /// </summary>
         public static Complex operator /(Complex dividend, double divisor)
         {
             if(divisor == 0)
@@ -642,7 +743,9 @@ namespace MathNet.Numerics
             return new Complex(dividend.real / divisor, dividend.imag / divisor);
         }
 
-        /// <summary>Implicit conversion of a real double to a real <c>Complex</c>.</summary>
+        /// <summary>
+        /// Implicit conversion of a real double to a real <c>Complex</c>.
+        /// </summary>
         public static implicit operator Complex(double number)
         {
             return new Complex(number, 0d);
@@ -653,7 +756,9 @@ namespace MathNet.Numerics
 
         #region Trigonometric Functions
 
-        /// <summary>Trigonometric Sine (sin, Sinus) of this <c>Complex</c>.</summary>
+        /// <summary>
+        /// Trigonometric Sine (sin, Sinus) of this <c>Complex</c>.
+        /// </summary>
         public
         Complex
         Sine()
@@ -669,7 +774,9 @@ namespace MathNet.Numerics
                 );
         }
 
-        /// <summary>Trigonometric Cosine (cos, Cosinus) of this <c>Complex</c>.</summary>
+        /// <summary>
+        /// Trigonometric Cosine (cos, Cosinus) of this <c>Complex</c>.
+        /// </summary>
         public
         Complex
         Cosine()
@@ -685,7 +792,9 @@ namespace MathNet.Numerics
                 );
         }
 
-        /// <summary>Trigonometric Tangent (tan, Tangens) of this <c>Complex</c>.</summary>
+        /// <summary>
+        /// Trigonometric Tangent (tan, Tangens) of this <c>Complex</c>.
+        /// </summary>
         public
         Complex
         Tangent()
@@ -705,7 +814,9 @@ namespace MathNet.Numerics
                 );
         }
 
-        /// <summary>Trigonometric Cotangent (cot, Cotangens) of this <c>Complex</c>.</summary>
+        /// <summary>
+        /// Trigonometric Cotangent (cot, Cotangens) of this <c>Complex</c>.
+        /// </summary>
         public
         Complex
         Cotangent()
@@ -725,7 +836,9 @@ namespace MathNet.Numerics
                 );
         }
 
-        /// <summary>Trigonometric Secant (sec, Sekans) of this <c>Complex</c>.</summary>
+        /// <summary>
+        /// Trigonometric Secant (sec, Sekans) of this <c>Complex</c>.
+        /// </summary>
         public
         Complex
         Secant()
@@ -745,7 +858,9 @@ namespace MathNet.Numerics
                 );
         }
 
-        /// <summary>Trigonometric Cosecant (csc, Cosekans) of this <c>Complex</c>.</summary>
+        /// <summary>
+        /// Trigonometric Cosecant (csc, Cosekans) of this <c>Complex</c>.
+        /// </summary>
         public
         Complex
         Cosecant()
@@ -769,7 +884,9 @@ namespace MathNet.Numerics
 
         #region Trigonometric Arcus Functions
 
-        /// <summary>Trigonometric Arcus Sine (asin, Arkussinus) of this <c>Complex</c>.</summary>
+        /// <summary>
+        /// Trigonometric Arcus Sine (asin, Arkussinus) of this <c>Complex</c>.
+        /// </summary>
         public
         Complex
         InverseSine()
@@ -777,7 +894,9 @@ namespace MathNet.Numerics
             return -Complex.I * ((1 - this.Square()).SquareRoot() + Complex.I * this).NaturalLogarithm();
         }
 
-        /// <summary>Trigonometric Arcus Cosine (acos, Arkuscosinus) of this <c>Complex</c>.</summary>
+        /// <summary>
+        /// Trigonometric Arcus Cosine (acos, Arkuscosinus) of this <c>Complex</c>.
+        /// </summary>
         public
         Complex
         InverseCosine()
@@ -785,7 +904,9 @@ namespace MathNet.Numerics
             return -Complex.I * (this + Complex.I * (1 - this.Square()).SquareRoot()).NaturalLogarithm();
         }
 
-        /// <summary>Trigonometric Arcus Tangent (atan, Arkustangens) of this <c>Complex</c>.</summary>
+        /// <summary>
+        /// Trigonometric Arcus Tangent (atan, Arkustangens) of this <c>Complex</c>.
+        /// </summary>
         public
         Complex
         InverseTangent()
@@ -794,7 +915,9 @@ namespace MathNet.Numerics
             return new Complex(0, 0.5) * ((1 - iz).NaturalLogarithm() - (1 + iz).NaturalLogarithm());
         }
 
-        /// <summary>Trigonometric Arcus Cotangent (acot, Arkuscotangens) of this <c>Complex</c>.</summary>
+        /// <summary>
+        /// Trigonometric Arcus Cotangent (acot, Arkuscotangens) of this <c>Complex</c>.
+        /// </summary>
         public
         Complex
         InverseCotangent()
@@ -803,7 +926,9 @@ namespace MathNet.Numerics
             return new Complex(0, 0.5) * ((1 + iz).NaturalLogarithm() - (1 - iz).NaturalLogarithm()) + Math.PI / 2;
         }
 
-        /// <summary>Trigonometric Arcus Secant (asec, Arkussekans) of this <c>Complex</c>.</summary>
+        /// <summary>
+        /// Trigonometric Arcus Secant (asec, Arkussekans) of this <c>Complex</c>.
+        /// </summary>
         public
         Complex
         InverseSecant()
@@ -812,7 +937,9 @@ namespace MathNet.Numerics
             return -Complex.I * (inv + Complex.I * (1 - inv.Square()).SquareRoot()).NaturalLogarithm();
         }
 
-        /// <summary>Trigonometric Arcus Cosecant (acsc, Arkuscosekans) of this <c>Complex</c>.</summary>
+        /// <summary>
+        /// Trigonometric Arcus Cosecant (acsc, Arkuscosekans) of this <c>Complex</c>.
+        /// </summary>
         public
         Complex
         InverseCosecant()
@@ -825,7 +952,9 @@ namespace MathNet.Numerics
 
         #region Trigonometric Hyperbolic Functions
 
-        /// <summary>Trigonometric Hyperbolic Sine (sinh, Sinus hyperbolicus) of this <c>Complex</c>.</summary>
+        /// <summary>
+        /// Trigonometric Hyperbolic Sine (sinh, Sinus hyperbolicus) of this <c>Complex</c>.
+        /// </summary>
         public
         Complex
         HyperbolicSine()
@@ -841,7 +970,9 @@ namespace MathNet.Numerics
                 );
         }
 
-        /// <summary>Trigonometric Hyperbolic Cosine (cosh, Cosinus hyperbolicus) of this <c>Complex</c>.</summary>
+        /// <summary>
+        /// Trigonometric Hyperbolic Cosine (cosh, Cosinus hyperbolicus) of this <c>Complex</c>.
+        /// </summary>
         public
         Complex
         HyperbolicCosine()
@@ -857,7 +988,9 @@ namespace MathNet.Numerics
                 );
         }
 
-        /// <summary>Trigonometric Hyperbolic Tangent (tanh, Tangens hyperbolicus) of this <c>Complex</c>.</summary>
+        /// <summary>
+        /// Trigonometric Hyperbolic Tangent (tanh, Tangens hyperbolicus) of this <c>Complex</c>.
+        /// </summary>
         public
         Complex
         HyperbolicTangent()
@@ -877,7 +1010,9 @@ namespace MathNet.Numerics
                 );
         }
 
-        /// <summary>Trigonometric Hyperbolic Cotangent (coth, Cotangens hyperbolicus) of this <c>Complex</c>.</summary>
+        /// <summary>
+        /// Trigonometric Hyperbolic Cotangent (coth, Cotangens hyperbolicus) of this <c>Complex</c>.
+        /// </summary>
         public
         Complex
         HyperbolicCotangent()
@@ -897,7 +1032,9 @@ namespace MathNet.Numerics
                 );
         }
 
-        /// <summary>Trigonometric Hyperbolic Secant (sech, Secans hyperbolicus) of this <c>Complex</c>.</summary>
+        /// <summary>
+        /// Trigonometric Hyperbolic Secant (sech, Secans hyperbolicus) of this <c>Complex</c>.
+        /// </summary>
         public
         Complex
         HyperbolicSecant()
@@ -911,7 +1048,9 @@ namespace MathNet.Numerics
             return 2 * exp / (exp.Square() + 1);
         }
 
-        /// <summary>Trigonometric Hyperbolic Cosecant (csch, Cosecans hyperbolicus) of this <c>Complex</c>.</summary>
+        /// <summary>
+        /// Trigonometric Hyperbolic Cosecant (csch, Cosecans hyperbolicus) of this <c>Complex</c>.
+        /// </summary>
         public
         Complex
         HyperbolicCosecant()
@@ -929,7 +1068,9 @@ namespace MathNet.Numerics
 
         #region Trigonometric Hyperbolic Area Functions
 
-        /// <summary>Trigonometric Hyperbolic Area Sine (asinh, reasinus hyperbolicus) of this <c>Complex</c>.</summary>
+        /// <summary>
+        /// Trigonometric Hyperbolic Area Sine (asinh, reasinus hyperbolicus) of this <c>Complex</c>.
+        /// </summary>
         public
         Complex
         InverseHyperbolicSine()
@@ -937,7 +1078,9 @@ namespace MathNet.Numerics
             return (this + (this.Square() + 1).SquareRoot()).NaturalLogarithm();
         }
 
-        /// <summary>Trigonometric Hyperbolic Area Cosine (acosh, Areacosinus hyperbolicus) of this <c>Complex</c>.</summary>
+        /// <summary>
+        /// Trigonometric Hyperbolic Area Cosine (acosh, Areacosinus hyperbolicus) of this <c>Complex</c>.
+        /// </summary>
         public
         Complex
         InverseHyperbolicCosine()
@@ -945,7 +1088,9 @@ namespace MathNet.Numerics
             return (this + (this - 1).SquareRoot() * (this + 1).SquareRoot()).NaturalLogarithm();
         }
 
-        /// <summary>Trigonometric Hyperbolic Area Tangent (atanh, Areatangens hyperbolicus) of this <c>Complex</c>.</summary>
+        /// <summary>
+        /// Trigonometric Hyperbolic Area Tangent (atanh, Areatangens hyperbolicus) of this <c>Complex</c>.
+        /// </summary>
         public
         Complex
         InverseHyperbolicTangent()
@@ -953,7 +1098,9 @@ namespace MathNet.Numerics
             return 0.5 * ((1 + this).NaturalLogarithm() - (1 - this).NaturalLogarithm());
         }
 
-        /// <summary>Trigonometric Hyperbolic Area Cotangent (acoth, Areacotangens hyperbolicus) of this <c>Complex</c>.</summary>
+        /// <summary>
+        /// Trigonometric Hyperbolic Area Cotangent (acoth, Areacotangens hyperbolicus) of this <c>Complex</c>.
+        /// </summary>
         public
         Complex
         InverseHyperbolicCotangent()
@@ -961,7 +1108,9 @@ namespace MathNet.Numerics
             return 0.5 * ((this + 1).NaturalLogarithm() - (this - 1).NaturalLogarithm());
         }
 
-        /// <summary>Trigonometric Hyperbolic Area Secant (asech, Areasekans hyperbolicus) of this <c>Complex</c>.</summary>
+        /// <summary>
+        /// Trigonometric Hyperbolic Area Secant (asech, Areasekans hyperbolicus) of this <c>Complex</c>.
+        /// </summary>
         public
         Complex
         InverseHyperbolicSecant()
@@ -970,7 +1119,9 @@ namespace MathNet.Numerics
             return (inv + (inv - 1).SquareRoot() * (inv + 1).SquareRoot()).NaturalLogarithm();
         }
 
-        /// <summary>Trigonometric Hyperbolic Area Cosecant (acsch, Areacosekans hyperbolicus) of this <c>Complex</c>.</summary>
+        /// <summary>
+        /// Trigonometric Hyperbolic Area Cosecant (acsch, Areacosekans hyperbolicus) of this <c>Complex</c>.
+        /// </summary>
         public
         Complex
         InverseHyperbolicCosecant()
@@ -984,7 +1135,9 @@ namespace MathNet.Numerics
 
         #region Exponential Functions
 
-        /// <summary>Exponential of this <c>Complex</c> (exp(x), E^x).</summary>
+        /// <summary>
+        /// Exponential of this <c>Complex</c> (exp(x), E^x).
+        /// </summary>
         public
         Complex
         Exponential()
@@ -1001,7 +1154,9 @@ namespace MathNet.Numerics
                 );
         }
 
-        /// <summary>Natural Logarithm of this <c>Complex</c> (Base E).</summary>
+        /// <summary>
+        /// Natural Logarithm of this <c>Complex</c> (Base E).
+        /// </summary>
         public
         Complex
         NaturalLogarithm()
@@ -1017,7 +1172,9 @@ namespace MathNet.Numerics
                 );
         }
 
-        /// <summary>Raise this <c>Complex</c> to the given value.</summary>
+        /// <summary>
+        /// Raise this <c>Complex</c> to the given value.
+        /// </summary>
         public
         Complex
         Power(
@@ -1048,7 +1205,9 @@ namespace MathNet.Numerics
             return (exponent * NaturalLogarithm()).Exponential();
         }
 
-        /// <summary>Raise this <c>Complex</c> to the inverse of the given value.</summary>
+        /// <summary>
+        /// Raise this <c>Complex</c> to the inverse of the given value.
+        /// </summary>
         public
         Complex
         Root(
@@ -1058,7 +1217,9 @@ namespace MathNet.Numerics
             return Power(1 / rootexponent);
         }
 
-        /// <summary>The Square (power 2) of this <c>Complex</c></summary>
+        /// <summary>
+        /// The Square (power 2) of this <c>Complex</c>
+        /// </summary>
         public
         Complex
         Square()
@@ -1074,7 +1235,9 @@ namespace MathNet.Numerics
                 );
         }
 
-        /// <summary>The Square Root (power 1/2) of this <c>Complex</c></summary>
+        /// <summary>
+        /// The Square Root (power 1/2) of this <c>Complex</c>
+        /// </summary>
         public
         Complex
         SquareRoot()
@@ -1103,7 +1266,9 @@ namespace MathNet.Numerics
 
         #region ToString and Parse
 
-        /// <summary>Parse a string into a <c>Complex</c>.</summary>
+        /// <summary>
+        /// Parse a string into a <c>Complex</c>.
+        /// </summary>
         /// <remarks>
         /// The adopted string representation for the complex numbers is 
         /// <i>UVW+I*XYZ</i> where <i>UVW</i> and <i>XYZ</i> are <c>double</c> 
@@ -1126,19 +1291,25 @@ namespace MathNet.Numerics
         {
             return Parse(complex, NumberFormatInfo.CurrentInfo);
         }
-        /// <summary>Parse a string into a <c>Complex</c>.</summary>
+        /// <summary>
+        /// Parse a string into a <c>Complex</c>.
+        /// </summary>
         public static Complex Parse(string complex, NumberFormatInfo numberFormat)
         {
             ComplexParser parser = new ComplexParser(complex, numberFormat);
             return parser.Complex;
         }
 
-        /// <summary>Formats this <c>Complex</c> into a <c>string</c>.</summary>
+        /// <summary>
+        /// Formats this <c>Complex</c> into a <c>string</c>.
+        /// </summary>
         public override string ToString()
         {
             return ToString(NumberFormatInfo.CurrentInfo);
         }
-        /// <summary>Formats this <c>Complex</c> into a <c>string</c>.</summary>
+        /// <summary>
+        /// Formats this <c>Complex</c> into a <c>string</c>.
+        /// </summary>
         public string ToString(NumberFormatInfo numberFormat)
         {
             if(IsInfinity)

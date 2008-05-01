@@ -20,6 +20,44 @@
 // License along with this program; if not, write to the Free Software
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
+#region Some algorithms based on: Copyright 2000 Moshier, Bochkanov
+//Cephes Math Library
+//Copyright by Stephen L. Moshier
+
+//Contributors:
+//    * Sergey Bochkanov (ALGLIB project). Translation from C to
+//      pseudocode.
+
+//See subroutines comments for additional copyrights.
+
+//Redistribution and use in source and binary forms, with or without
+//modification, are permitted provided that the following conditions are
+//met:
+
+//- Redistributions of source code must retain the above copyright
+//  notice, this list of conditions and the following disclaimer.
+
+//- Redistributions in binary form must reproduce the above copyright
+//  notice, this list of conditions and the following disclaimer listed
+//  in this license in the documentation and/or other materials
+//  provided with the distribution.
+
+//- Neither the name of the copyright holders nor the names of its
+//  contributors may be used to endorse or promote products derived from
+//  this software without specific prior written permission.
+
+//THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+//"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+//LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+//A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+//OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+//SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+//LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+//DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+//THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+//(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+//OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#endregion
 
 using System;
 using System.Collections.Generic;
@@ -595,7 +633,7 @@ namespace MathNet.Numerics
             double s = Math.Sin(Math.PI * reflection);
             if(Number.AlmostEqual(0.0, s))
             {
-                return double.NaN; // pole, undefined
+                return double.NaN; // singularity, undefined
             }
             return Math.PI / (s * Math.Exp(GammaLn(reflection)));
         }
@@ -689,6 +727,96 @@ namespace MathNet.Numerics
                 }
             }
             throw new ArgumentException(Resources.ArgumentTooLargeForIterationLimit, "a");
+        }
+
+        #endregion
+
+        #region Digamma Functions
+
+        /// <summary>
+        /// Returns the digamma (psi) function of real values (except at 0, -1, -2, ...).
+        /// Digamma is the logarithmic derivative of the <see cref="Gamma"/> function.
+        /// </summary>
+        public static
+        double
+        Digamma(
+            double x
+            )
+        {
+            double y = 0;
+            double nz = 0.0;
+            bool negative = (x <= 0);
+
+            if(negative)
+            {
+                double q = x;
+                double p = Math.Floor(q);
+                negative = true;
+                
+                if(p == q)
+                {
+                    return double.NaN; // singularity, undefined
+                }
+                nz = q - p;
+                if(nz != 0.5)
+                {
+                    if(nz > 0.5)
+                    {
+                        p = p + 1.0;
+                        nz = q - p;
+                    }
+                    nz = Math.PI / Math.Tan(Math.PI * nz);
+                }
+                else
+                {
+                    nz = 0.0;
+                }
+                x = 1.0 - x;
+            }
+
+            if((x <= 10.0) && (x == Math.Floor(x)))
+            {
+                y = 0.0;
+                int n = (int)Math.Floor(x);
+                for(int i = 1; i <= n - 1; i++)
+                {
+                    y = y + 1.0 / i;
+                }
+                y = y - Constants.EulerGamma;
+            }
+            else
+            {
+                double s = x;
+                double w = 0.0;
+                while(s < 10.0)
+                {
+                    w = w + 1.0 / s;
+                    s = s + 1.0;
+                }
+                if(s < 1.0e17)
+                {
+                    double z = 1.0 / (s * s);
+                    double polv = 8.33333333333333333333e-2;
+                    polv = polv * z - 2.10927960927960927961e-2;
+                    polv = polv * z + 7.57575757575757575758e-3;
+                    polv = polv * z - 4.16666666666666666667e-3;
+                    polv = polv * z + 3.96825396825396825397e-3;
+                    polv = polv * z - 8.33333333333333333333e-3;
+                    polv = polv * z + 8.33333333333333333333e-2;
+                    y = z * polv;
+                }
+                else
+                {
+                    y = 0.0;
+                }
+                y = Math.Log(s) - 0.5 / s - y - w;
+            }
+
+            if(negative)
+            {
+                return y - nz;
+            }
+            return y;
         }
 
         #endregion
