@@ -1195,9 +1195,9 @@ namespace MathNet.Numerics
                 {
                     if(Number.AlmostEqual(0d, exponent.Imag))
                     {
-                        return Complex.FromRealImaginary(double.PositiveInfinity, 0d);
+                        return new Complex(double.PositiveInfinity, 0d);
                     }
-                    return Complex.FromRealImaginary(double.PositiveInfinity, double.PositiveInfinity);
+                    return new Complex(double.PositiveInfinity, double.PositiveInfinity);
                 }
                 return Complex.NaN;
             }

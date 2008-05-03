@@ -204,7 +204,7 @@ namespace MathNet.Numerics.LinearAlgebra
             Complex[] eigenvalues = new Complex[n];
             for(int i = 0; i < eigenvalues.Length; i++)
             {
-                eigenvalues[i] = Complex.FromRealImaginary(d[i], e[i]);
+                eigenvalues[i] = new Complex(d[i], e[i]);
             }
             return eigenvalues;
         }
