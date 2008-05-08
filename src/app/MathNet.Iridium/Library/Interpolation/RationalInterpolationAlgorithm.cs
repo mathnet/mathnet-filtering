@@ -31,6 +31,7 @@ namespace MathNet.Numerics.Interpolation
     /// <summary>
     /// Lagrange Rational Interpolation using Bulirsch &amp; Stoer's Algorithm.
     /// </summary>
+    [Obsolete("Please use Interpolation or directly one of the newer implementation in the Algorithms namespace instead. The direct replacement is LimitedOrderRationalInterpolation. This class is obsolete and will be removed in future versions.")]
     public class RationalInterpolationAlgorithm : IInterpolationAlgorithm
     {
         SampleList _samples;

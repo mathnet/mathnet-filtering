@@ -79,7 +79,24 @@
     <Compile Include="Equations\NamespaceDoc.cs" />
     <Compile Include="Equations\ScalarIterator.cs" />
     <Compile Include="Equations\Solver.cs" />
+    <Compile Include="Interpolation\Algorithms\BarycentricInterpolation.cs" />
+    <Compile Include="Interpolation\Algorithms\ChebyshevFirstKindPolynomialInterpolation.cs" />
+    <Compile Include="Interpolation\Algorithms\ChebyshevSecondKindPolynomialInterpolation.cs" />
+    <Compile Include="Interpolation\Algorithms\CubicHermiteSplineInterpolation.cs" />
+    <Compile Include="Interpolation\Algorithms\CubicSplineInterpolation.cs" />
+    <Compile Include="Interpolation\Algorithms\EquidistantPolynomialInterpolation.cs" />
+    <Compile Include="Interpolation\Algorithms\LimitedOrderPolynomialInterpolation.cs" />
+    <Compile Include="Interpolation\Algorithms\LimitedOrderRationalInterpolation.cs" />
+    <Compile Include="Interpolation\Algorithms\LinearSplineInterpolation.cs" />
+    <Compile Include="Interpolation\Algorithms\PolynomialInterpolation.cs" />
+    <Compile Include="Interpolation\Algorithms\RationalPoleFreeInterpolation.cs" />
+    <Compile Include="Interpolation\Algorithms\RationalInterpolation.cs" />
+    <Compile Include="Interpolation\Algorithms\SplineInterpolation.cs" />
+    <Compile Include="Interpolation\Interpolation.cs" />
+    <Compile Include="Interpolation\InterpolationMethod.cs" />
+    <Compile Include="Interpolation\SplineBoundaryCondition.cs" />
     <Compile Include="LinearAlgebra\Vector.cs" />
+    <Compile Include="Sorting.cs" />
     <Compile Include="OnDemandComputation.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -89,7 +106,6 @@
     <Compile Include="RandomSources\AdditiveLaggedFibonacciRandomSource.cs" />
     <Compile Include="RandomSources\MersenneTwisterRandomSource.cs" />
     <Compile Include="RandomSources\RandomSource.cs" />
-    <Compile Include="Interpolation\CubicSplineInterpolationAlgorithm.cs" />
     <Compile Include="Interpolation\Interpolation1D.cs" />
     <Compile Include="Interpolation\InterpolationAlgorithm.cs" />
     <Compile Include="Interpolation\PolynomialInterpolationAlgorithm.cs" />

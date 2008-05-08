@@ -21,6 +21,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using MathNet.Numerics.Properties;
 
 namespace MathNet.Numerics
@@ -135,10 +136,10 @@ namespace MathNet.Numerics
         /// <exception cref="ArgumentOutOfRangeException">If the dimensionality of the two arrays doesn't match.</exception>
         public
         SampleList(
-            double[] t,
-            double[] x
+            IList<double> t,
+            IList<double> x
             )
-            : this((t != null) ? t.Length : 0)
+            : this((t != null) ? t.Count : 0)
         {
             if(null == t)
             {
@@ -148,7 +149,7 @@ namespace MathNet.Numerics
             {
                 throw new ArgumentNullException("x");
             }
-            if(t.Length != x.Length)
+            if(t.Count != x.Count)
             {
                 throw new ArgumentOutOfRangeException("x");
             }
@@ -156,7 +157,7 @@ namespace MathNet.Numerics
             t.CopyTo(_sampleT, 0);
             x.CopyTo(_sampleX, 0);
             Array.Sort(_sampleT, _sampleX);
-            _size = t.Length;
+            _size = t.Count;
         }
 
         #endregion

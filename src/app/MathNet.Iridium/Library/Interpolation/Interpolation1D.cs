@@ -28,6 +28,7 @@ namespace MathNet.Numerics.Interpolation
     /// <summary>
     /// Interpolation Characteristics
     /// </summary>
+    [Obsolete]
     public enum InterpolationMode : int
     {
         /// <summary>Polynomial Interpolation</summary>
@@ -41,6 +42,7 @@ namespace MathNet.Numerics.Interpolation
     /// <summary>
     /// Interpolation portal for the single dimension case.
     /// </summary>
+    [Obsolete("Please use Interpolation instead. This class is obsolete and will be removed in future versions.")]
     public class InterpolationSingleDimension
     {
         SampleList _samples;

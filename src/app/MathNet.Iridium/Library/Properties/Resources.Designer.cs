@@ -340,6 +340,15 @@ namespace MathNet.Numerics.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid Left Boundary Condition..
+        /// </summary>
+        internal static string InvalidLeftBoundaryCondition {
+            get {
+                return ResourceManager.GetString("InvalidLeftBoundaryCondition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The operation could not be performed because the accumulator is empty..
         /// </summary>
         internal static string InvalidOperationAccumulatorEmpty {
@@ -372,6 +381,15 @@ namespace MathNet.Numerics.Properties {
         internal static string InvalidOperationNoSamplesProvided {
             get {
                 return ResourceManager.GetString("InvalidOperationNoSamplesProvided", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Right Boundary Condition..
+        /// </summary>
+        internal static string InvalidRightBoundaryCondition {
+            get {
+                return ResourceManager.GetString("InvalidRightBoundaryCondition", resourceCulture);
             }
         }
     }

@@ -85,6 +85,7 @@ namespace Iridium.Test
         }
 
         [Test]
+        [Obsolete("The tested algorithms is obsolete, so is this test.")]
         public void IRID119_PolynomialExtrapolatePositiveDirection()
         {
             double[] x = new double[] { -6.060771484, -5.855378418, -1.794238281, -1.229428711, 0.89935791, 2.912121582, 4.699230957, 4.788347168, 7.728830566, 11.70989502 };

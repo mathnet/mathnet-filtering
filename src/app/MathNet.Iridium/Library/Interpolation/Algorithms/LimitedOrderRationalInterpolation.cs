@@ -23,37 +23,37 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
 using MathNet.Numerics;
 using MathNet.Numerics.Properties;
 
-namespace MathNet.Numerics.Interpolation
+namespace MathNet.Numerics.Interpolation.Algorithms
 {
     /// <summary>
-    /// Lagrange Polynomial Interpolation using Neville's Algorithm.
+    /// Limited Order Rational Interpolation (with poles) using Bulirsch &amp; Stoer's Algorithm.
     /// </summary>
-    [Obsolete("Please use Interpolation or directly one of the newer implementation in the Algorithms namespace instead. The direct replacement is LimitedOrderPolynomialInterpolation, but we recommend against using it. This class is obsolete and will be removed in future versions.")]
-    public class PolynomialInterpolationAlgorithm :
-        IInterpolationAlgorithm
+    public class LimitedOrderRationalInterpolation :
+        IInterpolationMethod
     {
         SampleList _samples;
         int _maximumOrder;
         int _effectiveOrder;
 
         /// <summary>
-        /// Create a polynomial interpolation algorithm with full order.
+        /// Create a rational interpolation algorithm with full order.
         /// </summary>
         public
-        PolynomialInterpolationAlgorithm()
+        LimitedOrderRationalInterpolation()
         {
             _maximumOrder = int.MaxValue;
             _effectiveOrder = -1;
         }
 
         /// <summary>
-        /// Create a polynomial interpolation algorithm with the given maximum order.
+        /// Create a rational interpolation algorithm with the given order.
         /// </summary>
         public
-        PolynomialInterpolationAlgorithm(
+        LimitedOrderRationalInterpolation(
             int maximumOrder
             )
         {
@@ -62,21 +62,21 @@ namespace MathNet.Numerics.Interpolation
         }
 
         /// <summary>
-        /// Precompute/optimize the algoritm for the given sample set.
+        /// True if the alorithm supports differentiation.
         /// </summary>
-        public
-        void
-        Prepare(
-            SampleList samples
-            )
+        /// <seealso cref="Differentiate"/>
+        public bool SupportsDifferentiation
         {
-            if(null == samples)
-            {
-                throw new ArgumentNullException("samples");
-            }
+            get { return false; }
+        }
 
-            _samples = samples;
-            _effectiveOrder = Math.Min(_maximumOrder, samples.Count);
+        /// <summary>
+        /// True if the alorithm supports integration.
+        /// </summary>
+        /// <seealso cref="Integrate"/>
+        public bool SupportsIntegration
+        {
+            get { return false; }
         }
 
         /// <summary>
@@ -119,26 +119,48 @@ namespace MathNet.Numerics.Interpolation
         }
 
         /// <summary>
+        /// Precompute/optimize the algoritm for the given sample set.
+        /// </summary>
+        /// <param name="t">Points t</param>
+        /// <param name="x">Values x(t)</param>
+        public
+        void
+        Init(
+            IList<double> t,
+            IList<double> x
+            )
+        {
+            Init(new SampleList(t, x));
+        }
+
+        /// <summary>
+        /// Precompute/optimize the algoritm for the given sample set.
+        /// </summary>
+        /// <param name="samples">Sample points t and values x(t).</param>
+        public
+        void
+        Init(
+            SampleList samples
+            )
+        {
+            if(null == samples)
+            {
+                throw new ArgumentNullException("samples");
+            }
+
+            _samples = samples;
+            _effectiveOrder = Math.Min(_maximumOrder, samples.Count);
+        }
+
+        /// <summary>
         /// Interpolate at point t.
         /// </summary>
+        /// <param name="t">Point t to interpolate at.</param>
+        /// <returns>Interpolated value x(t).</returns>
         public
         double
         Interpolate(
             double t
-            )
-        {
-            double error;
-            return Interpolate(t, out error);
-        }
-
-        /// <summary>
-        /// Interpolate at point t and return the estimated error as error-parameter.
-        /// </summary>
-        public
-        double
-        Interpolate(
-            double t,
-            out double error
             )
         {
             if(null == _samples)
@@ -146,14 +168,13 @@ namespace MathNet.Numerics.Interpolation
                 throw new InvalidOperationException(Resources.InvalidOperationNoSamplesProvided);
             }
 
+            const double tiny = 1.0e-15;
             int closestIndex;
             int offset = SuggestOffset(t, out closestIndex);
             double[] c = new double[_effectiveOrder];
             double[] d = new double[_effectiveOrder];
+            
             int ns = closestIndex - offset;
-            double den, ho, hp;
-            double x = 0;
-            error = 0;
 
             if(_samples.GetT(closestIndex) == t)
             {
@@ -163,22 +184,27 @@ namespace MathNet.Numerics.Interpolation
             for(int i = 0; i < _effectiveOrder; i++)
             {
                 c[i] = _samples.GetX(offset + i);
-                d[i] = c[i];
+                d[i] = c[i] + tiny; //prevent rare zero-over-zero condition
             }
 
-            x = _samples.GetX(offset + ns--);
+            double x = _samples.GetX(offset + ns--);
             for(int level = 1; level < _effectiveOrder; level++)
             {
                 for(int i = 0; i < _effectiveOrder - level; i++)
                 {
-                    ho = _samples.GetT(offset + i) - t;
-                    hp = _samples.GetT(offset + i + level) - t;
-                    den = (c[i + 1] - d[i]) / (ho - hp);
-                    d[i] = hp * den;
+                    double hp = _samples.GetT(offset + i + level) - t;
+                    double ho = (_samples.GetT(offset + i) - t) * d[i] / hp;
+                    double den = ho - c[i + 1];
+                    if(den == 0)
+                    {
+                        // BUGBUG: check - positive or negative infinity?
+                        return double.PositiveInfinity;
+                    }
+                    den = (c[i + 1] - d[i]) / den;
+                    d[i] = c[i + 1] * den;
                     c[i] = ho * den;
                 }
-                error = (2 * (ns + 1) < (_effectiveOrder - level) ? c[ns + 1] : d[ns--]);
-                x += error;
+                x += (2 * (ns + 1) < (_effectiveOrder - level) ? c[ns + 1] : d[ns--]);
             }
 
             return x;
@@ -213,26 +239,36 @@ namespace MathNet.Numerics.Interpolation
         }
 
         /// <summary>
-        /// Extrapolate at point t.
+        /// Differentiate at point t.
         /// </summary>
+        /// <param name="t">Point t to interpolate at.</param>
+        /// <param name="first">Interpolated first derivative at point t.</param>
+        /// <param name="second">Interpolated second derivative at point t.</param>
+        /// <returns>Interpolated value x(t).</returns>
         public
         double
-        Extrapolate(
-            double t
+        Differentiate(
+            double t,
+            out double first,
+            out double second
             )
         {
-            return Interpolate(t);
+            throw new NotSupportedException();
         }
 
         /// <summary>
-        /// True if the alorithm supports error estimation.
+        /// Definite Integrate up to point t.
         /// </summary>
-        /// <remarks>
-        /// Always true for this algorithm.
-        /// </remarks>
-        public bool SupportErrorEstimation
+        /// <param name="t">Right bound of the integration interval [a,t].</param>
+        /// <returns>Interpolated definite integeral over the interval [a,t].</returns>
+        /// <seealso cref="SupportsIntegration"/>
+        public
+        double
+        Integrate(
+            double t
+            )
         {
-            get { return true; }
+            throw new NotSupportedException();
         }
     }
 }

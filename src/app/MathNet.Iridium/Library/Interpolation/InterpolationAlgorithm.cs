@@ -27,6 +27,7 @@ namespace MathNet.Numerics.Interpolation
     /// <summary>
     /// Interpolation algorithm
     /// </summary>
+    [Obsolete("Please use IInterpolationMethod instead. This interface is obsolete and will be removed in future versions.")]
     public interface IInterpolationAlgorithm
     {
         /// <summary>

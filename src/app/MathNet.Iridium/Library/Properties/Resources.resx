@@ -210,6 +210,9 @@
   <data name="ArgumentVectorThreeDimensional" xml:space="preserve">
     <value>The vector must have 3 dimensions.</value>
   </data>
+  <data name="InvalidLeftBoundaryCondition" xml:space="preserve">
+    <value>Invalid Left Boundary Condition.</value>
+  </data>
   <data name="InvalidOperationAccumulatorEmpty" xml:space="preserve">
     <value>The operation could not be performed because the accumulator is empty.</value>
   </data>
@@ -221,5 +224,8 @@
   </data>
   <data name="InvalidOperationNoSamplesProvided" xml:space="preserve">
     <value>No Samples Provided. Preparation Required.</value>
+  </data>
+  <data name="InvalidRightBoundaryCondition" xml:space="preserve">
+    <value>Invalid Right Boundary Condition.</value>
   </data>
 </root>

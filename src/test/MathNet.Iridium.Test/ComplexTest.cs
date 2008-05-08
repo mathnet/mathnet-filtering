@@ -207,7 +207,7 @@ namespace Iridium.Test
 
             // (0)^(2) = 0
             Assert.AreEqual(0d, Math.Pow(0d, 2d), "(0)^(2) = 0 (.Net Framework Sanity Check)");
-            Complex two = Complex.FromRealImaginary(2d, 0d);
+            Complex two = new Complex(2d, 0d);
             Complex zeroPowTwo = zero.Power(two);
             Assert.AreEqual(0d, zeroPowTwo.Real, "Re{(0)^(2)} = 0");
             Assert.AreEqual(0d, zeroPowTwo.Imag, "Im{(0)^(2)} = 0");
@@ -242,7 +242,7 @@ namespace Iridium.Test
             Assert.AreEqual(0d, zeroPowOneMinusI.Imag, "Im{(0)^(1-I)} = 0");
 
             // (0)^(-1+I) = infty + infty * i
-            Complex minusOnePlusI = Complex.FromRealImaginary(-1d, 1d);
+            Complex minusOnePlusI = new Complex(-1d, 1d);
             Complex zeroPowMinusOnePlusI = zero.Power(minusOnePlusI);
             Assert.AreEqual(double.PositiveInfinity, zeroPowMinusOnePlusI.Real, "Re{(0)^(-1+I)} = infty");
             Assert.AreEqual(double.PositiveInfinity, zeroPowMinusOnePlusI.Imag, "Im{(0)^(-1+I)} = infty");
