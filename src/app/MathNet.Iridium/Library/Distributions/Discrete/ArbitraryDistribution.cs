@@ -29,19 +29,19 @@ namespace MathNet.Numerics.Distributions
     /// Non-uniform discrete random distribution.
     /// </summary>
     /// <remarks>
-    /// <p>The class <c>DiscreteGenerator</c> provides integers 
+    /// <p>The class <c>ArbitraryDistribution</c> provides integers 
     /// deviates for any arbitrary (finite) distribution.</p>
     /// 
     /// <code>
     /// double[] distribution = {0.25, 0.25, 0.5};
-    /// DiscreteGenerator gen = new DiscreteGenerator(distribution);
+    /// ArbitraryDistribution gen = new ArbitraryDistribution(0, distribution);
     /// 
     /// // Pr(x = 0) = 0.25, Pr(x = 1) = 0.25, Pr(x = 2) = 0.5
-    /// int x = gen.Next();
+    /// int x = gen.NextInt32();
     /// </code>
     /// 
     /// <p>The probability <c>Pr(x)</c> for any integer <c>x</c>
-    /// is proportional to <c>DiscreteGenerator[x]</c>.</p>
+    /// is proportional to <c>ArbitraryDistribution.ProbabilityMass(x)</c>.</p>
     /// 
     /// <p>See the <a href="http://cgm.cs.mcgill.ca/~luc/chapter_three.pdf">
     /// chapter three</a> of the book <i>Non-uniform variate Generation</i>
