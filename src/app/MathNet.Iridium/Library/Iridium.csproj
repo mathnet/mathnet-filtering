@@ -79,6 +79,7 @@
     <Compile Include="Equations\NamespaceDoc.cs" />
     <Compile Include="Equations\ScalarIterator.cs" />
     <Compile Include="Equations\Solver.cs" />
+    <Compile Include="Interpolation\Algorithms\AkimaSplineInterpolation.cs" />
     <Compile Include="Interpolation\Algorithms\BarycentricInterpolation.cs" />
     <Compile Include="Interpolation\Algorithms\ChebyshevFirstKindPolynomialInterpolation.cs" />
     <Compile Include="Interpolation\Algorithms\ChebyshevSecondKindPolynomialInterpolation.cs" />

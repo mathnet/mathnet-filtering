@@ -330,7 +330,7 @@ namespace Iridium.Test
             double[] t = new double[] { -2.0, -1.0, 0.0, 1.0, 2.0 };
             double[] x = new double[] { 1.0, 2.0, -1.0, 0.0, 1.0 };
 
-            IInterpolationMethod method = Interpolation.CreateCubicSpline(t, x);
+            IInterpolationMethod method = Interpolation.CreateNaturalCubicSpline(t, x);
             Assert.IsInstanceOfType(typeof(CubicSplineInterpolation), method, "Type");
 
             for(int i = 0; i < t.Length; i++)
@@ -406,6 +406,33 @@ namespace Iridium.Test
             NumericAssert.AreAlmostEqual(.31771428571428571421, method.Interpolate(1.2), 1e-15, "A 1.2");
             NumericAssert.AreAlmostEqual(39, method.Interpolate(10.0), 1e-14, "A 10.0");
             NumericAssert.AreAlmostEqual(-37, method.Interpolate(-10.0), 1e-14, "A -10.0");
+        }
+
+        [Test]
+        public void TestInterpolationMethod_AkimaSpline()
+        {
+            double[] t = new double[] { -2.0, -1.0, 0.0, 1.0, 2.0 };
+            double[] x = new double[] { 1.0, 2.0, -1.0, 0.0, 1.0 };
+
+            IInterpolationMethod method = Interpolation.CreateAkimaCubicSpline(t, x);
+            Assert.IsInstanceOfType(typeof(AkimaSplineInterpolation), method, "Type");
+
+            for(int i = 0; i < t.Length; i++)
+            {
+                // verify the interpolated values exactly at the sample points.
+                Assert.AreEqual(x[i], method.Interpolate(t[i]), "A Exact Point " + i.ToString());
+            }
+
+            // TODO: Verify the expected values (that they are really the expected ones)
+            NumericAssert.AreAlmostEqual(-0.52, method.Interpolate(-2.4), 1e-15, "A -2.4");
+            NumericAssert.AreAlmostEqual(1.826, method.Interpolate(-0.9), 1e-15, "A -0.9");
+            NumericAssert.AreAlmostEqual(0.25, method.Interpolate(-0.5), 1e-15, "A -0.5");
+            NumericAssert.AreAlmostEqual(-1.006, method.Interpolate(-0.1), 1e-15, "A -0.1");
+            NumericAssert.AreAlmostEqual(-0.9, method.Interpolate(0.1), 1e-15, "A 0.1");
+            NumericAssert.AreAlmostEqual(-0.6, method.Interpolate(0.4), 1e-15, "A 0.4");
+            NumericAssert.AreAlmostEqual(0.2, method.Interpolate(1.2), 1e-15, "A 1.2");
+            NumericAssert.AreAlmostEqual(9, method.Interpolate(10.0), 1e-14, "A 10.0");
+            NumericAssert.AreAlmostEqual(-151, method.Interpolate(-10.0), 1e-14, "A -10.0");
         }
     }
 }

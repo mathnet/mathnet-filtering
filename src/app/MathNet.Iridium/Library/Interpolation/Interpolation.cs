@@ -159,7 +159,8 @@ namespace MathNet.Numerics.Interpolation
         }
 
         /// <summary>
-        /// Create a cubic spline interpolation based on arbitrary points, with pnatural boundaries.
+        /// Create a natural cubic spline interpolation based on arbitrary points.
+        /// Natural splines are cubic splines with zero second derivative at the boundaries (i.e. straigth lines).
         /// </summary>
         /// <param name="points">The sample points t. Supports both lists and arrays.</param>
         /// <param name="values">The sample point values x(t). Supports both lists and arrays.</param>
@@ -170,7 +171,7 @@ namespace MathNet.Numerics.Interpolation
         /// </returns>
         public static
         IInterpolationMethod
-        CreateCubicSpline(
+        CreateNaturalCubicSpline(
             IList<double> points,
             IList<double> values
             )
@@ -182,6 +183,30 @@ namespace MathNet.Numerics.Interpolation
                 );
             return method;
         }
+
+        /// <summary>
+        /// Create an akima cubic spline interpolation based on arbitrary points.
+        /// Akima splines are cubic splines which is stable to outliers.
+        /// </summary>
+        /// <param name="points">The sample points t. Supports both lists and arrays.</param>
+        /// <param name="values">The sample point values x(t). Supports both lists and arrays.</param>
+        /// <returns>
+        /// An interpolation scheme optimized for the given sample points and values,
+        /// which can then be used to compute interpolations and extrapolations
+        /// on arbitrary points.
+        /// </returns>
+        public static
+        IInterpolationMethod
+        CreateAkimaCubicSpline(
+            IList<double> points,
+            IList<double> values
+            )
+        {
+            AkimaSplineInterpolation method = new AkimaSplineInterpolation();
+            method.Init(points, values);
+            return method;
+        }
+
 
         /// <summary>
         /// Create a polynomial interpolation based on equidistant sample points.
