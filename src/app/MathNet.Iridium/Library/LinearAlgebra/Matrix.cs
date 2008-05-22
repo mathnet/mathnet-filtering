@@ -569,7 +569,9 @@ namespace MathNet.Numerics.LinearAlgebra
 
         #region Sub-matrices operation
 
-        /// <summary>Gets a submatrix.</summary>
+        /// <summary>
+        /// Gets a submatrix.
+        /// </summary>
         /// <param name="i0">First row index.</param>
         /// <param name="i1">Last row index (inclusive).</param>
         /// <param name="j0">First column index.</param>
@@ -603,7 +605,9 @@ namespace MathNet.Numerics.LinearAlgebra
             return new Matrix(newData);
         }
 
-        /// <summary>Gets a submatrix.</summary>
+        /// <summary>
+        /// Gets a submatrix.
+        /// </summary>
         /// <param name="r">Array of row indices.</param>
         /// <param name="c">Array of column indices.</param>
         /// <returns>A(r(:),c(:))</returns>
@@ -633,7 +637,9 @@ namespace MathNet.Numerics.LinearAlgebra
             return new Matrix(newData);
         }
 
-        /// <summary>Get a submatrix.</summary>
+        /// <summary>
+        /// Get a submatrix.
+        /// </summary>
         /// <param name="i0">First row index.</param>
         /// <param name="i1">Last row index (inclusive).</param>
         /// <param name="c">Array of column indices.</param>
@@ -665,7 +671,9 @@ namespace MathNet.Numerics.LinearAlgebra
             return new Matrix(newData);
         }
 
-        /// <summary>Get a submatrix.</summary>
+        /// <summary>
+        /// Get a submatrix.
+        /// </summary>
         /// <param name="r">Array of row indices.</param>
         /// <param name="j0">First column index.</param>
         /// <param name="j1">Last column index (inclusive).</param>
@@ -697,7 +705,9 @@ namespace MathNet.Numerics.LinearAlgebra
             return new Matrix(newData);
         }
 
-        /// <summary>Set a submatrix.</summary>
+        /// <summary>
+        /// Set a submatrix.
+        /// </summary>
         /// <param name="i0">First row index.</param>
         /// <param name="i1">Last row index (inclusive).</param>
         /// <param name="j0">First column index.</param>
@@ -731,7 +741,9 @@ namespace MathNet.Numerics.LinearAlgebra
             ResetOnDemandComputations();
         }
 
-        /// <summary>Sets a submatrix.</summary>
+        /// <summary>
+        /// Sets a submatrix.
+        /// </summary>
         /// <param name="r">Array of row indices.</param>
         /// <param name="c">Array of column indices.</param>
         /// <param name="X">A(r(:),c(:))</param>
@@ -761,7 +773,9 @@ namespace MathNet.Numerics.LinearAlgebra
             ResetOnDemandComputations();
         }
 
-        /// <summary>Sets a submatrix.</summary>
+        /// <summary>
+        /// Sets a submatrix.
+        /// </summary>
         /// <param name="r">Array of row indices.</param>
         /// <param name="j0">First column index.</param>
         /// <param name="j1">Last column index (inclusive).</param>
@@ -793,7 +807,9 @@ namespace MathNet.Numerics.LinearAlgebra
             ResetOnDemandComputations();
         }
 
-        /// <summary>Set a submatrix.</summary>
+        /// <summary>
+        /// Set a submatrix.
+        /// </summary>
         /// <param name="i0">First row index.</param>
         /// <param name="i1">Last row index (inclusive).</param>
         /// <param name="c">Array of column indices.</param>
@@ -902,7 +918,9 @@ namespace MathNet.Numerics.LinearAlgebra
 
         #region Elementary linear operations
 
-        /// <summary>In place addition of <c>m</c> to this <c>Matrix</c>.</summary>
+        /// <summary>
+        /// In place addition of <c>m</c> to this <c>Matrix</c>.
+        /// </summary>
         /// <seealso cref="operator + (Matrix, Matrix)"/>
         public virtual
         void
@@ -923,7 +941,9 @@ namespace MathNet.Numerics.LinearAlgebra
             ResetOnDemandComputations();
         }
 
-        /// <summary>Multiplies in place this <c>Matrix</c> by a scalar.</summary>
+        /// <summary>
+        /// Multiplies in place this <c>Matrix</c> by a scalar.
+        /// </summary>
         /// <seealso cref="operator * (double, Matrix)"/>
         public virtual
         void
@@ -942,8 +962,10 @@ namespace MathNet.Numerics.LinearAlgebra
             ResetOnDemandComputations();
         }
 
-        /// <summary>In place linear algebraic matrix multiplication, D * A where
-        /// D is the diagonal matrix.</summary>
+        /// <summary>
+        /// In place linear algebraic matrix multiplication, D * A where
+        /// D is the diagonal matrix.
+        /// </summary>
         /// <param name="diagonal">Diagonal values of D.</param>
         /// <exception cref="ArgumentNullException"><c>diagonal</c> must not be null.</exception>
         /// <exception cref="ArgumentException">Matrix inner dimensions must agree.</exception>
@@ -970,7 +992,9 @@ namespace MathNet.Numerics.LinearAlgebra
             ResetOnDemandComputations();
         }
 
-        /// <summary>Linear algebraic matrix multiplication, A * B</summary>
+        /// <summary>
+        /// Linear algebraic matrix multiplication, A * B
+        /// </summary>
         /// <exception cref="ArgumentNullException">B must not be null.</exception>
         /// <exception cref="ArgumentException">Matrix inner dimensions must agree.</exception>
         public
@@ -1011,7 +1035,9 @@ namespace MathNet.Numerics.LinearAlgebra
             return new Matrix(newData);
         }
 
-        /// <summary>In place subtraction of <c>m</c> to this <c>Matrix</c>.</summary>
+        /// <summary>
+        /// In place subtraction of <c>m</c> to this <c>Matrix</c>.
+        /// </summary>
         /// <seealso cref="operator - (Matrix, Matrix)"/>
         public virtual
         void
@@ -1032,7 +1058,9 @@ namespace MathNet.Numerics.LinearAlgebra
             ResetOnDemandComputations();
         }
 
-        /// <summary>In place unary minus of the <c>Matrix</c>.</summary>
+        /// <summary>
+        /// In place unary minus of the <c>Matrix</c>.
+        /// </summary>
         public virtual
         void
         UnaryMinus()
@@ -1300,7 +1328,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </summary>
         /// <seealso cref="ArrayPower(double)"/>
         public static
-        IMatrix
+        Matrix
         ArrayPower(
             IMatrix m,
             double exponent
@@ -1344,7 +1372,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </summary>
         /// <seealso cref="ArrayMap(Converter&lt;double, double&gt;)"/>
         public static
-        IMatrix
+        Matrix
         ArrayMap(
             IMatrix m,
             Converter<double, double> mapping
