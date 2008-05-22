@@ -34,20 +34,30 @@ namespace MathNet.Numerics.LinearAlgebra
     /// </summary>
     public interface IMatrix
     {
-        /// <summary>Gets the number of rows.</summary>
+
+        /// <summary>
+        /// Gets the number of rows.
+        /// </summary>
         int RowCount { get; }
 
-        /// <summary>Gets the number of columns.</summary>
+        /// <summary>
+        /// Gets the number of columns.
+        /// </summary>
         int ColumnCount { get; }
 
-        /// <summary>Gets or set the element indexed by <c>(i, j)</c>
-        /// in the <c>Matrix</c>.</summary>
+        /// <summary>
+        /// Gets or set the element indexed by <c>(i, j)</c>
+        /// in the <c>Matrix</c>.
+        /// </summary>
         /// <param name="i">Row index.</param>
         /// <param name="j">Column index.</param>
         double this[int i, int j] { get; set; }
+
     }
 
-    /// <summary>Real matrix.</summary>
+    /// <summary>
+    /// Real matrix.
+    /// </summary>
     /// <remarks>
     /// The class <c>Matrix</c> provides the elementary operations
     /// on matrices (addition, multiplication, inversion, transposition, ...).
@@ -58,19 +68,26 @@ namespace MathNet.Numerics.LinearAlgebra
         IMatrix,
         ICloneable
     {
+
         int _rowCount;
         int _columnCount;
 
-        /// <summary>Array for internal storage of elements.</summary>
+        /// <summary>
+        /// Array for internal storage of elements.
+        /// </summary>
         double[][] _data;
 
-        /// <summary>Gets the number of rows.</summary>
+        /// <summary>
+        /// Gets the number of rows.
+        /// </summary>
         public int RowCount
         {
             get { return _rowCount; }
         }
 
-        /// <summary>Gets the number of columns.</summary>
+        /// <summary>
+        /// Gets the number of columns.
+        /// </summary>
         public int ColumnCount
         {
             get { return _columnCount; }
@@ -1149,8 +1166,12 @@ namespace MathNet.Numerics.LinearAlgebra
 
         #region Array operation on matrices
 
-        /// <summary>In place element-by-element multiplication.</summary>
-        /// <remarks>This instance and <c>m</c> must have the same dimensions.</remarks>
+        /// <summary>
+        /// In place element-by-element multiplication, <c>A .*= M</c>.
+        /// </summary>
+        /// <remarks>
+        /// This instance and <c>m</c> must have the same dimensions.
+        /// </remarks>
         /// <seealso cref="ArrayMultiply(IMatrix, IMatrix)"/>
         public
         void
@@ -1171,9 +1192,13 @@ namespace MathNet.Numerics.LinearAlgebra
             ResetOnDemandComputations();
         }
 
-        /// <summary>Element-by-element multiplication.</summary>
-        /// <remarks><c>m1</c> and <c>m2</c> must have the same dimensions.</remarks>
-        /// <seealso cref="ArrayMultiply(IMatrix )"/>
+        /// <summary>
+        /// Element-by-element multiplication, <c>result = M1 .* M2</c>.
+        /// </summary>
+        /// <remarks>
+        /// <c>m1</c> and <c>m2</c> must have the same dimensions.
+        /// </remarks>
+        /// <seealso cref="ArrayMultiply(IMatrix)"/>
         public static
         Matrix
         ArrayMultiply(
@@ -1195,7 +1220,13 @@ namespace MathNet.Numerics.LinearAlgebra
             return new Matrix(newData);
         }
 
-        /// <summary>In place element-by-element right division, <c>A ./= B</c>.</summary>
+        /// <summary>
+        /// In place element-by-element right division, <c>A ./= M</c>.
+        /// </summary>
+        /// <remarks>
+        /// This instance and <c>m</c> must have the same dimensions.
+        /// </remarks>
+        /// <seealso cref="ArrayDivide(IMatrix, IMatrix)"/>
         public
         void
         ArrayDivide(
@@ -1215,7 +1246,13 @@ namespace MathNet.Numerics.LinearAlgebra
             ResetOnDemandComputations();
         }
 
-        /// <summary>Element-by-element right division, <c>C = A./B</c>.</summary>
+        /// <summary>
+        /// Element-by-element right division, <c>result = M1 ./ M2</c>.
+        /// </summary>
+        /// <remarks>
+        /// <c>m1</c> and <c>m2</c> must have the same dimensions.
+        /// </remarks>
+        /// <seealso cref="ArrayDivide(IMatrix)"/>
         public static
         Matrix
         ArrayDivide(
@@ -1231,6 +1268,94 @@ namespace MathNet.Numerics.LinearAlgebra
                 for(int j = 0; j < m1.ColumnCount; j++)
                 {
                     newData[i][j] = m1[i, j] / m2[i, j];
+                }
+            }
+
+            return new Matrix(newData);
+        }
+
+        /// <summary>
+        /// In place element-by-element raise to power, <c>A[i,j] = A[i,j]^exponent</c>.
+        /// </summary>
+        /// <seealso cref="ArrayPower(IMatrix, double)"/>
+        public
+        void
+        ArrayPower(
+            double exponent
+            )
+        {
+            for(int i = 0; i < _rowCount; i++)
+            {
+                for(int j = 0; j < _columnCount; j++)
+                {
+                    _data[i][j] = Math.Pow(_data[i][j], exponent);
+                }
+            }
+
+            ResetOnDemandComputations();
+        }
+
+        /// <summary>
+        /// Element-by-element raise to power, <c>result[i,j] = M[i,j]^exponent</c>.
+        /// </summary>
+        /// <seealso cref="ArrayPower(double)"/>
+        public static
+        IMatrix
+        ArrayPower(
+            IMatrix m,
+            double exponent
+            )
+        {
+            double[][] newData = CreateMatrixData(m.RowCount, m.ColumnCount);
+            for(int i = 0; i < m.RowCount; i++)
+            {
+                for(int j = 0; j < m.ColumnCount; j++)
+                {
+                    newData[i][j] = Math.Pow(m[i, j], exponent);
+                }
+            }
+
+            return new Matrix(newData);
+        }
+
+        /// <summary>
+        /// In place element-by-element mapping of an arbitrary function, <c>A[i,j] = mapping(A[i,j])</c>.
+        /// </summary>
+        /// <seealso cref="ArrayMap(IMatrix, Converter&lt;double, double&gt;)"/>
+        public
+        void
+        ArrayMap(
+            Converter<double, double> mapping
+            )
+        {
+            for(int i = 0; i < _rowCount; i++)
+            {
+                for(int j = 0; j < _columnCount; j++)
+                {
+                    _data[i][j] = mapping(_data[i][j]);
+                }
+            }
+
+            ResetOnDemandComputations();
+        }
+
+        /// <summary>
+        /// Element-by-element mapping of an arbitrary function, <c>result[i,j] = mapping(M[i,j])</c>.
+        /// </summary>
+        /// <seealso cref="ArrayMap(Converter&lt;double, double&gt;)"/>
+        public static
+        IMatrix
+        ArrayMap(
+            IMatrix m,
+            Converter<double, double> mapping
+            )
+        {
+            double[][] newData = CreateMatrixData(m.RowCount, m.ColumnCount);
+            for(int i = 0; i < m.RowCount; i++)
+            {
+                for(int j = 0; j < m.ColumnCount; j++)
+                {
+                    newData[i][j] = mapping(m[i, j]);
                 }
             }
 
