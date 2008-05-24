@@ -96,6 +96,10 @@
     <Compile Include="Interpolation\Interpolation.cs" />
     <Compile Include="Interpolation\InterpolationMethod.cs" />
     <Compile Include="Interpolation\SplineBoundaryCondition.cs" />
+    <Compile Include="LinearAlgebra\ComplexMatrix.cs" />
+    <Compile Include="LinearAlgebra\ComplexVector.cs" />
+    <Compile Include="LinearAlgebra\IMatrix.cs" />
+    <Compile Include="LinearAlgebra\IVector.cs" />
     <Compile Include="LinearAlgebra\Vector.cs" />
     <Compile Include="Sorting.cs" />
     <Compile Include="OnDemandComputation.cs" />

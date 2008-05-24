@@ -26,34 +26,10 @@ using System;
 using System.Text;
 using MathNet.Numerics.Properties;
 using MathNet.Numerics.Distributions;
+using System.Collections.Generic;
 
 namespace MathNet.Numerics.LinearAlgebra
 {
-    /// <summary>
-    /// Real Matrix
-    /// </summary>
-    public interface IMatrix
-    {
-
-        /// <summary>
-        /// Gets the number of rows.
-        /// </summary>
-        int RowCount { get; }
-
-        /// <summary>
-        /// Gets the number of columns.
-        /// </summary>
-        int ColumnCount { get; }
-
-        /// <summary>
-        /// Gets or set the element indexed by <c>(i, j)</c>
-        /// in the <c>Matrix</c>.
-        /// </summary>
-        /// <param name="i">Row index.</param>
-        /// <param name="j">Column index.</param>
-        double this[int i, int j] { get; set; }
-
-    }
 
     /// <summary>
     /// Real matrix.
@@ -65,7 +41,7 @@ namespace MathNet.Numerics.LinearAlgebra
     /// </remarks>
     [Serializable]
     public class Matrix :
-        IMatrix,
+        IMatrix<double>,
         ICloneable
     {
 
@@ -93,8 +69,10 @@ namespace MathNet.Numerics.LinearAlgebra
             get { return _columnCount; }
         }
 
-        /// <summary>Gets or set the element indexed by <c>(i, j)</c>
-        /// in the <c>Matrix</c>.</summary>
+        /// <summary>
+        /// Gets or set the element indexed by <c>(i, j)</c>
+        /// in the <c>Matrix</c>.
+        /// </summary>
         /// <param name="i">Row index.</param>
         /// <param name="j">Column index.</param>
         public double this[int i, int j]
@@ -107,7 +85,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 // NOTE (cdr, 2008-03-11): The folloing line is cheap,
                 // but still expensive if this setter is called
                 // a lot of times.
-                // - We should recomment out users to build the internal
+                // - We should recommend out users to build the internal
                 //   jagged array first and then create the matrix for it;
                 //   or to get the internal double[][] handle.
                 // - Consider to omit it here and make the users call
@@ -125,7 +103,9 @@ namespace MathNet.Numerics.LinearAlgebra
 
         #region Data -> Matrix: Constructors and static constructive methods
 
-        /// <summary>Construct an m-by-n matrix of zeros. </summary>
+        /// <summary>
+        /// Construct an m-by-n matrix of zeros.
+        /// </summary>
         /// <param name="m">Number of rows.</param>
         /// <param name="n">Number of columns.</param>
         public
@@ -141,7 +121,9 @@ namespace MathNet.Numerics.LinearAlgebra
             InitOnDemandComputations();
         }
 
-        /// <summary>Constructs a m-by-m square matrix.</summary>
+        /// <summary>
+        /// Constructs a m-by-m square matrix.
+        /// </summary>
         /// <param name="m">Size of the square matrix.</param>
         /// <param name="s">Diagonal value.</param>
         public
@@ -164,7 +146,9 @@ namespace MathNet.Numerics.LinearAlgebra
             InitOnDemandComputations();
         }
 
-        /// <summary>Construct an m-by-n constant matrix.</summary>
+        /// <summary>
+        /// Construct an m-by-n constant matrix.
+        /// </summary>
         /// <param name="m">Number of rows.</param>
         /// <param name="n">Number of columns.</param>
         /// <param name="s">Fill the matrix with this scalar value.</param>
@@ -192,7 +176,10 @@ namespace MathNet.Numerics.LinearAlgebra
             InitOnDemandComputations();
         }
 
-        /// <summary>Constructs a matrix from a jagged 2-D array, directly using the provided array as internal data structure.</summary>
+        /// <summary>
+        /// Constructs a matrix from a jagged 2-D array,
+        /// directly using the provided array as internal data structure.
+        /// </summary>
         /// <param name="A">Two-dimensional jagged array of doubles.</param>
         /// <exception cref="System.ArgumentException">All rows must have the same length.</exception>
         /// <seealso cref="Matrix.Create(double[][])"/>
@@ -208,7 +195,10 @@ namespace MathNet.Numerics.LinearAlgebra
             InitOnDemandComputations();
         }
 
-        /// <summary>Constructs a matrix from a 2-D array by deep-copying the provided array to the internal data structure.</summary>
+        /// <summary>
+        /// Constructs a matrix from a 2-D array by deep-copying
+        /// the provided array to the internal data structure.
+        /// </summary>
         /// <param name="A">Two-dimensional array of doubles.</param>
         [Obsolete("Use 'Matrix.Create(double[,])' or 'new Matrix(double[][])' instead")]
         [CLSCompliant(false)]
@@ -234,7 +224,9 @@ namespace MathNet.Numerics.LinearAlgebra
             InitOnDemandComputations();
         }
 
-        /// <summary>Construct a matrix from a one-dimensional packed array</summary>
+        /// <summary>
+        /// Construct a matrix from a one-dimensional packed array
+        /// </summary>
         /// <param name="vals">One-dimensional array of doubles, packed by columns (ala Fortran).</param>
         /// <param name="m">Number of rows.</param>
         /// <exception cref="System.ArgumentException">Array length must be a multiple of m.</exception>
@@ -277,7 +269,9 @@ namespace MathNet.Numerics.LinearAlgebra
             InitOnDemandComputations();
         }
 
-        /// <summary>Constructs a matrix from a copy of a 2-D array by deep-copy.</summary>
+        /// <summary>
+        /// Constructs a matrix from a copy of a 2-D array by deep-copy.
+        /// </summary>
         /// <param name="A">Two-dimensional array of doubles.</param>
         public static
         Matrix
@@ -288,7 +282,9 @@ namespace MathNet.Numerics.LinearAlgebra
             return new Matrix(CloneMatrixData(A));
         }
 
-        /// <summary>Constructs a matrix from a copy of a 2-D array by deep-copy.</summary>
+        /// <summary>
+        /// Constructs a matrix from a copy of a 2-D array by deep-copy.
+        /// </summary>
         /// <param name="A">Two-dimensional array of doubles.</param>
         [CLSCompliant(false)]
         public static
@@ -314,7 +310,9 @@ namespace MathNet.Numerics.LinearAlgebra
             return new Matrix(newData);
         }
 
-        /// <summary>Generates identity matrix</summary>
+        /// <summary>
+        /// Generates identity matrix
+        /// </summary>
         /// <param name="m">Number of rows.</param>
         /// <param name="n">Number of columns.</param>
         /// <returns>An m-by-n matrix with ones on the diagonal and zeros elsewhere.</returns>
@@ -336,6 +334,71 @@ namespace MathNet.Numerics.LinearAlgebra
                 }
             }
             return new Matrix(data);
+        }
+
+        /// <summary>
+        /// Construct a complex matrix from a set of real column vectors.
+        /// </summary>
+        public static
+        Matrix
+        CreateFromColumns(
+            IList<Vector> columnVectors
+            )
+        {
+            if(null == columnVectors)
+            {
+                throw new ArgumentNullException("columnVectors");
+            }
+            if(0 == columnVectors.Count)
+            {
+                throw new ArgumentOutOfRangeException("columnVectors");
+            }
+
+            int rows = columnVectors[0].Length;
+            int columns = columnVectors.Count;
+            double[][] newData = new double[rows][];
+
+            for(int i = 0; i < rows; i++)
+            {
+                double[] newRow = new double[columns];
+                for(int j = 0; j < columns; j++)
+                {
+                    newRow[j] = columnVectors[j][i];
+                }
+                newData[i] = newRow;
+            }
+
+            return new Matrix(newData);
+        }
+
+        /// <summary>
+        /// Construct a complex matrix from a set of real row vectors.
+        /// </summary>
+        public static
+        Matrix
+        CreateFromRows(
+            IList<Vector> rowVectors
+            )
+        {
+            if(null == rowVectors)
+            {
+                throw new ArgumentNullException("columnVectors");
+            }
+            if(0 == rowVectors.Count)
+            {
+                throw new ArgumentOutOfRangeException("columnVectors");
+            }
+
+            int rows = rowVectors.Count;
+            int columns = rowVectors[0].Length;
+            double[][] newData = new double[rows][];
+
+            for(int i = 0; i < rows; i++)
+            {
+                newData[i] = rowVectors[i].CopyToArray();
+            }
+
+            return new Matrix(newData);
         }
 
         /// <summary>
@@ -364,7 +427,9 @@ namespace MathNet.Numerics.LinearAlgebra
             return new Matrix(m, m);
         }
 
-        /// <summary>Generates matrix with random elements</summary>
+        /// <summary>
+        /// Generates matrix with random elements.
+        /// </summary>
         /// <param name="m">Number of rows.</param>
         /// <param name="n">Number of columns.</param>
         /// <param name="randomDistribution">Continuous Random Distribution or Source</param>
@@ -390,7 +455,9 @@ namespace MathNet.Numerics.LinearAlgebra
             return new Matrix(data);
         }
 
-        /// <summary>Generates matrix with random elements</summary>
+        /// <summary>
+        /// Generates matrix with standard-distributed random elements.
+        /// </summary>
         /// <param name="m">Number of rows.</param>
         /// <param name="n">Number of columns.</param>
         /// <returns>An m-by-n matrix with uniformly distributed
@@ -402,7 +469,7 @@ namespace MathNet.Numerics.LinearAlgebra
             int n
             )
         {
-            return Random(m, n, new RandomSources.SystemRandomSource());
+            return Random(m, n, new StandardDistribution());
         }
 
         #endregion //  Constructors
@@ -570,6 +637,109 @@ namespace MathNet.Numerics.LinearAlgebra
         #region Sub-matrices operation
 
         /// <summary>
+        /// Copies a specified column of this matrix to a new vector.
+        /// </summary>
+        public
+        Vector
+        GetColumnVector(
+            int columnIndex
+            )
+        {
+            if(columnIndex < 0 || columnIndex >= _columnCount)
+            {
+                throw new ArgumentOutOfRangeException("columnIndex");
+            }
+
+            double[] newData = new double[_rowCount];
+
+            for(int i = 0; i < _rowCount; i++)
+            {
+                newData[i] = _data[i][columnIndex];
+            }
+
+            return new Vector(newData);
+        }
+
+        /// <summary>
+        /// Copies a specified row of this matrix to a new vector.
+        /// </summary>
+        public
+        Vector
+        GetRowVector(
+            int rowIndex
+            )
+        {
+            if(rowIndex < 0 || rowIndex >= _rowCount)
+            {
+                throw new ArgumentOutOfRangeException("rowIndexs");
+            }
+
+            double[] newData = new double[_columnCount];
+            _data[rowIndex].CopyTo(newData, 0);
+
+            return new Vector(newData);
+        }
+
+        /// <summary>
+        /// Copies a column vector to a specified column of this matrix.
+        /// </summary>
+        public
+        void
+        SetColumnVector(
+            IVector<double> columnVector,
+            int columnIndex
+            )
+        {
+            if(null == columnVector)
+            {
+                throw new ArgumentNullException("columnVector");
+            }
+            if(columnIndex < 0 || columnIndex >= _columnCount)
+            {
+                throw new ArgumentOutOfRangeException("columnIndex");
+            }
+            if(columnVector.Length != _rowCount)
+            {
+                throw new ArgumentOutOfRangeException("columnVector");
+            }
+
+            for(int i = 0; i < _rowCount; i++)
+            {
+                _data[i][columnIndex] = columnVector[i];
+            }
+
+            ResetOnDemandComputations();
+        }
+
+        /// <summary>
+        /// Copies a row vector to a specified row of this matrix.
+        /// </summary>
+        public
+        void
+        SetRowVector(
+            IVector<double> rowVector,
+            int rowIndex
+            )
+        {
+            if(null == rowVector)
+            {
+                throw new ArgumentNullException("rowVector");
+            }
+            if(rowIndex < 0 || rowIndex >= _rowCount)
+            {
+                throw new ArgumentOutOfRangeException("rowIndexs");
+            }
+            if(rowVector.Length != _columnCount)
+            {
+                throw new ArgumentOutOfRangeException("rowVector");
+            }
+
+            _data[rowIndex] = rowVector.CopyToArray();
+
+            ResetOnDemandComputations();
+        }
+
+        /// <summary>
         /// Gets a submatrix.
         /// </summary>
         /// <param name="i0">First row index.</param>
@@ -721,7 +891,7 @@ namespace MathNet.Numerics.LinearAlgebra
             int i1,
             int j0,
             int j1,
-            IMatrix X
+            IMatrix<double> X
             )
         {
             try
@@ -753,7 +923,7 @@ namespace MathNet.Numerics.LinearAlgebra
         SetMatrix(
             int[] r,
             int[] c,
-            IMatrix X
+            IMatrix<double> X
             )
         {
             try
@@ -787,7 +957,7 @@ namespace MathNet.Numerics.LinearAlgebra
             int[] r,
             int j0,
             int j1,
-            IMatrix X
+            IMatrix<double> X
             )
         {
             try
@@ -821,7 +991,7 @@ namespace MathNet.Numerics.LinearAlgebra
             int i0,
             int i1,
             int[] c,
-            IMatrix X
+            IMatrix<double> X
             )
         {
             try
@@ -918,6 +1088,9 @@ namespace MathNet.Numerics.LinearAlgebra
 
         #region Elementary linear operations
 
+        // TODO: Adapt to new method model (X + XInplace). Will be a breaking change.
+        // TODO: Extend with additional methods, see ComplexMatrix.
+
         /// <summary>
         /// In place addition of <c>m</c> to this <c>Matrix</c>.
         /// </summary>
@@ -925,7 +1098,7 @@ namespace MathNet.Numerics.LinearAlgebra
         public virtual
         void
         Add(
-            IMatrix m
+            IMatrix<double> m
             )
         {
             CheckMatchingMatrixDimensions(this, m);
@@ -1042,7 +1215,7 @@ namespace MathNet.Numerics.LinearAlgebra
         public virtual
         void
         Subtract(
-            IMatrix m
+            IMatrix<double> m
             )
         {
             CheckMatchingMatrixDimensions(this, m);
@@ -1132,7 +1305,7 @@ namespace MathNet.Numerics.LinearAlgebra
         public static
         Matrix
         Transpose(
-            IMatrix m
+            IMatrix<double> m
             )
         {
             double[][] newData = CreateMatrixData(m.ColumnCount, m.RowCount);
@@ -1204,7 +1377,7 @@ namespace MathNet.Numerics.LinearAlgebra
         public
         void
         ArrayMultiply(
-            IMatrix m
+            IMatrix<double> m
             )
         {
             CheckMatchingMatrixDimensions(this, m);
@@ -1230,8 +1403,8 @@ namespace MathNet.Numerics.LinearAlgebra
         public static
         Matrix
         ArrayMultiply(
-            IMatrix m1,
-            IMatrix m2
+            IMatrix<double> m1,
+            IMatrix<double> m2
             )
         {
             CheckMatchingMatrixDimensions(m1, m2);
@@ -1258,7 +1431,7 @@ namespace MathNet.Numerics.LinearAlgebra
         public
         void
         ArrayDivide(
-            IMatrix m
+            IMatrix<double> m
             )
         {
             CheckMatchingMatrixDimensions(this, m);
@@ -1284,8 +1457,8 @@ namespace MathNet.Numerics.LinearAlgebra
         public static
         Matrix
         ArrayDivide(
-            IMatrix m1,
-            IMatrix m2
+            IMatrix<double> m1,
+            IMatrix<double> m2
             )
         {
             CheckMatchingMatrixDimensions(m1, m2);
@@ -1330,7 +1503,7 @@ namespace MathNet.Numerics.LinearAlgebra
         public static
         Matrix
         ArrayPower(
-            IMatrix m,
+            IMatrix<double> m,
             double exponent
             )
         {
@@ -1374,7 +1547,7 @@ namespace MathNet.Numerics.LinearAlgebra
         public static
         Matrix
         ArrayMap(
-            IMatrix m,
+            IMatrix<double> m,
             Converter<double, double> mapping
             )
         {
@@ -1738,8 +1911,8 @@ namespace MathNet.Numerics.LinearAlgebra
         private static
         void
         CheckMatchingMatrixDimensions(
-            IMatrix A,
-            IMatrix B
+            IMatrix<double> A,
+            IMatrix<double> B
             )
         {
             if(A.RowCount != B.RowCount || A.ColumnCount != B.ColumnCount)

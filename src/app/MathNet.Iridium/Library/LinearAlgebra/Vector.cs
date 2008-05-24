@@ -22,33 +22,24 @@
 
 using System;
 using System.Text;
+using System.Collections.Generic;
 using MathNet.Numerics.Properties;
 using MathNet.Numerics.Distributions;
 
 namespace MathNet.Numerics.LinearAlgebra
 {
+
     /// <summary>
-    /// Real Vector
+    /// Real vector.
     /// </summary>
-    public interface IVector
-    {
-        /// <summary>Gets the dimensionality of rows.</summary>
-        int Length { get; }
-
-        /// <summary>Gets or set the element indexed by <c>i</c>
-        /// in the <c>Vector</c>.</summary>
-        /// <param name="i">Dimension index.</param>
-        double this[int i] { get; set; }
-    }
-
-    /// <summary>Real vector.</summary>
     /// <remarks>
     /// The class <c>Vector</c> provides the elementary 
     /// algebraic and conversion operations.
     /// </remarks>
     [Serializable]
     public class Vector :
-        IVector,
+        IVector<double>,
+        IList<double>,
         ICloneable
     {
         private int _length;
@@ -272,6 +263,18 @@ namespace MathNet.Numerics.LinearAlgebra
         }
 
         /// <summary>
+        /// Copies the internal data structure to an array.
+        /// </summary>
+        public
+        double[]
+        CopyToArray()
+        {
+            double[] newData = new double[_length];
+            _data.CopyTo(newData, 0);
+            return newData;
+        }
+
+        /// <summary>
         /// Create a matrix based on this vector in column form (one single column).
         /// </summary>
         public
@@ -305,9 +308,6 @@ namespace MathNet.Numerics.LinearAlgebra
 
         #region Elementary operations
 
-        // TODO (cdr, 2008-03-30): Consider to provide static variants
-        // like "Sum" for addition, for functional use (as deleates).
-
         /// <summary>
         /// Add another vector to this vector.
         /// </summary>
@@ -323,7 +323,7 @@ namespace MathNet.Numerics.LinearAlgebra
         public
         Vector
         Add(
-            IVector b
+            IVector<double> b
             )
         {
             CheckMatchingVectorDimensions(this, b);
@@ -347,7 +347,7 @@ namespace MathNet.Numerics.LinearAlgebra
         public
         void
         AddInplace(
-            IVector b
+            IVector<double> b
             )
         {
             CheckMatchingVectorDimensions(this, b);
@@ -373,7 +373,7 @@ namespace MathNet.Numerics.LinearAlgebra
         public
         Vector
         Subtract(
-            IVector b
+            IVector<double> b
             )
         {
             CheckMatchingVectorDimensions(this, b);
@@ -398,7 +398,7 @@ namespace MathNet.Numerics.LinearAlgebra
         public
         void
         SubtractInplace(
-            IVector b
+            IVector<double> b
             )
         {
             CheckMatchingVectorDimensions(this, b);
@@ -487,12 +487,12 @@ namespace MathNet.Numerics.LinearAlgebra
         public
         void
         ScaleInplace(
-            double s
+            double scalar
             )
         {
             for(int i = 0; i < _length; i++)
             {
-                _data[i] *= s;
+                _data[i] *= scalar;
             }
         }
 
@@ -511,8 +511,8 @@ namespace MathNet.Numerics.LinearAlgebra
         public static
         double
         ScalarProduct(
-            IVector u,
-            IVector v
+            IVector<double> u,
+            IVector<double> v
             )
         {
             CheckMatchingVectorDimensions(u, v);
@@ -540,7 +540,7 @@ namespace MathNet.Numerics.LinearAlgebra
         public
         double
         ScalarMultiply(
-            IVector b
+            IVector<double> b
             )
         {
             return ScalarProduct(this, b);
@@ -556,8 +556,8 @@ namespace MathNet.Numerics.LinearAlgebra
         public static
         Matrix
         DyadicProduct(
-            IVector u,
-            IVector v
+            IVector<double> u,
+            IVector<double> v
             )
         {
             double[][] m = Matrix.CreateMatrixData(u.Length, v.Length);
@@ -582,7 +582,7 @@ namespace MathNet.Numerics.LinearAlgebra
         public
         Matrix
         TensorMultiply(
-            IVector b
+            IVector<double> b
             )
         {
             return DyadicProduct(this, b);
@@ -598,8 +598,8 @@ namespace MathNet.Numerics.LinearAlgebra
         public static
         Vector
         CrossProduct(
-            IVector u,
-            IVector v
+            IVector<double> u,
+            IVector<double> v
             )
         {
             CheckMatchingVectorDimensions(u, v);
@@ -628,7 +628,7 @@ namespace MathNet.Numerics.LinearAlgebra
         public
         Vector
         CrossMultiply(
-            IVector b
+            IVector<double> b
             )
         {
             return CrossProduct(this, b);
@@ -645,8 +645,8 @@ namespace MathNet.Numerics.LinearAlgebra
         public static
         Vector
         ArrayProduct(
-            IVector a,
-            IVector b
+            IVector<double> a,
+            IVector<double> b
             )
         {
             CheckMatchingVectorDimensions(a, b);
@@ -670,7 +670,7 @@ namespace MathNet.Numerics.LinearAlgebra
         public
         Vector
         ArrayMultiply(
-            IVector b
+            IVector<double> b
             )
         {
             return ArrayProduct(this, b);
@@ -687,7 +687,7 @@ namespace MathNet.Numerics.LinearAlgebra
         public
         void
         ArrayMultiplyInplace(
-            IVector b
+            IVector<double> b
             )
         {
             CheckMatchingVectorDimensions(this, b);
@@ -709,8 +709,8 @@ namespace MathNet.Numerics.LinearAlgebra
         public static
         Vector
         ArrayQuotient(
-            IVector a,
-            IVector b
+            IVector<double> a,
+            IVector<double> b
             )
         {
             CheckMatchingVectorDimensions(a, b);
@@ -734,7 +734,7 @@ namespace MathNet.Numerics.LinearAlgebra
         public
         Vector
         ArrayDivide(
-            IVector b
+            IVector<double> b
             )
         {
             return ArrayQuotient(this, b);
@@ -751,7 +751,7 @@ namespace MathNet.Numerics.LinearAlgebra
         public
         void
         ArrayDivideInplace(
-            IVector b
+            IVector<double> b
             )
         {
             CheckMatchingVectorDimensions(this, b);
@@ -990,8 +990,8 @@ namespace MathNet.Numerics.LinearAlgebra
         private static
         void
         CheckMatchingVectorDimensions(
-            IVector A,
-            IVector B
+            IVector<double> A,
+            IVector<double> B
             )
         {
             if(null == A)
@@ -1070,6 +1070,132 @@ namespace MathNet.Numerics.LinearAlgebra
             }
             sb.Append("]");
             return sb.ToString();
+        }
+
+        #endregion
+
+        #region IList<double> Interface Implementation
+
+        /// <summary>
+        /// Index of an element.
+        /// </summary>
+        int
+        IList<double>.IndexOf(
+            double item
+            )
+        {
+            return Array.IndexOf(_data, item);
+        }
+
+        /// <summary>
+        /// True if the vector contains some element.
+        /// </summary>
+        bool
+        ICollection<double>.Contains(
+            double item
+            )
+        {
+            return Array.IndexOf(_data, item) >= 0;
+        }
+
+        /// <summary>
+        /// Copy all elements to some array.
+        /// </summary>
+        void
+        ICollection<double>.CopyTo(
+            double[] array,
+            int arrayIndex
+            )
+        {
+            _data.CopyTo(array, arrayIndex);
+        }
+
+        /// <summary>
+        /// Length.
+        /// </summary>
+        int ICollection<double>.Count
+        {
+            get { return Length; }
+        }
+
+        /// <summary>
+        /// Get a typed enumerator over all elements.
+        /// </summary>
+        IEnumerator<double>
+        IEnumerable<double>.GetEnumerator()
+        {
+            return ((IEnumerable<double>)_data).GetEnumerator();
+        }
+
+        /// <summary>
+        /// Get a non-typed enumerator over all elements.
+        /// </summary>
+        System.Collections.IEnumerator
+        System.Collections.IEnumerable.GetEnumerator()
+        {
+            return _data.GetEnumerator();
+        }
+
+        /// <summary>
+        /// False.
+        /// </summary>
+        bool ICollection<double>.IsReadOnly
+        {
+            get { return false; }
+        }
+
+        /// <summary>
+        /// Not Supported.
+        /// </summary>
+        void
+        ICollection<double>.Add(
+            double item
+            )
+        {
+            throw new NotSupportedException();
+        }
+
+        /// <summary>
+        /// Not Supported.
+        /// </summary>
+        void
+        IList<double>.Insert(
+            int index,
+            double item
+            )
+        {
+            throw new NotSupportedException();
+        }
+
+        /// <summary>
+        /// Not Supported.
+        /// </summary>
+        bool
+        ICollection<double>.Remove(
+            double item
+            )
+        {
+            throw new NotSupportedException();
+        }
+
+        /// <summary>
+        /// Not Supported.
+        /// </summary>
+        void
+        IList<double>.RemoveAt(
+            int index
+            )
+        {
+            throw new NotSupportedException();
+        }
+
+        /// <summary>
+        /// Not Supported.
+        /// </summary>
+        void
+        ICollection<double>.Clear()
+        {
+            throw new NotSupportedException();
         }
 
         #endregion
