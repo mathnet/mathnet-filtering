@@ -24,7 +24,9 @@ using System;
 using System.Text;
 using System.Globalization;  
 using System.Collections;
+
 using MathNet.Numerics.Properties;
+using MathNet.Numerics.Distributions;
 
 namespace MathNet.Numerics
 {
@@ -247,6 +249,75 @@ namespace MathNet.Numerics
                 modulus * Math.Sin(argument)
                 );
         }
+
+        /// <summary>
+        /// Constructs a complex number with random real and imaginary value.
+        /// </summary>
+        /// <param name="realRandomDistribution">Continuous random distribution or source for the real part.</param>
+        /// <param name="imagRandomDistribution">Continuous random distribution or source for the imaginary part.</param>
+        public static
+        Complex
+        Random(
+            IContinuousGenerator realRandomDistribution,
+            IContinuousGenerator imagRandomDistribution
+            )
+        {
+            return new Complex(
+                realRandomDistribution.NextDouble(),
+                imagRandomDistribution.NextDouble()
+                );
+        }
+
+        /// <summary>
+        /// Constructs a complex number with random real and imaginary value.
+        /// </summary>
+        /// <param name="randomDistribution">Continuous random distribution or source for the real and imaginary parts.</param>
+        public static
+        Complex
+        Random(
+            IContinuousGenerator randomDistribution
+            )
+        {
+            return new Complex(
+                randomDistribution.NextDouble(),
+                randomDistribution.NextDouble()
+                );
+        }
+
+        /// <summary>
+        /// Constructs a complex number with random modulus and argument.
+        /// </summary>
+        /// <param name="modulusRandomDistribution">Continuous random distribution or source for the modulus.</param>
+        /// <param name="argumentRandomDistribution">Continuous random distribution or source for the argument.</param>
+        public static
+        Complex
+        RandomPolar(
+            IContinuousGenerator modulusRandomDistribution,
+            IContinuousGenerator argumentRandomDistribution
+            )
+        {
+            return FromModulusArgument(
+                modulusRandomDistribution.NextDouble(),
+                argumentRandomDistribution.NextDouble()
+                );
+        }
+
+        /// <summary>
+        /// Constructs a complex number on the unit circle with random argument.
+        /// </summary>
+        /// <param name="argumentRandomDistribution">Continuous random distribution or source for the argument.</param>
+        public static
+        Complex
+        RandomUnitCircle(
+            IContinuousGenerator argumentRandomDistribution
+            )
+        {
+            return FromModulusArgument(
+                1d,
+                argumentRandomDistribution.NextDouble()
+                );
+        }
+
 
         /// <summary>
         /// Represents the zero value. This field is constant.
