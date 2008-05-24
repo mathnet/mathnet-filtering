@@ -1254,7 +1254,7 @@ namespace MathNet.Numerics.LinearAlgebra
         #region Additional elementary operations
 
         /// <summary>In place transposition of this <c>Matrix</c>.</summary>
-        /// <seealso cref="Transpose(IMatrix)"/>
+        /// <seealso cref="Transpose(IMatrix&lt;double&gt;)"/>
         /// <remarks>
         /// In case of non-quadratic matrices, this operation replaces the
         /// internal data structure. Hence, if you hold a reference to it
@@ -1373,7 +1373,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <remarks>
         /// This instance and <c>m</c> must have the same dimensions.
         /// </remarks>
-        /// <seealso cref="ArrayMultiply(IMatrix, IMatrix)"/>
+        /// <seealso cref="ArrayMultiply(IMatrix&lt;double&gt;, IMatrix&lt;double&gt;)"/>
         public
         void
         ArrayMultiply(
@@ -1399,7 +1399,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <remarks>
         /// <c>m1</c> and <c>m2</c> must have the same dimensions.
         /// </remarks>
-        /// <seealso cref="ArrayMultiply(IMatrix)"/>
+        /// <seealso cref="ArrayMultiply(IMatrix&lt;double&gt;)"/>
         public static
         Matrix
         ArrayMultiply(
@@ -1427,7 +1427,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <remarks>
         /// This instance and <c>m</c> must have the same dimensions.
         /// </remarks>
-        /// <seealso cref="ArrayDivide(IMatrix, IMatrix)"/>
+        /// <seealso cref="ArrayDivide(IMatrix&lt;double&gt;, IMatrix&lt;double&gt;)"/>
         public
         void
         ArrayDivide(
@@ -1453,7 +1453,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <remarks>
         /// <c>m1</c> and <c>m2</c> must have the same dimensions.
         /// </remarks>
-        /// <seealso cref="ArrayDivide(IMatrix)"/>
+        /// <seealso cref="ArrayDivide(IMatrix&lt;double&gt;)"/>
         public static
         Matrix
         ArrayDivide(
@@ -1478,7 +1478,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <summary>
         /// In place element-by-element raise to power, <c>A[i,j] = A[i,j]^exponent</c>.
         /// </summary>
-        /// <seealso cref="ArrayPower(IMatrix, double)"/>
+        /// <seealso cref="ArrayPower(IMatrix&lt;double&gt;, double)"/>
         public
         void
         ArrayPower(
@@ -1522,7 +1522,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <summary>
         /// In place element-by-element mapping of an arbitrary function, <c>A[i,j] = mapping(A[i,j])</c>.
         /// </summary>
-        /// <seealso cref="ArrayMap(IMatrix, Converter&lt;double, double&gt;)"/>
+        /// <seealso cref="ArrayMap(IMatrix&lt;double&gt;, Converter&lt;double, double&gt;)"/>
         public
         void
         ArrayMap(
