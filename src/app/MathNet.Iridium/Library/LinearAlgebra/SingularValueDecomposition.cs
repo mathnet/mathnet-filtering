@@ -42,11 +42,11 @@ namespace MathNet.Numerics.LinearAlgebra
     [Serializable]
     public class SingularValueDecomposition
     {
-        /// <summary>Matrices for internal storage of U and V.</summary>
-        double[][] U, V;
+        Matrix _u;
+        Matrix _v;
 
         /// <summary>Array for internal storage of singular values.</summary>
-        double[] s;
+        Vector _singular;
 
         /// <summary>Row dimensions.</summary>
         int m;
@@ -64,8 +64,6 @@ namespace MathNet.Numerics.LinearAlgebra
         bool transpose;
 
         OnDemandComputation<Matrix> _diagonalSingularValuesOnDemand;
-        OnDemandComputation<Matrix> _leftSingularVectorsOnDemand;
-        OnDemandComputation<Matrix> _rightSingularVectorsOnDemand;
         OnDemandComputation<int> _rankOnDemand;
 
         /// <summary>Construct the singular value decomposition.</summary>
@@ -96,9 +94,9 @@ namespace MathNet.Numerics.LinearAlgebra
             }
 
             int nu = Math.Min(m, n);
-            s = new double[Math.Min(m + 1, n)];
-            U = Matrix.CreateMatrixData(m, nu);
-            V = Matrix.CreateMatrixData(n, n);
+            double[] s = new double[Math.Min(m + 1, n)];
+            double[][] U = Matrix.CreateMatrixData(m, nu);
+            double[][] V = Matrix.CreateMatrixData(n, n);
 
             double[] e = new double[n];
             double[] work = new double[m];
@@ -605,14 +603,18 @@ namespace MathNet.Numerics.LinearAlgebra
                 U = T;
             }
 
+            _u = new Matrix(U);
+            _v = new Matrix(V);
+            _singular = new Vector(s);
+
             InitOnDemandComputations();
         }
 
         /// <summary>Gets the one-dimensional array of singular values.</summary>
         /// <returns>diagonal of S.</returns>
-        public double[] SingularValues
+        public Vector SingularValues
         {
-            get { return s; }
+            get { return _singular; }
         }
 
         /// <summary>Get the diagonal matrix of singular values.</summary>
@@ -628,13 +630,13 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <summary>Gets the left singular vectors (U matrix).</summary>
         public Matrix LeftSingularVectors
         {
-            get { return _leftSingularVectorsOnDemand.Compute(); }
+            get { return _u; }
         }
 
         /// <summary>Gets the right singular vectors (V matrix).</summary>
         public Matrix RightSingularVectors
         {
-            get { return _rightSingularVectorsOnDemand.Compute(); }
+            get { return _v; }
         }
 
         /// <summary>Two norm.</summary>
@@ -644,7 +646,7 @@ namespace MathNet.Numerics.LinearAlgebra
         Norm2()
         {
             // TODO (cdr, 2008-03-11): Change to property
-            return s[0];
+            return _singular[0];
         }
 
         /// <summary>Two norm condition number.</summary>
@@ -654,7 +656,7 @@ namespace MathNet.Numerics.LinearAlgebra
         Condition()
         {
             // TODO (cdr, 2008-03-11): Change to property
-            return s[0] / s[Math.Min(m, n) - 1];
+            return _singular[0] / _singular[Math.Min(m, n) - 1];
         }
 
         /// <summary>Effective numerical matrix rank - Number of nonnegligible singular values.</summary>
@@ -670,47 +672,23 @@ namespace MathNet.Numerics.LinearAlgebra
         InitOnDemandComputations()
         {
             _diagonalSingularValuesOnDemand = new OnDemandComputation<Matrix>(ComputeDiagonalSingularValues);
-            _leftSingularVectorsOnDemand = new OnDemandComputation<Matrix>(ComputeLeftSingularVectors);
-            _rightSingularVectorsOnDemand = new OnDemandComputation<Matrix>(ComputeRightSingularVectors);
             _rankOnDemand = new OnDemandComputation<int>(ComputeRank);
         }
 
         Matrix
         ComputeDiagonalSingularValues()
         {
-            double[][] X = Matrix.CreateMatrixData(n, n);
-            for(int i = 0; i < n; i++)
-            {
-                for(int j = 0; j < n; j++)
-                {
-                    X[i][j] = 0.0;
-                }
-
-                X[i][i] = this.s[i];
-            }
-            return new Matrix(X);
-        }
-
-        Matrix
-        ComputeLeftSingularVectors()
-        {
-            return new Matrix(U);
-        }
-
-        Matrix
-        ComputeRightSingularVectors()
-        {
-            return new Matrix(V);
+            return Matrix.Diagonal(_singular);
         }
 
         int
         ComputeRank()
         {
-            double tol = Math.Max(m, n) * s[0] * Number.PositiveRelativeAccuracy;
+            double tol = Math.Max(m, n) * _singular[0] * Number.PositiveRelativeAccuracy;
             int r = 0;
-            for(int i = 0; i < s.Length; i++)
+            for(int i = 0; i < _singular.Length; i++)
             {
-                if(s[i] > tol)
+                if(_singular[i] > tol)
                 {
                     r++;
                 }
