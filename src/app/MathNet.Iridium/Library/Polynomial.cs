@@ -99,13 +99,14 @@ namespace MathNet.Numerics
             return 1 << (int)Math.Ceiling(Math.Log(order + 1, 2));
         }
         
-        void
-        ResizeDouble()
-        {
-            double[] newCoeffs = new double[coefficients.Length + coefficients.Length];
-            coefficients.CopyTo(newCoeffs, 0);
-            coefficients = newCoeffs;
-        }
+        // TODO: Never called, remove?
+        //void
+        //ResizeDouble()
+        //{
+        //    double[] newCoeffs = new double[coefficients.Length + coefficients.Length];
+        //    coefficients.CopyTo(newCoeffs, 0);
+        //    coefficients = newCoeffs;
+        //}
 
         void
         ResizeOptimalForOrder(

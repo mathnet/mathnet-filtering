@@ -149,46 +149,46 @@ namespace MathNet.Numerics
 
         #region Normalization
 
-        // TODO: method NormalizeToUnityOrNull is never called.
-        void
-        NormalizeToUnityOrNull()
-        {
-            if(double.IsPositiveInfinity(real) && double.IsPositiveInfinity(imag))
-            {
-                real = Constants.Sqrt1_2;
-                imag = Constants.Sqrt1_2;
-            }
-            else if(double.IsPositiveInfinity(real) && double.IsNegativeInfinity(imag))
-            {
-                real = Constants.Sqrt1_2;
-                imag = -Constants.Sqrt1_2;
-            }
-            else if(double.IsNegativeInfinity(real) && double.IsPositiveInfinity(imag))
-            {
-                real = -Constants.Sqrt1_2;
-                imag = -Constants.Sqrt1_2;
-            }
-            else if(double.IsNegativeInfinity(real) && double.IsNegativeInfinity(imag))
-            {
-                real = -Constants.Sqrt1_2;
-                imag = Constants.Sqrt1_2;
-            }
-            else
-            {
-                //Don't replace this with "Modulus"!
-                double mod = Math.Sqrt(real * real + imag * imag);
-                if(mod == 0)
-                {
-                    real = 0;
-                    imag = 0;
-                }
-                else
-                {
-                    real = real / mod;
-                    imag = imag / mod;
-                }
-            }
-        }
+        // TODO: Never called, remove?
+        //void
+        //NormalizeToUnityOrNull()
+        //{
+        //    if(double.IsPositiveInfinity(real) && double.IsPositiveInfinity(imag))
+        //    {
+        //        real = Constants.Sqrt1_2;
+        //        imag = Constants.Sqrt1_2;
+        //    }
+        //    else if(double.IsPositiveInfinity(real) && double.IsNegativeInfinity(imag))
+        //    {
+        //        real = Constants.Sqrt1_2;
+        //        imag = -Constants.Sqrt1_2;
+        //    }
+        //    else if(double.IsNegativeInfinity(real) && double.IsPositiveInfinity(imag))
+        //    {
+        //        real = -Constants.Sqrt1_2;
+        //        imag = -Constants.Sqrt1_2;
+        //    }
+        //    else if(double.IsNegativeInfinity(real) && double.IsNegativeInfinity(imag))
+        //    {
+        //        real = -Constants.Sqrt1_2;
+        //        imag = Constants.Sqrt1_2;
+        //    }
+        //    else
+        //    {
+        //        //Don't replace this with "Modulus"!
+        //        double mod = Math.Sqrt(real * real + imag * imag);
+        //        if(mod == 0)
+        //        {
+        //            real = 0;
+        //            imag = 0;
+        //        }
+        //        else
+        //        {
+        //            real = real / mod;
+        //            imag = imag / mod;
+        //        }
+        //    }
+        //}
 
         #endregion
 
