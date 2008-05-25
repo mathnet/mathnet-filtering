@@ -311,32 +311,6 @@ namespace MathNet.Numerics.LinearAlgebra
         }
 
         /// <summary>
-        /// Generates identity matrix
-        /// </summary>
-        /// <param name="m">Number of rows.</param>
-        /// <param name="n">Number of columns.</param>
-        /// <returns>An m-by-n matrix with ones on the diagonal and zeros elsewhere.</returns>
-        public static
-        Matrix
-        Identity(
-            int m,
-            int n
-            )
-        {
-            double[][] data = new double[m][];
-            for(int i = 0; i < m; i++)
-            {
-                double[] col = new double[n];
-                data[i] = col;
-                if(i < n)
-                {
-                    col[i] = 1.0;
-                }
-            }
-            return new Matrix(data);
-        }
-
-        /// <summary>
         /// Construct a complex matrix from a set of real column vectors.
         /// </summary>
         public static
@@ -402,6 +376,32 @@ namespace MathNet.Numerics.LinearAlgebra
         }
 
         /// <summary>
+        /// Generates identity matrix
+        /// </summary>
+        /// <param name="m">Number of rows.</param>
+        /// <param name="n">Number of columns.</param>
+        /// <returns>An m-by-n matrix with ones on the diagonal and zeros elsewhere.</returns>
+        public static
+        Matrix
+        Identity(
+            int m,
+            int n
+            )
+        {
+            double[][] data = new double[m][];
+            for(int i = 0; i < m; i++)
+            {
+                double[] col = new double[n];
+                if(i < n)
+                {
+                    col[i] = 1.0;
+                }
+                data[i] = col;
+            }
+            return new Matrix(data);
+        }
+
+        /// <summary>
         /// Generates an m-by-m matrix filled with 1.
         /// </summary>
         /// <param name="m">Number of rows = Number of columns</param>
@@ -425,6 +425,52 @@ namespace MathNet.Numerics.LinearAlgebra
             )
         {
             return new Matrix(m, m);
+        }
+
+        /// <summary>
+        /// Creates a new diagonal m-by-n matrix based on the diagonal vector.
+        /// </summary>
+        /// <param name="diagonalVector">The values of the matrix diagonal.</param>
+        /// <param name="m">Number of rows.</param>
+        /// <param name="n">Number of columns.</param>
+        /// <returns>
+        /// An m-by-n matrix with the values from the diagonal vector on the diagonal and zeros elsewhere.
+        /// </returns>
+        public static
+        Matrix
+        Diagonal(
+            IVector<double> diagonalVector,
+            int m,
+            int n
+            )
+        {
+            double[][] data = new double[m][];
+            for(int i = 0; i < m; i++)
+            {
+                double[] col = new double[n];
+                if((i < n) && (i < diagonalVector.Length))
+                {
+                    col[i] = diagonalVector[i];
+                }
+                data[i] = col;
+            }
+            return new Matrix(data);
+        }
+
+        /// <summary>
+        /// Creates a new square diagonal matrix based on the diagonal vector.
+        /// </summary>
+        /// <param name="diagonalVector">The values of the matrix diagonal.</param>
+        /// <returns>
+        /// An m-by-n matrix with the values from the diagonal vector on the diagonal and zeros elsewhere.
+        /// </returns>
+        public static
+        Matrix
+        Diagonal(
+            IVector<double> diagonalVector
+            )
+        {
+            return Diagonal(diagonalVector, diagonalVector.Length, diagonalVector.Length);
         }
 
         /// <summary>

@@ -375,13 +375,59 @@ namespace MathNet.Numerics.LinearAlgebra
             for(int i = 0; i < m; i++)
             {
                 Complex[] col = new Complex[n];
-                data[i] = col;
                 if(i < n)
                 {
                     col[i] = Complex.One;
                 }
+                data[i] = col;
             }
             return new ComplexMatrix(data);
+        }
+
+        /// <summary>
+        /// Creates a new diagonal m-by-n matrix based on the diagonal vector.
+        /// </summary>
+        /// <param name="diagonalVector">The values of the matrix diagonal.</param>
+        /// <param name="m">Number of rows.</param>
+        /// <param name="n">Number of columns.</param>
+        /// <returns>
+        /// An m-by-n matrix with the values from the diagonal vector on the diagonal and zeros elsewhere.
+        /// </returns>
+        public static
+        ComplexMatrix
+        Diagonal(
+            IVector<Complex> diagonalVector,
+            int m,
+            int n
+            )
+        {
+            Complex[][] data = new Complex[m][];
+            for(int i = 0; i < m; i++)
+            {
+                Complex[] col = new Complex[n];
+                if((i < n) && (i < diagonalVector.Length))
+                {
+                    col[i] = diagonalVector[i];
+                }
+                data[i] = col;
+            }
+            return new ComplexMatrix(data);
+        }
+
+        /// <summary>
+        /// Creates a new square diagonal matrix based on the diagonal vector.
+        /// </summary>
+        /// <param name="diagonalVector">The values of the matrix diagonal.</param>
+        /// <returns>
+        /// An m-by-n matrix with the values from the diagonal vector on the diagonal and zeros elsewhere.
+        /// </returns>
+        public static
+        ComplexMatrix
+        Diagonal(
+            IVector<Complex> diagonalVector
+            )
+        {
+            return Diagonal(diagonalVector, diagonalVector.Length, diagonalVector.Length);
         }
 
         /// <summary>
