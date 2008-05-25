@@ -31,7 +31,7 @@ namespace MathNet.Numerics.Transformations
     /// <summary>
     /// Internal FFT Implementation and Helper Function. This class caches precomputations locally, thus consider reusing it.
     /// </summary>
-    internal class InternalFFT
+    internal sealed class InternalFFT
     {
         const int maxLength = 1048576;
         const int minLength = 1;

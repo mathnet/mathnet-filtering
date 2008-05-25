@@ -25,7 +25,7 @@ namespace MathNet.Numerics
 {
     internal delegate T OnDemandCompute<T>();
 
-    internal class OnDemandComputation<T>
+    internal sealed class OnDemandComputation<T>
     {
         OnDemandCompute<T> _compute;
         T _result;

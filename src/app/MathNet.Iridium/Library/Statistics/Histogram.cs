@@ -516,7 +516,7 @@ namespace MathNet.Numerics.Statistics
         /// This <c>IComparer</c> performs comparisons between a
         /// <c>double</c> and a <c>Bucket</c> objet.
         /// </summary>
-        private class PointComparer : IComparer
+        private sealed class PointComparer : IComparer
         {
             /// <summary>Compares a <c>double</c> and <c>Bucket</c>.</summary>
             /// <returns>Zero if the <c>double</c> is included

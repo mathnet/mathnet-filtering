@@ -995,22 +995,28 @@ namespace MathNet.Numerics
                 }
                 else
                 {
-                    builder.Append(coeff < 0d ? "-" : "");
+                    if(coeff < 0d)
+                    {
+                        builder.Append('-');
+                    }
                 }
                 if(coeff != 1d && coeff != -1d || i == 0)
                 {
                     builder.Append(Math.Abs(coeff));
                 }
-                builder.Append(i > 0 ? " " + baseVariable : "");
+                if(i > 0)
+                {
+                    builder.Append(" " + baseVariable);
+                }
                 if(i > 1)
                 {
-                    builder.Append("^");
+                    builder.Append('^');
                     builder.Append(i);
                 }
             }
             if(builder.Length == 0)
             {
-                builder.Append("0");
+                builder.Append('0');
             }
             return builder.ToString();
         }

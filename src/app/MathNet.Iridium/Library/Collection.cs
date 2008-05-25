@@ -41,9 +41,9 @@ namespace MathNet.Numerics
         /// mathematical concatenation between two collections.
         /// </summary>
         /// <seealso cref="Collection.Concat"/>
-        private class ConcatCollection : ICollection
+        private sealed class ConcatCollection : ICollection
         {
-            private class ConcatEnumerator : IEnumerator
+            private sealed class ConcatEnumerator : IEnumerator
             {
                 private IEnumerator enumerator1, enumerator2;
 
@@ -127,7 +127,7 @@ namespace MathNet.Numerics
         /// </summary>
         /// <seealso cref="Collection.Inter"/>
         [Obsolete("Use Set<T>.Intersect() instead.", false)]
-        private class InterCollection : ICollection
+        private sealed class InterCollection : ICollection
         {
             private ArrayList intersection;
 
@@ -192,7 +192,7 @@ namespace MathNet.Numerics
         /// mathematical union between two collections.
         /// </summary>
         [Obsolete("Use Set<T>.Union() instead.", false)]
-        private class UnionCollection : ICollection
+        private sealed class UnionCollection : ICollection
         {
             private ArrayList union;
 
@@ -251,7 +251,7 @@ namespace MathNet.Numerics
         /// </summary>
         /// <seealso cref="Collection.Minus"/>
         [Obsolete("Use Set<T>.Subtract() instead.", false)]
-        private class MinusCollection : ICollection
+        private sealed class MinusCollection : ICollection
         {
             private ArrayList minus;
 

@@ -1436,7 +1436,7 @@ namespace MathNet.Numerics
             }
         }
 
-        private class ComplexParser
+        private sealed class ComplexParser
         {
             Complex complex;
             int cursor; // = 0;
@@ -1647,6 +1647,7 @@ namespace MathNet.Numerics
                 return IsNumber(c) || IsDecimal(c) || IsE(c) || IsI(c) || IsSign(c) || IsMult(c);
             }
             
+            static
             bool
             IsNumber(
                 char c
@@ -1672,6 +1673,7 @@ namespace MathNet.Numerics
                 return numberFormat.NumberGroupSeparator.Equals(c.ToString());
             }
 
+            static
             bool
             IsE(
                 char c
@@ -1680,6 +1682,7 @@ namespace MathNet.Numerics
                 return c == 'e';
             }
 
+            static
             bool
             IsI(
                 char c
@@ -1704,6 +1707,7 @@ namespace MathNet.Numerics
                 return numberFormat.NegativeSign.Equals(c.ToString());
             }
 
+            static
             bool
             IsMult(
                 char c

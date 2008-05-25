@@ -766,7 +766,7 @@ namespace MathNet.Numerics
         }
 
         [Serializable]
-        private class KeyList : IList, ICollection, IEnumerable
+        private sealed class KeyList : IList, ICollection, IEnumerable
         {
             private SampleList sampleList;
 
@@ -774,74 +774,76 @@ namespace MathNet.Numerics
             {
                 this.sampleList = sampleList;
             }
-            public virtual int Add(object key)
+            public int Add(object key)
             {
                 throw new NotSupportedException();
             }
-            public virtual void Clear()
+            public void Clear()
             {
                 throw new NotSupportedException();
             }
-            public virtual bool Contains(object key)
+            public bool Contains(object key)
             {
                 return sampleList.ContainsT(Convert.ToDouble(key));
             }
-            public virtual void CopyTo(Array array, int index)
+            public void CopyTo(Array array, int index)
             {
                 if(array == null || array.Rank != 1)
+                {
                     throw new ArgumentException(Resources.ArgumentSingleDimensionArray, "array");
+                }
                 Array.Copy(sampleList._sampleT, 0, array, index, sampleList.Count);
             }
-            public virtual IEnumerator GetEnumerator()
+            public IEnumerator GetEnumerator()
             {
                 return new SampleList.SampleListEnumerator(sampleList, 0, sampleList.Count, SampleList.SampleListEnumerator.EnumerationMode.Keys);
             }
-            public virtual int IndexOf(object key)
+            public int IndexOf(object key)
             {
                 return sampleList.IndexOfT(Convert.ToDouble(key));
             }
-            public virtual void Insert(int index, object value)
+            public void Insert(int index, object value)
             {
                 throw new NotSupportedException();
             }
-            public virtual void Remove(object key)
+            public void Remove(object key)
             {
                 throw new NotSupportedException();
             }
-            public virtual void RemoveAt(int index)
+            public void RemoveAt(int index)
             {
                 throw new NotSupportedException();
             }
 
-            public virtual int Count
+            public int Count
             {
                 get { return sampleList.Count; }
             }
-            public virtual bool IsFixedSize
+            public bool IsFixedSize
             {
                 get { return true; }
             }
-            public virtual bool IsReadOnly
+            public bool IsReadOnly
             {
                 get { return true; }
             }
-            public virtual bool IsSynchronized
+            public bool IsSynchronized
             {
                 get { return ((ICollection)sampleList).IsSynchronized; }
             }
-            public virtual object this[int index]
+            public object this[int index]
             {
                 get { return sampleList._sampleT[index]; }
                 set { throw new NotSupportedException(); }
             }
-            public virtual object SyncRoot
+            public object SyncRoot
             {
                 get { return ((ICollection)sampleList).SyncRoot; }
             }
         }
 
         [Serializable]
-        private class ValueList : IList, ICollection, IEnumerable
+        private sealed class ValueList : IList, ICollection, IEnumerable
         {
             private SampleList sampleList;
 
@@ -849,67 +851,69 @@ namespace MathNet.Numerics
             {
                 this.sampleList = sampleList;
             }
-            public virtual int Add(object value)
+            public int Add(object value)
             {
                 throw new NotSupportedException();
             }
-            public virtual void Clear()
+            public void Clear()
             {
                 throw new NotSupportedException();
             }
-            public virtual bool Contains(object value)
+            public bool Contains(object value)
             {
                 return sampleList.ContainsX(Convert.ToDouble(value));
             }
-            public virtual void CopyTo(Array array, int index)
+            public void CopyTo(Array array, int index)
             {
                 if(array == null || array.Rank != 1)
-                    throw new ArgumentException();
+                {
+                    throw new ArgumentException(Resources.ArgumentSingleDimensionArray, "array");
+                }
                 Array.Copy(sampleList._sampleX, 0, array, index, sampleList.Count);
             }
-            public virtual IEnumerator GetEnumerator()
+            public IEnumerator GetEnumerator()
             {
                 return new SampleList.SampleListEnumerator(sampleList, 0, sampleList.Count, SampleList.SampleListEnumerator.EnumerationMode.Values);
             }
-            public virtual int IndexOf(object value)
+            public int IndexOf(object value)
             {
                 return sampleList.IndexOfX(Convert.ToDouble(value));
             }
-            public virtual void Insert(int index, object value)
+            public void Insert(int index, object value)
             {
                 throw new NotSupportedException();
             }
-            public virtual void Remove(object value)
+            public void Remove(object value)
             {
                 throw new NotSupportedException();
             }
-            public virtual void RemoveAt(int index)
+            public void RemoveAt(int index)
             {
                 throw new NotSupportedException();
             }
 
-            public virtual int Count
+            public int Count
             {
                 get { return sampleList.Count; }
             }
-            public virtual bool IsFixedSize
+            public bool IsFixedSize
             {
                 get { return true; }
             }
-            public virtual bool IsReadOnly
+            public bool IsReadOnly
             {
                 get { return true; }
             }
-            public virtual bool IsSynchronized
+            public bool IsSynchronized
             {
                 get { return ((ICollection)sampleList).IsSynchronized; }
             }
-            public virtual object this[int index]
+            public object this[int index]
             {
                 get { return sampleList._sampleX[index]; }
                 set { throw new NotSupportedException(); }
             }
-            public virtual object SyncRoot
+            public object SyncRoot
             {
                 get { return ((ICollection)sampleList).SyncRoot; }
             }
@@ -925,7 +929,7 @@ namespace MathNet.Numerics
         }
 
         [Serializable]
-        private class SampleListEnumerator : IDictionaryEnumerator, IEnumerator, ICloneable
+        private sealed class SampleListEnumerator : IDictionaryEnumerator, IEnumerator, ICloneable
         {
             private bool current;
             private int endIndex;
@@ -956,7 +960,7 @@ namespace MathNet.Numerics
             {
                 return base.MemberwiseClone();
             }
-            public virtual bool MoveNext()
+            public bool MoveNext()
             {
                 if(this.index < this.endIndex)
                 {
@@ -971,7 +975,7 @@ namespace MathNet.Numerics
                 this.current = false;
                 return false;
             }
-            public virtual void Reset()
+            public void Reset()
             {
                 this.index = this.startIndex;
                 this.current = false;
@@ -979,7 +983,7 @@ namespace MathNet.Numerics
                 this.value = null;
             }
 
-            public virtual object Current
+            public object Current
             {
                 get
                 {
@@ -992,7 +996,7 @@ namespace MathNet.Numerics
                     return new DictionaryEntry(this.key, this.value);
                 }
             }
-            public virtual DictionaryEntry Entry
+            public DictionaryEntry Entry
             {
                 get
                 {
@@ -1001,7 +1005,7 @@ namespace MathNet.Numerics
                     return new DictionaryEntry(this.key, this.value);
                 }
             }
-            public virtual object Key
+            public object Key
             {
                 get
                 {
@@ -1010,7 +1014,7 @@ namespace MathNet.Numerics
                     return this.key;
                 }
             }
-            public virtual object Value
+            public object Value
             {
                 get
                 {
