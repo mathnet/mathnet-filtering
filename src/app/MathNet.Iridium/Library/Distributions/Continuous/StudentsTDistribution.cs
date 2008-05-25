@@ -94,6 +94,21 @@ namespace MathNet.Numerics.Distributions
 
         #endregion
 
+        /// <summary>
+        /// Gets or sets a <see cref="RandomSource"/> object that can be used
+        /// as underlying random number generator.
+        /// </summary>
+        public override RandomSource RandomSource
+        {
+            get { return base.RandomSource; }
+            set
+            {
+                base.RandomSource = value;
+                _standardDistribution.RandomSource = value;
+                _chiSquareDistribution.RandomSource = value;
+            }
+        }
+
         #region Distribution Parameters
 
         /// <summary>
@@ -116,7 +131,9 @@ namespace MathNet.Numerics.Distributions
             )
         {
             if(!IsValidParameterSet(degreesOfFreedom))
-                throw new ArgumentOutOfRangeException();
+            {
+                throw new ArgumentException(Properties.Resources.ArgumentParameterSetInvalid, "degreesOfFreedom");
+            }
 
             _degreesOfFreedom = degreesOfFreedom;
             _chiSquareDistribution.SetDistributionParameters(degreesOfFreedom);

@@ -52,9 +52,10 @@ namespace MathNet.Numerics.Distributions
     public sealed class ChiDistribution : ContinuousDistribution
     {
         int _degreesOfFreedom;
-        StandardDistribution _standard;
         double _lngammaDegreesOfFreedomHalf;
         double? _mean;
+
+        StandardDistribution _standard;
 
         #region Construction
         /// <summary>
@@ -108,6 +109,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override RandomSource RandomSource
         {
+            get { return base.RandomSource; }
             set
             {
                 base.RandomSource = value;
@@ -135,7 +137,9 @@ namespace MathNet.Numerics.Distributions
             )
         {
             if(!IsValidParameterSet(degreesOfFreedom))
-                throw new ArgumentOutOfRangeException();
+            {
+                throw new ArgumentException(Properties.Resources.ArgumentParameterSetInvalid, "degreesOfFreedom");
+            }
 
             _degreesOfFreedom = degreesOfFreedom;
             _lngammaDegreesOfFreedomHalf = Fn.GammaLn(0.5 * degreesOfFreedom);

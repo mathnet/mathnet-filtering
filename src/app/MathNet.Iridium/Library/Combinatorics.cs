@@ -137,8 +137,8 @@ namespace MathNet.Numerics
 
         private struct IndexedValue : IComparable<IndexedValue>
         {
-            public int Index;
-            public double Value;
+            internal int Index;
+            internal double Value;
 
             public
             IndexedValue(

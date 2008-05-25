@@ -175,7 +175,9 @@ namespace MathNet.Numerics.Distributions
             )
         {
             if(!IsValidParameterSet(lambda))
-                throw new ArgumentOutOfRangeException("lambda");
+            {
+                throw new ArgumentException(Properties.Resources.ArgumentParameterSetInvalid, "lambda");
+            }
 
             _lambda = lambda;
             _helper1 = Math.Exp(-_lambda);

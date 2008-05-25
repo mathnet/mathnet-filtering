@@ -36,12 +36,13 @@ namespace MathNet.Numerics.Distributions
     {
         int _alpha;
         int _beta;
-        ChiSquareDistribution _chiSquaredAlpha;
-        ChiSquareDistribution _chiSquaredBeta;
         double _alphabeta;
         double _pdfScaleLn;
         double _pdfExponent1;
         double _pdfExponent2;
+
+        ChiSquareDistribution _chiSquaredAlpha;
+        ChiSquareDistribution _chiSquaredBeta;
 
         #region Construction
         /// <summary>
@@ -99,6 +100,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override RandomSource RandomSource
         {
+            get { return base.RandomSource; }
             set
             {
                 base.RandomSource = value;
@@ -137,7 +139,9 @@ namespace MathNet.Numerics.Distributions
             )
         {
             if(!IsValidParameterSet(alpha, beta))
-                throw new ArgumentOutOfRangeException();
+            {
+                throw new ArgumentException(Properties.Resources.ArgumentParameterSetInvalid);
+            }
 
             _alpha = alpha;
             _beta = beta;

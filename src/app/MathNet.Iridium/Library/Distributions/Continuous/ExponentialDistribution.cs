@@ -125,7 +125,9 @@ namespace MathNet.Numerics.Distributions
             )
         {
             if(!IsValidParameterSet(rate))
-                throw new ArgumentOutOfRangeException();
+            {
+                throw new ArgumentException(Properties.Resources.ArgumentParameterSetInvalid, "rate");
+            }
 
             _rate = rate;
             _helper1 = -1.0 / rate;

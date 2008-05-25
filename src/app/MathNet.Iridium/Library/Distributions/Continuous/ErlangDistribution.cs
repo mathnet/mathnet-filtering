@@ -130,7 +130,9 @@ namespace MathNet.Numerics.Distributions
             )
         {
             if(!IsValidParameterSet(shape, rate))
-                throw new ArgumentOutOfRangeException();
+            {
+                throw new ArgumentException(Properties.Resources.ArgumentParameterSetInvalid);
+            }
 
             _shape = shape;
             _rate = rate;

@@ -128,7 +128,9 @@ namespace MathNet.Numerics.Distributions
             )
         {
             if(!IsValidParameterSet(location, scale))
-                throw new ArgumentOutOfRangeException();
+            {
+                throw new ArgumentException(Properties.Resources.ArgumentParameterSetInvalid);
+            }
 
             _location = location;
             _scale = scale;

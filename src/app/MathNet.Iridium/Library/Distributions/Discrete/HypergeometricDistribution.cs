@@ -192,7 +192,9 @@ namespace MathNet.Numerics.Distributions
             )
         {
             if(!IsValidParameterSet(populationSize, favoredItems, numberOfSamples))
-                throw new ArgumentOutOfRangeException();
+            {
+                throw new ArgumentException(Properties.Resources.ArgumentParameterSetInvalid);
+            }
 
             _N = populationSize;
             _M = favoredItems;

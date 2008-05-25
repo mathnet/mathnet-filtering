@@ -31,13 +31,13 @@ namespace MathNet.Numerics
     internal struct FloatingPoint64
     {
         [FieldOffset(0)]
-        public System.Double float64;
+        internal System.Double float64;
 
         [FieldOffset(0)]
-        public System.Int64 signed64;
+        internal System.Int64 signed64;
 
         [FieldOffset(0)]
-        public System.UInt64 unsigned64;
+        internal System.UInt64 unsigned64;
     }
 
     /// <summary>

@@ -117,7 +117,9 @@ namespace MathNet.Numerics.Distributions
             )
         {
             if(!IsValidParameterSet(probabilityOfSuccess))
-                throw new ArgumentOutOfRangeException("probabilityOfSuccess");
+            {
+                throw new ArgumentException(Properties.Resources.ArgumentParameterSetInvalid, "probabilityOfSuccess");
+            }
 
             _p = probabilityOfSuccess;
         }

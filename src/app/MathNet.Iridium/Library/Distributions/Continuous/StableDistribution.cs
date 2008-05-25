@@ -106,6 +106,21 @@ namespace MathNet.Numerics.Distributions
         }
         #endregion
 
+        /// <summary>
+        /// Gets or sets a <see cref="RandomSource"/> object that can be used
+        /// as underlying random number generator.
+        /// </summary>
+        public override RandomSource RandomSource
+        {
+            get { return base.RandomSource; }
+            set
+            {
+                base.RandomSource = value;
+                _uniformDistribution.RandomSource = value;
+                _exponentialDistribution.RandomSource = value;
+            }
+        }
+
         #region Distribution Parameters
         /// <summary>
         /// Gets or sets the location mu parameter.
@@ -160,7 +175,9 @@ namespace MathNet.Numerics.Distributions
             )
         {
             if(!IsValidParameterSet(location, scale, exponent, skewness))
-                throw new ArgumentOutOfRangeException();
+            {
+                throw new ArgumentException(Properties.Resources.ArgumentParameterSetInvalid);
+            }
 
             _location = location;
             _scale = scale;

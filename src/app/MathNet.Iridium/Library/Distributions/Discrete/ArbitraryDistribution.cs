@@ -135,7 +135,9 @@ namespace MathNet.Numerics.Distributions
             )
         {
             if(!IsValidParameterSet(offset, probabilityMass))
-                throw new ArgumentOutOfRangeException();
+            {
+                throw new ArgumentException(Properties.Resources.ArgumentParameterSetInvalid);
+            }
 
             _first = offset;
             _n = probabilityMass.Length;

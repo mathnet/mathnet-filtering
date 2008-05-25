@@ -130,7 +130,9 @@ namespace MathNet.Numerics.Distributions
             )
         {
             if(!IsValidParameterSet(probabilityOfSuccess, numberOfTrials))
-                throw new ArgumentOutOfRangeException();
+            {
+                throw new ArgumentException(Properties.Resources.ArgumentParameterSetInvalid);
+            }
 
             _p = probabilityOfSuccess;
             _n = numberOfTrials;

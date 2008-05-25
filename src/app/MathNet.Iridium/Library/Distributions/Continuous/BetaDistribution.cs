@@ -54,9 +54,10 @@ namespace MathNet.Numerics.Distributions
     {
         double _alpha;
         double _beta;
+        double _lnbetaAlphaBeta;
+
         GammaDistribution _gammaAlpha;
         GammaDistribution _gammaBeta;
-        double _lnbetaAlphaBeta;
 
         #region Construction
         /// <summary>
@@ -114,6 +115,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override RandomSource RandomSource
         {
+            get { return base.RandomSource; }
             set
             {
                 base.RandomSource = value;
@@ -152,7 +154,9 @@ namespace MathNet.Numerics.Distributions
             )
         {
             if(!IsValidParameterSet(alpha, beta))
-                throw new ArgumentOutOfRangeException();
+            {
+                throw new ArgumentException(Properties.Resources.ArgumentParameterSetInvalid);
+            }
 
             _alpha = alpha;
             _beta = beta;

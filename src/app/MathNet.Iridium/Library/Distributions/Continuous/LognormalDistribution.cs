@@ -69,8 +69,9 @@ namespace MathNet.Numerics.Distributions
     {
         double _mu;
         double _sigma;
-        StandardDistribution _standard;
         double _sigma2;
+
+        StandardDistribution _standard;
 
         #region Construction
         /// <summary>
@@ -125,6 +126,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override RandomSource RandomSource
         {
+            get { return base.RandomSource; }
             set
             {
                 base.RandomSource = value;
@@ -162,7 +164,9 @@ namespace MathNet.Numerics.Distributions
             )
         {
             if(!IsValidParameterSet(mu, sigma))
-                throw new ArgumentOutOfRangeException();
+            {
+                throw new ArgumentException(Properties.Resources.ArgumentParameterSetInvalid);
+            }
 
             _mu = mu;
             _sigma = sigma;

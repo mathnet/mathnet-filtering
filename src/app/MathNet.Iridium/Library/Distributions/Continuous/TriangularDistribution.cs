@@ -163,7 +163,9 @@ namespace MathNet.Numerics.Distributions
             )
         {
             if(!IsValidParameterSet(lowerLimit, upperLimit, center))
-                throw new ArgumentOutOfRangeException();
+            {
+                throw new ArgumentException(Properties.Resources.ArgumentParameterSetInvalid);
+            }
 
             _a = lowerLimit;
             _b = upperLimit;

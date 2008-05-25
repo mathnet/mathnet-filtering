@@ -133,7 +133,9 @@ namespace MathNet.Numerics.Distributions
             )
         {
             if(!IsValidParameterSet(alpha, theta))
-                throw new ArgumentOutOfRangeException();
+            {
+                throw new ArgumentException(Properties.Resources.ArgumentParameterSetInvalid);
+            }
 
             _alpha = alpha;
             _theta = theta;
