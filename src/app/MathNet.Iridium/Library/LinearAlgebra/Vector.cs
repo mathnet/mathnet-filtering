@@ -42,6 +42,8 @@ namespace MathNet.Numerics.LinearAlgebra
         IList<double>,
         ICloneable
     {
+
+        private double[] _data;
         private int _length;
 
         /// <summary>
@@ -51,11 +53,6 @@ namespace MathNet.Numerics.LinearAlgebra
         {
             get { return _length; }
         }
-
-        /// <summary>
-        /// Array for internal storage of elements.
-        /// </summary>
-        private double[] _data;
 
         /// <summary>
         /// Gets or sets the element indexed by <c>i</c>
@@ -318,7 +315,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <remarks>
         /// This method has the same effect as the overloaded + operator.
         /// </remarks>
-        /// <seealso cref="AddInplace"/>
+        /// <seealso cref="AddInplace(IVector&lt;double&gt;)"/>
         /// <seealso cref="operator + (Vector, Vector)"/>
         public
         Vector
@@ -337,12 +334,38 @@ namespace MathNet.Numerics.LinearAlgebra
         }
 
         /// <summary>
-        /// In place addition of <c>b</c> to this <c>Vector</c>.
+        /// Add a real scalar to all elements of this vector.
+        /// </summary>
+        /// <param name="b">The real scalar.</param>
+        /// <returns>
+        /// Vector ret[i] = this[i] + b
+        /// </returns>
+        /// <remarks>
+        /// This method has the same effect as the overloaded + operator.
+        /// </remarks>
+        /// <seealso cref="AddInplace(double)"/>
+        /// <seealso cref="operator + (Vector, double)"/>
+        public
+        Vector
+        Add(
+            double b
+            )
+        {
+            double[] v = new double[_length];
+            for(int i = 0; i < v.Length; i++)
+            {
+                v[i] = _data[i] + b;
+            }
+            return new Vector(v);
+        }
+
+        /// <summary>
+        /// In place addition of a real vector to this vector.
         /// </summary>
         /// <remarks>
         /// This method changes this vector.
         /// </remarks>
-        /// <seealso cref="Add"/>
+        /// <seealso cref="Add(IVector&lt;double&gt;)"/>
         /// <seealso cref="operator + (Vector, Vector)"/>
         public
         void
@@ -352,9 +375,29 @@ namespace MathNet.Numerics.LinearAlgebra
         {
             CheckMatchingVectorDimensions(this, b);
 
-            for(int i = 0; i < _length; i++)
+            for(int i = 0; i < _data.Length; i++)
             {
                 _data[i] += b[i];
+            }
+        }
+
+        /// <summary>
+        /// In place addition of real scalar to all elements of this vector.
+        /// </summary>
+        /// <remarks>
+        /// This method changes this vector.
+        /// </remarks>
+        /// <seealso cref="Add(double)"/>
+        /// <seealso cref="operator + (Vector, double)"/>
+        public
+        void
+        AddInplace(
+            double b
+            )
+        {
+            for(int i = 0; i < _data.Length; i++)
+            {
+                _data[i] += b;
             }
         }
 
@@ -368,7 +411,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <remarks>
         /// This method has the same effect as the overloaded - operator.
         /// </remarks>
-        /// <seealso cref="SubtractInplace"/>
+        /// <seealso cref="SubtractInplace(IVector&lt;double&gt;)"/>
         /// <seealso cref="operator - (Vector, Vector)"/>
         public
         Vector
@@ -386,14 +429,39 @@ namespace MathNet.Numerics.LinearAlgebra
             return new Vector(v);
         }
 
+        /// <summary>
+        /// Subtract a real scalar from all elements of this vector.
+        /// </summary>
+        /// <param name="b">The real scalar.</param>
+        /// <returns>
+        /// Vector ret[i] = this[i] - b
+        /// </returns>
+        /// <remarks>
+        /// This method has the same effect as the overloaded - operator.
+        /// </remarks>
+        /// <seealso cref="SubtractInplace(double)"/>
+        /// <seealso cref="operator - (Vector, double)"/>
+        public
+        Vector
+        Subtract(
+            double b
+            )
+        {
+            double[] v = new double[_length];
+            for(int i = 0; i < v.Length; i++)
+            {
+                v[i] = _data[i] - b;
+            }
+            return new Vector(v);
+        }
 
         /// <summary>
-        /// In place subtraction of <c>v</c> to this <c>Vector</c>.
+        /// In place subtraction of a real vector from this vector.
         /// </summary>
         /// <remarks>
         /// This method changes this vector.
         /// </remarks>
-        /// <seealso cref="Subtract"/>
+        /// <seealso cref="Subtract(IVector&lt;double&gt;)"/>
         /// <seealso cref="operator - (Vector, Vector)"/>
         public
         void
@@ -406,6 +474,26 @@ namespace MathNet.Numerics.LinearAlgebra
             for(int i = 0; i < _length; i++)
             {
                 _data[i] -= b[i];
+            }
+        }
+
+        /// <summary>
+        /// In place subtraction of a real scalar from all elements of this vector.
+        /// </summary>
+        /// <remarks>
+        /// This method changes this vector.
+        /// </remarks>
+        /// <seealso cref="Subtract(double)"/>
+        /// <seealso cref="operator - (Vector, double)"/>
+        public
+        void
+        SubtractInplace(
+            double b
+            )
+        {
+            for(int i = 0; i < _data.Length; i++)
+            {
+                _data[i] -= b;
             }
         }
 
@@ -433,7 +521,7 @@ namespace MathNet.Numerics.LinearAlgebra
         }
 
         /// <summary>
-        /// In place unary minus of the <c>Vector</c>.
+        /// In place unary minus of this vector.
         /// </summary>
         /// <remarks>
         /// This method changes this vector.
@@ -891,7 +979,7 @@ namespace MathNet.Numerics.LinearAlgebra
         #region Arithmetic Operator Overloading
 
         /// <summary>
-        /// Addition of vectors
+        /// Addition Operator
         /// </summary>
         public static
         Vector
@@ -905,7 +993,33 @@ namespace MathNet.Numerics.LinearAlgebra
         }
 
         /// <summary>
-        /// Subtraction of vectors
+        /// Addition Operator
+        /// </summary>
+        public static
+        Vector
+        operator +(
+            Vector vector,
+            double scalar
+            )
+        {
+            return vector.Add(scalar);
+        }
+
+        /// <summary>
+        /// Addition Operator
+        /// </summary>
+        public static
+        Vector
+        operator +(
+            double scalar,
+            Vector vector
+            )
+        {
+            return vector.Add(scalar);
+        }
+
+        /// <summary>
+        /// Subtraction Operator
         /// </summary>
         public static
         Vector
@@ -916,6 +1030,19 @@ namespace MathNet.Numerics.LinearAlgebra
         {
             CheckMatchingVectorDimensions(u, v);
             return u.Subtract(v);
+        }
+
+        /// <summary>
+        /// Subtraction Operator
+        /// </summary>
+        public static
+        Vector
+        operator -(
+            Vector vector,
+            double scalar
+            )
+        {
+            return vector.Subtract(scalar);
         }
 
         /// <summary>

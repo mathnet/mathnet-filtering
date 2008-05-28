@@ -28,7 +28,9 @@ using MathNet.Numerics.Properties;
 namespace MathNet.Numerics.LinearAlgebra
 {
 
-    /// <summary>LU Decomposition.</summary>
+    /// <summary>
+    /// LU Decomposition.
+    /// </summary>
     /// <remarks>
     /// For an m-by-n matrix A with m >= n, the LU decomposition is an m-by-n
     /// unit lower triangular matrix L, an n-by-n upper triangular matrix U,
@@ -42,29 +44,34 @@ namespace MathNet.Numerics.LinearAlgebra
     [Serializable]
     public class LUDecomposition
     {
-        /// <summary>Array for internal storage of decomposition.</summary>
+        /// <summary>
+        /// Array for internal storage of decomposition.
+        /// </summary>
         double[][] LU;
 
-        /// <summary>Row dimensions.</summary>
         readonly int _rowCount;
-
-        /// <summary>Column dimensions.</summary>
         readonly int _columnCount;
 
-        /// <summary>Pivot sign.</summary>
+        /// <summary>
+        /// Pivot sign.
+        /// </summary>
         int pivsign;
 
-        /// <summary>Internal storage of pivot vector.</summary>
+        /// <summary>
+        /// Internal storage of pivot vector.
+        /// </summary>
         int[] piv;
 
         OnDemandComputation<bool> _isNonSingularOnDemand;
         OnDemandComputation<Matrix> _lowerTriangularFactorOnDemand;
         OnDemandComputation<Matrix> _upperTriangularFactorOnDemand;
         OnDemandComputation<int[]> _pivotOnDemand;
-        OnDemandComputation<double[]> _pivotDoubleOnDemand;
+        OnDemandComputation<Vector> _pivotVectorOnDemand;
         OnDemandComputation<double> _determinantOnDemand;
 
-        /// <summary>LU Decomposition</summary>
+        /// <summary>
+        /// LU Decomposition
+        /// </summary>
         /// <param name="A">Rectangular matrix</param>
         /// <returns>Structure to access L, U and piv.</returns>
         public
@@ -153,38 +160,59 @@ namespace MathNet.Numerics.LinearAlgebra
             InitOnDemandComputations();
         }
 
-        /// <summary>Indicates whether the matrix is nonsingular.</summary>
+        /// <summary>
+        /// Indicates whether the matrix is nonsingular.
+        /// </summary>
         /// <returns><c>true</c> if U, and hence A, is nonsingular.</returns>
         public bool IsNonSingular
         {
             get { return _isNonSingularOnDemand.Compute(); }
         }
 
-        /// <summary>Gets lower triangular factor.</summary>
+        /// <summary>
+        /// Returns the lower triangular factor.
+        /// </summary>
         public Matrix L
         {
             get { return _lowerTriangularFactorOnDemand.Compute(); }
         }
 
-        /// <summary>Gets upper triangular factor.</summary>
+        /// <summary>
+        /// Returns the upper triangular factor.
+        /// </summary>
         public Matrix U
         {
             get { return _upperTriangularFactorOnDemand.Compute(); }
         }
 
-        /// <summary>Gets pivot permutation vector</summary>
+        /// <summary>
+        /// Returns the integer pivot permutation vector.
+        /// </summary>
         public int[] Pivot
         {
             get { return _pivotOnDemand.Compute(); }
         }
 
-        /// <summary>Returns pivot permutation vector as a one-dimensional double array.</summary>
-        public double[] DoublePivot
+        /// <summary>
+        /// Returns pivot permutation vector.
+        /// </summary>
+        public Vector PivotVector
         {
-            get { return _pivotDoubleOnDemand.Compute(); }
+            get { return _pivotVectorOnDemand.Compute(); }
         }
 
-        /// <summary>Determinant</summary>
+        /// <summary>
+        /// Returns pivot permutation vector as a one-dimensional double array.
+        /// </summary>
+        [Obsolete("Use the PivotVector property instead")]
+        public double[] DoublePivot
+        {
+            get { return _pivotVectorOnDemand.Compute(); }
+        }
+
+        /// <summary>
+        /// Determinant
+        /// </summary>
         /// <returns>det(A)</returns>
         /// <exception cref="System.ArgumentException">Matrix must be square</exception>
         public
@@ -195,7 +223,9 @@ namespace MathNet.Numerics.LinearAlgebra
             return _determinantOnDemand.Compute();
         }
 
-        /// <summary>Solve A*X = B</summary>
+        /// <summary>
+        /// Solve A*X = B
+        /// </summary>
         /// <param name="B">A Matrix with as many rows as A and any number of columns.</param>
         /// <returns>X so that L*U*X = B(piv,:)</returns>
         /// <exception cref="System.ArgumentException">Matrix row dimensions must agree.</exception>
@@ -252,7 +282,7 @@ namespace MathNet.Numerics.LinearAlgebra
             _lowerTriangularFactorOnDemand = new OnDemandComputation<Matrix>(ComputeLowerTriangularFactor);
             _upperTriangularFactorOnDemand = new OnDemandComputation<Matrix>(ComputeUpperTriangularFactor);
             _pivotOnDemand = new OnDemandComputation<int[]>(ComputePivot);
-            _pivotDoubleOnDemand = new OnDemandComputation<double[]>(ComputePivotDouble);
+            _pivotVectorOnDemand = new OnDemandComputation<Vector>(ComputePivotVector);
             _determinantOnDemand = new OnDemandComputation<double>(ComputeDeterminant);
         }
 
@@ -261,7 +291,7 @@ namespace MathNet.Numerics.LinearAlgebra
         {
             for(int j = 0; j < _columnCount; j++)
             {
-                if(LU[j][j] == 0)
+                if(LU[j][j] == 0.0)
                 {
                     return false;
                 }
@@ -327,15 +357,15 @@ namespace MathNet.Numerics.LinearAlgebra
             return p;
         }
 
-        double[]
-        ComputePivotDouble()
+        Vector
+        ComputePivotVector()
         {
             double[] vals = new double[_rowCount];
             for(int i = 0; i < _rowCount; i++)
             {
                 vals[i] = (double)piv[i];
             }
-            return vals;
+            return new Vector(vals);
         }
 
         double

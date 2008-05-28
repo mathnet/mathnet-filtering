@@ -27,7 +27,9 @@ using MathNet.Numerics.Properties;
 
 namespace MathNet.Numerics.LinearAlgebra
 {
-    /// <summary>QR Decomposition.</summary>
+    /// <summary>
+    /// QR Decomposition.
+    /// </summary>
     /// <remarks>
     /// For an m-by-n matrix A with m >= n, the QR decomposition is an m-by-n
     /// orthogonal matrix Q and an n-by-n upper triangular matrix R so that
@@ -42,19 +44,27 @@ namespace MathNet.Numerics.LinearAlgebra
     [Serializable]
     public class QRDecomposition
     {
-        /// <summary>Array for internal storage of decomposition.</summary>
+        /// <summary>
+        /// Array for internal storage of decomposition.
+        /// </summary>
         double[][] QR;
 
-        /// <summary>Array for internal storage of diagonal of R.</summary>
+        /// <summary>
+        /// Array for internal storage of diagonal of R.
+        /// </summary>
         double[] Rdiag;
 
-        /// <summary>Row dimensions.</summary>
+        /// <summary>
+        /// Row dimensions.
+        /// </summary>
         private int m
         {
             get { return QR.Length; }
         }
 
-        /// <summary>Column dimensions.</summary>
+        /// <summary>
+        /// Column dimensions.
+        /// </summary>
         private int n
         {
             get { return QR[0].Length; }
@@ -65,7 +75,9 @@ namespace MathNet.Numerics.LinearAlgebra
         OnDemandComputation<Matrix> _upperTriangularFactorOnDemand;
         OnDemandComputation<Matrix> _orthogonalFactorOnDemand;
 
-        /// <summary>QR Decomposition, computed by Householder reflections.</summary>
+        /// <summary>
+        /// QR Decomposition, computed by Householder reflections.
+        /// </summary>
         /// <remarks>Provides access to R, the Householder vectors and computes Q.</remarks>
         /// <param name="A">Rectangular matrix</param>
         public
@@ -123,7 +135,9 @@ namespace MathNet.Numerics.LinearAlgebra
             InitOnDemandComputations();
         }
 
-        /// <summary>Indicates whether the matrix is full rank.</summary>
+        /// <summary>
+        /// Indicates whether the matrix is full rank.
+        /// </summary>
         /// <returns><c>true</c> if R, and hence A, has full rank.</returns>
         public bool FullRank
         {
@@ -133,7 +147,9 @@ namespace MathNet.Numerics.LinearAlgebra
             }
         }
 
-        /// <summary>Gets the Householder vectors.</summary>
+        /// <summary>
+        /// Gets the Householder vectors.
+        /// </summary>
         /// <returns>Lower trapezoidal matrix whose columns define the reflections.</returns>
         public Matrix H
         {
@@ -143,7 +159,9 @@ namespace MathNet.Numerics.LinearAlgebra
             }
         }
 
-        /// <summary>Gets the upper triangular factor</summary>
+        /// <summary>
+        /// Gets the upper triangular factor
+        /// </summary>
         public Matrix R
         {
             get
@@ -152,7 +170,9 @@ namespace MathNet.Numerics.LinearAlgebra
             }
         }
 
-        /// <summary>Gets the (economy-sized) orthogonal factor.</summary>
+        /// <summary>
+        /// Gets the (economy-sized) orthogonal factor.
+        /// </summary>
         public Matrix Q
         {
             get
@@ -161,7 +181,9 @@ namespace MathNet.Numerics.LinearAlgebra
             }
         }
 
-        /// <summary>Least squares solution of A*X = B</summary>
+        /// <summary>
+        /// Least squares solution of A*X = B.
+        /// </summary>
         /// <param name="B">A Matrix with as many rows as A and any number of columns.</param>
         /// <returns>X that minimizes the two norm of Q*R*X-B.</returns>
         /// <exception cref="System.ArgumentException">Matrix row dimensions must agree.</exception>
@@ -231,7 +253,7 @@ namespace MathNet.Numerics.LinearAlgebra
         {
             for(int j = 0; j < n; j++)
             {
-                if(Rdiag[j] == 0)
+                if(Rdiag[j] == 0.0)
                 {
                     return false;
                 }
@@ -298,7 +320,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 Q[k][k] = 1.0;
                 for(int j = k; j < n; j++)
                 {
-                    if(QR[k][k] != 0)
+                    if(QR[k][k] != 0.0)
                     {
                         double s = 0.0;
                         for(int i = k; i < m; i++)

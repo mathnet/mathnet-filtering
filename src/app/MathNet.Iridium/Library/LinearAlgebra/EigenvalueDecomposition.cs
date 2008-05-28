@@ -29,7 +29,9 @@ using MathNet.Numerics;
 namespace MathNet.Numerics.LinearAlgebra
 {
 
-    /// <summary>Eigenvalues and eigenvectors of a real matrix.</summary>
+    /// <summary>
+    /// Eigenvalues and eigenvectors of a real matrix.
+    /// </summary>
     /// <remarks>
     /// If A is symmetric, then A = V*D*V' where the eigenvalue matrix D is
     /// diagonal and the eigenvector matrix V is orthogonal.
@@ -61,17 +63,20 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <summary>Array for internal storage of nonsymmetric Hessenberg form.</summary>
         double[][] H;
 
-        /// <summary>Working storage for nonsymmetric algorithm.</summary>
-        double[] ort;
+        ComplexVector _eigenValues;
+        Vector _eigenValuesReal;
+        Vector _eigenValuesImag;
 
         [NonSerialized()]
         double cdivr, cdivi;
 
         OnDemandComputation<Matrix> _blockDiagonalOnDemand;
         OnDemandComputation<Matrix> _eigenVectorsOnDemand;
-        OnDemandComputation<Complex[]> _eigenValuesOnDemand;
+        OnDemandComputation<ComplexVector> _eigenValuesOnDemand;
 
-        /// <summary>Check for symmetry, then construct the eigenvalue decomposition</summary>
+        /// <summary>
+        /// Check for symmetry, then construct the eigenvalue decomposition
+        /// </summary>
         /// <remarks>Provides access to D and V</remarks>
         /// <param name="Arg">Square matrix</param>
         public
@@ -90,7 +95,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 for(int i = 0; (i < n) & isSymmetric; i++)
                 {
-                    isSymmetric = (A[i][j] == A[j][i]);
+                    isSymmetric &= (A[i][j] == A[j][i]);
                 }
             }
 
@@ -110,15 +115,16 @@ namespace MathNet.Numerics.LinearAlgebra
             }
             else
             {
-                H = Matrix.CreateMatrixData(n, n);
-                ort = new double[n];
-
-                for(int j = 0; j < n; j++)
+                H = new double[n][];
+                for(int i = 0; i < n; i++)
                 {
-                    for(int i = 0; i < n; i++)
+                    double[] Hi = new double[n];
+                    double[] Ai = A[i];
+                    for(int j = 0; j < n; j++)
                     {
-                        H[i][j] = A[i][j];
+                        Hi[j] = Ai[j];
                     }
+                    H[i] = Hi;
                 }
 
                 NonsymmetricReduceToHessenberg();
@@ -126,11 +132,17 @@ namespace MathNet.Numerics.LinearAlgebra
                 NonsymmetricReduceHessenberToRealSchur();
             }
 
+            _eigenValuesReal = new Vector(d);
+            _eigenValuesImag = new Vector(e);
+            _eigenValues = ComplexVector.Create(d, e);
+
             InitOnDemandComputations();
         }
 
-        /// <summary>Constructs the eigenvalue decomposition from a symmetrical, 
-        /// tridiagonal matrix.</summary>
+        /// <summary>
+        /// Constructs the eigenvalue decomposition from a symmetrical, 
+        /// tridiagonal matrix.
+        /// </summary>
         public
         EigenvalueDecomposition(
             double[] d,
@@ -155,36 +167,50 @@ namespace MathNet.Numerics.LinearAlgebra
 
             SymmetricDiagonalize();
 
+            _eigenValuesReal = new Vector(this.d);
+            _eigenValuesImag = new Vector(this.e);
+            _eigenValues = ComplexVector.Create(this.d, this.e);
+
             InitOnDemandComputations();
         }
 
-        /// <summary>Gets the eigenvalues.</summary>
+        /// <summary>
+        /// Gets the eigenvalues.
+        /// </summary>
         /// <returns>diag(D)</returns>
-        public Complex[] EigenValues
+        public ComplexVector EigenValues
         {
-            get { return _eigenValuesOnDemand.Compute(); }
+            get { return _eigenValues; }
         }
 
-        /// <summary>Gets the real part of the eigenvalues.</summary>
+        /// <summary>
+        /// Gets the real part of the eigenvalues.
+        /// </summary>
         /// <returns>real(diag(D))</returns>
-        public double[] RealEigenvalues
+        public Vector RealEigenvalues
         {
-            get { return d; }
+            get { return _eigenValuesReal; }
         }
-        /// <summary>Gets the imaginary part of the eigenvalues</summary>
+        /// <summary>
+        /// Gets the imaginary part of the eigenvalues.
+        /// </summary>
         /// <returns>imag(diag(D))</returns>
-        public double[] ImagEigenvalues
+        public Vector ImagEigenvalues
         {
-            get { return e; }
+            get { return _eigenValuesImag; }
         }
 
-        /// <summary>Gets the block diagonal eigenvalue matrix</summary>
+        /// <summary>
+        /// Gets the block diagonal eigenvalue matrix
+        /// </summary>
         public Matrix BlockDiagonal
         {
             get { return _blockDiagonalOnDemand.Compute(); }
         }
 
-        /// <summary>Returns the eigenvector matrix</summary>
+        /// <summary>
+        /// Returns the eigenvector matrix
+        /// </summary>
         public Matrix EigenVectors
         {
             get { return _eigenVectorsOnDemand.Compute(); }
@@ -194,11 +220,11 @@ namespace MathNet.Numerics.LinearAlgebra
         InitOnDemandComputations()
         {
             _blockDiagonalOnDemand = new OnDemandComputation<Matrix>(ComputeBlockDiagonalMatrix);
-            _eigenValuesOnDemand = new OnDemandComputation<Complex[]>(ComputeEigenValues);
+            _eigenValuesOnDemand = new OnDemandComputation<ComplexVector>(ComputeEigenValues);
             _eigenVectorsOnDemand = new OnDemandComputation<Matrix>(ComputeEigentVectors);
         }
 
-        Complex[]
+        ComplexVector
         ComputeEigenValues()
         {
             Complex[] eigenvalues = new Complex[n];
@@ -206,7 +232,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 eigenvalues[i] = new Complex(d[i], e[i]);
             }
-            return eigenvalues;
+            return new ComplexVector(eigenvalues);
         }
 
         Matrix
@@ -528,6 +554,8 @@ namespace MathNet.Numerics.LinearAlgebra
 
             int low = 0;
             int high = n - 1;
+
+            double[] ort = new double[n];
 
             for(int m = low + 1; m <= high - 1; m++)
             {
@@ -896,7 +924,7 @@ namespace MathNet.Numerics.LinearAlgebra
                         {
                             s = -s;
                         }
-                        if(s != 0)
+                        if(s != 0.0)
                         {
                             if(k != m)
                             {
@@ -975,7 +1003,7 @@ namespace MathNet.Numerics.LinearAlgebra
 
                 // Real vector
 
-                if(q == 0)
+                if(q == 0.0)
                 {
                     int l = n;
                     H[n][n] = 1.0;
@@ -1080,7 +1108,7 @@ namespace MathNet.Numerics.LinearAlgebra
                         else
                         {
                             l = i;
-                            if(e[i] == 0)
+                            if(e[i] == 0.0)
                             {
                                 cdiv(-ra, -sa, w, q);
                                 H[i][n - 1] = cdivr;
@@ -1095,7 +1123,7 @@ namespace MathNet.Numerics.LinearAlgebra
                                 y = H[i + 1][i];
                                 vr = (d[i] - p) * (d[i] - p) + e[i] * e[i] - q * q;
                                 vi = (d[i] - p) * 2.0 * q;
-                                if(vr == 0.0 & vi == 0.0)
+                                if((vr == 0.0) && (vi == 0.0))
                                 {
                                     vr = eps * norm * (Math.Abs(w) + Math.Abs(q) + Math.Abs(x) + Math.Abs(y) + Math.Abs(z));
                                 }

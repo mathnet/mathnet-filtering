@@ -39,24 +39,24 @@ namespace MathNet.Numerics.LinearAlgebra
     public class CholeskyDecomposition
     {
         /// <summary>Array for internal storage of decomposition.</summary>
-        double[][] L;
+        Matrix _l;
 
         /// <summary>Symmetric and positive definite flag.</summary>
         readonly bool _isSymmetricPositiveDefinite;
 
         /// <summary>Cholesky algorithm for symmetric and positive definite matrix.</summary>
-        /// <param name="Arg">Square, symmetric matrix.</param>
+        /// <param name="m">Square, symmetric matrix.</param>
         /// <returns>Structure to access L and isspd flag.</returns>
         public
         CholeskyDecomposition(
-            Matrix Arg
+            Matrix m
             )
         {
-            if(Arg.RowCount != Arg.ColumnCount)
+            if(m.RowCount != m.ColumnCount)
                 throw new InvalidOperationException(Resources.ArgumentMatrixSquare);
 
-            double[][] A = Arg;
-            L = Matrix.CreateMatrixData(Arg.RowCount, Arg.RowCount);
+            double[][] A = m;
+            double[][] L = Matrix.CreateMatrixData(m.RowCount, m.RowCount);
 
             _isSymmetricPositiveDefinite = true; // ensure square
 
@@ -88,6 +88,8 @@ namespace MathNet.Numerics.LinearAlgebra
                     L[i][j] = 0.0;
                 }
             }
+
+            _l = new Matrix(L);
         }
 
         /// <summary>Is the matrix symmetric and positive definite?</summary>
@@ -100,11 +102,20 @@ namespace MathNet.Numerics.LinearAlgebra
 
         /// <summary>Return triangular factor.</summary>
         /// <returns>L</returns>
+        [Obsolete("Use the TriangularFactor property instead")]
         public
         Matrix
         GetL()
         {
-            return new Matrix(L);
+            return _l;
+        }
+
+        /// <summary>
+        /// Decomposition Triangular Factor Matrix (L).
+        /// </summary>
+        public Matrix TriangularFactor
+        {
+            get { return _l; }
         }
 
         /// <summary>Solve A*x = b</summary>
@@ -113,22 +124,24 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <exception cref="System.ArgumentException">Matrix row dimensions must agree.</exception>
         /// <exception cref="System.InvalidOperationException">Matrix is not symmetric positive definite.</exception>
         public
-        double[]
+        Vector
         Solve(
-            double[] b
+            Vector b
             )
         {
-            if(b.Length != L.Length)
+            if(b.Length != _l.RowCount)
                 throw new ArgumentException(Resources.ArgumentMatrixSameRowDimension, "b");
             if(!_isSymmetricPositiveDefinite)
                 throw new InvalidOperationException(Resources.ArgumentMatrixSymmetricPositiveDefinite);
 
+            double[][] L = _l;
+            double[] bb = b;
             double[] x = new double[b.Length];
 
             // Solve L*y = b
             for(int i = 0; i < x.Length; i++)
             {
-                double sum = b[i];
+                double sum = bb[i];
                 for(int k = i - 1; k >= 0; k--)
                 {
                     sum -= L[i][k] * x[k];
@@ -147,7 +160,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 x[i] = sum / L[i][i];
             }
 
-            return x;
+            return new Vector(x);
         }
 
         /// <summary>Solve A*X = B</summary>
@@ -161,12 +174,13 @@ namespace MathNet.Numerics.LinearAlgebra
             Matrix B
             )
         {
-            if(B.RowCount != L.Length)
+            if(B.RowCount != _l.RowCount)
                 throw new ArgumentException(Resources.ArgumentMatrixSameRowDimension, "B");
             if(!_isSymmetricPositiveDefinite)
                 throw new InvalidOperationException(Resources.ArgumentMatrixSymmetricPositiveDefinite);
 
             int nx = B.ColumnCount;
+            double[][] L = _l;
             double[][] BB = B;
             double[][] X = Matrix.CreateMatrixData(L.Length, nx);
 

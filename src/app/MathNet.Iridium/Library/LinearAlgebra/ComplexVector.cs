@@ -38,6 +38,7 @@ namespace MathNet.Numerics.LinearAlgebra
         ICloneable
     {
 
+        private Complex[] _data;
         private int _length;
 
         /// <summary>
@@ -47,11 +48,6 @@ namespace MathNet.Numerics.LinearAlgebra
         {
             get { return _length; }
         }
-
-        /// <summary>
-        /// Array for internal storage of elements.
-        /// </summary>
-        private Complex[] _data;
 
         /// <summary>
         /// Gets or sets the element indexed by <c>i</c>
@@ -119,7 +115,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// the provided array as internal data structure.
         /// </summary>
         /// <param name="components">One-dimensional array of doubles.</param>
-        /// <seealso cref="Create"/>
+        /// <seealso cref="Create(Complex[])"/>
         public
         ComplexVector(
             Complex[] components
@@ -146,6 +142,40 @@ namespace MathNet.Numerics.LinearAlgebra
 
             Complex[] newData = new Complex[components.Length];
             components.CopyTo(newData, 0);
+
+            return new ComplexVector(newData);
+        }
+
+        /// <summary>
+        /// Constructs a complex vector from a real and an imaginary vector.
+        /// </summary>
+        /// <param name="realComponents">One-dimensional array of doubles representing the real part of the vector.</param>
+        /// <param name="imagComponents">One-dimensional array of doubles representing the imaginary part of the vector.</param>
+        public static
+        ComplexVector
+        Create(
+            IList<double> realComponents,
+            IList<double> imagComponents
+            )
+        {
+            if(null == realComponents)
+            {
+                throw new ArgumentNullException("realComponents");
+            }
+            if(null == imagComponents)
+            {
+                throw new ArgumentNullException("imagComponents");
+            }
+            if(realComponents.Count != imagComponents.Count)
+            {
+                throw new ArgumentException(Properties.Resources.ArgumentVectorsSameLengths);
+            }
+
+            Complex[] newData = new Complex[realComponents.Count];
+            for(int i = 0; i < newData.Length; i++)
+            {
+                newData[i] = new Complex(realComponents[i], imagComponents[i]);
+            }
 
             return new ComplexVector(newData);
         }

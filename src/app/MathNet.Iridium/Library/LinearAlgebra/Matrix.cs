@@ -1843,6 +1843,28 @@ namespace MathNet.Numerics.LinearAlgebra
             return _traceOnDemand.Compute();
         }
 
+        /// <summary>
+        /// Gets the complex eigen values of this matrix.
+        /// </summary>
+        /// <remarks>
+        /// The eigenvalue decomposition is cached internally..
+        /// </remarks>
+        public ComplexVector EigenValues
+        {
+            get { return EigenvalueDecomposition.EigenValues; }
+        }
+
+        /// <summary>
+        /// Gets the complex eigen vectors of this matrix.
+        /// </summary>
+        /// <remarks>
+        /// The eigenvalue decomposition is cached internally.
+        /// </remarks>
+        public Matrix EigenVectors
+        {
+            get { return EigenvalueDecomposition.EigenVectors; }
+        }
+
         #endregion
 
         #region Arithmetic Operator Overloading
