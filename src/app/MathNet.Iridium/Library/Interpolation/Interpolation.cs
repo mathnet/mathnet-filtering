@@ -186,7 +186,7 @@ namespace MathNet.Numerics.Interpolation
 
         /// <summary>
         /// Create an akima cubic spline interpolation based on arbitrary points.
-        /// Akima splines are cubic splines which is stable to outliers.
+        /// Akima splines are cubic splines which are stable to outliers.
         /// </summary>
         /// <param name="points">The sample points t. Supports both lists and arrays.</param>
         /// <param name="values">The sample point values x(t). Supports both lists and arrays.</param>

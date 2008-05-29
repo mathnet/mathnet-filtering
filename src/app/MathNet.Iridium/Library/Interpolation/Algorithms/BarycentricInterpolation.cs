@@ -171,7 +171,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
                     j = i;
                 }
             }
-            if(s == 0)
+            if(Number.AlmostZero(s))
             {
                 return _x[j];
             }

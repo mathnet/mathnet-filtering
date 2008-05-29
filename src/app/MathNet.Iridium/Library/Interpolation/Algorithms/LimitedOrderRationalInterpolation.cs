@@ -176,7 +176,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
             
             int ns = closestIndex - offset;
 
-            if(_samples.GetT(closestIndex) == t)
+            if(Number.AlmostEqual(_samples.GetT(closestIndex), t))
             {
                 return _samples.GetX(closestIndex);
             }
@@ -195,7 +195,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
                     double hp = _samples.GetT(offset + i + level) - t;
                     double ho = (_samples.GetT(offset + i) - t) * d[i] / hp;
                     double den = ho - c[i + 1];
-                    if(den == 0)
+                    if(Number.AlmostZero(den))
                     {
                         // BUGBUG: check - positive or negative infinity?
                         return double.PositiveInfinity;

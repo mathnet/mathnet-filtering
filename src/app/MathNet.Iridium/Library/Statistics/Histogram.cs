@@ -647,11 +647,16 @@ namespace MathNet.Numerics.Statistics
                 || this.lowerBound >= bucket.upperBound,
                 "Could not compare two intersecting buckets.");
 
-            if(this.Width == 0 && bucket.Width == 0
-                && this.lowerBound == bucket.lowerBound) return 0;
-
-            if(bucket.upperBound - this.lowerBound <= 0) return 1;
-            else return -1;
+            if(Number.AlmostZero(this.Width) && Number.AlmostZero(bucket.Width)
+                && Number.AlmostEqual(this.lowerBound, bucket.lowerBound))
+            {
+                return 0;
+            }
+            if(bucket.upperBound - this.lowerBound <= 0)
+            {
+                return 1;
+            }
+            return -1;
         }
 
         /// <summary>
@@ -670,9 +675,9 @@ namespace MathNet.Numerics.Statistics
             if(!(obj is Bucket)) return false;
 
             Bucket b = (Bucket)obj;
-            return (this.lowerBound == b.lowerBound)
-                && (this.upperBound == b.upperBound)
-                && (this.depth == b.depth);
+            return Number.AlmostEqual(this.lowerBound, b.lowerBound)
+                && Number.AlmostEqual(this.upperBound, b.upperBound)
+                && Number.AlmostEqual(this.depth, b.depth);
         }
 
         /// <summary>

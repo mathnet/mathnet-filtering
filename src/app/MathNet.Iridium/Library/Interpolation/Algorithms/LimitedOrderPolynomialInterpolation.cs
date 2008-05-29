@@ -176,7 +176,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
             double den, ho, hp;
             double x = 0;
 
-            if(_samples.GetT(closestIndex) == t)
+            if(Number.AlmostEqual(_samples.GetT(closestIndex), t))
             {
                 return _samples.GetX(closestIndex);
             }

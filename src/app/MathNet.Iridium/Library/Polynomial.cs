@@ -760,7 +760,7 @@ namespace MathNet.Numerics
             double c1
             )
         {
-            if(c1 == 0d)
+            if(Number.AlmostZero(c1))
             {
                 MultiplyInplace(c0);
                 return;
@@ -793,8 +793,10 @@ namespace MathNet.Numerics
             double c0
             )
         {
-            if(c0 == 0d)
+            if(Number.AlmostZero(c0))
+            {
                 throw new DivideByZeroException();
+            }
 
             double factor = 1 / c0;
             for(int i = 0; i <= order; i++)
@@ -874,7 +876,7 @@ namespace MathNet.Numerics
             out double reminder
             )
         {
-            if(c1 == 0d)
+            if(Number.AlmostZero(c1))
             {
                 DivideInplace(c0);
                 reminder = 0d;
@@ -986,7 +988,7 @@ namespace MathNet.Numerics
             for(int i = Order; i >= 0; i--)
             {
                 double coeff = coefficients[i];
-                if(coeff == 0d)
+                if(Number.AlmostZero(coeff))
                 {
                     continue;
                 }
@@ -1001,7 +1003,7 @@ namespace MathNet.Numerics
                         builder.Append('-');
                     }
                 }
-                if(coeff != 1d && coeff != -1d || i == 0)
+                if(!Number.AlmostEqual(coeff, 1) && !Number.AlmostEqual(coeff, -1) || i == 0)
                 {
                     builder.Append(Math.Abs(coeff));
                 }

@@ -259,8 +259,10 @@ namespace MathNet.Numerics.Distributions
         {
             get
             {
-                if(_skewness != 0.0)
+                if(!Number.AlmostZero(_skewness))
+                {
                     throw new NotSupportedException(); // not supported yet
+                }
 
                 return _location;
             }
@@ -273,7 +275,7 @@ namespace MathNet.Numerics.Distributions
         {
             get
             {
-                if(_exponent == 2.0)
+                if(Number.AlmostEqual(_exponent, 2))
                 {
                     return 2.0 * _scale * _scale;
                 }
@@ -290,8 +292,10 @@ namespace MathNet.Numerics.Distributions
         {
             get
             {
-                if(_exponent != 2.0)
+                if(!Number.AlmostEqual(_exponent, 2))
+                {
                     throw new NotSupportedException();
+                }
 
                 return 0.0;
             }
@@ -334,7 +338,7 @@ namespace MathNet.Numerics.Distributions
             double randTheta = _uniformDistribution.NextDouble();
             double randW = _exponentialDistribution.NextDouble();
 
-            if(_exponent != 1.0)
+            if(!Number.AlmostEqual(_exponent, 1))
             {
                 double angle = _exponent * (randTheta + _theta);
                 double factor1 = Math.Sin(angle) / Math.Pow(Math.Cos(randTheta), (1.0 / _exponent));

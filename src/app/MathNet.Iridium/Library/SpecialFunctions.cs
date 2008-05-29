@@ -85,7 +85,7 @@ namespace MathNet.Numerics
                 double r = b / a;
                 return Math.Abs(a) * Math.Sqrt(1 + r * r);
             }
-            if(b != 0d)
+            if(!Number.AlmostZero(b))
             {
                 double r = a / b;
                 return Math.Abs(b) * Math.Sqrt(1 + r * r);
@@ -751,7 +751,7 @@ namespace MathNet.Numerics
                 double p = Math.Floor(q);
                 negative = true;
                 
-                if(p == q)
+                if(Number.AlmostEqual(p, q))
                 {
                     return double.NaN; // singularity, undefined
                 }

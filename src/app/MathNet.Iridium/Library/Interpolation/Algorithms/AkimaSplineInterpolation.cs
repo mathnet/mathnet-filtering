@@ -152,7 +152,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
 
             for(int i = 2; i < d.Length - 2; i++)
             {
-                if(Math.Abs(w[i - 1]) + Math.Abs(w[i + 1]) != 0)
+                if(!Number.AlmostZero(w[i - 1]) || !Number.AlmostZero(w[i + 1]))
                 {
                     d[i] = (w[i + 1] * diff[i - 1] + w[i - 1] * diff[i]) / (w[i + 1] + w[i - 1]);
                 }

@@ -27,18 +27,19 @@ using MathNet.Numerics.Properties;
 
 namespace MathNet.Numerics
 {
-    [StructLayout(LayoutKind.Explicit)]
-    internal struct FloatingPoint64
-    {
-        [FieldOffset(0)]
-        internal System.Double float64;
+    // TODO: Not used anywhere. Remove?
+    //[StructLayout(LayoutKind.Explicit)]
+    //internal struct FloatingPoint64
+    //{
+    //    [FieldOffset(0)]
+    //    internal System.Double float64;
 
-        [FieldOffset(0)]
-        internal System.Int64 signed64;
+    //    [FieldOffset(0)]
+    //    internal System.Int64 signed64;
 
-        [FieldOffset(0)]
-        internal System.UInt64 unsigned64;
-    }
+    //    [FieldOffset(0)]
+    //    internal System.UInt64 unsigned64;
+    //}
 
     /// <summary>
     /// Helper functions for dealing with floating point numbers.
@@ -397,6 +398,31 @@ namespace MathNet.Numerics
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// True if the given number is almost equal to zero, according to the specified absolute accuracy.
+        /// </summary>
+        public static
+        bool
+        AlmostZero(
+            double a,
+            double absoluteAccuracy
+            )
+        {
+            return Math.Abs(a) < absoluteAccuracy;
+        }
+
+        /// <summary>
+        /// True if the given number is almost equal to zero.
+        /// </summary>
+        public static
+        bool
+        AlmostZero(
+            double a
+            )
+        {
+            return Math.Abs(a) < DefaultRelativeAccuracy;
         }
     }
 }

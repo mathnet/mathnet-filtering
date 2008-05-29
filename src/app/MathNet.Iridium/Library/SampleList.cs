@@ -241,11 +241,11 @@ namespace MathNet.Numerics
             )
         {
             int index = Locate(t);
-            if(index > 0 && _sampleT[index] == t)
+            if(index > 0 && Number.AlmostEqual(_sampleT[index], t))
             {
                 AppendMean(index, x);
             }
-            else if(index < _sampleT.Length - 1 && _sampleT[index + 1] == t)
+            else if(index < _sampleT.Length - 1 && Number.AlmostEqual(_sampleT[index + 1], t))
             {
                 AppendMean(index + 1, x);
             }
@@ -326,11 +326,11 @@ namespace MathNet.Numerics
             )
         {
             int index = Locate(t);
-            if(_sampleT[index] == t)
+            if(Number.AlmostEqual(_sampleT[index], t))
             {
                 return index;
             }
-            if(_sampleT[index + 1] == t)
+            if(Number.AlmostEqual(_sampleT[index + 1], t))
             {
                 return index + 1;
             }
@@ -359,12 +359,12 @@ namespace MathNet.Numerics
             )
         {
             int index = Locate(t);
-            if(_sampleT[index] == t)
+            if(Number.AlmostEqual(_sampleT[index], t))
             {
                 _sampleX[index] = x;
                 _sampleCount[index] = 1;
             }
-            else if(_sampleT[index + 1] == t)
+            else if(Number.AlmostEqual(_sampleT[index + 1], t))
             {
                 _sampleX[index + 1] = x;
                 _sampleCount[index + 1] = 1;
@@ -528,7 +528,7 @@ namespace MathNet.Numerics
                 }
             }
 
-            if(_size > 0 && t == _sampleT[_size - 1])
+            if(_size > 0 && Number.AlmostEqual(t, _sampleT[_size - 1]))
             {
                 return _size - 2;
             }
@@ -942,9 +942,9 @@ namespace MathNet.Numerics
 
             internal enum EnumerationMode : int
             {
-                Keys = 1,
-                Values = 2,
-                DictEntry = 3
+                Keys = 0,
+                Values = 1,
+                DictEntry = 2
             }
 
             internal SampleListEnumerator(SampleList sampleList, int index, int count, EnumerationMode mode)

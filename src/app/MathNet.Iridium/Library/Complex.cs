@@ -332,7 +332,7 @@ namespace MathNet.Numerics
         /// </summary>
         public bool IsZero
         {
-            get { return real == 0 && imag == 0; }
+            get { return Number.AlmostZero(real) && Number.AlmostZero(imag); }
         }
 
         /// <summary>
@@ -348,7 +348,7 @@ namespace MathNet.Numerics
         /// </summary>
         public bool IsOne
         {
-            get { return real == 1 && imag == 0; }
+            get { return Number.AlmostEqual(real, 1) && Number.AlmostZero(imag); }
         }
 
         /// <summary>
@@ -364,7 +364,7 @@ namespace MathNet.Numerics
         /// </summary>
         public bool IsI
         {
-            get { return real == 0 && imag == 1; }
+            get { return Number.AlmostZero(real) && Number.AlmostEqual(imag, 1); }
         }
 
         /// <summary>
@@ -418,7 +418,7 @@ namespace MathNet.Numerics
         /// </summary>
         public bool IsReal
         {
-            get { return imag == 0; }
+            get { return Number.AlmostZero(imag); }
         }
 
         /// <summary>
@@ -426,7 +426,7 @@ namespace MathNet.Numerics
         /// </summary>
         public bool IsRealNonNegative
         {
-            get { return imag == 0 && real >= 0; }
+            get { return Number.AlmostZero(imag) && real >= 0; }
         }
 
         /// <summary>
@@ -434,7 +434,7 @@ namespace MathNet.Numerics
         /// </summary>
         public bool IsImaginary
         {
-            get { return real == 0; }
+            get { return Number.AlmostZero(real); }
         }
 
         #endregion
@@ -493,7 +493,7 @@ namespace MathNet.Numerics
                 }
                 else
                 {
-                    if(real == 0d && imag == 0d)
+                    if(IsZero)
                     {
                         real = value;
                         imag = 0;
@@ -540,7 +540,7 @@ namespace MathNet.Numerics
                 }
                 else
                 {
-                    if(real == 0d && imag == 0d)
+                    if(IsZero)
                     {
                         real = Math.Sqrt(value);
                         imag = 0;
@@ -567,11 +567,11 @@ namespace MathNet.Numerics
         {
             get
             {
-                if(imag == 0 && real < 0)
+                if(IsReal && real < 0)
                 {
                     return Math.PI;
                 }
-                if(imag == 0 && real >= 0)
+                if(IsRealNonNegative)
                 {
                     return 0;
                 }
@@ -807,7 +807,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static Complex operator /(Complex dividend, double divisor)
         {
-            if(divisor == 0)
+            if(Number.AlmostZero(divisor))
             {
                 return Complex.Infinity;
             }
@@ -1393,19 +1393,19 @@ namespace MathNet.Numerics
                 return numberFormat.NaNSymbol;
             }
 
-            if(imag == 0)
+            if(IsReal)
             {
                 return real.ToString(numberFormat);
             }
 
             // note: there's a difference between the negative sign and the subtraction operator!
-            if(real == 0)
+            if(IsImaginary)
             {
-                if(imag == 1)
+                if(Number.AlmostEqual(imag, 1))
                 {
                     return "I";
                 }
-                if(imag == -1)
+                if(Number.AlmostEqual(imag, -1))
                 {
                     return numberFormat.NegativeSign + "I";
                 }
@@ -1418,11 +1418,11 @@ namespace MathNet.Numerics
             }
             else
             {
-                if(imag == 1)
+                if(Number.AlmostEqual(imag, 1))
                 {
                     return real.ToString(numberFormat) + "+I";
                 }
-                if(imag == -1)
+                if(Number.AlmostEqual(imag, -1))
                 {
                     return real.ToString(numberFormat) + "-I";
                 }

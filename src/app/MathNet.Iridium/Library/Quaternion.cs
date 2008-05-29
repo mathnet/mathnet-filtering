@@ -171,7 +171,7 @@ namespace MathNet.Numerics
         /// <remarks>To normalize a quaternion to a length of 1, use the <see cref="Sign"/> method. All unit quaternions form a 3-sphere.</remarks>
         public bool IsUnitQuaternion
         {
-            get { return qabs == 1d; }
+            get { return Number.AlmostEqual(qabs, 1); }
         }
 
         /// <summary>
@@ -569,7 +569,7 @@ namespace MathNet.Numerics
         Quaternion
         Inverse()
         {
-            if(qabs == 1d)
+            if(Number.AlmostEqual(qabs, 1))
             {
                 return new Quaternion(
                     qw,
