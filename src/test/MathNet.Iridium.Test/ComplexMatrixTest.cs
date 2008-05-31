@@ -61,7 +61,7 @@ namespace Iridium.Test
             ca3x2 = 2*ra3x2 - 2*ia3x2
             cb3x2 = rb3x2 + 3*ib3x2
             cc2x2 = rc2x2 + 2 - 3*ic2x2
-            cd2x4 = -2*rd2x4 + id2x4
+            cd2x4 = -2*rd2x4 + id2x4 + 1-j
             */
 
             ma3x2 = new Matrix(new double[][] {
@@ -92,7 +92,7 @@ namespace Iridium.Test
             ca3x2 = 2 * ra3x2 - 2 * ia3x2;
             cb3x2 = rb3x2 + 3 * ib3x2;
             cc2x2 = rc2x2 + 2 - 3 * ic2x2;
-            cd2x4 = -2 * rd2x4 + id2x4;
+            cd2x4 = -2 * rd2x4 + id2x4 + (1 - j);
         }
 
         [Test]
@@ -213,10 +213,39 @@ namespace Iridium.Test
 
         }
 
-        //[Test]
-        //public void TestComplexMatrix_Multiplicative()
-        //{
-        //    // TODO
-        //}
+        [Test]
+        public void TestComplexMatrix_Multiplicative()
+        {
+            /*
+            MATLAB:
+            prod_cc = ca3x2 * cd2x4
+            prod_cm = ca3x2 * md2x4
+            prod_cs = ca3x2 * s
+            */
+
+            // ComplexMatrix * ComplexMatrix
+            ComplexMatrix prod_cc = new ComplexMatrix(new Complex[][] {
+                new Complex[] { -66+12*j, -66+72*j, -66-228*j, -66+672*j },
+                new Complex[] { -154+268*j, -154+300*j, -154+308*j, -154+368*j },
+                new Complex[] { -352+424*j, -352+582*j, -352+44*j, -352+1784*j }});
+            NumericAssert.AreAlmostEqual(prod_cc, ca3x2 * cd2x4, "prod cc 1");
+            NumericAssert.AreAlmostEqual(prod_cc, ca3x2.Multiply(cd2x4), "prod cc 2");
+
+            // ComplexMatrix * Matrix
+            ComplexMatrix prod_cm = new ComplexMatrix(new Complex[][] {
+                new Complex[] { 6-12*j, 12-24*j, -18+36*j, 72-144*j },
+                new Complex[] { 38-76*j,41.2-82.4*j, 42-84*j, 48-96*j },
+                new Complex[] { 68-136*j, 83.8-167.6*j, 30-60*j, 204-408*j }});
+            NumericAssert.AreAlmostEqual(prod_cm, ca3x2 * md2x4, "prod cm 1");
+            NumericAssert.AreAlmostEqual(prod_cm, ca3x2.Multiply(md2x4), "prod cm 2");
+
+            // ComplexMatrix * Complex
+            ComplexMatrix prod_cs = new ComplexMatrix(new Complex[][] {
+                new Complex[] { 18-6*j, 0 },
+                new Complex[] { 6-2*j,36-12*j },
+                new Complex[] { 42-14*j, 54-18*j }});
+            NumericAssert.AreAlmostEqual(prod_cs, ca3x2 * s, "prod cs 1");
+            NumericAssert.AreAlmostEqual(prod_cs, ca3x2.Multiply(s), "prod cs 2");
+        }
     }
 }

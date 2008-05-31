@@ -117,35 +117,31 @@ namespace Iridium.Test
             NumericAssert.AreAlmostEqual(trans_m, trans_inplace, "trans 2");
         }
 
-        //[Test]
-        //public void TestMatrix_Multiplicative()
-        //{
-        //    // TODO
-        //}
-
-
         [Test]
-        public void TestMatrix_Multiply()
+        public void TestMatrix_Multiplicative()
         {
-            double[][] a = { new double[] { 1, 2 }, new double[] { 3, 5 } };
-            Matrix ma = Matrix.Create(a);
-            double[][] b = { new double[] { 7, 11 }, new double[] { 13, 17 } };
-            Matrix mb = Matrix.Create(b);
-            double[][] r = { new double[] { 33, 45 }, new double[] { 86, 118 } };
-            Matrix mr = Matrix.Create(r);
-            //Console.WriteLine("a");
-            //Console.WriteLine(ma.ToString());
-            //Console.WriteLine("b");
-            //Console.WriteLine(mb.ToString());
-            Matrix mp = ma * mb;
-            //Console.WriteLine("product");
-            //Console.WriteLine(mp.ToString());
-            //Console.WriteLine("expected product");
-            //Console.WriteLine(mr.ToString());
+            /*
+            MATLAB:
+            prod = ma3x2 * md2x4
+            prod_s = ma3x2 * 2
+            */
 
-            Assert.AreEqual(mp.ToString(), mr.ToString(), "Matrices should be equal");
+            Matrix prod = new Matrix(new double[][] {
+                new double[] { -5, -4.2, -11, 8 },
+                new double[] { 11, 10.4, 19, -4 },
+                new double[] { 26, 31.7, 13, 74 }});
+            NumericAssert.AreAlmostEqual(prod, ma3x2 * md2x4, "prod 1");
+            NumericAssert.AreAlmostEqual(prod, ma3x2.Multiply(md2x4), "prod 2");
+
+            Matrix prod_s = new Matrix(new double[][] {
+                new double[] { 2, -4 },
+                new double[] { -2, 8 },
+                new double[] { 10, 14 }});
+            NumericAssert.AreAlmostEqual(prod_s, ma3x2 * 2, "prod s 1");
+            Matrix prod_s_inplace = ma3x2.Clone();
+            prod_s_inplace.Multiply(2);
+            NumericAssert.AreAlmostEqual(prod_s, prod_s_inplace, "prod s 2");
         }
-
 
         [Test]
         public void TestMatrix_Solve()
