@@ -110,6 +110,8 @@ namespace Iridium.Test
             conj_c = conj(ca3x2)
             trans_c = ca3x2.'
             htrans_c = ca3x2'
+            trans_c2 = cc2x2.'
+            htrans_c2 = cc2x2'
             */
 
             // ComplexMatrix + ComplexMatrix
@@ -211,6 +213,24 @@ namespace Iridium.Test
                 new Complex[] { 0, 12+24*j, 18+36*j }});
             NumericAssert.AreAlmostEqual(htrans_c, ca3x2.HermitianTranspose(), "htrans c 1");
 
+            // ComplexMatrix Transpose (Non-Conjugated) (Square)
+            ComplexMatrix trans_c2 = new ComplexMatrix(new Complex[][] {
+                new Complex[] { 8-24*j, 10-30*j },
+                new Complex[] { 9-27*j, 11-33*j }});
+            NumericAssert.AreAlmostEqual(trans_c2, cc2x2.Transpose(), "trans c2 1");
+            ComplexMatrix trans_c2_inplace = cc2x2.Clone();
+            trans_c2_inplace.TransposeInplace();
+            NumericAssert.AreAlmostEqual(trans_c2, trans_c2_inplace, "trans c2 2");
+
+            // ComplexMatrix Hermitian Transpose (Conjugated) (Square)
+            ComplexMatrix htrans_c2 = new ComplexMatrix(new Complex[][] {
+                new Complex[] { 8+24*j, 10+30*j },
+                new Complex[] { 9+27*j, 11+33*j }});
+            NumericAssert.AreAlmostEqual(htrans_c2, cc2x2.HermitianTranspose(), "htrans c2 1");
+            ComplexMatrix htrans_c2_inplace = cc2x2.Clone();
+            htrans_c2_inplace.HermitianTransposeInplace();
+            NumericAssert.AreAlmostEqual(htrans_c2, htrans_c2_inplace, "htrans c2 2");
+
         }
 
         [Test]
@@ -221,6 +241,9 @@ namespace Iridium.Test
             prod_cc = ca3x2 * cd2x4
             prod_cm = ca3x2 * md2x4
             prod_cs = ca3x2 * s
+            prod_cc2 = cc2x2 * cc2x2
+            prod_cm2 = cc2x2 * mc2x2
+            prod_cs2 = cc2x2 * s
             */
 
             // ComplexMatrix * ComplexMatrix
@@ -246,6 +269,36 @@ namespace Iridium.Test
                 new Complex[] { 42-14*j, 54-18*j }});
             NumericAssert.AreAlmostEqual(prod_cs, ca3x2 * s, "prod cs 1");
             NumericAssert.AreAlmostEqual(prod_cs, ca3x2.Multiply(s), "prod cs 2");
+
+            // ComplexMatrix * ComplexMatrix (Square)
+            ComplexMatrix prod_cc2 = new ComplexMatrix(new Complex[][] {
+                new Complex[] { -1232-924*j, -1368-1026*j },
+                new Complex[] { -1520-1140*j, -1688-1266*j }});
+            NumericAssert.AreAlmostEqual(prod_cc2, cc2x2 * cc2x2, "prod cc2 1");
+            NumericAssert.AreAlmostEqual(prod_cc2, cc2x2.Multiply(cc2x2), "prod cc2 2");
+            ComplexMatrix prod_cc2_inplace = cc2x2.Clone();
+            prod_cc2_inplace.MultiplyInplace(cc2x2);
+            NumericAssert.AreAlmostEqual(prod_cc2, prod_cc2_inplace, "prod cc2 3");
+
+            // ComplexMatrix * Matrix (Square)
+            ComplexMatrix prod_cm2 = new ComplexMatrix(new Complex[][] {
+                new Complex[] { 35-105*j, 52-156*j },
+                new Complex[] { 43-129*j, 64-192*j }});
+            NumericAssert.AreAlmostEqual(prod_cm2, cc2x2 * mc2x2, "prod cm2 1");
+            NumericAssert.AreAlmostEqual(prod_cm2, cc2x2.Multiply(mc2x2), "prod cm2 2");
+            ComplexMatrix prod_cm2_inplace = cc2x2.Clone();
+            prod_cm2_inplace.MultiplyInplace(mc2x2);
+            NumericAssert.AreAlmostEqual(prod_cm2, prod_cm2_inplace, "prod cm2 3");
+
+            // ComplexMatrix * Complex (Square)
+            ComplexMatrix prod_cs2 = new ComplexMatrix(new Complex[][] {
+                new Complex[] { 32-16*j, 36-18*j },
+                new Complex[] { 40-20*j, 44-22*j }});
+            NumericAssert.AreAlmostEqual(prod_cs2, cc2x2 * s, "prod cs2 1");
+            NumericAssert.AreAlmostEqual(prod_cs2, cc2x2.Multiply(s), "prod cs2 2");
+            ComplexMatrix prod_cs2_inplace = cc2x2.Clone();
+            prod_cs2_inplace.MultiplyInplace(s);
+            NumericAssert.AreAlmostEqual(prod_cs2, prod_cs2_inplace, "prod cs2 3");
         }
     }
 }
