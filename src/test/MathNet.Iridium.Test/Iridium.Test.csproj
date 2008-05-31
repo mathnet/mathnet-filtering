@@ -42,6 +42,7 @@
     <Compile Include="BugRegression.cs" />
     <Compile Include="CodeSamples.cs" />
     <Compile Include="CombinatoricsTest.cs" />
+    <Compile Include="ComplexMatrixTest.cs" />
     <Compile Include="DistributionTest.cs" />
     <Compile Include="InterpolationTest.cs" />
     <Compile Include="NumericAssert.cs" />

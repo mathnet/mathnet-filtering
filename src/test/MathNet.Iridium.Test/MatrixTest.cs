@@ -34,7 +34,34 @@ namespace Iridium.Test
     [TestFixture]
     public class MatrixTest
     {
+        Matrix ma3x2, mb3x2, mc2x2, md2x4;
 
+        [SetUp]
+        public void TestMatrix_Setup()
+        {
+            /*
+            MATLAB:
+            ma3x2 = [1 -2;-1 4;5 7]
+            mb3x2 = [10 2.5;-3 -1.5;19 -6]
+            mc2x2 = [1 2;3 4]
+            md2x4 = [1 2 -3 12;3 3.1 4 2]
+            */
+
+            ma3x2 = new Matrix(new double[][] {
+                new double[] { 1, -2 },
+                new double[] { -1, 4 },
+                new double[] { 5, 7 }});
+            mb3x2 = new Matrix(new double[][] {
+                new double[] { 10, 2.5 },
+                new double[] { -3, -1.5 },
+                new double[] { 19, -6 }});
+            mc2x2 = new Matrix(new double[][] {
+                new double[] { 1, 2 },
+                new double[] { 3, 4 }});
+            md2x4 = new Matrix(new double[][] {
+                new double[] { 1, 2, -3, 12 },
+                new double[] { 3, 3.1, 4, 2 }});
+        }
 
         [Test]
         public void TestMatrix_Create()
@@ -47,26 +74,54 @@ namespace Iridium.Test
         }
 
         [Test]
-        public void TestMatrix_Add()
+        public void TestMatrix_AdditiveTranspose()
         {
-            double[][] a = { new double[] { 1, 2 }, new double[] { 2, 3 } };
-            Matrix ma = Matrix.Create(a);
-            double[][] b = { new double[] { 1.0, 2.0 }, new double[] { 3.0, 4.0 } };
-            Matrix mb = Matrix.Create(b);
-            double[][] r = { new double[] { 2.0, 4.0 }, new double[] { 5.0, 7.0 } };
-            Matrix mr = Matrix.Create(r);
-            //Console.WriteLine("a");
-            //Console.WriteLine(ma.ToString());
-            //Console.WriteLine("b");
-            //Console.WriteLine(mb.ToString());
-            Matrix sum = ma + mb;
-            //Console.WriteLine("sum");
-            //Console.WriteLine(sum.ToString());
-            //Console.WriteLine("expected sum");
-            //Console.WriteLine(mr.ToString());
+            /*
+            MATLAB:
+            sum = ma3x2 + mb3x2
+            diff = ma3x2 - mb3x2
+            neg_m = -ma3x2
+            trans_m = ma3x2'
+            */
 
-            Assert.AreEqual(sum.ToString(), mr.ToString(), "Matrices should be equal");
+            Matrix sum = new Matrix(new double[][] {
+                new double[] { 11, 0.5 },
+                new double[] { -4, 2.5 },
+                new double[] { 24, 1 }});
+            NumericAssert.AreAlmostEqual(sum, ma3x2 + mb3x2, "sum 1");
+            Matrix sum_inplace = ma3x2.Clone();
+            sum_inplace.Add(mb3x2);
+            NumericAssert.AreAlmostEqual(sum, sum_inplace, "sum 2");
+
+            Matrix diff = new Matrix(new double[][] {
+                new double[] { -9, -4.5 },
+                new double[] { 2, 5.5 },
+                new double[] { -14, 13 }});
+            NumericAssert.AreAlmostEqual(diff, ma3x2 - mb3x2, "diff 1");
+            Matrix diff_inplace = ma3x2.Clone();
+            diff_inplace.Subtract(mb3x2);
+            NumericAssert.AreAlmostEqual(diff, diff_inplace, "diff 2");
+
+            Matrix neg_m = new Matrix(new double[][] {
+                new double[] { -1, 2 },
+                new double[] { 1, -4 },
+                new double[] { -5, -7 }});
+            NumericAssert.AreAlmostEqual(neg_m, -ma3x2, "neg 1");
+
+            Matrix trans_m = new Matrix(new double[][] {
+                new double[] { 1, -1, 5 },
+                new double[] { -2, 4, 7 }});
+            NumericAssert.AreAlmostEqual(trans_m, Matrix.Transpose(ma3x2), "trans 1");
+            Matrix trans_inplace = ma3x2.Clone();
+            trans_inplace.Transpose();
+            NumericAssert.AreAlmostEqual(trans_m, trans_inplace, "trans 2");
         }
+
+        //[Test]
+        //public void TestMatrix_Multiplicative()
+        //{
+        //    // TODO
+        //}
 
 
         [Test]

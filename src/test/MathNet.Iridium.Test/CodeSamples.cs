@@ -52,15 +52,13 @@ namespace Iridium.Test
                 new double[] { 10.0, -18.0 },
                 new double[] { 6.0, -11.0 }});
 
-            EigenvalueDecomposition eigen = m.EigenvalueDecomposition;
-
-            Complex[] eigenValues = eigen.EigenValues;
+            ComplexVector eigenValues = m.EigenValues;
             NumericAssert.AreAlmostEqual(1.0, eigenValues[0].Real, "Re{eigenvalueA}");
             NumericAssert.AreAlmostEqual(0.0, eigenValues[0].Imag, "Im{eigenvalueA}");
             NumericAssert.AreAlmostEqual(-2.0, eigenValues[1].Real, "Re{eigenvalueB}");
             NumericAssert.AreAlmostEqual(0.0, eigenValues[1].Imag, "Im{eigenvalueB}");
 
-            Matrix eigenVectors = eigen.EigenVectors;
+            Matrix eigenVectors = m.EigenVectors;
             NumericAssert.AreAlmostEqual(.8944271910, eigenVectors[0, 0], 1e-9, "eigenvectorA[0]");
             NumericAssert.AreAlmostEqual(.4472135955, eigenVectors[1, 0], 1e-9, "eigenvectorA[1]");
             NumericAssert.AreAlmostEqual(6.708203936, eigenVectors[0, 1], 1e-9, "eigenvectorB[0]");

@@ -701,7 +701,7 @@ namespace Iridium.Test
             
             A = new Matrix(pvals);
             CholeskyDecomposition Chol = A.CholeskyDecomposition;
-            Matrix L = Chol.GetL();
+            Matrix L = Chol.TriangularFactor;
             NumericAssert.AreAlmostEqual(A, L * Matrix.Transpose(L), "CholeskyDecomposition");
             
             X = Chol.Solve(Matrix.Identity(3, 3));
