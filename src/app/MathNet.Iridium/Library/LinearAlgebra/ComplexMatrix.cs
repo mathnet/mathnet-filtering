@@ -552,12 +552,12 @@ namespace MathNet.Numerics.LinearAlgebra
         }
 
         /// <summary>
-        /// Generates a matrix with elements on the unit circle with random argument.
+        /// Generates a matrix of complex numbers on the unit circle with random argument.
         /// </summary>
         /// <param name="m">Number of rows.</param>
         /// <param name="n">Number of columns.</param>
-        /// <param name="argumentRandomDistribution">Continuous Random Distribution or Source for the argument part.</param>
-        /// <returns>An m-by-n matrix with imaginary parts distributed according to the provided distribution.</returns>
+        /// <param name="argumentRandomDistribution">Continuous random distribution or source for the complex number arguments.</param>
+        /// <returns>An m-by-n matrix with complex arguments distributed according to the provided distribution.</returns>
         public static
         ComplexMatrix
         RandomUnitCircle(
@@ -1109,6 +1109,30 @@ namespace MathNet.Numerics.LinearAlgebra
                 throw new IndexOutOfRangeException(Resources.ArgumentMatrixIndexOutOfRange, e);
             }
             ResetOnDemandComputations();
+        }
+
+        #endregion
+
+        #region Norms computations
+
+        /// <summary>One norm</summary>
+        /// <returns>Maximum column sum.</returns>
+        public
+        double
+        Norm1()
+        {
+            // TODO (cdr, 2008-03-11): Change to property, consider cached on-demand.
+            double f = 0;
+            for(int j = 0; j < _columnCount; j++)
+            {
+                double s = 0;
+                for(int i = 0; i < _rowCount; i++)
+                {
+                    s += _data[i][j].Modulus;
+                }
+                f = Math.Max(f, s);
+            }
+            return f;
         }
 
         #endregion
@@ -2858,6 +2882,18 @@ namespace MathNet.Numerics.LinearAlgebra
             )
         {
             return m1.Subtract(scalar);
+        }
+
+        /// <summary>
+        /// Negation Operator
+        /// </summary>
+        public static
+        ComplexMatrix
+        operator -(
+            ComplexMatrix m1
+            )
+        {
+            return m1.Negate();
         }
 
         /// <summary>

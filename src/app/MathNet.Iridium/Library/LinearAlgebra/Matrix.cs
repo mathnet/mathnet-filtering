@@ -1911,6 +1911,24 @@ namespace MathNet.Numerics.LinearAlgebra
             return new Matrix(newData);
         }
 
+        /// <summary>Negation of a matrix</summary>
+        public static
+        Matrix
+        operator -(
+            Matrix m1
+            )
+        {
+            double[][] newData = CreateMatrixData(m1.RowCount, m1.ColumnCount);
+            for(int i = 0; i < m1.RowCount; i++)
+            {
+                for(int j = 0; j < m1.ColumnCount; j++)
+                {
+                    newData[i][j] = -m1[i, j];
+                }
+            }
+            return new Matrix(newData);
+        }
+
         /// <summary>Linear algebraic matrix multiplication.</summary>
         /// <exception cref="System.ArgumentException">Matrix inner dimensions must agree.</exception>
         public static
