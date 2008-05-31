@@ -1232,6 +1232,28 @@ namespace MathNet.Numerics.LinearAlgebra
 
         #endregion
 
+        #region Vector Norms
+
+        /// <summary>
+        /// 1-Norm also known as Manhattan Norm or Taxicab Norm.
+        /// </summary>
+        /// <returns>
+        /// Scalar ret = sum(abs(this[i]))
+        /// </returns>
+        public
+        double
+        Norm1()
+        {
+            double sum = 0;
+            for(int i = 0; i < _data.Length; i++)
+            {
+                sum += _data[i].Modulus;
+            }
+            return sum;
+        }
+
+        #endregion
+
         #region Arithmetic Operator Overloading
 
         /// <summary>
