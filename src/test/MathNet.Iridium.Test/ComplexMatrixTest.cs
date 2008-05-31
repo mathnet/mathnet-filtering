@@ -40,6 +40,8 @@ namespace Iridium.Test
         ComplexMatrix ra3x2, rb3x2, rc2x2, rd2x4;
         ComplexMatrix ia3x2, ib3x2, ic2x2, id2x4;
         ComplexMatrix ca3x2, cb3x2, cc2x2, cd2x4;
+        Vector v2;
+        ComplexVector cv2;
 
         [SetUp]
         public void TestComplexMatrix_Setup()
@@ -62,6 +64,8 @@ namespace Iridium.Test
             cb3x2 = rb3x2 + 3*ib3x2
             cc2x2 = rc2x2 + 2 - 3*ic2x2
             cd2x4 = -2*rd2x4 + id2x4 + 1-j
+            v2 = [5 -2]
+            cv2 = [5+j, -2+3j]
             */
 
             ma3x2 = new Matrix(new double[][] {
@@ -93,6 +97,9 @@ namespace Iridium.Test
             cb3x2 = rb3x2 + 3 * ib3x2;
             cc2x2 = rc2x2 + 2 - 3 * ic2x2;
             cd2x4 = -2 * rd2x4 + id2x4 + (1 - j);
+
+            v2 = new Vector(new double[] { 5, -2 });
+            cv2 = new ComplexVector(new Complex[] { 5 + j, -2 + 3 * j });
         }
 
         [Test]
@@ -244,6 +251,12 @@ namespace Iridium.Test
             prod_cc2 = cc2x2 * cc2x2
             prod_cm2 = cc2x2 * mc2x2
             prod_cs2 = cc2x2 * s
+            prod_ccv = ca3x2 * cv2.'
+            prod_cv = ca3x2 * v2.'
+            prod_ccvdl = diag(cv2) * cc2x2
+            prod_ccvdr = cc2x2 * diag(cv2)
+            prod_cvdl = diag(v2) * cc2x2
+            prod_cvdr = cc2x2 * diag(v2)
             */
 
             // ComplexMatrix * ComplexMatrix
@@ -299,6 +312,54 @@ namespace Iridium.Test
             ComplexMatrix prod_cs2_inplace = cc2x2.Clone();
             prod_cs2_inplace.MultiplyInplace(s);
             NumericAssert.AreAlmostEqual(prod_cs2, prod_cs2_inplace, "prod cs2 3");
+
+            // ComplexMatrix * ComplexVector (Column)
+            ComplexVector prod_ccv = new ComplexVector(new Complex[] { 42 - 54 * j, 62 + 66 * j, 170 });
+            NumericAssert.AreAlmostEqual(prod_ccv, ca3x2 * cv2, "prod ccv 1");
+            NumericAssert.AreAlmostEqual(prod_ccv, ca3x2.MultiplyRightColumn(cv2), "prod ccv 2");
+
+            // ComplexMatrix * Vector (Column)
+            ComplexVector prod_cv = new ComplexVector(new Complex[] { 30 - 60 * j, -14 + 28 * j, 34 - 68 * j });
+            NumericAssert.AreAlmostEqual(prod_cv, ca3x2 * v2, "prod cv 1");
+            NumericAssert.AreAlmostEqual(prod_cv, ca3x2.MultiplyRightColumn(v2), "prod cv 2");
+
+            // ComplexMatrix * ComplexVector (Diagonal, Left)
+            ComplexMatrix prod_ccvdl = new ComplexMatrix(new Complex[][] {
+                new Complex[] { 64-112*j, 72-126*j },
+                new Complex[] { 70+90*j, 77+99*j }});
+            NumericAssert.AreAlmostEqual(prod_ccvdl, cc2x2.MultiplyLeftDiagonal(cv2), "prod ccv dl 1");
+            ComplexMatrix prod_ccvdl_inplace = cc2x2.Clone();
+            prod_ccvdl_inplace.MultiplyLeftDiagonalInplace(cv2);
+            NumericAssert.AreAlmostEqual(prod_ccvdl, prod_ccvdl_inplace, "prod ccv dl 2");
+            NumericAssert.AreAlmostEqual(prod_ccvdl, ComplexMatrix.Diagonal(cv2) * cc2x2, "prod ccv dl 3");
+
+            // ComplexMatrix * Vector (Diagonal, Left)
+            ComplexMatrix prod_cvdl = new ComplexMatrix(new Complex[][] {
+                new Complex[] { 40-120*j, 45-135*j },
+                new Complex[] { -20+60*j, -22+66*j }});
+            NumericAssert.AreAlmostEqual(prod_cvdl, cc2x2.MultiplyLeftDiagonal(v2), "prod cv dl 1");
+            ComplexMatrix prod_cvdl_inplace = cc2x2.Clone();
+            prod_cvdl_inplace.MultiplyLeftDiagonalInplace(v2);
+            NumericAssert.AreAlmostEqual(prod_cvdl, prod_cvdl_inplace, "prod cv dl 2");
+
+            // ComplexMatrix * ComplexVector (Diagonal, Right)
+            ComplexMatrix prod_ccvdr = new ComplexMatrix(new Complex[][] {
+                new Complex[] { 64-112*j, 63+81*j },
+                new Complex[] { 80-140*j, 77+99*j }});
+            NumericAssert.AreAlmostEqual(prod_ccvdr, cc2x2.MultiplyRightDiagonal(cv2), "prod ccv dr 1");
+            ComplexMatrix prod_ccvdr_inplace = cc2x2.Clone();
+            prod_ccvdr_inplace.MultiplyRightDiagonalInplace(cv2);
+            NumericAssert.AreAlmostEqual(prod_ccvdr, prod_ccvdr_inplace, "prod ccv dr 2");
+            NumericAssert.AreAlmostEqual(prod_ccvdr, cc2x2 * ComplexMatrix.Diagonal(cv2), "prod ccv dr 3");
+
+            // ComplexMatrix * Vector (Diagonal, Right)
+            ComplexMatrix prod_cvdr = new ComplexMatrix(new Complex[][] {
+                new Complex[] { 40-120*j, -18+54*j },
+                new Complex[] { 50-150*j, -22+66*j }});
+            NumericAssert.AreAlmostEqual(prod_cvdr, cc2x2.MultiplyRightDiagonal(v2), "prod cv dr 1");
+            ComplexMatrix prod_cvdr_inplace = cc2x2.Clone();
+            prod_cvdr_inplace.MultiplyRightDiagonalInplace(v2);
+            NumericAssert.AreAlmostEqual(prod_cvdr, prod_cvdr_inplace, "prod cv dr 2");
         }
     }
 }

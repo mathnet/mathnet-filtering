@@ -40,6 +40,16 @@ namespace Iridium.Test
             Assert.DoAssert(new AlmostEqualAsserter(expected.Norm1(), actual.Norm1(), (expected - actual).Norm1(), 10 * Number.DefaultRelativeAccuracy, message));
         }
 
+        public static void AreAlmostEqual(Vector expected, Vector actual, string message)
+        {
+            Assert.DoAssert(new AlmostEqualAsserter(expected.Norm1(), actual.Norm1(), (expected - actual).Norm1(), 10 * Number.DefaultRelativeAccuracy, message));
+        }
+
+        public static void AreAlmostEqual(ComplexVector expected, ComplexVector actual, string message)
+        {
+            Assert.DoAssert(new AlmostEqualAsserter(expected.Norm1(), actual.Norm1(), (expected - actual).Norm1(), 10 * Number.DefaultRelativeAccuracy, message));
+        }
+
         public static void AreAlmostEqual(double expected, double actual, double relativeAccuracy, string message)
         {
             Assert.DoAssert(new AlmostEqualAsserter(expected, actual, relativeAccuracy, message));
