@@ -279,7 +279,7 @@ namespace MathNet.Numerics.LinearAlgebra
         ToColumnMatrix()
         {
             double[][] m = Matrix.CreateMatrixData(_length, 1);
-            for(int i = 0; i < m.Length; i++)
+            for(int i = 0; i < _data.Length; i++)
             {
                 m[i][0] = _data[i];
             }
@@ -294,9 +294,10 @@ namespace MathNet.Numerics.LinearAlgebra
         ToRowMatrix()
         {
             double[][] m = Matrix.CreateMatrixData(1, _length);
-            for(int i = 0; i < m.Length; i++)
+            double[] mRow = m[0];
+            for(int i = 0; i < _data.Length; i++)
             {
-                m[0][i] = _data[i];
+                mRow[i] = _data[i];
             }
             return new Matrix(m);
         }
