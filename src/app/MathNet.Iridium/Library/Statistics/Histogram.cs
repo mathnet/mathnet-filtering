@@ -256,8 +256,11 @@ namespace MathNet.Numerics.Statistics
             int index = values.Length - 1;
             for(int k = (bucketCount - 1); k >= 0; k--)
             {
-                histogram.Add(new Bucket(values[lastBucketIndex[index, k]],
-                    values[index], index - lastBucketIndex[index, k] + 1));
+                histogram.Add(new Bucket(
+                    values[lastBucketIndex[index, k]],
+                    values[index],
+                    index - lastBucketIndex[index, k] + 1
+                    ));
 
                 index = lastBucketIndex[index, k] - 1;
             }
@@ -347,8 +350,11 @@ namespace MathNet.Numerics.Statistics
             int index = values.Length - 1;
             for(int k = (bucketCount - 1); k >= 0; k--)
             {
-                histogram.Add(new Bucket(values[lastBucketIndex[index, k]],
-                    values[index], index - lastBucketIndex[index, k] + 1));
+                histogram.Add(new Bucket(
+                    values[lastBucketIndex[index, k]],
+                    values[index],
+                    index - lastBucketIndex[index, k] + 1
+                    ));
 
                 index = lastBucketIndex[index, k] - 1;
             }
@@ -420,8 +426,11 @@ namespace MathNet.Numerics.Statistics
             int index = values.Length - 1;
             for(int k = (bucketCount - 1); k >= 0; k--)
             {
-                histogram.Add(new Bucket(values[lastBucketIndex[index, k]],
-                    values[index], index - lastBucketIndex[index, k] + 1));
+                histogram.Add(new Bucket(
+                    values[lastBucketIndex[index, k]],
+                    values[index],
+                    index - lastBucketIndex[index, k] + 1
+                    ));
 
                 index = lastBucketIndex[index, k] - 1;
             }
@@ -494,8 +503,11 @@ namespace MathNet.Numerics.Statistics
             int index = values.Length - 1;
             for(int k = (histSize - 1); k >= 0; k--)
             {
-                histogram.Add(new Bucket(values[lastBucketIndex[index, k]],
-                    values[index], index - lastBucketIndex[index, k] + 1));
+                histogram.Add(new Bucket(
+                    values[lastBucketIndex[index, k]],
+                    values[index],
+                    index - lastBucketIndex[index, k] + 1
+                    ));
 
                 index = lastBucketIndex[index, k] - 1;
             }

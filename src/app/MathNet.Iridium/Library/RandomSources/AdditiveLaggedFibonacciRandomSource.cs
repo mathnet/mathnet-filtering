@@ -328,8 +328,7 @@ namespace MathNet.Numerics.RandomSources
         {
             if(maxValue < 0)
             {
-                string message = string.Format(null, Resources.ArgumentOutOfRangeGreaterEqual,
-                    "maxValue", "0");
+                string message = string.Format(null, Resources.ArgumentOutOfRangeGreaterEqual, "maxValue", "0");
                 throw new ArgumentOutOfRangeException("maxValue", maxValue, message);
             }
 
@@ -373,8 +372,7 @@ namespace MathNet.Numerics.RandomSources
         {
             if(minValue > maxValue)
             {
-                string message = string.Format(null, Resources.ArgumentOutOfRangeGreaterEqual,
-                    "maxValue", "minValue");
+                string message = string.Format(null, Resources.ArgumentOutOfRangeGreaterEqual, "maxValue", "minValue");
                 throw new ArgumentOutOfRangeException("maxValue", maxValue, message);
             }
 
@@ -450,8 +448,7 @@ namespace MathNet.Numerics.RandomSources
         {
             if(maxValue < 0.0)
             {
-                string message = string.Format(null, Resources.ArgumentOutOfRangeGreaterEqual,
-                    "maxValue", "0.0");
+                string message = string.Format(null, Resources.ArgumentOutOfRangeGreaterEqual, "maxValue", "0.0");
                 throw new ArgumentOutOfRangeException("maxValue", maxValue, message);
             }
 

@@ -73,8 +73,10 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public ZipfDistribution(double skew)
         {
-            if(skew <= 1d) throw new ArgumentOutOfRangeException("skew", skew,
-                string.Format(Resources.ArgumentOutOfRangeGreater, "skew", "1.0"));
+            if(skew <= 1d)
+            {
+                throw new ArgumentOutOfRangeException("skew", skew, string.Format(Resources.ArgumentOutOfRangeGreater, "skew", "1.0"));
+            }
 
             this.skew = skew;
             random = new SystemRandomSource();
@@ -85,8 +87,10 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public ZipfDistribution(double skew, int seed)
         {
-            if(skew <= 1d) throw new ArgumentOutOfRangeException("skew", skew,
-               string.Format(Resources.ArgumentOutOfRangeGreater, "skew", "1.0"));
+            if(skew <= 1d)
+            {
+                throw new ArgumentOutOfRangeException("skew", skew, string.Format(Resources.ArgumentOutOfRangeGreater, "skew", "1.0"));
+            }
 
             this.skew = skew;
             random = new SystemRandomSource(seed);
@@ -100,8 +104,10 @@ namespace MathNet.Numerics.Distributions
             get { return skew; }
             set
             {
-                if(value <= 1d) throw new ArgumentOutOfRangeException("value", value,
-                string.Format(Resources.ArgumentOutOfRangeGreater, "skew", "1.0"));
+                if(value <= 1d)
+                {
+                    throw new ArgumentOutOfRangeException("value", value, string.Format(Resources.ArgumentOutOfRangeGreater, "skew", "1.0"));
+                }
                 skew = value;
             }
         }
