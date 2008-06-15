@@ -958,7 +958,7 @@ namespace MathNet.Numerics
             }
             public object Clone()
             {
-                return base.MemberwiseClone();
+                return MemberwiseClone();
             }
             public bool MoveNext()
             {

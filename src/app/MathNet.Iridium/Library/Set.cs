@@ -250,7 +250,7 @@ namespace MathNet.Numerics
             get
             {
                 if(readonlyWrapper == null)
-                    readonlyWrapper = CreateNewReadOnlyWrapper(base.Items);
+                    readonlyWrapper = CreateNewReadOnlyWrapper(Items);
                 return readonlyWrapper;
             }
         }
@@ -262,8 +262,8 @@ namespace MathNet.Numerics
         T[]
         ToArray()
         {
-            T[] array = new T[base.Count];
-            base.CopyTo(array, 0);
+            T[] array = new T[Count];
+            CopyTo(array, 0);
             return array;
         }
 
@@ -299,7 +299,7 @@ namespace MathNet.Numerics
         {
             foreach(T item in range)
             {
-                base.Add(item);
+                Add(item);
             }
         }
 
@@ -314,7 +314,7 @@ namespace MathNet.Numerics
         {
             if(!Contains(item))
             {
-                base.Add(item);
+                Add(item);
             }
         }
 
@@ -329,9 +329,9 @@ namespace MathNet.Numerics
         {
             foreach(T item in range)
             {
-                if(!base.Contains(item))
+                if(!Contains(item))
                 {
-                    base.Add(item);
+                    Add(item);
                 }
             }
         }
@@ -344,12 +344,12 @@ namespace MathNet.Numerics
         RemoveDuplicates()
         {
             Dictionary<T, object> table = new Dictionary<T, object>();
-            for(int i = base.Count - 1; i >= 0; i--)
+            for(int i = Count - 1; i >= 0; i--)
             {
                 T item = base[i];
                 if(table.ContainsKey(item))
                 {
-                    base.RemoveAt(i);
+                    RemoveAt(i);
                 }
                 else
                 {
@@ -393,7 +393,7 @@ namespace MathNet.Numerics
             {
                 base.InsertItem(index, item);
                 handler(this, SetChangedEventArgs<T>.Added(item, index));
-                for(int i = index + 1; i < base.Count; i++)
+                for(int i = index + 1; i < Count; i++)
                 {
                     handler(this, SetChangedEventArgs<T>.Moved(base[i], i - 1, i));
                 }
@@ -418,7 +418,7 @@ namespace MathNet.Numerics
             {
                 handler(this, SetChangedEventArgs<T>.Removed(base[index], index));
                 base.RemoveItem(index);
-                for(int i = index; i < base.Count; i++)
+                for(int i = index; i < Count; i++)
                 {
                     handler(this, SetChangedEventArgs<T>.Moved(base[i], i + 1, i));
                 }
@@ -463,7 +463,7 @@ namespace MathNet.Numerics
         {
             foreach(T item in c)
             {
-                if(!base.Contains(item))
+                if(!Contains(item))
                 {
                     return false;
                 }
@@ -516,7 +516,7 @@ namespace MathNet.Numerics
                 if(!table.ContainsKey(item))
                 {
                     table.Add(item, null);
-                    if(!base.Contains(item))
+                    if(!Contains(item))
                     {
                         return false;
                     }
@@ -660,11 +660,11 @@ namespace MathNet.Numerics
                     table.Add(item, null);
                 }
             }
-            for(int i = base.Count - 1; i >= 0; i--)
+            for(int i = Count - 1; i >= 0; i--)
             {
                 if(!table.ContainsKey(base[i]))
                 {
-                    base.RemoveAt(i);
+                    RemoveAt(i);
                 }
             }
         }
@@ -734,11 +734,11 @@ namespace MathNet.Numerics
                     table.Add(item, null);
                 }
             }
-            for(int i = base.Count - 1; i >= 0; i--)
+            for(int i = Count - 1; i >= 0; i--)
             {
                 if(table.ContainsKey(base[i]))
                 {
-                    base.RemoveAt(i);
+                    RemoveAt(i);
                 }
             }
         }
@@ -827,7 +827,7 @@ namespace MathNet.Numerics
                 throw new ArgumentNullException("match");
             }
 
-            for(int i = 0; i < base.Count; i++)
+            for(int i = 0; i < Count; i++)
             {
                 if(!match(base[i]))
                 {
@@ -851,7 +851,7 @@ namespace MathNet.Numerics
                 throw new ArgumentNullException("action");
             }
 
-            for(int i = 0; i < base.Count; i++)
+            for(int i = 0; i < Count; i++)
             {
                 action(base[i]);
             }
@@ -873,7 +873,7 @@ namespace MathNet.Numerics
                 throw new ArgumentNullException("match");
             }
 
-            for(int i = 0; i < base.Count; i++)
+            for(int i = 0; i < Count; i++)
             {
                 if(match(base[i]))
                 {
@@ -892,7 +892,7 @@ namespace MathNet.Numerics
             Predicate<T> match
             )
         {
-            return FindIndex(0, base.Count, match);
+            return FindIndex(0, Count, match);
         }
 
         /// <summary>
@@ -905,7 +905,7 @@ namespace MathNet.Numerics
             Predicate<T> match
             )
         {
-            return FindIndex(startIndex, base.Count - startIndex, match);
+            return FindIndex(startIndex, Count - startIndex, match);
         }
 
         /// <summary>
@@ -919,11 +919,11 @@ namespace MathNet.Numerics
             Predicate<T> match
             )
         {
-            if(startIndex > base.Count)
+            if(startIndex > Count)
             {
                 throw new ArgumentOutOfRangeException("startIndex");
             }
-            if((count < 0) || (startIndex > (base.Count - count)))
+            if((count < 0) || (startIndex > (Count - count)))
             {
                 throw new ArgumentOutOfRangeException("count");
             }
@@ -957,7 +957,7 @@ namespace MathNet.Numerics
                 throw new ArgumentNullException("match");
             }
 
-            for(int i = base.Count - 1; i >= 0; i--)
+            for(int i = Count - 1; i >= 0; i--)
             {
                 if(match(base[i]))
                 {
@@ -976,7 +976,7 @@ namespace MathNet.Numerics
             Predicate<T> match
             )
         {
-            return FindLastIndex(base.Count - 1, base.Count, match);
+            return FindLastIndex(Count - 1, Count, match);
         }
 
         /// <summary>
@@ -1003,7 +1003,7 @@ namespace MathNet.Numerics
             Predicate<T> match
             )
         {
-            if(startIndex >= base.Count)
+            if(startIndex >= Count)
             {
                 throw new ArgumentOutOfRangeException("startIndex");
             }
@@ -1036,7 +1036,7 @@ namespace MathNet.Numerics
             T item
             )
         {
-            for(int i = base.Count - 1; i >= 0; i--)
+            for(int i = Count - 1; i >= 0; i--)
             {
                 if(item.Equals(base[i]))
                 {
@@ -1061,7 +1061,7 @@ namespace MathNet.Numerics
             }
 
             Set<T> found = CreateNewSet();
-            for(int i = 0; i < base.Count; i++)
+            for(int i = 0; i < Count; i++)
             {
                 if(match(base[i]))
                 {
@@ -1084,12 +1084,12 @@ namespace MathNet.Numerics
             )
         {
             int cnt = 0;
-            for(int i = base.Count - 1; i >= 0; i--)
+            for(int i = Count - 1; i >= 0; i--)
             {
                 if(match(base[i]))
                 {
                     cnt++;
-                    base.RemoveAt(i);
+                    RemoveAt(i);
                 }
             }
             return cnt;
@@ -1187,8 +1187,8 @@ namespace MathNet.Numerics
         T[]
         ToArray()
         {
-            T[] array = new T[base.Count];
-            base.CopyTo(array, 0);
+            T[] array = new T[Count];
+            CopyTo(array, 0);
             return array;
         }
 
@@ -1215,7 +1215,7 @@ namespace MathNet.Numerics
         {
             foreach(T item in c)
             {
-                if(!base.Contains(item))
+                if(!Contains(item))
                 {
                     return false;
                 }
@@ -1268,7 +1268,7 @@ namespace MathNet.Numerics
                 if(!table.ContainsKey(item))
                 {
                     table.Add(item, null);
-                    if(!base.Contains(item))
+                    if(!Contains(item))
                     {
                         return false;
                     }
@@ -1337,7 +1337,7 @@ namespace MathNet.Numerics
                 throw new ArgumentNullException("match");
             }
 
-            for(int i = 0; i < base.Count; i++)
+            for(int i = 0; i < Count; i++)
             {
                 if(!match(base[i]))
                 {
@@ -1361,7 +1361,7 @@ namespace MathNet.Numerics
                 throw new ArgumentNullException("action");
             }
 
-            for(int i = 0; i < base.Count; i++)
+            for(int i = 0; i < Count; i++)
             {
                 action(base[i]);
             }
@@ -1383,7 +1383,7 @@ namespace MathNet.Numerics
                 throw new ArgumentNullException("match");
             }
 
-            for(int i = 0; i < base.Count; i++)
+            for(int i = 0; i < Count; i++)
             {
                 if(match(base[i]))
                 {
@@ -1402,7 +1402,7 @@ namespace MathNet.Numerics
             Predicate<T> match
             )
         {
-            return FindIndex(0, base.Count, match);
+            return FindIndex(0, Count, match);
         }
 
         /// <summary>
@@ -1415,7 +1415,7 @@ namespace MathNet.Numerics
             Predicate<T> match
             )
         {
-            return FindIndex(startIndex, base.Count - startIndex, match);
+            return FindIndex(startIndex, Count - startIndex, match);
         }
 
         /// <summary>
@@ -1429,11 +1429,11 @@ namespace MathNet.Numerics
             Predicate<T> match
             )
         {
-            if(startIndex > base.Count)
+            if(startIndex > Count)
             {
                 throw new ArgumentOutOfRangeException("startIndex");
             }
-            if((count < 0) || (startIndex > (base.Count - count)))
+            if((count < 0) || (startIndex > (Count - count)))
             {
                 throw new ArgumentOutOfRangeException("count");
             }
@@ -1467,7 +1467,7 @@ namespace MathNet.Numerics
                 throw new ArgumentNullException("match");
             }
 
-            for(int i = base.Count - 1; i >= 0; i--)
+            for(int i = Count - 1; i >= 0; i--)
             {
                 if(match(base[i]))
                 {
@@ -1486,7 +1486,7 @@ namespace MathNet.Numerics
             Predicate<T> match
             )
         {
-            return FindLastIndex(base.Count - 1, base.Count, match);
+            return FindLastIndex(Count - 1, Count, match);
         }
 
         /// <summary>
@@ -1513,7 +1513,7 @@ namespace MathNet.Numerics
             Predicate<T> match
             )
         {
-            if(startIndex >= base.Count)
+            if(startIndex >= Count)
             {
                 throw new ArgumentOutOfRangeException("startIndex");
             }
@@ -1546,7 +1546,7 @@ namespace MathNet.Numerics
             T item
             )
         {
-            for(int i = base.Count - 1; i >= 0; i--)
+            for(int i = Count - 1; i >= 0; i--)
             {
                 if(item.Equals(base[i]))
                 {
@@ -1571,7 +1571,7 @@ namespace MathNet.Numerics
             }
 
             Set<T> found = CreateNewSet();
-            for(int i = 0; i < base.Count; i++)
+            for(int i = 0; i < Count; i++)
             {
                 if(match(base[i]))
                 {
