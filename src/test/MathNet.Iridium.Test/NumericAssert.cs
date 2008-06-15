@@ -59,6 +59,16 @@ namespace Iridium.Test
         {
             Assert.DoAssert(new AlmostEqualAsserter(expected, actual, message));
         }
+
+        public static void AreAlmostEqual(Complex expected, Complex actual, double relativeAccuracy, string message)
+        {
+            Assert.DoAssert(new AlmostEqualAsserter(expected.Modulus, actual.Modulus, (expected - actual).Modulus, relativeAccuracy, message));
+        }
+
+        public static void AreAlmostEqual(Complex expected, Complex actual, string message)
+        {
+            Assert.DoAssert(new AlmostEqualAsserter(expected.Modulus, actual.Modulus, (expected - actual).Modulus, message));
+        }
     }
 
     public class AlmostEqualAsserter : ComparisonAsserter

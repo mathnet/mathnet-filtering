@@ -453,8 +453,10 @@ namespace MathNet.Numerics
             int upper;
             int increment = 1;
 
-            if(t >= _sampleT[lower]) // Hunt Up
+            if(t >= _sampleT[lower]) 
             {
+                // Hunt Up
+
                 if(lower == _size - 1)
                 {
                     return lower;
@@ -474,8 +476,10 @@ namespace MathNet.Numerics
                     }
                 }
             }
-            else // Hunt Down
+            else 
             {
+                // Hunt Down
+
                 if(lower == 0)
                 {
                     return -1;

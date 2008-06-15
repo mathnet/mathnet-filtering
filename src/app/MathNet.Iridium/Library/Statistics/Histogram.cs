@@ -577,8 +577,10 @@ namespace MathNet.Numerics.Statistics
         /// </summary>
         public Bucket(double lowerBound, double upperBound)
         {
-            Debug.Assert(lowerBound <= upperBound,
-                "lowerBound should be smaller than the upperBound.");
+            Debug.Assert(
+                lowerBound <= upperBound,
+                "lowerBound should be smaller than the upperBound."
+                );
 
             this.lowerBound = lowerBound;
             this.upperBound = upperBound;
@@ -655,9 +657,11 @@ namespace MathNet.Numerics.Statistics
         {
             Bucket bucket = (Bucket)bkt;
 
-            Debug.Assert(this.upperBound <= bucket.lowerBound
+            Debug.Assert(
+                this.upperBound <= bucket.lowerBound
                 || this.lowerBound >= bucket.upperBound,
-                "Could not compare two intersecting buckets.");
+                "Could not compare two intersecting buckets."
+                );
 
             if(Number.AlmostZero(this.Width) && Number.AlmostZero(bucket.Width)
                 && Number.AlmostEqual(this.lowerBound, bucket.lowerBound))

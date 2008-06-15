@@ -673,8 +673,10 @@ namespace MathNet.Numerics
             {
                 // Series Representation
 
-                if(x <= 0.0) // Yes, I know we've already checked for x<0.0
+                if(x <= 0.0) 
                 {
+                    // Yes, I know we've already checked for x<0.0
+
                     return 0.0;
                 }
                 else
@@ -1075,7 +1077,7 @@ namespace MathNet.Numerics
         {
             if(n < 0)
             {
-                throw new ArgumentOutOfRangeException("n", Resources.ArgumentNotNegative); ;
+                throw new ArgumentOutOfRangeException("n", Resources.ArgumentNotNegative);
             }
             if(n >= HarmonicPrecompSize)
             {

@@ -144,6 +144,108 @@ namespace Iridium.Test
         }
 
         [Test]
+        public void TestMatrix_LUDecomposition()
+        {
+            /*
+            MATLAB:
+            [L_mc, U_mc, P_mc] = lu(mc2x2)
+            P_mcv = P_mc * [0:1:length(P_mc)-1]'
+            det(mc2x2)
+            [L_mch, U_mch, P_mch] = lu(mc2x2')
+            P_mchv = P_mch * [0:1:length(P_mch)-1]'
+            det(mc2x2')
+            */
+
+            Converter<int, double> int2double = delegate(int i) { return i; };
+
+            LUDecomposition LU = mc2x2.LUDecomposition;
+            Matrix L_mc = new Matrix(new double[][] {
+                new double[] { 1, 0 },
+                new double[] { 1d/3d, 1 }});
+            Matrix U_mc = new Matrix(new double[][] {
+                new double[] { 3, 4 },
+                new double[] { 0, 2d/3d }});
+            Matrix P_mc = new Matrix(new double[][] {
+                new double[] { 0, 1 },
+                new double[] { 1, 0 }});
+            Vector P_mcv = new Vector(new double[] { 1, 0 });
+            NumericAssert.AreAlmostEqual(L_mc, LU.L, "real LU L-matrix");
+            NumericAssert.AreAlmostEqual(U_mc, LU.U, "real LU U-matrix");
+            NumericAssert.AreAlmostEqual(P_mc, LU.PermutationMatrix, "real LU permutation matrix");
+            NumericAssert.AreAlmostEqual(P_mcv, LU.PivotVector, "real LU pivot");
+            NumericAssert.AreAlmostEqual(P_mcv, Array.ConvertAll(LU.Pivot, int2double), "real LU pivot II");
+            NumericAssert.AreAlmostEqual(-2, LU.Determinant(), "real LU determinant");
+            NumericAssert.AreAlmostEqual(-2, mc2x2.Determinant(), "real LU determinant II");
+            Assert.IsTrue(LU.IsNonSingular, "real LU non-singular");
+            NumericAssert.AreAlmostEqual(LU.PermutationMatrix * mc2x2, LU.L * LU.U, "real LU product");
+
+            Matrix mc2x2h = Matrix.Transpose(mc2x2);
+            LUDecomposition LUH = mc2x2h.LUDecomposition;
+            Matrix L_mch = new Matrix(new double[][] {
+                new double[] { 1, 0 },
+                new double[] { 0.5, 1 }});
+            Matrix U_mch = new Matrix(new double[][] {
+                new double[] { 2, 4 },
+                new double[] { 0, 1 }});
+            Matrix P_mch = new Matrix(new double[][] {
+                new double[] { 0, 1 },
+                new double[] { 1, 0 }});
+            Vector P_mchv = new Vector(new double[] { 1, 0 });
+            NumericAssert.AreAlmostEqual(L_mch, LUH.L, "real LU L-matrix (H)");
+            NumericAssert.AreAlmostEqual(U_mch, LUH.U, "real LU U-matrix (H)");
+            NumericAssert.AreAlmostEqual(P_mch, LUH.PermutationMatrix, "real LU permutation matrix (H)");
+            NumericAssert.AreAlmostEqual(P_mchv, LUH.PivotVector, "real LU pivot (H)");
+            NumericAssert.AreAlmostEqual(P_mchv, Array.ConvertAll(LUH.Pivot, int2double), "real LU pivot II (H)");
+            NumericAssert.AreAlmostEqual(-2, LUH.Determinant(), "real LU determinant (H)");
+            NumericAssert.AreAlmostEqual(-2, mc2x2h.Determinant(), "real LU determinant II (H)");
+            Assert.IsTrue(LUH.IsNonSingular, "real LU non-singular (H)");
+            NumericAssert.AreAlmostEqual(LUH.PermutationMatrix * mc2x2h, LUH.L * LUH.U, "real LU product (H)");
+        }
+
+        [Test]
+        public void TestMatrix_QRDecomposition()
+        {
+            /*
+            MATLAB:
+            [Q0, R0] = qr(md2x4',0)
+            S_mdh = sign(tril(R0))
+            Q_mdh = Q0*S_mdh
+            R_mdh = S_mdh(:,1:2)*R0
+            [Q0, R0] = qr(md2x4,0)
+            S_md = sign(tril(R0))
+            Q_md = Q0*S_md
+            R_md = S_md(:,1:2)*R0
+            */
+
+            Matrix md2x4h = Matrix.Transpose(md2x4);
+            QRDecomposition QRH = md2x4h.QRDecomposition;
+            Matrix Q_mdh = new Matrix(new double[][] {
+                new double[] { 0.07955572841757, 0.47920079143039 },
+                new double[] { 0.15911145683515, 0.47348594100255 },
+                new double[] { -0.23866718525272, 0.73615739955605 },
+                new double[] { 0.95466874101088, 0.06519162710272 }});
+            Matrix R_mdh = new Matrix(new double[][] {
+                new double[] { 12.56980508997654, 1.68658144245255 },
+                new double[] { 0, 5.98042164382869 }});
+            NumericAssert.AreAlmostEqual(Q_mdh, QRH.Q, "real QR Q-matrix (H)");
+            NumericAssert.AreAlmostEqual(R_mdh, QRH.R, "real QR R-matrix (H)");
+            NumericAssert.AreAlmostEqual(md2x4h, QRH.Q * QRH.R, "real QR product (H)");
+            NumericAssert.AreAlmostEqual(Matrix.Identity(2,2), Matrix.Transpose(QRH.Q) * QRH.Q, "real QR QHQ=I (H)");
+
+            QRDecomposition QR = md2x4.QRDecomposition;
+            Matrix Q_md = new Matrix(new double[][] {
+                new double[] { 0.31622776601684, 0.94868329805051 },
+                new double[] { 0.94868329805051, -0.31622776601684 }});
+            Matrix R_md = new Matrix(new double[][] {
+                new double[] { 3.16227766016838, 3.57337375599027, 2.84604989415154, 5.69209978830308 },
+                new double[] { 0, 0.91706052144883, -4.11096095821889, 10.75174404457249}});
+            NumericAssert.AreAlmostEqual(Q_md, QR.Q, "real QR Q-matrix");
+            NumericAssert.AreAlmostEqual(R_md, QR.R, "real QR R-matrix");
+            NumericAssert.AreAlmostEqual(md2x4, QR.Q * QR.R, "real QR product");
+            NumericAssert.AreAlmostEqual(Matrix.Identity(2, 2), Matrix.Transpose(QR.Q) * QR.Q, "real QR QHQ=I");
+        }
+
+        [Test]
         public void TestMatrix_Solve()
         {
             double[][] a = { new double[] { 1, 2 }, new double[] { 3, 5 } };

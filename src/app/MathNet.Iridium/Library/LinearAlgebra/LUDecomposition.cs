@@ -67,6 +67,7 @@ namespace MathNet.Numerics.LinearAlgebra
         OnDemandComputation<Matrix> _upperTriangularFactorOnDemand;
         OnDemandComputation<int[]> _pivotOnDemand;
         OnDemandComputation<Vector> _pivotVectorOnDemand;
+        OnDemandComputation<Matrix> _permutationMatrixOnDemand;
         OnDemandComputation<double> _determinantOnDemand;
 
         /// <summary>
@@ -140,9 +141,15 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     for(int k = 0; k < _columnCount; k++)
                     {
-                        double t = LU[p][k]; LU[p][k] = LU[j][k]; LU[j][k] = t;
+                        double t = LU[p][k];
+                        LU[p][k] = LU[j][k];
+                        LU[j][k] = t;
                     }
-                    int k2 = piv[p]; piv[p] = piv[j]; piv[j] = k2;
+
+                    int k2 = piv[p];
+                    piv[p] = piv[j];
+                    piv[j] = k2;
+
                     pivsign = -pivsign;
                 }
 
@@ -199,6 +206,14 @@ namespace MathNet.Numerics.LinearAlgebra
         public Vector PivotVector
         {
             get { return _pivotVectorOnDemand.Compute(); }
+        }
+
+        /// <summary>
+        /// Returns the permutation matrix P, such that L*U = P*X.
+        /// </summary>
+        public Matrix PermutationMatrix
+        {
+            get { return _permutationMatrixOnDemand.Compute(); }
         }
 
         /// <summary>
@@ -283,6 +298,7 @@ namespace MathNet.Numerics.LinearAlgebra
             _upperTriangularFactorOnDemand = new OnDemandComputation<Matrix>(ComputeUpperTriangularFactor);
             _pivotOnDemand = new OnDemandComputation<int[]>(ComputePivot);
             _pivotVectorOnDemand = new OnDemandComputation<Vector>(ComputePivotVector);
+            _permutationMatrixOnDemand = new OnDemandComputation<Matrix>(ComputePermutationMatrix);
             _determinantOnDemand = new OnDemandComputation<double>(ComputeDeterminant);
         }
 
@@ -366,6 +382,18 @@ namespace MathNet.Numerics.LinearAlgebra
                 vals[i] = (double)piv[i];
             }
             return new Vector(vals);
+        }
+
+        Matrix
+        ComputePermutationMatrix()
+        {
+            int[] pivot = Pivot;
+            double[][] perm = Matrix.CreateMatrixData(pivot.Length, pivot.Length);
+            for(int i = 0; i < pivot.Length; i++)
+            {
+                perm[pivot[i]][i] = 1.0;
+            }
+            return new Matrix(perm);
         }
 
         double

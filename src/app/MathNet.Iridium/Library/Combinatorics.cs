@@ -216,8 +216,9 @@ namespace MathNet.Numerics
             )
         {
             bool[] selection = new bool[n];
-            if(k * 3 < n) // just pick and try
+            if(k * 3 < n) 
             {
+                // just pick and try
                 int selectionCount = 0;
                 while(selectionCount < k)
                 {
@@ -230,8 +231,9 @@ namespace MathNet.Numerics
                 }
                 return selection;
             }
-            else // based on permutation
+            else 
             {
+                // based on permutation
                 int[] permutation = RandomPermutation(n);
                 for(int i = 0; i < k; i++)
                 {

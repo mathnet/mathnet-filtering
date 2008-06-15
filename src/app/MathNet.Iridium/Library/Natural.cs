@@ -263,8 +263,10 @@ namespace MathNet.Numerics
         {
             uint len = 1 + Math.Max(_bound, number._bound);
             Natural ret = new Natural(len);
-            for(uint i = 0; i < len; i++) //include len-1, where a[i]=b[i]=0 but carry may be > 0
+            for(uint i = 0; i < len; i++) 
             {
+                //include len-1, where a[i]=b[i]=0 but carry may be > 0
+
                 ulong sum = (ulong)this[i] + number[i] + carry;
                 carry = 0;
                 while(sum >= _radix)
@@ -393,8 +395,10 @@ namespace MathNet.Numerics
             long sum = (long)_coeff[exponent] - (long)coeff;
             while(sum < 0)
             {
-                if(exponent >= _bound) // underflow
+                if(exponent >= _bound) 
                 {
+                    // underflow
+
                     _bound = 0; // set value to zero
                     underflow = true;
                     return;

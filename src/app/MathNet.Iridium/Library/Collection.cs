@@ -313,10 +313,14 @@ namespace MathNet.Numerics
         /// concatenated collection is not built explicitly.</remarks>
         public static ICollection Concat(ICollection c1, ICollection c2)
         {
-            if(c1 == null) throw new ArgumentNullException("c1",
-                string.Format(Resources.ArgumentNull, "c1"));
-            if(c2 == null) throw new ArgumentNullException("c2",
-                string.Format(Resources.ArgumentNull, "c2"));
+            if(c1 == null)
+            {
+                throw new ArgumentNullException("c1", string.Format(Resources.ArgumentNull, "c1"));
+            }
+            if(c2 == null)
+            {
+                throw new ArgumentNullException("c2", string.Format(Resources.ArgumentNull, "c2"));
+            }
 
             return new ConcatCollection(c1, c2);
         }
@@ -336,10 +340,14 @@ namespace MathNet.Numerics
         [Obsolete("Use Set<T>.Intersect() instead.", false)]
         public static ICollection Inter(ICollection c1, ICollection c2)
         {
-            if(c1 == null) throw new ArgumentNullException("c1",
-                string.Format(Resources.ArgumentNull, "c1"));
-            if(c2 == null) throw new ArgumentNullException("c2",
-                string.Format(Resources.ArgumentNull, "c2"));
+            if(c1 == null)
+            {
+                throw new ArgumentNullException("c1", string.Format(Resources.ArgumentNull, "c1"));
+            }
+            if(c2 == null)
+            {
+                throw new ArgumentNullException("c2", string.Format(Resources.ArgumentNull, "c2"));
+            }
 
             return new InterCollection(c1, c2);
         }
@@ -354,10 +362,14 @@ namespace MathNet.Numerics
         [Obsolete("Use Set<T>.Subtract() instead.", false)]
         public static ICollection Minus(ICollection c1, ICollection c2)
         {
-            if(c1 == null) throw new ArgumentNullException("c1",
-                string.Format(Resources.ArgumentNull, "c1"));
-            if(c2 == null) throw new ArgumentNullException("c2",
-                string.Format(Resources.ArgumentNull, "c2"));
+            if(c1 == null)
+            {
+                throw new ArgumentNullException("c1", string.Format(Resources.ArgumentNull, "c1"));
+            }
+            if(c2 == null)
+            {
+                throw new ArgumentNullException("c2", string.Format(Resources.ArgumentNull, "c2"));
+            }
 
             return new MinusCollection(c1, c2);
         }
@@ -370,10 +382,14 @@ namespace MathNet.Numerics
         /// <param name="c2">Should not be null.</param>
         public static ICollection Product(ICollection c1, ICollection c2)
         {
-            if(c1 == null) throw new ArgumentNullException("c1",
-                string.Format(Resources.ArgumentNull, "c1"));
-            if(c2 == null) throw new ArgumentNullException("c2",
-                string.Format(Resources.ArgumentNull, "c2"));
+            if(c1 == null)
+            {
+                throw new ArgumentNullException("c1", string.Format(Resources.ArgumentNull, "c1"));
+            }
+            if(c2 == null)
+            {
+                throw new ArgumentNullException("c2", string.Format(Resources.ArgumentNull, "c2"));
+            }
 
             return null;
         }
@@ -393,10 +409,14 @@ namespace MathNet.Numerics
         [Obsolete("Use Set<T>.Union() instead.", false)]
         public static ICollection Union(ICollection c1, ICollection c2)
         {
-            if(c1 == null) throw new ArgumentNullException("c1",
-                string.Format(Resources.ArgumentNull, "c1"));
-            if(c2 == null) throw new ArgumentNullException("c2",
-                string.Format(Resources.ArgumentNull, "c2"));
+            if(c1 == null)
+            {
+                throw new ArgumentNullException("c1", string.Format(Resources.ArgumentNull, "c1"));
+            }
+            if(c2 == null)
+            {
+                throw new ArgumentNullException("c2", string.Format(Resources.ArgumentNull, "c2"));
+            }
 
             return new UnionCollection(c1, c2);
         }

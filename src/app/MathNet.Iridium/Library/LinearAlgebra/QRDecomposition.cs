@@ -95,22 +95,22 @@ namespace MathNet.Numerics.LinearAlgebra
             for(int k = 0; k < n; k++)
             {
                 // Compute 2-norm of k-th column without under/overflow.
-                double nrm = 0;
+                double norm = 0;
                 for(int i = k; i < m; i++)
                 {
-                    nrm = Fn.Hypot(nrm, QR[i][k]);
+                    norm = Fn.Hypot(norm, QR[i][k]);
                 }
 
-                if(nrm != 0.0)
+                if(norm != 0.0)
                 {
                     // Form k-th Householder vector.
                     if(QR[k][k] < 0)
                     {
-                        nrm = -nrm;
+                        norm = -norm;
                     }
                     for(int i = k; i < m; i++)
                     {
-                        QR[i][k] /= nrm;
+                        QR[i][k] /= norm;
                     }
                     QR[k][k] += 1.0;
 
@@ -129,7 +129,7 @@ namespace MathNet.Numerics.LinearAlgebra
                         }
                     }
                 }
-                Rdiag[k] = -nrm;
+                Rdiag[k] = -norm;
             }
 
             InitOnDemandComputations();
@@ -139,7 +139,20 @@ namespace MathNet.Numerics.LinearAlgebra
         /// Indicates whether the matrix is full rank.
         /// </summary>
         /// <returns><c>true</c> if R, and hence A, has full rank.</returns>
+        [Obsolete("FullRank has been renamed to IsFullRank. Please adapt.")]
         public bool FullRank
+        {
+            get
+            {
+                return IsFullRank;
+            }
+        }
+
+        /// <summary>
+        /// Indicates whether the matrix is full rank.
+        /// </summary>
+        /// <returns><c>true</c> if R, and hence A, has full rank.</returns>
+        public bool IsFullRank
         {
             get
             {
@@ -196,7 +209,7 @@ namespace MathNet.Numerics.LinearAlgebra
         {
             if(B.RowCount != m)
                 throw new ArgumentException(Resources.ArgumentMatrixSameRowDimension, "B");
-            if(!this.FullRank)
+            if(!IsFullRank)
                 throw new InvalidOperationException(Resources.ArgumentMatrixNotRankDeficient);
 
             // Copy right hand side
@@ -285,22 +298,24 @@ namespace MathNet.Numerics.LinearAlgebra
         Matrix
         ComputeUpperTriangularFactor()
         {
-            double[][] R = Matrix.CreateMatrixData(n, n);
-            for(int i = 0; i < n; i++)
+            double[][] R = Matrix.CreateMatrixData(Math.Min(n, m), n);
+            for(int i = 0; i < Math.Min(n, m); i++)
             {
-                for(int j = 0; j < n; j++)
+                double rowSign = Math.Sign(Rdiag[i]);
+                double[] Ri = R[i];
+                for(int j = 0; j < Ri.Length; j++)
                 {
                     if(i < j)
                     {
-                        R[i][j] = QR[i][j];
+                        Ri[j] = rowSign * QR[i][j];
                     }
                     else if(i == j)
                     {
-                        R[i][j] = Rdiag[i];
+                        Ri[j] = rowSign * Rdiag[i];
                     }
                     else
                     {
-                        R[i][j] = 0.0;
+                        Ri[j] = 0.0;
                     }
                 }
             }
@@ -310,15 +325,11 @@ namespace MathNet.Numerics.LinearAlgebra
         Matrix
         ComputeOrthogonalFactor()
         {
-            double[][] Q = Matrix.CreateMatrixData(m, n);
-            for(int k = n - 1; k >= 0; k--)
+            double[][] Q = Matrix.CreateMatrixData(m, Math.Min(m, n));
+            for(int k = Math.Min(m, n) - 1; k >= 0; k--)
             {
-                for(int i = 0; i < m; i++)
-                {
-                    Q[i][k] = 0.0;
-                }
                 Q[k][k] = 1.0;
-                for(int j = k; j < n; j++)
+                for(int j = k; j < Math.Min(m, n); j++)
                 {
                     if(QR[k][k] != 0.0)
                     {
@@ -333,6 +344,11 @@ namespace MathNet.Numerics.LinearAlgebra
                             Q[i][j] += s * QR[i][k];
                         }
                     }
+                }
+                double columnSign = Math.Sign(Rdiag[k]);
+                for(int i = 0; i < m; i++)
+                {
+                    Q[i][k] *= columnSign;
                 }
             }
             return new Matrix(Q);

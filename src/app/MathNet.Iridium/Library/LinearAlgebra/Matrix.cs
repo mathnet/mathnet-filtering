@@ -1613,42 +1613,54 @@ namespace MathNet.Numerics.LinearAlgebra
 
         #region Decompositions
 
-        /// <summary>LU Decomposition</summary>
+        /// <summary>
+        /// LU Decomposition
+        /// </summary>
         /// <seealso cref="LUDecomposition"/>
         public LUDecomposition LUDecomposition
         {
             get { return _luDecompositionOnDemand.Compute(); }
         }
 
-        /// <summary>QR Decomposition</summary>
+        /// <summary>
+        /// QR Decomposition
+        /// </summary>
         /// <seealso cref="QRDecomposition"/>
         public QRDecomposition QRDecomposition
         {
             get { return _qrDecompositionOnDemand.Compute(); }
         }
 
-        /// <summary>Cholesky Decomposition</summary>
+        /// <summary>
+        /// Cholesky Decomposition
+        /// </summary>
         /// <seealso cref="CholeskyDecomposition"/>
         public CholeskyDecomposition CholeskyDecomposition
         {
             get { return _choleskyDecompositionOnDemand.Compute(); }
         }
 
-        /// <summary>Singular Value Decomposition</summary>
+        /// <summary>
+        /// Singular Value Decomposition
+        /// </summary>
         /// <seealso cref="SingularValueDecomposition"/>
         public SingularValueDecomposition SingularValueDecomposition
         {
             get { return _singularValueDecompositionOnDemand.Compute(); }
         }
 
-        /// <summary>Eigenvalue Decomposition</summary>
+        /// <summary>
+        /// Eigenvalue Decomposition
+        /// </summary>
         /// <seealso cref="EigenvalueDecomposition"/>
         public EigenvalueDecomposition EigenvalueDecomposition
         {
             get { return _eigenValueDecompositionOnDemand.Compute(); }
         }
 
-        /// <summary>LU Decomposition</summary>
+        /// <summary>
+        /// LU Decomposition
+        /// </summary>
         /// <seealso cref="LUDecomposition"/>
         [Obsolete("Use the LUDecomposition property instead.")]
         public virtual
@@ -1658,7 +1670,9 @@ namespace MathNet.Numerics.LinearAlgebra
             return _luDecompositionOnDemand.Compute();
         }
 
-        /// <summary>QR Decomposition</summary>
+        /// <summary>
+        /// QR Decomposition
+        /// </summary>
         /// <returns>QRDecomposition</returns>
         /// <seealso cref="QRDecomposition"/>
         [Obsolete("Use the QRDecomposition property instead.")]
@@ -1669,7 +1683,9 @@ namespace MathNet.Numerics.LinearAlgebra
             return _qrDecompositionOnDemand.Compute();
         }
 
-        /// <summary>Cholesky Decomposition</summary>
+        /// <summary>
+        /// Cholesky Decomposition
+        /// </summary>
         /// <seealso cref="CholeskyDecomposition"/>
         [Obsolete("Use the CholeskyDecomposition property instead.")]
         public virtual
@@ -1679,7 +1695,9 @@ namespace MathNet.Numerics.LinearAlgebra
             return _choleskyDecompositionOnDemand.Compute();
         }
 
-        /// <summary>Singular Value Decomposition</summary>
+        /// <summary>
+        /// Singular Value Decomposition
+        /// </summary>
         /// <seealso cref="SingularValueDecomposition"/>
         [Obsolete("Use the SingularValueDecomposition property instead.")]
         public virtual
@@ -1689,7 +1707,9 @@ namespace MathNet.Numerics.LinearAlgebra
             return _singularValueDecompositionOnDemand.Compute();
         }
 
-        /// <summary>Eigenvalue Decomposition</summary>
+        /// <summary>
+        /// Eigenvalue Decomposition
+        /// </summary>
         /// <seealso cref="EigenvalueDecomposition"/>
         [Obsolete("Use the EigenvalueDecomposition property instead.")]
         public virtual
@@ -1738,7 +1758,7 @@ namespace MathNet.Numerics.LinearAlgebra
             int maxIteration = 100;
 
             Matrix A = this;
-            Matrix tA = this.Clone(); tA.Transpose();
+            Matrix tA = Matrix.Transpose(this);
             Matrix X = null;
 
             // G is a diagonal matrix - G is initialized as the identity matrix
@@ -1752,8 +1772,11 @@ namespace MathNet.Numerics.LinearAlgebra
             double maxChange = double.MaxValue;
             for(int k = 0; k < maxIteration && maxChange > epsilon; k++)
             {
-                Matrix GA = this.Clone(); GA.Multiply(G);
-                Matrix GB = B.Clone(); GB.Multiply(G);
+                Matrix GA = this.Clone();
+                GA.Multiply(G);
+
+                Matrix GB = B.Clone();
+                GB.Multiply(G);
 
                 Matrix Ak = tA.Multiply(GA);
                 Matrix Bk = tA.Multiply(GB);
@@ -1769,7 +1792,9 @@ namespace MathNet.Numerics.LinearAlgebra
                 }
                 X = Xk;
 
-                Matrix Rk = A.Multiply(Xk); Rk.UnaryMinus(); Rk.Add(B);
+                Matrix Rk = A.Multiply(Xk);
+                Rk.UnaryMinus();
+                Rk.Add(B);
 
                 // updating the weighting matrix
                 for(int i = 0; i < B.RowCount; i++)

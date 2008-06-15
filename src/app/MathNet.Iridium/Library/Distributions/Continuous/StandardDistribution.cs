@@ -182,9 +182,10 @@ namespace MathNet.Numerics.Distributions
                 _extraNormal = null;
                 return extraNormalCpy;
             }
-            // Generating two new gaussian deviates
             else
             {
+                // Generating two new gaussian deviates
+
                 double fac, rsq, v1, v2;
 
                 // We need a non-zero random point inside the unit circle.

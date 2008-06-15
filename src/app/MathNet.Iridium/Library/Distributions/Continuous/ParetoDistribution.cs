@@ -152,7 +152,7 @@ namespace MathNet.Numerics.Distributions
             double shape
             )
         {
-            return location > 0.0 && shape > 0.0; ;
+            return location > 0.0 && shape > 0.0;
         }
         #endregion
 

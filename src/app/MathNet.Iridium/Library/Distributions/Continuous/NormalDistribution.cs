@@ -20,10 +20,13 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
 using MathNet.Numerics.RandomSources;
+using MathNet.Numerics.Statistics;
 
 namespace MathNet.Numerics.Distributions
 {
+
     /// <summary>
     /// Pseudo-random generation of normal distributed deviates.
     /// </summary>
@@ -50,6 +53,7 @@ namespace MathNet.Numerics.Distributions
         StandardDistribution _standard;
 
         #region Construction
+
         /// <summary>
         /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
         /// as underlying random number generator.
@@ -94,6 +98,7 @@ namespace MathNet.Numerics.Distributions
             _standard = new StandardDistribution(this.RandomSource);
             SetDistributionParameters(mu, sigma);
         }
+
         #endregion
 
         /// <summary>
@@ -111,6 +116,7 @@ namespace MathNet.Numerics.Distributions
         }
 
         #region Distribution Parameters
+
         /// <summary>
         /// Gets or sets the mu parameter.
         /// </summary>
@@ -121,7 +127,7 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Gets or sets the sigma parameter.
+        /// Gets or sets the sigma (standard deviation) parameter.
         /// </summary>
         public double Sigma
         {
@@ -163,9 +169,25 @@ namespace MathNet.Numerics.Distributions
         {
             return sigma > 0.0;
         }
+
+        /// <summary>
+        /// Estimate and set all distribution parameters based on a sample set.
+        /// </summary>
+        /// <param name="samples">Samples of this distribution.</param>
+        public
+        void
+        EstimateDistributionParameters(
+            IEnumerable<double> samples
+            )
+        {
+            Accumulator accumulator = new Accumulator(samples);
+            SetDistributionParameters(accumulator.Mean, accumulator.Sigma);
+        }
+
         #endregion
 
         #region Distribution Properties
+
         /// <summary>
         /// Gets the minimum possible value of generated random numbers.
         /// </summary>
@@ -251,9 +273,11 @@ namespace MathNet.Numerics.Distributions
         {
             return _sigma * Constants.Sqrt2 * Fn.ErfInverse(2.0 * x - 1.0) + _mu;
         }
+
         #endregion
 
         #region Generator
+
         /// <summary>
         /// Returns a normal/gaussian distributed floating point random number.
         /// </summary>
@@ -264,6 +288,7 @@ namespace MathNet.Numerics.Distributions
         {
             return _mu + _standard.NextDouble() * _sigma;
         }
+
         #endregion
     }
 }

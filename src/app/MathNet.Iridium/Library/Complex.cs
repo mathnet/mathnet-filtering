@@ -147,51 +147,6 @@ namespace MathNet.Numerics
         double real;
         double imag;
 
-        #region Normalization
-
-        // TODO: Never called, remove?
-        //void
-        //NormalizeToUnityOrNull()
-        //{
-        //    if(double.IsPositiveInfinity(real) && double.IsPositiveInfinity(imag))
-        //    {
-        //        real = Constants.Sqrt1_2;
-        //        imag = Constants.Sqrt1_2;
-        //    }
-        //    else if(double.IsPositiveInfinity(real) && double.IsNegativeInfinity(imag))
-        //    {
-        //        real = Constants.Sqrt1_2;
-        //        imag = -Constants.Sqrt1_2;
-        //    }
-        //    else if(double.IsNegativeInfinity(real) && double.IsPositiveInfinity(imag))
-        //    {
-        //        real = -Constants.Sqrt1_2;
-        //        imag = -Constants.Sqrt1_2;
-        //    }
-        //    else if(double.IsNegativeInfinity(real) && double.IsNegativeInfinity(imag))
-        //    {
-        //        real = -Constants.Sqrt1_2;
-        //        imag = Constants.Sqrt1_2;
-        //    }
-        //    else
-        //    {
-        //        //Don't replace this with "Modulus"!
-        //        double mod = Math.Sqrt(real * real + imag * imag);
-        //        if(mod == 0)
-        //        {
-        //            real = 0;
-        //            imag = 0;
-        //        }
-        //        else
-        //        {
-        //            real = real / mod;
-        //            imag = imag / mod;
-        //        }
-        //    }
-        //}
-
-        #endregion
-
         #region Constructors and Constants
 
         /// <summary>
@@ -582,6 +537,41 @@ namespace MathNet.Numerics
                 double modulus = Modulus;
                 real = Math.Cos(value) * modulus;
                 imag = Math.Sin(value) * modulus;
+            }
+        }
+
+        /// <summary>
+        /// Gets the unity of this complex (same argument, but on the unit circle; exp(I*arg))
+        /// </summary>
+        public Complex Unity
+        {
+            get
+            {
+                if(double.IsPositiveInfinity(real) && double.IsPositiveInfinity(imag))
+                {
+                    return new Complex(Constants.Sqrt1_2, Constants.Sqrt1_2);
+                }
+                if(double.IsPositiveInfinity(real) && double.IsNegativeInfinity(imag))
+                {
+                    return new Complex(Constants.Sqrt1_2, -Constants.Sqrt1_2);
+                }
+                if(double.IsNegativeInfinity(real) && double.IsPositiveInfinity(imag))
+                {
+                    return new Complex(-Constants.Sqrt1_2, -Constants.Sqrt1_2);
+                }
+                if(double.IsNegativeInfinity(real) && double.IsNegativeInfinity(imag))
+                {
+                    return new Complex(-Constants.Sqrt1_2, Constants.Sqrt1_2);
+                }
+
+                //Don't replace this with "Modulus"!
+                double mod = Fn.Hypot(real, imag);
+                if(mod == 0)
+                {
+                    return Complex.Zero;
+                }
+
+                return new Complex(real / mod, imag / mod);
             }
         }
 

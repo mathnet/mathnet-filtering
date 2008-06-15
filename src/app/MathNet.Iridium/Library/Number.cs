@@ -127,8 +127,10 @@ namespace MathNet.Numerics
             {
                 signed64++;
             }
-            if(signed64 == -9223372036854775808) // = "-0", make it "+0"
+            if(signed64 == -9223372036854775808) 
             {
+                // = "-0", make it "+0"
+
                 return 0;
             }
             value = BitConverter.Int64BitsToDouble(signed64);
@@ -294,8 +296,10 @@ namespace MathNet.Numerics
                 throw new ArgumentException(Resources.ArgumentNotNegative, "maxNumbersBetween");
 
             // NaN's should never equal to anything
-            if(double.IsNaN(a) || double.IsNaN(b)) //(a != a || b != b)
+            if(double.IsNaN(a) || double.IsNaN(b)) 
             {
+                //(a != a || b != b)
+
                 return false;
             }
 
