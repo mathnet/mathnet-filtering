@@ -3,7 +3,7 @@
 // http://mathnet.opensourcedotnet.info
 //
 // Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -41,31 +41,49 @@ namespace MathNet.Numerics.Distributions
         /// <summary>
         /// The expected value of a random variable with this probability distribution.
         /// </summary>
-        double Mean { get;}
+        double Mean
+        {
+            get;
+        }
 
         /// <summary>
         /// Average of the squared distances to the expected value of a random variable with this probability distribution.
         /// </summary>
-        double Variance { get;}
+        double Variance
+        {
+            get;
+        }
 
         /// <summary>
         /// The value separating the lower half part from the upper half part of a random variable with this probability distribution.
         /// </summary>
-        int Median { get;}
+        int Median
+        {
+            get;
+        }
 
         /// <summary>
         /// Lower limit of a random variable with this probability distribution.
         /// </summary>
-        int Minimum { get;}
+        int Minimum
+        {
+            get;
+        }
 
         /// <summary>
         /// Upper limit of a random variable with this probability distribution.
         /// </summary>
-        int Maximum { get;}
+        int Maximum
+        {
+            get;
+        }
 
         /// <summary>
         /// Measure of the asymmetry of this probability distribution.
         /// </summary>
-        double Skewness { get;}
+        double Skewness
+        {
+            get;
+        }
     }
 }

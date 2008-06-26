@@ -1,9 +1,9 @@
-#region MathNet Numerics, Copyright ©2006 Christoph Ruegg
-
-// MathNet Numerics, part of MathNet
+#region Math.NET Iridium (LGPL) by Ruegg
+// Math.NET Iridium, part of the Math.NET Project
+// http://mathnet.opensourcedotnet.info
 //
-// Copyright (c) 2006,	Christoph Rüegg, http://www.cdrnet.net
-// 
+// Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
+//
 // Partially inpired by
 //   - Microsoft MSR F#
 //   - Modern Computer Algebra 2nd Ed, Gathen J. et al, ISBN 0-521-82646-2
@@ -21,7 +21,6 @@
 // You should have received a copy of the GNU Lesser General Public 
 // License along with this program; if not, write to the Free Software
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-
 #endregion
 
 /*
@@ -45,8 +44,8 @@ namespace MathNet.Numerics
     {
         const byte _radixBits = 32;
         const ulong _radix = ((ulong)1) << _radixBits;
-        const uint _bound32 = 1; //(uint)Math.Ceiling(32d / _radixBits);
-        const uint _bound64 = 2; //(uint)Math.Ceiling(64d / _radixBits);
+        const uint _bound32 = 1; // (uint)Math.Ceiling(32d / _radixBits);
+        const uint _bound64 = 2; // (uint)Math.Ceiling(64d / _radixBits);
 
         uint _bound;
         uint[] _coeff;
@@ -55,7 +54,7 @@ namespace MathNet.Numerics
             uint bound
             )
         {
-            //_bound = 0; //bound;
+            ////_bound = 0; // bound;
             _coeff = new uint[bound];
         }
 
@@ -67,7 +66,7 @@ namespace MathNet.Numerics
             _bound = (uint)coeff.LongLength;
             Normalize();
         }
-        
+
         Natural(
             uint bound,
             uint[] coeff
@@ -80,16 +79,24 @@ namespace MathNet.Numerics
 
         uint this[uint idx]
         {
-            get { return idx < _bound ? _coeff[idx] : 0; }
+            get
+            {
+                return idx < _bound ? _coeff[idx] : 0;
+            }
+
             set
             {
                 if(idx >= _bound)
                 {
                     if(value == 0)
+                    {
                         return;
+                    }
+
                     ExtendCapacity(idx + 1);
                     _bound = idx + 1;
                 }
+
                 _coeff[idx] = value;
             }
         }
@@ -126,6 +133,7 @@ namespace MathNet.Numerics
                     return;
                 }
             }
+
             _bound = 0;
         }
 
@@ -141,10 +149,12 @@ namespace MathNet.Numerics
             if(requiredBound > _coeff.LongLength)
             {
                 uint[] nc = new uint[requiredBound];
+
                 for(uint i = 0; i < _bound; i++)
                 {
                     nc[i] = _coeff[i];
                 }
+
                 _coeff = nc;
             }
         }
@@ -193,7 +203,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static Natural Zero
         {
-            get { return new Natural(0); } //TODO: cache
+            get { return new Natural(0); } // TODO: cache
         }
 
         /// <summary>
@@ -201,7 +211,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static Natural One
         {
-            get { return From(1); } //TODO: cache
+            get { return From(1); } // TODO: cache
         }
 
         /// <summary>
@@ -209,7 +219,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static Natural Two
         {
-            get { return From(2); } //TODO: cache
+            get { return From(2); } // TODO: cache
         }
 
         #endregion
@@ -263,19 +273,23 @@ namespace MathNet.Numerics
         {
             uint len = 1 + Math.Max(_bound, number._bound);
             Natural ret = new Natural(len);
-            for(uint i = 0; i < len; i++) 
+
+            for(uint i = 0; i < len; i++)
             {
-                //include len-1, where a[i]=b[i]=0 but carry may be > 0
+                // include len-1, where a[i]=b[i]=0 but carry may be > 0
 
                 ulong sum = (ulong)this[i] + number[i] + carry;
                 carry = 0;
+
                 while(sum >= _radix)
                 {
                     sum -= _radix;
                     carry++;
                 }
+
                 ret[i] = (uint)sum;
             }
+
             ret.Normalize();
             return ret;
         }
@@ -287,12 +301,14 @@ namespace MathNet.Numerics
             )
         {
             long sum = (long)_coeff[exponent] + (long)coeff;
+
             while(sum >= (long)_radix)
             {
                 long r;
                 sum = _coeff[exponent + 1] + Math.DivRem(sum, (long)_radix, out r);
                 _coeff[exponent++] = (uint)r;
             }
+
             _coeff[exponent] = (uint)sum;
             Normalize();
         }
@@ -358,18 +374,22 @@ namespace MathNet.Numerics
             {
                 long sum = (long)this[i] - number[i] - carry;
                 carry = 0;
+
                 while(sum < 0)
                 {
                     sum += (long)_radix;
                     carry++;
                 }
+
                 ret[i] = (uint)sum;
             }
+
             if(carry != 0)
             {
                 underflow = true;
                 return Zero;
             }
+
             underflow = false;
             ret.Normalize();
             return ret;
@@ -393,9 +413,10 @@ namespace MathNet.Numerics
             )
         {
             long sum = (long)_coeff[exponent] - (long)coeff;
+
             while(sum < 0)
             {
-                if(exponent >= _bound) 
+                if(exponent >= _bound)
                 {
                     // underflow
 
@@ -403,10 +424,12 @@ namespace MathNet.Numerics
                     underflow = true;
                     return;
                 }
+
                 long r;
                 sum = _coeff[exponent + 1] - Math.DivRem(-sum, (long)_radix, out r);
                 _coeff[exponent++] = (r == 0) ? 0 : (uint)(_radix - (ulong)r);
             }
+
             _coeff[exponent] = (uint)sum;
             underflow = false;
             Normalize();
@@ -426,10 +449,12 @@ namespace MathNet.Numerics
         {
             uint len = _bound + exponent;
             Natural ret = new Natural(len);
+
             for(uint i = 0; i < _bound; i++)
             {
                 ret._coeff[i + exponent] = _coeff[i];
             }
+
             return ret;
         }
 
@@ -447,12 +472,15 @@ namespace MathNet.Numerics
             {
                 return Zero;
             }
+
             uint len = _bound - exponent;
             Natural ret = new Natural(len);
+
             for(uint i = 0; i < _bound; i++)
             {
                 ret._coeff[i] = _coeff[i + exponent];
             }
+
             return ret;
         }
 
@@ -496,10 +524,12 @@ namespace MathNet.Numerics
         {
             uint len = _bound + _bound32;
             Natural ret = new Natural(len);
+
             for(uint i = 0; i < _bound; i++)
             {
                 ret.AddCoefficientInplace((ulong)_coeff[i] * factor, i);
             }
+
             ret.Normalize();
             return ret;
         }
@@ -517,6 +547,7 @@ namespace MathNet.Numerics
             {
                 return MultiplySmall(number);
             }
+
             return MultiplyLarge(number);
         }
 
@@ -530,6 +561,7 @@ namespace MathNet.Numerics
         {
             uint len = _bound + number._bound + 2;
             Natural ret = new Natural(len);
+
             for(uint i = 0; i < _bound; i++)
             {
                 for(uint j = 0; j < number._bound; j++)
@@ -537,6 +569,7 @@ namespace MathNet.Numerics
                     ret.AddCoefficientInplace((ulong)_coeff[i] * number._coeff[j], i + j);
                 }
             }
+
             ret.Normalize();
             return ret;
         }
@@ -567,23 +600,23 @@ namespace MathNet.Numerics
 
         #region Division
 
-        //private Tuple<Natural, Natural> DivmodSmall(Natural number)
-        //{
-        //    Natural b = this;
-        //    Natural a = number;  // b / a
+        ////private Tuple<Natural, Natural> DivmodSmall(Natural number)
+        ////{
+        ////    Natural b = this;
+        ////    Natural a = number;  // b / a
 
-        //    uint dega = a.Degree;
-        //    uint degb = b.Degree;
+        ////    uint dega = a.Degree;
+        ////    uint degb = b.Degree;
 
-        //    if(degb < dega)
-        //        return new Tuple<Natural, Natural>(Natural.Zero, b);
-        //    if(a.IsZero)
-        //        throw new DivideByZeroException();
-        //    if(b.IsZero)
-        //        return new Tuple<Natural, Natural>(Natural.Zero, Natural.Zero);
+        ////    if(degb < dega)
+        ////        return new Tuple<Natural, Natural>(Natural.Zero, b);
+        ////    if(a.IsZero)
+        ////        throw new DivideByZeroException();
+        ////    if(b.IsZero)
+        ////        return new Tuple<Natural, Natural>(Natural.Zero, Natural.Zero);
 
 
-        //}
+        ////}
 
         #endregion
 
@@ -603,6 +636,7 @@ namespace MathNet.Numerics
             {
                 return false;
             }
+
             for(uint i = 0; i < _bound; i++)
             {
                 if(_coeff[i] != other._coeff[i])
@@ -610,6 +644,7 @@ namespace MathNet.Numerics
                     return false;
                 }
             }
+
             return true;
         }
 
@@ -626,21 +661,25 @@ namespace MathNet.Numerics
             {
                 return -1;
             }
+
             if(_bound > other._bound)
             {
                 return 1;
             }
+
             for(uint i = _bound - 1; i >= 0; i--)
             {
                 if(_coeff[i] < other._coeff[i])
                 {
                     return -1;
                 }
+
                 if(_coeff[i] > other._coeff[i])
                 {
                     return 1;
                 }
             }
+
             return 0;
         }
 
@@ -695,7 +734,7 @@ namespace MathNet.Numerics
         {
             return a.CompareTo(b) != -1;
         }
-        
+
         /// <summary>
         /// Returns the smaller of two natural numbers.
         /// </summary>

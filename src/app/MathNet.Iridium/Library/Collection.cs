@@ -3,7 +3,7 @@
 // http://mathnet.opensourcedotnet.info
 //
 // Copyright (c) 2004-2008, Joannes Vermorel, http://www.vermorel.com
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -34,7 +34,9 @@ namespace MathNet.Numerics
         /// <summary>
         /// Preventing the instantiation of the <see cref="Collection"/> class.
         /// </summary>
-        private Collection() { }
+        private Collection()
+        {
+        }
 
         /// <summary>
         /// The class <c>ConcatCollection</c> is used to perform the 
@@ -67,19 +69,24 @@ namespace MathNet.Numerics
                 {
                     get
                     {
-                        if(isEnumator1Current) return enumerator1.Current;
-                        else return enumerator2.Current;
+                        if(isEnumator1Current)
+                        {
+                            return enumerator1.Current;
+                        }
+                        
+                        return enumerator2.Current;
                     }
                 }
 
                 public bool MoveNext()
                 {
-                    if(isEnumator1Current && enumerator1.MoveNext()) return true;
-                    else
+                    if(isEnumator1Current && enumerator1.MoveNext())
                     {
-                        isEnumator1Current = false;
-                        return enumerator2.MoveNext();
+                        return true;
                     }
+
+                    isEnumator1Current = false;
+                    return enumerator2.MoveNext();
                 }
             }
 
@@ -105,8 +112,16 @@ namespace MathNet.Numerics
             public void CopyTo(Array array, int index)
             {
                 int indexArray = index;
-                foreach(object obj in c1) array.SetValue(obj, indexArray++);
-                foreach(object obj in c2) array.SetValue(obj, indexArray++);
+
+                foreach(object obj in c1)
+                {
+                    array.SetValue(obj, indexArray++);
+                }
+
+                foreach(object obj in c2)
+                {
+                    array.SetValue(obj, indexArray++);
+                }
             }
 
             public object SyncRoot
@@ -143,16 +158,23 @@ namespace MathNet.Numerics
 
                 Hashtable table = new Hashtable(c1.Count);
                 foreach(object obj in c1)
-                    if(!table.Contains(obj)) table.Add(obj, null);
+                {
+                    if(!table.Contains(obj))
+                    {
+                        table.Add(obj, null);
+                    }
+                }
 
                 // building the intersection
                 intersection = new ArrayList();
                 foreach(object obj in c2)
+                {
                     if(table.Contains(obj))
                     {
                         intersection.Add(obj);
                         table.Remove(obj);
                     }
+                }
 
                 intersection.TrimToSize();
             }
@@ -200,17 +222,32 @@ namespace MathNet.Numerics
             {
                 Hashtable table1 = new Hashtable(c1.Count);
                 foreach(object obj in c1)
-                    if(!table1.Contains(obj)) table1.Add(obj, null);
+                {
+                    if(!table1.Contains(obj))
+                    {
+                        table1.Add(obj, null);
+                    }
+                }
 
                 Hashtable table2 = new Hashtable(c2.Count);
                 foreach(object obj in c2)
-                    if(!table2.Contains(obj)) table2.Add(obj, null);
+                {
+                    if(!table2.Contains(obj))
+                    {
+                        table2.Add(obj, null);
+                    }
+                }
 
                 // building the union
                 union = new ArrayList(Math.Max(table1.Count, table2.Count));
                 union.AddRange(table1.Keys);
                 foreach(object obj in c2)
-                    if(!table1.Contains(obj)) union.Add(obj);
+                {
+                    if(!table1.Contains(obj))
+                    {
+                        union.Add(obj);
+                    }
+                }
 
                 union.TrimToSize();
             }
@@ -259,16 +296,31 @@ namespace MathNet.Numerics
             {
                 Hashtable table1 = new Hashtable(c1.Count);
                 foreach(object obj in c1)
-                    if(!table1.Contains(obj)) table1.Add(obj, null);
+                {
+                    if(!table1.Contains(obj))
+                    {
+                        table1.Add(obj, null);
+                    }
+                }
 
                 Hashtable table2 = new Hashtable(c2.Count);
                 foreach(object obj in c2)
-                    if(!table2.Contains(obj)) table2.Add(obj, null);
+                {
+                    if(!table2.Contains(obj))
+                    {
+                        table2.Add(obj, null);
+                    }
+                }
 
                 // building minus collection
                 minus = new ArrayList(Math.Max(c1.Count - c2.Count, 10));
                 foreach(object obj in table1.Keys)
-                    if(!table2.Contains(obj)) minus.Add(obj);
+                {
+                    if(!table2.Contains(obj))
+                    {
+                        minus.Add(obj);
+                    }
+                }
 
                 minus.TrimToSize();
             }
@@ -317,6 +369,7 @@ namespace MathNet.Numerics
             {
                 throw new ArgumentNullException("c1", string.Format(Resources.ArgumentNull, "c1"));
             }
+
             if(c2 == null)
             {
                 throw new ArgumentNullException("c2", string.Format(Resources.ArgumentNull, "c2"));
@@ -344,6 +397,7 @@ namespace MathNet.Numerics
             {
                 throw new ArgumentNullException("c1", string.Format(Resources.ArgumentNull, "c1"));
             }
+
             if(c2 == null)
             {
                 throw new ArgumentNullException("c2", string.Format(Resources.ArgumentNull, "c2"));
@@ -366,6 +420,7 @@ namespace MathNet.Numerics
             {
                 throw new ArgumentNullException("c1", string.Format(Resources.ArgumentNull, "c1"));
             }
+
             if(c2 == null)
             {
                 throw new ArgumentNullException("c2", string.Format(Resources.ArgumentNull, "c2"));
@@ -386,6 +441,7 @@ namespace MathNet.Numerics
             {
                 throw new ArgumentNullException("c1", string.Format(Resources.ArgumentNull, "c1"));
             }
+
             if(c2 == null)
             {
                 throw new ArgumentNullException("c2", string.Format(Resources.ArgumentNull, "c2"));
@@ -413,6 +469,7 @@ namespace MathNet.Numerics
             {
                 throw new ArgumentNullException("c1", string.Format(Resources.ArgumentNull, "c1"));
             }
+
             if(c2 == null)
             {
                 throw new ArgumentNullException("c2", string.Format(Resources.ArgumentNull, "c2"));
@@ -424,130 +481,130 @@ namespace MathNet.Numerics
 
         #region NUnit testing suite
 #if DEBUG2
-		/// <summary>
-		/// Testing the class <see cref="Collection"/>.
-		/// </summary>
-		[TestFixture]
-		public class TestingSuite
-		{
-			/// <summary>
-			/// Testing the method <see cref="ConcatCollection.Count"/>.
-			/// </summary>
-			[Test] public void ConcatCount()
-			{
-				int[] array0 = new int[0], array1 = new int[7], array2 = new int[13];
+        /// <summary>
+        /// Testing the class <see cref="Collection"/>.
+        /// </summary>
+        [TestFixture]
+        public class TestingSuite
+        {
+            /// <summary>
+            /// Testing the method <see cref="ConcatCollection.Count"/>.
+            /// </summary>
+            [Test] public void ConcatCount()
+            {
+                int[] array0 = new int[0], array1 = new int[7], array2 = new int[13];
 
-				Assert.AreEqual(array0.Length + array0.Length,
-					(new ConcatCollection(array0, array0)).Count, "#A00");
-				Assert.AreEqual(array0.Length + array1.Length,
-					(new ConcatCollection(array0, array1)).Count, "#A01");
-				Assert.AreEqual(array0.Length + array2.Length,
-					(new ConcatCollection(array0, array2)).Count, "#A02");
+                Assert.AreEqual(array0.Length + array0.Length,
+                    (new ConcatCollection(array0, array0)).Count, "#A00");
+                Assert.AreEqual(array0.Length + array1.Length,
+                    (new ConcatCollection(array0, array1)).Count, "#A01");
+                Assert.AreEqual(array0.Length + array2.Length,
+                    (new ConcatCollection(array0, array2)).Count, "#A02");
 
-				Assert.AreEqual(array1.Length + array0.Length,
-					(new ConcatCollection(array1, array0)).Count, "#A03");
-				Assert.AreEqual(array1.Length + array1.Length,
-					(new ConcatCollection(array1, array1)).Count, "#A04");
-				Assert.AreEqual(array1.Length + array2.Length,
-					(new ConcatCollection(array1, array2)).Count, "#A05");
-			}
+                Assert.AreEqual(array1.Length + array0.Length,
+                    (new ConcatCollection(array1, array0)).Count, "#A03");
+                Assert.AreEqual(array1.Length + array1.Length,
+                    (new ConcatCollection(array1, array1)).Count, "#A04");
+                Assert.AreEqual(array1.Length + array2.Length,
+                    (new ConcatCollection(array1, array2)).Count, "#A05");
+            }
 
-			/// <summary>
-			/// Testing the method <see cref="ConcatCollection.GetEnumerator"/>.
-			/// </summary>
-			[Test] public void ConcatGetEnumerator()
-			{
-				// generating two arrays
-				int[] array1 = new int[10], array2 = new int[13];
-				for(int i = 0; i < array1.Length; i++) array1[i] = i;
-				for(int i = 0; i < array2.Length; i++) array2[i] = i + array1.Length;
+            /// <summary>
+            /// Testing the method <see cref="ConcatCollection.GetEnumerator"/>.
+            /// </summary>
+            [Test] public void ConcatGetEnumerator()
+            {
+                // generating two arrays
+                int[] array1 = new int[10], array2 = new int[13];
+                for(int i = 0; i < array1.Length; i++) array1[i] = i;
+                for(int i = 0; i < array2.Length; i++) array2[i] = i + array1.Length;
 
-				ConcatCollection union = new ConcatCollection(array1, array2);
+                ConcatCollection union = new ConcatCollection(array1, array2);
 
-				int index = 0;
+                int index = 0;
 
-				foreach(int value in union)
-				{
-					Assert.AreEqual(index++, value, "#A00 Unexpected value in collection.");
-				}
+                foreach(int value in union)
+                {
+                    Assert.AreEqual(index++, value, "#A00 Unexpected value in collection.");
+                }
 
-				Assert.AreEqual(array1.Length + array2.Length, index, 
-					"#A01 Unexpected count of enumerated element in collection.");
-			}
+                Assert.AreEqual(array1.Length + array2.Length, index, 
+                    "#A01 Unexpected count of enumerated element in collection.");
+            }
 
-			/// <summary>
-			/// Testing the method <see cref="InterCollection.GetEnumerator"/>
-			/// </summary>
-			[Test] public void InterGetEnumerator()
-			{
-				int LENGTH = 100;
-				int[] array1 = new int[LENGTH], array2 = new int[LENGTH];
+            /// <summary>
+            /// Testing the method <see cref="InterCollection.GetEnumerator"/>
+            /// </summary>
+            [Test] public void InterGetEnumerator()
+            {
+                int LENGTH = 100;
+                int[] array1 = new int[LENGTH], array2 = new int[LENGTH];
 
-				for(int i = 0; i < LENGTH; i++)
-				{
-					array1[i] = i;
-					array2[i] = i / 2;
-				}
+                for(int i = 0; i < LENGTH; i++)
+                {
+                    array1[i] = i;
+                    array2[i] = i / 2;
+                }
 
-				ICollection intersection = Collection.Inter(array1, array2);
+                ICollection intersection = Collection.Inter(array1, array2);
 
-				Assert.AreEqual(LENGTH / 2, intersection.Count,
-					"#A00 Unexpected intersection count.");
+                Assert.AreEqual(LENGTH / 2, intersection.Count,
+                    "#A00 Unexpected intersection count.");
 
-				foreach(int i in intersection)
-					Assert.IsTrue(i >= 0 && i <= LENGTH,
-						"#A01-" + i + " Unexpected intersection item.");
-			}
+                foreach(int i in intersection)
+                    Assert.IsTrue(i >= 0 && i <= LENGTH,
+                        "#A01-" + i + " Unexpected intersection item.");
+            }
 
-			/// <summary>
-			/// Testing the method <see cref="MinusCollection.GetEnumerator"/>
-			/// </summary>
-			[Test] public void MinusGetEnumerator()
-			{
-				int LENGTH = 100;
-				int[] array1 = new int[LENGTH], array2 = new int[LENGTH];
+            /// <summary>
+            /// Testing the method <see cref="MinusCollection.GetEnumerator"/>
+            /// </summary>
+            [Test] public void MinusGetEnumerator()
+            {
+                int LENGTH = 100;
+                int[] array1 = new int[LENGTH], array2 = new int[LENGTH];
 
-				for(int i = 0; i < LENGTH; i++)
-				{
-					array1[i] = i;
-					array2[i] = i / 2;
-				}
+                for(int i = 0; i < LENGTH; i++)
+                {
+                    array1[i] = i;
+                    array2[i] = i / 2;
+                }
 
-				ICollection minus = Collection.Minus(array1, array2);
+                ICollection minus = Collection.Minus(array1, array2);
                 
-				Assert.AreEqual(LENGTH / 2, minus.Count,
-					"#A00 Unexpected minus count.");
+                Assert.AreEqual(LENGTH / 2, minus.Count,
+                    "#A00 Unexpected minus count.");
 
-				foreach(int i in minus)
-					Assert.IsTrue(i >= LENGTH / 2,
-						"#A01-" + i + " Unexpected minus item.");
-			}
+                foreach(int i in minus)
+                    Assert.IsTrue(i >= LENGTH / 2,
+                        "#A01-" + i + " Unexpected minus item.");
+            }
 
-			/// <summary>
-			/// Testing the method <see cref="UnionCollection.GetEnumerator"/>.
-			/// </summary>
-			[Test] public void UnionGetEnumerator()
-			{
-				int LENGTH = 100;
+            /// <summary>
+            /// Testing the method <see cref="UnionCollection.GetEnumerator"/>.
+            /// </summary>
+            [Test] public void UnionGetEnumerator()
+            {
+                int LENGTH = 100;
 
-				int[] array1 = new int[LENGTH], array2 = new int[LENGTH];
+                int[] array1 = new int[LENGTH], array2 = new int[LENGTH];
 
-				for(int i = 0; i < LENGTH; i++)
-				{
-					array1[i] = i;
-					array2[i] = i / 2;
-				}
+                for(int i = 0; i < LENGTH; i++)
+                {
+                    array1[i] = i;
+                    array2[i] = i / 2;
+                }
 
-				ICollection union = Collection.Union(array1, array2);
+                ICollection union = Collection.Union(array1, array2);
 
-				Assert.AreEqual(LENGTH, union.Count, 
-					"#A00 Unexpected union count.");
+                Assert.AreEqual(LENGTH, union.Count, 
+                    "#A00 Unexpected union count.");
 
-				foreach(int i in union)
-					Assert.IsTrue(i >= 0 && i < LENGTH,
-						"#A01-" + i + " Unexpected union item.");
-			}
-		}
+                foreach(int i in union)
+                    Assert.IsTrue(i >= 0 && i < LENGTH,
+                        "#A01-" + i + " Unexpected union item.");
+            }
+        }
 #endif
         #endregion
     }

@@ -6,7 +6,7 @@
 //                          Christoph Rüegg, http://christoph.ruegg.name
 //
 // Contribution: The MathWorks and NIST [2000]
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -93,8 +93,10 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 piv[i] = i;
             }
+
             pivsign = 1;
-            //double[] LUrowi;
+
+            ////double[] LUrowi;
             double[] LUcolj = new double[_rowCount];
 
             // Outer loop.
@@ -113,7 +115,7 @@ namespace MathNet.Numerics.LinearAlgebra
 
                 for(int i = 0; i < LUcolj.Length; i++)
                 {
-                    //LUrowi = LU[i];
+                    ////LUrowi = LU[i];
 
                     // Most of the time is spent in the following dot product.
 
@@ -130,6 +132,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 // Find pivot and exchange if necessary.
 
                 int p = j;
+
                 for(int i = j + 1; i < LUcolj.Length; i++)
                 {
                     if(Math.Abs(LUcolj[i]) > Math.Abs(LUcolj[p]))
@@ -137,6 +140,7 @@ namespace MathNet.Numerics.LinearAlgebra
                         p = i;
                     }
                 }
+
                 if(p != j)
                 {
                     for(int k = 0; k < _columnCount; k++)
@@ -252,9 +256,14 @@ namespace MathNet.Numerics.LinearAlgebra
             )
         {
             if(B.RowCount != _rowCount)
+            {
                 throw new ArgumentException(Resources.ArgumentMatrixSameRowDimension, "B");
+            }
+
             if(!this.IsNonSingular)
+            {
                 throw new InvalidOperationException(Resources.ArgumentMatrixNotSingular);
+            }
 
             // Copy right hand side with pivoting
             int nx = B.ColumnCount;
@@ -272,6 +281,7 @@ namespace MathNet.Numerics.LinearAlgebra
                     }
                 }
             }
+
             // Solve U*X = Y;
             for(int k = _columnCount - 1; k >= 0; k--)
             {
@@ -279,6 +289,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     X[k][j] /= LU[k][k];
                 }
+
                 for(int i = 0; i < k; i++)
                 {
                     for(int j = 0; j < nx; j++)
@@ -287,6 +298,7 @@ namespace MathNet.Numerics.LinearAlgebra
                     }
                 }
             }
+
             return Xmat;
         }
 
@@ -338,6 +350,7 @@ namespace MathNet.Numerics.LinearAlgebra
                     }
                 }
             }
+
             return new Matrix(L);
         }
 
@@ -359,6 +372,7 @@ namespace MathNet.Numerics.LinearAlgebra
                     }
                 }
             }
+
             return new Matrix(U);
         }
 
@@ -370,6 +384,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 p[i] = piv[i];
             }
+
             return p;
         }
 
@@ -381,6 +396,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 vals[i] = (double)piv[i];
             }
+
             return new Vector(vals);
         }
 
@@ -393,6 +409,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 perm[pivot[i]][i] = 1.0;
             }
+
             return new Matrix(perm);
         }
 
@@ -400,13 +417,16 @@ namespace MathNet.Numerics.LinearAlgebra
         ComputeDeterminant()
         {
             if(_rowCount != _columnCount)
+            {
                 throw new System.ArgumentException(Resources.ArgumentMatrixSquare);
+            }
 
             double d = (double)pivsign;
             for(int j = 0; j < _columnCount; j++)
             {
                 d *= LU[j][j];
             }
+
             return d;
         }
     }

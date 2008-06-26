@@ -3,7 +3,7 @@
 // http://mathnet.opensourcedotnet.info
 //
 // Copyright (c) 2004-2008, Joannes Vermorel, http://www.vermorel.com
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -101,13 +101,18 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public double Skew
         {
-            get { return skew; }
+            get
+            {
+                return skew;
+            }
+
             set
             {
                 if(value <= 1d)
                 {
                     throw new ArgumentOutOfRangeException("value", value, string.Format(Resources.ArgumentOutOfRangeGreater, "skew", "1.0"));
                 }
+
                 skew = value;
             }
         }

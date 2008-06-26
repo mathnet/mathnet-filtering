@@ -3,7 +3,7 @@
 // http://mathnet.opensourcedotnet.info
 //
 // Copyright (c) 2004-2008, Joannes Vermorel, http://www.vermorel.com
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -118,7 +118,10 @@ namespace MathNet.Numerics.Statistics
         /// </summary>
         public void AddRange(double[] values)
         {
-            for(int i = 0; i < values.Length; i++) this.Add(values[i]);
+            for(int i = 0; i < values.Length; i++)
+            {
+                this.Add(values[i]);
+            }
         }
 
         /// <summary>
@@ -130,7 +133,10 @@ namespace MathNet.Numerics.Statistics
             foreach(object obj in values)
             {
                 if(!(obj is double))
+                {
                     throw new ArgumentException(Resources.ArgumentTypeMismatch);
+                }
+
                 this.Add((double)obj);
             }
         }
@@ -141,7 +147,9 @@ namespace MathNet.Numerics.Statistics
         public void AddRange(IEnumerable<double> values)
         {
             foreach(double v in values)
+            {
                 Add(v);
+            }
         }
 
         /// <summary>
@@ -166,7 +174,9 @@ namespace MathNet.Numerics.Statistics
         public void Remove(double value)
         {
             if(count <= 0)
+            {
                 throw new InvalidOperationException(Resources.InvalidOperationAccumulatorEmpty);
+            }
 
             sum -= value;
             squaredSum -= value * value;
@@ -178,7 +188,10 @@ namespace MathNet.Numerics.Statistics
         /// </summary>
         public void RemoveRange(double[] values)
         {
-            for(int i = 0; i < values.Length; i++) this.Remove(values[i]);
+            for(int i = 0; i < values.Length; i++)
+            {
+                this.Remove(values[i]);
+            }
         }
 
         /// <summary>
@@ -190,7 +203,10 @@ namespace MathNet.Numerics.Statistics
             foreach(object obj in values)
             {
                 if(!(obj is double))
+                {
                     throw new ArgumentException(Resources.ArgumentTypeMismatch);
+                }
+
                 this.Remove((double)obj);
             }
         }
@@ -201,7 +217,9 @@ namespace MathNet.Numerics.Statistics
         public void RemoveRange(IEnumerable<double> values)
         {
             foreach(double v in values)
+            {
                 Remove(v);
+            }
         }
         #endregion
 
@@ -237,7 +255,9 @@ namespace MathNet.Numerics.Statistics
             get
             {
                 if(count <= 0)
+                {
                     throw new InvalidOperationException(Resources.InvalidOperationAccumulatorEmpty);
+                }
 
                 return (sum / count);
             }
@@ -251,7 +271,9 @@ namespace MathNet.Numerics.Statistics
             get
             {
                 if(count <= 0)
+                {
                     throw new InvalidOperationException(Resources.InvalidOperationAccumulatorEmpty);
+                }
 
                 return (squaredSum / count);
             }
@@ -265,7 +287,9 @@ namespace MathNet.Numerics.Statistics
             get
             {
                 if(count <= 0)
+                {
                     throw new InvalidOperationException(Resources.InvalidOperationAccumulatorEmpty);
+                }
 
                 double mean = this.Mean;
                 return (squaredSum - mean * mean * count) / (count - 1);
@@ -292,12 +316,12 @@ namespace MathNet.Numerics.Statistics
             get
             {
                 if(count <= 0)
+                {
                     throw new InvalidOperationException(Resources.InvalidOperationAccumulatorEmpty);
+                }
 
                 return Sigma / Math.Sqrt(count);
             }
         }
-
-
     }
 }

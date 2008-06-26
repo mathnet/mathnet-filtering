@@ -3,7 +3,7 @@
 // http://mathnet.opensourcedotnet.info
 //
 // Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -34,7 +34,7 @@ namespace MathNet.Numerics
         Polynomial numerator;
         Polynomial denominator;
 
-        //TODO: Implement polynomial factorization to normalize rationals
+        // TODO: Implement polynomial factorization to normalize rationals
 
         /// <summary>
         /// Create a new rational by polynomials (directly linked, clone them manually before applying if needed)
@@ -109,6 +109,7 @@ namespace MathNet.Numerics
             get { return numerator; }
             set { numerator = value; }
         }
+
         /// <summary>
         /// The denominator polynomial.
         /// </summary>
@@ -117,6 +118,7 @@ namespace MathNet.Numerics
             get { return denominator; }
             set { denominator = value; }
         }
+
         /// <summary>
         /// The order of the numerator polynomial.
         /// </summary>
@@ -124,6 +126,7 @@ namespace MathNet.Numerics
         {
             get { return numerator.Order; }
         }
+
         /// <summary>
         /// The order of the denominator polynomial.
         /// </summary>
@@ -557,6 +560,7 @@ namespace MathNet.Numerics
                     denominator.Clone()
                     );
             }
+
             Polynomial num = numerator * rational.denominator + rational.numerator * denominator;
             Polynomial denom = denominator * rational.denominator;
             return new Rational(num, denom);
@@ -606,6 +610,7 @@ namespace MathNet.Numerics
                     denominator.Clone()
                     );
             }
+
             Polynomial num = numerator * rational.denominator - rational.numerator * denominator;
             Polynomial denom = denominator * rational.denominator;
             return new Rational(num, denom);
@@ -824,6 +829,7 @@ namespace MathNet.Numerics
             {
                 return false;
             }
+
             return Equals((Rational)obj);
         }
 
@@ -867,7 +873,9 @@ namespace MathNet.Numerics
             }
 
             if(!(obj is Rational))
+            {
                 throw new ArgumentException(Resources.ArgumentTypeMismatch, "obj");
+            }
 
             return CompareTo((Rational)obj);
         }
@@ -886,6 +894,7 @@ namespace MathNet.Numerics
             {
                 n = denominator.CompareTo(rational.denominator);
             }
+
             return n;
         }
 

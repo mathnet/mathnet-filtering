@@ -5,7 +5,7 @@
 // Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
 //
 // Contribution: Fn.IntLog2 by Ben Houston, http://www.exocortex.org
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -21,40 +21,40 @@
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
 #region Some algorithms based on: Copyright 2000 Moshier, Bochkanov
-//Cephes Math Library
-//Copyright by Stephen L. Moshier
-
-//Contributors:
+// Cephes Math Library
+// Copyright by Stephen L. Moshier
+//
+// Contributors:
 //    * Sergey Bochkanov (ALGLIB project). Translation from C to
 //      pseudocode.
-
-//Redistribution and use in source and binary forms, with or without
-//modification, are permitted provided that the following conditions are
-//met:
-
-//- Redistributions of source code must retain the above copyright
-//  notice, this list of conditions and the following disclaimer.
-
-//- Redistributions in binary form must reproduce the above copyright
-//  notice, this list of conditions and the following disclaimer listed
-//  in this license in the documentation and/or other materials
-//  provided with the distribution.
-
-//- Neither the name of the copyright holders nor the names of its
-//  contributors may be used to endorse or promote products derived from
-//  this software without specific prior written permission.
-
-//THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-//"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-//LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-//A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-//OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-//SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-//LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-//DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-//THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-//(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-//OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are
+// met:
+//
+// - Redistributions of source code must retain the above copyright
+//   notice, this list of conditions and the following disclaimer.
+//
+// - Redistributions in binary form must reproduce the above copyright
+//   notice, this list of conditions and the following disclaimer listed
+//   in this license in the documentation and/or other materials
+//   provided with the distribution.
+//
+// - Neither the name of the copyright holders nor the names of its
+//   contributors may be used to endorse or promote products derived from
+//   this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #endregion
 
 using System;
@@ -85,11 +85,13 @@ namespace MathNet.Numerics
                 double r = b / a;
                 return Math.Abs(a) * Math.Sqrt(1 + r * r);
             }
+
             if(!Number.AlmostZero(b))
             {
                 double r = a / b;
                 return Math.Abs(b) * Math.Sqrt(1 + r * r);
             }
+
             return 0d;
         }
 
@@ -121,7 +123,9 @@ namespace MathNet.Numerics
             )
         {
             if(exponent < 0 || exponent >= 31)
+            {
                 throw new ArgumentOutOfRangeException("exponent");
+            }
 
             return 1 << exponent;
         }
@@ -149,30 +153,39 @@ namespace MathNet.Numerics
                                 {
                                     return 0;
                                 }
+
                                 return 1;
                             }
+
                             return 2;
                         }
+
                         if(x <= 8)
                         {
                             return 3;
                         }
+
                         return 4;
                     }
+
                     if(x <= 64)
                     {
                         if(x <= 32)
                         {
                             return 5;
                         }
+
                         return 6;
                     }
+
                     if(x <= 128)
                     {
                         return 7;
                     }
+
                     return 8;
                 }
+
                 if(x <= 4096)
                 {
                     if(x <= 1024)
@@ -181,28 +194,36 @@ namespace MathNet.Numerics
                         {
                             return 9;
                         }
+
                         return 10;
                     }
+
                     if(x <= 2048)
                     {
                         return 11;
                     }
+
                     return 12;
                 }
+
                 if(x <= 16384)
                 {
                     if(x <= 8192)
                     {
                         return 13;
                     }
+
                     return 14;
                 }
+
                 if(x <= 32768)
                 {
                     return 15;
                 }
+
                 return 16;
             }
+
             if(x <= 16777216)
             {
                 if(x <= 1048576)
@@ -213,28 +234,36 @@ namespace MathNet.Numerics
                         {
                             return 17;
                         }
+
                         return 18;
                     }
+
                     if(x <= 524288)
                     {
                         return 19;
                     }
+
                     return 20;
                 }
+
                 if(x <= 4194304)
                 {
                     if(x <= 2097152)
                     {
                         return 21;
                     }
+
                     return 22;
                 }
+
                 if(x <= 8388608)
                 {
                     return 23;
                 }
+
                 return 24;
             }
+
             if(x <= 268435456)
             {
                 if(x <= 67108864)
@@ -243,26 +272,29 @@ namespace MathNet.Numerics
                     {
                         return 25;
                     }
+
                     return 26;
                 }
+
                 if(x <= 134217728)
                 {
                     return 27;
                 }
+
                 return 28;
             }
+
             if(x <= 1073741824)
             {
                 if(x <= 536870912)
                 {
                     return 29;
                 }
+
                 return 30;
             }
-            //	since int is unsigned it can never be higher than 2,147,483,647
-            //	if( x <= 2147483648 )
-            //		return	31;	
-            //	return	32;	
+
+            // since int is unsigned it can never be higher than 2,147,483,647
             return 31;
         }
 
@@ -316,12 +348,14 @@ namespace MathNet.Numerics
             )
         {
             long rem;
+
             while(b != 0)
             {
                 rem = a % b;
                 a = b;
                 b = rem;
             }
+
             return Math.Abs(a);
         }
 
@@ -417,6 +451,7 @@ namespace MathNet.Numerics
             {
                 return double.NaN;
             }
+
             if(double.IsInfinity(x))
             {
                 return 0.0;
@@ -429,6 +464,7 @@ namespace MathNet.Numerics
             {
                 return 1.0;
             }
+
             return sinc;
         }
 
@@ -447,20 +483,25 @@ namespace MathNet.Numerics
             )
         {
             if(value < 0)
+            {
                 throw new ArgumentOutOfRangeException("value", Resources.ArgumentPositive);
+            }
 
             if(value <= 1)
             {
                 return 0.0d;
             }
+
             if(value >= FactorialLnCacheSize)
             {
                 return GammaLn(value + 1.0);
             }
+
             if(factorialLnCache == null)
             {
                 factorialLnCache = new double[FactorialLnCacheSize];
             }
+
             return factorialLnCache[value] != 0.0
                 ? factorialLnCache[value]
                 : (factorialLnCache[value] = GammaLn(value + 1.0));
@@ -496,6 +537,7 @@ namespace MathNet.Numerics
             {
                 return Math.Exp(GammaLn(value + 1.0));
             }
+
             return factorialPrecomp[value];
         }
 
@@ -557,6 +599,7 @@ namespace MathNet.Numerics
             {
                 return 0.0;
             }
+
             return Math.Floor(0.5 + Math.Exp(FactorialLn(n) - FactorialLn(k) - FactorialLn(n - k)));
         }
 
@@ -574,6 +617,7 @@ namespace MathNet.Numerics
             {
                 return 1.0;
             }
+
             return FactorialLn(n) - FactorialLn(k) - FactorialLn(n - k);
         }
 
@@ -595,7 +639,7 @@ namespace MathNet.Numerics
             double[] coefficient = new double[]{
                 76.18009172947146,
                 -86.50532032941677,
-				24.01409824083091,
+                24.01409824083091,
                 -1.231739572450155,
                 0.1208650973866179e-2,
                 -0.5395239384953e-5
@@ -605,10 +649,12 @@ namespace MathNet.Numerics
             temp = x + 5.5;
             temp -= ((x + 0.5) * Math.Log(temp));
             ser = 1.000000000190015;
+
             for(int j = 0; j <= 5; j++)
             {
                 ser += (coefficient[j] / ++y);
             }
+
             return -temp + Math.Log(2.5066282746310005 * ser / x);
         }
 
@@ -627,12 +673,15 @@ namespace MathNet.Numerics
             {
                 return Math.Exp(GammaLn(value));
             }
+
             double reflection = 1.0 - value;
             double s = Math.Sin(Math.PI * reflection);
+
             if(Number.AlmostEqual(0.0, s))
             {
                 return double.NaN; // singularity, undefined
             }
+
             return Math.PI / (s * Math.Exp(GammaLn(reflection)));
         }
 
@@ -666,14 +715,16 @@ namespace MathNet.Numerics
             double fpmin = Number.SmallestNumberGreaterThanZero / eps;
 
             if(a < 0.0 || x < 0.0)
+            {
                 throw new ArgumentOutOfRangeException("a,x", Resources.ArgumentNotNegative);
+            }
 
             double gln = GammaLn(a);
             if(x < a + 1.0)
             {
                 // Series Representation
 
-                if(x <= 0.0) 
+                if(x <= 0.0)
                 {
                     // Yes, I know we've already checked for x<0.0
 
@@ -683,11 +734,13 @@ namespace MathNet.Numerics
                 {
                     double ap = a;
                     double del, sum = del = 1.0 / a;
+
                     for(int n = 0; n < MaxIterations; n++)
                     {
                         ++ap;
                         del *= x / ap;
                         sum += del;
+
                         if(Math.Abs(del) < Math.Abs(sum) * eps)
                         {
                             return sum * Math.Exp(-x + a * Math.Log(x) - gln);
@@ -703,29 +756,36 @@ namespace MathNet.Numerics
                 double c = 1.0 / fpmin;
                 double d = 1.0 / b;
                 double h = d;
+
                 for(int i = 1; i <= MaxIterations; i++)
                 {
                     double an = -i * (i - a);
                     b += 2.0;
                     d = an * d + b;
+
                     if(Math.Abs(d) < fpmin)
                     {
                         d = fpmin;
                     }
+
                     c = b + an / c;
+
                     if(Math.Abs(c) < fpmin)
                     {
                         c = fpmin;
                     }
+
                     d = 1.0 / d;
                     double del = d * c;
                     h *= del;
+
                     if(Math.Abs(del - 1.0) <= eps)
                     {
                         return 1.0 - Math.Exp(-x + a * Math.Log(x) - gln) * h;
                     }
                 }
             }
+
             throw new ArgumentException(Resources.ArgumentTooLargeForIterationLimit, "a");
         }
 
@@ -752,12 +812,14 @@ namespace MathNet.Numerics
                 double q = x;
                 double p = Math.Floor(q);
                 negative = true;
-                
+
                 if(Number.AlmostEqual(p, q))
                 {
                     return double.NaN; // singularity, undefined
                 }
+
                 nz = q - p;
+
                 if(nz != 0.5)
                 {
                     if(nz > 0.5)
@@ -765,12 +827,14 @@ namespace MathNet.Numerics
                         p = p + 1.0;
                         nz = q - p;
                     }
+
                     nz = Math.PI / Math.Tan(Math.PI * nz);
                 }
                 else
                 {
                     nz = 0.0;
                 }
+
                 x = 1.0 - x;
             }
 
@@ -778,21 +842,25 @@ namespace MathNet.Numerics
             {
                 y = 0.0;
                 int n = (int)Math.Floor(x);
+
                 for(int i = 1; i <= n - 1; i++)
                 {
                     y = y + 1.0 / i;
                 }
+
                 y = y - Constants.EulerGamma;
             }
             else
             {
                 double s = x;
                 double w = 0.0;
+
                 while(s < 10.0)
                 {
                     w = w + 1.0 / s;
                     s = s + 1.0;
                 }
+
                 if(s < 1.0e17)
                 {
                     double z = 1.0 / (s * s);
@@ -809,6 +877,7 @@ namespace MathNet.Numerics
                 {
                     y = 0.0;
                 }
+
                 y = Math.Log(s) - 0.5 / s - y - w;
             }
 
@@ -816,6 +885,7 @@ namespace MathNet.Numerics
             {
                 return y - nz;
             }
+
             return y;
         }
 
@@ -879,9 +949,14 @@ namespace MathNet.Numerics
             )
         {
             if(a < 0.0 || b < 0.0)
+            {
                 throw new ArgumentOutOfRangeException("a,b", Resources.ArgumentNotNegative);
+            }
+
             if(x < 0.0 || x > 1.0)
+            {
                 throw new ArgumentOutOfRangeException("x", String.Format(Resources.ArgumentInIntervalXYInclusive, "0.0", "1.0"));
+            }
 
             double bt = (x == 0.0 || x == 1.0)
                 ? 0.0
@@ -908,50 +983,63 @@ namespace MathNet.Numerics
             double qam = a - 1.0;
             double c = 1.0;
             double d = 1.0 - qab * x / qap;
+
             if(Math.Abs(d) < fpmin)
             {
                 d = fpmin;
             }
+
             d = 1.0 / d;
             double h = d;
+
             for(int m = 1, m2 = 2; m <= MaxIterations; m++, m2 += 2)
             {
                 double aa = m * (b - m) * x / ((qam + m2) * (a + m2));
                 d = 1.0 + aa * d;
+
                 if(Math.Abs(d) < fpmin)
                 {
                     d = fpmin;
                 }
+
                 c = 1.0 + aa / c;
                 if(Math.Abs(c) < fpmin)
                 {
                     c = fpmin;
                 }
+
                 d = 1.0 / d;
                 h *= d * c;
                 aa = -(a + m) * (qab + m) * x / ((a + m2) * (qap + m2));
                 d = 1.0 + aa * d;
+
                 if(Math.Abs(d) < fpmin)
                 {
                     d = fpmin;
                 }
+
                 c = 1.0 + aa / c;
+
                 if(Math.Abs(c) < fpmin)
                 {
                     c = fpmin;
                 }
+
                 d = 1.0 / d;
                 double del = d * c;
                 h *= del;
+
                 if(Math.Abs(del - 1.0) <= eps)
                 {
                     if(symmetryTransformation)
                     {
                         return 1.0 - bt * h / a;
                     }
+
                     return bt * h / a;
                 }
             }
+
             throw new ArgumentException(Resources.ArgumentTooLargeForIterationLimit, "a,b");
         }
 
@@ -972,10 +1060,12 @@ namespace MathNet.Numerics
             {
                 return -1.0;
             }
+
             if(double.IsPositiveInfinity(x))
             {
                 return 1.0;
             }
+
             return x < 0.0
                 ? -GammaRegularized(0.5, x * x)
                 : GammaRegularized(0.5, x * x);
@@ -998,8 +1088,10 @@ namespace MathNet.Numerics
             double x
             )
         {
-            if(x < -1.0 || x > 1.0) throw new ArgumentOutOfRangeException(
-                "p", x, String.Format(Resources.ArgumentInIntervalXYInclusive, "-1.0", "1.0"));
+            if(x < -1.0 || x > 1.0)
+            {
+                throw new ArgumentOutOfRangeException("p", x, String.Format(Resources.ArgumentInIntervalXYInclusive, "-1.0", "1.0"));
+            }
 
             x = 0.5 * (x + 1.0);
 
@@ -1079,16 +1171,18 @@ namespace MathNet.Numerics
             {
                 throw new ArgumentOutOfRangeException("n", Resources.ArgumentNotNegative);
             }
+
             if(n >= HarmonicPrecompSize)
             {
-                double n2 = n*n;
-                double n4 = n2*n2;
+                double n2 = n * n;
+                double n4 = n2 * n2;
                 return Constants.EulerGamma
                     + Math.Log(n)
                     + 0.5 / n
                     - 1.0 / (12.0 * n2)
                     + 1.0 / (120.0 * n4);
             }
+
             return harmonicPrecomp[n];
         }
 

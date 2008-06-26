@@ -3,7 +3,7 @@
 // http://mathnet.opensourcedotnet.info
 //
 // Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -42,7 +42,7 @@ namespace MathNet.Numerics
         IEnumerable
     {
         int _size;
-        int[] _sampleCount; //for mean calculation
+        int[] _sampleCount; // for mean calculation
         double[] _sampleT;
         double[] _sampleX;
 
@@ -65,7 +65,6 @@ namespace MathNet.Numerics
             _sampleCount = new int[16];
             _sampleT = new double[16];
             _sampleX = new double[16];
-            //_size = 0;
         }
 
         /// <summary>
@@ -85,7 +84,6 @@ namespace MathNet.Numerics
             _sampleCount = new int[capacity];
             _sampleT = new double[capacity];
             _sampleX = new double[capacity];
-            //_size = 0;
         }
 
         /// <summary>
@@ -145,10 +143,12 @@ namespace MathNet.Numerics
             {
                 throw new ArgumentNullException("t");
             }
+
             if(null == x)
             {
                 throw new ArgumentNullException("x");
             }
+
             if(t.Count != x.Count)
             {
                 throw new ArgumentOutOfRangeException("x");
@@ -278,6 +278,7 @@ namespace MathNet.Numerics
                 Array.Copy(_sampleT, index + 1, _sampleT, index, _size - index);
                 Array.Copy(_sampleX, index + 1, _sampleX, index, _size - index);
             }
+
             _sampleCount[_size] = 0;
 
             if(SampleAltered != null)
@@ -330,10 +331,12 @@ namespace MathNet.Numerics
             {
                 return index;
             }
+
             if(Number.AlmostEqual(_sampleT[index + 1], t))
             {
                 return index + 1;
             }
+
             return -1;
         }
 
@@ -536,6 +539,7 @@ namespace MathNet.Numerics
             {
                 return _size - 2;
             }
+
             return lowerIndex;
         }
 
@@ -548,7 +552,11 @@ namespace MathNet.Numerics
         /// </summary>
         public int Capacity
         {
-            get { return _sampleCount.Length; }
+            get
+            {
+                return _sampleCount.Length;
+            }
+
             set
             {
                 if(value != _sampleCount.Length)
@@ -557,6 +565,7 @@ namespace MathNet.Numerics
                     {
                         throw new ArgumentOutOfRangeException("value");
                     }
+
                     if(value > 0)
                     {
                         int[] sampleCountNew = new int[value];
@@ -644,10 +653,12 @@ namespace MathNet.Numerics
             {
                 throw new ArgumentException("array", Resources.ArgumentSingleDimensionArray);
             }
+
             if(index < 0 || (array.Length - index) < _size)
             {
                 throw new ArgumentOutOfRangeException("index");
             }
+
             for(int i = 0; i < _size; i++)
             {
                 DictionaryEntry entry = new DictionaryEntry(_sampleT[i], _sampleX[i]);
@@ -678,8 +689,10 @@ namespace MathNet.Numerics
                 {
                     return this._sampleX[index];
                 }
+
                 return null;
             }
+
             set
             {
                 if(key == null)
@@ -753,6 +766,7 @@ namespace MathNet.Numerics
                 {
                     _keyList = new SampleList.KeyList(this);
                 }
+
                 return _keyList;
             }
         }
@@ -765,6 +779,7 @@ namespace MathNet.Numerics
                 {
                     _valueList = new SampleList.ValueList(this);
                 }
+
                 return _valueList;
             }
         }
@@ -778,42 +793,52 @@ namespace MathNet.Numerics
             {
                 this.sampleList = sampleList;
             }
+
             public int Add(object key)
             {
                 throw new NotSupportedException();
             }
+
             public void Clear()
             {
                 throw new NotSupportedException();
             }
+
             public bool Contains(object key)
             {
                 return sampleList.ContainsT(Convert.ToDouble(key));
             }
+
             public void CopyTo(Array array, int index)
             {
                 if(array == null || array.Rank != 1)
                 {
                     throw new ArgumentException(Resources.ArgumentSingleDimensionArray, "array");
                 }
+
                 Array.Copy(sampleList._sampleT, 0, array, index, sampleList.Count);
             }
+
             public IEnumerator GetEnumerator()
             {
                 return new SampleList.SampleListEnumerator(sampleList, 0, sampleList.Count, SampleList.SampleListEnumerator.EnumerationMode.Keys);
             }
+
             public int IndexOf(object key)
             {
                 return sampleList.IndexOfT(Convert.ToDouble(key));
             }
+
             public void Insert(int index, object value)
             {
                 throw new NotSupportedException();
             }
+
             public void Remove(object key)
             {
                 throw new NotSupportedException();
             }
+
             public void RemoveAt(int index)
             {
                 throw new NotSupportedException();
@@ -823,23 +848,28 @@ namespace MathNet.Numerics
             {
                 get { return sampleList.Count; }
             }
+
             public bool IsFixedSize
             {
                 get { return true; }
             }
+
             public bool IsReadOnly
             {
                 get { return true; }
             }
+
             public bool IsSynchronized
             {
                 get { return ((ICollection)sampleList).IsSynchronized; }
             }
+
             public object this[int index]
             {
                 get { return sampleList._sampleT[index]; }
                 set { throw new NotSupportedException(); }
             }
+
             public object SyncRoot
             {
                 get { return ((ICollection)sampleList).SyncRoot; }
@@ -855,42 +885,52 @@ namespace MathNet.Numerics
             {
                 this.sampleList = sampleList;
             }
+
             public int Add(object value)
             {
                 throw new NotSupportedException();
             }
+
             public void Clear()
             {
                 throw new NotSupportedException();
             }
+
             public bool Contains(object value)
             {
                 return sampleList.ContainsX(Convert.ToDouble(value));
             }
+
             public void CopyTo(Array array, int index)
             {
                 if(array == null || array.Rank != 1)
                 {
                     throw new ArgumentException(Resources.ArgumentSingleDimensionArray, "array");
                 }
+
                 Array.Copy(sampleList._sampleX, 0, array, index, sampleList.Count);
             }
+
             public IEnumerator GetEnumerator()
             {
                 return new SampleList.SampleListEnumerator(sampleList, 0, sampleList.Count, SampleList.SampleListEnumerator.EnumerationMode.Values);
             }
+
             public int IndexOf(object value)
             {
                 return sampleList.IndexOfX(Convert.ToDouble(value));
             }
+
             public void Insert(int index, object value)
             {
                 throw new NotSupportedException();
             }
+
             public void Remove(object value)
             {
                 throw new NotSupportedException();
             }
+
             public void RemoveAt(int index)
             {
                 throw new NotSupportedException();
@@ -900,23 +940,28 @@ namespace MathNet.Numerics
             {
                 get { return sampleList.Count; }
             }
+
             public bool IsFixedSize
             {
                 get { return true; }
             }
+
             public bool IsReadOnly
             {
                 get { return true; }
             }
+
             public bool IsSynchronized
             {
                 get { return ((ICollection)sampleList).IsSynchronized; }
             }
+
             public object this[int index]
             {
                 get { return sampleList._sampleX[index]; }
                 set { throw new NotSupportedException(); }
             }
+
             public object SyncRoot
             {
                 get { return ((ICollection)sampleList).SyncRoot; }
@@ -958,12 +1003,13 @@ namespace MathNet.Numerics
                 this.startIndex = index;
                 this.endIndex = index + count;
                 this.mode = mode;
-                //this.current = false;
             }
+
             public object Clone()
             {
                 return MemberwiseClone();
             }
+
             public bool MoveNext()
             {
                 if(this.index < this.endIndex)
@@ -974,11 +1020,13 @@ namespace MathNet.Numerics
                     this.current = true;
                     return true;
                 }
+
                 this.key = null;
                 this.value = null;
                 this.current = false;
                 return false;
             }
+
             public void Reset()
             {
                 this.index = this.startIndex;
@@ -992,38 +1040,59 @@ namespace MathNet.Numerics
                 get
                 {
                     if(!this.current)
+                    {
                         throw new InvalidOperationException();
+                    }
+
                     if(this.mode == EnumerationMode.Keys)
+                    {
                         return this.key;
+                    }
+
                     if(this.mode == EnumerationMode.Values)
+                    {
                         return this.value;
+                    }
+
                     return new DictionaryEntry(this.key, this.value);
                 }
             }
+
             public DictionaryEntry Entry
             {
                 get
                 {
                     if(!this.current)
+                    {
                         throw new InvalidOperationException();
+                    }
+
                     return new DictionaryEntry(this.key, this.value);
                 }
             }
+
             public object Key
             {
                 get
                 {
                     if(!this.current)
+                    {
                         throw new InvalidOperationException();
+                    }
+
                     return this.key;
                 }
             }
+
             public object Value
             {
                 get
                 {
                     if(!this.current)
+                    {
                         throw new InvalidOperationException();
+                    }
+
                     return this.value;
                 }
             }

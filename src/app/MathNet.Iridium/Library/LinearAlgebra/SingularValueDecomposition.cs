@@ -5,7 +5,7 @@
 // Copyright (c) 2004-2008, Joannes Vermorel, http://www.vermorel.com
 //
 // Contribution: The MathWorks and NIST [2000]
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -117,24 +117,30 @@ namespace MathNet.Numerics.LinearAlgebra
                     // place the k-th diagonal in s[k].
                     // Compute 2-norm of k-th column without under/overflow.
                     s[k] = 0;
+
                     for(int i = k; i < m; i++)
                     {
                         s[k] = Fn.Hypot(s[k], A[i][k]);
                     }
+
                     if(s[k] != 0.0)
                     {
                         if(A[k][k] < 0.0)
                         {
                             s[k] = -s[k];
                         }
+
                         for(int i = k; i < m; i++)
                         {
                             A[i][k] /= s[k];
                         }
+
                         A[k][k] += 1.0;
                     }
+
                     s[k] = -s[k];
                 }
+
                 for(int j = k + 1; j < n; j++)
                 {
                     if((k < nct) & (s[k] != 0.0))
@@ -147,6 +153,7 @@ namespace MathNet.Numerics.LinearAlgebra
                         {
                             t += A[i][k] * A[i][j];
                         }
+
                         t = (-t) / A[k][k];
                         for(int i = k; i < m; i++)
                         {
@@ -159,6 +166,7 @@ namespace MathNet.Numerics.LinearAlgebra
 
                     e[j] = A[k][j];
                 }
+
                 if(wantu & (k < nct))
                 {
 
@@ -170,6 +178,7 @@ namespace MathNet.Numerics.LinearAlgebra
                         U[i][k] = A[i][k];
                     }
                 }
+
                 if(k < nrt)
                 {
 
@@ -177,23 +186,29 @@ namespace MathNet.Numerics.LinearAlgebra
                     // k-th super-diagonal in e[k].
                     // Compute 2-norm without under/overflow.
                     e[k] = 0;
+
                     for(int i = k + 1; i < n; i++)
                     {
                         e[k] = Fn.Hypot(e[k], e[i]);
                     }
+
                     if(e[k] != 0.0)
                     {
                         if(e[k + 1] < 0.0)
                         {
                             e[k] = -e[k];
                         }
+
                         for(int i = k + 1; i < n; i++)
                         {
                             e[i] /= e[k];
                         }
+
                         e[k + 1] += 1.0;
                     }
+
                     e[k] = -e[k];
+
                     if((k + 1 < m) & (e[k] != 0.0))
                     {
 
@@ -203,6 +218,7 @@ namespace MathNet.Numerics.LinearAlgebra
                         {
                             work[i] = 0.0;
                         }
+
                         for(int j = k + 1; j < n; j++)
                         {
                             for(int i = k + 1; i < m; i++)
@@ -210,6 +226,7 @@ namespace MathNet.Numerics.LinearAlgebra
                                 work[i] += e[j] * A[i][j];
                             }
                         }
+
                         for(int j = k + 1; j < n; j++)
                         {
                             double t = (-e[j]) / e[k + 1];
@@ -219,6 +236,7 @@ namespace MathNet.Numerics.LinearAlgebra
                             }
                         }
                     }
+
                     if(wantv)
                     {
 
@@ -236,18 +254,22 @@ namespace MathNet.Numerics.LinearAlgebra
             // Set up the final bidiagonal matrix or order p.
 
             int p = Math.Min(n, m + 1);
+
             if(nct < n)
             {
                 s[nct] = A[nct][nct];
             }
+
             if(m < p)
             {
                 s[p - 1] = 0.0;
             }
+
             if(nrt + 1 < p)
             {
                 e[nrt] = A[nrt][p - 1];
             }
+
             e[p - 1] = 0.0;
 
             // If required, generate U.
@@ -260,8 +282,10 @@ namespace MathNet.Numerics.LinearAlgebra
                     {
                         U[i][j] = 0.0;
                     }
+
                     U[j][j] = 1.0;
                 }
+
                 for(int k = nct - 1; k >= 0; k--)
                 {
                     if(s[k] != 0.0)
@@ -273,16 +297,19 @@ namespace MathNet.Numerics.LinearAlgebra
                             {
                                 t += U[i][k] * U[i][j];
                             }
+
                             t = (-t) / U[k][k];
                             for(int i = k; i < m; i++)
                             {
                                 U[i][j] += t * U[i][k];
                             }
                         }
+
                         for(int i = k; i < m; i++)
                         {
                             U[i][k] = -U[i][k];
                         }
+
                         U[k][k] = 1.0 + U[k][k];
                         for(int i = 0; i < k - 1; i++)
                         {
@@ -295,6 +322,7 @@ namespace MathNet.Numerics.LinearAlgebra
                         {
                             U[i][k] = 0.0;
                         }
+
                         U[k][k] = 1.0;
                     }
                 }
@@ -315,6 +343,7 @@ namespace MathNet.Numerics.LinearAlgebra
                             {
                                 t += V[i][k] * V[i][j];
                             }
+
                             t = (-t) / V[k + 1][k];
                             for(int i = k + 1; i < n; i++)
                             {
@@ -322,10 +351,12 @@ namespace MathNet.Numerics.LinearAlgebra
                             }
                         }
                     }
+
                     for(int i = 0; i < n; i++)
                     {
                         V[i][k] = 0.0;
                     }
+
                     V[k][k] = 1.0;
                 }
             }
@@ -357,12 +388,14 @@ namespace MathNet.Numerics.LinearAlgebra
                     {
                         break;
                     }
+
                     if(Math.Abs(e[k]) <= eps * (Math.Abs(s[k]) + Math.Abs(s[k + 1])))
                     {
                         e[k] = 0.0;
                         break;
                     }
                 }
+
                 if(k == p - 2)
                 {
                     kase = 4;
@@ -376,6 +409,7 @@ namespace MathNet.Numerics.LinearAlgebra
                         {
                             break;
                         }
+
                         double t = (ks != p ? Math.Abs(e[ks]) : 0.0) + (ks != k + 1 ? Math.Abs(e[ks - 1]) : 0.0);
                         if(Math.Abs(s[ks]) <= eps * t)
                         {
@@ -383,6 +417,7 @@ namespace MathNet.Numerics.LinearAlgebra
                             break;
                         }
                     }
+
                     if(ks == k)
                     {
                         kase = 3;
@@ -397,14 +432,13 @@ namespace MathNet.Numerics.LinearAlgebra
                         k = ks;
                     }
                 }
+
                 k++;
 
                 // Perform the task indicated by kase.
 
                 switch(kase)
                 {
-
-
                     // Deflate negligible s(p).
                     case 1:
                         {
@@ -416,11 +450,13 @@ namespace MathNet.Numerics.LinearAlgebra
                                 double cs = s[j] / t;
                                 double sn = f / t;
                                 s[j] = t;
+
                                 if(j != k)
                                 {
                                     f = (-sn) * e[j - 1];
                                     e[j - 1] = cs * e[j - 1];
                                 }
+
                                 if(wantv)
                                 {
                                     for(int i = 0; i < n; i++)
@@ -432,11 +468,10 @@ namespace MathNet.Numerics.LinearAlgebra
                                 }
                             }
                         }
+
                         break;
 
-                    // Split at negligible s(k).
-
-
+                    // Split at negligible s(k)
                     case 2:
                         {
                             double f = e[k - 1];
@@ -460,11 +495,10 @@ namespace MathNet.Numerics.LinearAlgebra
                                 }
                             }
                         }
+
                         break;
 
                     // Perform one qr step.
-
-
                     case 3:
                         {
                             // Calculate the shift.
@@ -481,12 +515,15 @@ namespace MathNet.Numerics.LinearAlgebra
                             if((b != 0.0) | (c != 0.0))
                             {
                                 shift = Math.Sqrt(b * b + c);
+
                                 if(b < 0.0)
                                 {
                                     shift = -shift;
                                 }
+
                                 shift = c / (b + shift);
                             }
+
                             double f = (sk + sp) * (sk - sp) + shift;
                             double g = sk * ek;
 
@@ -497,14 +534,17 @@ namespace MathNet.Numerics.LinearAlgebra
                                 double t = Fn.Hypot(f, g);
                                 double cs = f / t;
                                 double sn = g / t;
+
                                 if(j != k)
                                 {
                                     e[j - 1] = t;
                                 }
+
                                 f = cs * s[j] + sn * e[j];
                                 e[j] = cs * e[j] - sn * s[j];
                                 g = sn * s[j + 1];
                                 s[j + 1] = cs * s[j + 1];
+
                                 if(wantv)
                                 {
                                     for(int i = 0; i < n; i++)
@@ -514,6 +554,7 @@ namespace MathNet.Numerics.LinearAlgebra
                                         V[i][j] = t;
                                     }
                                 }
+
                                 t = Fn.Hypot(f, g);
                                 cs = f / t;
                                 sn = g / t;
@@ -522,6 +563,7 @@ namespace MathNet.Numerics.LinearAlgebra
                                 s[j + 1] = (-sn) * e[j] + cs * s[j + 1];
                                 g = sn * e[j + 1];
                                 e[j + 1] = cs * e[j + 1];
+
                                 if(wantu && (j < m - 1))
                                 {
                                     for(int i = 0; i < m; i++)
@@ -532,9 +574,11 @@ namespace MathNet.Numerics.LinearAlgebra
                                     }
                                 }
                             }
+
                             e[p - 2] = f;
                             iter = iter + 1;
                         }
+
                         break;
 
                     // Convergence.
@@ -564,9 +608,11 @@ namespace MathNet.Numerics.LinearAlgebra
                                 {
                                     break;
                                 }
+
                                 double t = s[k];
                                 s[k] = s[k + 1];
                                 s[k + 1] = t;
+
                                 if(wantv && (k < n - 1))
                                 {
                                     for(int i = 0; i < n; i++)
@@ -576,6 +622,7 @@ namespace MathNet.Numerics.LinearAlgebra
                                         V[i][k] = t;
                                     }
                                 }
+
                                 if(wantu && (k < m - 1))
                                 {
                                     for(int i = 0; i < m; i++)
@@ -585,11 +632,14 @@ namespace MathNet.Numerics.LinearAlgebra
                                         U[i][k] = t;
                                     }
                                 }
+
                                 k++;
                             }
+
                             iter = 0;
                             p--;
                         }
+
                         break;
                 }
             }
@@ -686,6 +736,7 @@ namespace MathNet.Numerics.LinearAlgebra
         {
             double tol = Math.Max(m, n) * _singular[0] * Number.PositiveRelativeAccuracy;
             int r = 0;
+
             for(int i = 0; i < _singular.Length; i++)
             {
                 if(_singular[i] > tol)
@@ -693,8 +744,8 @@ namespace MathNet.Numerics.LinearAlgebra
                     r++;
                 }
             }
+
             return r;
         }
-
     }
 }

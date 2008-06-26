@@ -3,7 +3,7 @@
 // http://mathnet.opensourcedotnet.info
 //
 // Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -100,13 +100,13 @@ namespace MathNet.Numerics
         }
         
         // TODO: Never called, remove?
-        //void
-        //ResizeDouble()
-        //{
-        //    double[] newCoeffs = new double[coefficients.Length + coefficients.Length];
-        //    coefficients.CopyTo(newCoeffs, 0);
-        //    coefficients = newCoeffs;
-        //}
+        ////void
+        ////ResizeDouble()
+        ////{
+        ////    double[] newCoeffs = new double[coefficients.Length + coefficients.Length];
+        ////    coefficients.CopyTo(newCoeffs, 0);
+        ////    coefficients = newCoeffs;
+        ////}
 
         void
         ResizeOptimalForOrder(
@@ -169,6 +169,7 @@ namespace MathNet.Numerics
             {
                 o--;
             }
+
             return o;
         }
 
@@ -200,23 +201,30 @@ namespace MathNet.Numerics
             get
             {
                 if(power < 0)
+                {
                     throw new ArgumentOutOfRangeException("power", power, Resources.ArgumentNotNegative);
+                }
 
                 if(power > order)
                 {
                     return 0d;
                 }
+
                 return coefficients[power];
             }
+
             set
             {
                 if(power < 0)
+                {
                     throw new ArgumentOutOfRangeException("power", power, Resources.ArgumentNotNegative);
+                }
 
                 if(power > order)
                 {
                     EnsureSupportForOrder(power);
                 }
+
                 coefficients[power] = value;
             }
         }
@@ -571,6 +579,7 @@ namespace MathNet.Numerics
                     coeff[i + j] += coefficients[i] * polynomial.coefficients[j];
                 }
             }
+
             return new Polynomial(coeff);
         }
 
@@ -612,6 +621,7 @@ namespace MathNet.Numerics
                         coeff[i + j] += coefficients[i] * polynomial.coefficients[j];
                     }
                 }
+
                 return new Polynomial(coeff);
             }
         }
@@ -630,6 +640,7 @@ namespace MathNet.Numerics
             {
                 return new Polynomial(new double[] { leftCoefficients[offset] * rightCoefficients[offset] });
             }
+
             if(n == 2)
             {
                 return new Polynomial(
@@ -713,14 +724,18 @@ namespace MathNet.Numerics
             )
         {
             if(n <= 0)
+            {
                 throw new ArgumentOutOfRangeException("n", n, Resources.ArgumentPositive);
+            }
 
             EnsureSupportForOrder(order + n);
             order += n;
+
             for(int i = order; i >= n; i--)
             {
                 coefficients[i] = coefficients[i - n];
             }
+
             for(int i = 0; i < n; i++)
             {
                 coefficients[i] = 0;
@@ -742,10 +757,12 @@ namespace MathNet.Numerics
             EnsureSupportForOrder(order + 1);
             order++;
             coefficients[order] = coefficients[order - 1];
+
             for(int j = order - 1; j >= 1; j--)
             {
                 coefficients[j] = coefficients[j - 1] - a * coefficients[j];
             }
+
             coefficients[0] *= -a;
         }
 
@@ -765,6 +782,7 @@ namespace MathNet.Numerics
                 MultiplyInplace(c0);
                 return;
             }
+
             double a = -c0 / c1;
             MultiplySyntheticInplace(a);
             MultiplyInplace(c1);
@@ -817,22 +835,27 @@ namespace MathNet.Numerics
             )
         {
             if(n <= 0)
+            {
                 throw new ArgumentOutOfRangeException("n", n, Resources.ArgumentPositive);
+            }
 
             reminder = new double[n];
             for(int i = 0; i < n; i++)
             {
                 reminder[i] = coefficients[i];
             }
+
             order -= n;
             for(int i = 0; i < order; i++)
             {
                 coefficients[i] = coefficients[i + n];
             }
+
             for(int i = order; i < order + n; i++)
             {
                 coefficients[i] = 0;
             }
+
             if((n << 2) > order)
             {
                 Normalize();
@@ -861,6 +884,7 @@ namespace MathNet.Numerics
                 coefficients[i] = reminder;
                 reminder = swap + a * reminder;
             }
+
             NormalizeOrder();
         }
 
@@ -882,6 +906,7 @@ namespace MathNet.Numerics
                 reminder = 0d;
                 return;
             }
+
             double a = -c0 / c1;
             DivideInplace(c1);
             DivideSyntheticInplace(a, out reminder);
@@ -906,6 +931,7 @@ namespace MathNet.Numerics
             {
                 ret = ret * value + coefficients[j];
             }
+
             return ret;
         }
 
@@ -930,6 +956,7 @@ namespace MathNet.Numerics
                 derivative = derivative * value + ret;
                 ret = ret * value + coefficients[j];
             }
+
             return ret;
         }
 
@@ -958,6 +985,7 @@ namespace MathNet.Numerics
                 {
                     ret[j] = ret[j] * value + ret[j - 1];
                 }
+
                 ret[0] = ret[0] * value + coefficients[i];
             }
 
@@ -988,10 +1016,12 @@ namespace MathNet.Numerics
             for(int i = Order; i >= 0; i--)
             {
                 double coeff = coefficients[i];
+
                 if(Number.AlmostZero(coeff))
                 {
                     continue;
                 }
+
                 if(builder.Length > 0)
                 {
                     builder.Append(coeff > 0d ? " + " : " - ");
@@ -1003,24 +1033,29 @@ namespace MathNet.Numerics
                         builder.Append('-');
                     }
                 }
+
                 if(!Number.AlmostEqual(coeff, 1) && !Number.AlmostEqual(coeff, -1) || i == 0)
                 {
                     builder.Append(Math.Abs(coeff));
                 }
+
                 if(i > 0)
                 {
                     builder.Append(" " + baseVariable);
                 }
+
                 if(i > 1)
                 {
                     builder.Append('^');
                     builder.Append(i);
                 }
             }
+
             if(builder.Length == 0)
             {
                 builder.Append('0');
             }
+
             return builder.ToString();
         }
 
@@ -1087,6 +1122,7 @@ namespace MathNet.Numerics
             {
                 return polynomial2 == null;
             }
+
             return polynomial1.Equals(polynomial2);
         }
 
@@ -1105,7 +1141,9 @@ namespace MathNet.Numerics
             }
 
             if(!(obj is Polynomial))
+            {
                 throw new ArgumentException(Resources.ArgumentTypeMismatch, "obj");
+            }
 
             return CompareTo((Polynomial)obj);
         }
@@ -1126,22 +1164,27 @@ namespace MathNet.Numerics
             {
                 return 1;
             }
+
             if(j > i)
             {
                 return -1;
             }
+
             while(i >= 0)
             {
                 if(this.coefficients[i] > polynomial.coefficients[i])
                 {
                     return 1;
                 }
+
                 if(this.coefficients[i] < polynomial.coefficients[i])
                 {
                     return -1;
                 }
+
                 i--;
             }
+
             return 0;
         }
 

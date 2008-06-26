@@ -3,7 +3,7 @@
 // http://mathnet.opensourcedotnet.info
 //
 // Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -28,18 +28,18 @@ using MathNet.Numerics.Properties;
 namespace MathNet.Numerics
 {
     // TODO: Not used anywhere. Remove?
-    //[StructLayout(LayoutKind.Explicit)]
-    //internal struct FloatingPoint64
-    //{
-    //    [FieldOffset(0)]
-    //    internal System.Double float64;
+    ////[StructLayout(LayoutKind.Explicit)]
+    ////internal struct FloatingPoint64
+    ////{
+    ////    [FieldOffset(0)]
+    ////    internal System.Double float64;
 
-    //    [FieldOffset(0)]
-    //    internal System.Int64 signed64;
+    ////    [FieldOffset(0)]
+    ////    internal System.Int64 signed64;
 
-    //    [FieldOffset(0)]
-    //    internal System.UInt64 unsigned64;
-    //}
+    ////    [FieldOffset(0)]
+    ////    internal System.UInt64 unsigned64;
+    ////}
 
     /// <summary>
     /// Helper functions for dealing with floating point numbers.
@@ -48,10 +48,13 @@ namespace MathNet.Numerics
     {
         /// <summary>2^(-1074)</summary>
         public const double SmallestNumberGreaterThanZero = double.Epsilon;
+
         /// <summary>2^(-53)</summary>
         public static readonly double RelativeAccuracy = EpsilonOf(1.0);
+
         /// <summary>2^(-52)</summary>
         public static readonly double PositiveRelativeAccuracy = PositiveEpsilonOf(1.0);
+
         /// <summary>10 * 2^(-52)</summary>
         public static readonly double DefaultRelativeAccuracy = 10 * PositiveRelativeAccuracy;
 
@@ -73,15 +76,18 @@ namespace MathNet.Numerics
             }
 
             long signed64 = BitConverter.DoubleToInt64Bits(value);
+
             if(signed64 == 0)
             {
                 signed64++;
                 return BitConverter.Int64BitsToDouble(signed64) - value;
             }
+
             if(signed64-- < 0)
             {
                 return BitConverter.Int64BitsToDouble(signed64) - value;
             }
+
             return value - BitConverter.Int64BitsToDouble(signed64);
         }
 
@@ -127,12 +133,14 @@ namespace MathNet.Numerics
             {
                 signed64++;
             }
+
             if(signed64 == -9223372036854775808) 
             {
                 // = "-0", make it "+0"
 
                 return 0;
             }
+
             value = BitConverter.Int64BitsToDouble(signed64);
 
             return double.IsNaN(value)
@@ -163,6 +171,7 @@ namespace MathNet.Numerics
             {
                 return -double.Epsilon;
             }
+
             if(signed64 < 0)
             {
                 signed64++;
@@ -171,6 +180,7 @@ namespace MathNet.Numerics
             {
                 signed64--;
             }
+
             value = BitConverter.Int64BitsToDouble(signed64);
 
             return double.IsNaN(value)
@@ -191,9 +201,14 @@ namespace MathNet.Numerics
             )
         {
             if(double.IsNaN(a) || double.IsInfinity(a))
+            {
                 throw new ArgumentException(Resources.ArgumentNotInfinityNaN, "a");
+            }
+
             if(double.IsNaN(b) || double.IsInfinity(b))
+            {
                 throw new ArgumentException(Resources.ArgumentNotInfinityNaN, "b");
+            }
 
             ulong ua = ToLexicographicalOrderedUInt64(a);
             ulong ub = ToLexicographicalOrderedUInt64(b);
@@ -293,12 +308,14 @@ namespace MathNet.Numerics
             )
         {
             if(maxNumbersBetween < 0)
+            {
                 throw new ArgumentException(Resources.ArgumentNotNegative, "maxNumbersBetween");
+            }
 
             // NaN's should never equal to anything
             if(double.IsNaN(a) || double.IsNaN(b)) 
             {
-                //(a != a || b != b)
+                // (a != a || b != b)
 
                 return false;
             }
@@ -336,6 +353,7 @@ namespace MathNet.Numerics
             {
                 return true;
             }
+
             return Math.Abs(diff) < relativeAccuracy * Math.Max(Math.Abs(a), Math.Abs(b));
         }
 

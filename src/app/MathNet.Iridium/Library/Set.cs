@@ -3,7 +3,7 @@
 // http://mathnet.opensourcedotnet.info
 //
 // Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -36,108 +36,133 @@ namespace MathNet.Numerics
         /// Create an array with all elements of this set.
         /// </summary>
         T[] ToArray();
+
         /// <summary>
         /// Checks whether <c>c</c> is a subset of this set.
         /// </summary>
         bool IsSubset(IEnumerable<T> c);
+
         /// <summary>
         /// Checks whether this set is a subset of <c>c</c>, or if <c>c</c> is a superset of this set.
         /// </summary>
         bool IsSuperset(IEnumerable<T> c);
+
         /// <summary>
         /// Checks whether this set has elements that are also in <c>c</c>.
         /// </summary>
         /// <remarks>Ingnores duplicate elements.</remarks>
         bool HasEqualElements(IEnumerable<T> c);
+
         /// <summary>
         /// Check whether this set has an element witch matches the predicate.
         /// </summary>
         bool Exists(Predicate<T> match);
+
         /// <summary>
         /// Check whether this set has an element witch matches the predicate, and returns it as foundItem-parameter.
         /// </summary>
         bool Exists(Predicate<T> match, out T foundItem);
+
         /// <summary>
         /// Checks wether all elements of this set match the predicate.
         /// </summary>
         bool TrueForAll(Predicate<T> match);
+
         /// <summary>
         /// Executes the action for all elements of this set.
         /// </summary>
         void ForEach(Action<T> action);
 
+
         /// <summary>
         /// Finds an element of this set that matches the predicate.
         /// </summary>
         T Find(Predicate<T> match);
+
         /// <summary>
         /// Finds the index of an element of this set that matches the predicate.
         /// </summary>
         int FindIndex(Predicate<T> match);
+
         /// <summary>
         /// Finds the index (after startIndex) of an element of this set that matches the predicate.
         /// </summary>
         int FindIndex(int startIndex, Predicate<T> match);
+
         /// <summary>
         /// Finds the index (between startIndex and startIndex+count-1) of an element of this set that matches the predicate.
         /// </summary>
         int FindIndex(int startIndex, int count, Predicate<T> match);
+
         /// <summary>
         /// Finds the last element of this set that matches the predicate.
         /// </summary>
         T FindLast(Predicate<T> match);
+
         /// <summary>
         /// Finds the index of the last element of this set that matches the predicate.
         /// </summary>
         int FindLastIndex(Predicate<T> match);
+
         /// <summary>
         /// Finds the index (after startIndex) of the last element of this set that matches the predicate.
         /// </summary>
         int FindLastIndex(int startIndex, Predicate<T> match);
+
         /// <summary>
         /// Finds the index (between startIndex and startIndex+count-1) of the last element of this set that matches the predicate.
         /// </summary>
         int FindLastIndex(int startIndex, int count, Predicate<T> match);
 
+
         /// <summary>
         /// Finds the last index of element <c>item</c>.
         /// </summary>
         int LastIndexOf(T item);
+
         /// <summary>
         /// Finds all elements of this set which match the predicate.
         /// </summary>
         Set<T> FindAll(Predicate<T> match);
+
         /// <summary>
         /// Maps <c>convert</c> to all elements of this set.
         /// </summary>
         Set<TOutput> ConvertAll<TOutput>(Converter<T, TOutput> convert) where TOutput : IEquatable<TOutput>;
 
+
         /// <summary>
         /// Add all elements in <c>range</c> to this set.
         /// </summary>
         void AddRange(IEnumerable<T> range);
+
         /// <summary>
         /// Add <c>item</c> to this set, except if its already there.
         /// </summary>
         void AddDistinct(T item);
+
         /// <summary>
         /// Add all elements in <c>range</c> to this set, but skips duplicates.
         /// </summary>
         void AddRangeDistinct(IEnumerable<T> range);
+
         /// <summary>
         /// Remove al duplicate items from this set.
         /// </summary>
         void RemoveDuplicates();
+
         /// <summary>
         /// Remove all elements that match the predicate from this set.
         /// </summary>
         /// <returns>The number of removed items.</returns>
         int RemoveAll(Predicate<T> match);
 
+
         /// <summary>
         /// Sort all elements of this set with respect to the comparer.
         /// </summary>
         void Sort(IComparer<T> comparer);
+
         /// <summary>
         /// Sort the elements between index and index+count-1 of this set with respect to the comparer.
         /// </summary>
@@ -207,7 +232,6 @@ namespace MathNet.Numerics
         Set(
             int initialCount
             )
-        //  : base((IList<T>)(new T[initialCount]))
         {
             T defnull = default(T);
             for(int i = 0; i < initialCount; i++)
@@ -250,7 +274,10 @@ namespace MathNet.Numerics
             get
             {
                 if(readonlyWrapper == null)
+                {
                     readonlyWrapper = CreateNewReadOnlyWrapper(Items);
+                }
+
                 return readonlyWrapper;
             }
         }
@@ -269,20 +296,20 @@ namespace MathNet.Numerics
 
         #region Set Behaviour
 
-        ///// <summary>
-        ///// If true, the set elements have a specific order.
-        ///// </summary>
-        ///// <remarks>Two sequences with the same elements but in a different order are not equal.</remarks>
-        //public bool IsSequence
-        //{
-        //}
+        /////// <summary>
+        /////// If true, the set elements have a specific order.
+        /////// </summary>
+        /////// <remarks>Two sequences with the same elements but in a different order are not equal.</remarks>
+        ////public bool IsSequence
+        ////{
+        ////}
 
-        ///// <summary>
-        ///// If true, the set may not contain any element more than once.
-        ///// </summary>
-        //public bool IsDistinct
-        //{
-        //}
+        /////// <summary>
+        /////// If true, the set may not contain any element more than once.
+        /////// </summary>
+        ////public bool IsDistinct
+        ////{
+        ////}
 
         #endregion
 
@@ -468,6 +495,7 @@ namespace MathNet.Numerics
                     return false;
                 }
             }
+
             return true;
         }
 
@@ -481,6 +509,7 @@ namespace MathNet.Numerics
             )
         {
             Dictionary<T, object> table = new Dictionary<T, object>();
+
             foreach(T item in c)
             {
                 if(!table.ContainsKey(item))
@@ -488,6 +517,7 @@ namespace MathNet.Numerics
                     table.Add(item, null);
                 }
             }
+
             foreach(T item in this)
             {
                 if(!table.ContainsKey(item))
@@ -495,6 +525,7 @@ namespace MathNet.Numerics
                     return false;
                 }
             }
+
             return true;
         }
 
@@ -511,6 +542,7 @@ namespace MathNet.Numerics
             // TODO: quite inelegant, find better algorithm.
 
             Dictionary<T, object> table = new Dictionary<T, object>();
+
             foreach(T item in c)
             {
                 if(!table.ContainsKey(item))
@@ -522,6 +554,7 @@ namespace MathNet.Numerics
                     }
                 }
             }
+
             foreach(T item in this)
             {
                 if(!table.ContainsKey(item))
@@ -529,6 +562,7 @@ namespace MathNet.Numerics
                     return false;
                 }
             }
+
             return true;
         }
 
@@ -653,6 +687,7 @@ namespace MathNet.Numerics
             )
         {
             Dictionary<T, object> table = new Dictionary<T, object>();
+
             foreach(T item in c)
             {
                 if(!table.ContainsKey(item))
@@ -660,6 +695,7 @@ namespace MathNet.Numerics
                     table.Add(item, null);
                 }
             }
+
             for(int i = Count - 1; i >= 0; i--)
             {
                 if(!table.ContainsKey(base[i]))
@@ -689,6 +725,7 @@ namespace MathNet.Numerics
                     table.Add(item, null);
                 }
             }
+
             Set<T> s = new Set<T>();
             foreach(T item in c2)
             {
@@ -697,6 +734,7 @@ namespace MathNet.Numerics
                     s.Add(item);
                 }
             }
+
             return s;
         }
 
@@ -727,6 +765,7 @@ namespace MathNet.Numerics
             )
         {
             Dictionary<T, object> table = new Dictionary<T, object>();
+
             foreach(T item in c)
             {
                 if(!table.ContainsKey(item))
@@ -734,6 +773,7 @@ namespace MathNet.Numerics
                     table.Add(item, null);
                 }
             }
+
             for(int i = Count - 1; i >= 0; i--)
             {
                 if(table.ContainsKey(base[i]))
@@ -763,6 +803,7 @@ namespace MathNet.Numerics
                     table.Add(item, null);
                 }
             }
+
             Set<T> s = new Set<T>();
             foreach(T item in c1)
             {
@@ -771,6 +812,7 @@ namespace MathNet.Numerics
                     s.Add(item);
                 }
             }
+
             return s;
         }
 
@@ -834,6 +876,7 @@ namespace MathNet.Numerics
                     return false;
                 }
             }
+
             return true;
         }
 
@@ -880,6 +923,7 @@ namespace MathNet.Numerics
                     return base[i];
                 }
             }
+
             return default(T);
         }
 
@@ -923,10 +967,12 @@ namespace MathNet.Numerics
             {
                 throw new ArgumentOutOfRangeException("startIndex");
             }
+
             if((count < 0) || (startIndex > (Count - count)))
             {
                 throw new ArgumentOutOfRangeException("count");
             }
+
             if(match == null)
             {
                 throw new ArgumentNullException("match");
@@ -940,6 +986,7 @@ namespace MathNet.Numerics
                     return i;
                 }
             }
+
             return -1;
         }
 
@@ -964,6 +1011,7 @@ namespace MathNet.Numerics
                     return base[i];
                 }
             }
+
             return default(T);
         }
 
@@ -1007,10 +1055,12 @@ namespace MathNet.Numerics
             {
                 throw new ArgumentOutOfRangeException("startIndex");
             }
+
             if((count < 0) || (((startIndex - count) + 1) < 0))
             {
                 throw new ArgumentOutOfRangeException("count");
             }
+
             if(match == null)
             {
                 throw new ArgumentNullException("match");
@@ -1024,6 +1074,7 @@ namespace MathNet.Numerics
                     return i;
                 }
             }
+
             return -1;
         }
 
@@ -1043,6 +1094,7 @@ namespace MathNet.Numerics
                     return i;
                 }
             }
+
             return -1;
         }
 
@@ -1068,6 +1120,7 @@ namespace MathNet.Numerics
                     found.Add(base[i]);
                 }
             }
+
             return found;
         }
 
@@ -1092,6 +1145,7 @@ namespace MathNet.Numerics
                     RemoveAt(i);
                 }
             }
+
             return cnt;
         }
 
@@ -1109,10 +1163,12 @@ namespace MathNet.Numerics
             ) where TOutput : IEquatable<TOutput>
         {
             Set<TOutput> ret = new Set<TOutput>();
+
             foreach(T item in this)
             {
                 ret.Add(convert(item));
             }
+
             return ret;
         }
 
@@ -1144,18 +1200,21 @@ namespace MathNet.Numerics
             )
         {
             IList<T> items = Items;
+
             List<T> list = items as List<T>;
             if(list != null)
             {
                 list.Sort(index, count, comparer);
                 return;
             }
+
             T[] array = items as T[];
             if(array != null)
             {
                 Array.Sort<T>(array, index, count, comparer);
                 return;
             }
+
             throw new NotSupportedException();
         }
 
@@ -1220,6 +1279,7 @@ namespace MathNet.Numerics
                     return false;
                 }
             }
+
             return true;
         }
 
@@ -1233,6 +1293,7 @@ namespace MathNet.Numerics
             )
         {
             Dictionary<T, object> table = new Dictionary<T, object>();
+
             foreach(T item in c)
             {
                 if(!table.ContainsKey(item))
@@ -1240,6 +1301,7 @@ namespace MathNet.Numerics
                     table.Add(item, null);
                 }
             }
+
             foreach(T item in this)
             {
                 if(!table.ContainsKey(item))
@@ -1247,6 +1309,7 @@ namespace MathNet.Numerics
                     return false;
                 }
             }
+
             return true;
         }
 
@@ -1274,6 +1337,7 @@ namespace MathNet.Numerics
                     }
                 }
             }
+
             foreach(T item in this)
             {
                 if(!table.ContainsKey(item))
@@ -1281,6 +1345,7 @@ namespace MathNet.Numerics
                     return false;
                 }
             }
+
             return true;
         }
 
@@ -1344,6 +1409,7 @@ namespace MathNet.Numerics
                     return false;
                 }
             }
+
             return true;
         }
 
@@ -1390,6 +1456,7 @@ namespace MathNet.Numerics
                     return base[i];
                 }
             }
+
             return default(T);
         }
 
@@ -1433,10 +1500,12 @@ namespace MathNet.Numerics
             {
                 throw new ArgumentOutOfRangeException("startIndex");
             }
+
             if((count < 0) || (startIndex > (Count - count)))
             {
                 throw new ArgumentOutOfRangeException("count");
             }
+
             if(match == null)
             {
                 throw new ArgumentNullException("match");
@@ -1450,6 +1519,7 @@ namespace MathNet.Numerics
                     return i;
                 }
             }
+
             return -1;
         }
 
@@ -1474,6 +1544,7 @@ namespace MathNet.Numerics
                     return base[i];
                 }
             }
+
             return default(T);
         }
 
@@ -1517,10 +1588,12 @@ namespace MathNet.Numerics
             {
                 throw new ArgumentOutOfRangeException("startIndex");
             }
+
             if((count < 0) || (((startIndex - count) + 1) < 0))
             {
                 throw new ArgumentOutOfRangeException("count");
             }
+
             if(match == null)
             {
                 throw new ArgumentNullException("match");
@@ -1534,6 +1607,7 @@ namespace MathNet.Numerics
                     return i;
                 }
             }
+
             return -1;
         }
 
@@ -1553,6 +1627,7 @@ namespace MathNet.Numerics
                     return i;
                 }
             }
+
             return -1;
         }
 
@@ -1578,6 +1653,7 @@ namespace MathNet.Numerics
                     found.Add(base[i]);
                 }
             }
+
             return found;
         }
 
@@ -1706,10 +1782,12 @@ namespace MathNet.Numerics
             ) where TOutput : IEquatable<TOutput>
         {
             Set<TOutput> ret = new Set<TOutput>();
+
             foreach(T item in this)
             {
                 ret.Add(convert(item));
             }
+
             return ret;
         }
 
@@ -1721,11 +1799,19 @@ namespace MathNet.Numerics
     /// </summary>
     public enum SetElementOperation
     {
-        /// <summary>Add elements to the set</summary>
+        /// <summary>
+        /// Add elements to the set
+        /// </summary>
         Added,
-        /// <summary>Remove elements to the set</summary>
+
+        /// <summary>
+        /// Remove elements to the set
+        /// </summary>
         Removed,
-        /// <summary>Move elements inside of the set</summary>
+
+        /// <summary>
+        /// Move elements inside of the set
+        /// </summary>
         Moved
     }
 

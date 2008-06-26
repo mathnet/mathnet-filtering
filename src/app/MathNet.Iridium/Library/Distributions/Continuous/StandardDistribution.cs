@@ -4,7 +4,7 @@
 //
 // Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
 //                          Joannes Vermorel, http://www.vermorel.com
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or

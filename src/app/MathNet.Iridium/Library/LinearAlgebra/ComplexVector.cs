@@ -3,7 +3,7 @@
 // http://mathnet.opensourcedotnet.info
 //
 // Copyright (c) 2004-2008, Christoph Rüegg, http://christoph.ruegg.name
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -162,10 +162,12 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 throw new ArgumentNullException("realComponents");
             }
+
             if(null == imagComponents)
             {
                 throw new ArgumentNullException("imagComponents");
             }
+
             if(realComponents.Count != imagComponents.Count)
             {
                 throw new ArgumentException(Properties.Resources.ArgumentVectorsSameLengths);
@@ -273,6 +275,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 m[i][0] = _data[i];
             }
+
             return new ComplexMatrix(m);
         }
 
@@ -289,6 +292,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 mRow[i] = _data[i];
             }
+
             return new ComplexMatrix(m);
         }
 
@@ -321,6 +325,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 v[i] = _data[i] + b[i];
             }
+
             return new ComplexVector(v);
         }
 
@@ -349,6 +354,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 v[i] = _data[i] + b[i];
             }
+
             return new ComplexVector(v);
         }
 
@@ -375,6 +381,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 v[i] = _data[i] + b;
             }
+
             return new ComplexVector(v);
         }
 
@@ -467,6 +474,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 v[i] = _data[i] - b[i];
             }
+
             return new ComplexVector(v);
         }
 
@@ -495,6 +503,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 v[i] = _data[i] - b[i];
             }
+
             return new ComplexVector(v);
         }
 
@@ -521,6 +530,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 v[i] = _data[i] - b;
             }
+
             return new ComplexVector(v);
         }
 
@@ -608,6 +618,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 v[i] = -_data[i];
             }
+
             return new ComplexVector(v);
         }
 
@@ -645,6 +656,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 v[i] = _data[i].Conjugate;
             }
+
             return new ComplexVector(v);
         }
 
@@ -688,6 +700,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 v[i] = _data[i] * scalar;
             }
+
             return new ComplexVector(v);
         }
 
@@ -737,6 +750,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 sum += u[i] * v[i];
             }
+
             return sum;
         }
 
@@ -762,6 +776,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 sum += u[i] * v[i];
             }
+
             return sum;
         }
 
@@ -829,6 +844,7 @@ namespace MathNet.Numerics.LinearAlgebra
                     m[i][j] = u[i] * v[j];
                 }
             }
+
             return new ComplexMatrix(m);
         }
 
@@ -917,6 +933,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 v[i] = a[i] * b[i];
             }
+
             return new ComplexVector(v);
         }
 
@@ -942,6 +959,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 v[i] = a[i] * b[i];
             }
+
             return new ComplexVector(v);
         }
 
@@ -1041,6 +1059,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 newData[i] = _data[i].Power(exponent);
             }
+
             return new ComplexVector(newData);
         }
 
@@ -1085,6 +1104,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 v[i] = a[i] / b[i];
             }
+
             return new ComplexVector(v);
         }
 
@@ -1110,6 +1130,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 v[i] = a[i] / b[i];
             }
+
             return new ComplexVector(v);
         }
 
@@ -1209,6 +1230,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 newData[i] = mapping(_data[i]);
             }
+
             return new ComplexVector(newData);
         }
 
@@ -1250,6 +1272,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 sum += _data[i].Modulus;
             }
+
             return sum;
         }
 
@@ -1432,10 +1455,12 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 throw new ArgumentNullException("A");
             }
+
             if(null == B)
             {
                 throw new ArgumentNullException("B");
             }
+
             if(A.Length != B.Length)
             {
                 throw new ArgumentException(Resources.ArgumentVectorsSameLengths);
@@ -1454,10 +1479,12 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 throw new ArgumentNullException("A");
             }
+
             if(null == B)
             {
                 throw new ArgumentNullException("B");
             }
+
             if(A.Length != B.Length)
             {
                 throw new ArgumentException(Resources.ArgumentVectorsSameLengths);
@@ -1490,14 +1517,17 @@ namespace MathNet.Numerics.LinearAlgebra
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("[");
+
             for(int i = 0; i < _data.Length; i++)
             {
                 if(i != 0)
                 {
                     sb.Append(',');
                 }
+
                 sb.Append(_data[i].ToString());
             }
+
             sb.Append("]");
             return sb.ToString();
         }

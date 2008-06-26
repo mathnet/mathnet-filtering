@@ -3,7 +3,7 @@
 // http://mathnet.opensourcedotnet.info
 //
 // Copyright (c) 2004-2008, Christoph Rüegg, http://christoph.ruegg.name
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -35,12 +35,18 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <summary>
         /// Gets the number of rows.
         /// </summary>
-        int RowCount { get; }
+        int RowCount
+        {
+            get;
+        }
 
         /// <summary>
         /// Gets the number of columns.
         /// </summary>
-        int ColumnCount { get; }
+        int ColumnCount
+        {
+            get;
+        }
 
         /// <summary>
         /// Gets or set the element indexed by <c>(i, j)</c>
@@ -48,7 +54,11 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </summary>
         /// <param name="i">Row index.</param>
         /// <param name="j">Column index.</param>
-        T this[int i, int j] { get; set; }
+        T this[int i, int j]
+        {
+            get;
+            set;
+        }
 
         /// <summary>
         /// Copy all elements of this matrix to a rectangular 2D array.
@@ -59,6 +69,5 @@ namespace MathNet.Numerics.LinearAlgebra
         /// Copy all elements of this matrix to a jagged array.
         /// </summary>
         T[][] CopyToJaggedArray();
-
     }
 }

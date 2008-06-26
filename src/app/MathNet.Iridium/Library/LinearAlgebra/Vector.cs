@@ -172,6 +172,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 data[i] = randomDistribution.NextDouble();
             }
+
             return new Vector(data);
         }
 
@@ -283,6 +284,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 m[i][0] = _data[i];
             }
+
             return new Matrix(m);
         }
 
@@ -299,6 +301,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 mRow[i] = _data[i];
             }
+
             return new Matrix(m);
         }
 
@@ -331,6 +334,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 v[i] = _data[i] + b[i];
             }
+
             return new Vector(v);
         }
 
@@ -357,6 +361,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 v[i] = _data[i] + b;
             }
+
             return new Vector(v);
         }
 
@@ -427,6 +432,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 v[i] = _data[i] - b[i];
             }
+
             return new Vector(v);
         }
 
@@ -453,6 +459,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 v[i] = _data[i] - b;
             }
+
             return new Vector(v);
         }
 
@@ -518,6 +525,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 v[i] = -_data[i];
             }
+
             return new Vector(v);
         }
 
@@ -562,6 +570,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 v[i] = _data[i] * scalar;
             }
+
             return new Vector(v);
         }
 
@@ -611,6 +620,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 sum += u[i] * v[i];
             }
+
             return sum;
         }
 
@@ -657,6 +667,7 @@ namespace MathNet.Numerics.LinearAlgebra
                     m[i][j] = u[i] * v[j];
                 }
             }
+
             return new Matrix(m);
         }
 
@@ -745,6 +756,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 v[i] = a[i] * b[i];
             }
+
             return new Vector(v);
         }
 
@@ -809,6 +821,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 v[i] = a[i] / b[i];
             }
+
             return new Vector(v);
         }
 
@@ -870,6 +883,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 sum = Fn.Hypot(sum, _data[i]);
             }
+
             return sum;
         }
 
@@ -888,6 +902,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 sum = Fn.Hypot(sum, _data[i]);
             }
+
             return sum * sum;
         }
 
@@ -906,6 +921,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 sum += Math.Abs(_data[i]);
             }
+
             return sum;
         }
 
@@ -925,10 +941,12 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 throw new ArgumentOutOfRangeException("p");
             }
+
             if(1 == p)
             {
                 return Norm1();
             }
+
             if(2 == p)
             {
                 return Norm();
@@ -939,6 +957,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 sum += Math.Pow(Math.Abs(_data[i]), p);
             }
+
             return Math.Pow(sum, 1.0 / p);
         }
 
@@ -957,6 +976,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 max = Math.Max(max, Math.Abs(_data[i]));
             }
+
             return max;
         }
 
@@ -972,6 +992,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 return Clone();
             }
+
             return Scale(1 / norm);
         }
 
@@ -1126,10 +1147,12 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 throw new ArgumentNullException("A");
             }
+
             if(null == B)
             {
                 throw new ArgumentNullException("B");
             }
+
             if(A.Length != B.Length)
             {
                 throw new ArgumentException(Resources.ArgumentVectorsSameLengths);
@@ -1166,6 +1189,7 @@ namespace MathNet.Numerics.LinearAlgebra
         {
             return Number.AlmostEqualNorm(u.Norm1(), v.Norm1(), (u - v).Norm1(), relativeAccuracy);
         }
+
         /// <summary>
         /// Returns true if two vectors are almost equal.
         /// </summary>
@@ -1188,14 +1212,17 @@ namespace MathNet.Numerics.LinearAlgebra
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("[");
+
             for(int i = 0; i < _data.Length; i++)
             {
                 if(i != 0)
                 {
                     sb.Append(',');
                 }
+
                 sb.Append(_data[i]);
             }
+
             sb.Append("]");
             return sb.ToString();
         }

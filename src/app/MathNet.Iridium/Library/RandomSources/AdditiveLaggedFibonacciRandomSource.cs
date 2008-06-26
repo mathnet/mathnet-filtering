@@ -3,7 +3,7 @@
 // http://mathnet.opensourcedotnet.info
 //
 // Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -202,11 +202,13 @@ namespace MathNet.Numerics.RandomSources
         ResetGenerator()
         {
             MersenneTwisterRandomSource gen = new MersenneTwisterRandomSource(_seed);
+            
             _x = new uint[_longLag];
             for(uint j = 0; j < _longLag; ++j)
             {
                 _x[j] = gen.NextUInt();
             }
+
             _i = _longLag;
 
             // Reset helper variables used for generation of random bools.
@@ -229,10 +231,12 @@ namespace MathNet.Numerics.RandomSources
             {
                 _x[j] = _x[j] + _x[j + (_longLag - _shortLag)];
             }
+
             for(int j = _shortLag; j < _longLag; ++j)
             {
                 _x[j] = _x[j] + _x[j - _shortLag];
             }
+
             _i = 0;
         }
 
@@ -252,6 +256,7 @@ namespace MathNet.Numerics.RandomSources
             {
                 Fill();
             }
+
             return _x[_i++];
         }
 
@@ -271,8 +276,8 @@ namespace MathNet.Numerics.RandomSources
             {
                 Fill();
             }
-            uint x = _x[_i++];
 
+            uint x = _x[_i++];
             return (int)(x >> 1);
         }
 
@@ -292,18 +297,17 @@ namespace MathNet.Numerics.RandomSources
             {
                 Fill();
             }
-            uint x = _x[_i++];
 
+            uint x = _x[_i++];
             int result = (int)(x >> 1);
+
             // Exclude Int32.MaxValue from the range of return values.
             if(result == Int32.MaxValue)
             {
                 return Next();
             }
-            else
-            {
-                return result;
-            }
+
+            return result;
         }
 
         /// <summary>
@@ -337,6 +341,7 @@ namespace MathNet.Numerics.RandomSources
             {
                 Fill();
             }
+
             uint x = _x[_i++];
 
             // The shift operation and extra int cast before the first multiplication give better performance.
@@ -381,6 +386,7 @@ namespace MathNet.Numerics.RandomSources
             {
                 Fill();
             }
+
             uint x = _x[_i++];
 
             int range = maxValue - minValue;
@@ -416,6 +422,7 @@ namespace MathNet.Numerics.RandomSources
             {
                 Fill();
             }
+
             uint x = _x[_i++];
 
             // Here a ~2x speed improvement is gained by computing a value that can be cast to an int 
@@ -457,6 +464,7 @@ namespace MathNet.Numerics.RandomSources
             {
                 Fill();
             }
+
             uint x = _x[_i++];
 
             // The shift operation and extra int cast before the first multiplication give better performance.
@@ -528,6 +536,7 @@ namespace MathNet.Numerics.RandomSources
             {
                 Fill();
             }
+
             uint x = _x[_i++];
 
             // The shift operation and extra int cast before the first multiplication give better performance.
@@ -556,6 +565,7 @@ namespace MathNet.Numerics.RandomSources
                 {
                     Fill();
                 }
+
                 _bitBuffer = _x[_i++];
 
                 // Reset the bitCount and use rightmost bit of buffer to generate random bool.
@@ -605,6 +615,7 @@ namespace MathNet.Numerics.RandomSources
                 {
                     Fill();
                 }
+
                 w = _x[_i++];
 
                 buffer[i++] = (byte)w;
@@ -621,6 +632,7 @@ namespace MathNet.Numerics.RandomSources
                 {
                     Fill();
                 }
+
                 w = _x[_i++];
 
                 buffer[i++] = (byte)w;
@@ -665,7 +677,11 @@ namespace MathNet.Numerics.RandomSources
         /// <remarks>Call <see cref="IsValidShortLag"/> to determine whether a value is valid and therefor assignable.</remarks>
         public int ShortLag
         {
-            get { return _shortLag; }
+            get
+            {
+                return _shortLag;
+            }
+
             set
             {
                 if(this.IsValidShortLag(value))
@@ -685,6 +701,7 @@ namespace MathNet.Numerics.RandomSources
             {
                 return _longLag;
             }
+
             set
             {
                 if(this.IsValidLongLag(value))

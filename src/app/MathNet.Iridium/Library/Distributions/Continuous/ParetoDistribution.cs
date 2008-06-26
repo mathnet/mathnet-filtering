@@ -3,7 +3,7 @@
 // http://mathnet.opensourcedotnet.info
 //
 // Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -181,10 +181,12 @@ namespace MathNet.Numerics.Distributions
         {
             get
             {
-                if(_shape > 1.0)
-                    return _location * _shape / (_shape - 1.0);
-                else
+                if(_shape <= 1.0)
+                {
                     throw new NotSupportedException();
+                }
+
+                return _location * _shape / (_shape - 1.0); 
             }
         }
 
@@ -204,13 +206,13 @@ namespace MathNet.Numerics.Distributions
         {
             get
             {
-                if(_shape > 2.0)
+                if(_shape <= 2.0)
                 {
-                    double a = _shape - 1.0;
-                    return _shape * _location * _location / (a * a * (_shape - 2.0));
-                }
-                else
                     throw new NotSupportedException();
+                }
+
+                double a = _shape - 1.0;
+                return _shape * _location * _location / (a * a * (_shape - 2.0));
             }
         }
 
@@ -222,10 +224,12 @@ namespace MathNet.Numerics.Distributions
         {
             get
             {
-                if(_shape > 3.0)
-                    return 2.0 * (1.0 + _shape) / (_shape - 3.0) * Math.Sqrt((_shape - 2) / _shape);
-                else
+                if(_shape <= 3.0)
+                {
                     throw new NotSupportedException();
+                }
+
+                return 2.0 * (1.0 + _shape) / (_shape - 3.0) * Math.Sqrt((_shape - 2) / _shape);
             }
         }
 

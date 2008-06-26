@@ -6,7 +6,7 @@
 //
 // Contribution: Numerical Recipes in C++, Second Edition [2003]
 //               Handbook of Mathematical Functions [1965]
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -22,36 +22,36 @@
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
 #region Some algorithms based on: Copyright 2007 Bochkanov
-//ALGLIB
-//Copyright by Sergey Bochkanov
-
-//Redistribution and use in source and binary forms, with or without
-//modification, are permitted provided that the following conditions are
-//met:
-
-//- Redistributions of source code must retain the above copyright
-//  notice, this list of conditions and the following disclaimer.
-
-//- Redistributions in binary form must reproduce the above copyright
-//  notice, this list of conditions and the following disclaimer listed
-//  in this license in the documentation and/or other materials
-//  provided with the distribution.
-
-//- Neither the name of the copyright holders nor the names of its
-//  contributors may be used to endorse or promote products derived from
-//  this software without specific prior written permission.
-
-//THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-//"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-//LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-//A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-//OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-//SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-//LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-//DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-//THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-//(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-//OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+// ALGLIB
+// Copyright by Sergey Bochkanov
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are
+// met:
+//
+// - Redistributions of source code must retain the above copyright
+//   notice, this list of conditions and the following disclaimer.
+//
+// - Redistributions in binary form must reproduce the above copyright
+//   notice, this list of conditions and the following disclaimer listed
+//   in this license in the documentation and/or other materials
+//   provided with the distribution.
+//
+// - Neither the name of the copyright holders nor the names of its
+//   contributors may be used to endorse or promote products derived from
+//   this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #endregion
 
 using System;
@@ -114,14 +114,17 @@ namespace MathNet.Numerics.Interpolation.Algorithms
             {
                 throw new ArgumentNullException("t");
             }
+
             if(null == c)
             {
                 throw new ArgumentNullException("c");
             }
+
             if(t.Count < 1)
             {
                 throw new ArgumentOutOfRangeException("t");
             }
+
             if(c.Count != 4 * (t.Count - 1))
             {
                 throw new ArgumentOutOfRangeException("c");
@@ -239,6 +242,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
                 double w = _t[i + 1] - _t[i];
                 result += w * (_c[j] + w * (_c[j + 1] * 0.5 + w * (_c[j + 2] / 3 + w * _c[j + 3] * 0.25)));
             }
+
             t = t - _t[low];
             int k = low << 2;
             return result + t * (_c[k] + t * (_c[k + 1] * 0.5 + t * (_c[k + 2] / 3 + t * _c[k + 3] * 0.25)));

@@ -3,7 +3,7 @@
 // http://mathnet.opensourcedotnet.info
 //
 // Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -100,7 +100,11 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override RandomSource RandomSource
         {
-            get { return base.RandomSource; }
+            get
+            {
+                return base.RandomSource;
+            }
+
             set
             {
                 base.RandomSource = value;
@@ -195,7 +199,9 @@ namespace MathNet.Numerics.Distributions
             get
             {
                 if(_degreesOfFreedom < 2)
+                {
                     throw new NotSupportedException();
+                }
 
                 return 0.0;
             }
@@ -223,7 +229,9 @@ namespace MathNet.Numerics.Distributions
             get
             {
                 if(_degreesOfFreedom < 3)
+                {
                     throw new NotSupportedException();
+                }
 
                 return _degreesOfFreedom / (_degreesOfFreedom - 2.0);
             }
@@ -240,7 +248,9 @@ namespace MathNet.Numerics.Distributions
             get
             {
                 if(_degreesOfFreedom < 4)
+                {
                     throw new NotSupportedException();
+                }
 
                 return 0.0;
             }

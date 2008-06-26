@@ -3,7 +3,7 @@
 // http://mathnet.opensourcedotnet.info
 //
 // Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -31,11 +31,19 @@ namespace MathNet.Numerics.Interpolation
     [Obsolete]
     public enum InterpolationMode : int
     {
-        /// <summary>Polynomial Interpolation</summary>
+        /// <summary>
+        /// Polynomial Interpolation
+        /// </summary>
         ExpectNoPoles = 1,
-        /// <summary>Rational Interpolation</summary>
+
+        /// <summary>
+        /// Rational Interpolation
+        /// </summary>
         ExpectPoles = 2,
-        /// <summary>Cubic Spline Interpolation</summary>
+
+        /// <summary>
+        /// Cubic Spline Interpolation
+        /// </summary>
         Smooth = 8
     }
 
@@ -47,7 +55,7 @@ namespace MathNet.Numerics.Interpolation
     {
         SampleList _samples;
         IInterpolationAlgorithm _algorithm;
-        bool _dirty = true; //delay preparation until first evaluation
+        bool _dirty = true; // delay preparation until first evaluation
 
         #region Construction
 
@@ -247,10 +255,13 @@ namespace MathNet.Numerics.Interpolation
                 _algorithm.Prepare(_samples);
                 _dirty = false;
             }
+
             if(_samples.MinT <= t && t <= _samples.MaxT)
+            {
                 return _algorithm.Interpolate(t);
-            else
-                return _algorithm.Extrapolate(t);
+            }
+
+            return _algorithm.Extrapolate(t);
         }
 
         /// <summary>
@@ -268,6 +279,7 @@ namespace MathNet.Numerics.Interpolation
                 _algorithm.Prepare(_samples);
                 _dirty = false;
             }
+
             return _algorithm.Interpolate(t, out errorEstimation);
         }
 
@@ -285,7 +297,7 @@ namespace MathNet.Numerics.Interpolation
             SampleList.SampleAlteredEventArgs e
             )
         {
-            _dirty = true; //require new preparation
+            _dirty = true; // require new preparation
         }
     }
 }

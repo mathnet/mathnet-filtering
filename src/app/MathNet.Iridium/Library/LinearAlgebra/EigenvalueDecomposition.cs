@@ -6,7 +6,7 @@
 //                          Christoph Rüegg, http://christoph.ruegg.name
 //
 // Contribution: The MathWorks and NIST [2000]
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -120,10 +120,12 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     double[] Hi = new double[n];
                     double[] Ai = A[i];
+
                     for(int j = 0; j < n; j++)
                     {
                         Hi[j] = Ai[j];
                     }
+
                     H[i] = Hi;
                 }
 
@@ -191,6 +193,7 @@ namespace MathNet.Numerics.LinearAlgebra
         {
             get { return _eigenValuesReal; }
         }
+
         /// <summary>
         /// Gets the imaginary part of the eigenvalues.
         /// </summary>
@@ -228,10 +231,12 @@ namespace MathNet.Numerics.LinearAlgebra
         ComputeEigenValues()
         {
             Complex[] eigenvalues = new Complex[n];
+
             for(int i = 0; i < eigenvalues.Length; i++)
             {
                 eigenvalues[i] = new Complex(d[i], e[i]);
             }
+
             return new ComplexVector(eigenvalues);
         }
 
@@ -245,7 +250,9 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     D[i][j] = 0.0;
                 }
+
                 D[i][i] = d[i];
+
                 if(e[i] > 0)
                 {
                     D[i][i + 1] = e[i];
@@ -255,6 +262,7 @@ namespace MathNet.Numerics.LinearAlgebra
                     D[i][i - 1] = e[i];
                 }
             }
+
             return new Matrix(D);
         }
 
@@ -270,10 +278,10 @@ namespace MathNet.Numerics.LinearAlgebra
         void
         SymmetricTridiagonalize()
         {
-            //  This is derived from the Algol procedures tred2 by
-            //  Bowdler, Martin, Reinsch, and Wilkinson, Handbook for
-            //  Auto. Comp., Vol.ii-Linear Algebra, and the corresponding
-            //  Fortran subroutine in EISPACK.
+            // This is derived from the Algol procedures tred2 by
+            // Bowdler, Martin, Reinsch, and Wilkinson, Handbook for
+            // Auto. Comp., Vol.ii-Linear Algebra, and the corresponding
+            // Fortran subroutine in EISPACK.
 
             for(int j = 0; j < n; j++)
             {
@@ -288,10 +296,12 @@ namespace MathNet.Numerics.LinearAlgebra
 
                 double scale = 0.0;
                 double h = 0.0;
+
                 for(int k = 0; k < i; k++)
                 {
                     scale = scale + Math.Abs(d[k]);
                 }
+
                 if(scale == 0.0)
                 {
                     e[i] = d[i - 1];
@@ -311,12 +321,14 @@ namespace MathNet.Numerics.LinearAlgebra
                         d[k] /= scale;
                         h += d[k] * d[k];
                     }
+
                     double f = d[i - 1];
                     double g = Math.Sqrt(h);
                     if(f > 0)
                     {
                         g = -g;
                     }
+
                     e[i] = scale * g;
                     h = h - f * g;
                     d[i - 1] = f - g;
@@ -332,36 +344,46 @@ namespace MathNet.Numerics.LinearAlgebra
                         f = d[j];
                         V[j][i] = f;
                         g = e[j] + V[j][j] * f;
+
                         for(int k = j + 1; k <= i - 1; k++)
                         {
                             g += V[k][j] * d[k];
                             e[k] += V[k][j] * f;
                         }
+
                         e[j] = g;
                     }
+
                     f = 0.0;
+
                     for(int j = 0; j < i; j++)
                     {
                         e[j] /= h;
                         f += e[j] * d[j];
                     }
+
                     double hh = f / (h + h);
+
                     for(int j = 0; j < i; j++)
                     {
                         e[j] -= hh * d[j];
                     }
+
                     for(int j = 0; j < i; j++)
                     {
                         f = d[j];
                         g = e[j];
+
                         for(int k = j; k <= i - 1; k++)
                         {
                             V[k][j] -= (f * e[k] + g * d[k]);
                         }
+
                         d[j] = V[i - 1][j];
                         V[i][j] = 0.0;
                     }
                 }
+
                 d[i] = h;
             }
 
@@ -378,6 +400,7 @@ namespace MathNet.Numerics.LinearAlgebra
                     {
                         d[k] = V[k][i + 1] / h;
                     }
+
                     for(int j = 0; j <= i; j++)
                     {
                         double g = 0.0;
@@ -385,22 +408,26 @@ namespace MathNet.Numerics.LinearAlgebra
                         {
                             g += V[k][i + 1] * V[k][j];
                         }
+
                         for(int k = 0; k <= i; k++)
                         {
                             V[k][j] -= g * d[k];
                         }
                     }
                 }
+
                 for(int k = 0; k <= i; k++)
                 {
                     V[k][i + 1] = 0.0;
                 }
             }
+
             for(int j = 0; j < n; j++)
             {
                 d[j] = V[n - 1][j];
                 V[n - 1][j] = 0.0;
             }
+
             V[n - 1][n - 1] = 1.0;
             e[0] = 0.0;
         }
@@ -411,15 +438,16 @@ namespace MathNet.Numerics.LinearAlgebra
         void
         SymmetricDiagonalize()
         {
-            //  This is derived from the Algol procedures tql2, by
-            //  Bowdler, Martin, Reinsch, and Wilkinson, Handbook for
-            //  Auto. Comp., Vol.ii-Linear Algebra, and the corresponding
-            //  Fortran subroutine in EISPACK.
+            // This is derived from the Algol procedures tql2, by
+            // Bowdler, Martin, Reinsch, and Wilkinson, Handbook for
+            // Auto. Comp., Vol.ii-Linear Algebra, and the corresponding
+            // Fortran subroutine in EISPACK.
 
             for(int i = 1; i < n; i++)
             {
                 e[i - 1] = e[i];
             }
+
             e[n - 1] = 0.0;
 
             double f = 0.0;
@@ -437,6 +465,7 @@ namespace MathNet.Numerics.LinearAlgebra
                     {
                         break;
                     }
+
                     m++;
                 }
 
@@ -459,14 +488,17 @@ namespace MathNet.Numerics.LinearAlgebra
                         {
                             r = -r;
                         }
+
                         d[l] = e[l] / (p + r);
                         d[l + 1] = e[l] * (p + r);
+
                         double dl1 = d[l + 1];
                         double h = g - d[l];
                         for(int i = l + 2; i < n; i++)
                         {
                             d[i] -= h;
                         }
+
                         f = f + h;
 
                         // Implicit QL transformation.
@@ -501,6 +533,7 @@ namespace MathNet.Numerics.LinearAlgebra
                                 V[k][i] = c * V[k][i] - s * h;
                             }
                         }
+
                         p = (-s) * s2 * c3 * el1 * e[l] / dl1;
                         e[l] = s * p;
                         d[l] = c * p;
@@ -509,6 +542,7 @@ namespace MathNet.Numerics.LinearAlgebra
                     }
                     while(Math.Abs(e[l]) > eps * tst1);
                 }
+
                 d[l] = d[l] + f;
                 e[l] = 0.0;
             }
@@ -527,6 +561,7 @@ namespace MathNet.Numerics.LinearAlgebra
                         p = d[j];
                     }
                 }
+
                 if(k != i)
                 {
                     d[k] = d[i];
@@ -547,10 +582,10 @@ namespace MathNet.Numerics.LinearAlgebra
         void
         NonsymmetricReduceToHessenberg()
         {
-            //  This is derived from the Algol procedures orthes and ortran,
-            //  by Martin and Wilkinson, Handbook for Auto. Comp.,
-            //  Vol.ii-Linear Algebra, and the corresponding
-            //  Fortran subroutines in EISPACK.
+            // This is derived from the Algol procedures orthes and ortran,
+            // by Martin and Wilkinson, Handbook for Auto. Comp.,
+            // Vol.ii-Linear Algebra, and the corresponding
+            // Fortran subroutines in EISPACK.
 
             int low = 0;
             int high = n - 1;
@@ -567,6 +602,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     scale = scale + Math.Abs(H[i][m - 1]);
                 }
+
                 if(scale != 0.0)
                 {
 
@@ -578,11 +614,13 @@ namespace MathNet.Numerics.LinearAlgebra
                         ort[i] = H[i][m - 1] / scale;
                         h += ort[i] * ort[i];
                     }
+
                     double g = Math.Sqrt(h);
                     if(ort[m] > 0)
                     {
                         g = -g;
                     }
+
                     h = h - ort[m] * g;
                     ort[m] = ort[m] - g;
 
@@ -596,6 +634,7 @@ namespace MathNet.Numerics.LinearAlgebra
                         {
                             f += ort[i] * H[i][j];
                         }
+
                         f = f / h;
                         for(int i = m; i <= high; i++)
                         {
@@ -610,12 +649,14 @@ namespace MathNet.Numerics.LinearAlgebra
                         {
                             f += ort[j] * H[i][j];
                         }
+
                         f = f / h;
                         for(int j = m; j <= high; j++)
                         {
                             H[i][j] -= f * ort[j];
                         }
                     }
+
                     ort[m] = scale * ort[m];
                     H[m][m - 1] = scale * g;
                 }
@@ -639,6 +680,7 @@ namespace MathNet.Numerics.LinearAlgebra
                     {
                         ort[i] = H[i][m - 1];
                     }
+
                     for(int j = m; j <= high; j++)
                     {
                         double g = 0.0;
@@ -646,6 +688,7 @@ namespace MathNet.Numerics.LinearAlgebra
                         {
                             g += ort[i] * V[i][j];
                         }
+
                         // Double division avoids possible underflow
                         g = (g / ort[m]) / H[m][m - 1];
                         for(int i = m; i <= high; i++)
@@ -663,10 +706,10 @@ namespace MathNet.Numerics.LinearAlgebra
         void
         NonsymmetricReduceHessenberToRealSchur()
         {
-            //  This is derived from the Algol procedure hqr2,
-            //  by Martin and Wilkinson, Handbook for Auto. Comp.,
-            //  Vol.ii-Linear Algebra, and the corresponding
-            //  Fortran subroutine in EISPACK.
+            // This is derived from the Algol procedure hqr2,
+            // by Martin and Wilkinson, Handbook for Auto. Comp.,
+            // Vol.ii-Linear Algebra, and the corresponding
+            // Fortran subroutine in EISPACK.
 
             // Initialize
 
@@ -688,6 +731,7 @@ namespace MathNet.Numerics.LinearAlgebra
                     d[i] = H[i][i];
                     e[i] = 0.0;
                 }
+
                 for(int j = Math.Max(i - 1, 0); j < nn; j++)
                 {
                     norm = norm + Math.Abs(H[i][j]);
@@ -706,14 +750,17 @@ namespace MathNet.Numerics.LinearAlgebra
                 while(l > low)
                 {
                     s = Math.Abs(H[l - 1][l - 1]) + Math.Abs(H[l][l]);
+
                     if(s == 0.0)
                     {
                         s = norm;
                     }
+
                     if(Math.Abs(H[l][l - 1]) < eps * s)
                     {
                         break;
                     }
+
                     l--;
                 }
 
@@ -752,12 +799,15 @@ namespace MathNet.Numerics.LinearAlgebra
                         {
                             z = p - z;
                         }
+
                         d[n - 1] = x + z;
+
                         d[n] = d[n - 1];
                         if(z != 0.0)
                         {
                             d[n] = x - w / z;
                         }
+
                         e[n - 1] = 0.0;
                         e[n] = 0.0;
                         x = H[n][n - 1];
@@ -804,6 +854,7 @@ namespace MathNet.Numerics.LinearAlgebra
                         e[n - 1] = z;
                         e[n] = -z;
                     }
+
                     n = n - 2;
                     iter = 0;
 
@@ -832,6 +883,7 @@ namespace MathNet.Numerics.LinearAlgebra
                         {
                             H[i][i] -= x;
                         }
+
                         s = Math.Abs(H[n][n - 1]) + Math.Abs(H[n - 1][n - 2]);
                         x = y = 0.75 * s;
                         w = (-0.4375) * s * s;
@@ -850,11 +902,13 @@ namespace MathNet.Numerics.LinearAlgebra
                             {
                                 s = -s;
                             }
+
                             s = x - w / ((y - x) / 2.0 + s);
                             for(int i = low; i <= n; i++)
                             {
                                 H[i][i] -= s;
                             }
+
                             exshift += s;
                             x = y = w = 0.964;
                         }
@@ -877,14 +931,17 @@ namespace MathNet.Numerics.LinearAlgebra
                         p = p / s;
                         q = q / s;
                         r = r / s;
+
                         if(m == l)
                         {
                             break;
                         }
+
                         if(Math.Abs(H[m][m - 1]) * (Math.Abs(q) + Math.Abs(r)) < eps * (Math.Abs(p) * (Math.Abs(H[m - 1][m - 1]) + Math.Abs(z) + Math.Abs(H[m + 1][m + 1]))))
                         {
                             break;
                         }
+
                         m--;
                     }
 
@@ -902,6 +959,7 @@ namespace MathNet.Numerics.LinearAlgebra
                     for(int k = m; k <= n - 1; k++)
                     {
                         bool notlast = (k != n - 1);
+
                         if(k != m)
                         {
                             p = H[k][k - 1];
@@ -915,15 +973,18 @@ namespace MathNet.Numerics.LinearAlgebra
                                 r = r / x;
                             }
                         }
+
                         if(x == 0.0)
                         {
                             break;
                         }
+
                         s = Math.Sqrt(p * p + q * q + r * r);
                         if(p < 0)
                         {
                             s = -s;
                         }
+
                         if(s != 0.0)
                         {
                             if(k != m)
@@ -934,6 +995,7 @@ namespace MathNet.Numerics.LinearAlgebra
                             {
                                 H[k][k - 1] = -H[k][k - 1];
                             }
+
                             p = p + s;
                             x = p / s;
                             y = q / s;
@@ -946,11 +1008,13 @@ namespace MathNet.Numerics.LinearAlgebra
                             for(int j = k; j < nn; j++)
                             {
                                 p = H[k][j] + q * H[k + 1][j];
+
                                 if(notlast)
                                 {
                                     p = p + r * H[k + 2][j];
                                     H[k + 2][j] = H[k + 2][j] - p * z;
                                 }
+
                                 H[k][j] = H[k][j] - p * x;
                                 H[k + 1][j] = H[k + 1][j] - p * y;
                             }
@@ -961,11 +1025,13 @@ namespace MathNet.Numerics.LinearAlgebra
                             {
                                 double[] Hi = H[i];
                                 p = x * Hi[k] + y * Hi[k + 1];
+
                                 if(notlast)
                                 {
                                     p = p + z * Hi[k + 2];
                                     Hi[k + 2] = Hi[k + 2] - p * r;
                                 }
+
                                 Hi[k] = Hi[k] - p;
                                 Hi[k + 1] = Hi[k + 1] - p * q;
                             }
@@ -976,11 +1042,13 @@ namespace MathNet.Numerics.LinearAlgebra
                             {
                                 double[] Vi = V[i];
                                 p = x * Vi[k] + y * Vi[k + 1];
+
                                 if(notlast)
                                 {
                                     p = p + z * Vi[k + 2];
                                     Vi[k + 2] = Vi[k + 2] - p * r;
                                 }
+
                                 Vi[k] = Vi[k] - p;
                                 Vi[k + 1] = Vi[k + 1] - p * q;
                             }
@@ -1015,6 +1083,7 @@ namespace MathNet.Numerics.LinearAlgebra
                         {
                             r = r + H[i][j] * H[j][n];
                         }
+
                         if(e[i] < 0.0)
                         {
                             z = w;
@@ -1085,6 +1154,7 @@ namespace MathNet.Numerics.LinearAlgebra
                         H[n - 1][n - 1] = cdivr;
                         H[n - 1][n] = cdivi;
                     }
+
                     H[n][n - 1] = 0.0;
                     H[n][n] = 1.0;
                     for(int i = n - 2; i >= 0; i--)
@@ -1097,6 +1167,7 @@ namespace MathNet.Numerics.LinearAlgebra
                             ra = ra + H[i][j] * H[j][n - 1];
                             sa = sa + H[i][j] * H[j][n];
                         }
+
                         w = H[i][i] - p;
 
                         if(e[i] < 0.0)
@@ -1121,12 +1192,14 @@ namespace MathNet.Numerics.LinearAlgebra
 
                                 x = H[i][i + 1];
                                 y = H[i + 1][i];
+                                
                                 vr = (d[i] - p) * (d[i] - p) + e[i] * e[i] - q * q;
                                 vi = (d[i] - p) * 2.0 * q;
                                 if((vr == 0.0) && (vi == 0.0))
                                 {
                                     vr = eps * norm * (Math.Abs(w) + Math.Abs(q) + Math.Abs(x) + Math.Abs(y) + Math.Abs(z));
                                 }
+
                                 cdiv(x * r - z * ra + q * sa, x * s - z * sa - q * ra, vr, vi);
                                 H[i][n - 1] = cdivr;
                                 H[i][n] = cdivi;
@@ -1183,6 +1256,7 @@ namespace MathNet.Numerics.LinearAlgebra
                     {
                         z = z + V[i][k] * H[k][j];
                     }
+
                     V[i][j] = z;
                 }
             }

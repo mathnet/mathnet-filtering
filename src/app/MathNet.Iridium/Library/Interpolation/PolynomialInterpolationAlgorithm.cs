@@ -6,7 +6,7 @@
 //
 // Contribution: Numerical Recipes in C++, Second Edition [2003]
 //               Handbook of Mathematical Functions [1965]
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -85,13 +85,18 @@ namespace MathNet.Numerics.Interpolation
         /// <seealso cref="EffectiveOrder"/>
         public int MaximumOrder
         {
-            get { return _maximumOrder; }
+            get
+            {
+                return _maximumOrder;
+            }
+
             set
             {
                 if(value < 0)
                 {
                     throw new ArgumentOutOfRangeException("value");
                 }
+
                 if(_maximumOrder == value)
                 {
                     return;
@@ -177,6 +182,7 @@ namespace MathNet.Numerics.Interpolation
                     d[i] = hp * den;
                     c[i] = ho * den;
                 }
+
                 error = (2 * (ns + 1) < (_effectiveOrder - level) ? c[ns + 1] : d[ns--]);
                 x += error;
             }
@@ -209,6 +215,7 @@ namespace MathNet.Numerics.Interpolation
                     closestIndex++;
                 }
             }
+
             return ret;
         }
 

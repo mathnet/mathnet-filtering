@@ -3,7 +3,7 @@
 // http://mathnet.opensourcedotnet.info
 //
 // Copyright (c) 2004-2008, Christoph Rüegg, http://christoph.ruegg.name
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -69,7 +69,11 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="j">Column index.</param>
         public Complex this[int i, int j]
         {
-            get { return _data[i][j]; }
+            get
+            {
+                return _data[i][j];
+            }
+
             set
             {
                 _data[i][j] = value;
@@ -155,6 +159,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     col[j] = s;
                 }
+
                 _data[i] = col;
             }
 
@@ -219,6 +224,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     col[j] = vals[i + j * _rowCount];
                 }
+
                 _data[i] = col;
             }
 
@@ -260,6 +266,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     col[j] = A[i, j];
                 }
+
                 newData[i] = col;
             }
 
@@ -287,6 +294,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     col[j] = realMatrix[i, j];
                 }
+
                 newData[i] = col;
             }
 
@@ -306,6 +314,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 throw new ArgumentNullException("columnVectors");
             }
+
             if(0 == columnVectors.Count)
             {
                 throw new ArgumentOutOfRangeException("columnVectors");
@@ -322,6 +331,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     newRow[j] = columnVectors[j][i];
                 }
+
                 newData[i] = newRow;
             }
 
@@ -341,6 +351,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 throw new ArgumentNullException("columnVectors");
             }
+
             if(0 == rowVectors.Count)
             {
                 throw new ArgumentOutOfRangeException("columnVectors");
@@ -379,8 +390,10 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     col[i] = Complex.One;
                 }
+
                 data[i] = col;
             }
+
             return new ComplexMatrix(data);
         }
 
@@ -409,8 +422,10 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     col[i] = diagonalVector[i];
                 }
+
                 data[i] = col;
             }
+
             return new ComplexMatrix(data);
         }
 
@@ -482,8 +497,10 @@ namespace MathNet.Numerics.LinearAlgebra
                         randomDistribution
                         );
                 }
+
                 data[i] = col;
             }
+
             return new ComplexMatrix(data);
         }
 
@@ -513,8 +530,10 @@ namespace MathNet.Numerics.LinearAlgebra
                         0d
                         );
                 }
+
                 data[i] = col;
             }
+
             return new ComplexMatrix(data);
         }
 
@@ -546,8 +565,10 @@ namespace MathNet.Numerics.LinearAlgebra
                         argumentRandomDistribution
                         );
                 }
+
                 data[i] = col;
             }
+
             return new ComplexMatrix(data);
         }
 
@@ -576,8 +597,10 @@ namespace MathNet.Numerics.LinearAlgebra
                         argumentRandomDistribution
                         );
                 }
+
                 data[i] = col;
             }
+
             return new ComplexMatrix(data);
         }
 
@@ -600,6 +623,7 @@ namespace MathNet.Numerics.LinearAlgebra
                     newData[i, j] = _data[i][j];
                 }
             }
+
             return newData;
         }
 
@@ -642,12 +666,16 @@ namespace MathNet.Numerics.LinearAlgebra
             ComplexMatrix m
             )
         {
-            if(m.ColumnCount != 1) throw new InvalidOperationException(
-                Resources.ArgumentMatrixSingleColumn);
+            if(m.ColumnCount != 1)
+            {
+                throw new InvalidOperationException(Resources.ArgumentMatrixSingleColumn);
+            }
 
             Complex[] array = new Complex[m.RowCount];
             for(int i = 0; i < m.RowCount; i++)
+            {
                 array[i] = m[i, 0];
+            }
 
             return array;
         }
@@ -661,8 +689,10 @@ namespace MathNet.Numerics.LinearAlgebra
             ComplexMatrix m
             )
         {
-            if(m.ColumnCount != 1 || m.RowCount != 1) throw new InvalidOperationException(
-                Resources.ArgumentMatrixSingleColumnRow);
+            if(m.ColumnCount != 1 || m.RowCount != 1)
+            {
+                throw new InvalidOperationException(Resources.ArgumentMatrixSingleColumnRow);
+            }
 
             return m[0, 0];
         }
@@ -690,6 +720,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 data[i] = new Complex[n];
             }
+
             return data;
         }
 
@@ -712,8 +743,10 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     col[j] = data[i][j];
                 }
+
                 newData[i] = col;
             }
+
             return newData;
         }
 
@@ -794,10 +827,12 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 throw new ArgumentNullException("columnVector");
             }
+
             if(columnIndex < 0 || columnIndex >= _columnCount)
             {
                 throw new ArgumentOutOfRangeException("columnIndex");
             }
+
             if(columnVector.Length != _rowCount)
             {
                 throw new ArgumentOutOfRangeException("columnVector");
@@ -825,10 +860,12 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 throw new ArgumentNullException("rowVector");
             }
+
             if(rowIndex < 0 || rowIndex >= _rowCount)
             {
                 throw new ArgumentOutOfRangeException("rowIndexs");
             }
+
             if(rowVector.Length != _columnCount)
             {
                 throw new ArgumentOutOfRangeException("rowVector");
@@ -872,6 +909,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 throw new IndexOutOfRangeException(Resources.ArgumentMatrixIndexOutOfRange, e);
             }
+
             return new ComplexMatrix(newData);
         }
 
@@ -904,6 +942,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 throw new IndexOutOfRangeException(Resources.ArgumentMatrixIndexOutOfRange, e);
             }
+
             return new ComplexMatrix(newData);
         }
 
@@ -938,6 +977,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 throw new IndexOutOfRangeException(Resources.ArgumentMatrixIndexOutOfRange, e);
             }
+
             return new ComplexMatrix(newData);
         }
 
@@ -972,6 +1012,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 throw new IndexOutOfRangeException(Resources.ArgumentMatrixIndexOutOfRange, e);
             }
+
             return new ComplexMatrix(newData);
         }
 
@@ -1008,6 +1049,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 throw new IndexOutOfRangeException(Resources.ArgumentMatrixIndexOutOfRange, e);
             }
+
             ResetOnDemandComputations();
         }
 
@@ -1040,6 +1082,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 throw new IndexOutOfRangeException(Resources.ArgumentMatrixIndexOutOfRange, e);
             }
+
             ResetOnDemandComputations();
         }
 
@@ -1074,6 +1117,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 throw new IndexOutOfRangeException(Resources.ArgumentMatrixIndexOutOfRange, e);
             }
+
             ResetOnDemandComputations();
         }
 
@@ -1108,6 +1152,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 throw new IndexOutOfRangeException(Resources.ArgumentMatrixIndexOutOfRange, e);
             }
+
             ResetOnDemandComputations();
         }
 
@@ -1130,8 +1175,10 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     s += _data[i][j].Modulus;
                 }
+
                 f = Math.Max(f, s);
             }
+
             return f;
         }
 
@@ -1168,6 +1215,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     newRow[j] = thisRow[j] + b[i, j];
                 }
+
                 newData[i] = newRow;
             }
 
@@ -1203,6 +1251,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     newRow[j] = thisRow[j] + b[i, j];
                 }
+
                 newData[i] = newRow;
             }
 
@@ -1236,6 +1285,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     newRow[j] = thisRow[j] + b;
                 }
+
                 newData[i] = newRow;
             }
 
@@ -1353,6 +1403,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     newRow[j] = thisRow[j] - b[i, j];
                 }
+
                 newData[i] = newRow;
             }
 
@@ -1388,6 +1439,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     newRow[j] = thisRow[j] - b[i, j];
                 }
+
                 newData[i] = newRow;
             }
 
@@ -1421,6 +1473,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     newRow[j] = thisRow[j] - b;
                 }
+
                 newData[i] = newRow;
             }
 
@@ -1525,6 +1578,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     newRow[j] = -thisRow[j];
                 }
+
                 newData[i] = newRow;
             }
 
@@ -1568,6 +1622,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     newRow[j] = thisRow[j].Conjugate;
                 }
+
                 newData[i] = newRow;
             }
 
@@ -1619,6 +1674,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 throw new ArgumentNullException("B");
             }
+
             if(b.RowCount != _columnCount)
             {
                 throw new ArgumentException(Resources.ArgumentMatrixSameDimensions);
@@ -1636,8 +1692,10 @@ namespace MathNet.Numerics.LinearAlgebra
                     {
                         s += thisRow[k] * b[k, j];
                     }
+
                     newRow[j] = s;
                 }
+
                 newData[i] = newRow;
             }
 
@@ -1646,30 +1704,30 @@ namespace MathNet.Numerics.LinearAlgebra
             // TODO: The following code might be more performant for large
             // matrices. Measure and adapt if it indeed is faster.
 
-            //Complex[][] newData = CreateMatrixData(_rowCount, b.ColumnCount);
-            //for(int j = 0; j < b.ColumnCount; j++)
-            //{
-            //    // caching the column for performance
-            //    Complex[] columnB = new Complex[_columnCount];
-            //    for(int k = 0; k < _columnCount; k++)
-            //    {
-            //        columnB[k] = b._data[k][j];
-            //    }
+            ////Complex[][] newData = CreateMatrixData(_rowCount, b.ColumnCount);
+            ////for(int j = 0; j < b.ColumnCount; j++)
+            ////{
+            ////    // caching the column for performance
+            ////    Complex[] columnB = new Complex[_columnCount];
+            ////    for(int k = 0; k < _columnCount; k++)
+            ////    {
+            ////        columnB[k] = b._data[k][j];
+            ////    }
 
-            //    // making the line-to-column product
-            //    for(int i = 0; i < _rowCount; i++)
-            //    {
-            //        Complex s = 0;
+            ////    // making the line-to-column product
+            ////    for(int i = 0; i < _rowCount; i++)
+            ////    {
+            ////        Complex s = 0;
 
-            //        for(int k = 0; k < _columnCount; k++)
-            //        {
-            //            s += _data[i][k] * columnB[k];
-            //        }
-            //        newData[i][j] = s;
-            //    }
-            //}
+            ////        for(int k = 0; k < _columnCount; k++)
+            ////        {
+            ////            s += _data[i][k] * columnB[k];
+            ////        }
+            ////        newData[i][j] = s;
+            ////    }
+            ////}
 
-            //return new ComplexMatrix(newData);
+            ////return new ComplexMatrix(newData);
         }
 
         /// <summary>
@@ -1696,6 +1754,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 throw new ArgumentNullException("B");
             }
+
             if(b.RowCount != _columnCount)
             {
                 throw new ArgumentException(Resources.ArgumentMatrixSameDimensions);
@@ -1713,8 +1772,10 @@ namespace MathNet.Numerics.LinearAlgebra
                     {
                         s += thisRow[k] * b[k, j];
                     }
+
                     newRow[j] = s;
                 }
+
                 newData[i] = newRow;
             }
 
@@ -1750,6 +1811,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     newRow[j] = thisRow[j] * b;
                 }
+
                 newData[i] = newRow;
             }
 
@@ -1777,10 +1839,12 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 throw new ArgumentNullException("B");
             }
+
             if(_rowCount != _columnCount || b.RowCount != b.ColumnCount)
             {
                 throw new ArgumentException(Resources.ArgumentMatrixSquare);
             }
+
             if(_rowCount != b.RowCount)
             {
                 throw new ArgumentException(Resources.ArgumentMatrixSameDimensions);
@@ -1797,8 +1861,10 @@ namespace MathNet.Numerics.LinearAlgebra
                     {
                         s += thisRow[k] * b[k, j];
                     }
+
                     tempRow[j] = s;
                 }
+
                 _data[i] = tempRow;
                 tempRow = thisRow;
             }
@@ -1827,10 +1893,12 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 throw new ArgumentNullException("B");
             }
+
             if(_rowCount != _columnCount || b.RowCount != b.ColumnCount)
             {
                 throw new ArgumentException(Resources.ArgumentMatrixSquare);
             }
+
             if(_rowCount != b.RowCount)
             {
                 throw new ArgumentException(Resources.ArgumentMatrixSameDimensions);
@@ -1847,8 +1915,10 @@ namespace MathNet.Numerics.LinearAlgebra
                     {
                         s += thisRow[k] * b[k, j];
                     }
+
                     tempRow[j] = s;
                 }
+
                 _data[i] = tempRow;
                 tempRow = thisRow;
             }
@@ -1905,6 +1975,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 throw new ArgumentNullException("B");
             }
+
             if(b.Length != _columnCount)
             {
                 throw new ArgumentException(Resources.ArgumentMatrixSameDimensions);
@@ -1919,6 +1990,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     s += thisRow[j] * b[j];
                 }
+
                 newData[i] = s;
             }
 
@@ -1948,6 +2020,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 throw new ArgumentNullException("B");
             }
+
             if(b.Length != _columnCount)
             {
                 throw new ArgumentException(Resources.ArgumentMatrixSameDimensions);
@@ -1962,6 +2035,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     s += thisRow[j] * b[j];
                 }
+
                 newData[i] = s;
             }
 
@@ -1989,6 +2063,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 throw new ArgumentNullException("diagonal");
             }
+
             if(_rowCount != diagonal.Length)
             {
                 throw new ArgumentException(Resources.ArgumentMatrixSameDimensions);
@@ -2004,6 +2079,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     newRow[j] = thisRow[j] * s;
                 }
+
                 newData[i] = newRow;
             }
 
@@ -2031,6 +2107,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 throw new ArgumentNullException("diagonal");
             }
+
             if(_rowCount != diagonal.Length)
             {
                 throw new ArgumentException(Resources.ArgumentMatrixSameDimensions);
@@ -2046,6 +2123,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     newRow[j] = thisRow[j] * s;
                 }
+
                 newData[i] = newRow;
             }
 
@@ -2070,6 +2148,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 throw new ArgumentNullException("diagonal");
             }
+
             if(_rowCount != diagonal.Length)
             {
                 throw new ArgumentException(Resources.ArgumentMatrixSameDimensions);
@@ -2106,6 +2185,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 throw new ArgumentNullException("diagonal");
             }
+
             if(_rowCount != diagonal.Length)
             {
                 throw new ArgumentException(Resources.ArgumentMatrixSameDimensions);
@@ -2145,6 +2225,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 throw new ArgumentNullException("diagonal");
             }
+
             if(_columnCount != diagonal.Length)
             {
                 throw new ArgumentException(Resources.ArgumentMatrixSameDimensions);
@@ -2159,6 +2240,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     newRow[j] = thisRow[j] * diagonal[j];
                 }
+
                 newData[i] = newRow;
             }
 
@@ -2186,6 +2268,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 throw new ArgumentNullException("diagonal");
             }
+
             if(_columnCount != diagonal.Length)
             {
                 throw new ArgumentException(Resources.ArgumentMatrixSameDimensions);
@@ -2200,6 +2283,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     newRow[j] = thisRow[j] * diagonal[j];
                 }
+
                 newData[i] = newRow;
             }
 
@@ -2224,6 +2308,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 throw new ArgumentNullException("diagonal");
             }
+
             if(_columnCount != diagonal.Length)
             {
                 throw new ArgumentException(Resources.ArgumentMatrixSameDimensions);
@@ -2259,6 +2344,7 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 throw new ArgumentNullException("diagonal");
             }
+
             if(_columnCount != diagonal.Length)
             {
                 throw new ArgumentException(Resources.ArgumentMatrixSameDimensions);
@@ -2296,6 +2382,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     newRow[j] = _data[j][i];
                 }
+
                 newData[i] = newRow;
             }
 
@@ -2348,6 +2435,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     newRow[j] = _data[j][i].Conjugate;
                 }
+
                 newData[i] = newRow;
             }
 
@@ -2432,6 +2520,7 @@ namespace MathNet.Numerics.LinearAlgebra
                         );
                 }
             }
+
             return outMat;
         }
 
@@ -2464,6 +2553,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     newRow[j] = thisRow[j] * b[i, j];
                 }
+
                 newData[i] = newRow;
             }
 
@@ -2495,6 +2585,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     newRow[j] = thisRow[j] * b[i, j];
                 }
+
                 newData[i] = newRow;
             }
 
@@ -2582,6 +2673,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     newRow[j] = thisRow[j] / b[i, j];
                 }
+
                 newData[i] = newRow;
             }
 
@@ -2613,6 +2705,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     newRow[j] = thisRow[j] / b[i, j];
                 }
+
                 newData[i] = newRow;
             }
 
@@ -2698,6 +2791,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     newRow[j] = thisRow[j].Power(exponent);
                 }
+
                 newData[i] = newRow;
             }
 
@@ -2753,6 +2847,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     newRow[j] = mapping(thisRow[j]);
                 }
+
                 newData[i] = newRow;
             }
 
@@ -3041,6 +3136,7 @@ namespace MathNet.Numerics.LinearAlgebra
         ToString()
         {
             StringBuilder sb = new StringBuilder();
+
             for(int i = 0; i < _rowCount; i++)
             {
                 if(i == 0)
@@ -3058,6 +3154,7 @@ namespace MathNet.Numerics.LinearAlgebra
                     {
                         sb.Append(',');
                     }
+
                     sb.Append(_data[i][j].ToString());
                 }
 
@@ -3070,6 +3167,7 @@ namespace MathNet.Numerics.LinearAlgebra
                     sb.AppendLine("]");
                 }
             }
+
             return sb.ToString();
         }
 
@@ -3079,13 +3177,13 @@ namespace MathNet.Numerics.LinearAlgebra
         void
         InitOnDemandComputations()
         {
-            //_luDecompositionOnDemand = new OnDemandComputation<LUDecomposition>(ComputeLUDecomposition);
+            ////_luDecompositionOnDemand = new OnDemandComputation<LUDecomposition>(ComputeLUDecomposition);
         }
 
         void
         ResetOnDemandComputations()
         {
-            //_luDecompositionOnDemand.Reset();
+            ////_luDecompositionOnDemand.Reset();
         }
 
         /// <summary>
@@ -3100,11 +3198,11 @@ namespace MathNet.Numerics.LinearAlgebra
             ResetOnDemandComputations();
         }
 
-        //LUDecomposition
-        //ComputeLUDecomposition()
-        //{
-        //    return new LUDecomposition(this);
-        //}
+        ////LUDecomposition
+        ////ComputeLUDecomposition()
+        ////{
+        ////    return new LUDecomposition(this);
+        ////}
 
         #endregion
     }

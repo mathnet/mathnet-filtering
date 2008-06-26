@@ -5,7 +5,7 @@
 // Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
 //
 // Contribution: Exocortex.DSP, Ben Houston, http://www.exocortex.org
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -35,7 +35,7 @@ namespace MathNet.Numerics.Transformations
     {
         const int maxLength = 1048576;
         const int minLength = 1;
-        const int maxBits = 20; //12;
+        const int maxBits = 20;
         const int minBits = 0;
 
         int[][] _reversedBitsLookup = new int[maxBits][];
@@ -107,7 +107,6 @@ namespace MathNet.Numerics.Transformations
                     samples[a + 1] = samples[b + 1];
                     samples[b + 1] = tmp;
                 }
-
             }
         }
 
@@ -130,6 +129,7 @@ namespace MathNet.Numerics.Transformations
                 if(swap > i2)
                 {
                     for(int i1 = i2; i1 < i2 + step; i1 += 2)
+                    {
                         for(int i3 = i1; i3 < samples.Length; i3 += stride)
                         {
                             int swap3 = swap + i3 - i2;
@@ -142,6 +142,7 @@ namespace MathNet.Numerics.Transformations
                             samples[swap3 + 1] = samples[i3 + 1];
                             samples[i3 + 1] = tmp;
                         }
+                    }
                 }
             }
         }
@@ -234,6 +235,7 @@ namespace MathNet.Numerics.Transformations
                     double uI = expSignConvention * imagSine[j];
 
                     for(int i = jj; i < jj + step; i += 2)
+                    {
                         for(int even = i; even < samples.Length; even += N)
                         {
                             int odd = even + M;
@@ -253,6 +255,7 @@ namespace MathNet.Numerics.Transformations
                             samples[odd] = re - tmpr;
                             samples[odd + 1] = im - tmpi;
                         }
+                    }
                 }
             }
         }
@@ -302,8 +305,8 @@ namespace MathNet.Numerics.Transformations
             int numberOfBits
             )
         {
-            //Debug.Assert(numberOfBits >= minBits);
-            //Debug.Assert(numberOfBits <= maxBits);
+            ////Debug.Assert(numberOfBits >= minBits);
+            ////Debug.Assert(numberOfBits <= maxBits);
 
             if(_reversedBitsLookup[numberOfBits - 1] == null)
             {
@@ -318,10 +321,13 @@ namespace MathNet.Numerics.Transformations
                         newBits = (newBits << 1) | (oldBits & 1);
                         oldBits = (oldBits >> 1);
                     }
+
                     reversedBits[i] = newBits;
                 }
+
                 _reversedBitsLookup[numberOfBits - 1] = reversedBits;
             }
+
             return _reversedBitsLookup[numberOfBits - 1];
         }
         #endregion
@@ -432,7 +438,10 @@ namespace MathNet.Numerics.Transformations
             int newlen = Fn.CeilingToPowerOf2(samples.Length);
             double[] ret = new double[newlen];
             for(int i = 0; i < samples.Length; i++)
+            {
                 ret[i] = samples[i];
+            }
+
             // rest is padded with zero.
             return ret;
         }

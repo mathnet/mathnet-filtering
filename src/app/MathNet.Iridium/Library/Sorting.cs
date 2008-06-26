@@ -70,6 +70,7 @@ namespace MathNet.Numerics
             {
                 throw new ArgumentNullException("keys");
             }
+
             if(null == comparer)
             {
                 throw new ArgumentNullException("comparer");
@@ -80,12 +81,14 @@ namespace MathNet.Numerics
             {
                 return;
             }
+
             if(keys.Count == 2)
             {
                 if(comparer.Compare(keys[0], keys[1]) > 0)
                 {
                     Swap(keys, 0, 1);
                 }
+
                 return;
             }
 
@@ -127,10 +130,12 @@ namespace MathNet.Numerics
             {
                 throw new ArgumentNullException("keys");
             }
+
             if(null == items)
             {
                 throw new ArgumentNullException("items");
             }
+
             if(null == comparer)
             {
                 throw new ArgumentNullException("comparer");
@@ -169,14 +174,17 @@ namespace MathNet.Numerics
             {
                 throw new ArgumentNullException("keys");
             }
+
             if(null == items1)
             {
                 throw new ArgumentNullException("items1");
             }
+
             if(null == items2)
             {
                 throw new ArgumentNullException("items2");
             }
+
             if(null == comparer)
             {
                 throw new ArgumentNullException("comparer");
@@ -205,10 +213,12 @@ namespace MathNet.Numerics
                 {
                     Swap(keys, a, p);
                 }
+
                 if(comparer.Compare(keys[a], keys[b]) > 0)
                 {
                     Swap(keys, a, b);
                 }
+
                 if(comparer.Compare(keys[p], keys[b]) > 0)
                 {
                     Swap(keys, p, b);
@@ -222,6 +232,7 @@ namespace MathNet.Numerics
                     {
                         a++;
                     }
+
                     while(comparer.Compare(pivot, keys[b]) < 0)
                     {
                         b--;
@@ -231,6 +242,7 @@ namespace MathNet.Numerics
                     {
                         break;
                     }
+
                     if(a < b)
                     {
                         Swap(keys, a, b);
@@ -247,6 +259,7 @@ namespace MathNet.Numerics
                     {
                         QuickSort(keys, comparer, left, b);
                     }
+
                     left = a;
                 }
                 else
@@ -255,6 +268,7 @@ namespace MathNet.Numerics
                     {
                         QuickSort(keys, comparer, a, right);
                     }
+
                     right = b;
                 }
             }
@@ -282,11 +296,13 @@ namespace MathNet.Numerics
                     Swap(keys, a, p);
                     Swap(items, a, p);
                 }
+
                 if(comparer.Compare(keys[a], keys[b]) > 0)
                 {
                     Swap(keys, a, b);
                     Swap(items, a, b);
                 }
+
                 if(comparer.Compare(keys[p], keys[b]) > 0)
                 {
                     Swap(keys, p, b);
@@ -301,6 +317,7 @@ namespace MathNet.Numerics
                     {
                         a++;
                     }
+
                     while(comparer.Compare(pivot, keys[b]) < 0)
                     {
                         b--;
@@ -310,6 +327,7 @@ namespace MathNet.Numerics
                     {
                         break;
                     }
+
                     if(a < b)
                     {
                         Swap(keys, a, b);
@@ -327,6 +345,7 @@ namespace MathNet.Numerics
                     {
                         QuickSort(keys, items, comparer, left, b);
                     }
+
                     left = a;
                 }
                 else
@@ -335,6 +354,7 @@ namespace MathNet.Numerics
                     {
                         QuickSort(keys, items, comparer, a, right);
                     }
+
                     right = b;
                 }
             }
@@ -364,12 +384,14 @@ namespace MathNet.Numerics
                     Swap(items1, a, p);
                     Swap(items2, a, p);
                 }
+
                 if(comparer.Compare(keys[a], keys[b]) > 0)
                 {
                     Swap(keys, a, b);
                     Swap(items1, a, b);
                     Swap(items2, a, b);
                 }
+
                 if(comparer.Compare(keys[p], keys[b]) > 0)
                 {
                     Swap(keys, p, b);
@@ -385,6 +407,7 @@ namespace MathNet.Numerics
                     {
                         a++;
                     }
+
                     while(comparer.Compare(pivot, keys[b]) < 0)
                     {
                         b--;
@@ -394,6 +417,7 @@ namespace MathNet.Numerics
                     {
                         break;
                     }
+
                     if(a < b)
                     {
                         Swap(keys, a, b);
@@ -412,6 +436,7 @@ namespace MathNet.Numerics
                     {
                         QuickSort(keys, items1, items2, comparer, left, b);
                     }
+
                     left = a;
                 }
                 else
@@ -420,6 +445,7 @@ namespace MathNet.Numerics
                     {
                         QuickSort(keys, items1, items2, comparer, a, right);
                     }
+
                     right = b;
                 }
             }

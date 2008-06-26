@@ -3,7 +3,7 @@
 // http://mathnet.opensourcedotnet.info
 //
 // Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -37,19 +37,19 @@
  */
 #endregion
 #region Derived From: Copyright 2001 Maurer
-//* boost random/lognormal_distribution.hpp header file
-//*
-//* Copyright Jens Maurer 2000-2001
-//* Distributed under the Boost Software License, Version 1.0. (See
-//* accompanying file LICENSE_1_0.txt or copy at
-//* http://www.boost.org/LICENSE_1_0.txt)
-//*
-//* See http://www.boost.org for most recent version including documentation.
-//*
-//* $Id: lognormal_distribution.hpp,v 1.16 2004/07/27 03:43:32 dgregor Exp $
-//*
-//* Revision history
-//*  2001-02-18  moved to individual header files
+// boost random/lognormal_distribution.hpp header file
+//
+// Copyright Jens Maurer 2000-2001
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
+//
+// See http://www.boost.org for most recent version including documentation.
+//
+// $Id: lognormal_distribution.hpp,v 1.16 2004/07/27 03:43:32 dgregor Exp $
+//
+// Revision history
+// 2001-02-18  moved to individual header files
 #endregion
 
 using System;
@@ -126,7 +126,11 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override RandomSource RandomSource
         {
-            get { return base.RandomSource; }
+            get
+            {
+                return base.RandomSource;
+            }
+
             set
             {
                 base.RandomSource = value;

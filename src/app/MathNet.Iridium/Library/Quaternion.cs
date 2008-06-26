@@ -3,7 +3,7 @@
 // http://mathnet.opensourcedotnet.info
 //
 // Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -39,7 +39,7 @@ namespace MathNet.Numerics
         readonly double qw; // real part
         readonly double qx, qy, qz; // imaginary part
         readonly double qabs, qnorm; // norm
-        readonly double qarg; //polar notation
+        readonly double qarg; // polar notation
 
         /// <summary>
         /// Create a quarternion.
@@ -216,24 +216,24 @@ namespace MathNet.Numerics
             return ToUnitQuaternion(qw, qx, qy, qz);
         }
 
-        ///// <summary>
-        ///// Returns a new Quaternion q with the Sign of the components.
-        ///// </summary>
-        ///// <returns>
-        ///// <list type="bullet">
-        ///// <item>1 if Positive</item>
-        ///// <item>0 if Neutral</item>
-        ///// <item>-1 if Negative</item>
-        ///// </list>
-        ///// </returns>
-        //public Quaternion ComponentSigns()
-        //{
-        //    return new Quaternion(
-        //        Math.Sign(qx),
-        //        Math.Sign(qy),
-        //        Math.Sign(qz),
-        //        Math.Sign(qw));
-        //}
+        /////// <summary>
+        /////// Returns a new Quaternion q with the Sign of the components.
+        /////// </summary>
+        /////// <returns>
+        /////// <list type="bullet">
+        /////// <item>1 if Positive</item>
+        /////// <item>0 if Neutral</item>
+        /////// <item>-1 if Negative</item>
+        /////// </list>
+        /////// </returns>
+        ////public Quaternion ComponentSigns()
+        ////{
+        ////    return new Quaternion(
+        ////        Math.Sign(qx),
+        ////        Math.Sign(qy),
+        ////        Math.Sign(qz),
+        ////        Math.Sign(qw));
+        ////}
 
         #endregion
 
@@ -740,7 +740,6 @@ namespace MathNet.Numerics
         {
             // TODO: Implement
             throw new NotImplementedException();
-            //return 0;
         }
 
         /// <summary>
@@ -752,7 +751,6 @@ namespace MathNet.Numerics
         {
             // TODO: Implement
             throw new NotImplementedException();
-            //return null;
         }
 
         #endregion

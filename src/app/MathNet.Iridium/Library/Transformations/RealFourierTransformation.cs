@@ -3,7 +3,7 @@
 // http://mathnet.opensourcedotnet.info
 //
 // Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -44,6 +44,7 @@ namespace MathNet.Numerics.Transformations
             _fft = new InternalFFT();
             _convention = TransformationConvention.Default;
         }
+
         /// <summary>
         /// Construct a real fourier transformation instance with a given convention.
         /// </summary>
@@ -83,6 +84,7 @@ namespace MathNet.Numerics.Transformations
                 scale[i] = t;
                 t += step;
             }
+
             return scale;
         }
 
@@ -103,12 +105,14 @@ namespace MathNet.Numerics.Transformations
                 scale[i] = f;
                 f += step;
             }
+
             f = -step * (secondHalf - 2);
             for(int i = secondHalf; i < numberOfSamples; i++)
             {
                 scale[i] = f;
                 f += step;
             }
+
             return scale;
         }
         #endregion
@@ -136,9 +140,14 @@ namespace MathNet.Numerics.Transformations
             )
         {
             if(samples1.Length != samples2.Length)
+            {
                 throw new ArgumentException(Resources.ArgumentVectorsSameLengths, "samples2");
+            }
+
             if(Fn.CeilingToPowerOf2(samples1.Length) != samples1.Length)
+            {
                 throw new ArgumentException(Resources.ArgumentPowerOfTwo, "samples1");
+            }
 
             int numSamples = samples1.Length;
             int length = numSamples << 1;
@@ -209,9 +218,14 @@ namespace MathNet.Numerics.Transformations
             )
         {
             if(fftReal1.Length != fftImag1.Length || fftReal2.Length != fftImag2.Length || fftReal1.Length != fftReal2.Length)
+            {
                 throw new ArgumentException(Resources.ArgumentVectorsSameLengths);
+            }
+
             if(Fn.CeilingToPowerOf2(fftReal1.Length) != fftReal1.Length)
+            {
                 throw new ArgumentException(Resources.ArgumentPowerOfTwo, "fftReal1");
+            }
 
             int numSamples = fftReal1.Length;
             int length = numSamples << 1;
@@ -259,7 +273,9 @@ namespace MathNet.Numerics.Transformations
             )
         {
             if(Fn.CeilingToPowerOf2(samples.Length) != samples.Length)
+            {
                 throw new ArgumentException(Resources.ArgumentPowerOfTwo, "samples");
+            }
 
             int length = samples.Length;
             int numSamples = length >> 1;
@@ -270,7 +286,9 @@ namespace MathNet.Numerics.Transformations
             // We work on a copy so the original array is not changed.
             double[] complex = new double[length];
             for(int i = 0; i < complex.Length; i++)
+            {
                 complex[i] = samples[i];
+            }
 
             _fft.DiscreteFourierTransform(complex, true, _convention);
 
@@ -328,9 +346,14 @@ namespace MathNet.Numerics.Transformations
             )
         {
             if(fftReal.Length != fftImag.Length)
+            {
                 throw new ArgumentException(Resources.ArgumentVectorsSameLengths);
+            }
+
             if(Fn.CeilingToPowerOf2(fftReal.Length) != fftReal.Length)
+            {
                 throw new ArgumentException(Resources.ArgumentPowerOfTwo, "samples");
+            }
 
             int length = fftReal.Length;
             int numSamples = length >> 1;
@@ -406,7 +429,6 @@ namespace MathNet.Numerics.Transformations
             for(int i = 0, j = 0; i < samples.Length; i++, j += 2)
             {
                 samplePairs[j] = samples[i];
-                //samplePairs[j + 1] = 0.0;
             }
 
             _fft.DiscreteFourierTransformMultiDim(samplePairs, dimensionLengths, true, _convention);
@@ -435,7 +457,10 @@ namespace MathNet.Numerics.Transformations
             )
         {
             if(fftReal.Length != fftImag.Length)
+            {
                 throw new ArgumentException(Resources.ArgumentVectorsSameLengths);
+            }
+
             for(int i = 0; i < dimensionLengths.Length; i++)
             {
                 if(Fn.CeilingToPowerOf2(dimensionLengths[i]) != dimensionLengths[i])

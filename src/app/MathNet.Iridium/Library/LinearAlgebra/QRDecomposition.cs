@@ -6,7 +6,7 @@
 //                          Christoph Rüegg, http://christoph.ruegg.name
 //
 // Contribution: The MathWorks and NIST [2000]
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -108,10 +108,12 @@ namespace MathNet.Numerics.LinearAlgebra
                     {
                         norm = -norm;
                     }
+
                     for(int i = k; i < m; i++)
                     {
                         QR[i][k] /= norm;
                     }
+
                     QR[k][k] += 1.0;
 
                     // Apply transformation to remaining columns.
@@ -122,6 +124,7 @@ namespace MathNet.Numerics.LinearAlgebra
                         {
                             s += QR[i][k] * QR[i][j];
                         }
+
                         s = (-s) / QR[k][k];
                         for(int i = k; i < m; i++)
                         {
@@ -129,6 +132,7 @@ namespace MathNet.Numerics.LinearAlgebra
                         }
                     }
                 }
+
                 Rdiag[k] = -norm;
             }
 
@@ -208,9 +212,14 @@ namespace MathNet.Numerics.LinearAlgebra
             )
         {
             if(B.RowCount != m)
+            {
                 throw new ArgumentException(Resources.ArgumentMatrixSameRowDimension, "B");
+            }
+
             if(!IsFullRank)
+            {
                 throw new InvalidOperationException(Resources.ArgumentMatrixNotRankDeficient);
+            }
 
             // Copy right hand side
             int nx = B.ColumnCount;
@@ -226,6 +235,7 @@ namespace MathNet.Numerics.LinearAlgebra
                     {
                         s += QR[i][k] * X[i][j];
                     }
+
                     s = (-s) / QR[k][k];
                     for(int i = k; i < m; i++)
                     {
@@ -233,6 +243,7 @@ namespace MathNet.Numerics.LinearAlgebra
                     }
                 }
             }
+
             // Solve R*X = Y;
             for(int k = n - 1; k >= 0; k--)
             {
@@ -240,6 +251,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     X[k][j] /= Rdiag[k];
                 }
+
                 for(int i = 0; i < k; i++)
                 {
                     for(int j = 0; j < nx; j++)
@@ -271,6 +283,7 @@ namespace MathNet.Numerics.LinearAlgebra
                     return false;
                 }
             }
+
             return true;
         }
 
@@ -292,6 +305,7 @@ namespace MathNet.Numerics.LinearAlgebra
                     }
                 }
             }
+
             return new Matrix(H);
         }
 
@@ -319,6 +333,7 @@ namespace MathNet.Numerics.LinearAlgebra
                     }
                 }
             }
+
             return new Matrix(R);
         }
 
@@ -338,6 +353,7 @@ namespace MathNet.Numerics.LinearAlgebra
                         {
                             s += QR[i][k] * Q[i][j];
                         }
+
                         s = (-s) / QR[k][k];
                         for(int i = k; i < m; i++)
                         {
@@ -345,12 +361,14 @@ namespace MathNet.Numerics.LinearAlgebra
                         }
                     }
                 }
+
                 double columnSign = Math.Sign(Rdiag[k]);
                 for(int i = 0; i < m; i++)
                 {
                     Q[i][k] *= columnSign;
                 }
             }
+
             return new Matrix(Q);
         }
     }

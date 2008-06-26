@@ -3,7 +3,7 @@
 // http://mathnet.opensourcedotnet.info
 //
 // Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -44,6 +44,7 @@ namespace MathNet.Numerics.Transformations
             _fft = new InternalFFT();
             _convention = TransformationConvention.Default;
         }
+
         /// <summary>
         /// Construct a complex fourier transformation instance with a given convention.
         /// </summary>
@@ -83,6 +84,7 @@ namespace MathNet.Numerics.Transformations
                 scale[i] = t;
                 t += step;
             }
+
             return scale;
         }
 
@@ -103,12 +105,14 @@ namespace MathNet.Numerics.Transformations
                 scale[i] = f;
                 f += step;
             }
+
             f = -step * (secondHalf - 2);
             for(int i = secondHalf; i < numberOfSamplePairs; i++)
             {
                 scale[i] = f;
                 f += step;
             }
+
             return scale;
         }
         #endregion
@@ -125,7 +129,9 @@ namespace MathNet.Numerics.Transformations
             )
         {
             if(Fn.CeilingToPowerOf2(samplePairs.Length) != samplePairs.Length)
+            {
                 throw new ArgumentException(Resources.ArgumentPowerOfTwo, "samplePairs");
+            }
 
             _fft.DiscreteFourierTransform(samplePairs, true, _convention);
         }
@@ -146,7 +152,9 @@ namespace MathNet.Numerics.Transformations
             )
         {
             if(Fn.CeilingToPowerOf2(samples.Length) != samples.Length)
+            {
                 throw new ArgumentException(Resources.ArgumentPowerOfTwo, "samples");
+            }
 
             double[] samplePairs = new double[samples.Length << 1];
             for(int i = 0, j = 0; i < samples.Length; i++, j += 2)
@@ -154,7 +162,9 @@ namespace MathNet.Numerics.Transformations
                 samplePairs[j] = samples[i].Real;
                 samplePairs[j + 1] = samples[i].Imag;
             }
+
             _fft.DiscreteFourierTransform(samplePairs, true, _convention);
+
             for(int i = 0, j = 0; i < samples.Length; i++, j += 2)
             {
                 samples[i].Real = samplePairs[j];
@@ -173,7 +183,9 @@ namespace MathNet.Numerics.Transformations
             )
         {
             if(Fn.CeilingToPowerOf2(samplePairs.Length) != samplePairs.Length)
+            {
                 throw new ArgumentException(Resources.ArgumentPowerOfTwo, "samplePairs");
+            }
 
             _fft.DiscreteFourierTransform(samplePairs, false, _convention);
         }
@@ -194,7 +206,9 @@ namespace MathNet.Numerics.Transformations
             )
         {
             if(Fn.CeilingToPowerOf2(samples.Length) != samples.Length)
+            {
                 throw new ArgumentException(Resources.ArgumentPowerOfTwo, "samplePairs");
+            }
 
             double[] samplePairs = new double[samples.Length << 1];
             for(int i = 0, j = 0; i < samples.Length; i++, j += 2)
@@ -202,6 +216,7 @@ namespace MathNet.Numerics.Transformations
                 samplePairs[j] = samples[i].Real;
                 samplePairs[j + 1] = samples[i].Imag;
             }
+
             _fft.DiscreteFourierTransform(samplePairs, false, _convention);
             for(int i = 0, j = 0; i < samples.Length; i++, j += 2)
             {
@@ -270,7 +285,9 @@ namespace MathNet.Numerics.Transformations
                 samplePairs[j] = samples[i].Real;
                 samplePairs[j + 1] = samples[i].Imag;
             }
+
             _fft.DiscreteFourierTransformMultiDim(samplePairs, dimensionLengths, true, _convention);
+
             for(int i = 0, j = 0; i < samples.Length; i++, j += 2)
             {
                 samples[i].Real = samplePairs[j];
@@ -336,7 +353,9 @@ namespace MathNet.Numerics.Transformations
                 samplePairs[j] = samples[i].Real;
                 samplePairs[j + 1] = samples[i].Imag;
             }
+
             _fft.DiscreteFourierTransformMultiDim(samplePairs, dimensionLengths, false, _convention);
+
             for(int i = 0, j = 0; i < samples.Length; i++, j += 2)
             {
                 samples[i].Real = samplePairs[j];

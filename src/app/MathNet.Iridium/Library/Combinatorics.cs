@@ -4,7 +4,7 @@
 //
 // Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
 //                          Joannes Vermorel, http://www.vermorel.com
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -50,6 +50,7 @@ namespace MathNet.Numerics
             {
                 return 0;
             }
+
             return Math.Floor(0.5 + Math.Exp(Fn.FactorialLn(n) - Fn.FactorialLn(n - k)));
         }
 
@@ -67,6 +68,7 @@ namespace MathNet.Numerics
             {
                 return 0;
             }
+
             return Math.Pow(n, k);
         }
 
@@ -97,10 +99,12 @@ namespace MathNet.Numerics
             {
                 return 0;
             }
+
             if(n == 0 && k == 0)
             {
                 return 1;
             }
+
             return Math.Floor(0.5 + Math.Exp(Fn.FactorialLn(n + k - 1) - Fn.FactorialLn(k) - Fn.FactorialLn(n - 1)));
         }
 
@@ -168,8 +172,10 @@ namespace MathNet.Numerics
             int n
             )
         {
-            if(n < 0) throw new ArgumentOutOfRangeException(
-                   "size", n, Resources.ArgumentNotNegative);
+            if(n < 0)
+            {
+                throw new ArgumentOutOfRangeException("size", n, Resources.ArgumentNotNegative);
+            }
 
             IndexedValue[] indexedValues = new IndexedValue[n];
             for(int i = 0; i < indexedValues.Length; i++)
@@ -203,6 +209,7 @@ namespace MathNet.Numerics
             {
                 ret[i] = _random.NextBoolean();
             }
+
             return ret;
         }
 
@@ -229,6 +236,7 @@ namespace MathNet.Numerics
                         selectionCount++;
                     }
                 }
+
                 return selection;
             }
             else 
@@ -239,6 +247,7 @@ namespace MathNet.Numerics
                 {
                     selection[permutation[i]] = true;
                 }
+
                 return selection;
             }
         }
@@ -257,6 +266,7 @@ namespace MathNet.Numerics
             {
                 ret[_random.Next(n)]++;
             }
+
             return ret;
         }
 
@@ -275,6 +285,7 @@ namespace MathNet.Numerics
             {
                 selection[i] = permutation[i];
             }
+
             return selection;
         }
 
@@ -292,6 +303,7 @@ namespace MathNet.Numerics
             {
                 ret[i] = _random.Next(n);
             }
+
             return ret;
         }
 
@@ -362,6 +374,7 @@ namespace MathNet.Numerics
             {
                 ret[i] = array[indices[i]];
             }
+
             return ret;
         }
 
@@ -384,6 +397,7 @@ namespace MathNet.Numerics
             {
                 ret[i] = array[indices[i]];
             }
+
             return ret;
         }
 
@@ -409,6 +423,7 @@ namespace MathNet.Numerics
                     ret[j++] = array[i];
                 }
             }
+
             return ret;
         }
 
@@ -434,6 +449,7 @@ namespace MathNet.Numerics
                     ret[j++] = array[i];
                 }
             }
+
             return ret;
         }
 

@@ -6,7 +6,7 @@
 //                          Christoph Rüegg, http://christoph.ruegg.name
 //
 // Contribution: The MathWorks and NIST [2000]
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -53,7 +53,9 @@ namespace MathNet.Numerics.LinearAlgebra
             )
         {
             if(m.RowCount != m.ColumnCount)
+            {
                 throw new InvalidOperationException(Resources.ArgumentMatrixSquare);
+            }
 
             double[][] A = m;
             double[][] L = Matrix.CreateMatrixData(m.RowCount, m.RowCount);
@@ -130,9 +132,14 @@ namespace MathNet.Numerics.LinearAlgebra
             )
         {
             if(b.Length != _l.RowCount)
+            {
                 throw new ArgumentException(Resources.ArgumentMatrixSameRowDimension, "b");
+            }
+
             if(!_isSymmetricPositiveDefinite)
+            {
                 throw new InvalidOperationException(Resources.ArgumentMatrixSymmetricPositiveDefinite);
+            }
 
             double[][] L = _l;
             double[] bb = b;
@@ -146,6 +153,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     sum -= L[i][k] * x[k];
                 }
+
                 x[i] = sum / L[i][i];
             }
 
@@ -157,6 +165,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     sum -= L[k][i] * x[k];
                 }
+
                 x[i] = sum / L[i][i];
             }
 
@@ -175,9 +184,14 @@ namespace MathNet.Numerics.LinearAlgebra
             )
         {
             if(B.RowCount != _l.RowCount)
+            {
                 throw new ArgumentException(Resources.ArgumentMatrixSameRowDimension, "B");
+            }
+
             if(!_isSymmetricPositiveDefinite)
+            {
                 throw new InvalidOperationException(Resources.ArgumentMatrixSymmetricPositiveDefinite);
+            }
 
             int nx = B.ColumnCount;
             double[][] L = _l;
@@ -190,10 +204,12 @@ namespace MathNet.Numerics.LinearAlgebra
                 for(int j = 0; j < nx; j++)
                 {
                     double sum = BB[i][j];
+
                     for(int k = i - 1; k >= 0; k--)
                     {
                         sum -= L[i][k] * X[k][j];
                     }
+
                     X[i][j] = sum / L[i][i];
                 }
             }
@@ -204,10 +220,12 @@ namespace MathNet.Numerics.LinearAlgebra
                 for(int j = 0; j < nx; j++)
                 {
                     double sum = X[i][j];
+
                     for(int k = i + 1; k < X.Length; k++)
                     {
                         sum -= L[k][i] * X[k][j];
                     }
+
                     X[i][j] = sum / L[i][i];
                 }
             }

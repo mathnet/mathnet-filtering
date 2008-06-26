@@ -3,7 +3,7 @@
 // http://mathnet.opensourcedotnet.info
 //
 // Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -37,46 +37,45 @@
  */
 #endregion
 #region Derived From: Copyright 2002 Nishimura, Matsumoto
-//A C-program for MT19937, with initialization improved 2002/1/26.
-//Coded by Takuji Nishimura and Makoto Matsumoto.
-
-//Before using, initialize the state by using init_genrand(seed)  
-//or init_by_array(init_key, key_length).
-
-//Copyright (C) 1997 - 2002, Makoto Matsumoto and Takuji Nishimura,
-//All rights reserved.                          
-
-//Redistribution and use in source and binary forms, with or without
-//modification, are permitted provided that the following conditions
-//are met:
-
+// A C-program for MT19937, with initialization improved 2002/1/26.
+// Coded by Takuji Nishimura and Makoto Matsumoto.
+//
+// Before using, initialize the state by using init_genrand(seed)  
+// or init_by_array(init_key, key_length).
+//
+// Copyright (C) 1997 - 2002, Makoto Matsumoto and Takuji Nishimura,
+// All rights reserved.                          
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
+// are met:
+//
 // 1. Redistributions of source code must retain the above copyright
 //    notice, this list of conditions and the following disclaimer.
-
+//
 // 2. Redistributions in binary form must reproduce the above copyright
 //    notice, this list of conditions and the following disclaimer in the
 //    documentation and/or other materials provided with the distribution.
-
+//
 // 3. The names of its contributors may not be used to endorse or promote 
 //    products derived from this software without specific prior written 
 //    permission.
-
-//THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-//"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-//LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-//A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR
-//CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-//EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
-//PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
-//PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
-//LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
-//NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-//SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
-//Any feedback is very welcome.
-//http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/emt.html
-//email: m-mat @ math.sci.hiroshima-u.ac.jp (remove space)
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+// CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+// EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+// PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+// PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+// LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+// NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+// SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//
+// Any feedback is very welcome.
+// http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/emt.html
+// email: m-mat @ math.sci.hiroshima-u.ac.jp (remove space)
 #endregion
 
 using System;
@@ -205,7 +204,6 @@ namespace MathNet.Numerics.RandomSources
         {
             _mt = new uint[N];
             _seed = seed;
-            //_seedArray = null;
             ResetGenerator();
         }
 
@@ -236,11 +234,13 @@ namespace MathNet.Numerics.RandomSources
 
             _mt = new uint[N];
             _seed = 19650218U;
+
             _seedArray = new uint[seedArray.Length];
             for(int index = 0; index < seedArray.Length; index++)
             {
                 _seedArray[index] = (uint)Math.Abs(seedArray[index]);
             }
+
             ResetGenerator();
         }
 
@@ -286,6 +286,7 @@ namespace MathNet.Numerics.RandomSources
             for(_mti = 1; _mti < N; _mti++)
             {
                 _mt[_mti] = (1812433253U * (_mt[_mti - 1] ^ (_mt[_mti - 1] >> 30)) + _mti);
+
                 // See Knuth TAOCP Vol2. 3rd Ed. P.106 for multiplier.
                 // In the previous versions, MSBs of the seed affect only MSBs of the array mt[].
                 // 2002/01/09 modified by Makoto Matsumoto
@@ -316,16 +317,19 @@ namespace MathNet.Numerics.RandomSources
                 _mt[i] = (_mt[i] ^ ((_mt[i - 1] ^ (_mt[i - 1] >> 30)) * 1664525U)) + _seedArray[j] + j; // non linear
                 i++;
                 j++;
+
                 if(i >= N)
                 {
                     _mt[0] = _mt[N - 1];
                     i = 1;
                 }
+
                 if(j >= _seedArray.Length)
                 {
                     j = 0;
                 }
             }
+
             for(k = N - 1; k > 0; k--)
             {
                 _mt[i] = (_mt[i] ^ ((_mt[i - 1] ^ (_mt[i - 1] >> 30)) * 1566083941U)) - i; // non linear
@@ -359,11 +363,13 @@ namespace MathNet.Numerics.RandomSources
                 y = (_mt[kk] & UpperMask) | (_mt[kk + 1] & LowerMask);
                 _mt[kk] = _mt[kk + M] ^ (y >> 1) ^ mag01[y & 0x1U];
             }
+
             for(; kk < N - 1; kk++)
             {
                 y = (_mt[kk] & UpperMask) | (_mt[kk + 1] & LowerMask);
                 _mt[kk] = _mt[kk + (M - N)] ^ (y >> 1) ^ mag01[y & 0x1U];
             }
+
             y = (_mt[N - 1] & UpperMask) | (_mt[0] & LowerMask);
             _mt[N - 1] = _mt[M - 1] ^ (y >> 1) ^ mag01[y & 0x1U];
 
@@ -383,11 +389,13 @@ namespace MathNet.Numerics.RandomSources
         NextUInt()
         {
             if(_mti >= N)
-            {// generate N words at one time
+            {
+                // generate N words at one time
                 GenerateNUInts();
             }
 
             uint y = _mt[_mti++];
+
             // Tempering
             y ^= (y >> 11);
             y ^= (y << 7) & 0x9d2c5680U;
@@ -408,10 +416,13 @@ namespace MathNet.Numerics.RandomSources
         {
             // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
             if(_mti >= N)
-            {// generate N words at one time
+            {
+                // generate N words at one time
                 GenerateNUInts();
             }
+
             uint y = _mt[_mti++];
+
             // Tempering
             y ^= (y >> 11);
             y ^= (y << 7) & 0x9d2c5680U;
@@ -434,10 +445,13 @@ namespace MathNet.Numerics.RandomSources
         {
             // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
             if(_mti >= N)
-            {// generate N words at one time
+            {
+                // generate N words at one time
                 GenerateNUInts();
             }
+
             uint y = _mt[_mti++];
+
             // Tempering
             y ^= (y >> 11);
             y ^= (y << 7) & 0x9d2c5680U;
@@ -445,6 +459,7 @@ namespace MathNet.Numerics.RandomSources
             y ^= (y >> 18);
 
             int result = (int)(y >> 1);
+
             // Exclude Int32.MaxValue from the range of return values.
             if(result == Int32.MaxValue)
             {
@@ -489,10 +504,13 @@ namespace MathNet.Numerics.RandomSources
 
             // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
             if(_mti >= N)
-            {// generate N words at one time
+            {
+                // generate N words at one time
                 GenerateNUInts();
             }
+
             uint y = _mt[_mti++];
+
             // Tempering
             y ^= (y >> 11);
             y ^= (y << 7) & 0x9d2c5680U;
@@ -543,10 +561,13 @@ namespace MathNet.Numerics.RandomSources
 
             // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
             if(_mti >= N)
-            {// generate N words at one time
+            {
+                // generate N words at one time
                 GenerateNUInts();
             }
+
             uint y = _mt[_mti++];
+
             // Tempering
             y ^= (y >> 11);
             y ^= (y << 7) & 0x9d2c5680U;
@@ -582,10 +603,13 @@ namespace MathNet.Numerics.RandomSources
         {
             // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
             if(_mti >= N)
-            {// generate N words at one time
+            {
+                // generate N words at one time
                 GenerateNUInts();
             }
+
             uint y = _mt[_mti++];
+
             // Tempering
             y ^= (y >> 11);
             y ^= (y << 7) & 0x9d2c5680U;
@@ -633,10 +657,13 @@ namespace MathNet.Numerics.RandomSources
 
             // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
             if(_mti >= N)
-            {// generate N words at one time
+            {
+                // generate N words at one time
                 GenerateNUInts();
             }
+
             uint y = _mt[_mti++];
+
             // Tempering
             y ^= (y >> 11);
             y ^= (y << 7) & 0x9d2c5680U;
@@ -709,10 +736,13 @@ namespace MathNet.Numerics.RandomSources
 
             // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
             if(_mti >= N)
-            {// generate N words at one time
+            {
+                // generate N words at one time
                 GenerateNUInts();
             }
+
             uint y = _mt[_mti++];
+
             // Tempering
             y ^= (y >> 11);
             y ^= (y << 7) & 0x9d2c5680U;
@@ -740,10 +770,13 @@ namespace MathNet.Numerics.RandomSources
                 // Generate 32 more bits (1 uint) and store it for future calls.
                 // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
                 if(_mti >= N)
-                {// generate N words at one time
+                {
+                    // generate N words at one time
                     GenerateNUInts();
                 }
+
                 uint y = _mt[_mti++];
+
                 // Tempering
                 y ^= (y >> 11);
                 y ^= (y << 7) & 0x9d2c5680U;
@@ -794,10 +827,13 @@ namespace MathNet.Numerics.RandomSources
             {
                 // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
                 if(_mti >= N)
-                {// generate N words at one time
+                {
+                    // generate N words at one time
                     GenerateNUInts();
                 }
+
                 y = _mt[_mti++];
+
                 // Tempering
                 y ^= (y >> 11);
                 y ^= (y << 7) & 0x9d2c5680U;
@@ -815,10 +851,13 @@ namespace MathNet.Numerics.RandomSources
             {
                 // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
                 if(_mti >= N)
-                {// generate N words at one time
+                {
+                    // generate N words at one time
                     GenerateNUInts();
                 }
+
                 y = _mt[_mti++];
+
                 // Tempering
                 y ^= (y >> 11);
                 y ^= (y << 7) & 0x9d2c5680U;

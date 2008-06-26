@@ -4,7 +4,7 @@
 //
 // Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
 //                          Joannes Vermorel, http://www.vermorel.com
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -155,7 +155,9 @@ namespace MathNet.Numerics.Distributions
             // precompute cumulated distribution function
             _cdf[0] = _pmf[0];
             for(int i = 1; i < _n; i++)
+            {
                 _cdf[i] = _cdf[i - 1] + _pmf[i];
+            }
 
             // precompute mean/variance
             _mean = 0;
@@ -165,6 +167,7 @@ namespace MathNet.Numerics.Distributions
                 _mean += x * _pmf[i];
                 _variance += x * x * _pmf[i];
             }
+
             _variance -= _mean * _mean;
         }
 
@@ -182,11 +185,15 @@ namespace MathNet.Numerics.Distributions
             )
         {
             if(null == probabilityMass)
+            {
                 throw new ArgumentNullException("probabilityMass");
+            }
 
             double sum = 0.0;
             for(int i = 0; i < probabilityMass.Length; i++)
+            {
                 sum += probabilityMass[i];
+            }
 
             return Number.AlmostEqual(1.0, sum, 10 + 2 * probabilityMass.Length);
         }
@@ -254,7 +261,10 @@ namespace MathNet.Numerics.Distributions
             )
         {
             if(x < _first || x > _last)
+            {
                 return 0.0;
+            }
+
             return _pmf[x - _first];
         }
 
@@ -268,10 +278,16 @@ namespace MathNet.Numerics.Distributions
             )
         {
             if(x < _first)
+            {
                 return 0.0;
+            }
+
             int xx = (int)Math.Floor(x);
             if(xx <= _last)
+            {
                 return _cdf[xx - _first];
+            }
+
             return 1.0;
         }
 
@@ -294,7 +310,10 @@ namespace MathNet.Numerics.Distributions
             // TODO: consider using binary search instead
             int index = 0;
             while(_cdf[index] < rnd)
+            {
                 index++;
+            }
+
             return index + _first;
         }
         #endregion

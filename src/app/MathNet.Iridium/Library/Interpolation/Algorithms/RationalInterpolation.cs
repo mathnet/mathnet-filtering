@@ -6,7 +6,7 @@
 //
 // Contribution: Numerical Recipes in C++, Second Edition [2003]
 //               Handbook of Mathematical Functions [1965]
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -83,10 +83,12 @@ namespace MathNet.Numerics.Interpolation.Algorithms
             {
                 throw new ArgumentNullException("t");
             }
+
             if(null == x)
             {
                 throw new ArgumentNullException("x");
             }
+
             if(t.Count != x.Count)
             {
                 throw new ArgumentException(Properties.Resources.ArgumentVectorsSameLengths);
@@ -124,11 +126,13 @@ namespace MathNet.Numerics.Interpolation.Algorithms
                 {
                     return _x[i];
                 }
+
                 if(distance < nearestDistance)
                 {
                     nearestIndex = i;
                     nearestDistance = distance;
                 }
+
                 c[i] = _x[i];
                 d[i] = _x[i] + tiny;
             }
@@ -141,11 +145,13 @@ namespace MathNet.Numerics.Interpolation.Algorithms
                 {
                     double hp = _t[i + level] - t;
                     double ho = (_t[i] - t) * d[i] / hp;
+
                     double den = ho - c[i + 1];
                     if(Number.AlmostZero(den))
                     {
                         return double.NaN; // zero-div, singularity
                     }
+
                     den = (c[i + 1] - d[i]) / den;
                     d[i] = c[i + 1] * den;
                     c[i] = ho * den;

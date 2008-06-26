@@ -75,8 +75,6 @@
     <Compile Include="Distributions\IContinuousProbabilityDistribution.cs" />
     <Compile Include="Distributions\ContinuousDistribution.cs" />
     <Compile Include="Distributions\IDiscreteProbabilityDistribution.cs" />
-    <Compile Include="Distributions\NamespaceDoc.cs" />
-    <Compile Include="Equations\NamespaceDoc.cs" />
     <Compile Include="Equations\ScalarIterator.cs" />
     <Compile Include="Equations\Solver.cs" />
     <Compile Include="Interpolation\Algorithms\AkimaSplineInterpolation.cs" />
@@ -123,7 +121,6 @@
     <Compile Include="LinearAlgebra\NamespaceDoc.cs" />
     <Compile Include="LinearAlgebra\QRDecomposition.cs" />
     <Compile Include="LinearAlgebra\SingularValueDecomposition.cs" />
-    <Compile Include="NamespaceDoc.cs" />
     <Compile Include="Natural.cs" />
     <Compile Include="Number.cs" />
     <Compile Include="Polynomial.cs" />
@@ -140,10 +137,8 @@
     <Compile Include="SpecialFunctions.cs" />
     <Compile Include="Statistics\Accumulator.cs" />
     <Compile Include="Statistics\Histogram.cs" />
-    <Compile Include="Statistics\NamespaceDoc.cs" />
     <Compile Include="Transformations\ComplexFourierTransformation.cs" />
     <Compile Include="Transformations\InternalFFT.cs" />
-    <Compile Include="Transformations\NamespaceDoc.cs" />
     <Compile Include="Transformations\RealFourierTransformation.cs" />
     <Compile Include="Transformations\TransformationConvention.cs" />
     <Compile Include="Trigonometry.cs" />

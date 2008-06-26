@@ -4,7 +4,7 @@
 //
 // Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
 //                          Joannes Vermorel, http://www.vermorel.com
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -108,6 +108,7 @@ namespace MathNet.Numerics
                 {
                     realImaginaryComparer = new RealImaginaryLexComparer();
                 }
+
                 return realImaginaryComparer;
             }
         }
@@ -123,6 +124,7 @@ namespace MathNet.Numerics
                 {
                     modulusArgumentComparer = new ModulusArgumentLexComparer();
                 }
+
                 return modulusArgumentComparer;
             }
         }
@@ -138,6 +140,7 @@ namespace MathNet.Numerics
                 {
                     argumentModulusComparer = new ArgumentModulusLexComparer();
                 }
+
                 return argumentModulusComparer;
             }
         }
@@ -429,7 +432,11 @@ namespace MathNet.Numerics
         /// <seealso cref="Argument"/>
         public double Modulus
         {
-            get { return Math.Sqrt(real * real + imag * imag); }
+            get
+            {
+                return Math.Sqrt(real * real + imag * imag);
+            }
+
             set
             {
                 if(value < 0d)
@@ -476,7 +483,11 @@ namespace MathNet.Numerics
         /// <seealso cref="Argument"/>
         public double ModulusSquared
         {
-            get { return real * real + imag * imag; }
+            get
+            {
+                return real * real + imag * imag;
+            }
+
             set
             {
                 if(value < 0d)
@@ -526,12 +537,15 @@ namespace MathNet.Numerics
                 {
                     return Math.PI;
                 }
+
                 if(IsRealNonNegative)
                 {
                     return 0;
                 }
+
                 return Math.Atan2(imag, real);
             }
+
             set
             {
                 double modulus = Modulus;
@@ -543,7 +557,7 @@ namespace MathNet.Numerics
         /// <summary>
         /// Gets the unity of this complex (same argument, but on the unit circle; exp(I*arg))
         /// </summary>
-        public Complex Unity
+        public Complex Sign
         {
             get
             {
@@ -551,20 +565,23 @@ namespace MathNet.Numerics
                 {
                     return new Complex(Constants.Sqrt1_2, Constants.Sqrt1_2);
                 }
+
                 if(double.IsPositiveInfinity(real) && double.IsNegativeInfinity(imag))
                 {
                     return new Complex(Constants.Sqrt1_2, -Constants.Sqrt1_2);
                 }
+
                 if(double.IsNegativeInfinity(real) && double.IsPositiveInfinity(imag))
                 {
                     return new Complex(-Constants.Sqrt1_2, -Constants.Sqrt1_2);
                 }
+
                 if(double.IsNegativeInfinity(real) && double.IsNegativeInfinity(imag))
                 {
                     return new Complex(-Constants.Sqrt1_2, Constants.Sqrt1_2);
                 }
 
-                //Don't replace this with "Modulus"!
+                // don't replace this with "Modulus"!
                 double mod = Fn.Hypot(real, imag);
                 if(mod == 0)
                 {
@@ -655,6 +672,7 @@ namespace MathNet.Numerics
             {
                 return res;
             }
+
             return Argument.CompareTo(other.Argument);
         }
 
@@ -775,6 +793,7 @@ namespace MathNet.Numerics
             {
                 return Complex.Infinity;
             }
+
             double z2mod = divisor.ModulusSquared;
             return new Complex((dividend.real * divisor.real + dividend.imag * divisor.imag) / z2mod, (dividend.imag * divisor.real - dividend.real * divisor.imag) / z2mod);
         }
@@ -788,6 +807,7 @@ namespace MathNet.Numerics
             {
                 return Complex.Infinity;
             }
+
             double zmod = divisor.ModulusSquared;
             return new Complex(dividend * divisor.real / zmod, -dividend * divisor.imag / zmod);
         }
@@ -801,6 +821,7 @@ namespace MathNet.Numerics
             {
                 return Complex.Infinity;
             }
+
             return new Complex(dividend.real / divisor, dividend.imag / divisor);
         }
 
@@ -972,7 +993,7 @@ namespace MathNet.Numerics
         Complex
         InverseTangent()
         {
-            Complex iz = new Complex(-imag, real); //I*this
+            Complex iz = new Complex(-imag, real); // I*this
             return new Complex(0, 0.5) * ((1 - iz).NaturalLogarithm() - (1 + iz).NaturalLogarithm());
         }
 
@@ -983,7 +1004,7 @@ namespace MathNet.Numerics
         Complex
         InverseCotangent()
         {
-            Complex iz = new Complex(-imag, real); //I*this
+            Complex iz = new Complex(-imag, real); // I*this
             return new Complex(0, 0.5) * ((1 + iz).NaturalLogarithm() - (1 - iz).NaturalLogarithm()) + Math.PI / 2;
         }
 
@@ -1248,18 +1269,22 @@ namespace MathNet.Numerics
                 {
                     return Complex.One;
                 }
+
                 if(exponent.Real > 0)
                 {
                     return Complex.Zero;
                 }
+
                 if(exponent.Real < 0)
                 {
                     if(Number.AlmostEqual(0d, exponent.Imag))
                     {
                         return new Complex(double.PositiveInfinity, 0d);
                     }
+
                     return new Complex(double.PositiveInfinity, double.PositiveInfinity);
                 }
+
                 return Complex.NaN;
             }
 
@@ -1309,6 +1334,7 @@ namespace MathNet.Numerics
             }
 
             double mod = Modulus;
+
             if(imag > 0 || imag == 0 && real < 0)
             {
                 return new Complex(
@@ -1316,6 +1342,7 @@ namespace MathNet.Numerics
                     Constants.Sqrt1_2 * Math.Sqrt(mod - real)
                     );
             }
+
             return new Complex(
                 Constants.Sqrt1_2 * Math.Sqrt(mod + real),
                 -Constants.Sqrt1_2 * Math.Sqrt(mod - real)
@@ -1352,6 +1379,7 @@ namespace MathNet.Numerics
         {
             return Parse(complex, NumberFormatInfo.CurrentInfo);
         }
+
         /// <summary>
         /// Parse a string into a <c>Complex</c>.
         /// </summary>
@@ -1368,6 +1396,7 @@ namespace MathNet.Numerics
         {
             return ToString(NumberFormatInfo.CurrentInfo);
         }
+
         /// <summary>
         /// Formats this <c>Complex</c> into a <c>string</c>.
         /// </summary>
@@ -1395,10 +1424,12 @@ namespace MathNet.Numerics
                 {
                     return "I";
                 }
+
                 if(Number.AlmostEqual(imag, -1))
                 {
                     return numberFormat.NegativeSign + "I";
                 }
+
                 if(imag < 0)
                 {
                     return numberFormat.NegativeSign + "I*" + (-imag).ToString(numberFormat);
@@ -1412,10 +1443,12 @@ namespace MathNet.Numerics
                 {
                     return real.ToString(numberFormat) + "+I";
                 }
+
                 if(Number.AlmostEqual(imag, -1))
                 {
                     return real.ToString(numberFormat) + "-I";
                 }
+
                 if(imag < 0)
                 {
                     return real.ToString(numberFormat) + "-I*"
@@ -1456,10 +1489,12 @@ namespace MathNet.Numerics
             {
                 get
                 {
-                    if(cursor < source.Length)
-                        return source[cursor];
-                    else
+                    if(cursor >= source.Length)
+                    {
                         return '\0';
+                    }
+                    
+                    return source[cursor];
                 }
             }
 
@@ -1467,10 +1502,12 @@ namespace MathNet.Numerics
             {
                 get
                 {
-                    if(cursor < source.Length)
-                        return source[cursor];
-                    else
+                    if(cursor >= source.Length)
+                    {
                         throw new ArgumentException(Resources.ArgumentParseComplexNumber, "complex");
+                    }
+                    
+                    return source[cursor];
                 }
             }
 
@@ -1485,10 +1522,12 @@ namespace MathNet.Numerics
                 {
                     return Complex.I;
                 }
+
                 if(source.Equals(numberFormat.NaNSymbol.ToLower()))
                 {
                     return Complex.NaN;
                 }
+
                 if(source.Equals("infinity") || source.Equals("infty"))
                 {
                     return Complex.Infinity;
@@ -1497,10 +1536,12 @@ namespace MathNet.Numerics
                 ScanSkipWhitespace();
                 Complex complex = ScanSignedComplexNumberPart();
                 ScanSkipWhitespace();
+
                 if(IsSign(LookAheadCharacterOrNull))
                 {
                     complex += ScanSignedComplexNumberPart();
                 }
+
                 return complex;
             }
 
@@ -1508,19 +1549,23 @@ namespace MathNet.Numerics
             ScanSignedComplexNumberPart()
             {
                 bool negativeSign = false;
+
                 if(IsSign(LookAheadCharacterOrNull))
                 {
                     if(IsNegativeSign(LookAheadCharacter))
                     {
                         negativeSign = true;
                     }
+
                     Consume();
                     ScanSkipWhitespace();
                 }
+
                 if(negativeSign)
                 {
                     return -ScanComplexNumberPart();
                 }
+
                 return ScanComplexNumberPart();
             }
 
@@ -1528,34 +1573,42 @@ namespace MathNet.Numerics
             ScanComplexNumberPart()
             {
                 bool imaginary = false;
+
                 if(IsI(LookAheadCharacter))
                 {
                     Consume();
                     ScanSkipWhitespace();
+
                     if(IsMult(LookAheadCharacterOrNull))
                     {
                         Consume();
                     }
+
                     ScanSkipWhitespace();
                     imaginary = true;
                 }
+
                 if(!IsNumber(LookAheadCharacterOrNull) && !IsSign(LookAheadCharacterOrNull))
                 {
                     return new Complex(0d, 1d);
                 }
+
                 double part = ScanNumber();
                 ScanSkipWhitespace();
+
                 if(IsMult(LookAheadCharacterOrNull))
                 {
                     Consume();
                     ScanSkipWhitespace();
                 }
+
                 if(IsI(LookAheadCharacterOrNull))
                 {
                     Consume();
                     ScanSkipWhitespace();
                     imaginary = true;
                 }
+
                 if(imaginary)
                 {
                     return new Complex(0d, part);
@@ -1570,29 +1623,36 @@ namespace MathNet.Numerics
             ScanNumber()
             {
                 StringBuilder sb = new StringBuilder();
+
                 if(IsSign(LookAheadCharacter))
                 {
                     sb.Append(Consume());
                 }
+
                 ScanSkipWhitespace();
                 ScanInteger(sb);
                 ScanSkipWhitespace();
+
                 if(IsDecimal(LookAheadCharacterOrNull))
                 {
                     Consume();
                     sb.Append(numberFormat.NumberDecimalSeparator);
                     ScanInteger(sb);
                 }
+
                 if(IsE(LookAheadCharacterOrNull))
                 {
                     Consume();
                     sb.Append('e');
+
                     if(IsSign(LookAheadCharacter))
                     {
                         sb.Append(Consume());
                     }
+
                     ScanInteger(sb);
                 }
+
                 return double.Parse(
                     sb.ToString(),
                     NumberStyles.AllowDecimalPoint | NumberStyles.AllowExponent | NumberStyles.AllowLeadingSign,
@@ -1725,32 +1785,5 @@ namespace MathNet.Numerics
         }
 
         #endregion
-
-        //        #region Unit Testing Suite
-        //#if DEBUG
-
-        //        /// <summary>Testing suite for the <c>Complex</c> class.</summary>
-        //        [TestFixture]
-        //        public class TestingSuite
-        //        {
-        //            private static Random random = new Random();
-
-        //            /// <summary>
-        //            /// Testing the method <see cref="Complex.ToString"/>
-        //            /// </summary>
-        //            [Test] public void ToStringTest()
-        //            {
-        //                for(int i = 0; i < 100; i++)
-        //                {
-        //                    Complex c = new Complex(2 * random.NextDouble() - 1,
-        //                                            2 * random.NextDouble() - 1);
-
-        //                    string s = c.ToString();
-        //                    Assertion.AssertEquals("#A00 Unexpected parse result.", c, Complex.Parse(s));
-        //                }
-        //            }
-        //        }
-        //#endif
-        //        #endregion
     }
 }

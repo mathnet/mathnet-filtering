@@ -3,7 +3,7 @@
 // http://mathnet.opensourcedotnet.info
 //
 // Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -37,19 +37,19 @@
  */
 #endregion
 #region Derived From: Copyright 2001 Maurer
-//* boost random/triangle_distribution.hpp header file
-//*
-//* Copyright Jens Maurer 2000-2001
-//* Distributed under the Boost Software License, Version 1.0. (See
-//* accompanying file LICENSE_1_0.txt or copy at
-//* http://www.boost.org/LICENSE_1_0.txt)
-//*
-//* See http://www.boost.org for most recent version including documentation.
-//*
-//* $Id: triangle_distribution.hpp,v 1.11 2004/07/27 03:43:32 dgregor Exp $
-//*
-//* Revision history
-//*  2001-02-18  moved to individual header files
+// boost random/triangle_distribution.hpp header file
+//
+// Copyright Jens Maurer 2000-2001
+// Distributed under the Boost Software License, Version 1.0. (See
+// accompanying file LICENSE_1_0.txt or copy at
+// http://www.boost.org/LICENSE_1_0.txt)
+//
+// See http://www.boost.org for most recent version including documentation.
+//
+// $Id: triangle_distribution.hpp,v 1.11 2004/07/27 03:43:32 dgregor Exp $
+//
+// Revision history
+// 2001-02-18  moved to individual header files
 #endregion
 
 using System;
@@ -229,9 +229,11 @@ namespace MathNet.Numerics.Distributions
             get
             {
                 if(_c >= 0.5 * _diff)
+                {
                     return _a + Math.Sqrt(0.5 * _diff * _lowerPart);
-                else
-                    return _b - Math.Sqrt(0.5 * _diff * _upperPart);
+                }
+
+                return _b - Math.Sqrt(0.5 * _diff * _upperPart);
             }
         }
 
@@ -266,11 +268,20 @@ namespace MathNet.Numerics.Distributions
             )
         {
             if(x <= _a)
+            {
                 return 0.0;
+            }
+
             if(x <= _c)
+            {
                 return 2 * (x - _a) / (_diff * _lowerPart);
+            }
+
             if(x < _b)
+            {
                 return 2 * (_b - x) / (_diff * _upperPart);
+            }
+
             return 0.0;
         }
 
@@ -284,17 +295,22 @@ namespace MathNet.Numerics.Distributions
             )
         {
             if(x <= _a)
+            {
                 return 0.0;
+            }
+
             if(x <= _c)
             {
                 double diff = x - _a;
                 return diff * diff / (_diff * _lowerPart);
             }
+
             if(x < _b)
             {
                 double diff = _b - x;
                 return 1.0 - diff * diff / (_diff * _upperPart);
             }
+
             return 1.0;
         }
         #endregion

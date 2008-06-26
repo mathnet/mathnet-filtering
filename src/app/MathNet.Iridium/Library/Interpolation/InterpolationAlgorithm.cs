@@ -3,7 +3,7 @@
 // http://mathnet.opensourcedotnet.info
 //
 // Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -34,13 +34,20 @@ namespace MathNet.Numerics.Interpolation
         /// Maximum interpolation order.
         /// </summary>
         /// <seealso cref="EffectiveOrder"/>
-        int MaximumOrder { get; set; }
+        int MaximumOrder
+        {
+            get;
+            set;
+        }
 
         /// <summary>
         /// Effective interpolation order.
         /// </summary>
         /// <seealso cref="MaximumOrder"/>
-        int EffectiveOrder { get; }
+        int EffectiveOrder
+        {
+            get;
+        }
 
         /// <summary>
         /// Precompute/optimize the algoritm for the given sample set.
@@ -60,7 +67,10 @@ namespace MathNet.Numerics.Interpolation
         /// <summary>
         /// True if the alorithm supports error estimation.
         /// </summary>
-        bool SupportErrorEstimation { get; }
+        bool SupportErrorEstimation
+        {
+            get;
+        }
 
         /// <summary>
         /// Interpolate at point t and return the estimated error as error-parameter.
