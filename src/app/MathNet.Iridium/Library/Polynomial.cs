@@ -500,6 +500,7 @@ namespace MathNet.Numerics
 
         #region Inplace Arithmetic Methods
 
+        /// <summary>Add anoter polynomial inplace to this polynomial.</summary>
         /// <remarks>This method operates inplace and thus alters this instance.</remarks>
         public
         void
@@ -515,6 +516,7 @@ namespace MathNet.Numerics
             }
         }
 
+        /// <summary>Add a real number inplace to this polynomial.</summary>
         /// <remarks>This method operates inplace and thus alters this instance.</remarks>
         public
         void
@@ -525,6 +527,7 @@ namespace MathNet.Numerics
             this[0] += n;
         }
 
+        /// <summary>Subtract anoter polynomial inplace from this polynomial.</summary>
         /// <remarks>This method operates inplace and thus alters this instance.</remarks>
         public
         void
@@ -540,6 +543,7 @@ namespace MathNet.Numerics
             }
         }
 
+        /// <summary>Subtract a real number inplace from this polynomial.</summary>
         /// <remarks>This method operates inplace and thus alters this instance.</remarks>
         public
         void
@@ -550,6 +554,7 @@ namespace MathNet.Numerics
             this[0] -= n;
         }
 
+        /// <summary>Negate this polynomial inplace.</summary>
         /// <remarks>This method operates inplace and thus alters this instance.</remarks>
         public
         void

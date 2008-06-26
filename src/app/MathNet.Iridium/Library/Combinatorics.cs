@@ -359,8 +359,8 @@ namespace MathNet.Numerics
         /// Randomly returns a subset of size <c>numberToSelect</c> of <c>array</c>
         /// in random order without repetition.
         /// </summary>
-        /// <param name="numberToSelect">The size of the subset. Must be smaller or equal to the array length.</param>
         /// <param name="array">The data list to choose from.</param>
+        /// <param name="numberToSelect">The size of the subset. Must be smaller or equal to the array length.</param>
         public static
         T[]
         RandomSubsetVariation<T>(
@@ -382,8 +382,8 @@ namespace MathNet.Numerics
         /// Randomly returns a subset of size <c>numberToSelect</c> of <c>array</c>
         /// in random order with repetition.
         /// </summary>
-        /// <param name="numberToSelect">The size of the subset. Must be smaller or equal to the array length.</param>
         /// <param name="array">The data list to choose from.</param>
+        /// <param name="numberToSelect">The size of the subset. Must be smaller or equal to the array length.</param>
         public static
         T[]
         RandomSubsetVariationWithRepetition<T>(
@@ -405,8 +405,8 @@ namespace MathNet.Numerics
         /// Randomly returns a subset of size <c>numberToSelect</c> of <c>array</c>
         /// in preserved order without repetition.
         /// </summary>
-        /// <param name="numberToSelect">The size of the subset. Must be smaller or equal to the array length.</param>
         /// <param name="array">The data list to choose from.</param>
+        /// <param name="numberToSelect">The size of the subset. Must be smaller or equal to the array length.</param>
         public static
         T[]
         RandomSubsetCombination<T>(
@@ -431,8 +431,8 @@ namespace MathNet.Numerics
         /// Randomly returns a subset of size <c>numberToSelect</c> of <c>array</c>
         /// in preserved order with repetition.
         /// </summary>
-        /// <param name="numberToSelect">The size of the subset. Must be smaller or equal to the array length.</param>
         /// <param name="array">The data list to choose from.</param>
+        /// <param name="numberToSelect">The size of the subset. Must be smaller or equal to the array length.</param>
         public static
         T[]
         RandomSubsetCombinationWithRepetition<T>(

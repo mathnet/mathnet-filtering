@@ -68,8 +68,11 @@ namespace MathNet.Numerics.Transformations
         }
 
         #region Scales
-        /// <param name="numberOfSamplePairs">The real &amp; complex numbers count together as only one sample.</param>
+        /// <summary>
+        /// Generate the expected sample points in time space.
+        /// </summary>
         /// <param name="sampleRate">The sampling rate of the time-space data.</param>
+        /// <param name="numberOfSamplePairs">The real &amp; complex numbers count together as only one sample.</param>
         public
         double[]
         GenerateTimeScale(
@@ -88,8 +91,11 @@ namespace MathNet.Numerics.Transformations
             return scale;
         }
 
-        /// <param name="numberOfSamplePairs">The real &amp; complex numbers count together as only one sample.</param>
+        /// <summary>
+        /// Generate the expected sample points in frequency space.
+        /// </summary>
         /// <param name="sampleRate">The sampling rate of the time-space data.</param>
+        /// <param name="numberOfSamplePairs">The real &amp; complex numbers count together as only one sample.</param>
         public
         double[]
         GenerateFrequencyScale(

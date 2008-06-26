@@ -68,6 +68,9 @@ namespace MathNet.Numerics.Transformations
         }
 
         #region Scales
+        /// <summary>
+        /// Generate the expected sample points in time space.
+        /// </summary>
         /// <param name="sampleRate">The sampling rate of the time-space data.</param>
         /// <param name="numberOfSamples">Number of data samples.</param>
         public
@@ -88,6 +91,9 @@ namespace MathNet.Numerics.Transformations
             return scale;
         }
 
+        /// <summary>
+        /// Generate the expected sample points in frequency space.
+        /// </summary>
         /// <param name="sampleRate">The sampling rate of the time-space data.</param>
         /// <param name="numberOfSamples">Number of data samples.</param>
         public

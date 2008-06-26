@@ -543,6 +543,9 @@ namespace MathNet.Numerics
             return Multiply(q.Inverse());
         }
 
+        /// <summary>
+        /// Multiplies a Quaterion with the inverse of a real number.
+        /// </summary>
         /// <remarks>
         /// Its also Possible to cast a double to a Quaternion
         /// and make the division afterwards. But this is less

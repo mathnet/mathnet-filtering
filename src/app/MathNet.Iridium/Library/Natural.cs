@@ -461,8 +461,7 @@ namespace MathNet.Numerics
         /// <summary>
         /// Divides this number by the <seealso cref="Radix"/> to the power of the given exponent (fast shifting operation)
         /// </summary>
-        /// <param name="exponent"></param>
-        /// <returns></returns>
+        /// <param name="exponent">The exponent to raise the power to.</param>
         Natural
         ShiftDown(
             uint exponent

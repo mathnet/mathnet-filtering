@@ -281,9 +281,12 @@ namespace MathNet.Numerics
                 : (long)(0x8000000000000000 - (ulong)value);
         }
 
-        /// <param name="maxNumbersBetween">The maximum count of numbers between the two numbers plus one ([a,a] -> 0, [a,a+e] -> 1, [a,a+2e] -> 2, ...).</param>
+        /// <summary>
+        /// Checks whether two real numbers are almost equal.
+        /// </summary>
         /// <param name="a">The first number</param>
         /// <param name="b">The second number</param>
+        /// <param name="maxNumbersBetween">The maximum count of numbers between the two numbers plus one ([a,a] -> 0, [a,a+e] -> 1, [a,a+2e] -> 2, ...).</param>
         public static
         bool
         AlmostEqual(
@@ -295,9 +298,12 @@ namespace MathNet.Numerics
             return AlmostEqual(a, b, (ulong)maxNumbersBetween);
         }
 
-        /// <param name="maxNumbersBetween">The maximum count of numbers between the two numbers plus one ([a,a] -> 0, [a,a+e] -> 1, [a,a+2e] -> 2, ...).</param>
+        /// <summary>
+        /// Checks whether two real numbers are almost equal.
+        /// </summary>
         /// <param name="a">The first number</param>
         /// <param name="b">The second number</param>
+        /// <param name="maxNumbersBetween">The maximum count of numbers between the two numbers plus one ([a,a] -> 0, [a,a+e] -> 1, [a,a+2e] -> 2, ...).</param>
         [CLSCompliant(false)]
         public static
         bool
@@ -335,6 +341,9 @@ namespace MathNet.Numerics
             return between <= maxNumbersBetween;
         }
 
+        /// <summary>
+        /// Checks whether two real numbers are almost equal.
+        /// </summary>
         /// <param name="a">The first number</param>
         /// <param name="b">The second number</param>
         /// <param name="diff">The difference of the two numbers according to the Norm</param>
@@ -357,6 +366,9 @@ namespace MathNet.Numerics
             return Math.Abs(diff) < relativeAccuracy * Math.Max(Math.Abs(a), Math.Abs(b));
         }
 
+        /// <summary>
+        /// Checks whether two real numbers are almost equal.
+        /// </summary>
         /// <param name="a">The first number</param>
         /// <param name="b">The second number</param>
         /// <param name="diff">The difference of the two numbers according to the Norm</param>
@@ -371,6 +383,9 @@ namespace MathNet.Numerics
             return AlmostEqualNorm(a, b, diff, DefaultRelativeAccuracy);
         }
 
+        /// <summary>
+        /// Checks whether two real numbers are almost equal.
+        /// </summary>
         /// <param name="a">The first number</param>
         /// <param name="b">The second number</param>
         /// <param name="relativeAccuracy">The relative accuracy required for being almost equal.</param>
@@ -385,6 +400,9 @@ namespace MathNet.Numerics
             return AlmostEqualNorm(a, b, a - b, relativeAccuracy);
         }
 
+        /// <summary>
+        /// Checks whether two real numbers are almost equal.
+        /// </summary>
         /// <param name="a">The first number</param>
         /// <param name="b">The second number</param>
         public static
@@ -397,6 +415,9 @@ namespace MathNet.Numerics
             return AlmostEqualNorm(a, b, a - b, DefaultRelativeAccuracy);
         }
 
+        /// <summary>
+        /// Checks whether two real arrays are almost equal.
+        /// </summary>
         /// <param name="x">The first vector</param>
         /// <param name="y">The second vector</param>
         public static

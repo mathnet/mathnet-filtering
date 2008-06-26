@@ -83,6 +83,9 @@ namespace MathNet.Numerics.Transformations
         }
 
         #region Sample Reordering (Step 1)
+        /// <summary>
+        /// Reorder the samples (single dimension case).
+        /// </summary>
         /// <param name="samples">Complex samples (even = real, odd = imaginary). Length must be a power of two.</param>
         internal
         void
@@ -110,6 +113,9 @@ namespace MathNet.Numerics.Transformations
             }
         }
 
+        /// <summary>
+        /// Reorder the samples (multi dimension case).
+        /// </summary>
         /// <param name="samples">Complex samples (even = real, odd = imaginary). Length must be a power of two in every dimension.</param>
         /// <param name="stride">Current dimension lengths * steps (steps: next method parameter).</param>
         /// <param name="step">2 * Product of all previous dimension lengths. (times 2 because of the complex sample pairs)</param>
@@ -149,6 +155,9 @@ namespace MathNet.Numerics.Transformations
         #endregion
 
         #region Danielson Lanczos Transform (Step 2)
+        /// <summary>
+        /// Apply the danielson lanczos transform.
+        /// </summary>
         /// <param name="samples">Reordered complex samples (even = real, odd = imaginary). Length must be a power of two.</param>
         /// <param name="forward">true for forward transformation, false for (unscaled) backward/inverse transform.</param>
         /// <param name="convention">FFT Convention to be used</param>

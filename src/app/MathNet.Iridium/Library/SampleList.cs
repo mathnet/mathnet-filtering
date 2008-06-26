@@ -991,8 +991,13 @@ namespace MathNet.Numerics
 
             internal enum EnumerationMode : int
             {
+                /// <summary>Enumerate the keys.</summary>
                 Keys = 0,
+
+                /// <summary>Enumerate the values.</summary>
                 Values = 1,
+
+                /// <summary>Enumerate the dictionary entries.</summary>
                 DictEntry = 2
             }
 
