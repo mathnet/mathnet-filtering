@@ -651,7 +651,7 @@ namespace MathNet.Numerics
         int
         GetHashCode()
         {
-            return real.GetHashCode() ^ imag.GetHashCode();
+            return real.GetHashCode() ^ (-imag.GetHashCode());
         }
 
         /// <summary>

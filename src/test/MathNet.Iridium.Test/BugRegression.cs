@@ -102,5 +102,14 @@ namespace Iridium.Test
             pia.Prepare(sl);
             NumericAssert.AreAlmostEqual(0.9622, pia.Extrapolate(12), 1e-3, "extrapolate(12)");
         }
+
+        [Test]
+        public void IRID178_ComplexNumbersHashCode()
+        {
+            Assert.AreNotEqual(Complex.One.GetHashCode(), Complex.I.GetHashCode(), "A");
+            Assert.AreNotEqual(Complex.One.GetHashCode(), (-Complex.I).GetHashCode(), "B");
+            Assert.AreNotEqual((-Complex.One).GetHashCode(), Complex.I.GetHashCode(), "C");
+            Assert.AreNotEqual((-Complex.One).GetHashCode(), (-Complex.I).GetHashCode(), "D");
+        }
     }
 }
