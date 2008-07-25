@@ -36,7 +36,7 @@
     <PrimaryAssembly Include="
                      @(PrimaryDebugAssemblies);
                      @(PrimaryReleaseAssemblies)" />
-    <TestAssemblies Include="$(BuildDebugPath)Neodym.Test.dll" />
+    <TestAssemblies Include="$(BuildReleasePath)Neodym.Test.dll" />
   </ItemGroup>
 
   <Target Name="PrintNeodymInfo">

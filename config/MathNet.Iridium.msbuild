@@ -28,7 +28,7 @@
     <PrimaryAssembly Include="
                      @(PrimaryDebugAssemblies);
                      @(PrimaryReleaseAssemblies)" />
-    <TestAssemblies Include="$(BuildDebugPath)Iridium.Test.dll" />
+    <TestAssemblies Include="$(BuildReleasePath)Iridium.Test.dll" />
   </ItemGroup>
 
   <Target Name="PrintIridiumInfo">
