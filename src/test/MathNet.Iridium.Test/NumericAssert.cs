@@ -3,7 +3,7 @@
 // http://mathnet.opensourcedotnet.info
 //
 // Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -35,9 +35,19 @@ namespace Iridium.Test
             Assert.DoAssert(new AlmostEqualAsserter(expected.Norm1(), actual.Norm1(), (expected-actual).Norm1(), 10 * Number.DefaultRelativeAccuracy, message));
         }
 
+        public static void AreAlmostEqual(Matrix expected, Matrix actual, double relativeAccuracy, string message)
+        {
+            Assert.DoAssert(new AlmostEqualAsserter(expected.Norm1(), actual.Norm1(), (expected - actual).Norm1(), relativeAccuracy, message));
+        }
+
         public static void AreAlmostEqual(ComplexMatrix expected, ComplexMatrix actual, string message)
         {
             Assert.DoAssert(new AlmostEqualAsserter(expected.Norm1(), actual.Norm1(), (expected - actual).Norm1(), 10 * Number.DefaultRelativeAccuracy, message));
+        }
+
+        public static void AreAlmostEqual(ComplexMatrix expected, ComplexMatrix actual, double relativeAccuracy, string message)
+        {
+            Assert.DoAssert(new AlmostEqualAsserter(expected.Norm1(), actual.Norm1(), (expected - actual).Norm1(), relativeAccuracy, message));
         }
 
         public static void AreAlmostEqual(Vector expected, Vector actual, string message)
@@ -45,9 +55,19 @@ namespace Iridium.Test
             Assert.DoAssert(new AlmostEqualAsserter(expected.Norm1(), actual.Norm1(), (expected - actual).Norm1(), 10 * Number.DefaultRelativeAccuracy, message));
         }
 
+        public static void AreAlmostEqual(Vector expected, Vector actual, double relativeAccuracy, string message)
+        {
+            Assert.DoAssert(new AlmostEqualAsserter(expected.Norm1(), actual.Norm1(), (expected - actual).Norm1(), relativeAccuracy, message));
+        }
+
         public static void AreAlmostEqual(ComplexVector expected, ComplexVector actual, string message)
         {
             Assert.DoAssert(new AlmostEqualAsserter(expected.Norm1(), actual.Norm1(), (expected - actual).Norm1(), 10 * Number.DefaultRelativeAccuracy, message));
+        }
+
+        public static void AreAlmostEqual(ComplexVector expected, ComplexVector actual, double relativeAccuracy, string message)
+        {
+            Assert.DoAssert(new AlmostEqualAsserter(expected.Norm1(), actual.Norm1(), (expected - actual).Norm1(), relativeAccuracy, message));
         }
 
         public static void AreAlmostEqual(double expected, double actual, double relativeAccuracy, string message)
@@ -67,7 +87,7 @@ namespace Iridium.Test
 
         public static void AreAlmostEqual(Complex expected, Complex actual, string message)
         {
-            Assert.DoAssert(new AlmostEqualAsserter(expected.Modulus, actual.Modulus, (expected - actual).Modulus, message));
+            Assert.DoAssert(new AlmostEqualAsserter(expected.Modulus, actual.Modulus, (expected - actual).Modulus, Number.DefaultRelativeAccuracy, message));
         }
     }
 

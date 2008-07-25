@@ -3,7 +3,7 @@
 // http://mathnet.opensourcedotnet.info
 //
 // Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -332,40 +332,40 @@ namespace Iridium.Test
             B = new Matrix(avals);
             double[][] barray = (Matrix)B;
             Assert.AreSame(barray, avals, "getArray");
-            
+
             barray = B.Clone();
             Assert.AreNotSame(barray, avals, "getArrayCopy");
             NumericAssert.AreAlmostEqual(new Matrix(barray), B, "getArrayCopy II");
 
-            //			double[] bpacked = B.ColumnPackedCopy;
-            //			try
-            //			{
-            //				check(bpacked, columnwise);
-            //				try_success("getColumnPackedCopy... ", "");
-            //			}
-            //			catch (System.SystemException e)
-            //			{
-            //				errorCount = try_failure(errorCount, "getColumnPackedCopy... ", "data not successfully (deep) copied by columns");
-            //				System.Console.Out.WriteLine(e.Message);
-            //			}
-            //			bpacked = B.RowPackedCopy;
-            //			try
-            //			{
-            //				check(bpacked, rowwise);
-            //				try_success("getRowPackedCopy... ", "");
-            //			}
-            //			catch (System.SystemException e)
-            //			{
-            //				errorCount = try_failure(errorCount, "getRowPackedCopy... ", "data not successfully (deep) copied by rows");
-            //				System.Console.Out.WriteLine(e.Message);
-            //			}
+            //            double[] bpacked = B.ColumnPackedCopy;
+            //            try
+            //            {
+            //                check(bpacked, columnwise);
+            //                try_success("getColumnPackedCopy... ", "");
+            //            }
+            //            catch (System.SystemException e)
+            //            {
+            //                errorCount = try_failure(errorCount, "getColumnPackedCopy... ", "data not successfully (deep) copied by columns");
+            //                System.Console.Out.WriteLine(e.Message);
+            //            }
+            //            bpacked = B.RowPackedCopy;
+            //            try
+            //            {
+            //                check(bpacked, rowwise);
+            //                try_success("getRowPackedCopy... ", "");
+            //            }
+            //            catch (System.SystemException e)
+            //            {
+            //                errorCount = try_failure(errorCount, "getRowPackedCopy... ", "data not successfully (deep) copied by rows");
+            //                System.Console.Out.WriteLine(e.Message);
+            //            }
 
             try
             {
                 tmp = B[B.RowCount, B.ColumnCount - 1];
                 Assert.Fail("get(int,int): OutOfBoundsException expected but not thrown");
             }
-            catch(IndexOutOfRangeException) {}
+            catch(IndexOutOfRangeException) { }
             try
             {
                 tmp = B[B.RowCount - 1, B.ColumnCount];
@@ -422,7 +422,7 @@ namespace Iridium.Test
 
             M = B.GetMatrix(rowindexset, jb, je);
             NumericAssert.AreAlmostEqual(SUB, M, "GetMatrix(int[],int,int)");
-            
+
             try
             {
                 M = B.GetMatrix(badrowindexset, columnindexset);
@@ -456,7 +456,7 @@ namespace Iridium.Test
             B[ib, jb] = 0.0;
             tmp = B[ib, jb];
             NumericAssert.AreAlmostEqual(tmp, 0.0, "set(int,int,double)");
-            
+
             M = new Matrix(2, 3, 0.0);
             try
             {
@@ -505,7 +505,7 @@ namespace Iridium.Test
 
             B.SetMatrix(rowindexset, jb, je, M);
             NumericAssert.AreAlmostEqual(M - B.GetMatrix(rowindexset, jb, je), M, "SetMatrix(int[],int,int,Matrix)");
-            
+
             B.SetMatrix(ib, ie, jb, je, SUB);
             try
             {
@@ -664,7 +664,7 @@ namespace Iridium.Test
             NumericAssert.AreAlmostEqual(A.NormF(), Math.Sqrt(sumofsquares), "NormF");
             NumericAssert.AreAlmostEqual(A.Trace(), sumofdiagonals, "Trace");
             NumericAssert.AreAlmostEqual(A.GetMatrix(0, A.RowCount - 1, 0, A.RowCount - 1).Determinant(), 0.0, "Determinant");
-            
+
             SQ = new Matrix(square);
             NumericAssert.AreAlmostEqual(A * Matrix.Transpose(A), SQ, "Multiply(Matrix)");
             NumericAssert.AreAlmostEqual(0.0 * A, Z, "Multiply(double)");
@@ -676,7 +676,7 @@ namespace Iridium.Test
 
             SingularValueDecomposition SVD = A.SingularValueDecomposition;
             NumericAssert.AreAlmostEqual(A, SVD.LeftSingularVectors * (SVD.S * Matrix.Transpose(SVD.RightSingularVectors)), "SingularValueDecomposition");
-            
+
             DEF = new Matrix(rankdef);
             NumericAssert.AreAlmostEqual(DEF.Rank(), Math.Min(DEF.RowCount, DEF.ColumnCount) - 1, "Rank");
 
@@ -684,26 +684,26 @@ namespace Iridium.Test
             SVD = B.SingularValueDecomposition;
             double[] singularvalues = SVD.SingularValues;
             NumericAssert.AreAlmostEqual(B.Condition(), singularvalues[0] / singularvalues[Math.Min(B.RowCount, B.ColumnCount) - 1], "Condition");
-            
+
             int n = A.ColumnCount;
             A = A.GetMatrix(0, n - 1, 0, n - 1);
             A[0, 0] = 0.0;
             LUDecomposition LU = A.LUDecomposition;
             NumericAssert.AreAlmostEqual(A.GetMatrix(LU.Pivot, 0, n - 1), LU.L * LU.U, "LUDecomposition");
-            
+
             X = A.Inverse();
             NumericAssert.AreAlmostEqual(A * X, Matrix.Identity(3, 3), "Inverse");
-            
+
             O = new Matrix(SUB.RowCount, 1, 1.0);
             SOL = new Matrix(sqSolution);
             SQ = SUB.GetMatrix(0, SUB.RowCount - 1, 0, SUB.RowCount - 1);
             NumericAssert.AreAlmostEqual(SQ.Solve(SOL), O, "Solve");
-            
+
             A = new Matrix(pvals);
             CholeskyDecomposition Chol = A.CholeskyDecomposition;
             Matrix L = Chol.TriangularFactor;
             NumericAssert.AreAlmostEqual(A, L * Matrix.Transpose(L), "CholeskyDecomposition");
-            
+
             X = Chol.Solve(Matrix.Identity(3, 3));
             NumericAssert.AreAlmostEqual(A * X, Matrix.Identity(3, 3), "CholeskyDecomposition Solve");
 
@@ -711,7 +711,7 @@ namespace Iridium.Test
             Matrix D = Eig.BlockDiagonal;
             Matrix V = Eig.EigenVectors;
             NumericAssert.AreAlmostEqual(A * V, V * D, "EigenvalueDecomposition (symmetric)");
-            
+
             A = new Matrix(evals);
             Eig = A.EigenvalueDecomposition;
             D = Eig.BlockDiagonal;

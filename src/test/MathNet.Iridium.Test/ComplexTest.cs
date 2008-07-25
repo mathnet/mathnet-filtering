@@ -3,7 +3,7 @@
 // http://mathnet.opensourcedotnet.info
 //
 // Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -246,6 +246,38 @@ namespace Iridium.Test
             Complex zeroPowMinusOnePlusI = zero.Power(minusOnePlusI);
             Assert.AreEqual(double.PositiveInfinity, zeroPowMinusOnePlusI.Real, "Re{(0)^(-1+I)} = infty");
             Assert.AreEqual(double.PositiveInfinity, zeroPowMinusOnePlusI.Imag, "Im{(0)^(-1+I)} = infty");
+        }
+
+        [Test]
+        public void TestDivision()
+        {
+            // 0/1
+            Complex zeroDivOne = Complex.Zero / Complex.One;
+            Assert.AreEqual(0, zeroDivOne.Real, "Re{0/1} = 0");
+            Assert.AreEqual(0, zeroDivOne.Imag, "Im{0/1} = 0");
+
+            // 1/0
+            // TODO: verify this is really what should happen
+            Complex oneDivZero = Complex.One / Complex.Zero;
+            Assert.AreEqual(double.PositiveInfinity, oneDivZero.Real, "Re{1/0} = infty");
+            Assert.AreEqual(double.PositiveInfinity, oneDivZero.Imag, "Im{1/0} = infty");
+
+            // (1+2I)/(3+4I)
+            Complex onePlus2I = new Complex(1, 2);
+            Complex threePlus4I = new Complex(3, 4);
+            Complex onPlus2IDivthreePlus4I = onePlus2I / threePlus4I;
+            Assert.AreEqual(11d / 25d, onPlus2IDivthreePlus4I.Real, "Re{(1+2I)/(3+4I)} = 11/25");
+            Assert.AreEqual(2d / 25d, onPlus2IDivthreePlus4I.Imag, "Im{(1+2I)/(3+4I)} = 2/25");
+
+            // (big+big*I)/(2*big+2*big*I)
+            double big1 = double.MaxValue / 4;
+            double big2 = double.MaxValue / 2;
+            Complex big1PlusBig1I = new Complex(big1, big1);
+            Complex big2PlusBig2I = new Complex(big2, big2);
+            Complex big1PlusBig1IDivBig2PlusBig2I = big1PlusBig1I / big2PlusBig2I;
+            Console.WriteLine(big1PlusBig1IDivBig2PlusBig2I.Real);
+            Assert.AreEqual(0.5, big1PlusBig1IDivBig2PlusBig2I.Real, "Re{(big+big*I)/(2*big+2*big*I)} = 0.5");
+            Assert.AreEqual(0, big1PlusBig1IDivBig2PlusBig2I.Imag, "Im{((big+big*I)/(2*big+2*big*I)} = 0");
         }
     }
 }
