@@ -346,19 +346,21 @@ namespace MathNet.Numerics.LinearAlgebra
                 Q[k][k] = 1.0;
                 for(int j = k; j < Math.Min(m, n); j++)
                 {
-                    if(QR[k][k] != 0.0)
+                    if(QR[k][k] == 0.0)
                     {
-                        double s = 0.0;
-                        for(int i = k; i < m; i++)
-                        {
-                            s += QR[i][k] * Q[i][j];
-                        }
+                        continue;
+                    }
 
-                        s = (-s) / QR[k][k];
-                        for(int i = k; i < m; i++)
-                        {
-                            Q[i][j] += s * QR[i][k];
-                        }
+                    double s = 0.0;
+                    for(int i = k; i < m; i++)
+                    {
+                        s += QR[i][k] * Q[i][j];
+                    }
+
+                    s = (-s) / QR[k][k];
+                    for(int i = k; i < m; i++)
+                    {
+                        Q[i][j] += s * QR[i][k];
                     }
                 }
 
