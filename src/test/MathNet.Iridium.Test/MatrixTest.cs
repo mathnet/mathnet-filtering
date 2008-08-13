@@ -4,7 +4,7 @@
 //
 // Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
 //                          Kevin Whitefoot, kwhitefoot@hotmail.com
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -227,10 +227,14 @@ namespace Iridium.Test
             Matrix R_mdh = new Matrix(new double[][] {
                 new double[] { 12.56980508997654, 1.68658144245255 },
                 new double[] { 0, 5.98042164382869 }});
+            Matrix PInv_mdh = new Matrix(new double[][] {
+                new double[] { -0.00442227310854, 0.00203505965379, -0.03550382768177, 0.07448672256297 },
+                new double[] { 0.08012826184670, 0.07917266861796, 0.12309456479807, 0.01090084127596 }});
             NumericAssert.AreAlmostEqual(Q_mdh, QRH.Q, "real QR Q-matrix (H)");
             NumericAssert.AreAlmostEqual(R_mdh, QRH.R, "real QR R-matrix (H)");
             NumericAssert.AreAlmostEqual(md2x4h, QRH.Q * QRH.R, "real QR product (H)");
-            NumericAssert.AreAlmostEqual(Matrix.Identity(2,2), Matrix.Transpose(QRH.Q) * QRH.Q, "real QR QHQ=I (H)");
+            NumericAssert.AreAlmostEqual(Matrix.Identity(2, 2), Matrix.Transpose(QRH.Q) * QRH.Q, "real QR QHQ=I (H)");
+            NumericAssert.AreAlmostEqual(PInv_mdh, QRH.Solve(Matrix.Identity(4, 4)), 1e-13, "real QR Solve/Pseudoinverse (H)");
 
             QRDecomposition QR = md2x4.QRDecomposition;
             Matrix Q_md = new Matrix(new double[][] {
@@ -239,10 +243,17 @@ namespace Iridium.Test
             Matrix R_md = new Matrix(new double[][] {
                 new double[] { 3.16227766016838, 3.57337375599027, 2.84604989415154, 5.69209978830308 },
                 new double[] { 0, 0.91706052144883, -4.11096095821889, 10.75174404457249}});
+            // Currently not supported: Inverse of a m-x-n matrix were m > n.
+            ////Matrix PInv_md = new Matrix(new double[][] {
+            ////    new double[] { -0.00442227310854, 0.08012826184670 },
+            ////    new double[] { 0.00203505965379, 0.07917266861796 },
+            ////    new double[] { -0.03550382768177, 0.12309456479807 },
+            ////    new double[] { 0.07448672256297, 0.01090084127596 }});
             NumericAssert.AreAlmostEqual(Q_md, QR.Q, "real QR Q-matrix");
             NumericAssert.AreAlmostEqual(R_md, QR.R, "real QR R-matrix");
             NumericAssert.AreAlmostEqual(md2x4, QR.Q * QR.R, "real QR product");
             NumericAssert.AreAlmostEqual(Matrix.Identity(2, 2), Matrix.Transpose(QR.Q) * QR.Q, "real QR QHQ=I");
+            ////NumericAssert.AreAlmostEqual(PInv_md, QR.Solve(Matrix.Identity(2, 2)), 1e-13, "real QR Solve/Pseudoinverse");
         }
 
         [Test]
