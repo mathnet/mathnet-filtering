@@ -1,3 +1,75 @@
+=========================================================================================
+==== Math.NET Iridium (Numerics) - 2008.8.16.470 (2008 August Release, Iteration 16) ====
+=========================================================================================
+
+Team: Christoph Rüegg, Joannès Vermorel, Matthew Kitchin
+http://mathnet.opensourcedotnet.info
+
+SUMMARY
+-------
+
+* Bugs: All known 4 bugs have been fixed.
+* Completely revised and extended interpolation toolkit.
+* New complex matrix and vector type (Complex Linear Algebra will follow in the next iteration).
+* Slightly enhanced real matrix and vector types .
+* QR decompositions are now unique (positive real R diagonal).
+* Complex type now has a public constructor, more intuitive.
+* New Digamma (Psi) special function.
+* Various other small changes.
+
+
+NEW FEATURES
+------------
+
+IRID-130: Core - New Digamma (Psi) Special Function
+IRID-172: Core - Complex Number: Unitary - normalize to unit circle
+IRID-152: Core - Random construction of complex numbers
+IRID-144: Core - Sorting for tuples and triples
+IRID-150: Linear Algebra - Complex Matrix type							
+IRID-149: Linear Algebra - Complex Vector type							
+IRID-173: Linear Algebra - Provide permutation matrix on LU decomposition								
+IRID-170: Linear Algebra - Matrix Negation Operator					
+IRID-156: Linear Algebra - Matrix: Create a diagonal matrix from a diagonal vector.							
+IRID-154: Linear Algebra - Create matrices from a set of row or column vectors.							
+IRID-155: Linear Algebra - Get and set single row or column vector of a matrix							
+IRID-142: Interpolation - New Interpolation Method: Cubic Spline							
+IRID-141: Interpolation - New Interpolation Method: Cubic Hermite Spline							
+IRID-140: Interpolation - New Interpolation Method: Linear Spline							
+IRID-139: Interpolation - New Interpolation Method: Spline [General]							
+IRID-138: Interpolation - New Interpolation Method: Barycentric polynomial on chebyshev2 points							
+IRID-137: Interpolation - New Interpolation Method: Barycentric polynomial on chebyshev1 points							
+IRID-136: Interpolation - New Interpolation Method: Barycentric polynomial on equidistant points							
+IRID-135: Interpolation - New Interpolation Method: Barycentric Rational without poles (Floater & Hormann)							
+IRID-134: Interpolation - New Interpolation Method: Barycentric [General]							
+IRID-133: Interpolation - New Interpolation Method: Rational with poles (Bulirsch & Stoer)							
+IRID-132: Interpolation - New Interpolation Method: Polynomial (Neville)							
+IRID-143: Interpolation - New Interpolation Method: Akima Spline
+
+
+ENHANCEMENTS
+------------
+
+IRID-129: Core - Complex Type: public constructor
+IRID-178: Core - Weak Implementation Complex.GetHashCode()
+IRID-174: Linear Algebra - Force QR decomposition to be unique (positive real R diagonal)
+IRID-157: Linear Algebra - Matrix: Direct access to decomposition results (e.g. eigen values)
+IRID-148: Linear Algebra - Vector: Scalar Addition/Subtraction Operators
+IRID-153: Linear Algebra - Generic interface for vectors and matrices (real vs complex)
+IRID-146: Linear Algebra - Vector to implement the IList(double) generic interface
+IRID-147: Linear Algebra - Matrix: element-wise raise to power and generic function mapping
+IRID-131: Interpolation - New Interpolation Architecture
+
+
+FIXED BUGS
+----------
+
+IRID-127: Core - Collections: Intersection Collection ctor - swap typo
+IRID-177: Linear Algebra - Pseude-Inverse of an m-smallerthan-n matrix
+IRID-171: Linear Algebra - Vector.ToRowMatrix: wrong loop condition
+IRID-128: Linear Algebra - Vector Cross Product - indices offset
+
+
+
 ========================================================================================
 ==== Math.NET Iridium (Numerics) - 2008.4.14.425 (2008 April Release, Iteration 14) ====
 ========================================================================================
