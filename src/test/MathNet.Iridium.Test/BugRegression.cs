@@ -3,7 +3,7 @@
 // http://mathnet.opensourcedotnet.info
 //
 // Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
-//						
+//
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published 
 // by the Free Software Foundation; either version 2 of the License, or
@@ -110,6 +110,24 @@ namespace Iridium.Test
             Assert.AreNotEqual(Complex.One.GetHashCode(), (-Complex.I).GetHashCode(), "B");
             Assert.AreNotEqual((-Complex.One).GetHashCode(), Complex.I.GetHashCode(), "C");
             Assert.AreNotEqual((-Complex.One).GetHashCode(), (-Complex.I).GetHashCode(), "D");
+        }
+
+        [Test]
+        public void IRID177_MatrixPseudoInverse()
+        {
+            Matrix a = new Matrix(new double[][] {
+                new double[] { 15, 23, 44, 54 },
+                new double[] { 1, 5, 9, 4 },
+                new double[] { 8, 11, 4, 2 }});
+
+            Matrix aInverse = new Matrix(new double[][] {
+                new double[] { 0.00729481932863557, -0.0906433578450537, 0.0629567950756452 },
+                new double[] { -0.00695248549232449, 0.0302767536403138, 0.0601374162387492 },
+                new double[] { -0.00876996343998189, 0.155054444209528, -0.033311997806593 },
+                new double[] { 0.0265993197732062, -0.114057602060568, -0.0159589740025151 }});
+
+            NumericAssert.AreAlmostEqual(aInverse, a.Inverse(), "A");
+            NumericAssert.AreAlmostEqual(Matrix.Transpose(aInverse), Matrix.Transpose(a).Inverse(), "B");
         }
     }
 }

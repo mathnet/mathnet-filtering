@@ -213,6 +213,9 @@
   <data name="ArgumentVectorThreeDimensional" xml:space="preserve">
     <value>The vector must have 3 dimensions.</value>
   </data>
+  <data name="FeaturePlannedButNotImplementedYet" xml:space="preserve">
+    <value>This feature is not implemented yet (but is planned).</value>
+  </data>
   <data name="InvalidLeftBoundaryCondition" xml:space="preserve">
     <value>Invalid Left Boundary Condition.</value>
   </data>
@@ -230,5 +233,8 @@
   </data>
   <data name="InvalidRightBoundaryCondition" xml:space="preserve">
     <value>Invalid Right Boundary Condition.</value>
+  </data>
+  <data name="SpecialCasePlannedButNotImplementedYet" xml:space="preserve">
+    <value>This special case is not supported yet (but is planned).</value>
   </data>
 </root>

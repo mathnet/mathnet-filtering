@@ -1790,9 +1790,23 @@ namespace MathNet.Numerics.LinearAlgebra
             Matrix B
             )
         {
-            return (_rowCount == _columnCount)
-                ? LUDecomposition.Solve(B)
-                : QRDecomposition.Solve(B);
+            // square case:
+            if(_rowCount == _columnCount)
+            {
+                return LUDecomposition.Solve(B);
+            }
+
+            // m > n:
+            if(_rowCount > _columnCount)
+            {
+                return QRDecomposition.Solve(B);
+            }
+
+            // m < n:
+            // Here we'd actually need an LQ decomposition instead of QR.
+            // Unfortunately we don't support that yet.
+
+            throw new NotSupportedException(Properties.Resources.SpecialCasePlannedButNotImplementedYet);
         }
 
         /// <summary>Solve A*X = B against a Least Absolute Deviation (L1) criterion.</summary>
@@ -1888,7 +1902,21 @@ namespace MathNet.Numerics.LinearAlgebra
         Matrix
         Inverse()
         {
-            return Solve(Identity(_rowCount, _rowCount));
+            // m >= n:
+            if(_rowCount >= _columnCount)
+            {
+                return Solve(Identity(_rowCount, _rowCount));
+            }
+
+            // m < n:
+            // Here we'd actually need an LQ decomposition instead of QR.
+            // Unfortunately we don't support that yet.
+            // Lukily there is a transpose identity for the inverse:
+
+            Matrix AT = Transpose(this);
+            Matrix BT = Identity(_columnCount, _columnCount);
+            Matrix RT = AT.QRDecomposition.Solve(BT);
+            return Transpose(RT);
         }
 
         /// <summary>Matrix determinant</summary>
