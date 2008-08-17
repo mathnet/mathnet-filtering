@@ -500,7 +500,7 @@ namespace MathNet.Numerics
 
         #region Inplace Arithmetic Methods
 
-        /// <summary>Add anoter polynomial inplace to this polynomial.</summary>
+        /// <summary>Add another polynomial inplace to this polynomial.</summary>
         /// <remarks>This method operates inplace and thus alters this instance.</remarks>
         public
         void
@@ -592,7 +592,7 @@ namespace MathNet.Numerics
         /// Multiply two polynomials.
         /// </summary>
         /// <remarks>
-        /// If both polynomials have an order > 3, the faster karatsua algorithm is used.
+        /// If both polynomials have an order > 3, the faster karatsuba algorithm is used.
         /// </remarks>
         public
         Polynomial
@@ -600,6 +600,8 @@ namespace MathNet.Numerics
             Polynomial polynomial
             )
         {
+            // TODO: Measure the smallest order where karatsuba is really faster.
+            // (the current ">3" is currently not based on hard measured numbers!)
             int orderMin = Math.Min(Order, polynomial.Order);
             if(orderMin > 3)
             {
@@ -616,19 +618,9 @@ namespace MathNet.Numerics
                     0
                     );
             }
-            else
-            {
-                double[] coeff = new double[1 + Order + polynomial.Order];
-                for(int i = 0; i <= order; i++)
-                {
-                    for(int j = 0; j <= polynomial.order; j++)
-                    {
-                        coeff[i + j] += coefficients[i] * polynomial.coefficients[j];
-                    }
-                }
 
-                return new Polynomial(coeff);
-            }
+            // TODO: Measure whether hard inlining would bring enough advantage to justify it.
+            return MultiplySlow(polynomial);
         }
 
         Polynomial
@@ -748,7 +740,7 @@ namespace MathNet.Numerics
         }
 
         /// <summary>
-        /// Multiplies this polynomial with x-a
+        /// Multiplies this polynomial with x-c0
         /// where x is its base and c0 a constant.
         /// This process is the counterpart to synthetic division.
         /// </summary>
@@ -756,7 +748,7 @@ namespace MathNet.Numerics
         public
         void
         MultiplySyntheticInplace(
-            double a
+            double c0
             )
         {
             EnsureSupportForOrder(order + 1);
@@ -765,10 +757,10 @@ namespace MathNet.Numerics
 
             for(int j = order - 1; j >= 1; j--)
             {
-                coefficients[j] = coefficients[j - 1] - a * coefficients[j];
+                coefficients[j] = coefficients[j - 1] - c0 * coefficients[j];
             }
 
-            coefficients[0] *= -a;
+            coefficients[0] *= -c0;
         }
 
         /// <summary>
@@ -795,7 +787,7 @@ namespace MathNet.Numerics
 
 
         /// <summary>
-        /// Divides this polynomial with anoter polynomial.
+        /// Divides this polynomial with another polynomial.
         /// </summary>
         public
         Rational
@@ -836,7 +828,7 @@ namespace MathNet.Numerics
         void
         DivideShiftInplace(
             int n,
-            out double[] reminder
+            out double[] remainder
             )
         {
             if(n <= 0)
@@ -844,10 +836,10 @@ namespace MathNet.Numerics
                 throw new ArgumentOutOfRangeException("n", n, Resources.ArgumentPositive);
             }
 
-            reminder = new double[n];
+            remainder = new double[n];
             for(int i = 0; i < n; i++)
             {
-                reminder[i] = coefficients[i];
+                remainder[i] = coefficients[i];
             }
 
             order -= n;
@@ -868,7 +860,7 @@ namespace MathNet.Numerics
         }
 
         /// <summary>
-        /// Divides this polynomial with x-a
+        /// Divides this polynomial with x-c0
         /// where x is its base and c0 a constant.
         /// This process is often called synthetic division.
         /// </summary>
@@ -876,18 +868,18 @@ namespace MathNet.Numerics
         public
         void
         DivideSyntheticInplace(
-            double a,
-            out double reminder
+            double c0,
+            out double remainder
             )
         {
             double swap;
-            reminder = coefficients[order];
+            remainder = coefficients[order];
             coefficients[order--] = 0;
             for(int i = order; i >= 0; i--)
             {
                 swap = coefficients[i];
-                coefficients[i] = reminder;
-                reminder = swap + a * reminder;
+                coefficients[i] = remainder;
+                remainder = swap + c0 * remainder;
             }
 
             NormalizeOrder();
@@ -902,19 +894,19 @@ namespace MathNet.Numerics
         DivideLinearInplace(
             double c0,
             double c1,
-            out double reminder
+            out double remainder
             )
         {
             if(Number.AlmostZero(c1))
             {
                 DivideInplace(c0);
-                reminder = 0d;
+                remainder = 0d;
                 return;
             }
 
             double a = -c0 / c1;
             DivideInplace(c1);
-            DivideSyntheticInplace(a, out reminder);
+            DivideSyntheticInplace(a, out remainder);
         }
         #endregion
 
