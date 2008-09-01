@@ -789,12 +789,12 @@ namespace Iridium.Test
 
             rft.Convention = TransformationConvention.Default;
 
-            MyStopwatch.MethodToTime m = delegate
-            {
-                rft.TransformForward(dataEven, out evenReal, out evenImag);
-            };
-            Console.Write("FFT Time (ms) for " + numSamples.ToString() + ": ");
-            MyStopwatch.Time(m);
+            ////MyStopwatch.MethodToTime m = delegate
+            ////{
+            rft.TransformForward(dataEven, out evenReal, out evenImag);
+            ////};
+            ////Console.Write("FFT Time (ms) for " + numSamples.ToString() + ": ");
+            ////MyStopwatch.Time(m);
 
             // This time do a round trip check, too:
             double[] dataEven2;
@@ -826,12 +826,12 @@ namespace Iridium.Test
 
             rft.Convention = TransformationConvention.Default;
 
-            MyStopwatch.MethodToTime m = delegate
-            {
-                rft.TransformForward(dataEven, out evenReal, out evenImag);
-            };
-            Console.Write("FFT Time (ms) for " + numSamples.ToString() + ": ");
-            MyStopwatch.Time(m);
+            ////MyStopwatch.MethodToTime m = delegate
+            ////{
+            rft.TransformForward(dataEven, out evenReal, out evenImag);
+            ////};
+            ////Console.Write("FFT Time (ms) for " + numSamples.ToString() + ": ");
+            ////MyStopwatch.Time(m);
 
             // This time do a round trip check, too:
             double[] dataEven2;
@@ -863,12 +863,12 @@ namespace Iridium.Test
 
             rft.Convention = TransformationConvention.Default;
 
-            MyStopwatch.MethodToTime m = delegate
-            {
-                rft.TransformForward(dataEven, out evenReal, out evenImag);
-            };
-            Console.Write("FFT Time (ms) for " + numSamples.ToString() + ": ");
-            MyStopwatch.Time(m);
+            ////MyStopwatch.MethodToTime m = delegate
+            ////{
+            rft.TransformForward(dataEven, out evenReal, out evenImag);
+            ////};
+            ////Console.Write("FFT Time (ms) for " + numSamples.ToString() + ": ");
+            ////MyStopwatch.Time(m);
 
             // This time do a round trip check, too:
             double[] dataEven2;
@@ -900,12 +900,12 @@ namespace Iridium.Test
 
             rft.Convention = TransformationConvention.Default;
 
-            MyStopwatch.MethodToTime m = delegate
-            {
-                rft.TransformForward(dataEven, out evenReal, out evenImag);
-            };
-            Console.Write("FFT Time (ms) for " + numSamples.ToString() + ": ");
-            MyStopwatch.Time(m);
+            ////MyStopwatch.MethodToTime m = delegate
+            ////{
+            rft.TransformForward(dataEven, out evenReal, out evenImag);
+            ////};
+            ////Console.Write("FFT Time (ms) for " + numSamples.ToString() + ": ");
+            ////MyStopwatch.Time(m);
 
             // This time do a round trip check, too:
             double[] dataEven2;
@@ -937,12 +937,12 @@ namespace Iridium.Test
 
             rft.Convention = TransformationConvention.Default;
 
-            MyStopwatch.MethodToTime m = delegate
-            {
-                rft.TransformForward(dataEven, out evenReal, out evenImag);
-            };
-            Console.Write("FFT Time (ms) for " + numSamples.ToString() + ": ");
-            MyStopwatch.Time(m);
+            ////MyStopwatch.MethodToTime m = delegate
+            ////{
+            rft.TransformForward(dataEven, out evenReal, out evenImag);
+            ////};
+            ////Console.Write("FFT Time (ms) for " + numSamples.ToString() + ": ");
+            ////MyStopwatch.Time(m);
 
             // This time do a round trip check, too:
             double[] dataEven2;
@@ -974,12 +974,12 @@ namespace Iridium.Test
 
             rft.Convention = TransformationConvention.Default;
 
-            MyStopwatch.MethodToTime m = delegate
-            {
-                rft.TransformForward(dataEven, out evenReal, out evenImag);
-            };
-            Console.Write("FFT Time (ms) for " + numSamples.ToString() + ": ");
-            MyStopwatch.Time(m);
+            ////MyStopwatch.MethodToTime m = delegate
+            ////{
+            rft.TransformForward(dataEven, out evenReal, out evenImag);
+            ////};
+            ////Console.Write("FFT Time (ms) for " + numSamples.ToString() + ": ");
+            ////MyStopwatch.Time(m);
 
             // This time do a round trip check, too:
             double[] dataEven2;
@@ -1011,12 +1011,12 @@ namespace Iridium.Test
 
             rft.Convention = TransformationConvention.Default;
 
-            MyStopwatch.MethodToTime m = delegate
-            {
-                rft.TransformForward(dataEven, out evenReal, out evenImag);
-            };
-            Console.Write("FFT Time (ms) for " + numSamples.ToString() + ": ");
-            MyStopwatch.Time(m);
+            ////MyStopwatch.MethodToTime m = delegate
+            ////{
+            rft.TransformForward(dataEven, out evenReal, out evenImag);
+            ////};
+            ////Console.Write("FFT Time (ms) for " + numSamples.ToString() + ": ");
+            ////MyStopwatch.Time(m);
 
             // This time do a round trip check, too:
             double[] dataEven2;

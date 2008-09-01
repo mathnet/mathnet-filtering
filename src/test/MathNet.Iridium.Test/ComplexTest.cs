@@ -275,7 +275,6 @@ namespace Iridium.Test
             Complex big1PlusBig1I = new Complex(big1, big1);
             Complex big2PlusBig2I = new Complex(big2, big2);
             Complex big1PlusBig1IDivBig2PlusBig2I = big1PlusBig1I / big2PlusBig2I;
-            Console.WriteLine(big1PlusBig1IDivBig2PlusBig2I.Real);
             Assert.AreEqual(0.5, big1PlusBig1IDivBig2PlusBig2I.Real, "Re{(big+big*I)/(2*big+2*big*I)} = 0.5");
             Assert.AreEqual(0, big1PlusBig1IDivBig2PlusBig2I.Imag, "Im{((big+big*I)/(2*big+2*big*I)} = 0");
         }

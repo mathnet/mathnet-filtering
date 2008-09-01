@@ -273,12 +273,12 @@ namespace Iridium.Test
             //Console.WriteLine("b");
             //Console.WriteLine(mb.ToString());
             Matrix mx = null;
-            MyStopwatch.MethodToTime m = delegate
-            {
-                mx = ma.Solve(mb);
-            };
-            Console.Write("Solve Time (ms): ");
-            MyStopwatch.Time(m);
+            ////MyStopwatch.MethodToTime m = delegate
+            ////{
+            mx = ma.Solve(mb);
+            ////};
+            ////Console.Write("Solve Time (ms): ");
+            ////MyStopwatch.Time(m);
 
             //Console.WriteLine("solution");
             //Console.WriteLine(mx.ToString());
@@ -448,12 +448,12 @@ namespace Iridium.Test
                 Console.WriteLine(mb.ToString());
             }
             Matrix ms = null;
-            MyStopwatch.MethodToTime m = delegate
-            {
-                ms = ma.Solve(mb);
-            };
-            Console.Write("Solve Time (ms) for " + ma.ColumnCount + ": ");
-            MyStopwatch.Time(m);
+            ////MyStopwatch.MethodToTime m = delegate
+            ////{
+            ms = ma.Solve(mb);
+            ////};
+            ////Console.Write("Solve Time (ms) for " + ma.ColumnCount + ": ");
+            ////MyStopwatch.Time(m);
 
             Assert.IsTrue(CompareMatrices(ms, mx, epsilon), "Matrices should be equal");
             //Assert.AreEqual(ms.ToString(), mx.ToString(), "Matrices should be equal");
