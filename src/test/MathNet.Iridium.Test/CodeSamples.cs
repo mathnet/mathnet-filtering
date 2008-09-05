@@ -64,5 +64,39 @@ namespace Iridium.Test
             NumericAssert.AreAlmostEqual(6.708203936, eigenVectors[0, 1], 1e-9, "eigenvectorB[0]");
             NumericAssert.AreAlmostEqual(4.472135956, eigenVectors[1, 1], 1e-9, "eigenvectorB[1]");
         }
+
+        [Test]
+        public void CodeSample_PolynomialRegression()
+        {
+            double[] x = new double[] { 1000, 2000, 3000, 4000, 5000, 6000, 7000 };
+            double[] y = new double[] { -30, -60, -88, -123, -197, -209, -266 };
+            int polynomialOrder = 3;
+
+            // Build the matrix for the least-squares fitting
+            double[][] m = Matrix.CreateMatrixData(x.Length, polynomialOrder+1);
+            for(int i=0; i<x.Length; i++)
+            {
+                double xi = x[i];
+                double[] xrow = m[i];
+                xrow[0] = 1d;
+                for(int j=1; j<xrow.Length; j++)
+                {
+                    xrow[j] = xrow[j-1] * xi;
+                }
+            }
+
+            // Find the least-squares solution
+            Matrix matrix = new Matrix(m);
+            Matrix solution = matrix.Solve(new Matrix(y, y.Length));
+
+            // Extract the values (in our case into a polynomial for fast evaluation)
+            Polynomial polynomial = new Polynomial(solution.GetColumnVector(0));
+
+            // Verify that the polynomial fits with less than 10% error for all given value pairs.
+            for(int i = 0; i < x.Length; i++)
+            {
+                NumericAssert.AreAlmostEqual(y[i], polynomial.Evaluate(x[i]), 0.1, i.ToString());
+            }
+        }
     }
 }
