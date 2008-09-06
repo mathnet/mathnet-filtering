@@ -518,11 +518,19 @@ namespace MathNet.Numerics.LinearAlgebra
                             g = c * e[i];
                             h = c * p;
                             r = Fn.Hypot(p, e[i]);
-                            e[i + 1] = s * r;
-                            s = e[i] / r;
-                            c = p / r;
-                            p = c * d[i] - s * g;
-                            d[i + 1] = h + s * (c * g + s * d[i]);
+                            if(r == 0)
+                            {
+                                e[i + 1] = 0;
+                                d[i + 1] = 0;
+                            }
+                            else
+                            {
+                                e[i + 1] = s * r;
+                                s = e[i] / r;
+                                c = p / r;
+                                p = c * d[i] - s * g;
+                                d[i + 1] = h + s * (c * g + s * d[i]);
+                            }
 
                             // Accumulate transformation.
 
