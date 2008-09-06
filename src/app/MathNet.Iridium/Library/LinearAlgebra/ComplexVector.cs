@@ -182,6 +182,30 @@ namespace MathNet.Numerics.LinearAlgebra
             return new ComplexVector(newData);
         }
 
+        /// <summary>
+        /// Constructs a complex vector from a real vector.
+        /// </summary>
+        /// <param name="realComponents">One-dimensional array of doubles representing the real part of the vector.</param>
+        public static
+        ComplexVector
+        Create(
+            IList<double> realComponents
+            )
+        {
+            if(null == realComponents)
+            {
+                throw new ArgumentNullException("realComponents");
+            }
+
+            Complex[] newData = new Complex[realComponents.Count];
+            for(int i = 0; i < newData.Length; i++)
+            {
+                newData[i] = new Complex(realComponents[i], 0d);
+            }
+
+            return new ComplexVector(newData);
+        }
+
         // TODO: Add Random Vector Generations Methods here
 
         /// <summary>
