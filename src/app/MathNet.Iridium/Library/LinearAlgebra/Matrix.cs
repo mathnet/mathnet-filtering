@@ -319,7 +319,66 @@ namespace MathNet.Numerics.LinearAlgebra
         }
 
         /// <summary>
-        /// Construct a complex matrix from a set of real column vectors.
+        /// Construct a real matrix from a real column vector.
+        /// </summary>
+        /// <remarks>
+        /// Note that double arrays can implicitly cast to <see cref="Vector"/>,
+        /// so you can also provide a double[] as parameter. In both cases,
+        /// the matrix will copy the provided data to a local structure and is
+        /// thus not affected of any later changes on said data.
+        /// </remarks>
+        public static
+        Matrix
+        CreateFromColumn(
+            Vector columnVector
+            )
+        {
+            if(null == columnVector)
+            {
+                throw new ArgumentNullException("columnVector");
+            }
+
+            int rows = columnVector.Length;
+            double[][] newData = new double[rows][];
+
+            for(int i = 0; i < rows; i++)
+            {
+                newData[i] = new double[] { columnVector[i] };
+            }
+
+            return new Matrix(newData);
+        }
+
+        /// <summary>
+        /// Construct a real matrix from a real row vector.
+        /// </summary>
+        /// <remarks>
+        /// Note that double arrays can implicitly cast to <see cref="Vector"/>,
+        /// so you can also provide a double[] as parameter. In both cases,
+        /// the matrix will copy the provided data to a local structure and is
+        /// thus not affected of any later changes on said data.
+        /// </remarks>
+        public static
+        Matrix
+        CreateFromRow(
+            Vector rowVector
+            )
+        {
+            if(null == rowVector)
+            {
+                throw new ArgumentNullException("rowVector");
+            }
+
+            int columns = rowVector.Length;
+            double[][] newData = new double[1][];
+
+            newData[0] = rowVector.CopyToArray();
+
+            return new Matrix(newData);
+        }
+
+        /// <summary>
+        /// Construct a real matrix from a set of real column vectors.
         /// </summary>
         public static
         Matrix
@@ -356,7 +415,7 @@ namespace MathNet.Numerics.LinearAlgebra
         }
 
         /// <summary>
-        /// Construct a complex matrix from a set of real row vectors.
+        /// Construct a real matrix from a set of real row vectors.
         /// </summary>
         public static
         Matrix

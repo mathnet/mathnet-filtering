@@ -348,6 +348,10 @@ namespace MathNet.Numerics
         /// <param name="b">The second number</param>
         /// <param name="diff">The difference of the two numbers according to the Norm</param>
         /// <param name="relativeAccuracy">The relative accuracy required for being almost equal.</param>
+        /// <returns>
+        /// True if <paramref name="a"/> and <paramref name="b"/> are almost equal up to a maximum
+        /// relative error of <paramref name="relativeAccuracy"/>, False otherwise.
+        /// </returns>
         public static
         bool
         AlmostEqualNorm(
@@ -372,6 +376,10 @@ namespace MathNet.Numerics
         /// <param name="a">The first number</param>
         /// <param name="b">The second number</param>
         /// <param name="diff">The difference of the two numbers according to the Norm</param>
+        /// <returns>
+        /// True if <paramref name="a"/> and <paramref name="b"/> are almost equal up to a maximum
+        /// relative error of 10*2^(-52) = 0.22e-14, False otherwise.
+        /// </returns>
         public static
         bool
         AlmostEqualNorm(
@@ -389,6 +397,10 @@ namespace MathNet.Numerics
         /// <param name="a">The first number</param>
         /// <param name="b">The second number</param>
         /// <param name="relativeAccuracy">The relative accuracy required for being almost equal.</param>
+        /// <returns>
+        /// True if <paramref name="a"/> and <paramref name="b"/> are almost equal up to a maximum
+        /// relative error of <paramref name="relativeAccuracy"/>, False otherwise.
+        /// </returns>
         public static
         bool
         AlmostEqual(
@@ -405,6 +417,10 @@ namespace MathNet.Numerics
         /// </summary>
         /// <param name="a">The first number</param>
         /// <param name="b">The second number</param>
+        /// <returns>
+        /// True if <paramref name="a"/> and <paramref name="b"/> are almost equal up to a maximum
+        /// relative error of 10*2^(-52) = 0.22e-14, False otherwise.
+        /// </returns>
         public static
         bool
         AlmostEqual(
@@ -420,6 +436,10 @@ namespace MathNet.Numerics
         /// </summary>
         /// <param name="x">The first vector</param>
         /// <param name="y">The second vector</param>
+        /// <returns>
+        /// True if all components with the same index of <paramref name="x"/> and <paramref name="y"/>
+        /// are almost equal up to a maximum relative error of 10*2^(-52) = 0.22e-14, False otherwise.
+        /// </returns>
         public static
         bool
         AlmostEqual(
@@ -446,6 +466,11 @@ namespace MathNet.Numerics
         /// <summary>
         /// True if the given number is almost equal to zero, according to the specified absolute accuracy.
         /// </summary>
+        /// <param name="a">The real number to check for being almost zero.</param>
+        /// <param name="absoluteAccuracy">The absolute threshold for <paramref name="a"/> to consider it as zero.</param>
+        /// <returns>
+        /// True if |<paramref name="a"/>| is smaller than <paramref name="absoluteAccuracy"/>, False otherwise.
+        /// </returns>
         public static
         bool
         AlmostZero(
@@ -459,6 +484,10 @@ namespace MathNet.Numerics
         /// <summary>
         /// True if the given number is almost equal to zero.
         /// </summary>
+        /// <param name="a">The real number to check for being almost zero.</param>
+        /// <returns>
+        /// True if |<paramref name="a"/>| is smaller than 10*2^(-52) = 0.22e-14, False otherwise.
+        /// </returns>
         public static
         bool
         AlmostZero(
@@ -466,6 +495,46 @@ namespace MathNet.Numerics
             )
         {
             return Math.Abs(a) < DefaultRelativeAccuracy;
+        }
+
+        /// <summary>
+        /// Forces small numbers near zero to zero, according to the specified absolute accuracy.
+        /// </summary>
+        /// <param name="a">The real number to coerce to zero, if it is almost zero.</param>
+        /// <param name="absoluteAccuracy">The absolute threshold for <paramref name="a"/> to consider it as zero.</param>
+        /// <returns>Zero if |<paramref name="a"/>| is smaller than <paramref name="absoluteAccuracy"/>, <paramref name="a"/> otherwise.</returns>
+        public static
+        double
+        CoerceZero(
+            double a,
+            double absoluteAccuracy
+            )
+        {
+            if(Math.Abs(a) < absoluteAccuracy)
+            {
+                return 0d;
+            }
+
+            return a;
+        }
+
+        /// <summary>
+        /// Forces small numbers near zero to zero.
+        /// </summary>
+        /// <param name="a">The real number to coerce to zero, if it is almost zero.</param>
+        /// <returns>Zero if |<paramref name="a"/>| is smaller than 10*2^(-52) = 0.22e-14, <paramref name="a"/> otherwise.</returns>
+        public static
+        double
+        CoerceZero(
+            double a
+            )
+        {
+            if(Math.Abs(a) < DefaultRelativeAccuracy)
+            {
+                return 0d;
+            }
+
+            return a;
         }
     }
 }

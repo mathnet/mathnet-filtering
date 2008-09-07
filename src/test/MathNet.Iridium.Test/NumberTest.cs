@@ -209,5 +209,57 @@ namespace Iridium.Test
             Assert.IsFalse(Number.AlmostEqual(double.PositiveInfinity, double.NegativeInfinity, 25), "P");
             Assert.IsTrue(Number.AlmostEqual(double.PositiveInfinity, double.PositiveInfinity, 25), "Q");
         }
+
+        [Test]
+        public void TestCoerceZero()
+        {
+            Assert.IsTrue(0d == Number.CoerceZero(0d), "A1");
+            Assert.IsTrue(0d == Number.CoerceZero(Number.Increment(0d)), "A2");
+            Assert.IsTrue(0d == Number.CoerceZero(Number.Decrement(0d)), "A3");
+
+            Assert.IsTrue(1d == Number.CoerceZero(1d), "B1");
+            Assert.IsTrue(-1d == Number.CoerceZero(-1d), "B2");
+            Assert.IsTrue(0.5d == Number.CoerceZero(0.5d), "B3");
+            Assert.IsTrue(-0.5d == Number.CoerceZero(-0.5d), "B4");
+
+            Assert.IsTrue(double.PositiveInfinity == Number.CoerceZero(double.PositiveInfinity), "C1");
+            Assert.IsTrue(double.NegativeInfinity == Number.CoerceZero(double.NegativeInfinity), "C2");
+            Assert.IsTrue(double.MaxValue == Number.CoerceZero(double.MaxValue), "C3");
+            Assert.IsTrue(double.MinValue == Number.CoerceZero(double.MinValue), "C4");
+            Assert.IsTrue(double.IsNaN(Number.CoerceZero(double.NaN)), "C5");
+
+            Assert.IsTrue(0d == Number.CoerceZero(double.Epsilon), "D1");
+            Assert.IsTrue(0d == Number.CoerceZero(double.Epsilon * 1e3), "D2");
+            Assert.IsTrue(0d == Number.CoerceZero(double.Epsilon * 1e6), "D3");
+            Assert.IsTrue(0d == Number.CoerceZero(double.Epsilon * 1e200), "D4");
+            Assert.IsTrue(0d == Number.CoerceZero(double.Epsilon), "D5");
+            Assert.IsTrue(0d == Number.CoerceZero(double.Epsilon * -1e200), "D6");
+
+            Assert.IsTrue(0d == Number.CoerceZero(Number.PositiveEpsilonOf(1e-5)), "E1");
+            Assert.IsTrue(0d == Number.CoerceZero(Number.PositiveEpsilonOf(1)), "E2");
+            Assert.IsFalse(0d == Number.CoerceZero(Number.PositiveEpsilonOf(1e+1)), "E3");
+            Assert.IsFalse(0d == Number.CoerceZero(Number.PositiveEpsilonOf(1e+5)), "E4");
+            Assert.IsTrue(0d == Number.CoerceZero(Number.PositiveEpsilonOf(-1)), "E5");
+            Assert.IsFalse(0d == Number.CoerceZero(Number.PositiveEpsilonOf(-1e+1)), "E6");
+
+            Assert.IsTrue(0d == Number.CoerceZero(1e-15), "F1");
+            Assert.IsFalse(0d == Number.CoerceZero(1e-14), "F2");
+            Assert.IsTrue(0d == Number.CoerceZero(-1e-15), "F3");
+            Assert.IsFalse(0d == Number.CoerceZero(-1e-14), "F4");
+
+            Assert.IsTrue(0d == Number.CoerceZero(1e-6, 1e-5), "G1");
+            Assert.IsFalse(0d == Number.CoerceZero(1e-4, 1e-5), "G2");
+            Assert.IsFalse(0d == Number.CoerceZero(1e-5, 1e-5), "G3");
+            Assert.IsTrue(0d == Number.CoerceZero(-1e-6, 1e-5), "G4");
+            Assert.IsFalse(0d == Number.CoerceZero(-1e-4, 1e-5), "G5");
+            Assert.IsFalse(0d == Number.CoerceZero(-1e-5, 1e-5), "G6");
+
+            Assert.IsFalse(0d == Number.CoerceZero(1e+6, 1e+5), "H1");
+            Assert.IsTrue(0d == Number.CoerceZero(1e+4, 1e+5), "H2");
+            Assert.IsFalse(0d == Number.CoerceZero(1e+5, 1e+5), "H3");
+            Assert.IsFalse(0d == Number.CoerceZero(-1e+6, 1e+5), "H4");
+            Assert.IsTrue(0d == Number.CoerceZero(-1e+4, 1e+5), "H5");
+            Assert.IsFalse(0d == Number.CoerceZero(-1e+5, 1e+5), "H6");
+        }
     }
 }
