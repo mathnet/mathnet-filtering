@@ -87,10 +87,10 @@ namespace Iridium.Test
 
             // Find the least-squares solution
             Matrix matrix = new Matrix(m);
-            Matrix solution = matrix.Solve(Matrix.CreateFromColumn(y));
+            Vector solution = matrix.Solve(y);
 
             // Extract the values (in our case into a polynomial for fast evaluation)
-            Polynomial polynomial = new Polynomial(solution.GetColumnVector(0));
+            Polynomial polynomial = new Polynomial(solution);
 
             // Verify that the polynomial fits with less than 10% error for all given value pairs.
             for(int i = 0; i < x.Length; i++)

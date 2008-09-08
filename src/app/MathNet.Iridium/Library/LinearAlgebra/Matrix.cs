@@ -1839,7 +1839,9 @@ namespace MathNet.Numerics.LinearAlgebra
 
         #region Linear Algebra
 
-        /// <summary>Solve A*X = B against a Least Square (L2) criterion.</summary>
+        /// <summary>
+        /// Solve A*X = B against a Least Square (L2) criterion.
+        /// </summary>
         /// <param name="B">right hand side</param>
         /// <returns>solution if A is square, least squares solution otherwise.</returns>
         /// <exception cref="InvalidOperationException">Matrix rank is deficient.</exception>
@@ -1866,6 +1868,30 @@ namespace MathNet.Numerics.LinearAlgebra
             // Unfortunately we don't support that yet.
 
             throw new NotSupportedException(Properties.Resources.SpecialCasePlannedButNotImplementedYet);
+        }
+
+        /// <summary>
+        /// Solve A*x = b against a Least Square (L2) criterion, where x and b are column vectors.
+        /// </summary>
+        /// <param name="b">Right hand side column vector.</param>
+        /// <returns>column vector: solution if A is square, least squares solution otherwise.</returns>
+        /// <exception cref="InvalidOperationException">Matrix rank is deficient.</exception>
+        /// <remarks>
+        /// Note that double arrays can implicitly cast to <see cref="Vector"/>,
+        /// so you can also provide a double[] as parameter.
+        /// </remarks>
+        public
+        Vector
+        Solve(
+            Vector b
+            )
+        {
+            // Redirect to matrix version (until LU and QR directly support vectors).
+            Matrix mb = Matrix.CreateFromColumn(b);
+            Matrix mx = Solve(mb);
+            Vector x = mx.GetColumnVector(0);
+
+            return x;
         }
 
         /// <summary>Solve A*X = B against a Least Absolute Deviation (L1) criterion.</summary>
