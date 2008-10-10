@@ -93,6 +93,24 @@ namespace Iridium.Test
         }
 
         [Test]
+        public void TestSpecialFunctions_Lcm()
+        {
+            Assert.AreEqual(10, Fn.Lcm(10, 10), "Lcm(10,10)");
+            Assert.AreEqual(Int32.MaxValue, Fn.Lcm(Int32.MaxValue, Int32.MaxValue), "Lcm(Int32Max,Int32Max)");
+            Assert.AreEqual(Int64.MaxValue, Fn.Lcm(Int64.MaxValue, Int64.MaxValue), "Lcm(Int64Max,Int64Max)");
+            Assert.AreEqual(Int64.MaxValue, Fn.Lcm(-Int64.MaxValue, -Int64.MaxValue), "Lcm(-Int64Max,-Int64Max)");
+            Assert.AreEqual(Int64.MaxValue, Fn.Lcm(-Int64.MaxValue, Int64.MaxValue), "Lcm(-Int64Max,Int64Max)");
+
+            Assert.AreEqual(0, Fn.Lcm(0, 10), "Lcm(0,10)");
+            Assert.AreEqual(0, Fn.Lcm(10, 0), "Lcm(10,0)");
+
+            Assert.AreEqual(77, Fn.Lcm(11, 7), "Lcm(11,7)");
+            Assert.AreEqual(33, Fn.Lcm(11, 33), "Lcm(11,33)");
+            Assert.AreEqual(374, Fn.Lcm(11, 34), "Lcm(11,34)");
+            Assert.AreEqual(352, Fn.Lcm(11, -32), "Lcm(11,-32)");
+        }
+
+        [Test]
         public void TestSpecialFunctions_Gamma()
         {
             // ensure poles return NaN

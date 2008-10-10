@@ -425,12 +425,12 @@ namespace MathNet.Numerics
             )
         {
             // TODO: Direct Implementation for preventing overflows.
-            if(a == 0 && b == 0)
+            if((a == 0) || (b == 0))
             {
                 return 0;
             }
-
-            return Math.Abs(a * b) / Gcd(a, b);
+            
+            return Math.Abs((a / Gcd(a, b)) * b);
         }
 
         #endregion
