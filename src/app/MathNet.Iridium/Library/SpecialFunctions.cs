@@ -360,6 +360,49 @@ namespace MathNet.Numerics
         }
 
         /// <summary>
+        /// Returns the greatest common divisor of a set of integers using euclids algorithm.
+        /// </summary>
+        /// <returns>gcd(list of integers)</returns>
+        public static
+        long
+        Gcd(
+            IList<long> integers
+            )
+        {
+            if(null == integers)
+            {
+                throw new ArgumentNullException("integers");
+            }
+
+            if(integers.Count == 0)
+            {
+                return 0;
+            }
+
+            long gcd = Math.Abs(integers[0]);
+
+            for(int i = 1; (i < integers.Count) && (gcd > 1); i++)
+            {
+                gcd = Gcd(gcd, integers[i]);
+            }
+
+            return gcd;
+        }
+
+        /// <summary>
+        /// Returns the greatest common divisor of a set of integers using euclids algorithm.
+        /// </summary>
+        /// <returns>gcd(list of integers)</returns>
+        public static
+        long
+        Gcd(
+            params long[] integers
+            )
+        {
+            return Gcd((IList<long>)integers);
+        }
+
+        /// <summary>
         /// Computes the extended greatest common divisor, such that a*x + b*y = gcd(a,b).
         /// </summary>
         /// <returns>gcd(a,b)</returns>
@@ -424,13 +467,55 @@ namespace MathNet.Numerics
             long b
             )
         {
-            // TODO: Direct Implementation for preventing overflows.
             if((a == 0) || (b == 0))
             {
                 return 0;
             }
             
             return Math.Abs((a / Gcd(a, b)) * b);
+        }
+
+        /// <summary>
+        /// Returns the least common multiple of a set of integers using euclids algorithm.
+        /// </summary>
+        /// <returns>lcm(list of integers)</returns>
+        public static
+        long
+        Lcm(
+            IList<long> integers
+            )
+        {
+            if(null == integers)
+            {
+                throw new ArgumentNullException("integers");
+            }
+
+            if(integers.Count == 0)
+            {
+                return 1;
+            }
+
+            long lcm = Math.Abs(integers[0]);
+
+            for(int i = 1; i < integers.Count; i++)
+            {
+                lcm = Lcm(lcm, integers[i]);
+            }
+
+            return lcm;
+        }
+
+        /// <summary>
+        /// Returns the least common multiple of a set of integers using euclids algorithm.
+        /// </summary>
+        /// <returns>lcm(list of integers)</returns>
+        public static
+        long
+        Lcm(
+            params long[] integers
+            )
+        {
+            return Lcm((IList<long>)integers);
         }
 
         #endregion

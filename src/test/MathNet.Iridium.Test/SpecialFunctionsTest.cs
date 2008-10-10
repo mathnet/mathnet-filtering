@@ -93,6 +93,34 @@ namespace Iridium.Test
         }
 
         [Test]
+        public void TestSpecialFunctions_Gcd()
+        {
+            Assert.AreEqual(0, Fn.Gcd(0, 0), "Gcd(0,0)");
+            Assert.AreEqual(5, Fn.Gcd(-5, 0), "Gcd(-5,0)");
+            Assert.AreEqual(6, Fn.Gcd(0, 6), "Gcd(0,6)");
+            Assert.AreEqual(Int32.MaxValue, Fn.Gcd(0, Int32.MaxValue), "Gcd(0,Int32Max)");
+            Assert.AreEqual(Int64.MaxValue, Fn.Gcd(0, Int64.MaxValue), "Gcd(0,Int64Max)");
+            Assert.AreEqual(1, Fn.Gcd(Int32.MaxValue, Int64.MaxValue), "Gcd(Int32Max,Int64Max)");
+            Assert.AreEqual(1 << 18, Fn.Gcd(1 << 18, 1 << 20), "Gcd(1>>18,1<<20)");
+            Assert.AreEqual(1, Fn.Gcd(7, 13), "Gcd(7,13)");
+            Assert.AreEqual(7, Fn.Gcd(7, 14), "Gcd(7,14)");
+            Assert.AreEqual(1, Fn.Gcd(7, 15), "Gcd(7,15)");
+            Assert.AreEqual(3, Fn.Gcd(6, 15), "Gcd(6,15)");
+        }
+
+        [Test]
+        public void TestSpecialFunctions_GcdList()
+        {
+            Assert.AreEqual(0, Fn.Gcd(), "Gcd()");
+            Assert.AreEqual(100, Fn.Gcd(-100), "Gcd(-100)");
+            Assert.AreEqual(2, Fn.Gcd(-10, 6, -8), "Gcd(-10,6,-8)");
+            Assert.AreEqual(1, Fn.Gcd(-10, 6, -8, 5, 9, 13), "Gcd(-10,6,-8,5,9,13)");
+            Assert.AreEqual(5, Fn.Gcd(-10, 20, 120, 60, -15, 1000), "Gcd(-10,20,120,60,-15,1000)");
+            Assert.AreEqual(3, Fn.Gcd(Int64.MaxValue - 1, Int64.MaxValue - 4, Int64.MaxValue - 7), "Gcd(Int64Max-1,Int64Max-4,Int64Max-7)");
+            Assert.AreEqual(123, Fn.Gcd(492, -2 * 492, 492 / 4), "Gcd(492, -984, 123)");
+        }
+
+        [Test]
         public void TestSpecialFunctions_Lcm()
         {
             Assert.AreEqual(10, Fn.Lcm(10, 10), "Lcm(10,10)");
@@ -108,6 +136,19 @@ namespace Iridium.Test
             Assert.AreEqual(33, Fn.Lcm(11, 33), "Lcm(11,33)");
             Assert.AreEqual(374, Fn.Lcm(11, 34), "Lcm(11,34)");
             Assert.AreEqual(352, Fn.Lcm(11, -32), "Lcm(11,-32)");
+        }
+
+        [Test]
+        public void TestSpecialFunctions_LcmList()
+        {
+            Assert.AreEqual(1, Fn.Lcm(), "Lcm()");
+            Assert.AreEqual(100, Fn.Lcm(-100), "Lcm(-100)");
+            Assert.AreEqual(120, Fn.Lcm(-10, 6, -8), "Lcm(-10,6,-8)");
+            Assert.AreEqual(4680, Fn.Lcm(-10, 6, -8, 5, 9, 13), "Lcm(-10,6,-8,5,9,13)");
+            Assert.AreEqual(3000, Fn.Lcm(-10, 20, 120, 60, -15, 1000), "Lcm(-10,20,120,60,-15,1000)");
+            Assert.AreEqual(984, Fn.Lcm(492, -2 * 492, 492 / 4), "Lcm(492, -984, 123)");
+            Assert.AreEqual(2016, Fn.Lcm(32, 42, 36, 18), "Lcm(32,42,36,18)");
+            Assert.AreEqual(2016, Fn.Lcm(32, 42, 36, 18), "Lcm(32,42,36,18)");
         }
 
         [Test]
