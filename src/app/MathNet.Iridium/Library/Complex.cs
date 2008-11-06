@@ -630,7 +630,7 @@ namespace MathNet.Numerics
         }
 
         /// <summary>
-        /// Indicates whether <c>z</c> is equal to this instance.
+        /// Indicates whether <c>z</c> is equal to this complex number.
         /// </summary>
         public
         bool
@@ -642,6 +642,37 @@ namespace MathNet.Numerics
                 && !other.IsNaN
                 && (real == other.real)
                 && (imag == other.imag);
+        }
+
+        /// <summary>
+        /// Indicates wherer <paramref name="other"/> is almost equal to this complex number.
+        /// </summary>
+        public
+        bool
+        AlmostEquals(
+            Complex other
+            )
+        {
+            return !IsNaN
+                && !other.IsNaN
+                && Number.AlmostEqual(real, other.real)
+                && Number.AlmostEqual(imag, other.imag);
+        }
+
+        /// <summary>
+        /// Indicates wherer <paramref name="other"/> is almost equal to this complex number, according to the specified relative accuracy.
+        /// </summary>
+        public
+        bool
+        AlmostEquals(
+            Complex other,
+            double relativeAccuracy
+            )
+        {
+            return !IsNaN
+                && !other.IsNaN
+                && Number.AlmostEqual(real, other.real, relativeAccuracy)
+                && Number.AlmostEqual(imag, other.imag, relativeAccuracy);
         }
 
         /// <summary>
@@ -658,7 +689,7 @@ namespace MathNet.Numerics
         /// Compare this complex number with another complex number.
         /// </summary>
         /// <remarks>
-        /// The complex number's modulus takes precedence over the argument.
+        /// The complex number's real part takes precedence over the imaginary part.
         /// </remarks>
         /// <param name="other">The complex number to compare with.</param>
         public
@@ -667,13 +698,13 @@ namespace MathNet.Numerics
             Complex other
             )
         {
-            int res = Modulus.CompareTo(other.Modulus);
+            int res = Real.CompareTo(other.Real);
             if(res != 0)
             {
                 return res;
             }
 
-            return Argument.CompareTo(other.Argument);
+            return Imag.CompareTo(other.Imag);
         }
 
         #endregion
@@ -694,6 +725,38 @@ namespace MathNet.Numerics
         public static bool operator !=(Complex complex1, Complex complex2)
         {
             return !complex1.Equals(complex2);
+        }
+
+        /// <summary>
+        /// Less-than test.
+        /// </summary>
+        public static bool operator <(Complex complex1, Complex complex2)
+        {
+            return complex1.CompareTo(complex2) < 0;
+        }
+
+        /// <summary>
+        /// Greater-than test.
+        /// </summary>
+        public static bool operator >(Complex complex1, Complex complex2)
+        {
+            return complex1.CompareTo(complex2) > 0;
+        }
+
+        /// <summary>
+        /// Less-than-or-equal test.
+        /// </summary>
+        public static bool operator <=(Complex complex1, Complex complex2)
+        {
+            return complex1.CompareTo(complex2) <= 0;
+        }
+
+        /// <summary>
+        /// Greater-than-or-equal test.
+        /// </summary>
+        public static bool operator >=(Complex complex1, Complex complex2)
+        {
+            return complex1.CompareTo(complex2) >= 0;
         }
 
         /// <summary>

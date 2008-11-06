@@ -27,16 +27,16 @@ namespace MathNet.Numerics
 {
     /// <summary>
     /// Polynomial represents a finite order polynomial
-    /// with positive powers and constant real coefficients.
+    /// with positive powers and constant complex coefficients.
     /// </summary>
     /// <remarks>The polynomial coefficients are ordered such that
     /// c[0] is the constant term and c[n] is the coefficient of z^n,
     /// that is y = c[0]*x^0+c[1]*x^1+c[2]*x^2+...</remarks>
-    public class Polynomial :
+    public class ComplexPolynomial :
         IComparable,
         ICloneable
     {
-        double[] coefficients;
+        Complex[] coefficients;
         int order;
 
         /// <summary>
@@ -44,25 +44,25 @@ namespace MathNet.Numerics
         /// </summary>
         /// <param name="order">The highest power. Example: 2*x^3+x-3 has order 3.</param>
         public
-        Polynomial(
+        ComplexPolynomial(
             int order
             )
         {
             this.order = order;
-            this.coefficients = new double[SizeOfOrder(order)];
+            this.coefficients = new Complex[SizeOfOrder(order)];
         }
 
         /// <summary>
         /// Create a new polynomial by coefficients
         /// </summary>
-        /// <param name="coefficients">The coefficients vector. The coefficient index denotes the related power (c[0]*x^0+c[1]*x^1+..)</param>
+        /// <param name="coefficients">The complex coefficients vector. The coefficient index denotes the related power (c[0]*x^0+c[1]*x^1+..)</param>
         public
-        Polynomial(
-            double[] coefficients
+        ComplexPolynomial(
+            Complex[] coefficients
             )
         {
             this.order = FindOrder(coefficients);
-            this.coefficients = new double[SizeOfOrder(order)];
+            this.coefficients = new Complex[SizeOfOrder(order)];
             Array.Copy(
                 coefficients,
                 this.coefficients,
@@ -71,21 +71,40 @@ namespace MathNet.Numerics
         }
 
         /// <summary>
-        /// Create a new polynomial by copy
+        /// Create a new complex polynomial by copy from a complex polynomial
         /// </summary>
-        /// <param name="copy">A polynomial to copy from.</param>
+        /// <param name="copy">A complex polynomial to copy from.</param>
         public
-        Polynomial(
-            Polynomial copy
+        ComplexPolynomial(
+            ComplexPolynomial copy
             )
         {
             this.order = copy.order;
-            this.coefficients = new double[copy.coefficients.Length];
+            this.coefficients = new Complex[copy.coefficients.Length];
             Array.Copy(
                 copy.coefficients,
                 this.coefficients,
                 Math.Min(this.coefficients.Length, copy.coefficients.Length)
                 );
+        }
+
+        /// <summary>
+        /// Create a new complex polynomial by copy from a real polynomial
+        /// </summary>
+        /// <param name="copy">A real polynomial to copy from.</param>
+        public
+        ComplexPolynomial(
+            Polynomial copy
+            )
+        {
+            int newOrder = copy.Order;
+            Complex[] newCoeff = new Complex[SizeOfOrder(newOrder)];
+            for(int i = 0; i < newCoeff.Length; i++)
+            {
+                newCoeff[i].Real = copy[i];
+            }
+            this.order = newOrder;
+            this.coefficients = newCoeff;
         }
 
         #region Size
@@ -98,15 +117,6 @@ namespace MathNet.Numerics
         {
             return 1 << (int)Math.Ceiling(Math.Log(order + 1, 2));
         }
-        
-        // TODO: Never called, remove?
-        ////void
-        ////ResizeDouble()
-        ////{
-        ////    double[] newCoeffs = new double[coefficients.Length + coefficients.Length];
-        ////    coefficients.CopyTo(newCoeffs, 0);
-        ////    coefficients = newCoeffs;
-        ////}
 
         void
         ResizeOptimalForOrder(
@@ -119,7 +129,7 @@ namespace MathNet.Numerics
                 return;
             }
 
-            double[] newCoeffs = new double[bestSize];
+            Complex[] newCoeffs = new Complex[bestSize];
             Array.Copy(
                 this.coefficients,
                 newCoeffs,
@@ -153,7 +163,7 @@ namespace MathNet.Numerics
         void
         NormalizeOrder()
         {
-            while(coefficients[order] == 0d && order > 0)
+            while(coefficients[order].IsZero && order > 0)
             {
                 order--;
             }
@@ -161,11 +171,11 @@ namespace MathNet.Numerics
 
         int
         FindOrder(
-            double[] coeff
+            Complex[] coeff
             )
         {
             int o = coeff.Length - 1;
-            while(coeff[o] == 0d && order > 0)
+            while(coeff[o].IsZero && order > 0)
             {
                 o--;
             }
@@ -196,7 +206,7 @@ namespace MathNet.Numerics
         /// <summary>
         /// Get/set the coefficient for the given power.
         /// </summary>
-        public double this[int power]
+        public Complex this[int power]
         {
             get
             {
@@ -239,12 +249,38 @@ namespace MathNet.Numerics
         public static
         bool
         operator ==(
-            Polynomial polynomial1,
-            Polynomial polynomial2
+            ComplexPolynomial polynomial1,
+            ComplexPolynomial polynomial2
             )
         {
             return polynomial1.Equals(polynomial2);
         }
+
+        ///// <summary>
+        ///// Check whether two polynomials have the same coefficients.
+        ///// </summary>
+        //public static
+        //bool
+        //operator ==(
+        //    ComplexPolynomial polynomial1,
+        //    Polynomial polynomial2
+        //    )
+        //{
+        //    return polynomial1.Equals(polynomial2);
+        //}
+
+        ///// <summary>
+        ///// Check whether two polynomials have the same coefficients.
+        ///// </summary>
+        //public static
+        //bool
+        //operator ==(
+        //    Polynomial polynomial1,
+        //    ComplexPolynomial polynomial2
+        //    )
+        //{
+        //    return polynomial2.Equals(polynomial1);
+        //}
 
         /// <summary>
         /// Check whether two polynomials have different coefficients.
@@ -252,11 +288,63 @@ namespace MathNet.Numerics
         public static
         bool
         operator !=(
-            Polynomial polynomial1,
-            Polynomial polynomial2
+            ComplexPolynomial polynomial1,
+            ComplexPolynomial polynomial2
             )
         {
             return !polynomial1.Equals(polynomial2);
+        }
+
+        ///// <summary>
+        ///// Check whether two polynomials have different coefficients.
+        ///// </summary>
+        //public static
+        //bool
+        //operator !=(
+        //    ComplexPolynomial polynomial1,
+        //    Polynomial polynomial2
+        //    )
+        //{
+        //    return !polynomial1.Equals(polynomial2);
+        //}
+
+        ///// <summary>
+        ///// Check whether two polynomials have different coefficients.
+        ///// </summary>
+        //public static
+        //bool
+        //operator !=(
+        //    Polynomial polynomial1,
+        //    ComplexPolynomial polynomial2
+        //    )
+        //{
+        //    return !polynomial2.Equals(polynomial1);
+        //}
+
+        /// <summary>
+        /// Check wether a polynomial is bigger than another polynomial.
+        /// </summary>
+        public static
+        bool
+        operator >(
+            ComplexPolynomial polynomial1,
+            ComplexPolynomial polynomial2
+            )
+        {
+            return polynomial1.CompareTo(polynomial2) > 0;
+        }
+        
+        /// <summary>
+        /// Check wether a polynomial is bigger than another polynomial.
+        /// </summary>
+        public static
+        bool
+        operator >(
+            ComplexPolynomial polynomial1,
+            Polynomial polynomial2
+            )
+        {
+            return polynomial1.CompareTo(polynomial2) > 0;
         }
 
         /// <summary>
@@ -266,10 +354,36 @@ namespace MathNet.Numerics
         bool
         operator >(
             Polynomial polynomial1,
+            ComplexPolynomial polynomial2
+            )
+        {
+            return polynomial2.CompareTo(polynomial1) < 0;
+        }
+
+        /// <summary>
+        /// Check wether a polynomial is smaller than another polynomial.
+        /// </summary>
+        public static
+        bool
+        operator <(
+            ComplexPolynomial polynomial1,
+            ComplexPolynomial polynomial2
+            )
+        {
+            return polynomial1.CompareTo(polynomial2) < 0;
+        }
+
+        /// <summary>
+        /// Check wether a polynomial is smaller than another polynomial.
+        /// </summary>
+        public static
+        bool
+        operator <(
+            ComplexPolynomial polynomial1,
             Polynomial polynomial2
             )
         {
-            return polynomial1.CompareTo(polynomial2) == 1;
+            return polynomial1.CompareTo(polynomial2) < 0;
         }
 
         /// <summary>
@@ -279,10 +393,36 @@ namespace MathNet.Numerics
         bool
         operator <(
             Polynomial polynomial1,
+            ComplexPolynomial polynomial2
+            )
+        {
+            return polynomial2.CompareTo(polynomial1) > 0;
+        }
+
+        /// <summary>
+        /// Check wether a polynomial is bigger than or equal to another polynomial.
+        /// </summary>
+        public static
+        bool
+        operator >=(
+            ComplexPolynomial polynomial1,
+            ComplexPolynomial polynomial2
+            )
+        {
+            return polynomial1.CompareTo(polynomial2) >= 0;
+        }
+
+        /// <summary>
+        /// Check wether a polynomial is bigger than or equal to another polynomial.
+        /// </summary>
+        public static
+        bool
+        operator >=(
+            ComplexPolynomial polynomial1,
             Polynomial polynomial2
             )
         {
-            return polynomial1.CompareTo(polynomial2) == -1;
+            return polynomial1.CompareTo(polynomial2) >= 0;
         }
 
         /// <summary>
@@ -292,11 +432,36 @@ namespace MathNet.Numerics
         bool
         operator >=(
             Polynomial polynomial1,
+            ComplexPolynomial polynomial2
+            )
+        {
+            return polynomial2.CompareTo(polynomial1) <= 0;
+        }
+
+        /// <summary>
+        /// Check wether a polynomial is smaller than or equal to another polynomial.
+        /// </summary>
+        public static
+        bool
+        operator <=(
+            ComplexPolynomial polynomial1,
+            ComplexPolynomial polynomial2
+            )
+        {
+            return polynomial1.CompareTo(polynomial2) <= 0;
+        }
+
+        /// <summary>
+        /// Check wether a polynomial is smaller than or equal to another polynomial.
+        /// </summary>
+        public static
+        bool
+        operator <=(
+            ComplexPolynomial polynomial1,
             Polynomial polynomial2
             )
         {
-            int res = polynomial1.CompareTo(polynomial2);
-            return res == 1 || res == 0;
+            return polynomial1.CompareTo(polynomial2) <= 0;
         }
 
         /// <summary>
@@ -306,26 +471,84 @@ namespace MathNet.Numerics
         bool
         operator <=(
             Polynomial polynomial1,
-            Polynomial polynomial2
+            ComplexPolynomial polynomial2
             )
         {
-            int res = polynomial1.CompareTo(polynomial2);
-            return res == -1 || res == 0;
+            return polynomial2.CompareTo(polynomial1) >= 0;
         }
 
-
         /// <summary>
-        /// Add a polynomials to a polynomial.
+        /// Add a polynomial to a polynomial.
         /// </summary>
         public static
-        Polynomial
+        ComplexPolynomial
         operator +(
-            Polynomial polynomial1,
+            ComplexPolynomial polynomial1,
+            ComplexPolynomial polynomial2
+            )
+        {
+            ComplexPolynomial ret = new ComplexPolynomial(polynomial1);
+            ret.AddInplace(polynomial2);
+            return ret;
+        }
+
+        /// <summary>
+        /// Add a polynomial to a polynomial.
+        /// </summary>
+        public static
+        ComplexPolynomial
+        operator +(
+            ComplexPolynomial polynomial1,
             Polynomial polynomial2
             )
         {
-            Polynomial ret = new Polynomial(polynomial1);
+            ComplexPolynomial ret = new ComplexPolynomial(polynomial1);
             ret.AddInplace(polynomial2);
+            return ret;
+        }
+
+        /// <summary>
+        /// Add a polynomial to a polynomial.
+        /// </summary>
+        public static
+        ComplexPolynomial
+        operator +(
+            Polynomial polynomial1,
+            ComplexPolynomial polynomial2
+            )
+        {
+            ComplexPolynomial ret = new ComplexPolynomial(polynomial2);
+            ret.AddInplace(polynomial1);
+            return ret;
+        }
+
+        /// <summary>
+        /// Add a complex number to a polynomial.
+        /// </summary>
+        public static
+        ComplexPolynomial
+        operator +(
+            ComplexPolynomial polynomial,
+            Complex n
+            )
+        {
+            ComplexPolynomial ret = new ComplexPolynomial(polynomial);
+            ret.AddInplace(n);
+            return ret;
+        }
+
+        /// <summary>
+        /// Add a polynomial to a complex number.
+        /// </summary>
+        public static
+        ComplexPolynomial
+        operator +(
+            Complex n,
+            ComplexPolynomial polynomial
+            )
+        {
+            ComplexPolynomial ret = new ComplexPolynomial(polynomial);
+            ret.AddInplace(n);
             return ret;
         }
 
@@ -333,13 +556,13 @@ namespace MathNet.Numerics
         /// Add a real number to a polynomial.
         /// </summary>
         public static
-        Polynomial
+        ComplexPolynomial
         operator +(
-            Polynomial polynomial,
+            ComplexPolynomial polynomial,
             double n
             )
         {
-            Polynomial ret = new Polynomial(polynomial);
+            ComplexPolynomial ret = new ComplexPolynomial(polynomial);
             ret.AddInplace(n);
             return ret;
         }
@@ -348,13 +571,13 @@ namespace MathNet.Numerics
         /// Add a polynomial to a real number.
         /// </summary>
         public static
-        Polynomial
+        ComplexPolynomial
         operator +(
             double n,
-            Polynomial polynomial
+            ComplexPolynomial polynomial
             )
         {
-            Polynomial ret = new Polynomial(polynomial);
+            ComplexPolynomial ret = new ComplexPolynomial(polynomial);
             ret.AddInplace(n);
             return ret;
         }
@@ -363,9 +586,9 @@ namespace MathNet.Numerics
         /// (nop)
         /// </summary>
         public static
-        Polynomial
+        ComplexPolynomial
         operator +(
-            Polynomial polynomial
+            ComplexPolynomial polynomial
             )
         {
             return polynomial;
@@ -376,14 +599,76 @@ namespace MathNet.Numerics
         /// Subtract a polynomial from another polynomial.
         /// </summary>
         public static
-        Polynomial
+        ComplexPolynomial
         operator -(
-            Polynomial polynomial1,
+            ComplexPolynomial polynomial1,
+            ComplexPolynomial polynomial2
+            )
+        {
+            ComplexPolynomial ret = new ComplexPolynomial(polynomial1);
+            ret.SubtractInplace(polynomial2);
+            return ret;
+        }
+
+        /// <summary>
+        /// Subtract a polynomial from another polynomial.
+        /// </summary>
+        public static
+        ComplexPolynomial
+        operator -(
+            ComplexPolynomial polynomial1,
             Polynomial polynomial2
             )
         {
-            Polynomial ret = new Polynomial(polynomial1);
+            ComplexPolynomial ret = new ComplexPolynomial(polynomial1);
             ret.SubtractInplace(polynomial2);
+            return ret;
+        }
+
+        /// <summary>
+        /// Subtract a polynomial from another polynomial.
+        /// </summary>
+        public static
+        ComplexPolynomial
+        operator -(
+            Polynomial polynomial1,
+            ComplexPolynomial polynomial2
+            )
+        {
+            ComplexPolynomial ret = new ComplexPolynomial(polynomial2);
+            ret.NegateInplace();
+            ret.AddInplace(polynomial1);
+            return ret;
+        }
+
+        /// <summary>
+        /// Subtract a complex number from a polynomial.
+        /// </summary>
+        public static
+        ComplexPolynomial
+        operator -(
+            ComplexPolynomial polynomial,
+            Complex n
+            )
+        {
+            ComplexPolynomial ret = new ComplexPolynomial(polynomial);
+            ret.SubtractInplace(n);
+            return ret;
+        }
+
+        /// <summary>
+        /// Subtract a polynomial from a complex number.
+        /// </summary>
+        public static
+        ComplexPolynomial
+        operator -(
+            Complex n,
+            ComplexPolynomial polynomial
+            )
+        {
+            ComplexPolynomial ret = new ComplexPolynomial(polynomial);
+            ret.NegateInplace();
+            ret.AddInplace(n);
             return ret;
         }
 
@@ -391,13 +676,13 @@ namespace MathNet.Numerics
         /// Subtract a real number from a polynomial.
         /// </summary>
         public static
-        Polynomial
+        ComplexPolynomial
         operator -(
-            Polynomial polynomial,
+            ComplexPolynomial polynomial,
             double n
             )
         {
-            Polynomial ret = new Polynomial(polynomial);
+            ComplexPolynomial ret = new ComplexPolynomial(polynomial);
             ret.SubtractInplace(n);
             return ret;
         }
@@ -406,13 +691,13 @@ namespace MathNet.Numerics
         /// Subtract a polynomial from a real number.
         /// </summary>
         public static
-        Polynomial
+        ComplexPolynomial
         operator -(
             double n,
-            Polynomial polynomial
+            ComplexPolynomial polynomial
             )
         {
-            Polynomial ret = new Polynomial(polynomial);
+            ComplexPolynomial ret = new ComplexPolynomial(polynomial);
             ret.NegateInplace();
             ret.AddInplace(n);
             return ret;
@@ -422,12 +707,12 @@ namespace MathNet.Numerics
         /// Negate a polynomial.
         /// </summary>
         public static
-        Polynomial
+        ComplexPolynomial
         operator -(
-            Polynomial polynomial
+            ComplexPolynomial polynomial
             )
         {
-            Polynomial ret = new Polynomial(polynomial);
+            ComplexPolynomial ret = new ComplexPolynomial(polynomial);
             ret.NegateInplace();
             return ret;
         }
@@ -437,9 +722,22 @@ namespace MathNet.Numerics
         /// Multiply/Convolute two polynomials.
         /// </summary>
         public static
-        Polynomial
+        ComplexPolynomial
         operator *(
-            Polynomial polynomial1,
+            ComplexPolynomial polynomial1,
+            ComplexPolynomial polynomial2
+            )
+        {
+            return polynomial1.Multiply(polynomial2);
+        }
+
+        /// <summary>
+        /// Multiply/Convolute two polynomials.
+        /// </summary>
+        public static
+        ComplexPolynomial
+        operator *(
+            ComplexPolynomial polynomial1,
             Polynomial polynomial2
             )
         {
@@ -447,17 +745,45 @@ namespace MathNet.Numerics
         }
 
         /// <summary>
-        /// Stretch a polynomial with a real number factor.
+        /// Multiply/Convolute two polynomials.
         /// </summary>
         public static
-        Polynomial
+        ComplexPolynomial
         operator *(
-            Polynomial polynomial,
-            double n
+            Polynomial polynomial1,
+            ComplexPolynomial polynomial2
             )
         {
-            Polynomial ret = new Polynomial(polynomial);
-            ret.MultiplyInplace(n);
+            return polynomial2.Multiply(polynomial1);
+        }
+
+        /// <summary>
+        /// Stretch a polynomial with a complex number factor.
+        /// </summary>
+        public static
+        ComplexPolynomial
+        operator *(
+            ComplexPolynomial polynomial,
+            Complex s
+            )
+        {
+            ComplexPolynomial ret = new ComplexPolynomial(polynomial);
+            ret.MultiplyInplace(s);
+            return ret;
+        }
+
+        /// <summary>
+        /// Stretch a polynomial with a complex number factor.
+        /// </summary>
+        public static
+        ComplexPolynomial
+        operator *(
+            Complex s,
+            ComplexPolynomial polynomial
+            )
+        {
+            ComplexPolynomial ret = new ComplexPolynomial(polynomial);
+            ret.MultiplyInplace(s);
             return ret;
         }
 
@@ -465,17 +791,51 @@ namespace MathNet.Numerics
         /// Stretch a polynomial with a real number factor.
         /// </summary>
         public static
-        Polynomial
+        ComplexPolynomial
         operator *(
-            double n,
-            Polynomial polynomial
+            ComplexPolynomial polynomial,
+            double s
             )
         {
-            Polynomial ret = new Polynomial(polynomial);
-            ret.MultiplyInplace(n);
+            ComplexPolynomial ret = new ComplexPolynomial(polynomial);
+            ret.MultiplyInplace(s);
             return ret;
         }
 
+        /// <summary>
+        /// Stretch a polynomial with a real number factor.
+        /// </summary>
+        public static
+        ComplexPolynomial
+        operator *(
+            double s,
+            ComplexPolynomial polynomial
+            )
+        {
+            ComplexPolynomial ret = new ComplexPolynomial(polynomial);
+            ret.MultiplyInplace(s);
+            return ret;
+        }
+
+
+        /// <summary>
+        /// Stretch a polynomial with a complex number quotient.
+        /// </summary>
+        /// <remarks>
+        /// The quotient must not be null.
+        /// </remarks>
+        /// <exception cref="System.DivideByZeroException" />
+        public static
+        ComplexPolynomial
+        operator /(
+            ComplexPolynomial polynomial,
+            Complex n
+            )
+        {
+            ComplexPolynomial ret = new ComplexPolynomial(polynomial);
+            ret.DivideInplace(n);
+            return ret;
+        }
 
         /// <summary>
         /// Stretch a polynomial with a real number quotient.
@@ -485,13 +845,13 @@ namespace MathNet.Numerics
         /// </remarks>
         /// <exception cref="System.DivideByZeroException" />
         public static
-        Polynomial
+        ComplexPolynomial
         operator /(
-            Polynomial polynomial,
+            ComplexPolynomial polynomial,
             double n
             )
         {
-            Polynomial ret = new Polynomial(polynomial);
+            ComplexPolynomial ret = new ComplexPolynomial(polynomial);
             ret.DivideInplace(n);
             return ret;
         }
@@ -500,12 +860,12 @@ namespace MathNet.Numerics
 
         #region Inplace Arithmetic Methods
 
-        /// <summary>Add another polynomial inplace to this polynomial.</summary>
+        /// <summary>Add another complex polynomial inplace to this polynomial.</summary>
         /// <remarks>This method operates inplace and thus alters this instance.</remarks>
         public
         void
         AddInplace(
-            Polynomial polynomial
+            ComplexPolynomial polynomial
             )
         {
             EnsureSupportForOrder(polynomial.Order);
@@ -516,23 +876,50 @@ namespace MathNet.Numerics
             }
         }
 
+        /// <summary>Add a real polynomial inplace to this polynomial.</summary>
+        /// <remarks>This method operates inplace and thus alters this instance.</remarks>
+        public
+        void
+        AddInplace(
+            Polynomial polynomial
+            )
+        {
+            EnsureSupportForOrder(polynomial.Order);
+            int len = Math.Min(order, polynomial.Order) + 1;
+            for(int i = 0; i < len; i++)
+            {
+                coefficients[i] += polynomial[i];
+            }
+        }
+
+        /// <summary>Add a complex number inplace to this polynomial.</summary>
+        /// <remarks>This method operates inplace and thus alters this instance.</remarks>
+        public
+        void
+        AddInplace(
+            Complex s
+            )
+        {
+            this[0] += s;
+        }
+
         /// <summary>Add a real number inplace to this polynomial.</summary>
         /// <remarks>This method operates inplace and thus alters this instance.</remarks>
         public
         void
         AddInplace(
-            double n
+            double s
             )
         {
-            this[0] += n;
+            this[0] += s;
         }
 
-        /// <summary>Subtract anoter polynomial inplace from this polynomial.</summary>
+        /// <summary>Subtract anoter complex polynomial inplace from this polynomial.</summary>
         /// <remarks>This method operates inplace and thus alters this instance.</remarks>
         public
         void
         SubtractInplace(
-            Polynomial polynomial
+            ComplexPolynomial polynomial
             )
         {
             EnsureSupportForOrder(polynomial.Order);
@@ -543,15 +930,42 @@ namespace MathNet.Numerics
             }
         }
 
+        /// <summary>Subtract a real polynomial inplace from this polynomial.</summary>
+        /// <remarks>This method operates inplace and thus alters this instance.</remarks>
+        public
+        void
+        SubtractInplace(
+            Polynomial polynomial
+            )
+        {
+            EnsureSupportForOrder(polynomial.Order);
+            int len = Math.Min(order, polynomial.Order) + 1;
+            for(int i = 0; i < len; i++)
+            {
+                coefficients[i] -= polynomial[i];
+            }
+        }
+
+        /// <summary>Subtract a complex number inplace from this polynomial.</summary>
+        /// <remarks>This method operates inplace and thus alters this instance.</remarks>
+        public
+        void
+        SubtractInplace(
+            Complex s
+            )
+        {
+            this[0] -= s;
+        }
+
         /// <summary>Subtract a real number inplace from this polynomial.</summary>
         /// <remarks>This method operates inplace and thus alters this instance.</remarks>
         public
         void
         SubtractInplace(
-            double n
+            double s
             )
         {
-            this[0] -= n;
+            this[0] -= s;
         }
 
         /// <summary>Negate this polynomial inplace.</summary>
@@ -563,6 +977,22 @@ namespace MathNet.Numerics
             for(int i = 0; i <= order; i++)
             {
                 coefficients[i] = -coefficients[i];
+            }
+        }
+
+        /// <summary>
+        /// Multiplies this polynomial with a complex number.
+        /// </summary>
+        /// <remarks>This method operates inplace and thus alters this instance.</remarks>
+        public
+        void
+        MultiplyInplace(
+            Complex c0
+            )
+        {
+            for(int i = 0; i < coefficients.Length; i++)
+            {
+                coefficients[i] = c0 * coefficients[i];
             }
         }
 
@@ -620,6 +1050,30 @@ namespace MathNet.Numerics
         public
         void
         MultiplySyntheticInplace(
+            Complex c0
+            )
+        {
+            EnsureSupportForOrder(order + 1);
+            order++;
+            coefficients[order] = coefficients[order - 1];
+
+            for(int j = order - 1; j >= 1; j--)
+            {
+                coefficients[j] = coefficients[j - 1] - c0 * coefficients[j];
+            }
+
+            coefficients[0] *= -c0;
+        }
+
+        /// <summary>
+        /// Multiplies this polynomial with x-c0
+        /// where x is its base and c0 a constant.
+        /// This process is the counterpart to synthetic division.
+        /// </summary>
+        /// <remarks>This method operates inplace and thus alters this instance.</remarks>
+        public
+        void
+        MultiplySyntheticInplace(
             double c0
             )
         {
@@ -642,6 +1096,28 @@ namespace MathNet.Numerics
         public
         void
         MultiplyLinearInplace(
+            Complex c0,
+            Complex c1
+            )
+        {
+            if(c1.IsZero)
+            {
+                MultiplyInplace(c0);
+                return;
+            }
+
+            Complex a = -c0 / c1;
+            MultiplySyntheticInplace(a);
+            MultiplyInplace(c1);
+        }
+
+        /// <summary>
+        /// Multiplies this polynomial with a linear factor c1*x+c0.
+        /// </summary>
+        /// <remarks>This method operates inplace and thus alters this instance.</remarks>
+        public
+        void
+        MultiplyLinearInplace(
             double c0,
             double c1
             )
@@ -655,6 +1131,28 @@ namespace MathNet.Numerics
             double a = -c0 / c1;
             MultiplySyntheticInplace(a);
             MultiplyInplace(c1);
+        }
+
+        /// <summary>
+        /// Divides this polynomial with a real number.
+        /// </summary>
+        /// <remarks>This method operates inplace and thus alters this instance.</remarks>
+        public
+        void
+        DivideInplace(
+            Complex c0
+            )
+        {
+            if(c0.IsZero)
+            {
+                throw new DivideByZeroException();
+            }
+
+            Complex factor = 1 / c0;
+            for(int i = 0; i <= order; i++)
+            {
+                coefficients[i] = coefficients[i] * factor;
+            }
         }
 
         /// <summary>
@@ -687,7 +1185,7 @@ namespace MathNet.Numerics
         void
         DivideShiftInplace(
             int n,
-            out double[] remainder
+            out Complex[] remainder
             )
         {
             if(n <= 0)
@@ -695,7 +1193,7 @@ namespace MathNet.Numerics
                 throw new ArgumentOutOfRangeException("n", n, Resources.ArgumentPositive);
             }
 
-            remainder = new double[n];
+            remainder = new Complex[n];
             for(int i = 0; i < n; i++)
             {
                 remainder[i] = coefficients[i];
@@ -709,7 +1207,7 @@ namespace MathNet.Numerics
 
             for(int i = order; i < order + n; i++)
             {
-                coefficients[i] = 0;
+                coefficients[i] = Complex.Zero;
             }
 
             if((n << 2) > order)
@@ -727,13 +1225,13 @@ namespace MathNet.Numerics
         public
         void
         DivideSyntheticInplace(
-            double c0,
-            out double remainder
+            Complex c0,
+            out Complex remainder
             )
         {
-            double swap;
+            Complex swap;
             remainder = coefficients[order];
-            coefficients[order--] = 0;
+            coefficients[order--] = Complex.Zero;
             for(int i = order; i >= 0; i--)
             {
                 swap = coefficients[i];
@@ -751,19 +1249,19 @@ namespace MathNet.Numerics
         public
         void
         DivideLinearInplace(
-            double c0,
-            double c1,
-            out double remainder
+            Complex c0,
+            Complex c1,
+            out Complex remainder
             )
         {
-            if(Number.AlmostZero(c1))
+            if(c1.IsZero)
             {
                 DivideInplace(c0);
-                remainder = 0d;
+                remainder = Complex.Zero;
                 return;
             }
 
-            double a = -c0 / c1;
+            Complex a = -c0 / c1;
             DivideInplace(c1);
             DivideSyntheticInplace(a, out remainder);
         }
@@ -779,9 +1277,9 @@ namespace MathNet.Numerics
         /// If both polynomials have an order > 3, the faster karatsuba algorithm is used.
         /// </remarks>
         public
-        Polynomial
+        ComplexPolynomial
         Multiply(
-            Polynomial polynomial
+            ComplexPolynomial polynomial
             )
         {
             int orderMin = Math.Min(Order, polynomial.Order);
@@ -804,8 +1302,8 @@ namespace MathNet.Numerics
                     );
             }
 
-            // Direct multipliction (slow for large orders but faster for smaller ones)
-            double[] coeff = new double[1 + Order + polynomial.Order];
+            // Direct multipliction (slow for large orders but faster for smaller ones).
+            Complex[] coeff = new Complex[1 + Order + polynomial.Order];
             for(int i = 0; i <= order; i++)
             {
                 for(int j = 0; j <= polynomial.order; j++)
@@ -814,13 +1312,28 @@ namespace MathNet.Numerics
                 }
             }
 
-            return new Polynomial(coeff);
+            return new ComplexPolynomial(coeff);
         }
 
-        Polynomial
+        /// <summary>
+        /// Multiply two polynomials.
+        /// </summary>
+        /// <remarks>
+        /// If both polynomials have an order > 3, the faster karatsuba algorithm is used.
+        /// </remarks>
+        public
+        ComplexPolynomial
+        Multiply(
+            Polynomial polynomial
+            )
+        {
+            return Multiply(new ComplexPolynomial(polynomial));
+        }
+
+        ComplexPolynomial
         MultiplyKaratsuba(
-            double[] leftCoefficients,
-            double[] rightCoefficients,
+            Complex[] leftCoefficients,
+            Complex[] rightCoefficients,
             int leftOrder,
             int rightOrder,
             int n,
@@ -829,13 +1342,13 @@ namespace MathNet.Numerics
         {
             if(n == 1)
             {
-                return new Polynomial(new double[] { leftCoefficients[offset] * rightCoefficients[offset] });
+                return new ComplexPolynomial(new Complex[] { leftCoefficients[offset] * rightCoefficients[offset] });
             }
 
             if(n == 2)
             {
-                return new Polynomial(
-                    new double[] {
+                return new ComplexPolynomial(
+                    new Complex[] {
                         leftCoefficients[offset] * rightCoefficients[offset],
                         leftCoefficients[offset] * rightCoefficients[offset + 1] + leftCoefficients[offset + 1] * rightCoefficients[offset],
                         leftCoefficients[offset + 1] * rightCoefficients[offset + 1]
@@ -843,14 +1356,14 @@ namespace MathNet.Numerics
             }
 
             n >>= 1;
-            double[] FF = new double[n], GG = new double[n];
+            Complex[] FF = new Complex[n], GG = new Complex[n];
             for(int i = offset; i < n + offset; i++)
             {
                 FF[i - offset] = leftCoefficients[i] + leftCoefficients[n + i];
                 GG[i - offset] = rightCoefficients[i] + rightCoefficients[n + i];
             }
 
-            Polynomial FG0 = MultiplyKaratsuba(
+            ComplexPolynomial FG0 = MultiplyKaratsuba(
                 leftCoefficients,
                 rightCoefficients,
                 n - 1,
@@ -859,7 +1372,7 @@ namespace MathNet.Numerics
                 offset
                 );
 
-            Polynomial FG1 = MultiplyKaratsuba(
+            ComplexPolynomial FG1 = MultiplyKaratsuba(
                 leftCoefficients,
                 rightCoefficients,
                 Math.Max(leftOrder - n, 0),
@@ -868,7 +1381,7 @@ namespace MathNet.Numerics
                 offset + n
                 );
 
-            Polynomial FFGG = MultiplyKaratsuba(
+            ComplexPolynomial FFGG = MultiplyKaratsuba(
                 FF,
                 GG,
                 n - 1,
@@ -892,12 +1405,24 @@ namespace MathNet.Numerics
         /// Divides this polynomial with another polynomial.
         /// </summary>
         public
-        Rational
+        ComplexRational
+        Divide(
+            ComplexPolynomial polynomial
+            )
+        {
+            return new ComplexRational(Clone(), polynomial.Clone());
+        }
+
+        /// <summary>
+        /// Divides this polynomial with another polynomial.
+        /// </summary>
+        public
+        ComplexRational
         Divide(
             Polynomial polynomial
             )
         {
-            return new Rational(Clone(), polynomial.Clone());
+            return new ComplexRational(Clone(), new ComplexPolynomial(polynomial));
         }
 
         #endregion
@@ -910,12 +1435,12 @@ namespace MathNet.Numerics
         /// <param name="value">The polynomial base, x.</param>
         /// <returns>The real result.</returns>
         public
-        double
+        Complex
         Evaluate(
-            double value
+            Complex value
             )
         {
-            double ret = coefficients[order];
+            Complex ret = coefficients[order];
             for(int j = order - 1; j >= 0; j--)
             {
                 ret = ret * value + coefficients[j];
@@ -932,13 +1457,13 @@ namespace MathNet.Numerics
         /// <param name="derivative">The real result of the derivative.</param>
         /// <returns>The real result of the original polynomial.</returns>
         public
-        double
+        Complex
         Evaluate(
-            double value,
-            out double derivative
+            Complex value,
+            out Complex derivative
             )
         {
-            double ret = coefficients[order];
+            Complex ret = coefficients[order];
             derivative = 0d;
             for(int j = order - 1; j >= 0; j--)
             {
@@ -957,13 +1482,13 @@ namespace MathNet.Numerics
         /// <param name="derivativeOrderMax">The highest derivative order. Example: '2' evaluates the first and the second derivatives.</param>
         /// <returns>A real array with the result of the i-th derivate in cell c[i], thus the result of the original polynomial in c[0].</returns>
         public
-        double[]
+        Complex[]
         Evaluate(
-            double value,
+            Complex value,
             int derivativeOrderMax
             )
         {
-            double[] ret = new double[derivativeOrderMax + 1];
+            Complex[] ret = new Complex[derivativeOrderMax + 1];
             ret[0] = coefficients[order];
 
             int len;
@@ -1004,28 +1529,38 @@ namespace MathNet.Numerics
             StringBuilder builder = new StringBuilder();
             for(int i = Order; i >= 0; i--)
             {
-                double coeff = coefficients[i];
+                Complex coeff = coefficients[i];
 
-                if(Number.AlmostZero(coeff))
+                if(coeff.IsZero)
                 {
                     continue;
                 }
 
-                if(builder.Length > 0)
+                if(!coeff.IsReal)
                 {
-                    builder.Append(coeff > 0d ? " + " : " - ");
+                    builder.Append(builder.Length > 0 ? " + (" : "(");
+                    builder.Append(coeff.ToString());
+                    builder.Append(')');
                 }
                 else
                 {
-                    if(coeff < 0d)
+                    double realCoeff = coeff.Real;
+                    if(builder.Length > 0)
                     {
-                        builder.Append('-');
+                        builder.Append(realCoeff > 0d ? " + " : " - ");
                     }
-                }
+                    else
+                    {
+                        if(realCoeff < 0d)
+                        {
+                            builder.Append('-');
+                        }
+                    }
 
-                if(!Number.AlmostEqual(coeff, 1) && !Number.AlmostEqual(coeff, -1) || i == 0)
-                {
-                    builder.Append(Math.Abs(coeff));
+                    if(!Number.AlmostEqual(realCoeff, 1) && !Number.AlmostEqual(realCoeff, -1) || i == 0)
+                    {
+                        builder.Append(Math.Abs(realCoeff));
+                    }
                 }
 
                 if(i > 0)
@@ -1081,7 +1616,7 @@ namespace MathNet.Numerics
             object obj
             )
         {
-            Polynomial p = obj as Polynomial;
+            ComplexPolynomial p = obj as ComplexPolynomial;
             return p == null ? false : Equals(p);
         }
 
@@ -1091,7 +1626,7 @@ namespace MathNet.Numerics
         public
         bool
         Equals(
-            Polynomial polynomial
+            ComplexPolynomial polynomial
             )
         {
             return CompareTo(polynomial) == 0;
@@ -1103,8 +1638,8 @@ namespace MathNet.Numerics
         public static
         bool
         Equals(
-            Polynomial polynomial1,
-            Polynomial polynomial2
+            ComplexPolynomial polynomial1,
+            ComplexPolynomial polynomial2
             )
         {
             if(polynomial1 == null)
@@ -1129,12 +1664,12 @@ namespace MathNet.Numerics
                 return 1;
             }
 
-            if(!(obj is Polynomial))
+            if(!(obj is ComplexPolynomial))
             {
                 throw new ArgumentException(Resources.ArgumentTypeMismatch, "obj");
             }
 
-            return CompareTo((Polynomial)obj);
+            return CompareTo((ComplexPolynomial)obj);
         }
 
         /// <summary>
@@ -1143,7 +1678,7 @@ namespace MathNet.Numerics
         public
         int
         CompareTo(
-            Polynomial polynomial
+            ComplexPolynomial polynomial
             )
         {
             int i = this.Order;
@@ -1190,10 +1725,10 @@ namespace MathNet.Numerics
         /// Create a copy of this polynomial.
         /// </summary>
         public
-        Polynomial
+        ComplexPolynomial
         Clone()
         {
-            return new Polynomial(this);
+            return new ComplexPolynomial(this);
         }
 
         #endregion

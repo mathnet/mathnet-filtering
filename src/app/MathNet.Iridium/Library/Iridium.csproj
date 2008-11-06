@@ -43,6 +43,8 @@
     <Compile Include="Collection.cs" />
     <Compile Include="Combinatorics.cs" />
     <Compile Include="Complex.cs" />
+    <Compile Include="ComplexPolynomial.cs" />
+    <Compile Include="ComplexRational.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Distributions\Continuous\BetaDistribution.cs" />
     <Compile Include="Distributions\Continuous\CauchyLorentzDistribution.cs" />
