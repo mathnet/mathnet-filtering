@@ -1,0 +1,236 @@
+<Type Name="LimitedOrderRationalInterpolation" FullName="MathNet.Numerics.Interpolation.Algorithms.LimitedOrderRationalInterpolation">
+  <TypeSignature Language="C#" Value="public class LimitedOrderRationalInterpolation : MathNet.Numerics.Interpolation.IInterpolationMethod" />
+  <AssemblyInfo>
+    <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces>
+    <Interface>
+      <InterfaceName>MathNet.Numerics.Interpolation.IInterpolationMethod</InterfaceName>
+    </Interface>
+  </Interfaces>
+  <Docs>
+    <summary>
+            Limited Order Rational Interpolation (with poles) using Bulirsch &amp; Stoer's Algorithm.
+            </summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public LimitedOrderRationalInterpolation ();" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters />
+      <Docs>
+        <summary>
+            Create a rational interpolation algorithm with full order.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public LimitedOrderRationalInterpolation (int maximumOrder);" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="maximumOrder" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="maximumOrder">To be added.</param>
+        <summary>
+            Create a rational interpolation algorithm with the given order.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Differentiate">
+      <MemberSignature Language="C#" Value="public double Differentiate (double t, out double first, out double second);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="t" Type="System.Double" />
+        <Parameter Name="first" Type="System.Double&amp;" RefType="out" />
+        <Parameter Name="second" Type="System.Double&amp;" RefType="out" />
+      </Parameters>
+      <Docs>
+        <param name="t">Point t to interpolate at.</param>
+        <param name="first">Interpolated first derivative at point t.</param>
+        <param name="second">Interpolated second derivative at point t.</param>
+        <summary>
+            Differentiate at point t.
+            </summary>
+        <returns>Interpolated value x(t).</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="EffectiveOrder">
+      <MemberSignature Language="C#" Value="public int EffectiveOrder { get; }" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            The interpolation order that is effectively used.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <altmember cref="P:MathNet.Numerics.Interpolation.Algorithms.LimitedOrderRationalInterpolation.MaximumOrder" />
+      </Docs>
+    </Member>
+    <Member MemberName="Init">
+      <MemberSignature Language="C#" Value="public void Init (MathNet.Numerics.SampleList samples);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="samples" Type="MathNet.Numerics.SampleList" />
+      </Parameters>
+      <Docs>
+        <param name="samples">Sample points t and values x(t).</param>
+        <summary>
+            Precompute/optimize the algoritm for the given sample set.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Init">
+      <MemberSignature Language="C#" Value="public void Init (System.Collections.Generic.IList&lt;double&gt; t, System.Collections.Generic.IList&lt;double&gt; x);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="t" Type="System.Collections.Generic.IList&lt;System.Double&gt;" />
+        <Parameter Name="x" Type="System.Collections.Generic.IList&lt;System.Double&gt;" />
+      </Parameters>
+      <Docs>
+        <param name="t">Points t</param>
+        <param name="x">Values x(t)</param>
+        <summary>
+            Precompute/optimize the algoritm for the given sample set.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Integrate">
+      <MemberSignature Language="C#" Value="public double Integrate (double t);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="t" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="t">Right bound of the integration interval [a,t].</param>
+        <summary>
+            Definite Integrate up to point t.
+            </summary>
+        <returns>Interpolated definite integeral over the interval [a,t].</returns>
+        <remarks>To be added.</remarks>
+        <altmember cref="P:MathNet.Numerics.Interpolation.Algorithms.LimitedOrderRationalInterpolation.SupportsIntegration" />
+      </Docs>
+    </Member>
+    <Member MemberName="Interpolate">
+      <MemberSignature Language="C#" Value="public double Interpolate (double t);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="t" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="t">Point t to interpolate at.</param>
+        <summary>
+            Interpolate at point t.
+            </summary>
+        <returns>Interpolated value x(t).</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="MaximumOrder">
+      <MemberSignature Language="C#" Value="public int MaximumOrder { set; get; }" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            The maxium interpolation order.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <altmember cref="P:MathNet.Numerics.Interpolation.Algorithms.LimitedOrderRationalInterpolation.EffectiveOrder" />
+      </Docs>
+    </Member>
+    <Member MemberName="SupportsDifferentiation">
+      <MemberSignature Language="C#" Value="public bool SupportsDifferentiation { get; }" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            True if the alorithm supports differentiation.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <altmember cref="M:MathNet.Numerics.Interpolation.Algorithms.LimitedOrderRationalInterpolation.Differentiate(System.Double,System.Double@,System.Double@)" />
+      </Docs>
+    </Member>
+    <Member MemberName="SupportsIntegration">
+      <MemberSignature Language="C#" Value="public bool SupportsIntegration { get; }" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            True if the alorithm supports integration.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <altmember cref="M:MathNet.Numerics.Interpolation.Algorithms.LimitedOrderRationalInterpolation.Integrate(System.Double)" />
+      </Docs>
+    </Member>
+  </Members>
+</Type>

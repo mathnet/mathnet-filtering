@@ -1,0 +1,442 @@
+<Type Name="Combinatorics" FullName="MathNet.Numerics.Combinatorics">
+  <TypeSignature Language="C#" Value="public static class Combinatorics" />
+  <AssemblyInfo>
+    <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Docs>
+    <summary>
+            Static DoublePrecision Combinatorics Helper Class
+            </summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="Combinations">
+      <MemberSignature Language="C#" Value="public static double Combinations (int n, int k);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="n" Type="System.Int32" />
+        <Parameter Name="k" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="n">To be added.</param>
+        <param name="k">To be added.</param>
+        <summary>
+            Computes the number of combinations without repetition. When the order does not matter and each object can be chosen only once.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CombinationsWithRepetition">
+      <MemberSignature Language="C#" Value="public static double CombinationsWithRepetition (int n, int k);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="n" Type="System.Int32" />
+        <Parameter Name="k" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="n">To be added.</param>
+        <param name="k">To be added.</param>
+        <summary>
+            Computes the number of combinations with repetition. When the order does not matter and an object can be chosen more than once.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Permutations">
+      <MemberSignature Language="C#" Value="public static double Permutations (int n);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="n" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="n">Number of (distinguishable) elements in the set.</param>
+        <summary>
+            Computes the number of permutations (without repetition). 
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="RandomCombination">
+      <MemberSignature Language="C#" Value="public static bool[] RandomCombination (int n);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean[]</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="n" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="n">To be added.</param>
+        <summary>Randomly selects some of N elements without order and repetition.</summary>
+        <returns>boolean array of length <c>N</c>, for each item true if it is selected.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="RandomCombination">
+      <MemberSignature Language="C#" Value="public static bool[] RandomCombination (int n, int k);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean[]</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="n" Type="System.Int32" />
+        <Parameter Name="k" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="n">To be added.</param>
+        <param name="k">To be added.</param>
+        <summary>Randomly selects k of n elements without order and repetition.</summary>
+        <returns>boolean array of length <c>N</c>, for each item true if it is selected.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="RandomCombinationWithRepetition">
+      <MemberSignature Language="C#" Value="public static int[] RandomCombinationWithRepetition (int n, int k);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32[]</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="n" Type="System.Int32" />
+        <Parameter Name="k" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="n">To be added.</param>
+        <param name="k">To be added.</param>
+        <summary>Randomly selects k of n elements with repetition but without order.</summary>
+        <returns>integer array of length <c>N</c>, for each item the number of times it was selected.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="RandomPermutation">
+      <MemberSignature Language="C#" Value="public static int[] RandomPermutation (int n);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32[]</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="n" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="n">To be added.</param>
+        <summary>Randomly shuffles the numbers 0 to N-1.</summary>
+        <returns>An array of length <c>N</c> that contains (in any order) the integers of the interval <c>[0, N)</c>.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="RandomShuffle&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public static void RandomShuffle&lt;T&gt; (System.Collections.Generic.IList&lt;T&gt; array);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="array" Type="System.Collections.Generic.IList&lt;T&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T">To be added.</typeparam>
+        <param name="array">The data list to shuffle.</param>
+        <summary>
+            Randomly shuffles <c>array</c>.
+            </summary>
+        <remarks>
+            Shuffling an array is equivalent to generating a
+            random permutation and applying this permutation to the array.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="RandomShuffle&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public static void RandomShuffle&lt;T&gt; (System.Collections.Generic.IList&lt;T&gt; source, System.Collections.Generic.IList&lt;T&gt; target);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="source" Type="System.Collections.Generic.IList&lt;T&gt;" />
+        <Parameter Name="target" Type="System.Collections.Generic.IList&lt;T&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T">To be added.</typeparam>
+        <param name="source">The data list to shuffle.</param>
+        <param name="target">The resulting shuffled output data list.</param>
+        <summary>
+            Randomly permutes <c>array</c> to <c>target</c>.
+            Both arrays should have the same size but can not be the same instance.
+            </summary>
+        <remarks>
+            Shuffling an array is equivalent to generating a
+            random permutation and applying this permutation to the array.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="RandomSource">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.RandomSources.RandomSource RandomSource { set; get; }" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.RandomSources.RandomSource</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            Random source supporting the randomized operations.
+            </summary>
+        <value>To be added.</value>
+        <remarks>
+            The default value is a <see cref="T:MathNet.Numerics.RandomSources.SystemRandomSource" />.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="RandomSubsetCombination&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public static T[] RandomSubsetCombination&lt;T&gt; (System.Collections.Generic.IList&lt;T&gt; array, int numberToSelect);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>T[]</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="array" Type="System.Collections.Generic.IList&lt;T&gt;" />
+        <Parameter Name="numberToSelect" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T">To be added.</typeparam>
+        <param name="array">The data list to choose from.</param>
+        <param name="numberToSelect">The size of the subset. Must be smaller or equal to the array length.</param>
+        <summary>
+            Randomly returns a subset of size <c>numberToSelect</c> of <c>array</c>
+            in preserved order without repetition.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="RandomSubsetCombinationWithRepetition&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public static T[] RandomSubsetCombinationWithRepetition&lt;T&gt; (System.Collections.Generic.IList&lt;T&gt; array, int numberToSelect);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>T[]</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="array" Type="System.Collections.Generic.IList&lt;T&gt;" />
+        <Parameter Name="numberToSelect" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T">To be added.</typeparam>
+        <param name="array">The data list to choose from.</param>
+        <param name="numberToSelect">The size of the subset. Must be smaller or equal to the array length.</param>
+        <summary>
+            Randomly returns a subset of size <c>numberToSelect</c> of <c>array</c>
+            in preserved order with repetition.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="RandomSubsetVariation&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public static T[] RandomSubsetVariation&lt;T&gt; (System.Collections.Generic.IList&lt;T&gt; array, int numberToSelect);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>T[]</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="array" Type="System.Collections.Generic.IList&lt;T&gt;" />
+        <Parameter Name="numberToSelect" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T">To be added.</typeparam>
+        <param name="array">The data list to choose from.</param>
+        <param name="numberToSelect">The size of the subset. Must be smaller or equal to the array length.</param>
+        <summary>
+            Randomly returns a subset of size <c>numberToSelect</c> of <c>array</c>
+            in random order without repetition.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="RandomSubsetVariationWithRepetition&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public static T[] RandomSubsetVariationWithRepetition&lt;T&gt; (System.Collections.Generic.IList&lt;T&gt; array, int numberToSelect);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>T[]</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="array" Type="System.Collections.Generic.IList&lt;T&gt;" />
+        <Parameter Name="numberToSelect" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T">To be added.</typeparam>
+        <param name="array">The data list to choose from.</param>
+        <param name="numberToSelect">The size of the subset. Must be smaller or equal to the array length.</param>
+        <summary>
+            Randomly returns a subset of size <c>numberToSelect</c> of <c>array</c>
+            in random order with repetition.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="RandomVariation">
+      <MemberSignature Language="C#" Value="public static int[] RandomVariation (int n, int k);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32[]</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="n" Type="System.Int32" />
+        <Parameter Name="k" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="n">To be added.</param>
+        <param name="k">To be added.</param>
+        <summary>Randomly selects k of n elements with order but without repetition.</summary>
+        <returns>An array of length <c>K</c> that contains the indices of the selections as integers of the interval <c>[0, N)</c>.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="RandomVariationWithRepetition">
+      <MemberSignature Language="C#" Value="public static int[] RandomVariationWithRepetition (int n, int k);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32[]</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="n" Type="System.Int32" />
+        <Parameter Name="k" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="n">To be added.</param>
+        <param name="k">To be added.</param>
+        <summary>Randomly selects k of n elements with order and repetition.</summary>
+        <returns>An array of length <c>K</c> that contains the indices of the selections as integers of the interval <c>[0, N)</c>.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Variations">
+      <MemberSignature Language="C#" Value="public static double Variations (int n, int k);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="n" Type="System.Int32" />
+        <Parameter Name="k" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="n">To be added.</param>
+        <param name="k">To be added.</param>
+        <summary>
+            Computes the number of variations without repetition. When the order matters and each object can be chosen only once.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="VariationsWithRepetition">
+      <MemberSignature Language="C#" Value="public static double VariationsWithRepetition (int n, int k);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="n" Type="System.Int32" />
+        <Parameter Name="k" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="n">To be added.</param>
+        <param name="k">To be added.</param>
+        <summary>
+            Computes the number of variations with repetition. When the order matters and an object can be chosen more than once.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

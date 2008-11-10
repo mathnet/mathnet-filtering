@@ -1,0 +1,53 @@
+<Type Name="SampleList+SampleAlteredEventArgs" FullName="MathNet.Numerics.SampleList+SampleAlteredEventArgs">
+  <TypeSignature Language="C#" Value="public class SampleList.SampleAlteredEventArgs : EventArgs" />
+  <AssemblyInfo>
+    <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.EventArgs</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Docs>
+    <summary>
+            Event Argument for <see cref="E:MathNet.Numerics.SampleList.SampleAltered" /> Event.
+            </summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public SampleAlteredEventArgs (double t);" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="t" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="t">The t-value of the x=f(t) or (t,x) samples.</param>
+        <summary>
+            Instantiate new event arguments.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="T">
+      <MemberSignature Language="C#" Value="public double T { get; }" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            he t-value of the x=f(t) or (t,x) samples.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

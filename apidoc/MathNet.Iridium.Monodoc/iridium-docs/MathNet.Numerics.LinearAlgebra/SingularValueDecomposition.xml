@@ -1,0 +1,150 @@
+<Type Name="SingularValueDecomposition" FullName="MathNet.Numerics.LinearAlgebra.SingularValueDecomposition">
+  <TypeSignature Language="C#" Value="public class SingularValueDecomposition" />
+  <AssemblyInfo>
+    <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Docs>
+    <summary>Singular Value Decomposition.</summary>
+    <remarks>
+      <p>For an m-by-n matrix A with m &gt;= n, the singular value decomposition 
+             is an m-by-n orthogonal matrix U, an n-by-n diagonal matrix S, and
+             an n-by-n orthogonal matrix V so that A = U*S*V'.</p>
+      <p>The singular values, sigma[k] = S[k, k], are ordered so that
+             sigma[0] &gt;= sigma[1] &gt;= ... &gt;= sigma[n-1].</p>
+      <p>The singular value decomposition always exists, so the constructor will
+             never fail.  The matrix condition number and the effective numerical
+             rank can be computed from this decomposition.</p>
+    </remarks>
+  </Docs>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public SingularValueDecomposition (MathNet.Numerics.LinearAlgebra.Matrix Arg);" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="Arg" Type="MathNet.Numerics.LinearAlgebra.Matrix" />
+      </Parameters>
+      <Docs>
+        <param name="Arg">Rectangular matrix</param>
+        <summary>Construct the singular value decomposition.</summary>
+        <remarks>Provides access to U, S and V.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Condition">
+      <MemberSignature Language="C#" Value="public double Condition ();" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>Two norm condition number.</summary>
+        <returns>max(S)/min(S)</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="LeftSingularVectors">
+      <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.Matrix LeftSingularVectors { get; }" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.LinearAlgebra.Matrix</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Gets the left singular vectors (U matrix).</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Norm2">
+      <MemberSignature Language="C#" Value="public double Norm2 ();" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>Two norm.</summary>
+        <returns>max(S)</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Rank">
+      <MemberSignature Language="C#" Value="public int Rank ();" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>Effective numerical matrix rank - Number of nonnegligible singular values.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="RightSingularVectors">
+      <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.Matrix RightSingularVectors { get; }" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.LinearAlgebra.Matrix</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Gets the right singular vectors (V matrix).</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="S">
+      <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.Matrix S { get; }" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.LinearAlgebra.Matrix</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Get the diagonal matrix of singular values.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SingularValues">
+      <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.Vector SingularValues { get; }" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.LinearAlgebra.Vector</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>Gets the one-dimensional array of singular values.</summary>
+        <returns>diagonal of S.</returns>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

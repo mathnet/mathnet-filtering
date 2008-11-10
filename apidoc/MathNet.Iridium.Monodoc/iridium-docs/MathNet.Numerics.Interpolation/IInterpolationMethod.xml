@@ -1,0 +1,123 @@
+<Type Name="IInterpolationMethod" FullName="MathNet.Numerics.Interpolation.IInterpolationMethod">
+  <TypeSignature Language="C#" Value="public interface IInterpolationMethod" />
+  <AssemblyInfo>
+    <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+  </AssemblyInfo>
+  <Interfaces />
+  <Docs>
+    <summary>
+            Interpolation method
+            </summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="Differentiate">
+      <MemberSignature Language="C#" Value="public double Differentiate (double t, out double first, out double second);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="t" Type="System.Double" />
+        <Parameter Name="first" Type="System.Double&amp;" RefType="out" />
+        <Parameter Name="second" Type="System.Double&amp;" RefType="out" />
+      </Parameters>
+      <Docs>
+        <param name="t">Point t to interpolate at.</param>
+        <param name="first">Interpolated first derivative at point t.</param>
+        <param name="second">Interpolated second derivative at point t.</param>
+        <summary>
+            Differentiate at point t.
+            </summary>
+        <returns>Interpolated value x(t).</returns>
+        <remarks>To be added.</remarks>
+        <altmember cref="P:MathNet.Numerics.Interpolation.IInterpolationMethod.SupportsDifferentiation" />
+      </Docs>
+    </Member>
+    <Member MemberName="Integrate">
+      <MemberSignature Language="C#" Value="public double Integrate (double t);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="t" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="t">Right bound of the integration interval [a,t].</param>
+        <summary>
+            Definite Integrate up to point t.
+            </summary>
+        <returns>Interpolated definite integeral over the interval [a,t].</returns>
+        <remarks>To be added.</remarks>
+        <altmember cref="P:MathNet.Numerics.Interpolation.IInterpolationMethod.SupportsIntegration" />
+      </Docs>
+    </Member>
+    <Member MemberName="Interpolate">
+      <MemberSignature Language="C#" Value="public double Interpolate (double t);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="t" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="t">Point t to interpolate at.</param>
+        <summary>
+            Interpolate at point t.
+            </summary>
+        <returns>Interpolated value x(t).</returns>
+        <remarks>To be added.</remarks>
+        <altmember cref="M:MathNet.Numerics.Interpolation.IInterpolationMethod.Differentiate(System.Double,System.Double@,System.Double@)" />
+        <altmember cref="M:MathNet.Numerics.Interpolation.IInterpolationMethod.Integrate(System.Double)" />
+      </Docs>
+    </Member>
+    <Member MemberName="SupportsDifferentiation">
+      <MemberSignature Language="C#" Value="public bool SupportsDifferentiation { get; }" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            True if the alorithm supports differentiation.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <altmember cref="M:MathNet.Numerics.Interpolation.IInterpolationMethod.Differentiate(System.Double,System.Double@,System.Double@)" />
+      </Docs>
+    </Member>
+    <Member MemberName="SupportsIntegration">
+      <MemberSignature Language="C#" Value="public bool SupportsIntegration { get; }" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            True if the alorithm supports integration.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <altmember cref="M:MathNet.Numerics.Interpolation.IInterpolationMethod.Integrate(System.Double)" />
+      </Docs>
+    </Member>
+  </Members>
+</Type>

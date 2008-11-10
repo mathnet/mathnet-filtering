@@ -1,0 +1,300 @@
+<Type Name="Histogram" FullName="MathNet.Numerics.Statistics.Histogram">
+  <TypeSignature Language="C#" Value="public class Histogram" />
+  <AssemblyInfo>
+    <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Attributes>
+    <Attribute>
+      <AttributeName>System.Reflection.DefaultMember("Item")</AttributeName>
+    </Attribute>
+  </Attributes>
+  <Docs>
+    <summary>Base class for the <i>histogram</i> algorithms.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public Histogram ();" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters />
+      <Docs>
+        <summary>
+            Constructs an empty <c>Histogram</c>.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Add">
+      <MemberSignature Language="C#" Value="public void Add (MathNet.Numerics.Statistics.Bucket bucket);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="bucket" Type="MathNet.Numerics.Statistics.Bucket" />
+      </Parameters>
+      <Docs>
+        <param name="bucket">To be added.</param>
+        <summary>
+            Adds a <c>Bucket</c> to the <c>Histogram</c>.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Count">
+      <MemberSignature Language="C#" Value="public int Count { get; }" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            Gets the number of buckets.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetContainerIndexOf">
+      <MemberSignature Language="C#" Value="public int GetContainerIndexOf (double v);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="v" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="v">To be added.</param>
+        <summary>
+            Returns the index in the <c>Histogram</c> of the <c>Bucket</c>
+            that contains the value <c>v</c>.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetContainerOf">
+      <MemberSignature Language="C#" Value="public MathNet.Numerics.Statistics.Bucket GetContainerOf (double v);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.Statistics.Bucket</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="v" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="v">To be added.</param>
+        <summary>
+            Returns the <c>Bucket</c> that contains the value <c>v</c>. 
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Item">
+      <MemberSignature Language="C#" Value="public MathNet.Numerics.Statistics.Bucket this[int index] { set; get; }" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.Statistics.Bucket</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="index" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="index">To be added.</param>
+        <summary>
+            Gets the <c>Bucket</c> indexed by <c>index</c>.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="JoinBuckets">
+      <MemberSignature Language="C#" Value="public void JoinBuckets ();" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>
+            Joins the boundaries of the successive buckets.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="OptimalDispersion">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.Statistics.Histogram OptimalDispersion (int bucketCount, System.Collections.ICollection distribution);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.Statistics.Histogram</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="bucketCount" Type="System.Int32" />
+        <Parameter Name="distribution" Type="System.Collections.ICollection" />
+      </Parameters>
+      <Docs>
+        <param name="bucketCount">To be added.</param>
+        <param name="distribution">To be added.</param>
+        <summary>
+            Returns the optimal dispersion histogram.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="OptimalFreedom">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.Statistics.Histogram OptimalFreedom (int bucketCount, System.Collections.ICollection distribution);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.Statistics.Histogram</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="bucketCount" Type="System.Int32" />
+        <Parameter Name="distribution" Type="System.Collections.ICollection" />
+      </Parameters>
+      <Docs>
+        <param name="bucketCount">To be added.</param>
+        <param name="distribution">To be added.</param>
+        <summary>
+            Returns the optimal freedom histogram.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="OptimalSquaredFreedom">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.Statistics.Histogram OptimalSquaredFreedom (int histSize, System.Collections.ICollection distribution);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.Statistics.Histogram</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="histSize" Type="System.Int32" />
+        <Parameter Name="distribution" Type="System.Collections.ICollection" />
+      </Parameters>
+      <Docs>
+        <param name="histSize">To be added.</param>
+        <param name="distribution">To be added.</param>
+        <summary>
+            Returns the optimal squared freedom histogram.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="OptimalVariance">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.Statistics.Histogram OptimalVariance (int bucketCount, System.Collections.ICollection distribution);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.Statistics.Histogram</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="bucketCount" Type="System.Int32" />
+        <Parameter Name="distribution" Type="System.Collections.ICollection" />
+      </Parameters>
+      <Docs>
+        <param name="bucketCount">The number of buckets in the histogram.</param>
+        <param name="distribution">
+          <c>double</c> elements expected.</param>
+        <summary>
+            Returns the optimal variance histogram.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>Requires a computations time quadratic to 
+            <c>distribution.Length</c>.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Sort">
+      <MemberSignature Language="C#" Value="public void Sort ();" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>
+            Sort the buckets.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ToString">
+      <MemberSignature Language="C#" Value="public override string ToString ();" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>
+            Prints the buckets contained in the <see cref="T:MathNet.Numerics.Statistics.Histogram" />.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TotalDepth">
+      <MemberSignature Language="C#" Value="public double TotalDepth { get; }" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            Gets the sum of the bucket depths.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

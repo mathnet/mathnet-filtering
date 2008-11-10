@@ -1,0 +1,1161 @@
+<Type Name="Polynomial" FullName="MathNet.Numerics.Polynomial">
+  <TypeSignature Language="C#" Value="public class Polynomial : ICloneable, IComparable" />
+  <AssemblyInfo>
+    <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces>
+    <Interface>
+      <InterfaceName>System.ICloneable</InterfaceName>
+    </Interface>
+    <Interface>
+      <InterfaceName>System.IComparable</InterfaceName>
+    </Interface>
+  </Interfaces>
+  <Attributes>
+    <Attribute>
+      <AttributeName>System.Reflection.DefaultMember("Item")</AttributeName>
+    </Attribute>
+  </Attributes>
+  <Docs>
+    <summary>
+            Polynomial represents a finite order polynomial
+            with positive powers and constant real coefficients.
+            </summary>
+    <remarks>The polynomial coefficients are ordered such that
+            c[0] is the constant term and c[n] is the coefficient of z^n,
+            that is y = c[0]*x^0+c[1]*x^1+c[2]*x^2+...</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public Polynomial (MathNet.Numerics.Polynomial copy);" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="copy" Type="MathNet.Numerics.Polynomial" />
+      </Parameters>
+      <Docs>
+        <param name="copy">A polynomial to copy from.</param>
+        <summary>
+            Create a new polynomial by copy
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public Polynomial (double[] coefficients);" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="coefficients" Type="System.Double[]" />
+      </Parameters>
+      <Docs>
+        <param name="coefficients">The coefficients vector. The coefficient index denotes the related power (c[0]*x^0+c[1]*x^1+..)</param>
+        <summary>
+            Create a new polynomial by coefficients
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public Polynomial (int order);" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="order" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="order">The highest power. Example: 2*x^3+x-3 has order 3.</param>
+        <summary>
+            Create a new polynomial by order
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AddInplace">
+      <MemberSignature Language="C#" Value="public void AddInplace (MathNet.Numerics.Polynomial polynomial);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial" Type="MathNet.Numerics.Polynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial">To be added.</param>
+        <summary>Add another polynomial inplace to this polynomial.</summary>
+        <remarks>This method operates inplace and thus alters this instance.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AddInplace">
+      <MemberSignature Language="C#" Value="public void AddInplace (double n);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="n" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="n">To be added.</param>
+        <summary>Add a real number inplace to this polynomial.</summary>
+        <remarks>This method operates inplace and thus alters this instance.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Clone">
+      <MemberSignature Language="C#" Value="public MathNet.Numerics.Polynomial Clone ();" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.Polynomial</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>
+            Create a copy of this polynomial.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CompareTo">
+      <MemberSignature Language="C#" Value="public int CompareTo (MathNet.Numerics.Polynomial polynomial);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial" Type="MathNet.Numerics.Polynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial">To be added.</param>
+        <summary>
+            Compare this polynomial to another polynomial.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CompareTo">
+      <MemberSignature Language="C#" Value="public int CompareTo (object obj);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="obj" Type="System.Object" />
+      </Parameters>
+      <Docs>
+        <param name="obj">To be added.</param>
+        <summary>
+            Compare this polynomial to another polynomial.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Divide">
+      <MemberSignature Language="C#" Value="public MathNet.Numerics.Rational Divide (MathNet.Numerics.Polynomial polynomial);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.Rational</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial" Type="MathNet.Numerics.Polynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial">To be added.</param>
+        <summary>
+            Divides this polynomial with another polynomial.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="DivideInplace">
+      <MemberSignature Language="C#" Value="public void DivideInplace (double c0);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="c0" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="c0">To be added.</param>
+        <summary>
+            Divides this polynomial with a real number.
+            </summary>
+        <remarks>This method operates inplace and thus alters this instance.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="DivideLinearInplace">
+      <MemberSignature Language="C#" Value="public void DivideLinearInplace (double c0, double c1, out double reminder);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="c0" Type="System.Double" />
+        <Parameter Name="c1" Type="System.Double" />
+        <Parameter Name="reminder" Type="System.Double&amp;" RefType="out" />
+      </Parameters>
+      <Docs>
+        <param name="c0">To be added.</param>
+        <param name="c1">To be added.</param>
+        <param name="reminder">To be added.</param>
+        <summary>
+            Divides this polynomial with a linear factor c1*x+c0.
+            </summary>
+        <remarks>This method operates inplace and thus alters this instance.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="DivideShiftInplace">
+      <MemberSignature Language="C#" Value="public void DivideShiftInplace (int n, out double[] reminder);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="n" Type="System.Int32" />
+        <Parameter Name="reminder" Type="System.Double[]&amp;" RefType="out" />
+      </Parameters>
+      <Docs>
+        <param name="n">To be added.</param>
+        <param name="reminder">To be added.</param>
+        <summary>
+            Divides this polynomial with its base x^n, n&gt;0, resulting in a coefficient shift.
+            </summary>
+        <remarks>This method operates inplace and thus alters this instance.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="DivideSyntheticInplace">
+      <MemberSignature Language="C#" Value="public void DivideSyntheticInplace (double a, out double reminder);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="a" Type="System.Double" />
+        <Parameter Name="reminder" Type="System.Double&amp;" RefType="out" />
+      </Parameters>
+      <Docs>
+        <param name="a">To be added.</param>
+        <param name="reminder">To be added.</param>
+        <summary>
+            Divides this polynomial with x-c0
+            where x is its base and c0 a constant.
+            This process is often called synthetic division.
+            </summary>
+        <remarks>This method operates inplace and thus alters this instance.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Equals">
+      <MemberSignature Language="C#" Value="public bool Equals (MathNet.Numerics.Polynomial polynomial);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial" Type="MathNet.Numerics.Polynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial">To be added.</param>
+        <summary>
+            Check whether this polynomial is equal to another polynomial.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Equals">
+      <MemberSignature Language="C#" Value="public override bool Equals (object obj);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="obj" Type="System.Object" />
+      </Parameters>
+      <Docs>
+        <param name="obj">To be added.</param>
+        <summary>
+            Check whether this polynomial is equal to another polynomial.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Equals">
+      <MemberSignature Language="C#" Value="public static bool Equals (MathNet.Numerics.Polynomial polynomial1, MathNet.Numerics.Polynomial polynomial2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial1" Type="MathNet.Numerics.Polynomial" />
+        <Parameter Name="polynomial2" Type="MathNet.Numerics.Polynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial1">To be added.</param>
+        <param name="polynomial2">To be added.</param>
+        <summary>
+            Check whether two polynomials are equal.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Evaluate">
+      <MemberSignature Language="C#" Value="public double Evaluate (double value);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="value" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="value">The polynomial base, x.</param>
+        <summary>
+            Evaluates the real result of the polynomial to the given value. 
+            </summary>
+        <returns>The real result.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Evaluate">
+      <MemberSignature Language="C#" Value="public double Evaluate (double value, out double derivative);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="value" Type="System.Double" />
+        <Parameter Name="derivative" Type="System.Double&amp;" RefType="out" />
+      </Parameters>
+      <Docs>
+        <param name="value">The polynomial base, x.</param>
+        <param name="derivative">The real result of the derivative.</param>
+        <summary>
+            Evaluates the real result of the polynomial and its first
+            derivative to the given value. 
+            </summary>
+        <returns>The real result of the original polynomial.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Evaluate">
+      <MemberSignature Language="C#" Value="public double[] Evaluate (double value, int derivativeOrderMax);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double[]</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="value" Type="System.Double" />
+        <Parameter Name="derivativeOrderMax" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="value">The polynomial base, x.</param>
+        <param name="derivativeOrderMax">The highest derivative order. Example: '2' evaluates the first and the second derivatives.</param>
+        <summary>
+            Evaluates the real result of the polynomial and its first
+            few derivatives to the given value. 
+            </summary>
+        <returns>A real array with the result of the i-th derivate in cell c[i], thus the result of the original polynomial in c[0].</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetHashCode">
+      <MemberSignature Language="C#" Value="public override int GetHashCode ();" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>
+            Serves as a hash function for polynomials.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Item">
+      <MemberSignature Language="C#" Value="public double this[int power] { set; get; }" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="power" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="power">To be added.</param>
+        <summary>
+            Get/set the coefficient for the given power.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Multiply">
+      <MemberSignature Language="C#" Value="public MathNet.Numerics.Polynomial Multiply (MathNet.Numerics.Polynomial polynomial);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.Polynomial</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial" Type="MathNet.Numerics.Polynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial">To be added.</param>
+        <summary>
+            Multiply two polynomials.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>
+            If both polynomials have an order &gt; 3, the faster karatsuba algorithm is used.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="MultiplyInplace">
+      <MemberSignature Language="C#" Value="public void MultiplyInplace (double c0);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="c0" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="c0">To be added.</param>
+        <summary>
+            Multiplies this polynomial with a real number.
+            </summary>
+        <remarks>This method operates inplace and thus alters this instance.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="MultiplyLinearInplace">
+      <MemberSignature Language="C#" Value="public void MultiplyLinearInplace (double c0, double c1);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="c0" Type="System.Double" />
+        <Parameter Name="c1" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="c0">To be added.</param>
+        <param name="c1">To be added.</param>
+        <summary>
+            Multiplies this polynomial with a linear factor c1*x+c0.
+            </summary>
+        <remarks>This method operates inplace and thus alters this instance.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="MultiplyShiftInplace">
+      <MemberSignature Language="C#" Value="public void MultiplyShiftInplace (int n);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="n" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="n">To be added.</param>
+        <summary>
+            Multiplies this polynomial with its base x^n, n&gt;0, resulting in a coefficient shift.
+            </summary>
+        <remarks>This method operates inplace and thus alters this instance.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="MultiplySlow">
+      <MemberSignature Language="C#" Value="public MathNet.Numerics.Polynomial MultiplySlow (MathNet.Numerics.Polynomial polynomial);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.Polynomial</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial" Type="MathNet.Numerics.Polynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="MultiplySyntheticInplace">
+      <MemberSignature Language="C#" Value="public void MultiplySyntheticInplace (double a);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="a" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="a">To be added.</param>
+        <summary>
+            Multiplies this polynomial with x-c0
+            where x is its base and c0 a constant.
+            This process is the counterpart to synthetic division.
+            </summary>
+        <remarks>This method operates inplace and thus alters this instance.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="NegateInplace">
+      <MemberSignature Language="C#" Value="public void NegateInplace ();" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>Negate this polynomial inplace.</summary>
+        <remarks>This method operates inplace and thus alters this instance.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Normalize">
+      <MemberSignature Language="C#" Value="public void Normalize ();" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>
+            Normalizes the polynomial's order and resizes its data structure to that order.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Addition">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.Polynomial op_Addition (MathNet.Numerics.Polynomial polynomial1, MathNet.Numerics.Polynomial polynomial2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.Polynomial</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial1" Type="MathNet.Numerics.Polynomial" />
+        <Parameter Name="polynomial2" Type="MathNet.Numerics.Polynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial1">To be added.</param>
+        <param name="polynomial2">To be added.</param>
+        <summary>
+            Add a polynomials to a polynomial.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Addition">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.Polynomial op_Addition (MathNet.Numerics.Polynomial polynomial, double n);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.Polynomial</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial" Type="MathNet.Numerics.Polynomial" />
+        <Parameter Name="n" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial">To be added.</param>
+        <param name="n">To be added.</param>
+        <summary>
+            Add a real number to a polynomial.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Addition">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.Polynomial op_Addition (double n, MathNet.Numerics.Polynomial polynomial);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.Polynomial</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="n" Type="System.Double" />
+        <Parameter Name="polynomial" Type="MathNet.Numerics.Polynomial" />
+      </Parameters>
+      <Docs>
+        <param name="n">To be added.</param>
+        <param name="polynomial">To be added.</param>
+        <summary>
+            Add a polynomial to a real number.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Division">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.Polynomial op_Division (MathNet.Numerics.Polynomial polynomial, double n);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.Polynomial</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial" Type="MathNet.Numerics.Polynomial" />
+        <Parameter Name="n" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial">To be added.</param>
+        <param name="n">To be added.</param>
+        <summary>
+            Stretch a polynomial with a real number quotient.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>
+            The quotient must not be null.
+            </remarks>
+        <exception cref="T:System.DivideByZeroException" />
+      </Docs>
+    </Member>
+    <Member MemberName="op_Equality">
+      <MemberSignature Language="C#" Value="public static bool op_Equality (MathNet.Numerics.Polynomial polynomial1, MathNet.Numerics.Polynomial polynomial2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial1" Type="MathNet.Numerics.Polynomial" />
+        <Parameter Name="polynomial2" Type="MathNet.Numerics.Polynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial1">To be added.</param>
+        <param name="polynomial2">To be added.</param>
+        <summary>
+            Check whether two polynomials have the same coefficients.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_GreaterThan">
+      <MemberSignature Language="C#" Value="public static bool op_GreaterThan (MathNet.Numerics.Polynomial polynomial1, MathNet.Numerics.Polynomial polynomial2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial1" Type="MathNet.Numerics.Polynomial" />
+        <Parameter Name="polynomial2" Type="MathNet.Numerics.Polynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial1">To be added.</param>
+        <param name="polynomial2">To be added.</param>
+        <summary>
+            Check wether a polynomial is bigger than another polynomial.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_GreaterThanOrEqual">
+      <MemberSignature Language="C#" Value="public static bool op_GreaterThanOrEqual (MathNet.Numerics.Polynomial polynomial1, MathNet.Numerics.Polynomial polynomial2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial1" Type="MathNet.Numerics.Polynomial" />
+        <Parameter Name="polynomial2" Type="MathNet.Numerics.Polynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial1">To be added.</param>
+        <param name="polynomial2">To be added.</param>
+        <summary>
+            Check wether a polynomial is bigger than or equal to another polynomial.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Inequality">
+      <MemberSignature Language="C#" Value="public static bool op_Inequality (MathNet.Numerics.Polynomial polynomial1, MathNet.Numerics.Polynomial polynomial2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial1" Type="MathNet.Numerics.Polynomial" />
+        <Parameter Name="polynomial2" Type="MathNet.Numerics.Polynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial1">To be added.</param>
+        <param name="polynomial2">To be added.</param>
+        <summary>
+            Check whether two polynomials have different coefficients.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_LessThan">
+      <MemberSignature Language="C#" Value="public static bool op_LessThan (MathNet.Numerics.Polynomial polynomial1, MathNet.Numerics.Polynomial polynomial2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial1" Type="MathNet.Numerics.Polynomial" />
+        <Parameter Name="polynomial2" Type="MathNet.Numerics.Polynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial1">To be added.</param>
+        <param name="polynomial2">To be added.</param>
+        <summary>
+            Check wether a polynomial is smaller than another polynomial.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_LessThanOrEqual">
+      <MemberSignature Language="C#" Value="public static bool op_LessThanOrEqual (MathNet.Numerics.Polynomial polynomial1, MathNet.Numerics.Polynomial polynomial2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial1" Type="MathNet.Numerics.Polynomial" />
+        <Parameter Name="polynomial2" Type="MathNet.Numerics.Polynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial1">To be added.</param>
+        <param name="polynomial2">To be added.</param>
+        <summary>
+            Check wether a polynomial is smaller than or equal to another polynomial.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Multiply">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.Polynomial op_Multiply (MathNet.Numerics.Polynomial polynomial1, MathNet.Numerics.Polynomial polynomial2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.Polynomial</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial1" Type="MathNet.Numerics.Polynomial" />
+        <Parameter Name="polynomial2" Type="MathNet.Numerics.Polynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial1">To be added.</param>
+        <param name="polynomial2">To be added.</param>
+        <summary>
+            Multiply/Convolute two polynomials.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Multiply">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.Polynomial op_Multiply (MathNet.Numerics.Polynomial polynomial, double n);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.Polynomial</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial" Type="MathNet.Numerics.Polynomial" />
+        <Parameter Name="n" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial">To be added.</param>
+        <param name="n">To be added.</param>
+        <summary>
+            Stretch a polynomial with a real number factor.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Multiply">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.Polynomial op_Multiply (double n, MathNet.Numerics.Polynomial polynomial);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.Polynomial</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="n" Type="System.Double" />
+        <Parameter Name="polynomial" Type="MathNet.Numerics.Polynomial" />
+      </Parameters>
+      <Docs>
+        <param name="n">To be added.</param>
+        <param name="polynomial">To be added.</param>
+        <summary>
+            Stretch a polynomial with a real number factor.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Subtraction">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.Polynomial op_Subtraction (MathNet.Numerics.Polynomial polynomial1, MathNet.Numerics.Polynomial polynomial2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.Polynomial</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial1" Type="MathNet.Numerics.Polynomial" />
+        <Parameter Name="polynomial2" Type="MathNet.Numerics.Polynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial1">To be added.</param>
+        <param name="polynomial2">To be added.</param>
+        <summary>
+            Subtract a polynomial from another polynomial.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Subtraction">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.Polynomial op_Subtraction (MathNet.Numerics.Polynomial polynomial, double n);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.Polynomial</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial" Type="MathNet.Numerics.Polynomial" />
+        <Parameter Name="n" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial">To be added.</param>
+        <param name="n">To be added.</param>
+        <summary>
+            Subtract a real number from a polynomial.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Subtraction">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.Polynomial op_Subtraction (double n, MathNet.Numerics.Polynomial polynomial);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.Polynomial</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="n" Type="System.Double" />
+        <Parameter Name="polynomial" Type="MathNet.Numerics.Polynomial" />
+      </Parameters>
+      <Docs>
+        <param name="n">To be added.</param>
+        <param name="polynomial">To be added.</param>
+        <summary>
+            Subtract a polynomial from a real number.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_UnaryNegation">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.Polynomial op_UnaryNegation (MathNet.Numerics.Polynomial polynomial);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.Polynomial</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial" Type="MathNet.Numerics.Polynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial">To be added.</param>
+        <summary>
+            Negate a polynomial.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_UnaryPlus">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.Polynomial op_UnaryPlus (MathNet.Numerics.Polynomial polynomial);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.Polynomial</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial" Type="MathNet.Numerics.Polynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial">To be added.</param>
+        <summary>
+            (nop)
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Order">
+      <MemberSignature Language="C#" Value="public int Order { get; }" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            The order of this polynomial.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Size">
+      <MemberSignature Language="C#" Value="public int Size { get; }" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            The size of the internal coefficients data structure.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SubtractInplace">
+      <MemberSignature Language="C#" Value="public void SubtractInplace (MathNet.Numerics.Polynomial polynomial);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial" Type="MathNet.Numerics.Polynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial">To be added.</param>
+        <summary>Subtract anoter polynomial inplace from this polynomial.</summary>
+        <remarks>This method operates inplace and thus alters this instance.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SubtractInplace">
+      <MemberSignature Language="C#" Value="public void SubtractInplace (double n);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="n" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="n">To be added.</param>
+        <summary>Subtract a real number inplace from this polynomial.</summary>
+        <remarks>This method operates inplace and thus alters this instance.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="System.ICloneable.Clone">
+      <MemberSignature Language="C#" Value="object ICloneable.Clone ();" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Object</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ToString">
+      <MemberSignature Language="C#" Value="public override string ToString ();" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>
+            Format a human-readable string of this polynomial with "x" as base variable.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ToString">
+      <MemberSignature Language="C#" Value="public string ToString (string baseVariable);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="baseVariable" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="baseVariable">To be added.</param>
+        <summary>
+            Format a human-readable string of this polynomial with the given string as base variable (e.g. "x").
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

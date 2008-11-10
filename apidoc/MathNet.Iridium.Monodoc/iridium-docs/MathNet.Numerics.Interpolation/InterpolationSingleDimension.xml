@@ -1,0 +1,289 @@
+<Type Name="InterpolationSingleDimension" FullName="MathNet.Numerics.Interpolation.InterpolationSingleDimension">
+  <TypeSignature Language="C#" Value="public class InterpolationSingleDimension" />
+  <AssemblyInfo>
+    <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Attributes>
+    <Attribute>
+      <AttributeName>System.Obsolete("Please use Interpolation instead. This class is obsolete and will be removed in future versions.")</AttributeName>
+    </Attribute>
+  </Attributes>
+  <Docs>
+    <summary>
+            Interpolation portal for the single dimension case.
+            </summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public InterpolationSingleDimension (MathNet.Numerics.SampleList samples);" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="samples" Type="MathNet.Numerics.SampleList" />
+      </Parameters>
+      <Docs>
+        <param name="samples">Sample Points.</param>
+        <summary>
+            Initialize the portal with samples from a sample list.
+            </summary>
+        <remarks>
+            Uses the <see cref="T:MathNet.Numerics.Interpolation.PolynomialInterpolationAlgorithm" />.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public InterpolationSingleDimension (System.Collections.IDictionary samples);" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="samples" Type="System.Collections.IDictionary" />
+      </Parameters>
+      <Docs>
+        <param name="samples">Sample Points.</param>
+        <summary>
+            Initialize the portal with samples from a dictionary.
+            </summary>
+        <remarks>
+            Uses the <see cref="T:MathNet.Numerics.Interpolation.PolynomialInterpolationAlgorithm" />.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public InterpolationSingleDimension (MathNet.Numerics.SampleList samples, MathNet.Numerics.Interpolation.IInterpolationAlgorithm algorithm);" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="samples" Type="MathNet.Numerics.SampleList" />
+        <Parameter Name="algorithm" Type="MathNet.Numerics.Interpolation.IInterpolationAlgorithm" />
+      </Parameters>
+      <Docs>
+        <param name="samples">Sample Points.</param>
+        <param name="algorithm">Interpolation Algorithm.</param>
+        <summary>
+            Initialize the portal with samples from a sample list and uses the specified algorithm.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public InterpolationSingleDimension (MathNet.Numerics.SampleList samples, MathNet.Numerics.Interpolation.InterpolationMode mode);" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="samples" Type="MathNet.Numerics.SampleList" />
+        <Parameter Name="mode" Type="MathNet.Numerics.Interpolation.InterpolationMode" />
+      </Parameters>
+      <Docs>
+        <param name="samples">Sample Points.</param>
+        <param name="mode">Interpolation Mode.</param>
+        <summary>
+            Initialize the portal with samples from a sample list and selects an algorithm that fits the chosen interpolation mode.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public InterpolationSingleDimension (double[] t, double[] x);" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="t" Type="System.Double[]" />
+        <Parameter Name="x" Type="System.Double[]" />
+      </Parameters>
+      <Docs>
+        <param name="t">keys t, where x=f(t) or (t,x).</param>
+        <param name="x">values x, where x=f(t) or (t,x).</param>
+        <summary>
+            Initialize the portal with samples from points (t, x(t)).
+            </summary>
+        <remarks>
+            Uses the <see cref="T:MathNet.Numerics.Interpolation.PolynomialInterpolationAlgorithm" />.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public InterpolationSingleDimension (MathNet.Numerics.SampleList samples, MathNet.Numerics.Interpolation.InterpolationMode mode, int maximumOrder);" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="samples" Type="MathNet.Numerics.SampleList" />
+        <Parameter Name="mode" Type="MathNet.Numerics.Interpolation.InterpolationMode" />
+        <Parameter Name="maximumOrder" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="samples">Sample Points.</param>
+        <param name="mode">Interpolation Mode.</param>
+        <param name="maximumOrder">Maximum Interpolation Order.</param>
+        <summary>
+            Initialize the portal with samples from a sample list and selects an algorithm that fits the chosen interpolation mode with the given order.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public InterpolationSingleDimension (double[] t, double[] x, MathNet.Numerics.Interpolation.IInterpolationAlgorithm algorithm);" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="t" Type="System.Double[]" />
+        <Parameter Name="x" Type="System.Double[]" />
+        <Parameter Name="algorithm" Type="MathNet.Numerics.Interpolation.IInterpolationAlgorithm" />
+      </Parameters>
+      <Docs>
+        <param name="t">keys t, where x=f(t) or (t,x).</param>
+        <param name="x">values x, where x=f(t) or (t,x).</param>
+        <param name="algorithm">Interpolation Algorithm.</param>
+        <summary>
+            Initialize the portal with samples from points (t, x(t)) and uses the specified algorithm.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public InterpolationSingleDimension (double[] t, double[] x, MathNet.Numerics.Interpolation.InterpolationMode mode);" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="t" Type="System.Double[]" />
+        <Parameter Name="x" Type="System.Double[]" />
+        <Parameter Name="mode" Type="MathNet.Numerics.Interpolation.InterpolationMode" />
+      </Parameters>
+      <Docs>
+        <param name="t">keys t, where x=f(t) or (t,x).</param>
+        <param name="x">values x, where x=f(t) or (t,x).</param>
+        <param name="mode">Interpolation Mode.</param>
+        <summary>
+            Initialize the portal with samples from points (t, x(t)) and selects an algorithm that fits the chosen interpolation mode.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public InterpolationSingleDimension (double[] t, double[] x, MathNet.Numerics.Interpolation.InterpolationMode mode, int maximumOrder);" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="t" Type="System.Double[]" />
+        <Parameter Name="x" Type="System.Double[]" />
+        <Parameter Name="mode" Type="MathNet.Numerics.Interpolation.InterpolationMode" />
+        <Parameter Name="maximumOrder" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="t">keys t, where x=f(t) or (t,x).</param>
+        <param name="x">values x, where x=f(t) or (t,x).</param>
+        <param name="mode">Interpolation Mode.</param>
+        <param name="maximumOrder">Maximum Interpolation Order.</param>
+        <summary>
+            Initialize the portal with samples from points (t, x(t)) and selects an algorithm that fits the chosen interpolation mode with the given order.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Evaluate">
+      <MemberSignature Language="C#" Value="public double Evaluate (double t);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="t" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="t">To be added.</param>
+        <summary>
+            Interpolate at point t.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Evaluate">
+      <MemberSignature Language="C#" Value="public double Evaluate (double t, out double errorEstimation);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="t" Type="System.Double" />
+        <Parameter Name="errorEstimation" Type="System.Double&amp;" RefType="out" />
+      </Parameters>
+      <Docs>
+        <param name="t">To be added.</param>
+        <param name="errorEstimation">To be added.</param>
+        <summary>
+            Interpolate at point t and return the estimated error as a parameter.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SelectAlgorithm">
+      <MemberSignature Language="C#" Value="protected virtual MathNet.Numerics.Interpolation.IInterpolationAlgorithm SelectAlgorithm (MathNet.Numerics.Interpolation.InterpolationMode mode);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.Interpolation.IInterpolationAlgorithm</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="mode" Type="MathNet.Numerics.Interpolation.InterpolationMode" />
+      </Parameters>
+      <Docs>
+        <param name="mode">Interpolation Mode.</param>
+        <summary>
+            Override this method to select custom interpolation algorithms.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SupportErrorEstimation">
+      <MemberSignature Language="C#" Value="public bool SupportErrorEstimation { get; }" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            True if the selected algorithm supports error estimation.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

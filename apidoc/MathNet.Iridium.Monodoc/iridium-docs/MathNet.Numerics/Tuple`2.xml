@@ -1,0 +1,112 @@
+<Type Name="Tuple&lt;TFirst,TSecond&gt;" FullName="MathNet.Numerics.Tuple&lt;TFirst,TSecond&gt;">
+  <TypeSignature Language="C#" Value="public struct Tuple&lt;TFirst,TSecond&gt; : IEquatable&lt;MathNet.Numerics.Tuple&lt;TFirst,TSecond&gt;&gt; where TFirst : IEquatable&lt;TFirst&gt; where TSecond : IEquatable&lt;TSecond&gt;" />
+  <AssemblyInfo>
+    <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+  </AssemblyInfo>
+  <TypeParameters>
+    <TypeParameter Name="TFirst">
+      <Constraints>
+        <InterfaceName>System.IEquatable&lt;TFirst&gt;</InterfaceName>
+      </Constraints>
+    </TypeParameter>
+    <TypeParameter Name="TSecond">
+      <Constraints>
+        <InterfaceName>System.IEquatable&lt;TSecond&gt;</InterfaceName>
+      </Constraints>
+    </TypeParameter>
+  </TypeParameters>
+  <Base>
+    <BaseTypeName>System.ValueType</BaseTypeName>
+  </Base>
+  <Interfaces>
+    <Interface>
+      <InterfaceName>System.IEquatable&lt;MathNet.Numerics.Tuple&lt;TFirst,TSecond&gt;&gt;</InterfaceName>
+    </Interface>
+  </Interfaces>
+  <Docs>
+    <typeparam name="TFirst">To be added.</typeparam>
+    <typeparam name="TSecond">To be added.</typeparam>
+    <summary>
+            A generic vector of two values, useful e.g. to return two values
+            in a function without using out-parameters.
+            </summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public Tuple (TFirst first, TSecond second);" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="first" Type="TFirst" />
+        <Parameter Name="second" Type="TSecond" />
+      </Parameters>
+      <Docs>
+        <param name="first">The first tuple value</param>
+        <param name="second">The second tuple value</param>
+        <summary>
+            Construct a tuple
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Equals">
+      <MemberSignature Language="C#" Value="public bool Equals (MathNet.Numerics.Tuple&lt;TFirst,TSecond&gt; other);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="other" Type="MathNet.Numerics.Tuple&lt;TFirst,TSecond&gt;" />
+      </Parameters>
+      <Docs>
+        <param name="other">The other tuple to compare with.</param>
+        <summary>
+            True if the the first values of both tuples match and the second valus of both tuples match.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="First">
+      <MemberSignature Language="C#" Value="public TFirst First { get; }" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>TFirst</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            The first tuple value
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Second">
+      <MemberSignature Language="C#" Value="public TSecond Second { get; }" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>TSecond</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            The second tuple value
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

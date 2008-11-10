@@ -1,0 +1,199 @@
+<Type Name="RationalInterpolationAlgorithm" FullName="MathNet.Numerics.Interpolation.RationalInterpolationAlgorithm">
+  <TypeSignature Language="C#" Value="public class RationalInterpolationAlgorithm : MathNet.Numerics.Interpolation.IInterpolationAlgorithm" />
+  <AssemblyInfo>
+    <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces>
+    <Interface>
+      <InterfaceName>MathNet.Numerics.Interpolation.IInterpolationAlgorithm</InterfaceName>
+    </Interface>
+  </Interfaces>
+  <Attributes>
+    <Attribute>
+      <AttributeName>System.Obsolete("Please use Interpolation or directly one of the newer implementation in the Algorithms namespace instead. The direct replacement is LimitedOrderRationalInterpolation. This class is obsolete and will be removed in future versions.")</AttributeName>
+    </Attribute>
+  </Attributes>
+  <Docs>
+    <summary>
+            Lagrange Rational Interpolation using Bulirsch &amp; Stoer's Algorithm.
+            </summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public RationalInterpolationAlgorithm ();" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters />
+      <Docs>
+        <summary>
+            Create a rational interpolation algorithm with full order.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public RationalInterpolationAlgorithm (int maximumOrder);" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="maximumOrder" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="maximumOrder">To be added.</param>
+        <summary>
+            Create a rational interpolation algorithm with the given order.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="EffectiveOrder">
+      <MemberSignature Language="C#" Value="public int EffectiveOrder { get; }" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            The interpolation order that is effectively used.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <altmember cref="P:MathNet.Numerics.Interpolation.RationalInterpolationAlgorithm.MaximumOrder" />
+      </Docs>
+    </Member>
+    <Member MemberName="Extrapolate">
+      <MemberSignature Language="C#" Value="public double Extrapolate (double t);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="t" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="t">To be added.</param>
+        <summary>
+            Extrapolate at point t.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Interpolate">
+      <MemberSignature Language="C#" Value="public double Interpolate (double t);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="t" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="t">To be added.</param>
+        <summary>
+            Interpolate at point t.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Interpolate">
+      <MemberSignature Language="C#" Value="public double Interpolate (double t, out double error);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="t" Type="System.Double" />
+        <Parameter Name="error" Type="System.Double&amp;" RefType="out" />
+      </Parameters>
+      <Docs>
+        <param name="t">To be added.</param>
+        <param name="error">To be added.</param>
+        <summary>
+            Interpolate at point t and return the estimated error as error-parameter.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="MaximumOrder">
+      <MemberSignature Language="C#" Value="public int MaximumOrder { set; get; }" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            The maxium interpolation order.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <altmember cref="P:MathNet.Numerics.Interpolation.RationalInterpolationAlgorithm.EffectiveOrder" />
+      </Docs>
+    </Member>
+    <Member MemberName="Prepare">
+      <MemberSignature Language="C#" Value="public void Prepare (MathNet.Numerics.SampleList samples);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="samples" Type="MathNet.Numerics.SampleList" />
+      </Parameters>
+      <Docs>
+        <param name="samples">To be added.</param>
+        <summary>
+            Precompute/optimize the algoritm for the given sample set.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SupportErrorEstimation">
+      <MemberSignature Language="C#" Value="public bool SupportErrorEstimation { get; }" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            True if the alorithm supports error estimation.
+            </summary>
+        <value>To be added.</value>
+        <remarks>
+            Always true for this algorithm.
+            </remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

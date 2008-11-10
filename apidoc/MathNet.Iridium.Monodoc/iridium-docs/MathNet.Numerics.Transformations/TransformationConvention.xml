@@ -1,0 +1,113 @@
+<Type Name="TransformationConvention" FullName="MathNet.Numerics.Transformations.TransformationConvention">
+  <TypeSignature Language="C#" Value="public enum TransformationConvention" />
+  <AssemblyInfo>
+    <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Enum</BaseTypeName>
+  </Base>
+  <Attributes>
+    <Attribute>
+      <AttributeName>System.Flags</AttributeName>
+    </Attribute>
+  </Attributes>
+  <Docs>
+    <summary>
+            FFT Convention
+            </summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="AsymmetricScaling">
+      <MemberSignature Language="C#" Value="AsymmetricScaling" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.Transformations.TransformationConvention</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            Only scale by 1/N in the inverse direction; No scaling in forward direction.
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Default">
+      <MemberSignature Language="C#" Value="Default" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.Transformations.TransformationConvention</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            Universal; Symmetric scaling and common exponent (used in Maple).
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="InverseExponent">
+      <MemberSignature Language="C#" Value="InverseExponent" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.Transformations.TransformationConvention</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            Inverse integrand exponent (forward: positive sign; inverse: negative sign).
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Matlab">
+      <MemberSignature Language="C#" Value="Matlab" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.Transformations.TransformationConvention</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            Only scale by 1/N in the inverse direction; No scaling in forward direction (used in Matlab). [= AsymmetricScaling]
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="NoScaling">
+      <MemberSignature Language="C#" Value="NoScaling" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.Transformations.TransformationConvention</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            Don't scale at all (neither on forward nor on inverse transformation).
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="NumericalRecipes">
+      <MemberSignature Language="C#" Value="NumericalRecipes" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.Transformations.TransformationConvention</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            Inverse integrand exponent; No scaling at all (used in all Numerical Recipes based implementations). [= InverseExponent | NoScaling]
+            </summary>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

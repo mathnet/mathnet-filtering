@@ -1,0 +1,165 @@
+<Type Name="SplineInterpolation" FullName="MathNet.Numerics.Interpolation.Algorithms.SplineInterpolation">
+  <TypeSignature Language="C#" Value="public class SplineInterpolation : MathNet.Numerics.Interpolation.IInterpolationMethod" />
+  <AssemblyInfo>
+    <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces>
+    <Interface>
+      <InterfaceName>MathNet.Numerics.Interpolation.IInterpolationMethod</InterfaceName>
+    </Interface>
+  </Interfaces>
+  <Docs>
+    <summary>
+            Third-Degree Spline Interpolation Algorithm.
+            </summary>
+    <remarks>
+            This algorithm supports both differentiation and interation.
+            </remarks>
+  </Docs>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public SplineInterpolation ();" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters />
+      <Docs>
+        <summary>
+            Create a spline interpolation algorithm instance.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Differentiate">
+      <MemberSignature Language="C#" Value="public double Differentiate (double t, out double first, out double second);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="t" Type="System.Double" />
+        <Parameter Name="first" Type="System.Double&amp;" RefType="out" />
+        <Parameter Name="second" Type="System.Double&amp;" RefType="out" />
+      </Parameters>
+      <Docs>
+        <param name="t">Point t to interpolate at.</param>
+        <param name="first">Interpolated first derivative at point t.</param>
+        <param name="second">Interpolated second derivative at point t.</param>
+        <summary>
+            Differentiate at point t.
+            </summary>
+        <returns>Interpolated value x(t).</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Init">
+      <MemberSignature Language="C#" Value="public void Init (System.Collections.Generic.IList&lt;double&gt; t, System.Collections.Generic.IList&lt;double&gt; c);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="t" Type="System.Collections.Generic.IList&lt;System.Double&gt;" />
+        <Parameter Name="c" Type="System.Collections.Generic.IList&lt;System.Double&gt;" />
+      </Parameters>
+      <Docs>
+        <param name="t">Points t (length: N)</param>
+        <param name="c">Spline Coefficients (length: 4*(N-1))</param>
+        <summary>
+            Initialize the interpolation method with the given spline coefficients.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Integrate">
+      <MemberSignature Language="C#" Value="public double Integrate (double t);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="t" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="t">Right bound of the integration interval [a,t].</param>
+        <summary>
+            Definite Integrate up to point t.
+            </summary>
+        <returns>Interpolated definite integeral over the interval [a,t].</returns>
+        <remarks>To be added.</remarks>
+        <altmember cref="P:MathNet.Numerics.Interpolation.Algorithms.SplineInterpolation.SupportsIntegration" />
+      </Docs>
+    </Member>
+    <Member MemberName="Interpolate">
+      <MemberSignature Language="C#" Value="public double Interpolate (double t);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="t" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="t">Point t to interpolate at.</param>
+        <summary>
+            Interpolate at point t.
+            </summary>
+        <returns>Interpolated value x(t).</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SupportsDifferentiation">
+      <MemberSignature Language="C#" Value="public bool SupportsDifferentiation { get; }" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            True if the alorithm supports differentiation.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <altmember cref="M:MathNet.Numerics.Interpolation.Algorithms.SplineInterpolation.Differentiate(System.Double,System.Double@,System.Double@)" />
+      </Docs>
+    </Member>
+    <Member MemberName="SupportsIntegration">
+      <MemberSignature Language="C#" Value="public bool SupportsIntegration { get; }" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            True if the alorithm supports integration.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+        <altmember cref="M:MathNet.Numerics.Interpolation.Algorithms.SplineInterpolation.Integrate(System.Double)" />
+      </Docs>
+    </Member>
+  </Members>
+</Type>

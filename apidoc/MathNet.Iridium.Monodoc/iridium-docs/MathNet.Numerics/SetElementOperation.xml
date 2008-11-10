@@ -1,0 +1,63 @@
+<Type Name="SetElementOperation" FullName="MathNet.Numerics.SetElementOperation">
+  <TypeSignature Language="C#" Value="public enum SetElementOperation" />
+  <AssemblyInfo>
+    <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Enum</BaseTypeName>
+  </Base>
+  <Docs>
+    <summary>
+            Set Element Operations
+            </summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="Added">
+      <MemberSignature Language="C#" Value="Added" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.SetElementOperation</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            Add elements to the set
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Moved">
+      <MemberSignature Language="C#" Value="Moved" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.SetElementOperation</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            Move elements inside of the set
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Removed">
+      <MemberSignature Language="C#" Value="Removed" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.SetElementOperation</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            Remove elements to the set
+            </summary>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

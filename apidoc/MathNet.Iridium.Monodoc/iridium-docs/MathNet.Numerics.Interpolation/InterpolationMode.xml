@@ -1,0 +1,68 @@
+<Type Name="InterpolationMode" FullName="MathNet.Numerics.Interpolation.InterpolationMode">
+  <TypeSignature Language="C#" Value="public enum InterpolationMode" />
+  <AssemblyInfo>
+    <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Enum</BaseTypeName>
+  </Base>
+  <Attributes>
+    <Attribute>
+      <AttributeName>System.Obsolete</AttributeName>
+    </Attribute>
+  </Attributes>
+  <Docs>
+    <summary>
+            Interpolation Characteristics
+            </summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="ExpectNoPoles">
+      <MemberSignature Language="C#" Value="ExpectNoPoles" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.Interpolation.InterpolationMode</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            Polynomial Interpolation
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="ExpectPoles">
+      <MemberSignature Language="C#" Value="ExpectPoles" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.Interpolation.InterpolationMode</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            Rational Interpolation
+            </summary>
+      </Docs>
+    </Member>
+    <Member MemberName="Smooth">
+      <MemberSignature Language="C#" Value="Smooth" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.Interpolation.InterpolationMode</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            Cubic Spline Interpolation
+            </summary>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

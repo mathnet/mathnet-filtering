@@ -1,0 +1,276 @@
+<Type Name="RandomSource" FullName="MathNet.Numerics.RandomSources.RandomSource">
+  <TypeSignature Language="C#" Value="public abstract class RandomSource : MathNet.Numerics.Distributions.IContinuousGenerator" />
+  <AssemblyInfo>
+    <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces>
+    <Interface>
+      <InterfaceName>MathNet.Numerics.Distributions.IContinuousGenerator</InterfaceName>
+    </Interface>
+  </Interfaces>
+  <Docs>
+    <summary>
+            Declares common functionality for all random number generators.
+            </summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="protected RandomSource ();" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CanReset">
+      <MemberSignature Language="C#" Value="public abstract bool CanReset { get; }" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            Gets a value indicating whether the random number generator can be reset, so that it produces the same 
+              random number sequence again.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Next">
+      <MemberSignature Language="C#" Value="public abstract int Next ();" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>
+            Returns a nonnegative random number less than <see cref="F:System.Int32.MaxValue" />.
+            </summary>
+        <returns>
+            A 32-bit signed integer greater than or equal to 0, and less than <see cref="F:System.Int32.MaxValue" />; that is, 
+              the range of return values includes 0 but not <paramref name="Int32.MaxValue" />.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Next">
+      <MemberSignature Language="C#" Value="public abstract int Next (int maxValue);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="maxValue" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="maxValue">
+            The exclusive upper bound of the random number to be generated. 
+            <paramref name="maxValue" /> must be greater than or equal to 0. 
+            </param>
+        <summary>
+            Returns a nonnegative random number less than the specified maximum.
+            </summary>
+        <returns>
+            A 32-bit signed integer greater than or equal to 0, and less than <paramref name="maxValue" />; that is, 
+              the range of return values includes 0 but not <paramref name="maxValue" />. 
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Next">
+      <MemberSignature Language="C#" Value="public abstract int Next (int minValue, int maxValue);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="minValue" Type="System.Int32" />
+        <Parameter Name="maxValue" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="minValue">
+            The inclusive lower bound of the random number to be generated. 
+            </param>
+        <param name="maxValue">
+            The exclusive upper bound of the random number to be generated. 
+            <paramref name="maxValue" /> must be greater than or equal to <paramref name="minValue" />. 
+            </param>
+        <summary>
+            Returns a random number within the specified range. 
+            </summary>
+        <returns>
+            A 32-bit signed integer greater than or equal to <paramref name="minValue" />, and less than 
+              <paramref name="maxValue" />; that is, the range of return values includes <paramref name="minValue" /> but 
+              not <paramref name="maxValue" />. 
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="NextBoolean">
+      <MemberSignature Language="C#" Value="public abstract bool NextBoolean ();" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>
+            Returns a random Boolean value.
+            </summary>
+        <returns>A <see cref="T:System.Boolean" /> value.</returns>
+        <remarks>
+            Buffers 31 random bits for future calls, so the random number generator is only invoked once in every 31 calls.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="NextBytes">
+      <MemberSignature Language="C#" Value="public abstract void NextBytes (byte[] buffer);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="buffer" Type="System.Byte[]" />
+      </Parameters>
+      <Docs>
+        <param name="buffer">An array of bytes to contain random numbers.</param>
+        <summary>
+            Fills the elements of a specified array of bytes with random numbers. 
+            </summary>
+        <remarks>
+            Each element of the array of bytes is set to a random number greater than or equal to 0, and less than or 
+              equal to <see cref="F:System.Byte.MaxValue" />.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="NextDouble">
+      <MemberSignature Language="C#" Value="public abstract double NextDouble ();" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>
+            Returns a nonnegative floating point random number less than 1.0.
+            </summary>
+        <returns>
+            A double-precision floating point number greater than or equal to 0.0, and less than 1.0; that is, 
+              the range of return values includes 0.0 but not 1.0. 
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="NextDouble">
+      <MemberSignature Language="C#" Value="public abstract double NextDouble (double maxValue);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="maxValue" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="maxValue">
+            The exclusive upper bound of the random number to be generated. 
+            <paramref name="maxValue" /> must be greater than or equal to 0.0. 
+            </param>
+        <summary>
+            Returns a nonnegative floating point random number less than the specified maximum.
+            </summary>
+        <returns>
+            A double-precision floating point number greater than or equal to 0.0, and less than <paramref name="maxValue" />; 
+              that is, the range of return values includes 0 but not <paramref name="maxValue" />. 
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="NextDouble">
+      <MemberSignature Language="C#" Value="public abstract double NextDouble (double minValue, double maxValue);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="minValue" Type="System.Double" />
+        <Parameter Name="maxValue" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="minValue">
+            The inclusive lower bound of the random number to be generated. 
+            The range between <paramref name="minValue" /> and <paramref name="maxValue" /> must be less than or equal to
+              <see cref="F:System.Double.MaxValue" /></param>
+        <param name="maxValue">
+            The exclusive upper bound of the random number to be generated. 
+            <paramref name="maxValue" /> must be greater than or equal to <paramref name="minValue" />.
+            The range between <paramref name="minValue" /> and <paramref name="maxValue" /> must be less than or equal to
+              <see cref="F:System.Double.MaxValue" />.
+            </param>
+        <summary>
+            Returns a floating point random number within the specified range. 
+            </summary>
+        <returns>
+            A double-precision floating point number greater than or equal to <paramref name="minValue" />, and less than 
+              <paramref name="maxValue" />; that is, the range of return values includes <paramref name="minValue" /> but 
+              not <paramref name="maxValue" />. 
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Reset">
+      <MemberSignature Language="C#" Value="public abstract void Reset ();" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>
+            Resets the random number generator, so that it produces the same random number sequence again.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

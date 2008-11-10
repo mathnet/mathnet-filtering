@@ -1,0 +1,164 @@
+<Type Name="QRDecomposition" FullName="MathNet.Numerics.LinearAlgebra.QRDecomposition">
+  <TypeSignature Language="C#" Value="public class QRDecomposition" />
+  <AssemblyInfo>
+    <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Docs>
+    <summary>
+            QR Decomposition.
+            </summary>
+    <remarks>
+            For an m-by-n matrix A with m &gt;= n, the QR decomposition is an m-by-n
+            orthogonal matrix Q and an n-by-n upper triangular matrix R so that
+            A = Q*R.<br />
+            
+            The QR decomposition always exists, even if the matrix does not have
+            full rank, so the constructor will never fail.  The primary use of the
+            QR decomposition is in the least squares solution of non-square systems
+            of simultaneous linear equations.  This will fail if <c>IsFullRank()</c>
+            returns false.
+            </remarks>
+  </Docs>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public QRDecomposition (MathNet.Numerics.LinearAlgebra.Matrix A);" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="A" Type="MathNet.Numerics.LinearAlgebra.Matrix" />
+      </Parameters>
+      <Docs>
+        <param name="A">Rectangular matrix</param>
+        <summary>
+            QR Decomposition, computed by Householder reflections.
+            </summary>
+        <remarks>Provides access to R, the Householder vectors and computes Q.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="FullRank">
+      <MemberSignature Language="C#" Value="public bool FullRank { get; }" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Obsolete("FullRank has been renamed to IsFullRank. Please adapt.")</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            Indicates whether the matrix is full rank.
+            </summary>
+        <returns>
+          <c>true</c> if R, and hence A, has full rank.</returns>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="H">
+      <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.Matrix H { get; }" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.LinearAlgebra.Matrix</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            Gets the Householder vectors.
+            </summary>
+        <returns>Lower trapezoidal matrix whose columns define the reflections.</returns>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IsFullRank">
+      <MemberSignature Language="C#" Value="public bool IsFullRank { get; }" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            Indicates whether the matrix is full rank.
+            </summary>
+        <returns>
+          <c>true</c> if R, and hence A, has full rank.</returns>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Q">
+      <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.Matrix Q { get; }" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.LinearAlgebra.Matrix</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            Gets the (economy-sized) orthogonal factor.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="R">
+      <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.Matrix R { get; }" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.LinearAlgebra.Matrix</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            Gets the upper triangular factor
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Solve">
+      <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.Matrix Solve (MathNet.Numerics.LinearAlgebra.Matrix B);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.LinearAlgebra.Matrix</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="B" Type="MathNet.Numerics.LinearAlgebra.Matrix" />
+      </Parameters>
+      <Docs>
+        <param name="B">A Matrix with as many rows as A and any number of columns.</param>
+        <summary>
+            Least squares solution of A*X = B.
+            </summary>
+        <returns>X that minimizes the two norm of Q*R*X-B.</returns>
+        <remarks>To be added.</remarks>
+        <exception cref="T:System.ArgumentException">Matrix row dimensions must agree.</exception>
+        <exception cref="T:System.SystemException"> Matrix is rank deficient.</exception>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

@@ -1,0 +1,647 @@
+<Type Name="Fn" FullName="MathNet.Numerics.Fn">
+  <TypeSignature Language="C#" Value="public static class Fn" />
+  <AssemblyInfo>
+    <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Docs>
+    <summary>
+            Double-precision special functions toolkit.
+            </summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="Beta">
+      <MemberSignature Language="C#" Value="public static double Beta (double z, double w);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="z" Type="System.Double" />
+        <Parameter Name="w" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="z">To be added.</param>
+        <param name="w">To be added.</param>
+        <summary>
+            Returns the Euler Beta function of real valued z &gt; 0, w &gt; 0.
+            Beta(z,w) = Beta(w,z).
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="BetaLn">
+      <MemberSignature Language="C#" Value="public static double BetaLn (double z, double w);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="z" Type="System.Double" />
+        <Parameter Name="w" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="z">To be added.</param>
+        <param name="w">To be added.</param>
+        <summary>
+            Returns the natural logarithm of the Euler Beta function of real valued z &gt; 0, w &gt; 0.
+            BetaLn(z,w) = BetaLn(w,z).
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="BetaRegularized">
+      <MemberSignature Language="C#" Value="public static double BetaRegularized (double a, double b, double x);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="a" Type="System.Double" />
+        <Parameter Name="b" Type="System.Double" />
+        <Parameter Name="x" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="a">To be added.</param>
+        <param name="b">To be added.</param>
+        <param name="x">To be added.</param>
+        <summary>
+            Returns the regularized lower incomplete beta function
+            I_x(a,b) = 1/Beta(a,b) * int(t^(a-1)*(1-t)^(b-1),t=0..x) for real a &gt; 0, b &gt; 0, 1 &gt;= x &gt;= 0.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="BinomialCoefficient">
+      <MemberSignature Language="C#" Value="public static double BinomialCoefficient (int n, int k);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="n" Type="System.Int32" />
+        <Parameter Name="k" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="n">To be added.</param>
+        <param name="k">To be added.</param>
+        <summary>
+            Returns the binomial coefficient of n and k as a double precision number.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>
+            If you need to multiply or divide various such coefficients, consider
+            using the logarithmic version <see cref="M:MathNet.Numerics.Fn.BinomialCoefficientLn(System.Int32,System.Int32)" /> instead
+            so you can add instead of multiply and subtract instead of divide, and
+            then exponentiate the result using <see cref="M:System.Math.Exp(System.Double)" />.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="BinomialCoefficientLn">
+      <MemberSignature Language="C#" Value="public static double BinomialCoefficientLn (int n, int k);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="n" Type="System.Int32" />
+        <Parameter Name="k" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="n">To be added.</param>
+        <param name="k">To be added.</param>
+        <summary>
+            Returns the natural logarithm of the binomial coefficient of n and k as a double precision number.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CeilingToPowerOf2">
+      <MemberSignature Language="C#" Value="public static int CeilingToPowerOf2 (int value);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="value" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="value">To be added.</param>
+        <summary>
+            Returns the smallest integer power of two bigger or equal to the value. 
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Digamma">
+      <MemberSignature Language="C#" Value="public static double Digamma (double x);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="x" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="x">To be added.</param>
+        <summary>
+            Returns the digamma (psi) function of real values (except at 0, -1, -2, ...).
+            Digamma is the logarithmic derivative of the <see cref="M:MathNet.Numerics.Fn.Gamma(System.Double)" /> function.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Erf">
+      <MemberSignature Language="C#" Value="public static double Erf (double x);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="x" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="x">To be added.</param>
+        <summary>
+            Returns the error function erf(x) = 2/sqrt(pi) * int(exp(-t^2),t=0..x)
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ErfInverse">
+      <MemberSignature Language="C#" Value="public static double ErfInverse (double x);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="x" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="x">To be added.</param>
+        <summary>
+            Returns the inverse error function erf^-1(x).
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>
+          <p>The algorithm uses a minimax approximation by rational functions
+            and the result has a relative error whose absolute value is less
+            than 1.15e-9.</p>
+          <p>See the page <see href="http://home.online.no/~pjacklam/notes/invnorm/" />
+            for more details.</p>
+        </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Factorial">
+      <MemberSignature Language="C#" Value="public static double Factorial (int value);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="value" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="value">To be added.</param>
+        <summary>
+            Returns the factorial (n!) of an integer number &gt; 0. Consider using <see cref="M:MathNet.Numerics.Fn.FactorialLn(System.Int32)" /> instead.
+            </summary>
+        <returns>A value value! for value &gt; 0</returns>
+        <remarks>
+            If you need to multiply or divide various such factorials, consider
+            using the logarithmic version <see cref="M:MathNet.Numerics.Fn.FactorialLn(System.Int32)" /> instead
+            so you can add instead of multiply and subtract instead of divide, and
+            then exponentiate the result using <see cref="M:System.Math.Exp(System.Double)" />.
+            This will also completely circumvent the problem that factorials
+            easily become very large.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="FactorialLn">
+      <MemberSignature Language="C#" Value="public static double FactorialLn (int value);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="value" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="value">To be added.</param>
+        <summary>
+            Returns the natural logarithm of the factorial (n!) for an integer value &gt; 0.
+            </summary>
+        <returns>A value ln(value!) for value &gt; 0</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="FloorToPowerOf2">
+      <MemberSignature Language="C#" Value="public static int FloorToPowerOf2 (int value);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="value" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="value">To be added.</param>
+        <summary>
+            Returns the biggest integer power of two smaller or equal to the value. 
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Gamma">
+      <MemberSignature Language="C#" Value="public static double Gamma (double value);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="value" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="value">To be added.</param>
+        <summary>
+            Returns the gamma function for real values (except at 0, -1, -2, ...).
+            For numeric stability, consider to use GammaLn for positive values.
+            </summary>
+        <returns>A value Gamma(value) for value != 0,-1,-2,...</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GammaLn">
+      <MemberSignature Language="C#" Value="public static double GammaLn (double value);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="value" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="value">To be added.</param>
+        <summary>
+            Returns the natural logarithm of Gamma for a real value &gt; 0.
+            </summary>
+        <returns>A value ln|Gamma(value))| for value &gt; 0</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GammaRegularized">
+      <MemberSignature Language="C#" Value="public static double GammaRegularized (double a, double x);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="a" Type="System.Double" />
+        <Parameter Name="x" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="a">To be added.</param>
+        <param name="x">To be added.</param>
+        <summary>
+            Returns the regularized lower incomplete gamma function
+            P(a,x) = 1/Gamma(a) * int(exp(-t)t^(a-1),t=0..x) for real a &gt; 0, x &gt; 0.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Gcd">
+      <MemberSignature Language="C#" Value="public static long Gcd (long a, long b);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int64</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="a" Type="System.Int64" />
+        <Parameter Name="b" Type="System.Int64" />
+      </Parameters>
+      <Docs>
+        <param name="a">To be added.</param>
+        <param name="b">To be added.</param>
+        <summary>
+            Returns the greatest common divisor of two integers using euclids algorithm.
+            </summary>
+        <returns>gcd(a,b)</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Gcd">
+      <MemberSignature Language="C#" Value="public static long Gcd (long a, long b, out long x, out long y);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int64</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="a" Type="System.Int64" />
+        <Parameter Name="b" Type="System.Int64" />
+        <Parameter Name="x" Type="System.Int64&amp;" RefType="out" />
+        <Parameter Name="y" Type="System.Int64&amp;" RefType="out" />
+      </Parameters>
+      <Docs>
+        <param name="a">To be added.</param>
+        <param name="b">To be added.</param>
+        <param name="x">To be added.</param>
+        <param name="y">To be added.</param>
+        <summary>
+            Computes the extended greatest common divisor, such that a*x + b*y = gcd(a,b).
+            </summary>
+        <returns>gcd(a,b)</returns>
+        <remarks>To be added.</remarks>
+        <example>
+          <code>
+            long x,y,d;
+            d = Fn.Gcd(45,18,out x, out y);
+            -&gt; d == 9 &amp;&amp; x == 1 &amp;&amp; y == -2
+            </code>
+            The gcd of 45 and 18 is 9: 18 = 2*9, 45 = 5*9. 9 = 1*45 -2*18, therefore x=1 and y=-2.
+            </example>
+      </Docs>
+    </Member>
+    <Member MemberName="HarmonicNumber">
+      <MemberSignature Language="C#" Value="public static double HarmonicNumber (int n);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="n" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="n">n &gt;= 0</param>
+        <summary>
+            Evaluates the n-th harmonic number Hn = sum(1/k,k=1..n).
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>
+            See <a http="http://en.wikipedia.org/wiki/Harmonic_Number">Wikipedia - Harmonic Number</a></remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Hypot">
+      <MemberSignature Language="C#" Value="public static double Hypot (double a, double b);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="a" Type="System.Double" />
+        <Parameter Name="b" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="a">To be added.</param>
+        <param name="b">To be added.</param>
+        <summary> Returns <code>sqrt(a<sup>2</sup> + b<sup>2</sup>)</code> 
+            without underflow/overflow.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IncompleteBetaRegularized">
+      <MemberSignature Language="C#" Value="public static double IncompleteBetaRegularized (double a, double b, double x);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Obsolete("Renamed to BetaRegularized; Hence please migrate to BetaRegularized.")</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="a" Type="System.Double" />
+        <Parameter Name="b" Type="System.Double" />
+        <Parameter Name="x" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="a">To be added.</param>
+        <param name="b">To be added.</param>
+        <param name="x">To be added.</param>
+        <summary>
+            Obsolete. Please use BetaRegularized instead, with the same parameters (method was renamed).
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IncompleteGammaRegularized">
+      <MemberSignature Language="C#" Value="public static double IncompleteGammaRegularized (double a, double x);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.Obsolete("Renamed to GammaRegularized; Hence please migrate to GammaRegularized.")</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="a" Type="System.Double" />
+        <Parameter Name="x" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="a">To be added.</param>
+        <param name="x">To be added.</param>
+        <summary>
+            Obsolete. Please use GammaRegularized instead, with the same parameters (method was renamed).
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IntLog2">
+      <MemberSignature Language="C#" Value="public static int IntLog2 (int x);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="x" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="x">To be added.</param>
+        <summary>
+            Evaluates the logarithm to base 2 of the provided integer value.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IntPow">
+      <MemberSignature Language="C#" Value="public static long IntPow (long radix, uint exponent);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.CLSCompliant(false)</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.Int64</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="radix" Type="System.Int64" />
+        <Parameter Name="exponent" Type="System.UInt32" />
+      </Parameters>
+      <Docs>
+        <param name="radix">To be added.</param>
+        <param name="exponent">To be added.</param>
+        <summary>
+            Integer Power
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IntPow2">
+      <MemberSignature Language="C#" Value="public static int IntPow2 (int exponent);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="exponent" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="exponent">To be added.</param>
+        <summary>
+            Raises 2 to the provided integer exponent (0 &lt;= exponent &lt; 31).
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+        <exception cref="T:System.ArgumentOutOfRangeException" />
+      </Docs>
+    </Member>
+    <Member MemberName="Lcm">
+      <MemberSignature Language="C#" Value="public static long Lcm (long a, long b);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int64</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="a" Type="System.Int64" />
+        <Parameter Name="b" Type="System.Int64" />
+      </Parameters>
+      <Docs>
+        <param name="a">To be added.</param>
+        <param name="b">To be added.</param>
+        <summary>
+            Returns the least common multiple of two integers using euclids algorithm.
+            </summary>
+        <returns>lcm(a,b)</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Sinc">
+      <MemberSignature Language="C#" Value="public static double Sinc (double x);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="x" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="x">To be added.</param>
+        <summary>
+            Normalized Sinc (sinus cardinalis) Function.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>sinc(x) = sin(pi * x) / (pi * x)</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

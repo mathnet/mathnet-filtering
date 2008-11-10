@@ -1,0 +1,440 @@
+<Type Name="MersenneTwisterRandomSource" FullName="MathNet.Numerics.RandomSources.MersenneTwisterRandomSource">
+  <TypeSignature Language="C#" Value="public class MersenneTwisterRandomSource : MathNet.Numerics.RandomSources.RandomSource" />
+  <AssemblyInfo>
+    <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>MathNet.Numerics.RandomSources.RandomSource</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Docs>
+    <summary>
+            Represents a Mersenne Twister pseudo-random number generator with period 2^19937-1.
+            </summary>
+    <remarks>
+            The <see cref="T:MathNet.Numerics.RandomSources.MersenneTwisterRandomSource" /> type bases upon information and the implementation presented on the
+              <a href="http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/emt.html">Mersenne Twister Home Page</a>.
+            </remarks>
+  </Docs>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public MersenneTwisterRandomSource ();" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters />
+      <Docs>
+        <summary>
+            Initializes a new instance of the <see cref="T:MathNet.Numerics.RandomSources.MersenneTwisterRandomSource" /> class, using a time-dependent default 
+              seed value.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public MersenneTwisterRandomSource (int seed);" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="seed" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="seed">
+            A number used to calculate a starting value for the pseudo-random number sequence.
+            If a negative number is specified, the absolute value of the number is used. 
+            </param>
+        <summary>
+            Initializes a new instance of the <see cref="T:MathNet.Numerics.RandomSources.MersenneTwisterRandomSource" /> class, using the specified seed value.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public MersenneTwisterRandomSource (int[] seedArray);" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="seedArray" Type="System.Int32[]" />
+      </Parameters>
+      <Docs>
+        <param name="seedArray">
+            An array of numbers used to calculate a starting values for the pseudo-random number sequence.
+            If negative numbers are specified, the absolute values of them are used. 
+            </param>
+        <summary>
+            Initializes a new instance of the <see cref="T:MathNet.Numerics.RandomSources.MersenneTwisterRandomSource" /> class, using the specified seed array.
+            </summary>
+        <remarks>To be added.</remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="seedArray" /> is NULL (<see langword="Nothing" /> in Visual Basic).
+            </exception>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public MersenneTwisterRandomSource (uint seed);" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.CLSCompliant(false)</AttributeName>
+        </Attribute>
+      </Attributes>
+      <Parameters>
+        <Parameter Name="seed" Type="System.UInt32" />
+      </Parameters>
+      <Docs>
+        <param name="seed">
+            An unsigned number used to calculate a starting value for the pseudo-random number sequence.
+            </param>
+        <summary>
+            Initializes a new instance of the <see cref="T:MathNet.Numerics.RandomSources.MersenneTwisterRandomSource" /> class, using the specified seed value.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public MersenneTwisterRandomSource (uint[] seedArray);" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.CLSCompliant(false)</AttributeName>
+        </Attribute>
+      </Attributes>
+      <Parameters>
+        <Parameter Name="seedArray" Type="System.UInt32[]" />
+      </Parameters>
+      <Docs>
+        <param name="seedArray">
+            An array of unsigned numbers used to calculate a starting values for the pseudo-random number sequence.
+            </param>
+        <summary>
+            Initializes a new instance of the <see cref="T:MathNet.Numerics.RandomSources.MersenneTwisterRandomSource" /> class, using the specified seed array.
+            </summary>
+        <remarks>To be added.</remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="seedArray" /> is NULL (<see langword="Nothing" /> in Visual Basic).
+            </exception>
+      </Docs>
+    </Member>
+    <Member MemberName="CanReset">
+      <MemberSignature Language="C#" Value="public override bool CanReset { get; }" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            Gets a value indicating whether the <see cref="T:MathNet.Numerics.RandomSources.MersenneTwisterRandomSource" /> can be reset, so that it produces the 
+              same pseudo-random number sequence again.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Next">
+      <MemberSignature Language="C#" Value="public override int Next ();" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>
+            Returns a nonnegative random number less than <see cref="F:System.Int32.MaxValue" />.
+            </summary>
+        <returns>
+            A 32-bit signed integer greater than or equal to 0, and less than <see cref="F:System.Int32.MaxValue" />; that is, 
+              the range of return values includes 0 but not <paramref name="Int32.MaxValue" />.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Next">
+      <MemberSignature Language="C#" Value="public override int Next (int maxValue);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="maxValue" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="maxValue">
+            The exclusive upper bound of the random number to be generated. 
+            <paramref name="maxValue" /> must be greater than or equal to 0. 
+            </param>
+        <summary>
+            Returns a nonnegative random number less than the specified maximum.
+            </summary>
+        <returns>
+            A 32-bit signed integer greater than or equal to 0, and less than <paramref name="maxValue" />; that is, 
+              the range of return values includes 0 but not <paramref name="maxValue" />. 
+            </returns>
+        <remarks>To be added.</remarks>
+        <exception cref="T:System.ArgumentOutOfRangeException">
+          <paramref name="maxValue" /> is less than 0. 
+            </exception>
+      </Docs>
+    </Member>
+    <Member MemberName="Next">
+      <MemberSignature Language="C#" Value="public override int Next (int minValue, int maxValue);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="minValue" Type="System.Int32" />
+        <Parameter Name="maxValue" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="minValue">
+            The inclusive lower bound of the random number to be generated. 
+            </param>
+        <param name="maxValue">
+            The exclusive upper bound of the random number to be generated. 
+            <paramref name="maxValue" /> must be greater than or equal to <paramref name="minValue" />. 
+            </param>
+        <summary>
+            Returns a random number within the specified range. 
+            </summary>
+        <returns>
+            A 32-bit signed integer greater than or equal to <paramref name="minValue" />, and less than 
+              <paramref name="maxValue" />; that is, the range of return values includes <paramref name="minValue" /> but 
+              not <paramref name="maxValue" />. 
+            If <paramref name="minValue" /> equals <paramref name="maxValue" />, <paramref name="minValue" /> is returned.  
+            </returns>
+        <remarks>To be added.</remarks>
+        <exception cref="T:System.ArgumentOutOfRangeException">
+          <paramref name="minValue" /> is greater than <paramref name="maxValue" />.
+            </exception>
+      </Docs>
+    </Member>
+    <Member MemberName="NextBoolean">
+      <MemberSignature Language="C#" Value="public override bool NextBoolean ();" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>
+            Returns a random Boolean value.
+            </summary>
+        <returns>A <see cref="T:System.Boolean" /> value.</returns>
+        <remarks>
+            Buffers 32 random bits (1 uint) for future calls, so a new random number is only generated every 32 calls.
+            </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="NextBytes">
+      <MemberSignature Language="C#" Value="public override void NextBytes (byte[] buffer);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="buffer" Type="System.Byte[]" />
+      </Parameters>
+      <Docs>
+        <param name="buffer">An array of bytes to contain random numbers.</param>
+        <summary>
+            Fills the elements of a specified array of bytes with random numbers. 
+            </summary>
+        <remarks>
+            Each element of the array of bytes is set to a random number greater than or equal to 0, and less than or 
+              equal to <see cref="F:System.Byte.MaxValue" />.
+            </remarks>
+        <exception cref="T:System.ArgumentNullException">
+          <paramref name="buffer" /> is a null reference (<see langword="Nothing" /> in Visual Basic). 
+            </exception>
+      </Docs>
+    </Member>
+    <Member MemberName="NextDouble">
+      <MemberSignature Language="C#" Value="public override double NextDouble ();" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>
+            Returns a nonnegative floating point random number less than 1.0.
+            </summary>
+        <returns>
+            A double-precision floating point number greater than or equal to 0.0, and less than 1.0; that is, 
+              the range of return values includes 0.0 but not 1.0.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="NextDouble">
+      <MemberSignature Language="C#" Value="public override double NextDouble (double maxValue);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="maxValue" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="maxValue">
+            The exclusive upper bound of the random number to be generated. 
+            <paramref name="maxValue" /> must be greater than or equal to 0.0. 
+            </param>
+        <summary>
+            Returns a nonnegative floating point random number less than the specified maximum.
+            </summary>
+        <returns>
+            A double-precision floating point number greater than or equal to 0.0, and less than <paramref name="maxValue" />; 
+              that is, the range of return values includes 0 but not <paramref name="maxValue" />. 
+            </returns>
+        <remarks>To be added.</remarks>
+        <exception cref="T:System.ArgumentOutOfRangeException">
+          <paramref name="maxValue" /> is less than 0. 
+            </exception>
+      </Docs>
+    </Member>
+    <Member MemberName="NextDouble">
+      <MemberSignature Language="C#" Value="public override double NextDouble (double minValue, double maxValue);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="minValue" Type="System.Double" />
+        <Parameter Name="maxValue" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="minValue">
+            The inclusive lower bound of the random number to be generated. 
+            The range between <paramref name="minValue" /> and <paramref name="maxValue" /> must be less than or equal to
+              <see cref="F:System.Double.MaxValue" /></param>
+        <param name="maxValue">
+            The exclusive upper bound of the random number to be generated. 
+            <paramref name="maxValue" /> must be greater than or equal to <paramref name="minValue" />.
+            The range between <paramref name="minValue" /> and <paramref name="maxValue" /> must be less than or equal to
+              <see cref="F:System.Double.MaxValue" />.
+            </param>
+        <summary>
+            Returns a floating point random number within the specified range. 
+            </summary>
+        <returns>
+            A double-precision floating point number greater than or equal to <paramref name="minValue" />, and less than 
+              <paramref name="maxValue" />; that is, the range of return values includes <paramref name="minValue" /> but 
+              not <paramref name="maxValue" />. 
+            If <paramref name="minValue" /> equals <paramref name="maxValue" />, <paramref name="minValue" /> is returned.  
+            </returns>
+        <remarks>To be added.</remarks>
+        <exception cref="T:System.ArgumentOutOfRangeException">
+          <paramref name="minValue" /> is greater than <paramref name="maxValue" />.
+            </exception>
+        <exception cref="T:System.ArgumentException">
+            The range between <paramref name="minValue" /> and <paramref name="maxValue" /> is greater than
+              <see cref="F:System.Double.MaxValue" />.
+            </exception>
+      </Docs>
+    </Member>
+    <Member MemberName="NextInclusiveMaxValue">
+      <MemberSignature Language="C#" Value="public int NextInclusiveMaxValue ();" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>
+            Returns a nonnegative random number less than or equal to <see cref="F:System.Int32.MaxValue" />.
+            </summary>
+        <returns>
+            A 32-bit signed integer greater than or equal to 0, and less than or equal to <see cref="F:System.Int32.MaxValue" />; 
+              that is, the range of return values includes 0 and <paramref name="Int32.MaxValue" />.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="NextUInt">
+      <MemberSignature Language="C#" Value="public uint NextUInt ();" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <Attributes>
+        <Attribute>
+          <AttributeName>System.CLSCompliant(false)</AttributeName>
+        </Attribute>
+      </Attributes>
+      <ReturnValue>
+        <ReturnType>System.UInt32</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>
+            Returns an unsigned random number.
+            </summary>
+        <returns>
+            A 32-bit unsigned integer greater than or equal to <see cref="F:System.UInt32.MinValue" /> and 
+              less than or equal to <see cref="F:System.UInt32.MaxValue" />.
+            </returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Reset">
+      <MemberSignature Language="C#" Value="public override void Reset ();" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>
+            Resets the <see cref="T:MathNet.Numerics.RandomSources.MersenneTwisterRandomSource" />, so that it produces the same pseudo-random number sequence again.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

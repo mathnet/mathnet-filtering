@@ -1,0 +1,127 @@
+<Type Name="ZipfDistribution" FullName="MathNet.Numerics.Distributions.ZipfDistribution">
+  <TypeSignature Language="C#" Value="public sealed class ZipfDistribution" />
+  <AssemblyInfo>
+    <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Docs>
+    <summary>
+            Pseudo-random generator of Zipf distributed deviates.
+            </summary>
+    <remarks>
+      <p>The density of the continuous Zipf distribution is defined
+            on <c>[1, +infinity)</c>, the density is proportional to
+            <c>x^s</c> where <c>s &gt; 1</c> is the <i>skew</i>.</p>
+      <p>See the <a href="http://en.wikipedia.org/wiki/Zipfs_law">Wikipedia</a>
+            for more information about Zipf distribution.</p>
+    </remarks>
+  </Docs>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public ZipfDistribution ();" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters />
+      <Docs>
+        <summary>
+            Zipfian generator with a default <c>skew</c> equal to <c>2</c>.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public ZipfDistribution (MathNet.Numerics.RandomSources.RandomSource random);" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="random" Type="MathNet.Numerics.RandomSources.RandomSource" />
+      </Parameters>
+      <Docs>
+        <param name="random">A <see cref="T:MathNet.Numerics.RandomSources.RandomSource" /> object.</param>
+        <summary>
+            Zipfian generator with a default <c>skew</c> equal to <c>2</c>.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public ZipfDistribution (double skew);" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="skew" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="skew">To be added.</param>
+        <summary>
+            Create a zipf distribution with the provided skew.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public ZipfDistribution (double skew, int seed);" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="skew" Type="System.Double" />
+        <Parameter Name="seed" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="skew">To be added.</param>
+        <param name="seed">To be added.</param>
+        <summary>
+            Create a zipf distribution with the provided skew and seed.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Next">
+      <MemberSignature Language="C#" Value="public double Next ();" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>
+            Returns the next zipfian deviate.
+            </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Skew">
+      <MemberSignature Language="C#" Value="public double Skew { set; get; }" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+            Gets or sets the skew of the zipfian distribution.
+            </summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

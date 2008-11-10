@@ -1,0 +1,1011 @@
+<Type Name="SiConstants" FullName="MathNet.Numerics.SiConstants">
+  <TypeSignature Language="C#" Value="public static class SiConstants" />
+  <AssemblyInfo>
+    <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Docs>
+    <summary>
+            Scientific Constants
+            </summary>
+    <remarks>To be added.</remarks>
+    <altmember cref="T:MathNet.Numerics.Constants" />
+    <altmember cref="T:MathNet.Numerics.SiPrefixes" />
+  </Docs>
+  <Members>
+    <Member MemberName="BohrMagneton">
+      <MemberSignature Language="C#" Value="public const double BohrMagneton = 9.27400915E-24;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>9.27400915E-24</MemberValue>
+      <Docs>
+        <summary>Bohr Magneton: mu_B = e*h_bar/2*m_e [J T^-1] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="BohrRadius">
+      <MemberSignature Language="C#" Value="public const double BohrRadius = 5.2917720859E-11;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>5.2917720859E-11</MemberValue>
+      <Docs>
+        <summary>Bor Radius: a_0 = alpha/4*Pi*R_infty [m] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CharacteristicImpedanceVacuum">
+      <MemberSignature Language="C#" Value="public const double CharacteristicImpedanceVacuum = 376.730313461771;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>376.730313461771</MemberValue>
+      <Docs>
+        <summary>Characteristic Impedance of Vacuum: Z_0 = mu_0*c_0 [Ohm = m^2 kg s^-3 A^-2] (defined, exact; 2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ClassicalElectronRadius">
+      <MemberSignature Language="C#" Value="public const double ClassicalElectronRadius = 2.8179402894E-15;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>2.8179402894E-15</MemberValue>
+      <Docs>
+        <summary>Classical Electron Radius: [m] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ComptonWavelength">
+      <MemberSignature Language="C#" Value="public const double ComptonWavelength = 2.4263102175E-12;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>2.4263102175E-12</MemberValue>
+      <Docs>
+        <summary>Electron Compton Wavelength: [m] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ConductanceQuantum">
+      <MemberSignature Language="C#" Value="public const double ConductanceQuantum = 7.7480917005E-05;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>7.7480917005E-05</MemberValue>
+      <Docs>
+        <summary>Conductance Quantum: G_0 = 2*e^2/h [S = m^-2 kg^-1 s^3 A^2] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="DeuteronMagneticMoment">
+      <MemberSignature Language="C#" Value="public const double DeuteronMagneticMoment = 4.33073465E-27;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>4.33073465E-27</MemberValue>
+      <Docs>
+        <summary>Deuteron Magnetic Moment: [J T^-1] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="DeuteronMass">
+      <MemberSignature Language="C#" Value="public const double DeuteronMass = 3.3435832E-27;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>3.3435832E-27</MemberValue>
+      <Docs>
+        <summary>Deuteron Mass: [kg] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="DeuteronMassEnegryEquivalent">
+      <MemberSignature Language="C#" Value="public const double DeuteronMassEnegryEquivalent = 3.00506272E-10;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>3.00506272E-10</MemberValue>
+      <Docs>
+        <summary>Deuteron Mass Energy Equivalent: [J] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="DeuteronMolarMass">
+      <MemberSignature Language="C#" Value="public const double DeuteronMolarMass = 0.002013553212725;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>0.002013553212725</MemberValue>
+      <Docs>
+        <summary>Deuteron Molar Mass: [kg mol^-1] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="DiracsConstant">
+      <MemberSignature Language="C#" Value="public const double DiracsConstant = 1.054571629E-34;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>1.054571629E-34</MemberValue>
+      <Docs>
+        <summary>Reduced Planck's constant: h_bar = h / (2*Pi) [J s = m^2 kg s^-1] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ElectricPermittivity">
+      <MemberSignature Language="C#" Value="public const double ElectricPermittivity = 8.85418781719371E-12;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>8.85418781719371E-12</MemberValue>
+      <Docs>
+        <summary>Electric Permittivity in Vacuum: epsilon_0 = 1/(mu_0*c_0^2) [F m^-1 = A^2 s^4 kg^-1 m^-3] (defined, exact; 2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ElectronGFactor">
+      <MemberSignature Language="C#" Value="public const double ElectronGFactor = -2.0023193043622;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>-2.0023193043622</MemberValue>
+      <Docs>
+        <summary>Electon G-Factor: [1] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ElectronMagneticMoment">
+      <MemberSignature Language="C#" Value="public const double ElectronMagneticMoment = -9.28476377E-24;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>-9.28476377E-24</MemberValue>
+      <Docs>
+        <summary>Electron Magnetic Moment: [J T^-1] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ElectronMass">
+      <MemberSignature Language="C#" Value="public const double ElectronMass = 9.10938215E-31;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>9.10938215E-31</MemberValue>
+      <Docs>
+        <summary>Electron Mass: [kg] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ElectronMassEnergyEquivalent">
+      <MemberSignature Language="C#" Value="public const double ElectronMassEnergyEquivalent = 8.18710438E-14;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>8.18710438E-14</MemberValue>
+      <Docs>
+        <summary>Electron Mass Energy Equivalent: [J] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ElectronMolarMass">
+      <MemberSignature Language="C#" Value="public const double ElectronMolarMass = 5.4857990943E-07;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>5.4857990943E-07</MemberValue>
+      <Docs>
+        <summary>Electron Molar Mass: [kg mol^-1] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ElementaryCharge">
+      <MemberSignature Language="C#" Value="public const double ElementaryCharge = 1.602176487E-19;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>1.602176487E-19</MemberValue>
+      <Docs>
+        <summary>Elementary Electron Charge: e = 1.602176487e-19 [C = A s] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="FermiCouplingConstant">
+      <MemberSignature Language="C#" Value="public const double FermiCouplingConstant = 1.16637E-05;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>1.16637E-05</MemberValue>
+      <Docs>
+        <summary>Fermi Coupling Constant: G_F/(h_bar*c_0)^3 [GeV^-2] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="FineStructureConstant">
+      <MemberSignature Language="C#" Value="public const double FineStructureConstant = 0.0072973525376;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>0.0072973525376</MemberValue>
+      <Docs>
+        <summary>Fine Structure Constant: alpha = e^2/4*Pi*e_0*h_bar*c_0 [1] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GravitationalConstant">
+      <MemberSignature Language="C#" Value="public const double GravitationalConstant = 6.67429E-11;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>6.67429E-11</MemberValue>
+      <Docs>
+        <summary>Newtonian Constant of Gravitation: G = 6.67429e-11 [m^3 kg^-1 s^-2] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="HartreeEnergy">
+      <MemberSignature Language="C#" Value="public const double HartreeEnergy = 4.35974394E-18;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>4.35974394E-18</MemberValue>
+      <Docs>
+        <summary>Hartree Energy: E_h = 2*R_infty*h*c_0 [J] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="HelionMass">
+      <MemberSignature Language="C#" Value="public const double HelionMass = 5.00641192E-27;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>5.00641192E-27</MemberValue>
+      <Docs>
+        <summary>Helion Mass: [kg] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="HelionMassEnegryEquivalent">
+      <MemberSignature Language="C#" Value="public const double HelionMassEnegryEquivalent = 4.49953864E-10;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>4.49953864E-10</MemberValue>
+      <Docs>
+        <summary>Helion Mass Energy Equivalent: [J] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="HelionMolarMass">
+      <MemberSignature Language="C#" Value="public const double HelionMolarMass = 0.0030149322473;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>0.0030149322473</MemberValue>
+      <Docs>
+        <summary>Helion Molar Mass: [kg mol^-1] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="JosephsonConstant">
+      <MemberSignature Language="C#" Value="public const double JosephsonConstant = 483597891000000;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>483597891000000</MemberValue>
+      <Docs>
+        <summary>Josephson Constant: K_J = 2*e/h [Hz V^-1] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="MagneticFluxQuantum">
+      <MemberSignature Language="C#" Value="public const double MagneticFluxQuantum = 2.067833668E-15;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>2.067833668E-15</MemberValue>
+      <Docs>
+        <summary>Magnetic Flux Quantum: theta_0 = h/(2*e) [Wb = m^2 kg s^-2 A^-1] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="MagneticPermeability">
+      <MemberSignature Language="C#" Value="public const double MagneticPermeability = 1.25663706143592E-06;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>1.25663706143592E-06</MemberValue>
+      <Docs>
+        <summary>Magnetic Permeability in Vacuum: mu_0 = 4*Pi * 10^-7 [N A^-2 = kg m A^-2 s^-2] (defined, exact; 2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="MuonComptonWavelength">
+      <MemberSignature Language="C#" Value="public const double MuonComptonWavelength = 1.173444104E-14;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>1.173444104E-14</MemberValue>
+      <Docs>
+        <summary>Muon Compton Wavelength: [m] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="MuonGFactor">
+      <MemberSignature Language="C#" Value="public const double MuonGFactor = -2.0023318414;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>-2.0023318414</MemberValue>
+      <Docs>
+        <summary>Muon G-Factor: [1] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="MuonMagneticMoment">
+      <MemberSignature Language="C#" Value="public const double MuonMagneticMoment = -4.49044786E-26;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>-4.49044786E-26</MemberValue>
+      <Docs>
+        <summary>Muon Magnetic Moment: [J T^-1] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="MuonMass">
+      <MemberSignature Language="C#" Value="public const double MuonMass = 1.8835313E-28;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>1.8835313E-28</MemberValue>
+      <Docs>
+        <summary>Muon Mass: [kg] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="MuonMassEnegryEquivalent">
+      <MemberSignature Language="C#" Value="public const double MuonMassEnegryEquivalent = 1.692833511E-11;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>1.692833511E-11</MemberValue>
+      <Docs>
+        <summary>Muon Mass Energy Equivalent: [J] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="MuonMolarMass">
+      <MemberSignature Language="C#" Value="public const double MuonMolarMass = 0.0001134289256;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>0.0001134289256</MemberValue>
+      <Docs>
+        <summary>Muon Molar Mass: [kg mol^-1] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="NeutronComptonWavelength">
+      <MemberSignature Language="C#" Value="public const double NeutronComptonWavelength = 0.13195908951;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>0.13195908951</MemberValue>
+      <Docs>
+        <summary>Neuron Compton Wavelength: [m] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="NeutronGFactor">
+      <MemberSignature Language="C#" Value="public const double NeutronGFactor = -3.82608545;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>-3.82608545</MemberValue>
+      <Docs>
+        <summary>Neutron G-Factor: [1] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="NeutronGyromagneticRatio">
+      <MemberSignature Language="C#" Value="public const double NeutronGyromagneticRatio = 183247185;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>183247185</MemberValue>
+      <Docs>
+        <summary>Neutron Gyro-Magnetic Ratio: [s^-1 T^-1] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="NeutronMagneticMoment">
+      <MemberSignature Language="C#" Value="public const double NeutronMagneticMoment = -9.6623641E-27;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>-9.6623641E-27</MemberValue>
+      <Docs>
+        <summary>Neutron Magnetic Moment: [J T^-1] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="NeutronMass">
+      <MemberSignature Language="C#" Value="public const double NeutronMass = 1.674927212E-27;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>1.674927212E-27</MemberValue>
+      <Docs>
+        <summary>Neutron Mass: [kg] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="NeutronMassEnegryEquivalent">
+      <MemberSignature Language="C#" Value="public const double NeutronMassEnegryEquivalent = 1.505349506E-10;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>1.505349506E-10</MemberValue>
+      <Docs>
+        <summary>Neutron Mass Energy Equivalent: [J] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="NeutronMolarMass">
+      <MemberSignature Language="C#" Value="public const double NeutronMolarMass = 0.00100866491597;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>0.00100866491597</MemberValue>
+      <Docs>
+        <summary>Neutron Molar Mass: [kg mol^-1] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="NuclearMagneton">
+      <MemberSignature Language="C#" Value="public const double NuclearMagneton = 5.05078324E-27;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>5.05078324E-27</MemberValue>
+      <Docs>
+        <summary>Nuclear Magneton: mu_N = e*h_bar/2*m_p [J T^-1] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="PlancksConstant">
+      <MemberSignature Language="C#" Value="public const double PlancksConstant = 6.62606896E-34;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>6.62606896E-34</MemberValue>
+      <Docs>
+        <summary>Planck's constant: h = 6.62606896e-34 [J s = m^2 kg s^-1] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="PlancksLength">
+      <MemberSignature Language="C#" Value="public const double PlancksLength = 1.616253E-35;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>1.616253E-35</MemberValue>
+      <Docs>
+        <summary>Planck length: l_p = h_bar/(m_p*c_0) [m] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="PlancksMass">
+      <MemberSignature Language="C#" Value="public const double PlancksMass = 2.17644E-08;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>2.17644E-08</MemberValue>
+      <Docs>
+        <summary>Planck mass: m_p = (h_bar*c_0/G)^(1/2) [kg] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="PlancksTemperature">
+      <MemberSignature Language="C#" Value="public const double PlancksTemperature = 1.416786E+32;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>1.416786E+32</MemberValue>
+      <Docs>
+        <summary>Planck temperature: T_p = (h_bar*c_0^5/G)^(1/2)/k [K] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="PlancksTime">
+      <MemberSignature Language="C#" Value="public const double PlancksTime = 5.39124E-44;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>5.39124E-44</MemberValue>
+      <Docs>
+        <summary>Planck time: t_p = l_p/c_0 [s] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ProtonComptonWavelength">
+      <MemberSignature Language="C#" Value="public const double ProtonComptonWavelength = 1.3214098446E-15;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>1.3214098446E-15</MemberValue>
+      <Docs>
+        <summary>Proton Compton Wavelength: [m] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ProtonGFactor">
+      <MemberSignature Language="C#" Value="public const double ProtonGFactor = 5.585694713;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>5.585694713</MemberValue>
+      <Docs>
+        <summary>Proton G-Factor: [1] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ProtonGyromagneticRatio">
+      <MemberSignature Language="C#" Value="public const double ProtonGyromagneticRatio = 267522209.9;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>267522209.9</MemberValue>
+      <Docs>
+        <summary>Proton Gyro-Magnetic Ratio: [s^-1 T^-1] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ProtonMagneticMoment">
+      <MemberSignature Language="C#" Value="public const double ProtonMagneticMoment = 1.410606662E-26;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>1.410606662E-26</MemberValue>
+      <Docs>
+        <summary>Proton Magnetic Moment: [J T^-1] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ProtonMass">
+      <MemberSignature Language="C#" Value="public const double ProtonMass = 1.672621637E-27;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>1.672621637E-27</MemberValue>
+      <Docs>
+        <summary>Proton Mass: [kg] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ProtonMassEnergyEquivalent">
+      <MemberSignature Language="C#" Value="public const double ProtonMassEnergyEquivalent = 1.503277359E-10;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>1.503277359E-10</MemberValue>
+      <Docs>
+        <summary>Proton Mass Energy Equivalent: [J] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ProtonMolarMass">
+      <MemberSignature Language="C#" Value="public const double ProtonMolarMass = 0.00100727646677;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>0.00100727646677</MemberValue>
+      <Docs>
+        <summary>Proton Molar Mass: [kg mol^-1] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="QuantumOfCirculation">
+      <MemberSignature Language="C#" Value="public const double QuantumOfCirculation = 0.00036369475199;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>0.00036369475199</MemberValue>
+      <Docs>
+        <summary>Quantum of Circulation: h/2*m_e [m^2 s^-1] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="RydbergConstant">
+      <MemberSignature Language="C#" Value="public const double RydbergConstant = 10973731.568528;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>10973731.568528</MemberValue>
+      <Docs>
+        <summary>Rydberg Constant: R_infty = alpha^2*m_e*c_0/2*h [m^-1] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ShieldedProtonGyromagneticRatio">
+      <MemberSignature Language="C#" Value="public const double ShieldedProtonGyromagneticRatio = 267515336.2;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>267515336.2</MemberValue>
+      <Docs>
+        <summary>Proton Shielded Gyro-Magnetic Ratio: [s^-1 T^-1] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ShieldedProtonMagneticMoment">
+      <MemberSignature Language="C#" Value="public const double ShieldedProtonMagneticMoment = 1.410570419E-26;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>1.410570419E-26</MemberValue>
+      <Docs>
+        <summary>Proton Shielded Magnetic Moment: [J T^-1] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SpeedOfLight">
+      <MemberSignature Language="C#" Value="public const double SpeedOfLight = 299792458;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>299792458</MemberValue>
+      <Docs>
+        <summary>Speed of Light in Vacuum: c_0 = 2.99792458e8 [m s^-1] (defined, exact; 2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TauComptonWavelength">
+      <MemberSignature Language="C#" Value="public const double TauComptonWavelength = 6.9772E-16;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>6.9772E-16</MemberValue>
+      <Docs>
+        <summary>Tau Compton Wavelength: [m] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TauMass">
+      <MemberSignature Language="C#" Value="public const double TauMass = 3.16777E-27;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>3.16777E-27</MemberValue>
+      <Docs>
+        <summary>Tau Mass: [kg] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TauMassEnergyEquivalent">
+      <MemberSignature Language="C#" Value="public const double TauMassEnergyEquivalent = 2.84705E-10;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>2.84705E-10</MemberValue>
+      <Docs>
+        <summary>Tau Mass Energy Equivalent: [J] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="TauMolarMass">
+      <MemberSignature Language="C#" Value="public const double TauMolarMass = 0.00190768;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>0.00190768</MemberValue>
+      <Docs>
+        <summary>Tau Molar Mass: [kg mol^-1] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ThomsonCrossSection">
+      <MemberSignature Language="C#" Value="public const double ThomsonCrossSection = 6.652458558E-29;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>6.652458558E-29</MemberValue>
+      <Docs>
+        <summary>Tomson Cross Section: [m^2] (2002 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="VonKlitzingConstant">
+      <MemberSignature Language="C#" Value="public const double VonKlitzingConstant = 25812.807557;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>25812.807557</MemberValue>
+      <Docs>
+        <summary>Von Klitzing Constant: R_K = h/e^2 [Ohm = m^2 kg s^-3 A^-2] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="WeakMixingAngle">
+      <MemberSignature Language="C#" Value="public const double WeakMixingAngle = 0.22256;" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <MemberValue>0.22256</MemberValue>
+      <Docs>
+        <summary>Weak Mixin Angle: sin^2(theta_W) [1] (2007 CODATA)</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

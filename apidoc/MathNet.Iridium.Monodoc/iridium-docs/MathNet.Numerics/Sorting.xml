@@ -1,0 +1,193 @@
+<Type Name="Sorting" FullName="MathNet.Numerics.Sorting">
+  <TypeSignature Language="C#" Value="public static class Sorting" />
+  <AssemblyInfo>
+    <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Docs>
+    <summary>
+            Sorting algorithms for single, tuple and triple lists.
+            </summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="Sort&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public static void Sort&lt;T&gt; (System.Collections.Generic.IList&lt;T&gt; keys);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="keys" Type="System.Collections.Generic.IList&lt;T&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T">To be added.</typeparam>
+        <param name="keys">List to sort.</param>
+        <summary>
+            Sort a list of keys, inplace.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Sort&lt;T&gt;">
+      <MemberSignature Language="C#" Value="public static void Sort&lt;T&gt; (System.Collections.Generic.IList&lt;T&gt; keys, System.Collections.Generic.IComparer&lt;T&gt; comparer);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="T" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="keys" Type="System.Collections.Generic.IList&lt;T&gt;" />
+        <Parameter Name="comparer" Type="System.Collections.Generic.IComparer&lt;T&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="T">To be added.</typeparam>
+        <param name="keys">List to sort.</param>
+        <param name="comparer">Comparison, defining the sort order.</param>
+        <summary>
+            Sort a list of keys, inplace.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Sort&lt;TKey,TItem&gt;">
+      <MemberSignature Language="C#" Value="public static void Sort&lt;TKey,TItem&gt; (System.Collections.Generic.IList&lt;TKey&gt; keys, System.Collections.Generic.IList&lt;TItem&gt; items);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TKey" />
+        <TypeParameter Name="TItem" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="keys" Type="System.Collections.Generic.IList&lt;TKey&gt;" />
+        <Parameter Name="items" Type="System.Collections.Generic.IList&lt;TItem&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TKey">To be added.</typeparam>
+        <typeparam name="TItem">To be added.</typeparam>
+        <param name="keys">List to sort.</param>
+        <param name="items">List to permutate the same way as the key list.</param>
+        <summary>
+            Sort a list of keys and items with respect to the keys, inplace.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Sort&lt;TKey,TItem&gt;">
+      <MemberSignature Language="C#" Value="public static void Sort&lt;TKey,TItem&gt; (System.Collections.Generic.IList&lt;TKey&gt; keys, System.Collections.Generic.IList&lt;TItem&gt; items, System.Collections.Generic.IComparer&lt;TKey&gt; comparer);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TKey" />
+        <TypeParameter Name="TItem" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="keys" Type="System.Collections.Generic.IList&lt;TKey&gt;" />
+        <Parameter Name="items" Type="System.Collections.Generic.IList&lt;TItem&gt;" />
+        <Parameter Name="comparer" Type="System.Collections.Generic.IComparer&lt;TKey&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TKey">To be added.</typeparam>
+        <typeparam name="TItem">To be added.</typeparam>
+        <param name="keys">List to sort.</param>
+        <param name="items">List to permutate the same way as the key list.</param>
+        <param name="comparer">Comparison, defining the sort order.</param>
+        <summary>
+            Sort a list of keys and items with respect to the keys, inplace.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Sort&lt;TKey,TItem1,TItem2&gt;">
+      <MemberSignature Language="C#" Value="public static void Sort&lt;TKey,TItem1,TItem2&gt; (System.Collections.Generic.IList&lt;TKey&gt; keys, System.Collections.Generic.IList&lt;TItem1&gt; items1, System.Collections.Generic.IList&lt;TItem2&gt; items2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TKey" />
+        <TypeParameter Name="TItem1" />
+        <TypeParameter Name="TItem2" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="keys" Type="System.Collections.Generic.IList&lt;TKey&gt;" />
+        <Parameter Name="items1" Type="System.Collections.Generic.IList&lt;TItem1&gt;" />
+        <Parameter Name="items2" Type="System.Collections.Generic.IList&lt;TItem2&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TKey">To be added.</typeparam>
+        <typeparam name="TItem1">To be added.</typeparam>
+        <typeparam name="TItem2">To be added.</typeparam>
+        <param name="keys">List to sort.</param>
+        <param name="items1">First list to permutate the same way as the key list.</param>
+        <param name="items2">Second list to permutate the same way as the key list.</param>
+        <summary>
+            Sort a list of keys, items1 and items2 with respect to the keys, inplace.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Sort&lt;TKey,TItem1,TItem2&gt;">
+      <MemberSignature Language="C#" Value="public static void Sort&lt;TKey,TItem1,TItem2&gt; (System.Collections.Generic.IList&lt;TKey&gt; keys, System.Collections.Generic.IList&lt;TItem1&gt; items1, System.Collections.Generic.IList&lt;TItem2&gt; items2, System.Collections.Generic.IComparer&lt;TKey&gt; comparer);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <TypeParameters>
+        <TypeParameter Name="TKey" />
+        <TypeParameter Name="TItem1" />
+        <TypeParameter Name="TItem2" />
+      </TypeParameters>
+      <Parameters>
+        <Parameter Name="keys" Type="System.Collections.Generic.IList&lt;TKey&gt;" />
+        <Parameter Name="items1" Type="System.Collections.Generic.IList&lt;TItem1&gt;" />
+        <Parameter Name="items2" Type="System.Collections.Generic.IList&lt;TItem2&gt;" />
+        <Parameter Name="comparer" Type="System.Collections.Generic.IComparer&lt;TKey&gt;" />
+      </Parameters>
+      <Docs>
+        <typeparam name="TKey">To be added.</typeparam>
+        <typeparam name="TItem1">To be added.</typeparam>
+        <typeparam name="TItem2">To be added.</typeparam>
+        <param name="keys">List to sort.</param>
+        <param name="items1">First list to permutate the same way as the key list.</param>
+        <param name="items2">Second list to permutate the same way as the key list.</param>
+        <param name="comparer">Comparison, defining the sort order.</param>
+        <summary>
+            Sort a list of keys, items1 and items2 with respect to the keys, inplace.
+            </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>
