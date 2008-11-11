@@ -2,6 +2,7 @@
   <TypeSignature Language="C#" Value="public static class Interpolation" />
   <AssemblyInfo>
     <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>1.0.0.8645</AssemblyVersion>
     <AssemblyVersion>2008.8.16.470</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -21,6 +22,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Interpolation.IInterpolationMethod Create (System.Collections.Generic.IList&lt;double&gt; points, System.Collections.Generic.IList&lt;double&gt; values);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -48,6 +50,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Interpolation.IInterpolationMethod CreateAkimaCubicSpline (System.Collections.Generic.IList&lt;double&gt; points, System.Collections.Generic.IList&lt;double&gt; values);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -76,6 +79,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Interpolation.IInterpolationMethod CreateCubicSpline (System.Collections.Generic.IList&lt;double&gt; points, System.Collections.Generic.IList&lt;double&gt; values, MathNet.Numerics.Interpolation.SplineBoundaryCondition leftBoundaryCondition, double leftBoundary, MathNet.Numerics.Interpolation.SplineBoundaryCondition rightBoundaryCondition, double rightBoundary);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -111,6 +115,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Interpolation.IInterpolationMethod CreateLinearSpline (System.Collections.Generic.IList&lt;double&gt; points, System.Collections.Generic.IList&lt;double&gt; values);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -138,6 +143,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Interpolation.IInterpolationMethod CreateNaturalCubicSpline (System.Collections.Generic.IList&lt;double&gt; points, System.Collections.Generic.IList&lt;double&gt; values);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -166,6 +172,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Interpolation.IInterpolationMethod CreateOnChebyshevFirstKindPoints (double leftBound, double rightBound, System.Collections.Generic.IList&lt;double&gt; values);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -195,6 +202,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Interpolation.IInterpolationMethod CreateOnChebyshevSecondKindPoints (double leftBound, double rightBound, System.Collections.Generic.IList&lt;double&gt; values);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -224,6 +232,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Interpolation.IInterpolationMethod CreateOnEquidistantPoints (double leftBound, double rightBound, System.Collections.Generic.IList&lt;double&gt; values);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -253,6 +262,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Interpolation.IInterpolationMethod CreatePolynomial (System.Collections.Generic.IList&lt;double&gt; points, System.Collections.Generic.IList&lt;double&gt; values);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -280,6 +290,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Interpolation.IInterpolationMethod CreateRational (System.Collections.Generic.IList&lt;double&gt; points, System.Collections.Generic.IList&lt;double&gt; values);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -307,6 +318,7 @@
       <MemberSignature Language="C#" Value="public static double[] GenerateChebyshevFirstKindSamplePoints (double a, double b, int numberOfPoints);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -333,6 +345,7 @@
       <MemberSignature Language="C#" Value="public static double[] GenerateChebyshevSecondKindSamplePoints (double a, double b, int numberOfPoints);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>

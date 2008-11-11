@@ -2,6 +2,7 @@
   <TypeSignature Language="C#" Value="public interface ISet&lt;T&gt; : System.Collections.Generic.IList&lt;T&gt; where T : IEquatable&lt;T&gt;" />
   <AssemblyInfo>
     <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>1.0.0.8645</AssemblyVersion>
     <AssemblyVersion>2008.8.16.470</AssemblyVersion>
   </AssemblyInfo>
   <TypeParameters>
@@ -28,6 +29,7 @@
       <MemberSignature Language="C#" Value="public void AddDistinct (T item);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -48,6 +50,7 @@
       <MemberSignature Language="C#" Value="public void AddRange (System.Collections.Generic.IEnumerable&lt;T&gt; range);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -68,6 +71,7 @@
       <MemberSignature Language="C#" Value="public void AddRangeDistinct (System.Collections.Generic.IEnumerable&lt;T&gt; range);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -88,6 +92,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Set&lt;TOutput&gt; ConvertAll&lt;TOutput&gt; (Converter&lt;T,TOutput&gt; convert) where TOutput : IEquatable&lt;TOutput&gt;;" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -117,6 +122,7 @@
       <MemberSignature Language="C#" Value="public bool Exists (Predicate&lt;T&gt; match);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -138,6 +144,7 @@
       <MemberSignature Language="C#" Value="public bool Exists (Predicate&lt;T&gt; match, out T foundItem);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -161,6 +168,7 @@
       <MemberSignature Language="C#" Value="public T Find (Predicate&lt;T&gt; match);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -182,6 +190,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Set&lt;T&gt; FindAll (Predicate&lt;T&gt; match);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -203,6 +212,7 @@
       <MemberSignature Language="C#" Value="public int FindIndex (Predicate&lt;T&gt; match);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -224,6 +234,7 @@
       <MemberSignature Language="C#" Value="public int FindIndex (int startIndex, Predicate&lt;T&gt; match);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -247,6 +258,7 @@
       <MemberSignature Language="C#" Value="public int FindIndex (int startIndex, int count, Predicate&lt;T&gt; match);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -272,6 +284,7 @@
       <MemberSignature Language="C#" Value="public T FindLast (Predicate&lt;T&gt; match);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -293,6 +306,7 @@
       <MemberSignature Language="C#" Value="public int FindLastIndex (Predicate&lt;T&gt; match);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -314,6 +328,7 @@
       <MemberSignature Language="C#" Value="public int FindLastIndex (int startIndex, Predicate&lt;T&gt; match);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -337,6 +352,7 @@
       <MemberSignature Language="C#" Value="public int FindLastIndex (int startIndex, int count, Predicate&lt;T&gt; match);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -362,6 +378,7 @@
       <MemberSignature Language="C#" Value="public void ForEach (Action&lt;T&gt; action);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -382,6 +399,7 @@
       <MemberSignature Language="C#" Value="public bool HasEqualElements (System.Collections.Generic.IEnumerable&lt;T&gt; c);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -403,6 +421,7 @@
       <MemberSignature Language="C#" Value="public bool IsSubset (System.Collections.Generic.IEnumerable&lt;T&gt; c);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -424,6 +443,7 @@
       <MemberSignature Language="C#" Value="public bool IsSuperset (System.Collections.Generic.IEnumerable&lt;T&gt; c);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -445,6 +465,7 @@
       <MemberSignature Language="C#" Value="public int LastIndexOf (T item);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -466,6 +487,7 @@
       <MemberSignature Language="C#" Value="public int RemoveAll (Predicate&lt;T&gt; match);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -487,6 +509,7 @@
       <MemberSignature Language="C#" Value="public void RemoveDuplicates ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -504,6 +527,7 @@
       <MemberSignature Language="C#" Value="public void Sort (System.Collections.Generic.IComparer&lt;T&gt; comparer);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -524,6 +548,7 @@
       <MemberSignature Language="C#" Value="public void Sort (int index, int count, System.Collections.Generic.IComparer&lt;T&gt; comparer);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -548,6 +573,7 @@
       <MemberSignature Language="C#" Value="public T[] ToArray ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -566,6 +592,7 @@
       <MemberSignature Language="C#" Value="public bool TrueForAll (Predicate&lt;T&gt; match);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>

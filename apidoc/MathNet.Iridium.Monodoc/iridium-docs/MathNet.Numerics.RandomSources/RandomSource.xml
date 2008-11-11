@@ -2,6 +2,7 @@
   <TypeSignature Language="C#" Value="public abstract class RandomSource : MathNet.Numerics.Distributions.IContinuousGenerator" />
   <AssemblyInfo>
     <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>1.0.0.8645</AssemblyVersion>
     <AssemblyVersion>2008.8.16.470</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -23,6 +24,7 @@
       <MemberSignature Language="C#" Value="protected RandomSource ();" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <Parameters />
@@ -35,6 +37,7 @@
       <MemberSignature Language="C#" Value="public abstract bool CanReset { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -53,6 +56,7 @@
       <MemberSignature Language="C#" Value="public abstract int Next ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -74,6 +78,7 @@
       <MemberSignature Language="C#" Value="public abstract int Next (int maxValue);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -101,6 +106,7 @@
       <MemberSignature Language="C#" Value="public abstract int Next (int minValue, int maxValue);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -133,6 +139,7 @@
       <MemberSignature Language="C#" Value="public abstract bool NextBoolean ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -153,6 +160,7 @@
       <MemberSignature Language="C#" Value="public abstract void NextBytes (byte[] buffer);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -176,6 +184,7 @@
       <MemberSignature Language="C#" Value="public abstract double NextDouble ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -197,6 +206,7 @@
       <MemberSignature Language="C#" Value="public abstract double NextDouble (double maxValue);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -224,6 +234,7 @@
       <MemberSignature Language="C#" Value="public abstract double NextDouble (double minValue, double maxValue);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -259,6 +270,7 @@
       <MemberSignature Language="C#" Value="public abstract void Reset ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>

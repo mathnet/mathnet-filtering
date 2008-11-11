@@ -1,0 +1,1672 @@
+<Type Name="ComplexPolynomial" FullName="MathNet.Numerics.ComplexPolynomial">
+  <TypeSignature Language="C#" Value="public class ComplexPolynomial : ICloneable, IComparable" />
+  <AssemblyInfo>
+    <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces>
+    <Interface>
+      <InterfaceName>System.ICloneable</InterfaceName>
+    </Interface>
+    <Interface>
+      <InterfaceName>System.IComparable</InterfaceName>
+    </Interface>
+  </Interfaces>
+  <Attributes>
+    <Attribute>
+      <AttributeName>System.Reflection.DefaultMember("Item")</AttributeName>
+    </Attribute>
+  </Attributes>
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public ComplexPolynomial (MathNet.Numerics.Complex[] coefficients);" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="coefficients" Type="MathNet.Numerics.Complex[]" />
+      </Parameters>
+      <Docs>
+        <param name="coefficients">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public ComplexPolynomial (MathNet.Numerics.ComplexPolynomial copy);" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="copy" Type="MathNet.Numerics.ComplexPolynomial" />
+      </Parameters>
+      <Docs>
+        <param name="copy">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public ComplexPolynomial (MathNet.Numerics.Polynomial copy);" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="copy" Type="MathNet.Numerics.Polynomial" />
+      </Parameters>
+      <Docs>
+        <param name="copy">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public ComplexPolynomial (int order);" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="order" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="order">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AddInplace">
+      <MemberSignature Language="C#" Value="public void AddInplace (MathNet.Numerics.Complex s);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="s" Type="MathNet.Numerics.Complex" />
+      </Parameters>
+      <Docs>
+        <param name="s">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AddInplace">
+      <MemberSignature Language="C#" Value="public void AddInplace (MathNet.Numerics.ComplexPolynomial polynomial);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial" Type="MathNet.Numerics.ComplexPolynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AddInplace">
+      <MemberSignature Language="C#" Value="public void AddInplace (MathNet.Numerics.Polynomial polynomial);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial" Type="MathNet.Numerics.Polynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AddInplace">
+      <MemberSignature Language="C#" Value="public void AddInplace (double s);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="s" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="s">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Clone">
+      <MemberSignature Language="C#" Value="public MathNet.Numerics.ComplexPolynomial Clone ();" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.ComplexPolynomial</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CompareTo">
+      <MemberSignature Language="C#" Value="public int CompareTo (MathNet.Numerics.ComplexPolynomial polynomial);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial" Type="MathNet.Numerics.ComplexPolynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CompareTo">
+      <MemberSignature Language="C#" Value="public int CompareTo (object obj);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="obj" Type="System.Object" />
+      </Parameters>
+      <Docs>
+        <param name="obj">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Divide">
+      <MemberSignature Language="C#" Value="public MathNet.Numerics.ComplexRational Divide (MathNet.Numerics.ComplexPolynomial polynomial);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.ComplexRational</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial" Type="MathNet.Numerics.ComplexPolynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Divide">
+      <MemberSignature Language="C#" Value="public MathNet.Numerics.ComplexRational Divide (MathNet.Numerics.Polynomial polynomial);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.ComplexRational</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial" Type="MathNet.Numerics.Polynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="DivideInplace">
+      <MemberSignature Language="C#" Value="public void DivideInplace (MathNet.Numerics.Complex c0);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="c0" Type="MathNet.Numerics.Complex" />
+      </Parameters>
+      <Docs>
+        <param name="c0">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="DivideInplace">
+      <MemberSignature Language="C#" Value="public void DivideInplace (double c0);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="c0" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="c0">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="DivideLinearInplace">
+      <MemberSignature Language="C#" Value="public void DivideLinearInplace (MathNet.Numerics.Complex c0, MathNet.Numerics.Complex c1, out MathNet.Numerics.Complex remainder);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="c0" Type="MathNet.Numerics.Complex" />
+        <Parameter Name="c1" Type="MathNet.Numerics.Complex" />
+        <Parameter Name="remainder" Type="MathNet.Numerics.Complex&amp;" RefType="out" />
+      </Parameters>
+      <Docs>
+        <param name="c0">To be added.</param>
+        <param name="c1">To be added.</param>
+        <param name="remainder">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="DivideShiftInplace">
+      <MemberSignature Language="C#" Value="public void DivideShiftInplace (int n, out MathNet.Numerics.Complex[] remainder);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="n" Type="System.Int32" />
+        <Parameter Name="remainder" Type="MathNet.Numerics.Complex[]&amp;" RefType="out" />
+      </Parameters>
+      <Docs>
+        <param name="n">To be added.</param>
+        <param name="remainder">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="DivideSyntheticInplace">
+      <MemberSignature Language="C#" Value="public void DivideSyntheticInplace (MathNet.Numerics.Complex c0, out MathNet.Numerics.Complex remainder);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="c0" Type="MathNet.Numerics.Complex" />
+        <Parameter Name="remainder" Type="MathNet.Numerics.Complex&amp;" RefType="out" />
+      </Parameters>
+      <Docs>
+        <param name="c0">To be added.</param>
+        <param name="remainder">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Equals">
+      <MemberSignature Language="C#" Value="public bool Equals (MathNet.Numerics.ComplexPolynomial polynomial);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial" Type="MathNet.Numerics.ComplexPolynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Equals">
+      <MemberSignature Language="C#" Value="public override bool Equals (object obj);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="obj" Type="System.Object" />
+      </Parameters>
+      <Docs>
+        <param name="obj">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Equals">
+      <MemberSignature Language="C#" Value="public static bool Equals (MathNet.Numerics.ComplexPolynomial polynomial1, MathNet.Numerics.ComplexPolynomial polynomial2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial1" Type="MathNet.Numerics.ComplexPolynomial" />
+        <Parameter Name="polynomial2" Type="MathNet.Numerics.ComplexPolynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial1">To be added.</param>
+        <param name="polynomial2">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Evaluate">
+      <MemberSignature Language="C#" Value="public MathNet.Numerics.Complex Evaluate (MathNet.Numerics.Complex value);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.Complex</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="value" Type="MathNet.Numerics.Complex" />
+      </Parameters>
+      <Docs>
+        <param name="value">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Evaluate">
+      <MemberSignature Language="C#" Value="public MathNet.Numerics.Complex Evaluate (MathNet.Numerics.Complex value, out MathNet.Numerics.Complex derivative);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.Complex</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="value" Type="MathNet.Numerics.Complex" />
+        <Parameter Name="derivative" Type="MathNet.Numerics.Complex&amp;" RefType="out" />
+      </Parameters>
+      <Docs>
+        <param name="value">To be added.</param>
+        <param name="derivative">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Evaluate">
+      <MemberSignature Language="C#" Value="public MathNet.Numerics.Complex[] Evaluate (MathNet.Numerics.Complex value, int derivativeOrderMax);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.Complex[]</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="value" Type="MathNet.Numerics.Complex" />
+        <Parameter Name="derivativeOrderMax" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="value">To be added.</param>
+        <param name="derivativeOrderMax">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetHashCode">
+      <MemberSignature Language="C#" Value="public override int GetHashCode ();" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Item">
+      <MemberSignature Language="C#" Value="public MathNet.Numerics.Complex this[int power] { set; get; }" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.Complex</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="power" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="power">To be added.</param>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Multiply">
+      <MemberSignature Language="C#" Value="public MathNet.Numerics.ComplexPolynomial Multiply (MathNet.Numerics.ComplexPolynomial polynomial);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.ComplexPolynomial</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial" Type="MathNet.Numerics.ComplexPolynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Multiply">
+      <MemberSignature Language="C#" Value="public MathNet.Numerics.ComplexPolynomial Multiply (MathNet.Numerics.Polynomial polynomial);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.ComplexPolynomial</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial" Type="MathNet.Numerics.Polynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="MultiplyInplace">
+      <MemberSignature Language="C#" Value="public void MultiplyInplace (MathNet.Numerics.Complex c0);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="c0" Type="MathNet.Numerics.Complex" />
+      </Parameters>
+      <Docs>
+        <param name="c0">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="MultiplyInplace">
+      <MemberSignature Language="C#" Value="public void MultiplyInplace (double c0);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="c0" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="c0">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="MultiplyLinearInplace">
+      <MemberSignature Language="C#" Value="public void MultiplyLinearInplace (MathNet.Numerics.Complex c0, MathNet.Numerics.Complex c1);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="c0" Type="MathNet.Numerics.Complex" />
+        <Parameter Name="c1" Type="MathNet.Numerics.Complex" />
+      </Parameters>
+      <Docs>
+        <param name="c0">To be added.</param>
+        <param name="c1">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="MultiplyLinearInplace">
+      <MemberSignature Language="C#" Value="public void MultiplyLinearInplace (double c0, double c1);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="c0" Type="System.Double" />
+        <Parameter Name="c1" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="c0">To be added.</param>
+        <param name="c1">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="MultiplyShiftInplace">
+      <MemberSignature Language="C#" Value="public void MultiplyShiftInplace (int n);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="n" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="n">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="MultiplySyntheticInplace">
+      <MemberSignature Language="C#" Value="public void MultiplySyntheticInplace (MathNet.Numerics.Complex c0);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="c0" Type="MathNet.Numerics.Complex" />
+      </Parameters>
+      <Docs>
+        <param name="c0">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="MultiplySyntheticInplace">
+      <MemberSignature Language="C#" Value="public void MultiplySyntheticInplace (double c0);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="c0" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="c0">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="NegateInplace">
+      <MemberSignature Language="C#" Value="public void NegateInplace ();" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Normalize">
+      <MemberSignature Language="C#" Value="public void Normalize ();" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Addition">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexPolynomial op_Addition (MathNet.Numerics.Complex n, MathNet.Numerics.ComplexPolynomial polynomial);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.ComplexPolynomial</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="n" Type="MathNet.Numerics.Complex" />
+        <Parameter Name="polynomial" Type="MathNet.Numerics.ComplexPolynomial" />
+      </Parameters>
+      <Docs>
+        <param name="n">To be added.</param>
+        <param name="polynomial">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Addition">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexPolynomial op_Addition (MathNet.Numerics.ComplexPolynomial polynomial, MathNet.Numerics.Complex n);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.ComplexPolynomial</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial" Type="MathNet.Numerics.ComplexPolynomial" />
+        <Parameter Name="n" Type="MathNet.Numerics.Complex" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial">To be added.</param>
+        <param name="n">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Addition">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexPolynomial op_Addition (MathNet.Numerics.ComplexPolynomial polynomial1, MathNet.Numerics.ComplexPolynomial polynomial2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.ComplexPolynomial</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial1" Type="MathNet.Numerics.ComplexPolynomial" />
+        <Parameter Name="polynomial2" Type="MathNet.Numerics.ComplexPolynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial1">To be added.</param>
+        <param name="polynomial2">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Addition">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexPolynomial op_Addition (MathNet.Numerics.ComplexPolynomial polynomial1, MathNet.Numerics.Polynomial polynomial2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.ComplexPolynomial</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial1" Type="MathNet.Numerics.ComplexPolynomial" />
+        <Parameter Name="polynomial2" Type="MathNet.Numerics.Polynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial1">To be added.</param>
+        <param name="polynomial2">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Addition">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexPolynomial op_Addition (MathNet.Numerics.ComplexPolynomial polynomial, double n);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.ComplexPolynomial</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial" Type="MathNet.Numerics.ComplexPolynomial" />
+        <Parameter Name="n" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial">To be added.</param>
+        <param name="n">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Addition">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexPolynomial op_Addition (MathNet.Numerics.Polynomial polynomial1, MathNet.Numerics.ComplexPolynomial polynomial2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.ComplexPolynomial</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial1" Type="MathNet.Numerics.Polynomial" />
+        <Parameter Name="polynomial2" Type="MathNet.Numerics.ComplexPolynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial1">To be added.</param>
+        <param name="polynomial2">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Addition">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexPolynomial op_Addition (double n, MathNet.Numerics.ComplexPolynomial polynomial);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.ComplexPolynomial</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="n" Type="System.Double" />
+        <Parameter Name="polynomial" Type="MathNet.Numerics.ComplexPolynomial" />
+      </Parameters>
+      <Docs>
+        <param name="n">To be added.</param>
+        <param name="polynomial">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Division">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexPolynomial op_Division (MathNet.Numerics.ComplexPolynomial polynomial, MathNet.Numerics.Complex n);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.ComplexPolynomial</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial" Type="MathNet.Numerics.ComplexPolynomial" />
+        <Parameter Name="n" Type="MathNet.Numerics.Complex" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial">To be added.</param>
+        <param name="n">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Division">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexPolynomial op_Division (MathNet.Numerics.ComplexPolynomial polynomial, double n);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.ComplexPolynomial</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial" Type="MathNet.Numerics.ComplexPolynomial" />
+        <Parameter Name="n" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial">To be added.</param>
+        <param name="n">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Equality">
+      <MemberSignature Language="C#" Value="public static bool op_Equality (MathNet.Numerics.ComplexPolynomial polynomial1, MathNet.Numerics.ComplexPolynomial polynomial2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial1" Type="MathNet.Numerics.ComplexPolynomial" />
+        <Parameter Name="polynomial2" Type="MathNet.Numerics.ComplexPolynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial1">To be added.</param>
+        <param name="polynomial2">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_GreaterThan">
+      <MemberSignature Language="C#" Value="public static bool op_GreaterThan (MathNet.Numerics.ComplexPolynomial polynomial1, MathNet.Numerics.ComplexPolynomial polynomial2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial1" Type="MathNet.Numerics.ComplexPolynomial" />
+        <Parameter Name="polynomial2" Type="MathNet.Numerics.ComplexPolynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial1">To be added.</param>
+        <param name="polynomial2">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_GreaterThan">
+      <MemberSignature Language="C#" Value="public static bool op_GreaterThan (MathNet.Numerics.ComplexPolynomial polynomial1, MathNet.Numerics.Polynomial polynomial2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial1" Type="MathNet.Numerics.ComplexPolynomial" />
+        <Parameter Name="polynomial2" Type="MathNet.Numerics.Polynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial1">To be added.</param>
+        <param name="polynomial2">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_GreaterThan">
+      <MemberSignature Language="C#" Value="public static bool op_GreaterThan (MathNet.Numerics.Polynomial polynomial1, MathNet.Numerics.ComplexPolynomial polynomial2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial1" Type="MathNet.Numerics.Polynomial" />
+        <Parameter Name="polynomial2" Type="MathNet.Numerics.ComplexPolynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial1">To be added.</param>
+        <param name="polynomial2">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_GreaterThanOrEqual">
+      <MemberSignature Language="C#" Value="public static bool op_GreaterThanOrEqual (MathNet.Numerics.ComplexPolynomial polynomial1, MathNet.Numerics.ComplexPolynomial polynomial2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial1" Type="MathNet.Numerics.ComplexPolynomial" />
+        <Parameter Name="polynomial2" Type="MathNet.Numerics.ComplexPolynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial1">To be added.</param>
+        <param name="polynomial2">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_GreaterThanOrEqual">
+      <MemberSignature Language="C#" Value="public static bool op_GreaterThanOrEqual (MathNet.Numerics.ComplexPolynomial polynomial1, MathNet.Numerics.Polynomial polynomial2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial1" Type="MathNet.Numerics.ComplexPolynomial" />
+        <Parameter Name="polynomial2" Type="MathNet.Numerics.Polynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial1">To be added.</param>
+        <param name="polynomial2">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_GreaterThanOrEqual">
+      <MemberSignature Language="C#" Value="public static bool op_GreaterThanOrEqual (MathNet.Numerics.Polynomial polynomial1, MathNet.Numerics.ComplexPolynomial polynomial2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial1" Type="MathNet.Numerics.Polynomial" />
+        <Parameter Name="polynomial2" Type="MathNet.Numerics.ComplexPolynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial1">To be added.</param>
+        <param name="polynomial2">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Inequality">
+      <MemberSignature Language="C#" Value="public static bool op_Inequality (MathNet.Numerics.ComplexPolynomial polynomial1, MathNet.Numerics.ComplexPolynomial polynomial2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial1" Type="MathNet.Numerics.ComplexPolynomial" />
+        <Parameter Name="polynomial2" Type="MathNet.Numerics.ComplexPolynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial1">To be added.</param>
+        <param name="polynomial2">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_LessThan">
+      <MemberSignature Language="C#" Value="public static bool op_LessThan (MathNet.Numerics.ComplexPolynomial polynomial1, MathNet.Numerics.ComplexPolynomial polynomial2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial1" Type="MathNet.Numerics.ComplexPolynomial" />
+        <Parameter Name="polynomial2" Type="MathNet.Numerics.ComplexPolynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial1">To be added.</param>
+        <param name="polynomial2">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_LessThan">
+      <MemberSignature Language="C#" Value="public static bool op_LessThan (MathNet.Numerics.ComplexPolynomial polynomial1, MathNet.Numerics.Polynomial polynomial2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial1" Type="MathNet.Numerics.ComplexPolynomial" />
+        <Parameter Name="polynomial2" Type="MathNet.Numerics.Polynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial1">To be added.</param>
+        <param name="polynomial2">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_LessThan">
+      <MemberSignature Language="C#" Value="public static bool op_LessThan (MathNet.Numerics.Polynomial polynomial1, MathNet.Numerics.ComplexPolynomial polynomial2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial1" Type="MathNet.Numerics.Polynomial" />
+        <Parameter Name="polynomial2" Type="MathNet.Numerics.ComplexPolynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial1">To be added.</param>
+        <param name="polynomial2">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_LessThanOrEqual">
+      <MemberSignature Language="C#" Value="public static bool op_LessThanOrEqual (MathNet.Numerics.ComplexPolynomial polynomial1, MathNet.Numerics.ComplexPolynomial polynomial2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial1" Type="MathNet.Numerics.ComplexPolynomial" />
+        <Parameter Name="polynomial2" Type="MathNet.Numerics.ComplexPolynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial1">To be added.</param>
+        <param name="polynomial2">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_LessThanOrEqual">
+      <MemberSignature Language="C#" Value="public static bool op_LessThanOrEqual (MathNet.Numerics.ComplexPolynomial polynomial1, MathNet.Numerics.Polynomial polynomial2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial1" Type="MathNet.Numerics.ComplexPolynomial" />
+        <Parameter Name="polynomial2" Type="MathNet.Numerics.Polynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial1">To be added.</param>
+        <param name="polynomial2">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_LessThanOrEqual">
+      <MemberSignature Language="C#" Value="public static bool op_LessThanOrEqual (MathNet.Numerics.Polynomial polynomial1, MathNet.Numerics.ComplexPolynomial polynomial2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial1" Type="MathNet.Numerics.Polynomial" />
+        <Parameter Name="polynomial2" Type="MathNet.Numerics.ComplexPolynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial1">To be added.</param>
+        <param name="polynomial2">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Multiply">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexPolynomial op_Multiply (MathNet.Numerics.Complex s, MathNet.Numerics.ComplexPolynomial polynomial);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.ComplexPolynomial</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="s" Type="MathNet.Numerics.Complex" />
+        <Parameter Name="polynomial" Type="MathNet.Numerics.ComplexPolynomial" />
+      </Parameters>
+      <Docs>
+        <param name="s">To be added.</param>
+        <param name="polynomial">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Multiply">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexPolynomial op_Multiply (MathNet.Numerics.ComplexPolynomial polynomial, MathNet.Numerics.Complex s);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.ComplexPolynomial</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial" Type="MathNet.Numerics.ComplexPolynomial" />
+        <Parameter Name="s" Type="MathNet.Numerics.Complex" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial">To be added.</param>
+        <param name="s">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Multiply">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexPolynomial op_Multiply (MathNet.Numerics.ComplexPolynomial polynomial1, MathNet.Numerics.ComplexPolynomial polynomial2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.ComplexPolynomial</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial1" Type="MathNet.Numerics.ComplexPolynomial" />
+        <Parameter Name="polynomial2" Type="MathNet.Numerics.ComplexPolynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial1">To be added.</param>
+        <param name="polynomial2">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Multiply">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexPolynomial op_Multiply (MathNet.Numerics.ComplexPolynomial polynomial1, MathNet.Numerics.Polynomial polynomial2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.ComplexPolynomial</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial1" Type="MathNet.Numerics.ComplexPolynomial" />
+        <Parameter Name="polynomial2" Type="MathNet.Numerics.Polynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial1">To be added.</param>
+        <param name="polynomial2">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Multiply">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexPolynomial op_Multiply (MathNet.Numerics.ComplexPolynomial polynomial, double s);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.ComplexPolynomial</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial" Type="MathNet.Numerics.ComplexPolynomial" />
+        <Parameter Name="s" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial">To be added.</param>
+        <param name="s">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Multiply">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexPolynomial op_Multiply (MathNet.Numerics.Polynomial polynomial1, MathNet.Numerics.ComplexPolynomial polynomial2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.ComplexPolynomial</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial1" Type="MathNet.Numerics.Polynomial" />
+        <Parameter Name="polynomial2" Type="MathNet.Numerics.ComplexPolynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial1">To be added.</param>
+        <param name="polynomial2">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Multiply">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexPolynomial op_Multiply (double s, MathNet.Numerics.ComplexPolynomial polynomial);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.ComplexPolynomial</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="s" Type="System.Double" />
+        <Parameter Name="polynomial" Type="MathNet.Numerics.ComplexPolynomial" />
+      </Parameters>
+      <Docs>
+        <param name="s">To be added.</param>
+        <param name="polynomial">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Subtraction">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexPolynomial op_Subtraction (MathNet.Numerics.Complex n, MathNet.Numerics.ComplexPolynomial polynomial);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.ComplexPolynomial</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="n" Type="MathNet.Numerics.Complex" />
+        <Parameter Name="polynomial" Type="MathNet.Numerics.ComplexPolynomial" />
+      </Parameters>
+      <Docs>
+        <param name="n">To be added.</param>
+        <param name="polynomial">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Subtraction">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexPolynomial op_Subtraction (MathNet.Numerics.ComplexPolynomial polynomial, MathNet.Numerics.Complex n);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.ComplexPolynomial</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial" Type="MathNet.Numerics.ComplexPolynomial" />
+        <Parameter Name="n" Type="MathNet.Numerics.Complex" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial">To be added.</param>
+        <param name="n">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Subtraction">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexPolynomial op_Subtraction (MathNet.Numerics.ComplexPolynomial polynomial1, MathNet.Numerics.ComplexPolynomial polynomial2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.ComplexPolynomial</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial1" Type="MathNet.Numerics.ComplexPolynomial" />
+        <Parameter Name="polynomial2" Type="MathNet.Numerics.ComplexPolynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial1">To be added.</param>
+        <param name="polynomial2">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Subtraction">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexPolynomial op_Subtraction (MathNet.Numerics.ComplexPolynomial polynomial1, MathNet.Numerics.Polynomial polynomial2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.ComplexPolynomial</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial1" Type="MathNet.Numerics.ComplexPolynomial" />
+        <Parameter Name="polynomial2" Type="MathNet.Numerics.Polynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial1">To be added.</param>
+        <param name="polynomial2">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Subtraction">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexPolynomial op_Subtraction (MathNet.Numerics.ComplexPolynomial polynomial, double n);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.ComplexPolynomial</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial" Type="MathNet.Numerics.ComplexPolynomial" />
+        <Parameter Name="n" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial">To be added.</param>
+        <param name="n">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Subtraction">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexPolynomial op_Subtraction (MathNet.Numerics.Polynomial polynomial1, MathNet.Numerics.ComplexPolynomial polynomial2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.ComplexPolynomial</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial1" Type="MathNet.Numerics.Polynomial" />
+        <Parameter Name="polynomial2" Type="MathNet.Numerics.ComplexPolynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial1">To be added.</param>
+        <param name="polynomial2">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Subtraction">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexPolynomial op_Subtraction (double n, MathNet.Numerics.ComplexPolynomial polynomial);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.ComplexPolynomial</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="n" Type="System.Double" />
+        <Parameter Name="polynomial" Type="MathNet.Numerics.ComplexPolynomial" />
+      </Parameters>
+      <Docs>
+        <param name="n">To be added.</param>
+        <param name="polynomial">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_UnaryNegation">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexPolynomial op_UnaryNegation (MathNet.Numerics.ComplexPolynomial polynomial);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.ComplexPolynomial</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial" Type="MathNet.Numerics.ComplexPolynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_UnaryPlus">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexPolynomial op_UnaryPlus (MathNet.Numerics.ComplexPolynomial polynomial);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.ComplexPolynomial</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial" Type="MathNet.Numerics.ComplexPolynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Order">
+      <MemberSignature Language="C#" Value="public int Order { get; }" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Size">
+      <MemberSignature Language="C#" Value="public int Size { get; }" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <value>To be added.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SubtractInplace">
+      <MemberSignature Language="C#" Value="public void SubtractInplace (MathNet.Numerics.Complex s);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="s" Type="MathNet.Numerics.Complex" />
+      </Parameters>
+      <Docs>
+        <param name="s">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SubtractInplace">
+      <MemberSignature Language="C#" Value="public void SubtractInplace (MathNet.Numerics.ComplexPolynomial polynomial);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial" Type="MathNet.Numerics.ComplexPolynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SubtractInplace">
+      <MemberSignature Language="C#" Value="public void SubtractInplace (MathNet.Numerics.Polynomial polynomial);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial" Type="MathNet.Numerics.Polynomial" />
+      </Parameters>
+      <Docs>
+        <param name="polynomial">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SubtractInplace">
+      <MemberSignature Language="C#" Value="public void SubtractInplace (double s);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="s" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="s">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="System.ICloneable.Clone">
+      <MemberSignature Language="C#" Value="object ICloneable.Clone ();" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Object</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ToString">
+      <MemberSignature Language="C#" Value="public override string ToString ();" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ToString">
+      <MemberSignature Language="C#" Value="public string ToString (string baseVariable);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="baseVariable" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="baseVariable">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

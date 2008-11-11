@@ -2,6 +2,7 @@
   <TypeSignature Language="C#" Value="public static class SiConstants" />
   <AssemblyInfo>
     <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>1.0.0.8645</AssemblyVersion>
     <AssemblyVersion>2008.8.16.470</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -21,6 +22,7 @@
       <MemberSignature Language="C#" Value="public const double BohrMagneton = 9.27400915E-24;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -36,6 +38,7 @@
       <MemberSignature Language="C#" Value="public const double BohrRadius = 5.2917720859E-11;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -51,6 +54,7 @@
       <MemberSignature Language="C#" Value="public const double CharacteristicImpedanceVacuum = 376.730313461771;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -66,6 +70,7 @@
       <MemberSignature Language="C#" Value="public const double ClassicalElectronRadius = 2.8179402894E-15;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -81,6 +86,7 @@
       <MemberSignature Language="C#" Value="public const double ComptonWavelength = 2.4263102175E-12;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -96,6 +102,7 @@
       <MemberSignature Language="C#" Value="public const double ConductanceQuantum = 7.7480917005E-05;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -111,6 +118,7 @@
       <MemberSignature Language="C#" Value="public const double DeuteronMagneticMoment = 4.33073465E-27;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -126,6 +134,7 @@
       <MemberSignature Language="C#" Value="public const double DeuteronMass = 3.3435832E-27;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -141,6 +150,7 @@
       <MemberSignature Language="C#" Value="public const double DeuteronMassEnegryEquivalent = 3.00506272E-10;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -156,6 +166,7 @@
       <MemberSignature Language="C#" Value="public const double DeuteronMolarMass = 0.002013553212725;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -171,6 +182,7 @@
       <MemberSignature Language="C#" Value="public const double DiracsConstant = 1.054571629E-34;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -186,6 +198,7 @@
       <MemberSignature Language="C#" Value="public const double ElectricPermittivity = 8.85418781719371E-12;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -201,6 +214,7 @@
       <MemberSignature Language="C#" Value="public const double ElectronGFactor = -2.0023193043622;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -216,6 +230,7 @@
       <MemberSignature Language="C#" Value="public const double ElectronMagneticMoment = -9.28476377E-24;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -231,6 +246,7 @@
       <MemberSignature Language="C#" Value="public const double ElectronMass = 9.10938215E-31;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -246,6 +262,7 @@
       <MemberSignature Language="C#" Value="public const double ElectronMassEnergyEquivalent = 8.18710438E-14;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -261,6 +278,7 @@
       <MemberSignature Language="C#" Value="public const double ElectronMolarMass = 5.4857990943E-07;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -276,6 +294,7 @@
       <MemberSignature Language="C#" Value="public const double ElementaryCharge = 1.602176487E-19;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -291,6 +310,7 @@
       <MemberSignature Language="C#" Value="public const double FermiCouplingConstant = 1.16637E-05;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -306,6 +326,7 @@
       <MemberSignature Language="C#" Value="public const double FineStructureConstant = 0.0072973525376;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -321,6 +342,7 @@
       <MemberSignature Language="C#" Value="public const double GravitationalConstant = 6.67429E-11;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -336,6 +358,7 @@
       <MemberSignature Language="C#" Value="public const double HartreeEnergy = 4.35974394E-18;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -351,6 +374,7 @@
       <MemberSignature Language="C#" Value="public const double HelionMass = 5.00641192E-27;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -366,6 +390,7 @@
       <MemberSignature Language="C#" Value="public const double HelionMassEnegryEquivalent = 4.49953864E-10;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -381,6 +406,7 @@
       <MemberSignature Language="C#" Value="public const double HelionMolarMass = 0.0030149322473;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -396,6 +422,7 @@
       <MemberSignature Language="C#" Value="public const double JosephsonConstant = 483597891000000;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -411,6 +438,7 @@
       <MemberSignature Language="C#" Value="public const double MagneticFluxQuantum = 2.067833668E-15;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -426,6 +454,7 @@
       <MemberSignature Language="C#" Value="public const double MagneticPermeability = 1.25663706143592E-06;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -441,6 +470,7 @@
       <MemberSignature Language="C#" Value="public const double MuonComptonWavelength = 1.173444104E-14;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -456,6 +486,7 @@
       <MemberSignature Language="C#" Value="public const double MuonGFactor = -2.0023318414;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -471,6 +502,7 @@
       <MemberSignature Language="C#" Value="public const double MuonMagneticMoment = -4.49044786E-26;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -486,6 +518,7 @@
       <MemberSignature Language="C#" Value="public const double MuonMass = 1.8835313E-28;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -501,6 +534,7 @@
       <MemberSignature Language="C#" Value="public const double MuonMassEnegryEquivalent = 1.692833511E-11;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -516,6 +550,7 @@
       <MemberSignature Language="C#" Value="public const double MuonMolarMass = 0.0001134289256;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -531,6 +566,7 @@
       <MemberSignature Language="C#" Value="public const double NeutronComptonWavelength = 0.13195908951;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -546,6 +582,7 @@
       <MemberSignature Language="C#" Value="public const double NeutronGFactor = -3.82608545;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -561,6 +598,7 @@
       <MemberSignature Language="C#" Value="public const double NeutronGyromagneticRatio = 183247185;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -576,6 +614,7 @@
       <MemberSignature Language="C#" Value="public const double NeutronMagneticMoment = -9.6623641E-27;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -591,6 +630,7 @@
       <MemberSignature Language="C#" Value="public const double NeutronMass = 1.674927212E-27;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -606,6 +646,7 @@
       <MemberSignature Language="C#" Value="public const double NeutronMassEnegryEquivalent = 1.505349506E-10;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -621,6 +662,7 @@
       <MemberSignature Language="C#" Value="public const double NeutronMolarMass = 0.00100866491597;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -636,6 +678,7 @@
       <MemberSignature Language="C#" Value="public const double NuclearMagneton = 5.05078324E-27;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -651,6 +694,7 @@
       <MemberSignature Language="C#" Value="public const double PlancksConstant = 6.62606896E-34;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -666,6 +710,7 @@
       <MemberSignature Language="C#" Value="public const double PlancksLength = 1.616253E-35;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -681,6 +726,7 @@
       <MemberSignature Language="C#" Value="public const double PlancksMass = 2.17644E-08;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -696,6 +742,7 @@
       <MemberSignature Language="C#" Value="public const double PlancksTemperature = 1.416786E+32;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -711,6 +758,7 @@
       <MemberSignature Language="C#" Value="public const double PlancksTime = 5.39124E-44;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -726,6 +774,7 @@
       <MemberSignature Language="C#" Value="public const double ProtonComptonWavelength = 1.3214098446E-15;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -741,6 +790,7 @@
       <MemberSignature Language="C#" Value="public const double ProtonGFactor = 5.585694713;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -756,6 +806,7 @@
       <MemberSignature Language="C#" Value="public const double ProtonGyromagneticRatio = 267522209.9;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -771,6 +822,7 @@
       <MemberSignature Language="C#" Value="public const double ProtonMagneticMoment = 1.410606662E-26;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -786,6 +838,7 @@
       <MemberSignature Language="C#" Value="public const double ProtonMass = 1.672621637E-27;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -801,6 +854,7 @@
       <MemberSignature Language="C#" Value="public const double ProtonMassEnergyEquivalent = 1.503277359E-10;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -816,6 +870,7 @@
       <MemberSignature Language="C#" Value="public const double ProtonMolarMass = 0.00100727646677;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -831,6 +886,7 @@
       <MemberSignature Language="C#" Value="public const double QuantumOfCirculation = 0.00036369475199;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -846,6 +902,7 @@
       <MemberSignature Language="C#" Value="public const double RydbergConstant = 10973731.568528;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -861,6 +918,7 @@
       <MemberSignature Language="C#" Value="public const double ShieldedProtonGyromagneticRatio = 267515336.2;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -876,6 +934,7 @@
       <MemberSignature Language="C#" Value="public const double ShieldedProtonMagneticMoment = 1.410570419E-26;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -891,6 +950,7 @@
       <MemberSignature Language="C#" Value="public const double SpeedOfLight = 299792458;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -906,6 +966,7 @@
       <MemberSignature Language="C#" Value="public const double TauComptonWavelength = 6.9772E-16;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -921,6 +982,7 @@
       <MemberSignature Language="C#" Value="public const double TauMass = 3.16777E-27;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -936,6 +998,7 @@
       <MemberSignature Language="C#" Value="public const double TauMassEnergyEquivalent = 2.84705E-10;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -951,6 +1014,7 @@
       <MemberSignature Language="C#" Value="public const double TauMolarMass = 0.00190768;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -966,6 +1030,7 @@
       <MemberSignature Language="C#" Value="public const double ThomsonCrossSection = 6.652458558E-29;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -981,6 +1046,7 @@
       <MemberSignature Language="C#" Value="public const double VonKlitzingConstant = 25812.807557;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -996,6 +1062,7 @@
       <MemberSignature Language="C#" Value="public const double WeakMixingAngle = 0.22256;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>

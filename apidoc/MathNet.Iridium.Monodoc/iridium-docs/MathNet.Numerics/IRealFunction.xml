@@ -2,6 +2,7 @@
   <TypeSignature Language="C#" Value="public interface IRealFunction" />
   <AssemblyInfo>
     <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>1.0.0.8645</AssemblyVersion>
     <AssemblyVersion>2008.8.16.470</AssemblyVersion>
   </AssemblyInfo>
   <Interfaces />
@@ -20,6 +21,7 @@
       <MemberSignature Language="C#" Value="public double ValueOf (double input);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>

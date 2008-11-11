@@ -2,6 +2,7 @@
   <TypeSignature Language="C#" Value="public class ComplexFourierTransformation" />
   <AssemblyInfo>
     <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>1.0.0.8645</AssemblyVersion>
     <AssemblyVersion>2008.8.16.470</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -22,6 +23,7 @@
       <MemberSignature Language="C#" Value="public ComplexFourierTransformation ();" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <Parameters />
@@ -36,6 +38,7 @@
       <MemberSignature Language="C#" Value="public ComplexFourierTransformation (MathNet.Numerics.Transformations.TransformationConvention convention);" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
@@ -53,6 +56,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Transformations.TransformationConvention Convention { set; get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -70,6 +74,7 @@
       <MemberSignature Language="C#" Value="public double[] GenerateFrequencyScale (double sampleRate, int numberOfSamplePairs);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -93,6 +98,7 @@
       <MemberSignature Language="C#" Value="public double[] GenerateTimeScale (double sampleRate, int numberOfSamplePairs);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -116,6 +122,7 @@
       <MemberSignature Language="C#" Value="public void TransformBackward (MathNet.Numerics.Complex[] samples);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -140,6 +147,7 @@
       <MemberSignature Language="C#" Value="public void TransformBackward (double[] samplePairs);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -160,6 +168,7 @@
       <MemberSignature Language="C#" Value="public void TransformBackward (MathNet.Numerics.Complex[] samples, int[] dimensionLengths);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -194,6 +203,7 @@
       <MemberSignature Language="C#" Value="public void TransformBackward (double[] samplePairs, int[] dimensionLengths);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -224,6 +234,7 @@
       <MemberSignature Language="C#" Value="public void TransformForward (MathNet.Numerics.Complex[] samples);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -248,6 +259,7 @@
       <MemberSignature Language="C#" Value="public void TransformForward (double[] samplePairs);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -268,6 +280,7 @@
       <MemberSignature Language="C#" Value="public void TransformForward (MathNet.Numerics.Complex[] samples, int[] dimensionLengths);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -302,6 +315,7 @@
       <MemberSignature Language="C#" Value="public void TransformForward (double[] samplePairs, int[] dimensionLengths);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>

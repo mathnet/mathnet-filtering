@@ -2,6 +2,7 @@
   <TypeSignature Language="C#" Value="public sealed class Collection" />
   <AssemblyInfo>
     <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>1.0.0.8645</AssemblyVersion>
     <AssemblyVersion>2008.8.16.470</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -20,6 +21,7 @@
       <MemberSignature Language="C#" Value="public static System.Collections.ICollection Concat (System.Collections.ICollection c1, System.Collections.ICollection c2);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -45,6 +47,7 @@
       <MemberSignature Language="C#" Value="public static System.Collections.ICollection Inter (System.Collections.ICollection c1, System.Collections.ICollection c2);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
@@ -79,6 +82,7 @@
       <MemberSignature Language="C#" Value="public static System.Collections.ICollection Minus (System.Collections.ICollection c1, System.Collections.ICollection c2);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
@@ -108,6 +112,7 @@
       <MemberSignature Language="C#" Value="public static System.Collections.ICollection Product (System.Collections.ICollection c1, System.Collections.ICollection c2);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -132,6 +137,7 @@
       <MemberSignature Language="C#" Value="public static System.Collections.ICollection Union (System.Collections.ICollection c1, System.Collections.ICollection c2);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>

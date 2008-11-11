@@ -1,9 +1,8 @@
-<Type Name="Rational" FullName="MathNet.Numerics.Rational">
-  <TypeSignature Language="C#" Value="public class Rational : ICloneable, IComparable" />
+<Type Name="ComplexRational" FullName="MathNet.Numerics.ComplexRational">
+  <TypeSignature Language="C#" Value="public class ComplexRational : ICloneable, IComparable" />
   <AssemblyInfo>
     <AssemblyName>MathNet.Iridium</AssemblyName>
     <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-    <AssemblyVersion>2008.8.16.470</AssemblyVersion>
   </AssemblyInfo>
   <Base>
     <BaseTypeName>System.Object</BaseTypeName>
@@ -17,77 +16,64 @@
     </Interface>
   </Interfaces>
   <Docs>
-    <summary>
-            Rational represents a finite order rational with positive
-            powers and constant real coefficients for both numerator and denominator.
-            </summary>
+    <summary>To be added.</summary>
     <remarks>To be added.</remarks>
   </Docs>
   <Members>
     <Member MemberName=".ctor">
-      <MemberSignature Language="C#" Value="public Rational (MathNet.Numerics.Rational copy);" />
+      <MemberSignature Language="C#" Value="public ComplexRational (MathNet.Numerics.ComplexRational copy);" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="copy" Type="MathNet.Numerics.Rational" />
+        <Parameter Name="copy" Type="MathNet.Numerics.ComplexRational" />
       </Parameters>
       <Docs>
-        <param name="copy">A rational to copy from.</param>
-        <summary>
-            Create a new rational by copy
-            </summary>
+        <param name="copy">To be added.</param>
+        <summary>To be added.</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
-      <MemberSignature Language="C#" Value="public Rational (MathNet.Numerics.Polynomial numerator, MathNet.Numerics.Polynomial denominator);" />
+      <MemberSignature Language="C#" Value="public ComplexRational (MathNet.Numerics.Complex[] numeratorCoefficients, MathNet.Numerics.Complex[] denominatorCoefficients);" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
-        <Parameter Name="numerator" Type="MathNet.Numerics.Polynomial" />
-        <Parameter Name="denominator" Type="MathNet.Numerics.Polynomial" />
-      </Parameters>
-      <Docs>
-        <param name="numerator">To be added.</param>
-        <param name="denominator">To be added.</param>
-        <summary>
-            Create a new rational by polynomials (directly linked, clone them manually before applying if needed)
-            </summary>
-        <remarks>To be added.</remarks>
-      </Docs>
-    </Member>
-    <Member MemberName=".ctor">
-      <MemberSignature Language="C#" Value="public Rational (double[] numeratorCoefficients, double[] denominatorCoefficients);" />
-      <MemberType>Constructor</MemberType>
-      <AssemblyInfo>
-        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
-      </AssemblyInfo>
-      <Parameters>
-        <Parameter Name="numeratorCoefficients" Type="System.Double[]" />
-        <Parameter Name="denominatorCoefficients" Type="System.Double[]" />
+        <Parameter Name="numeratorCoefficients" Type="MathNet.Numerics.Complex[]" />
+        <Parameter Name="denominatorCoefficients" Type="MathNet.Numerics.Complex[]" />
       </Parameters>
       <Docs>
         <param name="numeratorCoefficients">To be added.</param>
         <param name="denominatorCoefficients">To be added.</param>
-        <summary>
-            Create a new rational by coefficients
-            </summary>
+        <summary>To be added.</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName=".ctor">
-      <MemberSignature Language="C#" Value="public Rational (int numeratorOrder, int denominatorOrder);" />
+      <MemberSignature Language="C#" Value="public ComplexRational (MathNet.Numerics.ComplexPolynomial numerator, MathNet.Numerics.ComplexPolynomial denominator);" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="numerator" Type="MathNet.Numerics.ComplexPolynomial" />
+        <Parameter Name="denominator" Type="MathNet.Numerics.ComplexPolynomial" />
+      </Parameters>
+      <Docs>
+        <param name="numerator">To be added.</param>
+        <param name="denominator">To be added.</param>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public ComplexRational (int numeratorOrder, int denominatorOrder);" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
         <Parameter Name="numeratorOrder" Type="System.Int32" />
@@ -96,131 +82,111 @@
       <Docs>
         <param name="numeratorOrder">To be added.</param>
         <param name="denominatorOrder">To be added.</param>
-        <summary>
-            Create a new rational by orders
-            </summary>
+        <summary>To be added.</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="Add">
-      <MemberSignature Language="C#" Value="public MathNet.Numerics.Rational Add (MathNet.Numerics.Rational rational);" />
+      <MemberSignature Language="C#" Value="public MathNet.Numerics.ComplexRational Add (MathNet.Numerics.ComplexRational rational);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>MathNet.Numerics.Rational</ReturnType>
+        <ReturnType>MathNet.Numerics.ComplexRational</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="rational" Type="MathNet.Numerics.Rational" />
+        <Parameter Name="rational" Type="MathNet.Numerics.ComplexRational" />
       </Parameters>
       <Docs>
-        <param name="rational">The rational to add</param>
-        <summary>
-            Create a new rational as the result of adding a rational to this rational.
-            </summary>
+        <param name="rational">To be added.</param>
+        <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="AddInplace">
-      <MemberSignature Language="C#" Value="public void AddInplace (MathNet.Numerics.Polynomial polynomial);" />
+      <MemberSignature Language="C#" Value="public void AddInplace (MathNet.Numerics.Complex n);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="polynomial" Type="MathNet.Numerics.Polynomial" />
+        <Parameter Name="n" Type="MathNet.Numerics.Complex" />
       </Parameters>
       <Docs>
-        <param name="polynomial">The polynomial to add.</param>
-        <summary>
-            Add a polynomial directly inplace to this rational.
-            </summary>
+        <param name="n">To be added.</param>
+        <summary>To be added.</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="AddInplace">
-      <MemberSignature Language="C#" Value="public void AddInplace (double n);" />
+      <MemberSignature Language="C#" Value="public void AddInplace (MathNet.Numerics.ComplexPolynomial polynomial);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="n" Type="System.Double" />
+        <Parameter Name="polynomial" Type="MathNet.Numerics.ComplexPolynomial" />
       </Parameters>
       <Docs>
-        <param name="n">The floating point number to add.</param>
-        <summary>
-            Add a floating point number directly inplace to this rational.
-            </summary>
+        <param name="polynomial">To be added.</param>
+        <summary>To be added.</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="Clone">
-      <MemberSignature Language="C#" Value="public MathNet.Numerics.Rational Clone ();" />
+      <MemberSignature Language="C#" Value="public MathNet.Numerics.ComplexRational Clone ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>MathNet.Numerics.Rational</ReturnType>
+        <ReturnType>MathNet.Numerics.ComplexRational</ReturnType>
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>
-            Create a copy of this rational.
-            </summary>
+        <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="CompareTo">
-      <MemberSignature Language="C#" Value="public int CompareTo (MathNet.Numerics.Rational rational);" />
+      <MemberSignature Language="C#" Value="public int CompareTo (MathNet.Numerics.ComplexRational rational);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="rational" Type="MathNet.Numerics.Rational" />
+        <Parameter Name="rational" Type="MathNet.Numerics.ComplexRational" />
       </Parameters>
       <Docs>
         <param name="rational">To be added.</param>
-        <summary>
-            Compare this rational to another rational.
-            </summary>
+        <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="Denominator">
-      <MemberSignature Language="C#" Value="public MathNet.Numerics.Polynomial Denominator { set; get; }" />
+      <MemberSignature Language="C#" Value="public MathNet.Numerics.ComplexPolynomial Denominator { set; get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>MathNet.Numerics.Polynomial</ReturnType>
+        <ReturnType>MathNet.Numerics.ComplexPolynomial</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>
-            The denominator polynomial.
-            </summary>
+        <summary>To be added.</summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -230,102 +196,87 @@
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>
-            The order of the denominator polynomial.
-            </summary>
+        <summary>To be added.</summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="Divide">
-      <MemberSignature Language="C#" Value="public MathNet.Numerics.Rational Divide (MathNet.Numerics.Polynomial polynomial);" />
+      <MemberSignature Language="C#" Value="public MathNet.Numerics.ComplexRational Divide (MathNet.Numerics.ComplexPolynomial polynomial);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>MathNet.Numerics.Rational</ReturnType>
+        <ReturnType>MathNet.Numerics.ComplexRational</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="polynomial" Type="MathNet.Numerics.Polynomial" />
+        <Parameter Name="polynomial" Type="MathNet.Numerics.ComplexPolynomial" />
       </Parameters>
       <Docs>
-        <param name="polynomial">The polynomial to divide with.</param>
-        <summary>
-            Create a new rational as the result of dividing a polynomial from this rational.
-            </summary>
+        <param name="polynomial">To be added.</param>
+        <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="Divide">
-      <MemberSignature Language="C#" Value="public MathNet.Numerics.Rational Divide (MathNet.Numerics.Rational rational);" />
+      <MemberSignature Language="C#" Value="public MathNet.Numerics.ComplexRational Divide (MathNet.Numerics.ComplexRational rational);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>MathNet.Numerics.Rational</ReturnType>
+        <ReturnType>MathNet.Numerics.ComplexRational</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="rational" Type="MathNet.Numerics.Rational" />
+        <Parameter Name="rational" Type="MathNet.Numerics.ComplexRational" />
       </Parameters>
       <Docs>
-        <param name="rational">The rational to divide with.</param>
-        <summary>
-            Create a new rational as the result of dividing a rational from this rational.
-            </summary>
+        <param name="rational">To be added.</param>
+        <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="DivideInplace">
-      <MemberSignature Language="C#" Value="public void DivideInplace (double n);" />
+      <MemberSignature Language="C#" Value="public void DivideInplace (MathNet.Numerics.Complex n);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="n" Type="System.Double" />
+        <Parameter Name="n" Type="MathNet.Numerics.Complex" />
       </Parameters>
       <Docs>
-        <param name="n">The floating point number to divide with.</param>
-        <summary>
-            Divide a floating point number directly inplace from this rational.
-            </summary>
+        <param name="n">To be added.</param>
+        <summary>To be added.</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="Equals">
-      <MemberSignature Language="C#" Value="public bool Equals (MathNet.Numerics.Rational rational);" />
+      <MemberSignature Language="C#" Value="public bool Equals (MathNet.Numerics.ComplexRational rational);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="rational" Type="MathNet.Numerics.Rational" />
+        <Parameter Name="rational" Type="MathNet.Numerics.ComplexRational" />
       </Parameters>
       <Docs>
         <param name="rational">To be added.</param>
-        <summary>
-            Check whether this rational is equal to another rational.
-            </summary>
+        <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -335,7 +286,6 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
@@ -345,55 +295,47 @@
       </Parameters>
       <Docs>
         <param name="obj">To be added.</param>
-        <summary>
-            Check whether this rational is equal to another rational.
-            </summary>
+        <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="Equals">
-      <MemberSignature Language="C#" Value="public static bool Equals (MathNet.Numerics.Rational rational1, MathNet.Numerics.Rational rational2);" />
+      <MemberSignature Language="C#" Value="public static bool Equals (MathNet.Numerics.ComplexRational rational1, MathNet.Numerics.ComplexRational rational2);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="rational1" Type="MathNet.Numerics.Rational" />
-        <Parameter Name="rational2" Type="MathNet.Numerics.Rational" />
+        <Parameter Name="rational1" Type="MathNet.Numerics.ComplexRational" />
+        <Parameter Name="rational2" Type="MathNet.Numerics.ComplexRational" />
       </Parameters>
       <Docs>
         <param name="rational1">To be added.</param>
         <param name="rational2">To be added.</param>
-        <summary>
-            Check whether two rationals are equal.
-            </summary>
+        <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="Evaluate">
-      <MemberSignature Language="C#" Value="public double Evaluate (double value);" />
+      <MemberSignature Language="C#" Value="public MathNet.Numerics.Complex Evaluate (MathNet.Numerics.Complex value);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>System.Double</ReturnType>
+        <ReturnType>MathNet.Numerics.Complex</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="value" Type="System.Double" />
+        <Parameter Name="value" Type="MathNet.Numerics.Complex" />
       </Parameters>
       <Docs>
-        <param name="value">The point where to evaluate the rational</param>
-        <summary>
-            Evaluate the value of this rational at a given point.
-            </summary>
+        <param name="value">To be added.</param>
+        <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -403,16 +345,13 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>
-            Serves as a hash function for rationals.
-            </summary>
+        <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -422,81 +361,69 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>
-            Invert this rational directly inplace.
-            </summary>
+        <summary>To be added.</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="Multiply">
-      <MemberSignature Language="C#" Value="public MathNet.Numerics.Rational Multiply (MathNet.Numerics.Polynomial polynomial);" />
+      <MemberSignature Language="C#" Value="public MathNet.Numerics.ComplexRational Multiply (MathNet.Numerics.ComplexPolynomial polynomial);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>MathNet.Numerics.Rational</ReturnType>
+        <ReturnType>MathNet.Numerics.ComplexRational</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="polynomial" Type="MathNet.Numerics.Polynomial" />
+        <Parameter Name="polynomial" Type="MathNet.Numerics.ComplexPolynomial" />
       </Parameters>
       <Docs>
-        <param name="polynomial">The polynomial to multiply with.</param>
-        <summary>
-            Create a new rational as the result of multiplying a polynomial to this rational.
-            </summary>
+        <param name="polynomial">To be added.</param>
+        <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="Multiply">
-      <MemberSignature Language="C#" Value="public MathNet.Numerics.Rational Multiply (MathNet.Numerics.Rational rational);" />
+      <MemberSignature Language="C#" Value="public MathNet.Numerics.ComplexRational Multiply (MathNet.Numerics.ComplexRational rational);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>MathNet.Numerics.Rational</ReturnType>
+        <ReturnType>MathNet.Numerics.ComplexRational</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="rational" Type="MathNet.Numerics.Rational" />
+        <Parameter Name="rational" Type="MathNet.Numerics.ComplexRational" />
       </Parameters>
       <Docs>
-        <param name="rational">The rational to multiply with.</param>
-        <summary>
-            Create a new rational as the result of multiplying a rational to this rational.
-            </summary>
+        <param name="rational">To be added.</param>
+        <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="MultiplyInplace">
-      <MemberSignature Language="C#" Value="public void MultiplyInplace (double n);" />
+      <MemberSignature Language="C#" Value="public void MultiplyInplace (MathNet.Numerics.Complex n);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="n" Type="System.Double" />
+        <Parameter Name="n" Type="MathNet.Numerics.Complex" />
       </Parameters>
       <Docs>
-        <param name="n">The floating point number to multiply with.</param>
-        <summary>
-            Multiply a floating point number directly inplace to this rational.
-            </summary>
+        <param name="n">To be added.</param>
+        <summary>To be added.</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -505,16 +432,13 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>
-            Negate this rational directly inplace.
-            </summary>
+        <summary>To be added.</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -523,33 +447,27 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>
-            Normalize both numerator and denominator polynomials.
-            </summary>
+        <summary>To be added.</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="Numerator">
-      <MemberSignature Language="C#" Value="public MathNet.Numerics.Polynomial Numerator { set; get; }" />
+      <MemberSignature Language="C#" Value="public MathNet.Numerics.ComplexPolynomial Numerator { set; get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>MathNet.Numerics.Polynomial</ReturnType>
+        <ReturnType>MathNet.Numerics.ComplexPolynomial</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>
-            The numerator polynomial.
-            </summary>
+        <summary>To be added.</summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -559,748 +477,652 @@
       <MemberType>Property</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
       </ReturnValue>
       <Docs>
-        <summary>
-            The order of the numerator polynomial.
-            </summary>
+        <summary>To be added.</summary>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="op_Addition">
-      <MemberSignature Language="C#" Value="public static MathNet.Numerics.Rational op_Addition (MathNet.Numerics.Polynomial polynomial, MathNet.Numerics.Rational rational);" />
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexRational op_Addition (MathNet.Numerics.Complex n, MathNet.Numerics.ComplexRational rational);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>MathNet.Numerics.Rational</ReturnType>
+        <ReturnType>MathNet.Numerics.ComplexRational</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="polynomial" Type="MathNet.Numerics.Polynomial" />
-        <Parameter Name="rational" Type="MathNet.Numerics.Rational" />
+        <Parameter Name="n" Type="MathNet.Numerics.Complex" />
+        <Parameter Name="rational" Type="MathNet.Numerics.ComplexRational" />
       </Parameters>
       <Docs>
-        <param name="polynomial">To be added.</param>
+        <param name="n">To be added.</param>
         <param name="rational">To be added.</param>
-        <summary>
-            Add a rational to a polynomial.
-            </summary>
+        <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="op_Addition">
-      <MemberSignature Language="C#" Value="public static MathNet.Numerics.Rational op_Addition (MathNet.Numerics.Rational rational, MathNet.Numerics.Polynomial polynomial);" />
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexRational op_Addition (MathNet.Numerics.ComplexPolynomial polynomial, MathNet.Numerics.ComplexRational rational);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>MathNet.Numerics.Rational</ReturnType>
+        <ReturnType>MathNet.Numerics.ComplexRational</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="rational" Type="MathNet.Numerics.Rational" />
-        <Parameter Name="polynomial" Type="MathNet.Numerics.Polynomial" />
+        <Parameter Name="polynomial" Type="MathNet.Numerics.ComplexPolynomial" />
+        <Parameter Name="rational" Type="MathNet.Numerics.ComplexRational" />
       </Parameters>
       <Docs>
-        <param name="rational">To be added.</param>
         <param name="polynomial">To be added.</param>
-        <summary>
-            Add a polynomial to a rational.
-            </summary>
+        <param name="rational">To be added.</param>
+        <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="op_Addition">
-      <MemberSignature Language="C#" Value="public static MathNet.Numerics.Rational op_Addition (MathNet.Numerics.Rational rational1, MathNet.Numerics.Rational rational2);" />
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexRational op_Addition (MathNet.Numerics.ComplexRational rational, MathNet.Numerics.Complex n);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>MathNet.Numerics.Rational</ReturnType>
+        <ReturnType>MathNet.Numerics.ComplexRational</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="rational1" Type="MathNet.Numerics.Rational" />
-        <Parameter Name="rational2" Type="MathNet.Numerics.Rational" />
+        <Parameter Name="rational" Type="MathNet.Numerics.ComplexRational" />
+        <Parameter Name="n" Type="MathNet.Numerics.Complex" />
+      </Parameters>
+      <Docs>
+        <param name="rational">To be added.</param>
+        <param name="n">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Addition">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexRational op_Addition (MathNet.Numerics.ComplexRational rational, MathNet.Numerics.ComplexPolynomial polynomial);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.ComplexRational</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="rational" Type="MathNet.Numerics.ComplexRational" />
+        <Parameter Name="polynomial" Type="MathNet.Numerics.ComplexPolynomial" />
+      </Parameters>
+      <Docs>
+        <param name="rational">To be added.</param>
+        <param name="polynomial">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Addition">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexRational op_Addition (MathNet.Numerics.ComplexRational rational1, MathNet.Numerics.ComplexRational rational2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.ComplexRational</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="rational1" Type="MathNet.Numerics.ComplexRational" />
+        <Parameter Name="rational2" Type="MathNet.Numerics.ComplexRational" />
       </Parameters>
       <Docs>
         <param name="rational1">To be added.</param>
         <param name="rational2">To be added.</param>
-        <summary>
-            Add a rational to a rational.
-            </summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
-      </Docs>
-    </Member>
-    <Member MemberName="op_Addition">
-      <MemberSignature Language="C#" Value="public static MathNet.Numerics.Rational op_Addition (MathNet.Numerics.Rational rational, double n);" />
-      <MemberType>Method</MemberType>
-      <AssemblyInfo>
-        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
-      </AssemblyInfo>
-      <ReturnValue>
-        <ReturnType>MathNet.Numerics.Rational</ReturnType>
-      </ReturnValue>
-      <Parameters>
-        <Parameter Name="rational" Type="MathNet.Numerics.Rational" />
-        <Parameter Name="n" Type="System.Double" />
-      </Parameters>
-      <Docs>
-        <param name="rational">To be added.</param>
-        <param name="n">To be added.</param>
-        <summary>
-            Add a real number to a rational.
-            </summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
-      </Docs>
-    </Member>
-    <Member MemberName="op_Addition">
-      <MemberSignature Language="C#" Value="public static MathNet.Numerics.Rational op_Addition (double n, MathNet.Numerics.Rational rational);" />
-      <MemberType>Method</MemberType>
-      <AssemblyInfo>
-        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
-      </AssemblyInfo>
-      <ReturnValue>
-        <ReturnType>MathNet.Numerics.Rational</ReturnType>
-      </ReturnValue>
-      <Parameters>
-        <Parameter Name="n" Type="System.Double" />
-        <Parameter Name="rational" Type="MathNet.Numerics.Rational" />
-      </Parameters>
-      <Docs>
-        <param name="n">To be added.</param>
-        <param name="rational">To be added.</param>
-        <summary>
-            Add a rational to a real number.
-            </summary>
+        <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="op_Division">
-      <MemberSignature Language="C#" Value="public static MathNet.Numerics.Rational op_Division (MathNet.Numerics.Polynomial polynomial, MathNet.Numerics.Rational rational);" />
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexRational op_Division (MathNet.Numerics.ComplexPolynomial polynomial, MathNet.Numerics.ComplexRational rational);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>MathNet.Numerics.Rational</ReturnType>
+        <ReturnType>MathNet.Numerics.ComplexRational</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="polynomial" Type="MathNet.Numerics.Polynomial" />
-        <Parameter Name="rational" Type="MathNet.Numerics.Rational" />
+        <Parameter Name="polynomial" Type="MathNet.Numerics.ComplexPolynomial" />
+        <Parameter Name="rational" Type="MathNet.Numerics.ComplexRational" />
       </Parameters>
       <Docs>
         <param name="polynomial">To be added.</param>
         <param name="rational">To be added.</param>
-        <summary>
-            Divide a polynomial to a rational.
-            </summary>
+        <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="op_Division">
-      <MemberSignature Language="C#" Value="public static MathNet.Numerics.Rational op_Division (MathNet.Numerics.Rational rational, MathNet.Numerics.Polynomial polynomial);" />
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexRational op_Division (MathNet.Numerics.ComplexRational rational, MathNet.Numerics.ComplexPolynomial polynomial);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>MathNet.Numerics.Rational</ReturnType>
+        <ReturnType>MathNet.Numerics.ComplexRational</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="rational" Type="MathNet.Numerics.Rational" />
-        <Parameter Name="polynomial" Type="MathNet.Numerics.Polynomial" />
+        <Parameter Name="rational" Type="MathNet.Numerics.ComplexRational" />
+        <Parameter Name="polynomial" Type="MathNet.Numerics.ComplexPolynomial" />
       </Parameters>
       <Docs>
         <param name="rational">To be added.</param>
         <param name="polynomial">To be added.</param>
-        <summary>
-            Divide a rational to a polynomial.
-            </summary>
+        <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="op_Division">
-      <MemberSignature Language="C#" Value="public static MathNet.Numerics.Rational op_Division (MathNet.Numerics.Rational rational1, MathNet.Numerics.Rational rational2);" />
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexRational op_Division (MathNet.Numerics.ComplexRational rational1, MathNet.Numerics.ComplexRational rational2);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>MathNet.Numerics.Rational</ReturnType>
+        <ReturnType>MathNet.Numerics.ComplexRational</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="rational1" Type="MathNet.Numerics.Rational" />
-        <Parameter Name="rational2" Type="MathNet.Numerics.Rational" />
+        <Parameter Name="rational1" Type="MathNet.Numerics.ComplexRational" />
+        <Parameter Name="rational2" Type="MathNet.Numerics.ComplexRational" />
       </Parameters>
       <Docs>
         <param name="rational1">To be added.</param>
         <param name="rational2">To be added.</param>
-        <summary>
-            Divide two rationals.
-            </summary>
+        <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="op_Division">
-      <MemberSignature Language="C#" Value="public static MathNet.Numerics.Rational op_Division (MathNet.Numerics.Rational rational, double n);" />
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexRational op_Division (MathNet.Numerics.ComplexRational rational, double n);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>MathNet.Numerics.Rational</ReturnType>
+        <ReturnType>MathNet.Numerics.ComplexRational</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="rational" Type="MathNet.Numerics.Rational" />
+        <Parameter Name="rational" Type="MathNet.Numerics.ComplexRational" />
         <Parameter Name="n" Type="System.Double" />
       </Parameters>
       <Docs>
         <param name="rational">To be added.</param>
         <param name="n">To be added.</param>
-        <summary>
-            Stretch a rational with a real number quotient.
-            </summary>
+        <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="op_Division">
-      <MemberSignature Language="C#" Value="public static MathNet.Numerics.Rational op_Division (double n, MathNet.Numerics.Rational rational);" />
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexRational op_Division (double n, MathNet.Numerics.ComplexRational rational);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>MathNet.Numerics.Rational</ReturnType>
+        <ReturnType>MathNet.Numerics.ComplexRational</ReturnType>
       </ReturnValue>
       <Parameters>
         <Parameter Name="n" Type="System.Double" />
-        <Parameter Name="rational" Type="MathNet.Numerics.Rational" />
+        <Parameter Name="rational" Type="MathNet.Numerics.ComplexRational" />
       </Parameters>
       <Docs>
         <param name="n">To be added.</param>
         <param name="rational">To be added.</param>
-        <summary>
-            Stretch a the inverse of a rational with a real number quotient.
-            </summary>
+        <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="op_Equality">
-      <MemberSignature Language="C#" Value="public static bool op_Equality (MathNet.Numerics.Rational rational1, MathNet.Numerics.Rational rational2);" />
+      <MemberSignature Language="C#" Value="public static bool op_Equality (MathNet.Numerics.ComplexRational rational1, MathNet.Numerics.ComplexRational rational2);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="rational1" Type="MathNet.Numerics.Rational" />
-        <Parameter Name="rational2" Type="MathNet.Numerics.Rational" />
+        <Parameter Name="rational1" Type="MathNet.Numerics.ComplexRational" />
+        <Parameter Name="rational2" Type="MathNet.Numerics.ComplexRational" />
       </Parameters>
       <Docs>
         <param name="rational1">To be added.</param>
         <param name="rational2">To be added.</param>
-        <summary>
-            Check whether two rationals have the same coefficients.
-            </summary>
+        <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="op_GreaterThan">
-      <MemberSignature Language="C#" Value="public static bool op_GreaterThan (MathNet.Numerics.Rational rational1, MathNet.Numerics.Rational rational2);" />
+      <MemberSignature Language="C#" Value="public static bool op_GreaterThan (MathNet.Numerics.ComplexRational rational1, MathNet.Numerics.ComplexRational rational2);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="rational1" Type="MathNet.Numerics.Rational" />
-        <Parameter Name="rational2" Type="MathNet.Numerics.Rational" />
+        <Parameter Name="rational1" Type="MathNet.Numerics.ComplexRational" />
+        <Parameter Name="rational2" Type="MathNet.Numerics.ComplexRational" />
       </Parameters>
       <Docs>
         <param name="rational1">To be added.</param>
         <param name="rational2">To be added.</param>
-        <summary>
-            Check wether a rational is bigger than another rational.
-            </summary>
+        <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="op_GreaterThanOrEqual">
-      <MemberSignature Language="C#" Value="public static bool op_GreaterThanOrEqual (MathNet.Numerics.Rational rational1, MathNet.Numerics.Rational rational2);" />
+      <MemberSignature Language="C#" Value="public static bool op_GreaterThanOrEqual (MathNet.Numerics.ComplexRational rational1, MathNet.Numerics.ComplexRational rational2);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="rational1" Type="MathNet.Numerics.Rational" />
-        <Parameter Name="rational2" Type="MathNet.Numerics.Rational" />
+        <Parameter Name="rational1" Type="MathNet.Numerics.ComplexRational" />
+        <Parameter Name="rational2" Type="MathNet.Numerics.ComplexRational" />
       </Parameters>
       <Docs>
         <param name="rational1">To be added.</param>
         <param name="rational2">To be added.</param>
-        <summary>
-            Check wether a rational is bigger than or equal to another rational.
-            </summary>
+        <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="op_Inequality">
-      <MemberSignature Language="C#" Value="public static bool op_Inequality (MathNet.Numerics.Rational rational1, MathNet.Numerics.Rational rational2);" />
+      <MemberSignature Language="C#" Value="public static bool op_Inequality (MathNet.Numerics.ComplexRational rational1, MathNet.Numerics.ComplexRational rational2);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="rational1" Type="MathNet.Numerics.Rational" />
-        <Parameter Name="rational2" Type="MathNet.Numerics.Rational" />
+        <Parameter Name="rational1" Type="MathNet.Numerics.ComplexRational" />
+        <Parameter Name="rational2" Type="MathNet.Numerics.ComplexRational" />
       </Parameters>
       <Docs>
         <param name="rational1">To be added.</param>
         <param name="rational2">To be added.</param>
-        <summary>
-            Check whether two rationals have different coefficients.
-            </summary>
+        <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="op_LessThan">
-      <MemberSignature Language="C#" Value="public static bool op_LessThan (MathNet.Numerics.Rational rational1, MathNet.Numerics.Rational rational2);" />
+      <MemberSignature Language="C#" Value="public static bool op_LessThan (MathNet.Numerics.ComplexRational rational1, MathNet.Numerics.ComplexRational rational2);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="rational1" Type="MathNet.Numerics.Rational" />
-        <Parameter Name="rational2" Type="MathNet.Numerics.Rational" />
+        <Parameter Name="rational1" Type="MathNet.Numerics.ComplexRational" />
+        <Parameter Name="rational2" Type="MathNet.Numerics.ComplexRational" />
       </Parameters>
       <Docs>
         <param name="rational1">To be added.</param>
         <param name="rational2">To be added.</param>
-        <summary>
-            Check wether a rational is smaller than another rational.
-            </summary>
+        <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="op_LessThanOrEqual">
-      <MemberSignature Language="C#" Value="public static bool op_LessThanOrEqual (MathNet.Numerics.Rational rational1, MathNet.Numerics.Rational rational2);" />
+      <MemberSignature Language="C#" Value="public static bool op_LessThanOrEqual (MathNet.Numerics.ComplexRational rational1, MathNet.Numerics.ComplexRational rational2);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Boolean</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="rational1" Type="MathNet.Numerics.Rational" />
-        <Parameter Name="rational2" Type="MathNet.Numerics.Rational" />
+        <Parameter Name="rational1" Type="MathNet.Numerics.ComplexRational" />
+        <Parameter Name="rational2" Type="MathNet.Numerics.ComplexRational" />
       </Parameters>
       <Docs>
         <param name="rational1">To be added.</param>
         <param name="rational2">To be added.</param>
-        <summary>
-            Check wether a rational is smaller than or equal to another rational.
-            </summary>
+        <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="op_Multiply">
-      <MemberSignature Language="C#" Value="public static MathNet.Numerics.Rational op_Multiply (MathNet.Numerics.Polynomial polynomial, MathNet.Numerics.Rational rational);" />
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexRational op_Multiply (MathNet.Numerics.Complex n, MathNet.Numerics.ComplexRational rational);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>MathNet.Numerics.Rational</ReturnType>
+        <ReturnType>MathNet.Numerics.ComplexRational</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="polynomial" Type="MathNet.Numerics.Polynomial" />
-        <Parameter Name="rational" Type="MathNet.Numerics.Rational" />
+        <Parameter Name="n" Type="MathNet.Numerics.Complex" />
+        <Parameter Name="rational" Type="MathNet.Numerics.ComplexRational" />
+      </Parameters>
+      <Docs>
+        <param name="n">To be added.</param>
+        <param name="rational">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Multiply">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexRational op_Multiply (MathNet.Numerics.ComplexPolynomial polynomial, MathNet.Numerics.ComplexRational rational);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.ComplexRational</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="polynomial" Type="MathNet.Numerics.ComplexPolynomial" />
+        <Parameter Name="rational" Type="MathNet.Numerics.ComplexRational" />
       </Parameters>
       <Docs>
         <param name="polynomial">To be added.</param>
         <param name="rational">To be added.</param>
-        <summary>
-            Multiply/Convolute a polynomial with a rational.
-            </summary>
+        <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="op_Multiply">
-      <MemberSignature Language="C#" Value="public static MathNet.Numerics.Rational op_Multiply (MathNet.Numerics.Rational rational, MathNet.Numerics.Polynomial polynomial);" />
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexRational op_Multiply (MathNet.Numerics.ComplexRational rational, MathNet.Numerics.Complex n);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>MathNet.Numerics.Rational</ReturnType>
+        <ReturnType>MathNet.Numerics.ComplexRational</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="rational" Type="MathNet.Numerics.Rational" />
-        <Parameter Name="polynomial" Type="MathNet.Numerics.Polynomial" />
+        <Parameter Name="rational" Type="MathNet.Numerics.ComplexRational" />
+        <Parameter Name="n" Type="MathNet.Numerics.Complex" />
+      </Parameters>
+      <Docs>
+        <param name="rational">To be added.</param>
+        <param name="n">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_Multiply">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexRational op_Multiply (MathNet.Numerics.ComplexRational rational, MathNet.Numerics.ComplexPolynomial polynomial);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>MathNet.Numerics.ComplexRational</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="rational" Type="MathNet.Numerics.ComplexRational" />
+        <Parameter Name="polynomial" Type="MathNet.Numerics.ComplexPolynomial" />
       </Parameters>
       <Docs>
         <param name="rational">To be added.</param>
         <param name="polynomial">To be added.</param>
-        <summary>
-            Multiply/Convolute a rationals with a polynomial.
-            </summary>
+        <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="op_Multiply">
-      <MemberSignature Language="C#" Value="public static MathNet.Numerics.Rational op_Multiply (MathNet.Numerics.Rational rational1, MathNet.Numerics.Rational rational2);" />
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexRational op_Multiply (MathNet.Numerics.ComplexRational rational1, MathNet.Numerics.ComplexRational rational2);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>MathNet.Numerics.Rational</ReturnType>
+        <ReturnType>MathNet.Numerics.ComplexRational</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="rational1" Type="MathNet.Numerics.Rational" />
-        <Parameter Name="rational2" Type="MathNet.Numerics.Rational" />
+        <Parameter Name="rational1" Type="MathNet.Numerics.ComplexRational" />
+        <Parameter Name="rational2" Type="MathNet.Numerics.ComplexRational" />
       </Parameters>
       <Docs>
         <param name="rational1">To be added.</param>
         <param name="rational2">To be added.</param>
-        <summary>
-            Multiply/Convolute two rationals.
-            </summary>
+        <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
-    <Member MemberName="op_Multiply">
-      <MemberSignature Language="C#" Value="public static MathNet.Numerics.Rational op_Multiply (MathNet.Numerics.Rational rational, double n);" />
+    <Member MemberName="op_Subtraction">
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexRational op_Subtraction (MathNet.Numerics.Complex n, MathNet.Numerics.ComplexRational rational);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>MathNet.Numerics.Rational</ReturnType>
+        <ReturnType>MathNet.Numerics.ComplexRational</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="rational" Type="MathNet.Numerics.Rational" />
-        <Parameter Name="n" Type="System.Double" />
-      </Parameters>
-      <Docs>
-        <param name="rational">To be added.</param>
-        <param name="n">To be added.</param>
-        <summary>
-            Stretch a rational with a real number factor.
-            </summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
-      </Docs>
-    </Member>
-    <Member MemberName="op_Multiply">
-      <MemberSignature Language="C#" Value="public static MathNet.Numerics.Rational op_Multiply (double n, MathNet.Numerics.Rational rational);" />
-      <MemberType>Method</MemberType>
-      <AssemblyInfo>
-        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
-      </AssemblyInfo>
-      <ReturnValue>
-        <ReturnType>MathNet.Numerics.Rational</ReturnType>
-      </ReturnValue>
-      <Parameters>
-        <Parameter Name="n" Type="System.Double" />
-        <Parameter Name="rational" Type="MathNet.Numerics.Rational" />
+        <Parameter Name="n" Type="MathNet.Numerics.Complex" />
+        <Parameter Name="rational" Type="MathNet.Numerics.ComplexRational" />
       </Parameters>
       <Docs>
         <param name="n">To be added.</param>
         <param name="rational">To be added.</param>
-        <summary>
-            Stretch a polynomial with a real number factor.
-            </summary>
+        <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="op_Subtraction">
-      <MemberSignature Language="C#" Value="public static MathNet.Numerics.Rational op_Subtraction (MathNet.Numerics.Polynomial polynomial, MathNet.Numerics.Rational rational);" />
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexRational op_Subtraction (MathNet.Numerics.ComplexPolynomial polynomial, MathNet.Numerics.ComplexRational rational);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>MathNet.Numerics.Rational</ReturnType>
+        <ReturnType>MathNet.Numerics.ComplexRational</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="polynomial" Type="MathNet.Numerics.Polynomial" />
-        <Parameter Name="rational" Type="MathNet.Numerics.Rational" />
+        <Parameter Name="polynomial" Type="MathNet.Numerics.ComplexPolynomial" />
+        <Parameter Name="rational" Type="MathNet.Numerics.ComplexRational" />
       </Parameters>
       <Docs>
         <param name="polynomial">To be added.</param>
         <param name="rational">To be added.</param>
-        <summary>
-            Subtract a rational from a polynomial.
-            </summary>
+        <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="op_Subtraction">
-      <MemberSignature Language="C#" Value="public static MathNet.Numerics.Rational op_Subtraction (MathNet.Numerics.Rational rational, MathNet.Numerics.Polynomial polynomial);" />
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexRational op_Subtraction (MathNet.Numerics.ComplexRational rational, MathNet.Numerics.ComplexPolynomial polynomial);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>MathNet.Numerics.Rational</ReturnType>
+        <ReturnType>MathNet.Numerics.ComplexRational</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="rational" Type="MathNet.Numerics.Rational" />
-        <Parameter Name="polynomial" Type="MathNet.Numerics.Polynomial" />
+        <Parameter Name="rational" Type="MathNet.Numerics.ComplexRational" />
+        <Parameter Name="polynomial" Type="MathNet.Numerics.ComplexPolynomial" />
       </Parameters>
       <Docs>
         <param name="rational">To be added.</param>
         <param name="polynomial">To be added.</param>
-        <summary>
-            Subtract a polynomial from a rational.
-            </summary>
+        <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="op_Subtraction">
-      <MemberSignature Language="C#" Value="public static MathNet.Numerics.Rational op_Subtraction (MathNet.Numerics.Rational rational1, MathNet.Numerics.Rational rational2);" />
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexRational op_Subtraction (MathNet.Numerics.ComplexRational rational1, MathNet.Numerics.ComplexRational rational2);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>MathNet.Numerics.Rational</ReturnType>
+        <ReturnType>MathNet.Numerics.ComplexRational</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="rational1" Type="MathNet.Numerics.Rational" />
-        <Parameter Name="rational2" Type="MathNet.Numerics.Rational" />
+        <Parameter Name="rational1" Type="MathNet.Numerics.ComplexRational" />
+        <Parameter Name="rational2" Type="MathNet.Numerics.ComplexRational" />
       </Parameters>
       <Docs>
         <param name="rational1">To be added.</param>
         <param name="rational2">To be added.</param>
-        <summary>
-            Subtract a rational from a rational.
-            </summary>
+        <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="op_Subtraction">
-      <MemberSignature Language="C#" Value="public static MathNet.Numerics.Rational op_Subtraction (MathNet.Numerics.Rational rational, double n);" />
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexRational op_Subtraction (MathNet.Numerics.ComplexRational rational, double n);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>MathNet.Numerics.Rational</ReturnType>
+        <ReturnType>MathNet.Numerics.ComplexRational</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="rational" Type="MathNet.Numerics.Rational" />
+        <Parameter Name="rational" Type="MathNet.Numerics.ComplexRational" />
         <Parameter Name="n" Type="System.Double" />
       </Parameters>
       <Docs>
         <param name="rational">To be added.</param>
         <param name="n">To be added.</param>
-        <summary>
-            Subtract a real number from a rational.
-            </summary>
-        <returns>To be added.</returns>
-        <remarks>To be added.</remarks>
-      </Docs>
-    </Member>
-    <Member MemberName="op_Subtraction">
-      <MemberSignature Language="C#" Value="public static MathNet.Numerics.Rational op_Subtraction (double n, MathNet.Numerics.Rational rational);" />
-      <MemberType>Method</MemberType>
-      <AssemblyInfo>
-        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
-      </AssemblyInfo>
-      <ReturnValue>
-        <ReturnType>MathNet.Numerics.Rational</ReturnType>
-      </ReturnValue>
-      <Parameters>
-        <Parameter Name="n" Type="System.Double" />
-        <Parameter Name="rational" Type="MathNet.Numerics.Rational" />
-      </Parameters>
-      <Docs>
-        <param name="n">To be added.</param>
-        <param name="rational">To be added.</param>
-        <summary>
-            Subtract a rational from a real number.
-            </summary>
+        <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="op_UnaryNegation">
-      <MemberSignature Language="C#" Value="public static MathNet.Numerics.Rational op_UnaryNegation (MathNet.Numerics.Rational rational);" />
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexRational op_UnaryNegation (MathNet.Numerics.ComplexRational rational);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>MathNet.Numerics.Rational</ReturnType>
+        <ReturnType>MathNet.Numerics.ComplexRational</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="rational" Type="MathNet.Numerics.Rational" />
+        <Parameter Name="rational" Type="MathNet.Numerics.ComplexRational" />
       </Parameters>
       <Docs>
         <param name="rational">To be added.</param>
-        <summary>
-            Negate a rational.
-            </summary>
+        <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="op_UnaryPlus">
-      <MemberSignature Language="C#" Value="public static MathNet.Numerics.Rational op_UnaryPlus (MathNet.Numerics.Rational rational);" />
+      <MemberSignature Language="C#" Value="public static MathNet.Numerics.ComplexRational op_UnaryPlus (MathNet.Numerics.ComplexRational rational);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>MathNet.Numerics.Rational</ReturnType>
+        <ReturnType>MathNet.Numerics.ComplexRational</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="rational" Type="MathNet.Numerics.Rational" />
+        <Parameter Name="rational" Type="MathNet.Numerics.ComplexRational" />
       </Parameters>
       <Docs>
         <param name="rational">To be added.</param>
-        <summary>
-            (nop)
-            </summary>
+        <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="Subtract">
-      <MemberSignature Language="C#" Value="public MathNet.Numerics.Rational Subtract (MathNet.Numerics.Rational rational);" />
+      <MemberSignature Language="C#" Value="public MathNet.Numerics.ComplexRational Subtract (MathNet.Numerics.ComplexRational rational);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
-        <ReturnType>MathNet.Numerics.Rational</ReturnType>
+        <ReturnType>MathNet.Numerics.ComplexRational</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="rational" Type="MathNet.Numerics.Rational" />
+        <Parameter Name="rational" Type="MathNet.Numerics.ComplexRational" />
       </Parameters>
       <Docs>
-        <param name="rational">The rational to subtract.</param>
-        <summary>
-            Create a new rational as the result of subtracting a rational from this rational.
-            </summary>
+        <param name="rational">To be added.</param>
+        <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="SubtractInplace">
-      <MemberSignature Language="C#" Value="public void SubtractInplace (MathNet.Numerics.Polynomial polynomial);" />
+      <MemberSignature Language="C#" Value="public void SubtractInplace (MathNet.Numerics.Complex n);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="polynomial" Type="MathNet.Numerics.Polynomial" />
+        <Parameter Name="n" Type="MathNet.Numerics.Complex" />
       </Parameters>
       <Docs>
-        <param name="polynomial">The polynomial to subtract.</param>
-        <summary>
-            Subtract a polynomial directly inplace from this rational.
-            </summary>
+        <param name="n">To be added.</param>
+        <summary>To be added.</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
     <Member MemberName="SubtractInplace">
-      <MemberSignature Language="C#" Value="public void SubtractInplace (double n);" />
+      <MemberSignature Language="C#" Value="public void SubtractInplace (MathNet.Numerics.ComplexPolynomial polynomial);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Void</ReturnType>
       </ReturnValue>
       <Parameters>
-        <Parameter Name="n" Type="System.Double" />
+        <Parameter Name="polynomial" Type="MathNet.Numerics.ComplexPolynomial" />
       </Parameters>
       <Docs>
-        <param name="n">The floating point number to subtract.</param>
-        <summary>
-            Subtract a floating point number directly inplace from this rational.
-            </summary>
+        <param name="polynomial">To be added.</param>
+        <summary>To be added.</summary>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -1309,7 +1131,6 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Object</ReturnType>
@@ -1326,7 +1147,6 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.Int32</ReturnType>
@@ -1346,16 +1166,13 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>
       </ReturnValue>
       <Parameters />
       <Docs>
-        <summary>
-            Format a human-readable string of this rational with "x" as base variable.
-            </summary>
+        <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>
@@ -1365,7 +1182,6 @@
       <MemberType>Method</MemberType>
       <AssemblyInfo>
         <AssemblyVersion>1.0.0.8645</AssemblyVersion>
-        <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
         <ReturnType>System.String</ReturnType>
@@ -1375,9 +1191,7 @@
       </Parameters>
       <Docs>
         <param name="baseVariable">To be added.</param>
-        <summary>
-            Format a human-readable string of this rational with the given string as base variable (e.g. "x").
-            </summary>
+        <summary>To be added.</summary>
         <returns>To be added.</returns>
         <remarks>To be added.</remarks>
       </Docs>

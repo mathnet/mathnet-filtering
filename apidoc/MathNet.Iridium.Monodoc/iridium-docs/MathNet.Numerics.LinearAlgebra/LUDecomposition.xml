@@ -2,6 +2,7 @@
   <TypeSignature Language="C#" Value="public class LUDecomposition" />
   <AssemblyInfo>
     <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>1.0.0.8645</AssemblyVersion>
     <AssemblyVersion>2008.8.16.470</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -28,6 +29,7 @@
       <MemberSignature Language="C#" Value="public LUDecomposition (MathNet.Numerics.LinearAlgebra.Matrix A);" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
@@ -38,7 +40,6 @@
         <summary>
             LU Decomposition
             </summary>
-        <returns>Structure to access L, U and piv.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -46,6 +47,7 @@
       <MemberSignature Language="C#" Value="public double Determinant ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -65,6 +67,7 @@
       <MemberSignature Language="C#" Value="public double[] DoublePivot { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
@@ -87,6 +90,7 @@
       <MemberSignature Language="C#" Value="public bool IsNonSingular { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -96,8 +100,8 @@
         <summary>
             Indicates whether the matrix is nonsingular.
             </summary>
-        <returns>
-          <c>true</c> if U, and hence A, is nonsingular.</returns>
+        <value>
+          <c>true</c> if U, and hence A, is nonsingular.</value>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -106,6 +110,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.Matrix L { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -123,6 +128,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.Matrix PermutationMatrix { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -140,6 +146,7 @@
       <MemberSignature Language="C#" Value="public int[] Pivot { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -157,6 +164,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.Vector PivotVector { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -174,6 +182,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.Matrix Solve (MathNet.Numerics.LinearAlgebra.Matrix B);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -197,6 +206,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.Matrix U { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>

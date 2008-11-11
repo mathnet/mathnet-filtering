@@ -2,6 +2,7 @@
   <TypeSignature Language="C#" Value="public static class Number" />
   <AssemblyInfo>
     <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>1.0.0.8645</AssemblyVersion>
     <AssemblyVersion>2008.8.16.470</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -19,6 +20,7 @@
       <MemberSignature Language="C#" Value="public static bool AlmostEqual (double a, double b);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -45,6 +47,7 @@
       <MemberSignature Language="C#" Value="public static bool AlmostEqual (double[] x, double[] y);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -71,6 +74,7 @@
       <MemberSignature Language="C#" Value="public static bool AlmostEqual (double a, double b, double relativeAccuracy);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -99,6 +103,7 @@
       <MemberSignature Language="C#" Value="public static bool AlmostEqual (double a, double b, int maxNumbersBetween);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -124,6 +129,7 @@
       <MemberSignature Language="C#" Value="public static bool AlmostEqual (double a, double b, ulong maxNumbersBetween);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
@@ -154,6 +160,7 @@
       <MemberSignature Language="C#" Value="public static bool AlmostEqualNorm (double a, double b, double diff);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -182,6 +189,7 @@
       <MemberSignature Language="C#" Value="public static bool AlmostEqualNorm (double a, double b, double diff, double relativeAccuracy);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -212,6 +220,7 @@
       <MemberSignature Language="C#" Value="public static bool AlmostZero (double a);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -235,6 +244,7 @@
       <MemberSignature Language="C#" Value="public static bool AlmostZero (double a, double absoluteAccuracy);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -256,10 +266,51 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="CoerceZero">
+      <MemberSignature Language="C#" Value="public static double CoerceZero (double a);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="a" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="a">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="CoerceZero">
+      <MemberSignature Language="C#" Value="public static double CoerceZero (double a, double absoluteAccuracy);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Double</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="a" Type="System.Double" />
+        <Parameter Name="absoluteAccuracy" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="a">To be added.</param>
+        <param name="absoluteAccuracy">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="Decrement">
       <MemberSignature Language="C#" Value="public static double Decrement (double value);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -284,6 +335,7 @@
       <MemberSignature Language="C#" Value="public static readonly double DefaultRelativeAccuracy = 2.22044604925031E-15;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -299,6 +351,7 @@
       <MemberSignature Language="C#" Value="public static double EpsilonOf (double value);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -321,6 +374,7 @@
       <MemberSignature Language="C#" Value="public static double Increment (double value);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -345,6 +399,7 @@
       <MemberSignature Language="C#" Value="public static ulong NumbersBetween (double a, double b);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
@@ -373,6 +428,7 @@
       <MemberSignature Language="C#" Value="public static double PositiveEpsilonOf (double value);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -395,6 +451,7 @@
       <MemberSignature Language="C#" Value="public static readonly double PositiveRelativeAccuracy = 2.22044604925031E-16;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -410,6 +467,7 @@
       <MemberSignature Language="C#" Value="public static readonly double RelativeAccuracy = 1.11022302462516E-16;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -425,6 +483,7 @@
       <MemberSignature Language="C#" Value="public static long SignedMagnitudeToTwosComplementInt64 (long value);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -446,6 +505,7 @@
       <MemberSignature Language="C#" Value="public static ulong SignedMagnitudeToTwosComplementUInt64 (long value);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
@@ -472,6 +532,7 @@
       <MemberSignature Language="C#" Value="public const double SmallestNumberGreaterThanZero = 4.94065645841247E-324;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -487,6 +548,7 @@
       <MemberSignature Language="C#" Value="public static long ToLexicographicalOrderedInt64 (double value);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -508,6 +570,7 @@
       <MemberSignature Language="C#" Value="public static ulong ToLexicographicalOrderedUInt64 (double value);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>

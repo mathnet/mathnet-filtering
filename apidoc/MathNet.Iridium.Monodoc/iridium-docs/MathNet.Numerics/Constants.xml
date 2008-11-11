@@ -2,6 +2,7 @@
   <TypeSignature Language="C#" Value="public static class Constants" />
   <AssemblyInfo>
     <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>1.0.0.8645</AssemblyVersion>
     <AssemblyVersion>2008.8.16.470</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -21,6 +22,7 @@
       <MemberSignature Language="C#" Value="public const double Catalan = 0.915965594177219;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -36,6 +38,7 @@
       <MemberSignature Language="C#" Value="public const double Degree = 0.0174532925199433;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -53,6 +56,7 @@
       <MemberSignature Language="C#" Value="public const double E = 2.71828182845905;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -68,6 +72,7 @@
       <MemberSignature Language="C#" Value="public const double EulerGamma = 0.577215664901533;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -83,6 +88,7 @@
       <MemberSignature Language="C#" Value="public const double Glaisher = 1.28242712910062;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -98,6 +104,7 @@
       <MemberSignature Language="C#" Value="public const double GoldenRatio = 1.61803398874989;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -113,6 +120,7 @@
       <MemberSignature Language="C#" Value="public const double Grad = 0.015707963267949;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -130,6 +138,7 @@
       <MemberSignature Language="C#" Value="public const double HalfSqrt3 = 0.866025403784439;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -145,6 +154,7 @@
       <MemberSignature Language="C#" Value="public const double InvE = 0.367879441171442;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -160,6 +170,7 @@
       <MemberSignature Language="C#" Value="public const double InvPi = 0.318309886183791;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -175,6 +186,7 @@
       <MemberSignature Language="C#" Value="public const double InvSqrt2Pi = 0.398942280401433;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -190,6 +202,7 @@
       <MemberSignature Language="C#" Value="public const double InvSqrtPi = 0.564189583547756;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -205,6 +218,7 @@
       <MemberSignature Language="C#" Value="public const double Khinchin = 2.68545200106531;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -220,6 +234,7 @@
       <MemberSignature Language="C#" Value="public const double Ln10 = 2.30258509299405;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -235,6 +250,7 @@
       <MemberSignature Language="C#" Value="public const double Ln2 = 0.693147180559945;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -250,6 +266,7 @@
       <MemberSignature Language="C#" Value="public const double LnPi = 1.1447298858494;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -265,6 +282,7 @@
       <MemberSignature Language="C#" Value="public const double Log10E = 0.434294481903252;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -280,6 +298,7 @@
       <MemberSignature Language="C#" Value="public const double Log2E = 1.44269504088896;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -295,6 +314,7 @@
       <MemberSignature Language="C#" Value="public const double NeutralDecibel = 0.230258509299405;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -313,6 +333,7 @@
       <MemberSignature Language="C#" Value="public const double Pi = 3.14159265358979;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -328,6 +349,7 @@
       <MemberSignature Language="C#" Value="public const double Pi_2 = 1.5707963267949;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -343,6 +365,7 @@
       <MemberSignature Language="C#" Value="public const double Pi_4 = 0.785398163397448;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -358,6 +381,7 @@
       <MemberSignature Language="C#" Value="public const double PowerDecibel = 0.115129254649702;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -376,6 +400,7 @@
       <MemberSignature Language="C#" Value="public const double Sqrt1_2 = 0.707106781186548;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -391,6 +416,7 @@
       <MemberSignature Language="C#" Value="public const double Sqrt2 = 1.4142135623731;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -406,6 +432,7 @@
       <MemberSignature Language="C#" Value="public const double Sqrt2Pi = 2.506628274631;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -421,6 +448,7 @@
       <MemberSignature Language="C#" Value="public const double SqrtE = 1.64872127070013;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -436,6 +464,7 @@
       <MemberSignature Language="C#" Value="public const double SqrtPi = 1.77245385090552;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -451,6 +480,7 @@
       <MemberSignature Language="C#" Value="public const double TwoInvPi = 0.636619772367581;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -466,6 +496,7 @@
       <MemberSignature Language="C#" Value="public const double TwoInvSqrtPi = 1.12837916709551;" />
       <MemberType>Field</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>

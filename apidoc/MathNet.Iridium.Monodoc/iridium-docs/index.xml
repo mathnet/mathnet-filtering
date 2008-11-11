@@ -1,51 +1,45 @@
 <Overview>
   <Assemblies>
-    <Assembly Name="MathNet.Iridium" Version="2008.8.16.470">
+    <Assembly Name="MathNet.Iridium" Version="1.0.0.8645">
       <Attributes>
-        <Attribute>
-          <AttributeName>System.Reflection.AssemblyCopyright("Copyright © 2008, Math.NET Project")</AttributeName>
-        </Attribute>
-        <Attribute>
-          <AttributeName>System.Reflection.AssemblyTrademark("")</AttributeName>
-        </Attribute>
-        <Attribute>
-          <AttributeName>System.Security.AllowPartiallyTrustedCallers</AttributeName>
-        </Attribute>
-        <Attribute>
-          <AttributeName>System.Reflection.AssemblyFileVersion("2008.8.16.470")</AttributeName>
-        </Attribute>
-        <Attribute>
-          <AttributeName>System.Runtime.CompilerServices.CompilationRelaxations(8)</AttributeName>
-        </Attribute>
-        <Attribute>
-          <AttributeName>System.Reflection.AssemblyProduct("Math.NET")</AttributeName>
-        </Attribute>
-        <Attribute>
-          <AttributeName>System.CLSCompliant(true)</AttributeName>
-        </Attribute>
         <Attribute>
           <AttributeName>System.Runtime.CompilerServices.RuntimeCompatibility(WrapNonExceptionThrows=true)</AttributeName>
         </Attribute>
         <Attribute>
-          <AttributeName>System.Reflection.AssemblyCompany("Math.NET Project")</AttributeName>
-        </Attribute>
-        <Attribute>
-          <AttributeName>System.Runtime.InteropServices.Guid("1386fccc-7816-4311-a04b-25227138e8b3")</AttributeName>
+          <AttributeName>System.Reflection.AssemblyFileVersion("1.0.0.0")</AttributeName>
         </Attribute>
         <Attribute>
           <AttributeName>System.Runtime.InteropServices.ComVisible(false)</AttributeName>
         </Attribute>
         <Attribute>
+          <AttributeName>System.Runtime.InteropServices.Guid("1386fccc-7816-4311-a04b-25227138e8b3")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.CLSCompliant(true)</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Security.AllowPartiallyTrustedCallers</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyTrademark("")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyCopyright("Copyright © 2008, Math.NET Project")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyProduct("Math.NET")</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Reflection.AssemblyCompany("Math.NET Project")</AttributeName>
+        </Attribute>
+        <Attribute>
           <AttributeName>System.Reflection.AssemblyConfiguration("")</AttributeName>
         </Attribute>
         <Attribute>
-          <AttributeName>System.Diagnostics.Debuggable(System.Diagnostics.DebuggableAttribute+DebuggingModes.IgnoreSymbolStoreSequencePoints)</AttributeName>
+          <AttributeName>System.Reflection.AssemblyDescription("http://mathnet.opensourcedotnet.info/")</AttributeName>
         </Attribute>
         <Attribute>
           <AttributeName>System.Reflection.AssemblyTitle("Math.NET Iridium: Scientific Numerical Library")</AttributeName>
-        </Attribute>
-        <Attribute>
-          <AttributeName>System.Reflection.AssemblyDescription("http://mathnet.opensourcedotnet.info/")</AttributeName>
         </Attribute>
       </Attributes>
     </Assembly>
@@ -57,6 +51,8 @@
       <Type Name="Collection" Kind="Class" />
       <Type Name="Combinatorics" Kind="Class" />
       <Type Name="Complex" Kind="Structure" />
+      <Type Name="ComplexPolynomial" Kind="Class" />
+      <Type Name="ComplexRational" Kind="Class" />
       <Type Name="Constants" Kind="Class" />
       <Type Name="Fn" Kind="Class" />
       <Type Name="IRealFunction" Kind="Interface" />

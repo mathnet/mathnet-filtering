@@ -2,6 +2,7 @@
   <TypeSignature Language="C#" Value="public struct Complex : IComparable&lt;MathNet.Numerics.Complex&gt;, IEquatable&lt;MathNet.Numerics.Complex&gt;" />
   <AssemblyInfo>
     <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>1.0.0.8645</AssemblyVersion>
     <AssemblyVersion>2008.8.16.470</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -53,6 +54,7 @@
       <MemberSignature Language="C#" Value="public Complex (double real, double imag);" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
@@ -69,10 +71,51 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="AlmostEquals">
+      <MemberSignature Language="C#" Value="public bool AlmostEquals (MathNet.Numerics.Complex other);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="other" Type="MathNet.Numerics.Complex" />
+      </Parameters>
+      <Docs>
+        <param name="other">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AlmostEquals">
+      <MemberSignature Language="C#" Value="public bool AlmostEquals (MathNet.Numerics.Complex other, double relativeAccuracy);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="other" Type="MathNet.Numerics.Complex" />
+        <Parameter Name="relativeAccuracy" Type="System.Double" />
+      </Parameters>
+      <Docs>
+        <param name="other">To be added.</param>
+        <param name="relativeAccuracy">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="Argument">
       <MemberSignature Language="C#" Value="public double Argument { set; get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -94,6 +137,7 @@
       <MemberSignature Language="C#" Value="public static System.Collections.IComparer ArgumentModulusComparer { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -111,6 +155,7 @@
       <MemberSignature Language="C#" Value="public int CompareTo (MathNet.Numerics.Complex other);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -134,6 +179,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Complex Conjugate { set; get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -161,6 +207,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Complex Cosecant ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -179,6 +226,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Complex Cosine ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -197,6 +245,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Complex Cotangent ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -215,6 +264,7 @@
       <MemberSignature Language="C#" Value="public bool Equals (MathNet.Numerics.Complex other);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -236,6 +286,7 @@
       <MemberSignature Language="C#" Value="public override bool Equals (object obj);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -257,6 +308,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Complex Exponential ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -275,6 +327,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Complex FromModulusArgument (double modulus, double argument);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -299,6 +352,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Complex FromRealImaginary (double real, double imag);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -323,6 +377,7 @@
       <MemberSignature Language="C#" Value="public override int GetHashCode ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -341,6 +396,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Complex HyperbolicCosecant ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -359,6 +415,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Complex HyperbolicCosine ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -377,6 +434,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Complex HyperbolicCotangent ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -395,6 +453,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Complex HyperbolicSecant ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -413,6 +472,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Complex HyperbolicSine ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -431,6 +491,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Complex HyperbolicTangent ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -449,6 +510,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Complex I { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -466,6 +528,7 @@
       <MemberSignature Language="C#" Value="public double Imag { set; get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -484,6 +547,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Complex Infinity { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -508,6 +572,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Complex InverseCosecant ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -526,6 +591,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Complex InverseCosine ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -544,6 +610,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Complex InverseCotangent ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -562,6 +629,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Complex InverseHyperbolicCosecant ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -580,6 +648,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Complex InverseHyperbolicCosine ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -598,6 +667,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Complex InverseHyperbolicCotangent ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -616,6 +686,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Complex InverseHyperbolicSecant ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -634,6 +705,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Complex InverseHyperbolicSine ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -652,6 +724,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Complex InverseHyperbolicTangent ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -670,6 +743,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Complex InverseSecant ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -688,6 +762,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Complex InverseSine ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -706,6 +781,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Complex InverseTangent ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -724,6 +800,7 @@
       <MemberSignature Language="C#" Value="public bool IsI { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -741,6 +818,7 @@
       <MemberSignature Language="C#" Value="public bool IsImaginary { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -758,6 +836,7 @@
       <MemberSignature Language="C#" Value="public bool IsInfinity { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -779,6 +858,7 @@
       <MemberSignature Language="C#" Value="public bool IsNaN { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -797,6 +877,7 @@
       <MemberSignature Language="C#" Value="public bool IsOne { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -814,6 +895,7 @@
       <MemberSignature Language="C#" Value="public bool IsReal { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -831,6 +913,7 @@
       <MemberSignature Language="C#" Value="public bool IsRealNonNegative { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -848,6 +931,7 @@
       <MemberSignature Language="C#" Value="public bool IsZero { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -865,6 +949,7 @@
       <MemberSignature Language="C#" Value="public double Modulus { set; get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -889,6 +974,7 @@
       <MemberSignature Language="C#" Value="public static System.Collections.IComparer ModulusArgumentComparer { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -906,6 +992,7 @@
       <MemberSignature Language="C#" Value="public double ModulusSquared { set; get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -930,6 +1017,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Complex NaN { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -947,6 +1035,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Complex NaturalLogarithm ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -965,6 +1054,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Complex One { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -982,6 +1072,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Complex op_Addition (MathNet.Numerics.Complex summand1, MathNet.Numerics.Complex summand2);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1005,6 +1096,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Complex op_Addition (MathNet.Numerics.Complex summand1, double summand2);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1028,6 +1120,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Complex op_Addition (double summand1, MathNet.Numerics.Complex summand2);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1051,6 +1144,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Complex op_Division (MathNet.Numerics.Complex dividend, MathNet.Numerics.Complex divisor);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1074,6 +1168,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Complex op_Division (MathNet.Numerics.Complex dividend, double divisor);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1097,6 +1192,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Complex op_Division (double dividend, MathNet.Numerics.Complex divisor);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1120,6 +1216,7 @@
       <MemberSignature Language="C#" Value="public static bool op_Equality (MathNet.Numerics.Complex complex1, MathNet.Numerics.Complex complex2);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1139,10 +1236,53 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="op_GreaterThan">
+      <MemberSignature Language="C#" Value="public static bool op_GreaterThan (MathNet.Numerics.Complex complex1, MathNet.Numerics.Complex complex2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="complex1" Type="MathNet.Numerics.Complex" />
+        <Parameter Name="complex2" Type="MathNet.Numerics.Complex" />
+      </Parameters>
+      <Docs>
+        <param name="complex1">To be added.</param>
+        <param name="complex2">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_GreaterThanOrEqual">
+      <MemberSignature Language="C#" Value="public static bool op_GreaterThanOrEqual (MathNet.Numerics.Complex complex1, MathNet.Numerics.Complex complex2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="complex1" Type="MathNet.Numerics.Complex" />
+        <Parameter Name="complex2" Type="MathNet.Numerics.Complex" />
+      </Parameters>
+      <Docs>
+        <param name="complex1">To be added.</param>
+        <param name="complex2">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="op_Implicit">
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Complex op_Implicit (double number);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1164,6 +1304,7 @@
       <MemberSignature Language="C#" Value="public static bool op_Inequality (MathNet.Numerics.Complex complex1, MathNet.Numerics.Complex complex2);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1183,10 +1324,53 @@
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
+    <Member MemberName="op_LessThan">
+      <MemberSignature Language="C#" Value="public static bool op_LessThan (MathNet.Numerics.Complex complex1, MathNet.Numerics.Complex complex2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="complex1" Type="MathNet.Numerics.Complex" />
+        <Parameter Name="complex2" Type="MathNet.Numerics.Complex" />
+      </Parameters>
+      <Docs>
+        <param name="complex1">To be added.</param>
+        <param name="complex2">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="op_LessThanOrEqual">
+      <MemberSignature Language="C#" Value="public static bool op_LessThanOrEqual (MathNet.Numerics.Complex complex1, MathNet.Numerics.Complex complex2);" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="complex1" Type="MathNet.Numerics.Complex" />
+        <Parameter Name="complex2" Type="MathNet.Numerics.Complex" />
+      </Parameters>
+      <Docs>
+        <param name="complex1">To be added.</param>
+        <param name="complex2">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
     <Member MemberName="op_Multiply">
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Complex op_Multiply (MathNet.Numerics.Complex multiplicand, MathNet.Numerics.Complex multiplier);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1210,6 +1394,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Complex op_Multiply (MathNet.Numerics.Complex multiplicand, double multiplier);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1233,6 +1418,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Complex op_Multiply (double multiplicand, MathNet.Numerics.Complex multiplier);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1256,6 +1442,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Complex op_Subtraction (MathNet.Numerics.Complex minuend, MathNet.Numerics.Complex subtrahend);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1279,6 +1466,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Complex op_Subtraction (MathNet.Numerics.Complex minuend, double subtrahend);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1302,6 +1490,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Complex op_Subtraction (double minuend, MathNet.Numerics.Complex subtrahend);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1325,6 +1514,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Complex op_UnaryNegation (MathNet.Numerics.Complex subtrahend);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1346,6 +1536,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Complex op_UnaryPlus (MathNet.Numerics.Complex summand);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1367,6 +1558,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Complex Parse (string complex);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1405,6 +1597,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Complex Parse (string complex, System.Globalization.NumberFormatInfo numberFormat);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1428,6 +1621,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Complex Power (MathNet.Numerics.Complex exponent);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1449,6 +1643,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Complex Random (MathNet.Numerics.Distributions.IContinuousGenerator randomDistribution);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1470,6 +1665,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Complex Random (MathNet.Numerics.Distributions.IContinuousGenerator realRandomDistribution, MathNet.Numerics.Distributions.IContinuousGenerator imagRandomDistribution);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1493,6 +1689,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Complex RandomPolar (MathNet.Numerics.Distributions.IContinuousGenerator modulusRandomDistribution, MathNet.Numerics.Distributions.IContinuousGenerator argumentRandomDistribution);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1516,6 +1713,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Complex RandomUnitCircle (MathNet.Numerics.Distributions.IContinuousGenerator argumentRandomDistribution);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1537,6 +1735,7 @@
       <MemberSignature Language="C#" Value="public double Real { set; get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1555,6 +1754,7 @@
       <MemberSignature Language="C#" Value="public static System.Collections.IComparer RealImaginaryComparer { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1572,6 +1772,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Complex Root (MathNet.Numerics.Complex rootexponent);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1593,6 +1794,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Complex Secant ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1611,6 +1813,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Complex Sign { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1628,6 +1831,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Complex Sine ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1646,6 +1850,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Complex Square ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1663,6 +1868,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Complex SquareRoot ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1680,6 +1886,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Complex Tangent ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1698,6 +1905,7 @@
       <MemberSignature Language="C#" Value="public override string ToString ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1716,6 +1924,7 @@
       <MemberSignature Language="C#" Value="public string ToString (System.Globalization.NumberFormatInfo numberFormat);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1737,6 +1946,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Complex Zero { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>

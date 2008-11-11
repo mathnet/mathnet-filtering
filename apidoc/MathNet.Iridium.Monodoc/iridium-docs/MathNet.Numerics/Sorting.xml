@@ -2,6 +2,7 @@
   <TypeSignature Language="C#" Value="public static class Sorting" />
   <AssemblyInfo>
     <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>1.0.0.8645</AssemblyVersion>
     <AssemblyVersion>2008.8.16.470</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -19,6 +20,7 @@
       <MemberSignature Language="C#" Value="public static void Sort&lt;T&gt; (System.Collections.Generic.IList&lt;T&gt; keys);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -43,6 +45,7 @@
       <MemberSignature Language="C#" Value="public static void Sort&lt;T&gt; (System.Collections.Generic.IList&lt;T&gt; keys, System.Collections.Generic.IComparer&lt;T&gt; comparer);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -69,6 +72,7 @@
       <MemberSignature Language="C#" Value="public static void Sort&lt;TKey,TItem&gt; (System.Collections.Generic.IList&lt;TKey&gt; keys, System.Collections.Generic.IList&lt;TItem&gt; items);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -97,6 +101,7 @@
       <MemberSignature Language="C#" Value="public static void Sort&lt;TKey,TItem&gt; (System.Collections.Generic.IList&lt;TKey&gt; keys, System.Collections.Generic.IList&lt;TItem&gt; items, System.Collections.Generic.IComparer&lt;TKey&gt; comparer);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -127,6 +132,7 @@
       <MemberSignature Language="C#" Value="public static void Sort&lt;TKey,TItem1,TItem2&gt; (System.Collections.Generic.IList&lt;TKey&gt; keys, System.Collections.Generic.IList&lt;TItem1&gt; items1, System.Collections.Generic.IList&lt;TItem2&gt; items2);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -159,6 +165,7 @@
       <MemberSignature Language="C#" Value="public static void Sort&lt;TKey,TItem1,TItem2&gt; (System.Collections.Generic.IList&lt;TKey&gt; keys, System.Collections.Generic.IList&lt;TItem1&gt; items1, System.Collections.Generic.IList&lt;TItem2&gt; items2, System.Collections.Generic.IComparer&lt;TKey&gt; comparer);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>

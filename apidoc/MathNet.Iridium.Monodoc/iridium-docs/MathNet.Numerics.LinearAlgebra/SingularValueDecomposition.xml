@@ -2,6 +2,7 @@
   <TypeSignature Language="C#" Value="public class SingularValueDecomposition" />
   <AssemblyInfo>
     <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>1.0.0.8645</AssemblyVersion>
     <AssemblyVersion>2008.8.16.470</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -26,6 +27,7 @@
       <MemberSignature Language="C#" Value="public SingularValueDecomposition (MathNet.Numerics.LinearAlgebra.Matrix Arg);" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
@@ -41,6 +43,7 @@
       <MemberSignature Language="C#" Value="public double Condition ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -57,6 +60,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.Matrix LeftSingularVectors { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -72,6 +76,7 @@
       <MemberSignature Language="C#" Value="public double Norm2 ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -88,6 +93,7 @@
       <MemberSignature Language="C#" Value="public int Rank ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -104,6 +110,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.Matrix RightSingularVectors { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -119,6 +126,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.Matrix S { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -134,6 +142,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.Vector SingularValues { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -141,7 +150,7 @@
       </ReturnValue>
       <Docs>
         <summary>Gets the one-dimensional array of singular values.</summary>
-        <returns>diagonal of S.</returns>
+        <value>diagonal of S.</value>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>

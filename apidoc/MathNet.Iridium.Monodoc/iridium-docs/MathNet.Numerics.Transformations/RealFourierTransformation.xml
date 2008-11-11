@@ -2,6 +2,7 @@
   <TypeSignature Language="C#" Value="public class RealFourierTransformation" />
   <AssemblyInfo>
     <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>1.0.0.8645</AssemblyVersion>
     <AssemblyVersion>2008.8.16.470</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -22,6 +23,7 @@
       <MemberSignature Language="C#" Value="public RealFourierTransformation ();" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <Parameters />
@@ -36,6 +38,7 @@
       <MemberSignature Language="C#" Value="public RealFourierTransformation (MathNet.Numerics.Transformations.TransformationConvention convention);" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
@@ -53,6 +56,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Transformations.TransformationConvention Convention { set; get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -70,6 +74,7 @@
       <MemberSignature Language="C#" Value="public double[] GenerateFrequencyScale (double sampleRate, int numberOfSamples);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -93,6 +98,7 @@
       <MemberSignature Language="C#" Value="public double[] GenerateTimeScale (double sampleRate, int numberOfSamples);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -116,6 +122,7 @@
       <MemberSignature Language="C#" Value="public void TransformBackward (double[] fftReal, double[] fftImag, out double[] samples);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -141,6 +148,7 @@
       <MemberSignature Language="C#" Value="public void TransformBackward (double[] fftReal, double[] fftImag, out double[] samples, int[] dimensionLengths);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -175,6 +183,7 @@
       <MemberSignature Language="C#" Value="public void TransformBackward (double[] fftReal1, double[] fftImag1, double[] fftReal2, double[] fftImag2, out double[] samples1, out double[] samples2);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -206,6 +215,7 @@
       <MemberSignature Language="C#" Value="public void TransformForward (double[] samples, out double[] fftReal, out double[] fftImag);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -231,6 +241,7 @@
       <MemberSignature Language="C#" Value="public void TransformForward (double[] samples, out double[] fftReal, out double[] fftImag, int[] dimensionLengths);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -265,6 +276,7 @@
       <MemberSignature Language="C#" Value="public void TransformForward (double[] samples1, double[] samples2, out double[] fftReal1, out double[] fftImag1, out double[] fftReal2, out double[] fftImag2);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>

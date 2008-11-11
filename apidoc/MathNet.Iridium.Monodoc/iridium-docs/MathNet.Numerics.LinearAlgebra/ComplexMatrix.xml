@@ -2,6 +2,7 @@
   <TypeSignature Language="C#" Value="public class ComplexMatrix : ICloneable, MathNet.Numerics.LinearAlgebra.IMatrix&lt;MathNet.Numerics.Complex&gt;" />
   <AssemblyInfo>
     <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>1.0.0.8645</AssemblyVersion>
     <AssemblyVersion>2008.8.16.470</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -31,6 +32,7 @@
       <MemberSignature Language="C#" Value="public ComplexMatrix (MathNet.Numerics.Complex[][] A);" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
@@ -52,6 +54,7 @@
       <MemberSignature Language="C#" Value="public ComplexMatrix (MathNet.Numerics.Complex[] vals, int m);" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
@@ -72,6 +75,7 @@
       <MemberSignature Language="C#" Value="public ComplexMatrix (int m, MathNet.Numerics.Complex s);" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
@@ -91,6 +95,7 @@
       <MemberSignature Language="C#" Value="public ComplexMatrix (int m, int n);" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
@@ -110,6 +115,7 @@
       <MemberSignature Language="C#" Value="public ComplexMatrix (int m, int n, MathNet.Numerics.Complex s);" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
@@ -131,6 +137,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.ComplexMatrix Add (MathNet.Numerics.Complex b);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -158,6 +165,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.ComplexMatrix Add (MathNet.Numerics.LinearAlgebra.IMatrix&lt;MathNet.Numerics.Complex&gt; b);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -185,6 +193,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.ComplexMatrix Add (MathNet.Numerics.LinearAlgebra.IMatrix&lt;double&gt; b);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -212,6 +221,7 @@
       <MemberSignature Language="C#" Value="public void AddInplace (MathNet.Numerics.Complex b);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -236,6 +246,7 @@
       <MemberSignature Language="C#" Value="public void AddInplace (MathNet.Numerics.LinearAlgebra.IMatrix&lt;MathNet.Numerics.Complex&gt; b);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -260,6 +271,7 @@
       <MemberSignature Language="C#" Value="public void AddInplace (MathNet.Numerics.LinearAlgebra.IMatrix&lt;double&gt; b);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -284,6 +296,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.ComplexMatrix ArrayDivide (MathNet.Numerics.LinearAlgebra.IMatrix&lt;MathNet.Numerics.Complex&gt; b);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -308,6 +321,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.ComplexMatrix ArrayDivide (MathNet.Numerics.LinearAlgebra.IMatrix&lt;double&gt; b);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -332,6 +346,7 @@
       <MemberSignature Language="C#" Value="public void ArrayDivideInplace (MathNet.Numerics.LinearAlgebra.IMatrix&lt;MathNet.Numerics.Complex&gt; b);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -355,6 +370,7 @@
       <MemberSignature Language="C#" Value="public void ArrayDivideInplace (MathNet.Numerics.LinearAlgebra.IMatrix&lt;double&gt; b);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -378,6 +394,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.ComplexMatrix ArrayMap (Converter&lt;MathNet.Numerics.Complex,MathNet.Numerics.Complex&gt; mapping);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -402,6 +419,7 @@
       <MemberSignature Language="C#" Value="public void ArrayMapInplace (Converter&lt;MathNet.Numerics.Complex,MathNet.Numerics.Complex&gt; mapping);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -425,6 +443,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.ComplexMatrix ArrayMultiply (MathNet.Numerics.LinearAlgebra.IMatrix&lt;MathNet.Numerics.Complex&gt; b);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -449,6 +468,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.ComplexMatrix ArrayMultiply (MathNet.Numerics.LinearAlgebra.IMatrix&lt;double&gt; b);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -473,6 +493,7 @@
       <MemberSignature Language="C#" Value="public void ArrayMultiplyInplace (MathNet.Numerics.LinearAlgebra.IMatrix&lt;MathNet.Numerics.Complex&gt; b);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -496,6 +517,7 @@
       <MemberSignature Language="C#" Value="public void ArrayMultiplyInplace (MathNet.Numerics.LinearAlgebra.IMatrix&lt;double&gt; b);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -519,6 +541,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.ComplexMatrix ArrayPower (MathNet.Numerics.Complex exponent);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -543,6 +566,7 @@
       <MemberSignature Language="C#" Value="public void ArrayPowerInplace (MathNet.Numerics.Complex exponent);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -566,6 +590,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.ComplexMatrix Clone ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -584,6 +609,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Complex[][] CloneMatrixData (MathNet.Numerics.Complex[][] data);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -605,6 +631,7 @@
       <MemberSignature Language="C#" Value="public int ColumnCount { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -622,6 +649,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.ComplexMatrix Conjugate ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -640,6 +668,7 @@
       <MemberSignature Language="C#" Value="public void ConjugateInplace ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -659,6 +688,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Complex[,] CopyToArray ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -677,6 +707,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Complex[][] CopyToJaggedArray ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -695,6 +726,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.LinearAlgebra.ComplexMatrix Create (MathNet.Numerics.Complex[,] A);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
@@ -719,6 +751,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.LinearAlgebra.ComplexMatrix Create (MathNet.Numerics.Complex[][] A);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -740,6 +773,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.LinearAlgebra.ComplexMatrix Create (MathNet.Numerics.LinearAlgebra.IMatrix&lt;double&gt; realMatrix);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -761,6 +795,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.LinearAlgebra.ComplexMatrix CreateFromColumns (System.Collections.Generic.IList&lt;MathNet.Numerics.LinearAlgebra.ComplexVector&gt; columnVectors);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -782,6 +817,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.LinearAlgebra.ComplexMatrix CreateFromRows (System.Collections.Generic.IList&lt;MathNet.Numerics.LinearAlgebra.ComplexVector&gt; rowVectors);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -803,6 +839,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Complex[][] CreateMatrixData (int m, int n);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -828,6 +865,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.LinearAlgebra.ComplexMatrix Diagonal (MathNet.Numerics.LinearAlgebra.IVector&lt;MathNet.Numerics.Complex&gt; diagonalVector);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -851,6 +889,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.LinearAlgebra.ComplexMatrix Diagonal (MathNet.Numerics.LinearAlgebra.IVector&lt;MathNet.Numerics.Complex&gt; diagonalVector, int m, int n);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -878,6 +917,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Complex[][] GetArray ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -896,6 +936,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.ComplexVector GetColumnVector (int columnIndex);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -917,6 +958,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.ComplexMatrix GetMatrix (int[] r, int[] c);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -941,6 +983,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.ComplexMatrix GetMatrix (int i0, int i1, int[] c);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -967,6 +1010,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.ComplexMatrix GetMatrix (int[] r, int j0, int j1);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -993,6 +1037,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.ComplexMatrix GetMatrix (int i0, int i1, int j0, int j1);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1021,6 +1066,7 @@
       <MemberSignature Language="C#" Value="public static void GetRowColumnCount (MathNet.Numerics.Complex[][] data, out int rows, out int columns);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1045,6 +1091,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.ComplexVector GetRowVector (int rowIndex);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1066,6 +1113,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.ComplexMatrix HermitianTranspose ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1085,6 +1133,7 @@
       <MemberSignature Language="C#" Value="public void HermitianTransposeInplace ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1105,6 +1154,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.LinearAlgebra.ComplexMatrix Identity (int m, int n);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1128,6 +1178,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Complex this[int i, int j] { set; get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1152,6 +1203,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.LinearAlgebra.ComplexMatrix KroneckerProduct (MathNet.Numerics.LinearAlgebra.ComplexMatrix A, MathNet.Numerics.LinearAlgebra.ComplexMatrix B);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1175,6 +1227,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.ComplexMatrix Multiply (MathNet.Numerics.Complex b);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1204,6 +1257,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.ComplexMatrix Multiply (MathNet.Numerics.LinearAlgebra.IMatrix&lt;MathNet.Numerics.Complex&gt; b);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1233,6 +1287,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.ComplexMatrix Multiply (MathNet.Numerics.LinearAlgebra.IMatrix&lt;double&gt; b);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1262,6 +1317,7 @@
       <MemberSignature Language="C#" Value="public void MultiplyInplace (MathNet.Numerics.Complex b);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1286,6 +1342,7 @@
       <MemberSignature Language="C#" Value="public void MultiplyInplace (MathNet.Numerics.LinearAlgebra.IMatrix&lt;MathNet.Numerics.Complex&gt; b);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1312,6 +1369,7 @@
       <MemberSignature Language="C#" Value="public void MultiplyInplace (MathNet.Numerics.LinearAlgebra.IMatrix&lt;double&gt; b);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1338,6 +1396,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.ComplexMatrix MultiplyLeftDiagonal (MathNet.Numerics.LinearAlgebra.IVector&lt;MathNet.Numerics.Complex&gt; diagonal);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1364,6 +1423,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.ComplexMatrix MultiplyLeftDiagonal (MathNet.Numerics.LinearAlgebra.IVector&lt;double&gt; diagonal);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1390,6 +1450,7 @@
       <MemberSignature Language="C#" Value="public void MultiplyLeftDiagonalInplace (MathNet.Numerics.LinearAlgebra.IVector&lt;MathNet.Numerics.Complex&gt; diagonal);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1413,6 +1474,7 @@
       <MemberSignature Language="C#" Value="public void MultiplyLeftDiagonalInplace (MathNet.Numerics.LinearAlgebra.IVector&lt;double&gt; diagonal);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1436,6 +1498,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.ComplexVector MultiplyRightColumn (MathNet.Numerics.LinearAlgebra.IVector&lt;MathNet.Numerics.Complex&gt; b);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1464,6 +1527,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.ComplexVector MultiplyRightColumn (MathNet.Numerics.LinearAlgebra.IVector&lt;double&gt; b);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1492,6 +1556,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.ComplexMatrix MultiplyRightDiagonal (MathNet.Numerics.LinearAlgebra.IVector&lt;MathNet.Numerics.Complex&gt; diagonal);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1518,6 +1583,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.ComplexMatrix MultiplyRightDiagonal (MathNet.Numerics.LinearAlgebra.IVector&lt;double&gt; diagonal);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1544,6 +1610,7 @@
       <MemberSignature Language="C#" Value="public void MultiplyRightDiagonalInplace (MathNet.Numerics.LinearAlgebra.IVector&lt;MathNet.Numerics.Complex&gt; diagonal);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1567,6 +1634,7 @@
       <MemberSignature Language="C#" Value="public void MultiplyRightDiagonalInplace (MathNet.Numerics.LinearAlgebra.IVector&lt;double&gt; diagonal);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1590,6 +1658,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.ComplexMatrix Negate ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1608,6 +1677,7 @@
       <MemberSignature Language="C#" Value="public void NegateInplace ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1627,6 +1697,7 @@
       <MemberSignature Language="C#" Value="public double Norm1 ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1643,6 +1714,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.LinearAlgebra.ComplexMatrix Ones (int m);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1664,6 +1736,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.LinearAlgebra.ComplexMatrix op_Addition (MathNet.Numerics.Complex scalar, MathNet.Numerics.LinearAlgebra.ComplexMatrix m2);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1687,6 +1760,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.LinearAlgebra.ComplexMatrix op_Addition (MathNet.Numerics.LinearAlgebra.ComplexMatrix m1, MathNet.Numerics.Complex scalar);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1710,6 +1784,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.LinearAlgebra.ComplexMatrix op_Addition (MathNet.Numerics.LinearAlgebra.ComplexMatrix m1, MathNet.Numerics.LinearAlgebra.ComplexMatrix m2);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1733,6 +1808,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.LinearAlgebra.ComplexMatrix op_Addition (MathNet.Numerics.LinearAlgebra.ComplexMatrix m1, MathNet.Numerics.LinearAlgebra.Matrix m2);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1756,6 +1832,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Complex op_Explicit (MathNet.Numerics.LinearAlgebra.ComplexMatrix m);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1777,6 +1854,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Complex[] op_Explicit (MathNet.Numerics.LinearAlgebra.ComplexMatrix m);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1798,6 +1876,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Complex[][] op_Implicit (MathNet.Numerics.LinearAlgebra.ComplexMatrix m);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1817,6 +1896,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.LinearAlgebra.ComplexMatrix op_Multiply (MathNet.Numerics.Complex s, MathNet.Numerics.LinearAlgebra.ComplexMatrix m);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1840,6 +1920,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.LinearAlgebra.ComplexMatrix op_Multiply (MathNet.Numerics.LinearAlgebra.ComplexMatrix m, MathNet.Numerics.Complex s);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1863,6 +1944,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.LinearAlgebra.ComplexMatrix op_Multiply (MathNet.Numerics.LinearAlgebra.ComplexMatrix m1, MathNet.Numerics.LinearAlgebra.ComplexMatrix m2);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1887,6 +1969,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.LinearAlgebra.ComplexVector op_Multiply (MathNet.Numerics.LinearAlgebra.ComplexMatrix m1, MathNet.Numerics.LinearAlgebra.ComplexVector v2);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1911,6 +1994,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.LinearAlgebra.ComplexMatrix op_Multiply (MathNet.Numerics.LinearAlgebra.ComplexMatrix m1, MathNet.Numerics.LinearAlgebra.Matrix m2);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1935,6 +2019,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.LinearAlgebra.ComplexVector op_Multiply (MathNet.Numerics.LinearAlgebra.ComplexMatrix m1, MathNet.Numerics.LinearAlgebra.Vector v2);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1959,6 +2044,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.LinearAlgebra.ComplexMatrix op_Subtraction (MathNet.Numerics.LinearAlgebra.ComplexMatrix m1, MathNet.Numerics.Complex scalar);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -1982,6 +2068,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.LinearAlgebra.ComplexMatrix op_Subtraction (MathNet.Numerics.LinearAlgebra.ComplexMatrix m1, MathNet.Numerics.LinearAlgebra.ComplexMatrix m2);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -2005,6 +2092,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.LinearAlgebra.ComplexMatrix op_Subtraction (MathNet.Numerics.LinearAlgebra.ComplexMatrix m1, MathNet.Numerics.LinearAlgebra.Matrix m2);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -2028,6 +2116,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.LinearAlgebra.ComplexMatrix op_UnaryNegation (MathNet.Numerics.LinearAlgebra.ComplexMatrix m1);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -2049,6 +2138,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.LinearAlgebra.ComplexMatrix Random (int m, int n, MathNet.Numerics.Distributions.IContinuousGenerator randomDistribution);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -2074,6 +2164,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.LinearAlgebra.ComplexMatrix RandomPolar (int m, int n, MathNet.Numerics.Distributions.IContinuousGenerator modulusRandomDistribution, MathNet.Numerics.Distributions.IContinuousGenerator argumentRandomDistribution);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -2101,6 +2192,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.LinearAlgebra.ComplexMatrix RandomReal (int m, int n, MathNet.Numerics.Distributions.IContinuousGenerator realRandomDistribution);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -2126,6 +2218,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.LinearAlgebra.ComplexMatrix RandomUnitCircle (int m, int n, MathNet.Numerics.Distributions.IContinuousGenerator argumentRandomDistribution);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -2151,6 +2244,7 @@
       <MemberSignature Language="C#" Value="public void ResetComputations ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -2170,6 +2264,7 @@
       <MemberSignature Language="C#" Value="public int RowCount { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -2187,6 +2282,7 @@
       <MemberSignature Language="C#" Value="public void SetColumnVector (MathNet.Numerics.LinearAlgebra.IVector&lt;MathNet.Numerics.Complex&gt; columnVector, int columnIndex);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -2209,6 +2305,7 @@
       <MemberSignature Language="C#" Value="public void SetMatrix (int[] r, int[] c, MathNet.Numerics.LinearAlgebra.IMatrix&lt;MathNet.Numerics.Complex&gt; X);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -2234,6 +2331,7 @@
       <MemberSignature Language="C#" Value="public void SetMatrix (int i0, int i1, int[] c, MathNet.Numerics.LinearAlgebra.IMatrix&lt;MathNet.Numerics.Complex&gt; X);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -2261,6 +2359,7 @@
       <MemberSignature Language="C#" Value="public void SetMatrix (int[] r, int j0, int j1, MathNet.Numerics.LinearAlgebra.IMatrix&lt;MathNet.Numerics.Complex&gt; X);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -2288,6 +2387,7 @@
       <MemberSignature Language="C#" Value="public void SetMatrix (int i0, int i1, int j0, int j1, MathNet.Numerics.LinearAlgebra.IMatrix&lt;MathNet.Numerics.Complex&gt; X);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -2317,6 +2417,7 @@
       <MemberSignature Language="C#" Value="public void SetRowVector (MathNet.Numerics.LinearAlgebra.IVector&lt;MathNet.Numerics.Complex&gt; rowVector, int rowIndex);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -2339,6 +2440,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.ComplexMatrix Subtract (MathNet.Numerics.Complex b);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -2366,6 +2468,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.ComplexMatrix Subtract (MathNet.Numerics.LinearAlgebra.IMatrix&lt;MathNet.Numerics.Complex&gt; b);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -2393,6 +2496,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.ComplexMatrix Subtract (MathNet.Numerics.LinearAlgebra.IMatrix&lt;double&gt; b);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -2420,6 +2524,7 @@
       <MemberSignature Language="C#" Value="public void SubtractInplace (MathNet.Numerics.Complex b);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -2444,6 +2549,7 @@
       <MemberSignature Language="C#" Value="public void SubtractInplace (MathNet.Numerics.LinearAlgebra.IMatrix&lt;MathNet.Numerics.Complex&gt; b);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -2468,6 +2574,7 @@
       <MemberSignature Language="C#" Value="public void SubtractInplace (MathNet.Numerics.LinearAlgebra.IMatrix&lt;double&gt; b);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -2492,6 +2599,7 @@
       <MemberSignature Language="C#" Value="object ICloneable.Clone ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -2508,6 +2616,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.ComplexMatrix TensorMultiply (MathNet.Numerics.LinearAlgebra.ComplexMatrix B);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -2531,6 +2640,7 @@
       <MemberSignature Language="C#" Value="public override string ToString ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -2549,6 +2659,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.ComplexMatrix Transpose ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -2568,6 +2679,7 @@
       <MemberSignature Language="C#" Value="public void TransposeInplace ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -2588,6 +2700,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.LinearAlgebra.ComplexMatrix Zeros (int m);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>

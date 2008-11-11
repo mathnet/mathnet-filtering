@@ -2,6 +2,7 @@
   <TypeSignature Language="C#" Value="public static class Combinatorics" />
   <AssemblyInfo>
     <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>1.0.0.8645</AssemblyVersion>
     <AssemblyVersion>2008.8.16.470</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -19,6 +20,7 @@
       <MemberSignature Language="C#" Value="public static double Combinations (int n, int k);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -42,6 +44,7 @@
       <MemberSignature Language="C#" Value="public static double CombinationsWithRepetition (int n, int k);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -65,6 +68,7 @@
       <MemberSignature Language="C#" Value="public static double Permutations (int n);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -86,6 +90,7 @@
       <MemberSignature Language="C#" Value="public static bool[] RandomCombination (int n);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -105,6 +110,7 @@
       <MemberSignature Language="C#" Value="public static bool[] RandomCombination (int n, int k);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -126,6 +132,7 @@
       <MemberSignature Language="C#" Value="public static int[] RandomCombinationWithRepetition (int n, int k);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -147,6 +154,7 @@
       <MemberSignature Language="C#" Value="public static int[] RandomPermutation (int n);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -166,6 +174,7 @@
       <MemberSignature Language="C#" Value="public static void RandomShuffle&lt;T&gt; (System.Collections.Generic.IList&lt;T&gt; array);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -193,6 +202,7 @@
       <MemberSignature Language="C#" Value="public static void RandomShuffle&lt;T&gt; (System.Collections.Generic.IList&lt;T&gt; source, System.Collections.Generic.IList&lt;T&gt; target);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -223,6 +233,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.RandomSources.RandomSource RandomSource { set; get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -242,6 +253,7 @@
       <MemberSignature Language="C#" Value="public static T[] RandomSubsetCombination&lt;T&gt; (System.Collections.Generic.IList&lt;T&gt; array, int numberToSelect);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -270,6 +282,7 @@
       <MemberSignature Language="C#" Value="public static T[] RandomSubsetCombinationWithRepetition&lt;T&gt; (System.Collections.Generic.IList&lt;T&gt; array, int numberToSelect);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -298,6 +311,7 @@
       <MemberSignature Language="C#" Value="public static T[] RandomSubsetVariation&lt;T&gt; (System.Collections.Generic.IList&lt;T&gt; array, int numberToSelect);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -326,6 +340,7 @@
       <MemberSignature Language="C#" Value="public static T[] RandomSubsetVariationWithRepetition&lt;T&gt; (System.Collections.Generic.IList&lt;T&gt; array, int numberToSelect);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -354,6 +369,7 @@
       <MemberSignature Language="C#" Value="public static int[] RandomVariation (int n, int k);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -375,6 +391,7 @@
       <MemberSignature Language="C#" Value="public static int[] RandomVariationWithRepetition (int n, int k);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -396,6 +413,7 @@
       <MemberSignature Language="C#" Value="public static double Variations (int n, int k);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -419,6 +437,7 @@
       <MemberSignature Language="C#" Value="public static double VariationsWithRepetition (int n, int k);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>

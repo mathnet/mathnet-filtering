@@ -2,6 +2,7 @@
   <TypeSignature Language="C#" Value="public class InterpolationSingleDimension" />
   <AssemblyInfo>
     <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>1.0.0.8645</AssemblyVersion>
     <AssemblyVersion>2008.8.16.470</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -24,6 +25,7 @@
       <MemberSignature Language="C#" Value="public InterpolationSingleDimension (MathNet.Numerics.SampleList samples);" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
@@ -43,6 +45,7 @@
       <MemberSignature Language="C#" Value="public InterpolationSingleDimension (System.Collections.IDictionary samples);" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
@@ -62,6 +65,7 @@
       <MemberSignature Language="C#" Value="public InterpolationSingleDimension (MathNet.Numerics.SampleList samples, MathNet.Numerics.Interpolation.IInterpolationAlgorithm algorithm);" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
@@ -81,6 +85,7 @@
       <MemberSignature Language="C#" Value="public InterpolationSingleDimension (MathNet.Numerics.SampleList samples, MathNet.Numerics.Interpolation.InterpolationMode mode);" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
@@ -100,6 +105,7 @@
       <MemberSignature Language="C#" Value="public InterpolationSingleDimension (double[] t, double[] x);" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
@@ -121,6 +127,7 @@
       <MemberSignature Language="C#" Value="public InterpolationSingleDimension (MathNet.Numerics.SampleList samples, MathNet.Numerics.Interpolation.InterpolationMode mode, int maximumOrder);" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
@@ -142,6 +149,7 @@
       <MemberSignature Language="C#" Value="public InterpolationSingleDimension (double[] t, double[] x, MathNet.Numerics.Interpolation.IInterpolationAlgorithm algorithm);" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
@@ -163,6 +171,7 @@
       <MemberSignature Language="C#" Value="public InterpolationSingleDimension (double[] t, double[] x, MathNet.Numerics.Interpolation.InterpolationMode mode);" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
@@ -184,6 +193,7 @@
       <MemberSignature Language="C#" Value="public InterpolationSingleDimension (double[] t, double[] x, MathNet.Numerics.Interpolation.InterpolationMode mode, int maximumOrder);" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
@@ -207,6 +217,7 @@
       <MemberSignature Language="C#" Value="public double Evaluate (double t);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -228,6 +239,7 @@
       <MemberSignature Language="C#" Value="public double Evaluate (double t, out double errorEstimation);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -251,6 +263,7 @@
       <MemberSignature Language="C#" Value="protected virtual MathNet.Numerics.Interpolation.IInterpolationAlgorithm SelectAlgorithm (MathNet.Numerics.Interpolation.InterpolationMode mode);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -272,6 +285,7 @@
       <MemberSignature Language="C#" Value="public bool SupportErrorEstimation { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>

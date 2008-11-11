@@ -2,6 +2,7 @@
   <TypeSignature Language="C#" Value="public struct Quaternion : ICloneable, IComparable" />
   <AssemblyInfo>
     <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>1.0.0.8645</AssemblyVersion>
     <AssemblyVersion>2008.8.16.470</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -27,6 +28,7 @@
       <MemberSignature Language="C#" Value="public Quaternion (double real, double imagX, double imagY, double imagZ);" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
@@ -50,6 +52,7 @@
       <MemberSignature Language="C#" Value="public double Abs { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -68,6 +71,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Quaternion Add (MathNet.Numerics.Quaternion q);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -89,6 +93,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Quaternion Add (double r);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -110,6 +115,7 @@
       <MemberSignature Language="C#" Value="public double Arg { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -125,6 +131,7 @@
       <MemberSignature Language="C#" Value="public object Clone ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -143,6 +150,7 @@
       <MemberSignature Language="C#" Value="public int CompareTo (object obj);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -164,6 +172,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Quaternion Conjugate ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -182,6 +191,7 @@
       <MemberSignature Language="C#" Value="public static double Distance (MathNet.Numerics.Quaternion a, MathNet.Numerics.Quaternion b);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -205,6 +215,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Quaternion Divide (MathNet.Numerics.Quaternion q);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -229,6 +240,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Quaternion Divide (double d);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -254,6 +266,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Quaternion Exp ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -272,6 +285,7 @@
       <MemberSignature Language="C#" Value="public double ImagX { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -287,6 +301,7 @@
       <MemberSignature Language="C#" Value="public double ImagY { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -302,6 +317,7 @@
       <MemberSignature Language="C#" Value="public double ImagZ { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -317,6 +333,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Quaternion Inverse ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -335,6 +352,7 @@
       <MemberSignature Language="C#" Value="public bool IsUnitQuaternion { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -350,6 +368,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Quaternion Lg ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -368,6 +387,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Quaternion Ln ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -386,6 +406,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Quaternion Log (double lbase);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -407,6 +428,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Quaternion Multiply (MathNet.Numerics.Quaternion q);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -428,6 +450,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Quaternion Multiply (double d);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -449,6 +472,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Quaternion Negate ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -467,6 +491,7 @@
       <MemberSignature Language="C#" Value="public double Norm { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -482,6 +507,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Quaternion op_Addition (MathNet.Numerics.Quaternion q1, MathNet.Numerics.Quaternion q2);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -505,6 +531,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Quaternion op_Addition (MathNet.Numerics.Quaternion q1, double d);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -528,6 +555,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Quaternion op_Division (MathNet.Numerics.Quaternion q1, MathNet.Numerics.Quaternion q2);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -551,6 +579,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Quaternion op_Division (MathNet.Numerics.Quaternion q1, double d);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -574,6 +603,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Quaternion op_ExclusiveOr (MathNet.Numerics.Quaternion q1, MathNet.Numerics.Quaternion q2);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -597,6 +627,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Quaternion op_ExclusiveOr (MathNet.Numerics.Quaternion q1, double d);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -620,6 +651,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Quaternion op_Implicit (double d);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -641,6 +673,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Quaternion op_Multiply (MathNet.Numerics.Quaternion q1, MathNet.Numerics.Quaternion q2);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -664,6 +697,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Quaternion op_Multiply (MathNet.Numerics.Quaternion q1, double d);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -687,6 +721,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Quaternion op_Subtraction (MathNet.Numerics.Quaternion q1, MathNet.Numerics.Quaternion q2);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -710,6 +745,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Quaternion op_Subtraction (MathNet.Numerics.Quaternion q1, double d);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -733,6 +769,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Quaternion op_UnaryNegation (MathNet.Numerics.Quaternion q);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -754,6 +791,7 @@
       <MemberSignature Language="C#" Value="public static MathNet.Numerics.Quaternion op_UnaryPlus (MathNet.Numerics.Quaternion q);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -775,6 +813,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Quaternion Pow (MathNet.Numerics.Quaternion power);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -796,6 +835,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Quaternion Pow (double power);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -817,6 +857,7 @@
       <MemberSignature Language="C#" Value="public double Real { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -832,6 +873,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Quaternion Scalar ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -851,6 +893,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Quaternion Sign ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -869,6 +912,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Quaternion Sqr ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -887,6 +931,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Quaternion Sqrt ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -905,6 +950,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Quaternion Subtract (MathNet.Numerics.Quaternion q);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -926,6 +972,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Quaternion Subtract (double r);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -947,6 +994,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Quaternion UnitVector ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -966,6 +1014,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.Quaternion Vector ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>

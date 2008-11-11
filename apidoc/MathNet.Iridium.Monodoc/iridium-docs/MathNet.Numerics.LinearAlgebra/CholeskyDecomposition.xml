@@ -2,6 +2,7 @@
   <TypeSignature Language="C#" Value="public class CholeskyDecomposition" />
   <AssemblyInfo>
     <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>1.0.0.8645</AssemblyVersion>
     <AssemblyVersion>2008.8.16.470</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -23,6 +24,7 @@
       <MemberSignature Language="C#" Value="public CholeskyDecomposition (MathNet.Numerics.LinearAlgebra.Matrix m);" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
@@ -31,7 +33,6 @@
       <Docs>
         <param name="m">Square, symmetric matrix.</param>
         <summary>Cholesky algorithm for symmetric and positive definite matrix.</summary>
-        <returns>Structure to access L and isspd flag.</returns>
         <remarks>To be added.</remarks>
       </Docs>
     </Member>
@@ -39,6 +40,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.Matrix GetL ();" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
@@ -60,6 +62,7 @@
       <MemberSignature Language="C#" Value="public bool IsSPD { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -67,8 +70,8 @@
       </ReturnValue>
       <Docs>
         <summary>Is the matrix symmetric and positive definite?</summary>
-        <returns>
-          <c>true</c> if A is symmetric and positive definite.</returns>
+        <value>
+          <c>true</c> if A is symmetric and positive definite.</value>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -77,6 +80,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.Matrix Solve (MathNet.Numerics.LinearAlgebra.Matrix B);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -98,6 +102,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.Vector Solve (MathNet.Numerics.LinearAlgebra.Vector b);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -119,6 +124,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.Matrix TriangularFactor { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>

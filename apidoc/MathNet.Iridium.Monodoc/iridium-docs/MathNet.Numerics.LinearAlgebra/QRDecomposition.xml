@@ -2,6 +2,7 @@
   <TypeSignature Language="C#" Value="public class QRDecomposition" />
   <AssemblyInfo>
     <AssemblyName>MathNet.Iridium</AssemblyName>
+    <AssemblyVersion>1.0.0.8645</AssemblyVersion>
     <AssemblyVersion>2008.8.16.470</AssemblyVersion>
   </AssemblyInfo>
   <Base>
@@ -29,6 +30,7 @@
       <MemberSignature Language="C#" Value="public QRDecomposition (MathNet.Numerics.LinearAlgebra.Matrix A);" />
       <MemberType>Constructor</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <Parameters>
@@ -46,6 +48,7 @@
       <MemberSignature Language="C#" Value="public bool FullRank { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <Attributes>
@@ -60,8 +63,8 @@
         <summary>
             Indicates whether the matrix is full rank.
             </summary>
-        <returns>
-          <c>true</c> if R, and hence A, has full rank.</returns>
+        <value>
+          <c>true</c> if R, and hence A, has full rank.</value>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -70,6 +73,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.Matrix H { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -79,7 +83,7 @@
         <summary>
             Gets the Householder vectors.
             </summary>
-        <returns>Lower trapezoidal matrix whose columns define the reflections.</returns>
+        <value>Lower trapezoidal matrix whose columns define the reflections.</value>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -88,6 +92,7 @@
       <MemberSignature Language="C#" Value="public bool IsFullRank { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -97,8 +102,8 @@
         <summary>
             Indicates whether the matrix is full rank.
             </summary>
-        <returns>
-          <c>true</c> if R, and hence A, has full rank.</returns>
+        <value>
+          <c>true</c> if R, and hence A, has full rank.</value>
         <value>To be added.</value>
         <remarks>To be added.</remarks>
       </Docs>
@@ -107,6 +112,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.Matrix Q { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -124,6 +130,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.Matrix R { get; }" />
       <MemberType>Property</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
@@ -141,6 +148,7 @@
       <MemberSignature Language="C#" Value="public MathNet.Numerics.LinearAlgebra.Matrix Solve (MathNet.Numerics.LinearAlgebra.Matrix B);" />
       <MemberType>Method</MemberType>
       <AssemblyInfo>
+        <AssemblyVersion>1.0.0.8645</AssemblyVersion>
         <AssemblyVersion>2008.8.16.470</AssemblyVersion>
       </AssemblyInfo>
       <ReturnValue>
