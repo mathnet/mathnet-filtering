@@ -170,7 +170,7 @@ namespace MathNet.Numerics.Distributions
         {
             if(!IsValidParameterSet(probabilityOfSuccess))
             {
-                throw new ArgumentException(Properties.Resources.ArgumentParameterSetInvalid, "probabilityOfSuccess");
+                throw new ArgumentException(Properties.LocalStrings.ArgumentParameterSetInvalid, "probabilityOfSuccess");
             }
 
             _p = probabilityOfSuccess;

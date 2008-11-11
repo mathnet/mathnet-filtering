@@ -23,7 +23,6 @@
 #endregion
 
 using System;
-using MathNet.Numerics.Properties;
 
 namespace MathNet.Numerics.LinearAlgebra
 {
@@ -213,12 +212,12 @@ namespace MathNet.Numerics.LinearAlgebra
         {
             if(B.RowCount != m)
             {
-                throw new ArgumentException(Resources.ArgumentMatrixSameRowDimension, "B");
+                throw new ArgumentException(Properties.LocalStrings.ArgumentMatrixSameRowDimension, "B");
             }
 
             if(!IsFullRank)
             {
-                throw new InvalidOperationException(Resources.ArgumentMatrixNotRankDeficient);
+                throw new InvalidOperationException(Properties.LocalStrings.ArgumentMatrixNotRankDeficient);
             }
 
             // Copy right hand side

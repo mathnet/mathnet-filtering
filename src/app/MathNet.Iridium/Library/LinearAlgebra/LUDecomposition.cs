@@ -23,7 +23,6 @@
 #endregion
 
 using System;
-using MathNet.Numerics.Properties;
 
 namespace MathNet.Numerics.LinearAlgebra
 {
@@ -257,12 +256,12 @@ namespace MathNet.Numerics.LinearAlgebra
         {
             if(B.RowCount != _rowCount)
             {
-                throw new ArgumentException(Resources.ArgumentMatrixSameRowDimension, "B");
+                throw new ArgumentException(Properties.LocalStrings.ArgumentMatrixSameRowDimension, "B");
             }
 
             if(!this.IsNonSingular)
             {
-                throw new InvalidOperationException(Resources.ArgumentMatrixNotSingular);
+                throw new InvalidOperationException(Properties.LocalStrings.ArgumentMatrixNotSingular);
             }
 
             // Copy right hand side with pivoting
@@ -418,7 +417,7 @@ namespace MathNet.Numerics.LinearAlgebra
         {
             if(_rowCount != _columnCount)
             {
-                throw new System.ArgumentException(Resources.ArgumentMatrixSquare);
+                throw new System.ArgumentException(Properties.LocalStrings.ArgumentMatrixSquare);
             }
 
             double d = (double)pivsign;

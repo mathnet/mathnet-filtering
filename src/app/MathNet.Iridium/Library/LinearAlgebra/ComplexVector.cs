@@ -22,7 +22,7 @@
 using System;
 using System.Text;
 using System.Collections.Generic;
-using MathNet.Numerics.Properties;
+
 using MathNet.Numerics.Distributions;
 
 namespace MathNet.Numerics.LinearAlgebra
@@ -170,7 +170,7 @@ namespace MathNet.Numerics.LinearAlgebra
 
             if(realComponents.Count != imagComponents.Count)
             {
-                throw new ArgumentException(Properties.Resources.ArgumentVectorsSameLengths);
+                throw new ArgumentException(Properties.LocalStrings.ArgumentVectorsSameLengths);
             }
 
             Complex[] newData = new Complex[realComponents.Count];
@@ -906,7 +906,7 @@ namespace MathNet.Numerics.LinearAlgebra
             CheckMatchingVectorDimensions(u, v);
             if(3 != u.Length)
             {
-                throw new ArgumentOutOfRangeException("u", Resources.ArgumentVectorThreeDimensional);
+                throw new ArgumentOutOfRangeException("u", Properties.LocalStrings.ArgumentVectorThreeDimensional);
             }
 
             ComplexVector product = new ComplexVector(new Complex[] {
@@ -1487,7 +1487,7 @@ namespace MathNet.Numerics.LinearAlgebra
 
             if(A.Length != B.Length)
             {
-                throw new ArgumentException(Resources.ArgumentVectorsSameLengths);
+                throw new ArgumentException(Properties.LocalStrings.ArgumentVectorsSameLengths);
             }
         }
 
@@ -1511,7 +1511,7 @@ namespace MathNet.Numerics.LinearAlgebra
 
             if(A.Length != B.Length)
             {
-                throw new ArgumentException(Resources.ArgumentVectorsSameLengths);
+                throw new ArgumentException(Properties.LocalStrings.ArgumentVectorsSameLengths);
             }
         }
 

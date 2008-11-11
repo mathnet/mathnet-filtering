@@ -25,7 +25,6 @@ using System.Collections.Generic;
 using System.Text;
 
 using MathNet.Numerics.RandomSources;
-using MathNet.Numerics.Properties;
 
 namespace MathNet.Numerics
 {
@@ -174,7 +173,7 @@ namespace MathNet.Numerics
         {
             if(n < 0)
             {
-                throw new ArgumentOutOfRangeException("size", n, Resources.ArgumentNotNegative);
+                throw new ArgumentOutOfRangeException("size", n, Properties.LocalStrings.ArgumentNotNegative);
             }
 
             IndexedValue[] indexedValues = new IndexedValue[n];

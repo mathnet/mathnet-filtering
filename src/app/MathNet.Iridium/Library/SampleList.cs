@@ -22,7 +22,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using MathNet.Numerics.Properties;
 
 namespace MathNet.Numerics
 {
@@ -78,7 +77,7 @@ namespace MathNet.Numerics
         {
             if(capacity < 0)
             {
-                throw new ArgumentOutOfRangeException("capacity", Resources.ArgumentNotNegative);
+                throw new ArgumentOutOfRangeException("capacity", Properties.LocalStrings.ArgumentNotNegative);
             }
 
             _sampleCount = new int[capacity];
@@ -651,7 +650,7 @@ namespace MathNet.Numerics
         {
             if(array == null || array.Rank != 1)
             {
-                throw new ArgumentException("array", Resources.ArgumentSingleDimensionArray);
+                throw new ArgumentException("array", Properties.LocalStrings.ArgumentSingleDimensionArray);
             }
 
             if(index < 0 || (array.Length - index) < _size)
@@ -813,7 +812,7 @@ namespace MathNet.Numerics
             {
                 if(array == null || array.Rank != 1)
                 {
-                    throw new ArgumentException(Resources.ArgumentSingleDimensionArray, "array");
+                    throw new ArgumentException(Properties.LocalStrings.ArgumentSingleDimensionArray, "array");
                 }
 
                 Array.Copy(sampleList._sampleT, 0, array, index, sampleList.Count);
@@ -905,7 +904,7 @@ namespace MathNet.Numerics
             {
                 if(array == null || array.Rank != 1)
                 {
-                    throw new ArgumentException(Resources.ArgumentSingleDimensionArray, "array");
+                    throw new ArgumentException(Properties.LocalStrings.ArgumentSingleDimensionArray, "array");
                 }
 
                 Array.Copy(sampleList._sampleX, 0, array, index, sampleList.Count);

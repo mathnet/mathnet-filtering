@@ -134,12 +134,12 @@ namespace MathNet.Numerics.Interpolation.Algorithms
 
             if(t.Count != x.Count)
             {
-                throw new ArgumentException(Properties.Resources.ArgumentVectorsSameLengths);
+                throw new ArgumentException(Properties.LocalStrings.ArgumentVectorsSameLengths);
             }
 
             if(t.Count != w.Count)
             {
-                throw new ArgumentException(Properties.Resources.ArgumentVectorsSameLengths);
+                throw new ArgumentException(Properties.LocalStrings.ArgumentVectorsSameLengths);
             }
 
             _t = t;

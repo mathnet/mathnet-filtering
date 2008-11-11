@@ -24,8 +24,8 @@
 
 using System;
 using System.Collections.Generic;
+
 using MathNet.Numerics;
-using MathNet.Numerics.Properties;
 
 namespace MathNet.Numerics.Interpolation.Algorithms
 {
@@ -91,7 +91,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
 
             if(t.Count != x.Count)
             {
-                throw new ArgumentException(Properties.Resources.ArgumentVectorsSameLengths);
+                throw new ArgumentException(Properties.LocalStrings.ArgumentVectorsSameLengths);
             }
 
             _t = t;

@@ -130,7 +130,7 @@ namespace MathNet.Numerics.Distributions
         {
             if(!IsValidParameterSet(location, scale))
             {
-                throw new ArgumentException(Properties.Resources.ArgumentParameterSetInvalid);
+                throw new ArgumentException(Properties.LocalStrings.ArgumentParameterSetInvalid);
             }
 
             _location = location;

@@ -20,7 +20,6 @@
 #endregion
 
 using System;
-using MathNet.Numerics.Properties;
 
 namespace MathNet.Numerics.Transformations
 {
@@ -136,7 +135,7 @@ namespace MathNet.Numerics.Transformations
         {
             if(Fn.CeilingToPowerOf2(samplePairs.Length) != samplePairs.Length)
             {
-                throw new ArgumentException(Resources.ArgumentPowerOfTwo, "samplePairs");
+                throw new ArgumentException(Properties.LocalStrings.ArgumentPowerOfTwo, "samplePairs");
             }
 
             _fft.DiscreteFourierTransform(samplePairs, true, _convention);
@@ -159,7 +158,7 @@ namespace MathNet.Numerics.Transformations
         {
             if(Fn.CeilingToPowerOf2(samples.Length) != samples.Length)
             {
-                throw new ArgumentException(Resources.ArgumentPowerOfTwo, "samples");
+                throw new ArgumentException(Properties.LocalStrings.ArgumentPowerOfTwo, "samples");
             }
 
             double[] samplePairs = new double[samples.Length << 1];
@@ -190,7 +189,7 @@ namespace MathNet.Numerics.Transformations
         {
             if(Fn.CeilingToPowerOf2(samplePairs.Length) != samplePairs.Length)
             {
-                throw new ArgumentException(Resources.ArgumentPowerOfTwo, "samplePairs");
+                throw new ArgumentException(Properties.LocalStrings.ArgumentPowerOfTwo, "samplePairs");
             }
 
             _fft.DiscreteFourierTransform(samplePairs, false, _convention);
@@ -213,7 +212,7 @@ namespace MathNet.Numerics.Transformations
         {
             if(Fn.CeilingToPowerOf2(samples.Length) != samples.Length)
             {
-                throw new ArgumentException(Resources.ArgumentPowerOfTwo, "samplePairs");
+                throw new ArgumentException(Properties.LocalStrings.ArgumentPowerOfTwo, "samplePairs");
             }
 
             double[] samplePairs = new double[samples.Length << 1];
@@ -251,7 +250,7 @@ namespace MathNet.Numerics.Transformations
             {
                 if(Fn.CeilingToPowerOf2(dimensionLengths[i]) != dimensionLengths[i])
                 {
-                    throw new ArgumentException(Resources.ArgumentPowerOfTwoEveryDimension, "dimensionLengths");
+                    throw new ArgumentException(Properties.LocalStrings.ArgumentPowerOfTwoEveryDimension, "dimensionLengths");
                 }
             }
 
@@ -281,7 +280,7 @@ namespace MathNet.Numerics.Transformations
             {
                 if(Fn.CeilingToPowerOf2(dimensionLengths[i]) != dimensionLengths[i])
                 {
-                    throw new ArgumentException(Resources.ArgumentPowerOfTwoEveryDimension, "dimensionLengths");
+                    throw new ArgumentException(Properties.LocalStrings.ArgumentPowerOfTwoEveryDimension, "dimensionLengths");
                 }
             }
 
@@ -319,7 +318,7 @@ namespace MathNet.Numerics.Transformations
             {
                 if(Fn.CeilingToPowerOf2(dimensionLengths[i]) != dimensionLengths[i])
                 {
-                    throw new ArgumentException(Resources.ArgumentPowerOfTwoEveryDimension, "dimensionLengths");
+                    throw new ArgumentException(Properties.LocalStrings.ArgumentPowerOfTwoEveryDimension, "dimensionLengths");
                 }
             }
 
@@ -349,7 +348,7 @@ namespace MathNet.Numerics.Transformations
             {
                 if(Fn.CeilingToPowerOf2(dimensionLengths[i]) != dimensionLengths[i])
                 {
-                    throw new ArgumentException(Resources.ArgumentPowerOfTwoEveryDimension, "dimensionLengths");
+                    throw new ArgumentException(Properties.LocalStrings.ArgumentPowerOfTwoEveryDimension, "dimensionLengths");
                 }
             }
 

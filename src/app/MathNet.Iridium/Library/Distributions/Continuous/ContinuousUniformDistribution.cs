@@ -135,7 +135,7 @@ namespace MathNet.Numerics.Distributions
         {
             if(!IsValidParameterSet(lowerLimit, upperLimit))
             {
-                throw new ArgumentException(Properties.Resources.ArgumentParameterSetInvalid);
+                throw new ArgumentException(Properties.LocalStrings.ArgumentParameterSetInvalid);
             }
 
             _a = lowerLimit;

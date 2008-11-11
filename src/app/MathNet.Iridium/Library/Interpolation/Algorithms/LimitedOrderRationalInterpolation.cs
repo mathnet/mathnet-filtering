@@ -24,8 +24,8 @@
 
 using System;
 using System.Collections.Generic;
+
 using MathNet.Numerics;
-using MathNet.Numerics.Properties;
 
 namespace MathNet.Numerics.Interpolation.Algorithms
 {
@@ -170,7 +170,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
         {
             if(null == _samples)
             {
-                throw new InvalidOperationException(Resources.InvalidOperationNoSamplesProvided);
+                throw new InvalidOperationException(Properties.LocalStrings.InvalidOperationNoSamplesProvided);
             }
 
             const double tiny = 1.0e-15;

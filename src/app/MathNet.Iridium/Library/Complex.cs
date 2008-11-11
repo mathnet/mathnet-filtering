@@ -25,7 +25,6 @@ using System.Text;
 using System.Globalization;  
 using System.Collections;
 
-using MathNet.Numerics.Properties;
 using MathNet.Numerics.Distributions;
 
 namespace MathNet.Numerics
@@ -198,7 +197,7 @@ namespace MathNet.Numerics
                 throw new ArgumentOutOfRangeException(
                     "modulus",
                     modulus,
-                    Resources.ArgumentNotNegative
+                    Properties.LocalStrings.ArgumentNotNegative
                     );
             }
 
@@ -444,7 +443,7 @@ namespace MathNet.Numerics
                     throw new ArgumentOutOfRangeException(
                         "value",
                         value,
-                        Resources.ArgumentNotNegative
+                        Properties.LocalStrings.ArgumentNotNegative
                         );
                 }
 
@@ -495,7 +494,7 @@ namespace MathNet.Numerics
                     throw new ArgumentOutOfRangeException(
                         "value",
                         value,
-                        Resources.ArgumentNotNegative
+                        Properties.LocalStrings.ArgumentNotNegative
                         );
                 }
 
@@ -1567,7 +1566,7 @@ namespace MathNet.Numerics
                 {
                     if(cursor >= source.Length)
                     {
-                        throw new ArgumentException(Resources.ArgumentParseComplexNumber, "complex");
+                        throw new ArgumentException(Properties.LocalStrings.ArgumentParseComplexNumber, "complex");
                     }
                     
                     return source[cursor];

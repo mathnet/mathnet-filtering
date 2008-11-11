@@ -23,7 +23,6 @@
 #endregion
 
 using System;
-using MathNet.Numerics.Properties;
 
 namespace MathNet.Numerics.LinearAlgebra
 {
@@ -54,7 +53,7 @@ namespace MathNet.Numerics.LinearAlgebra
         {
             if(m.RowCount != m.ColumnCount)
             {
-                throw new InvalidOperationException(Resources.ArgumentMatrixSquare);
+                throw new InvalidOperationException(Properties.LocalStrings.ArgumentMatrixSquare);
             }
 
             double[][] A = m;
@@ -133,12 +132,12 @@ namespace MathNet.Numerics.LinearAlgebra
         {
             if(b.Length != _l.RowCount)
             {
-                throw new ArgumentException(Resources.ArgumentMatrixSameRowDimension, "b");
+                throw new ArgumentException(Properties.LocalStrings.ArgumentMatrixSameRowDimension, "b");
             }
 
             if(!_isSymmetricPositiveDefinite)
             {
-                throw new InvalidOperationException(Resources.ArgumentMatrixSymmetricPositiveDefinite);
+                throw new InvalidOperationException(Properties.LocalStrings.ArgumentMatrixSymmetricPositiveDefinite);
             }
 
             double[][] L = _l;
@@ -185,12 +184,12 @@ namespace MathNet.Numerics.LinearAlgebra
         {
             if(B.RowCount != _l.RowCount)
             {
-                throw new ArgumentException(Resources.ArgumentMatrixSameRowDimension, "B");
+                throw new ArgumentException(Properties.LocalStrings.ArgumentMatrixSameRowDimension, "B");
             }
 
             if(!_isSymmetricPositiveDefinite)
             {
-                throw new InvalidOperationException(Resources.ArgumentMatrixSymmetricPositiveDefinite);
+                throw new InvalidOperationException(Properties.LocalStrings.ArgumentMatrixSymmetricPositiveDefinite);
             }
 
             int nx = B.ColumnCount;

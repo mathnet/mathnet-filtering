@@ -21,7 +21,6 @@
 
 using System;
 using System.Collections;
-using MathNet.Numerics.Properties;
 
 namespace MathNet.Numerics
 {
@@ -367,12 +366,12 @@ namespace MathNet.Numerics
         {
             if(c1 == null)
             {
-                throw new ArgumentNullException("c1", string.Format(Resources.ArgumentNull, "c1"));
+                throw new ArgumentNullException("c1", Properties.LocalStrings.ArgumentNull("c1"));
             }
 
             if(c2 == null)
             {
-                throw new ArgumentNullException("c2", string.Format(Resources.ArgumentNull, "c2"));
+                throw new ArgumentNullException("c2", Properties.LocalStrings.ArgumentNull("c2"));
             }
 
             return new ConcatCollection(c1, c2);
@@ -395,12 +394,12 @@ namespace MathNet.Numerics
         {
             if(c1 == null)
             {
-                throw new ArgumentNullException("c1", string.Format(Resources.ArgumentNull, "c1"));
+                throw new ArgumentNullException("c1", Properties.LocalStrings.ArgumentNull("c1"));
             }
 
             if(c2 == null)
             {
-                throw new ArgumentNullException("c2", string.Format(Resources.ArgumentNull, "c2"));
+                throw new ArgumentNullException("c2", Properties.LocalStrings.ArgumentNull("c2"));
             }
 
             return new InterCollection(c1, c2);
@@ -418,12 +417,12 @@ namespace MathNet.Numerics
         {
             if(c1 == null)
             {
-                throw new ArgumentNullException("c1", string.Format(Resources.ArgumentNull, "c1"));
+                throw new ArgumentNullException("c1", Properties.LocalStrings.ArgumentNull("c1"));
             }
 
             if(c2 == null)
             {
-                throw new ArgumentNullException("c2", string.Format(Resources.ArgumentNull, "c2"));
+                throw new ArgumentNullException("c2", Properties.LocalStrings.ArgumentNull("c2"));
             }
 
             return new MinusCollection(c1, c2);
@@ -439,12 +438,12 @@ namespace MathNet.Numerics
         {
             if(c1 == null)
             {
-                throw new ArgumentNullException("c1", string.Format(Resources.ArgumentNull, "c1"));
+                throw new ArgumentNullException("c1", Properties.LocalStrings.ArgumentNull("c1"));
             }
 
             if(c2 == null)
             {
-                throw new ArgumentNullException("c2", string.Format(Resources.ArgumentNull, "c2"));
+                throw new ArgumentNullException("c2", Properties.LocalStrings.ArgumentNull("c2"));
             }
 
             return null;
@@ -467,12 +466,12 @@ namespace MathNet.Numerics
         {
             if(c1 == null)
             {
-                throw new ArgumentNullException("c1", string.Format(Resources.ArgumentNull, "c1"));
+                throw new ArgumentNullException("c1", Properties.LocalStrings.ArgumentNull("c1"));
             }
 
             if(c2 == null)
             {
-                throw new ArgumentNullException("c2", string.Format(Resources.ArgumentNull, "c2"));
+                throw new ArgumentNullException("c2", Properties.LocalStrings.ArgumentNull("c2"));
             }
 
             return new UnionCollection(c1, c2);

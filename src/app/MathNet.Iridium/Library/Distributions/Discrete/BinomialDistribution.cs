@@ -131,7 +131,7 @@ namespace MathNet.Numerics.Distributions
         {
             if(!IsValidParameterSet(probabilityOfSuccess, numberOfTrials))
             {
-                throw new ArgumentException(Properties.Resources.ArgumentParameterSetInvalid);
+                throw new ArgumentException(Properties.LocalStrings.ArgumentParameterSetInvalid);
             }
 
             _p = probabilityOfSuccess;

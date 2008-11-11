@@ -61,8 +61,6 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-using MathNet.Numerics.Properties;
-
 namespace MathNet.Numerics
 {
     /// <summary>
@@ -569,7 +567,7 @@ namespace MathNet.Numerics
         {
             if(value < 0)
             {
-                throw new ArgumentOutOfRangeException("value", Resources.ArgumentPositive);
+                throw new ArgumentOutOfRangeException("value", Properties.LocalStrings.ArgumentPositive);
             }
 
             if(value <= 1)
@@ -615,7 +613,7 @@ namespace MathNet.Numerics
         {
             if(value < 0)
             {
-                throw new ArgumentOutOfRangeException("value", Resources.ArgumentPositive);
+                throw new ArgumentOutOfRangeException("value", Properties.LocalStrings.ArgumentPositive);
             }
 
             if(value >= FactorialPrecompSize)
@@ -801,7 +799,7 @@ namespace MathNet.Numerics
 
             if(a < 0.0 || x < 0.0)
             {
-                throw new ArgumentOutOfRangeException("a,x", Resources.ArgumentNotNegative);
+                throw new ArgumentOutOfRangeException("a,x", Properties.LocalStrings.ArgumentNotNegative);
             }
 
             double gln = GammaLn(a);
@@ -871,7 +869,7 @@ namespace MathNet.Numerics
                 }
             }
 
-            throw new ArgumentException(Resources.ArgumentTooLargeForIterationLimit, "a");
+            throw new ArgumentException(Properties.LocalStrings.ArgumentTooLargeForIterationLimit, "a");
         }
 
         #endregion
@@ -1035,12 +1033,12 @@ namespace MathNet.Numerics
         {
             if(a < 0.0 || b < 0.0)
             {
-                throw new ArgumentOutOfRangeException("a,b", Resources.ArgumentNotNegative);
+                throw new ArgumentOutOfRangeException("a,b", Properties.LocalStrings.ArgumentNotNegative);
             }
 
             if(x < 0.0 || x > 1.0)
             {
-                throw new ArgumentOutOfRangeException("x", String.Format(Resources.ArgumentInIntervalXYInclusive, "0.0", "1.0"));
+                throw new ArgumentOutOfRangeException("x", Properties.LocalStrings.ArgumentInIntervalXYInclusive(0, 1));
             }
 
             double bt = (x == 0.0 || x == 1.0)
@@ -1125,7 +1123,7 @@ namespace MathNet.Numerics
                 }
             }
 
-            throw new ArgumentException(Resources.ArgumentTooLargeForIterationLimit, "a,b");
+            throw new ArgumentException(Properties.LocalStrings.ArgumentTooLargeForIterationLimit, "a,b");
         }
 
         #endregion
@@ -1175,7 +1173,7 @@ namespace MathNet.Numerics
         {
             if(x < -1.0 || x > 1.0)
             {
-                throw new ArgumentOutOfRangeException("p", x, String.Format(Resources.ArgumentInIntervalXYInclusive, "-1.0", "1.0"));
+                throw new ArgumentOutOfRangeException("p", x, Properties.LocalStrings.ArgumentInIntervalXYInclusive(-1, 1));
             }
 
             x = 0.5 * (x + 1.0);
@@ -1254,7 +1252,7 @@ namespace MathNet.Numerics
         {
             if(n < 0)
             {
-                throw new ArgumentOutOfRangeException("n", Resources.ArgumentNotNegative);
+                throw new ArgumentOutOfRangeException("n", Properties.LocalStrings.ArgumentNotNegative);
             }
 
             if(n >= HarmonicPrecompSize)

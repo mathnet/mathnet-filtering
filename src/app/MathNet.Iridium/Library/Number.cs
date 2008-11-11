@@ -23,7 +23,6 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Runtime.InteropServices;
-using MathNet.Numerics.Properties;
 
 namespace MathNet.Numerics
 {
@@ -202,12 +201,12 @@ namespace MathNet.Numerics
         {
             if(double.IsNaN(a) || double.IsInfinity(a))
             {
-                throw new ArgumentException(Resources.ArgumentNotInfinityNaN, "a");
+                throw new ArgumentException(Properties.LocalStrings.ArgumentNotInfinityNaN, "a");
             }
 
             if(double.IsNaN(b) || double.IsInfinity(b))
             {
-                throw new ArgumentException(Resources.ArgumentNotInfinityNaN, "b");
+                throw new ArgumentException(Properties.LocalStrings.ArgumentNotInfinityNaN, "b");
             }
 
             ulong ua = ToLexicographicalOrderedUInt64(a);
@@ -315,7 +314,7 @@ namespace MathNet.Numerics
         {
             if(maxNumbersBetween < 0)
             {
-                throw new ArgumentException(Resources.ArgumentNotNegative, "maxNumbersBetween");
+                throw new ArgumentException(Properties.LocalStrings.ArgumentNotNegative, "maxNumbersBetween");
             }
 
             // NaN's should never equal to anything

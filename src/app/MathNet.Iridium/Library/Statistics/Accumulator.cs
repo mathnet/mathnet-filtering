@@ -22,7 +22,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using MathNet.Numerics.Properties;
 
 namespace MathNet.Numerics.Statistics
 {
@@ -134,7 +133,7 @@ namespace MathNet.Numerics.Statistics
             {
                 if(!(obj is double))
                 {
-                    throw new ArgumentException(Resources.ArgumentTypeMismatch);
+                    throw new ArgumentException(Properties.LocalStrings.ArgumentTypeMismatch);
                 }
 
                 this.Add((double)obj);
@@ -175,7 +174,7 @@ namespace MathNet.Numerics.Statistics
         {
             if(count <= 0)
             {
-                throw new InvalidOperationException(Resources.InvalidOperationAccumulatorEmpty);
+                throw new InvalidOperationException(Properties.LocalStrings.InvalidOperationAccumulatorEmpty);
             }
 
             sum -= value;
@@ -204,7 +203,7 @@ namespace MathNet.Numerics.Statistics
             {
                 if(!(obj is double))
                 {
-                    throw new ArgumentException(Resources.ArgumentTypeMismatch);
+                    throw new ArgumentException(Properties.LocalStrings.ArgumentTypeMismatch);
                 }
 
                 this.Remove((double)obj);
@@ -256,7 +255,7 @@ namespace MathNet.Numerics.Statistics
             {
                 if(count <= 0)
                 {
-                    throw new InvalidOperationException(Resources.InvalidOperationAccumulatorEmpty);
+                    throw new InvalidOperationException(Properties.LocalStrings.InvalidOperationAccumulatorEmpty);
                 }
 
                 return (sum / count);
@@ -272,7 +271,7 @@ namespace MathNet.Numerics.Statistics
             {
                 if(count <= 0)
                 {
-                    throw new InvalidOperationException(Resources.InvalidOperationAccumulatorEmpty);
+                    throw new InvalidOperationException(Properties.LocalStrings.InvalidOperationAccumulatorEmpty);
                 }
 
                 return (squaredSum / count);
@@ -288,7 +287,7 @@ namespace MathNet.Numerics.Statistics
             {
                 if(count <= 0)
                 {
-                    throw new InvalidOperationException(Resources.InvalidOperationAccumulatorEmpty);
+                    throw new InvalidOperationException(Properties.LocalStrings.InvalidOperationAccumulatorEmpty);
                 }
 
                 double mean = this.Mean;
@@ -317,7 +316,7 @@ namespace MathNet.Numerics.Statistics
             {
                 if(count <= 0)
                 {
-                    throw new InvalidOperationException(Resources.InvalidOperationAccumulatorEmpty);
+                    throw new InvalidOperationException(Properties.LocalStrings.InvalidOperationAccumulatorEmpty);
                 }
 
                 return Sigma / Math.Sqrt(count);

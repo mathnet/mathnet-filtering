@@ -126,7 +126,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
 
             if(t.Count != x.Count)
             {
-                throw new ArgumentException(Properties.Resources.ArgumentVectorsSameLengths);
+                throw new ArgumentException(Properties.LocalStrings.ArgumentVectorsSameLengths);
             }
 
             double[] c = new double[4 * (t.Count - 1)];

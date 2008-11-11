@@ -23,8 +23,8 @@
 #endregion
 
 using System;
+
 using MathNet.Numerics;
-using MathNet.Numerics.Properties;
 
 namespace MathNet.Numerics.Interpolation
 {
@@ -147,7 +147,7 @@ namespace MathNet.Numerics.Interpolation
         {
             if(null == _samples)
             {
-                throw new InvalidOperationException(Resources.InvalidOperationNoSamplesProvided);
+                throw new InvalidOperationException(Properties.LocalStrings.InvalidOperationNoSamplesProvided);
             }
 
             const double tiny = 1.0e-15;

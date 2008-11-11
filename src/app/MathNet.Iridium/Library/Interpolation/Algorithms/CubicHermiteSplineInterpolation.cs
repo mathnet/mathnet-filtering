@@ -133,12 +133,12 @@ namespace MathNet.Numerics.Interpolation.Algorithms
 
             if(t.Count != x.Count)
             {
-                throw new ArgumentException(Properties.Resources.ArgumentVectorsSameLengths, "x");
+                throw new ArgumentException(Properties.LocalStrings.ArgumentVectorsSameLengths, "x");
             }
 
             if(t.Count != d.Count)
             {
-                throw new ArgumentException(Properties.Resources.ArgumentVectorsSameLengths, "d");
+                throw new ArgumentException(Properties.LocalStrings.ArgumentVectorsSameLengths, "d");
             }
 
             double[] tt = new double[t.Count];

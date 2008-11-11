@@ -159,7 +159,7 @@ namespace MathNet.Numerics.Distributions
         {
             if(!IsValidParameterSet(alpha, beta))
             {
-                throw new ArgumentException(Properties.Resources.ArgumentParameterSetInvalid);
+                throw new ArgumentException(Properties.LocalStrings.ArgumentParameterSetInvalid);
             }
 
             _alpha = alpha;

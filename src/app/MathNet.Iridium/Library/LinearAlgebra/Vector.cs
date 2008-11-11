@@ -23,7 +23,7 @@
 using System;
 using System.Text;
 using System.Collections.Generic;
-using MathNet.Numerics.Properties;
+
 using MathNet.Numerics.Distributions;
 
 namespace MathNet.Numerics.LinearAlgebra
@@ -705,7 +705,7 @@ namespace MathNet.Numerics.LinearAlgebra
             CheckMatchingVectorDimensions(u, v);
             if(3 != u.Length)
             {
-                throw new ArgumentOutOfRangeException("u", Resources.ArgumentVectorThreeDimensional);
+                throw new ArgumentOutOfRangeException("u", Properties.LocalStrings.ArgumentVectorThreeDimensional);
             }
 
             Vector product = new Vector(new double[] {
@@ -1155,7 +1155,7 @@ namespace MathNet.Numerics.LinearAlgebra
 
             if(A.Length != B.Length)
             {
-                throw new ArgumentException(Resources.ArgumentVectorsSameLengths);
+                throw new ArgumentException(Properties.LocalStrings.ArgumentVectorsSameLengths);
             }
         }
 

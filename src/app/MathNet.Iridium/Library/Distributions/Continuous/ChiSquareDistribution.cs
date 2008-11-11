@@ -141,7 +141,7 @@ namespace MathNet.Numerics.Distributions
         {
             if(!IsValidParameterSet(degreesOfFreedom))
             {
-                throw new ArgumentException(Properties.Resources.ArgumentParameterSetInvalid, "degreesOfFreedom");
+                throw new ArgumentException(Properties.LocalStrings.ArgumentParameterSetInvalid, "degreesOfFreedom");
             }
 
             _degreesOfFreedom = degreesOfFreedom;

@@ -232,7 +232,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
 
             if(numberOfPoints < 1)
             {
-                throw new ArgumentOutOfRangeException("numberOfPoints", Properties.Resources.ArgumentPositive);
+                throw new ArgumentOutOfRangeException("numberOfPoints", Properties.LocalStrings.ArgumentPositive);
             }
 
             double transformSummand = 0.5 * (a + b);

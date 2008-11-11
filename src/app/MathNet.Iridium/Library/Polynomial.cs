@@ -21,7 +21,6 @@
 
 using System;
 using System.Text;
-using MathNet.Numerics.Properties;
 
 namespace MathNet.Numerics
 {
@@ -202,7 +201,7 @@ namespace MathNet.Numerics
             {
                 if(power < 0)
                 {
-                    throw new ArgumentOutOfRangeException("power", power, Resources.ArgumentNotNegative);
+                    throw new ArgumentOutOfRangeException("power", power, Properties.LocalStrings.ArgumentNotNegative);
                 }
 
                 if(power > order)
@@ -217,7 +216,7 @@ namespace MathNet.Numerics
             {
                 if(power < 0)
                 {
-                    throw new ArgumentOutOfRangeException("power", power, Resources.ArgumentNotNegative);
+                    throw new ArgumentOutOfRangeException("power", power, Properties.LocalStrings.ArgumentNotNegative);
                 }
 
                 if(power > order)
@@ -594,7 +593,7 @@ namespace MathNet.Numerics
         {
             if(n <= 0)
             {
-                throw new ArgumentOutOfRangeException("n", n, Resources.ArgumentPositive);
+                throw new ArgumentOutOfRangeException("n", n, Properties.LocalStrings.ArgumentPositive);
             }
 
             EnsureSupportForOrder(order + n);
@@ -692,7 +691,7 @@ namespace MathNet.Numerics
         {
             if(n <= 0)
             {
-                throw new ArgumentOutOfRangeException("n", n, Resources.ArgumentPositive);
+                throw new ArgumentOutOfRangeException("n", n, Properties.LocalStrings.ArgumentPositive);
             }
 
             remainder = new double[n];
@@ -1131,7 +1130,7 @@ namespace MathNet.Numerics
 
             if(!(obj is Polynomial))
             {
-                throw new ArgumentException(Resources.ArgumentTypeMismatch, "obj");
+                throw new ArgumentException(Properties.LocalStrings.ArgumentTypeMismatch, "obj");
             }
 
             return CompareTo((Polynomial)obj);

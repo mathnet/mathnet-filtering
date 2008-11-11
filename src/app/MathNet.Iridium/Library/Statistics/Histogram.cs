@@ -23,7 +23,6 @@ using System;
 using System.Collections;
 using System.Diagnostics;
 using System.Text;
-using MathNet.Numerics.Properties;
 
 namespace MathNet.Numerics.Statistics
 {
@@ -83,7 +82,7 @@ namespace MathNet.Numerics.Statistics
 
             if(index < 0)
             {
-                throw new ArgumentException(string.Format(Resources.ArgumentHistogramContainsNot, v));
+                throw new ArgumentException(Properties.LocalStrings.ArgumentHistogramContainsNot(v));
             }
 
             return index;
@@ -96,7 +95,7 @@ namespace MathNet.Numerics.Statistics
         {
             if(buckets.Count == 0)
             {
-                throw new ArgumentException(Resources.InvalidOperationHistogramEmpty);
+                throw new ArgumentException(Properties.LocalStrings.InvalidOperationHistogramEmpty);
             }
 
             LazySort();
@@ -191,7 +190,7 @@ namespace MathNet.Numerics.Statistics
         {
             if(distribution.Count < Math.Max(bucketCount, 2))
             {
-                throw new ArgumentException(Resources.InvalidOperationHistogramNotEnoughPoints);
+                throw new ArgumentException(Properties.LocalStrings.InvalidOperationHistogramNotEnoughPoints);
             }
 
             // "values" contains the sorted distribution.
@@ -302,7 +301,7 @@ namespace MathNet.Numerics.Statistics
         {
             if(distribution.Count < bucketCount)
             {
-                throw new ArgumentException(Resources.InvalidOperationHistogramNotEnoughPoints);
+                throw new ArgumentException(Properties.LocalStrings.InvalidOperationHistogramNotEnoughPoints);
             }
 
             // "values" contains the sorted distribution.
@@ -398,7 +397,7 @@ namespace MathNet.Numerics.Statistics
         {
             if(distribution.Count < Math.Max(bucketCount, 2))
             {
-                throw new ArgumentException(Resources.InvalidOperationHistogramNotEnoughPoints);
+                throw new ArgumentException(Properties.LocalStrings.InvalidOperationHistogramNotEnoughPoints);
             }
 
             // "values" contains the sorted distribution.
@@ -480,7 +479,7 @@ namespace MathNet.Numerics.Statistics
         {
             if(distribution.Count < Math.Max(histSize, 2))
             {
-                throw new ArgumentException(Resources.InvalidOperationHistogramNotEnoughPoints);
+                throw new ArgumentException(Properties.LocalStrings.InvalidOperationHistogramNotEnoughPoints);
             }
 
             // "values" contains the sorted distribution.

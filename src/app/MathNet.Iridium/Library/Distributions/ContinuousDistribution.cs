@@ -38,8 +38,8 @@
 #endregion
 
 using System;
+
 using MathNet.Numerics.RandomSources;
-using MathNet.Numerics.Properties;
 
 namespace MathNet.Numerics.Distributions
 {
@@ -78,8 +78,7 @@ namespace MathNet.Numerics.Distributions
         {
             if(random == null)
             {
-                string message = string.Format(null, Resources.ArgumentNull, "generator");
-                throw new ArgumentNullException("generator", message);
+                throw new ArgumentNullException("generator", Properties.LocalStrings.ArgumentNull("generator"));
             }
 
             _random = random;

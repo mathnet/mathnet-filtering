@@ -126,7 +126,7 @@ namespace MathNet.Numerics.Distributions
         {
             if(!IsValidParameterSet(rate))
             {
-                throw new ArgumentException(Properties.Resources.ArgumentParameterSetInvalid, "rate");
+                throw new ArgumentException(Properties.LocalStrings.ArgumentParameterSetInvalid, "rate");
             }
 
             _rate = rate;

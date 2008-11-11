@@ -123,7 +123,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
 
             if(t.Count != x.Count)
             {
-                throw new ArgumentException(Properties.Resources.ArgumentVectorsSameLengths, "x");
+                throw new ArgumentException(Properties.LocalStrings.ArgumentVectorsSameLengths, "x");
             }
 
             int n = t.Count;

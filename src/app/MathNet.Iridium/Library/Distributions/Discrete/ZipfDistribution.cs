@@ -20,8 +20,8 @@
 #endregion
 
 using System;
+
 using MathNet.Numerics.RandomSources;
-using MathNet.Numerics.Properties;
 
 namespace MathNet.Numerics.Distributions
 {
@@ -75,7 +75,7 @@ namespace MathNet.Numerics.Distributions
         {
             if(skew <= 1d)
             {
-                throw new ArgumentOutOfRangeException("skew", skew, string.Format(Resources.ArgumentOutOfRangeGreater, "skew", "1.0"));
+                throw new ArgumentOutOfRangeException("skew", skew, Properties.LocalStrings.ArgumentOutOfRangeGreater("skew", 1));
             }
 
             this.skew = skew;
@@ -89,7 +89,7 @@ namespace MathNet.Numerics.Distributions
         {
             if(skew <= 1d)
             {
-                throw new ArgumentOutOfRangeException("skew", skew, string.Format(Resources.ArgumentOutOfRangeGreater, "skew", "1.0"));
+                throw new ArgumentOutOfRangeException("skew", skew, Properties.LocalStrings.ArgumentOutOfRangeGreater("skew", 1));
             }
 
             this.skew = skew;
@@ -110,7 +110,7 @@ namespace MathNet.Numerics.Distributions
             {
                 if(value <= 1d)
                 {
-                    throw new ArgumentOutOfRangeException("value", value, string.Format(Resources.ArgumentOutOfRangeGreater, "skew", "1.0"));
+                    throw new ArgumentOutOfRangeException("value", value, Properties.LocalStrings.ArgumentOutOfRangeGreater("skew", 1));
                 }
 
                 skew = value;

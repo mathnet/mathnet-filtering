@@ -54,7 +54,6 @@
 #endregion
 
 using System;
-using MathNet.Numerics.Properties;
 
 namespace MathNet.Numerics.RandomSources
 {
@@ -332,8 +331,11 @@ namespace MathNet.Numerics.RandomSources
         {
             if(maxValue < 0)
             {
-                string message = string.Format(null, Resources.ArgumentOutOfRangeGreaterEqual, "maxValue", "0");
-                throw new ArgumentOutOfRangeException("maxValue", maxValue, message);
+                throw new ArgumentOutOfRangeException(
+                    "maxValue",
+                    maxValue,
+                    Properties.LocalStrings.ArgumentOutOfRangeGreaterEqual("maxValue", 0)
+                    );
             }
 
             // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
@@ -377,8 +379,11 @@ namespace MathNet.Numerics.RandomSources
         {
             if(minValue > maxValue)
             {
-                string message = string.Format(null, Resources.ArgumentOutOfRangeGreaterEqual, "maxValue", "minValue");
-                throw new ArgumentOutOfRangeException("maxValue", maxValue, message);
+                throw new ArgumentOutOfRangeException(
+                    "maxValue",
+                    maxValue,
+                    Properties.LocalStrings.ArgumentOutOfRangeGreaterEqual("maxValue", "minValue")
+                    );
             }
 
             // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
@@ -455,8 +460,11 @@ namespace MathNet.Numerics.RandomSources
         {
             if(maxValue < 0.0)
             {
-                string message = string.Format(null, Resources.ArgumentOutOfRangeGreaterEqual, "maxValue", "0.0");
-                throw new ArgumentOutOfRangeException("maxValue", maxValue, message);
+                throw new ArgumentOutOfRangeException(
+                    "maxValue",
+                    maxValue,
+                    Properties.LocalStrings.ArgumentOutOfRangeGreaterEqual("maxValue", 0)
+                    );
             }
 
             // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
@@ -508,27 +516,18 @@ namespace MathNet.Numerics.RandomSources
         {
             if(minValue > maxValue)
             {
-                string message = string.Format(
-                    Resources.ArgumentOutOfRangeGreaterEqual,
+                throw new ArgumentOutOfRangeException(
                     "maxValue",
-                    "minValue"
+                    maxValue,
+                    Properties.LocalStrings.ArgumentOutOfRangeGreaterEqual("maxValue", "minValue")
                     );
-
-                throw new ArgumentOutOfRangeException("maxValue", maxValue, message);
             }
 
             double range = maxValue - minValue;
 
             if(range == double.PositiveInfinity)
             {
-                string message = string.Format(
-                    Resources.ArgumentRangeLessEqual,
-                    "minValue",
-                    "maxValue",
-                    "Double.MaxValue"
-                    );
-
-                throw new ArgumentException(message);
+                throw new ArgumentException(Properties.LocalStrings.ArgumentRangeLessEqual("minValue", "maxValue", "Double.MaxValue"));
             }
 
             // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
@@ -597,12 +596,7 @@ namespace MathNet.Numerics.RandomSources
         {
             if(buffer == null)
             {
-                string message = string.Format(
-                    Resources.ArgumentNull,
-                    "buffer"
-                    );
-
-                throw new ArgumentNullException("buffer", message);
+                throw new ArgumentNullException("buffer", Properties.LocalStrings.ArgumentNull("buffer"));
             }
 
             // Fill the buffer with 4 bytes (1 uint) at a time.

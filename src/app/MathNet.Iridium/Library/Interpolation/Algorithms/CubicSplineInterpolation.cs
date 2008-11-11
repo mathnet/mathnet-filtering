@@ -153,7 +153,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
 
             if(t.Count != x.Count)
             {
-                throw new ArgumentException(Properties.Resources.ArgumentVectorsSameLengths, "x");
+                throw new ArgumentException(Properties.LocalStrings.ArgumentVectorsSameLengths, "x");
             }
 
             int n = t.Count;
@@ -215,7 +215,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
                     b[0] = 3 * (xx[1] - xx[0]) / (tt[1] - tt[0]) - 0.5 * leftBoundary * (tt[1] - tt[0]);
                     break;
                 default:
-                    throw new NotSupportedException(Properties.Resources.InvalidLeftBoundaryCondition);
+                    throw new NotSupportedException(Properties.LocalStrings.InvalidLeftBoundaryCondition);
             }
 
             // Central Conditions
@@ -249,7 +249,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
                     b[n - 1] = 3 * (xx[n - 1] - xx[n - 2]) / (tt[n - 1] - tt[n - 2]) + 0.5 * rightBoundary * (tt[n - 1] - tt[n - 2]);
                     break;
                 default:
-                    throw new NotSupportedException(Properties.Resources.InvalidRightBoundaryCondition);
+                    throw new NotSupportedException(Properties.LocalStrings.InvalidRightBoundaryCondition);
             }
 
             // Build Spline

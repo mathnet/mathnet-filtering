@@ -176,7 +176,7 @@ namespace MathNet.Numerics.Distributions
         {
             if(!IsValidParameterSet(lambda))
             {
-                throw new ArgumentException(Properties.Resources.ArgumentParameterSetInvalid, "lambda");
+                throw new ArgumentException(Properties.LocalStrings.ArgumentParameterSetInvalid, "lambda");
             }
 
             _lambda = lambda;

@@ -21,7 +21,6 @@
 
 using System;
 using System.Text;
-using MathNet.Numerics.Properties;
 
 namespace MathNet.Numerics
 {
@@ -874,7 +873,7 @@ namespace MathNet.Numerics
 
             if(!(obj is Rational))
             {
-                throw new ArgumentException(Resources.ArgumentTypeMismatch, "obj");
+                throw new ArgumentException(Properties.LocalStrings.ArgumentTypeMismatch, "obj");
             }
 
             return CompareTo((Rational)obj);

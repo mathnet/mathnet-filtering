@@ -101,13 +101,9 @@
     <Compile Include="LinearAlgebra\IMatrix.cs" />
     <Compile Include="LinearAlgebra\IVector.cs" />
     <Compile Include="LinearAlgebra\Vector.cs" />
+    <Compile Include="Properties\LocalStrings.cs" />
     <Compile Include="Sorting.cs" />
     <Compile Include="OnDemandComputation.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="RandomSources\AdditiveLaggedFibonacciRandomSource.cs" />
     <Compile Include="RandomSources\MersenneTwisterRandomSource.cs" />
     <Compile Include="RandomSources\RandomSource.cs" />
@@ -145,22 +141,6 @@
     <Compile Include="Transformations\TransformationConvention.cs" />
     <Compile Include="Trigonometry.cs" />
     <Compile Include="Tuple.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Properties\Resources.es.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.fr.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <SubType>Designer</SubType>
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.de.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\mathnet_public.snk" />
