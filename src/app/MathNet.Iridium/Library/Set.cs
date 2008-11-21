@@ -1214,25 +1214,7 @@ namespace MathNet.Numerics
             IComparer<T> comparer
             )
         {
-            // TODO (cdr, 2008-11-21): Forward to commong Sorting class as well.
-
-            IList<T> items = Items;
-
-            List<T> list = items as List<T>;
-            if(list != null)
-            {
-                list.Sort(index, count, comparer);
-                return;
-            }
-
-            T[] array = items as T[];
-            if(array != null)
-            {
-                Array.Sort<T>(array, index, count, comparer);
-                return;
-            }
-
-            throw new NotSupportedException();
+            Sorting.Sort(Items, index, count, comparer);
         }
 
         #endregion

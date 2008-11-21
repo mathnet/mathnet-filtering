@@ -55,6 +55,23 @@ namespace MathNet.Numerics
         }
 
         /// <summary>
+        /// Sort a range of a list of keys, inplace.
+        /// </summary>
+        /// <param name="keys">List to sort.</param>
+        /// <param name="index">The zero-based starting index of the range to sort.</param>
+        /// <param name="count">The length of the range to sort.</param>
+        public static
+        void
+        Sort<T>(
+            IList<T> keys,
+            int index,
+            int count
+            )
+        {
+            Sort(keys, index, count, Comparer<T>.Default);
+        }
+
+        /// <summary>
         /// Sort a list of keys, inplace.
         /// </summary>
         /// <param name="keys">List to sort.</param>
@@ -192,6 +209,78 @@ namespace MathNet.Numerics
 
             // local sort implementation
             QuickSort(keys, items1, items2, comparer, 0, keys.Count - 1);
+        }
+
+        /// <summary>
+        /// Sort a range of a list of keys, inplace.
+        /// </summary>
+        /// <param name="keys">List to sort.</param>
+        /// <param name="index">The zero-based starting index of the range to sort.</param>
+        /// <param name="count">The length of the range to sort.</param>
+        /// <param name="comparer">Comparison, defining the sort order.</param>
+        public static
+        void
+        Sort<T>(
+            IList<T> keys,
+            int index,
+            int count,
+            IComparer<T> comparer
+            )
+        {
+            if(null == keys)
+            {
+                throw new ArgumentNullException("keys");
+            }
+
+            if(null == comparer)
+            {
+                throw new ArgumentNullException("comparer");
+            }
+
+            if(index < 0 || index >= keys.Count)
+            {
+                throw new ArgumentOutOfRangeException("index");
+            }
+
+            if(count < 0 || index + count > keys.Count)
+            {
+                throw new ArgumentOutOfRangeException("count");
+            }
+
+            // basic cases
+            if(count <= 1)
+            {
+                return;
+            }
+
+            if(count == 2)
+            {
+                if(comparer.Compare(keys[index], keys[index + 1]) > 0)
+                {
+                    Swap(keys, index, index + 1);
+                }
+
+                return;
+            }
+
+            // generic list case
+            List<T> list = keys as List<T>;
+            if(null != list)
+            {
+                list.Sort(index, count, comparer);
+                return;
+            }
+
+            // array case
+            T[] array = keys as T[];
+            if(null != array)
+            {
+                Array.Sort(array, index, count, comparer);
+                return;
+            }
+
+            // local sort implementation
+            QuickSort(keys, comparer, index, count - 1);
         }
 
         static
