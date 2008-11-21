@@ -126,5 +126,28 @@ namespace Iridium.Test
                 Assert.IsTrue(Array.IndexOf(keys, keysCopy[i]) >= 0, "All keys still there - " + i.ToString());
             }
         }
+
+        [Test]
+        public void TestAppliedSetSorting()
+        {
+            const int len = 0x1 << 10;
+            SystemRandomSource random = new SystemRandomSource();
+
+            Set<int> set = new Set<int>();
+
+            for(int i = 0; i < len; i++)
+            {
+                set.Add(random.Next());
+            }
+
+            // default sorting (Ascending)
+            set.Sort();
+
+            // just check that the order is as expected, not that the items are correct
+            for(int i = 1; i < set.Count; i++)
+            {
+                Assert.IsTrue(set[i] >= set[i - 1], "Sort Order - " + i.ToString());
+            }
+        }
     }
 }

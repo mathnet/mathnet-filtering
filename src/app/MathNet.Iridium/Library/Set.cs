@@ -159,6 +159,11 @@ namespace MathNet.Numerics
 
 
         /// <summary>
+        /// Sort all elements of this set with respect to the default comparer.
+        /// </summary>
+        void Sort();
+
+        /// <summary>
         /// Sort all elements of this set with respect to the comparer.
         /// </summary>
         void Sort(IComparer<T> comparer);
@@ -1177,6 +1182,16 @@ namespace MathNet.Numerics
         #region Sorting
 
         /// <summary>
+        /// Sort all elements of this set with respect to the default comparer.
+        /// </summary>
+        public
+        void
+        Sort()
+        {
+            Sorting.Sort(Items);
+        }
+
+        /// <summary>
         /// Sort all elements of this set with respect to the comparer.
         /// </summary>
         public
@@ -1185,7 +1200,7 @@ namespace MathNet.Numerics
             IComparer<T> comparer
             )
         {
-            Sort(0, Count, comparer);
+            Sorting.Sort(Items, comparer);
         }
 
         /// <summary>
@@ -1199,6 +1214,8 @@ namespace MathNet.Numerics
             IComparer<T> comparer
             )
         {
+            // TODO (cdr, 2008-11-21): Forward to commong Sorting class as well.
+
             IList<T> items = Items;
 
             List<T> list = items as List<T>;
@@ -1732,6 +1749,19 @@ namespace MathNet.Numerics
         ISet<T>.RemoveAll(
             Predicate<T> match
             )
+        {
+            throw new NotSupportedException();
+        }
+
+        /// <summary>
+        /// Sort all elements of this set with respect to the default comparer.
+        /// </summary>
+        /// <remarks>
+        /// This is not supported by this implementation.
+        /// </remarks>
+        /// <exception cref="NotSupportedException" />
+        void
+        ISet<T>.Sort()
         {
             throw new NotSupportedException();
         }
