@@ -66,6 +66,14 @@ namespace MathNet.Numerics.LinearAlgebra
         OnDemandComputation<Matrix> _diagonalSingularValuesOnDemand;
         OnDemandComputation<int> _rankOnDemand;
 
+        private enum IterationStep
+        {
+            DeflateNeglible,
+            SplitAtNeglible,
+            QR,
+            Convergence
+        }
+
         /// <summary>Construct the singular value decomposition.</summary>
         /// <remarks>Provides access to U, S and V.</remarks>
         /// <param name="Arg">Rectangular matrix</param>
@@ -368,7 +376,8 @@ namespace MathNet.Numerics.LinearAlgebra
             double eps = Number.PositiveRelativeAccuracy;
             while(p > 0)
             {
-                int k, kase;
+                int k;
+                IterationStep step;
 
                 // Here is where a test for too many iterations would go.
 
@@ -376,19 +385,13 @@ namespace MathNet.Numerics.LinearAlgebra
                 // negligible elements in the s and e arrays.  On
                 // completion the variables kase and k are set as follows.
 
-                // kase = 1     if s(p) and e[k-1] are negligible and k<p
-                // kase = 2     if s(k) is negligible and k<p
-                // kase = 3     if e[k-1] is negligible, k<p, and
-                //              s(k), ..., s(p) are not negligible (qr step).
-                // kase = 4     if e(p-1) is negligible (convergence).
+                // DeflateNeglible:  if s[p] and e[k-1] are negligible and k<p
+                // SplitAtNeglible:  if s[k] is negligible and k<p
+                // QR:               if e[k-1] is negligible, k<p, and s[k], ..., s[p] are not negligible.
+                // Convergence:      if e[p-1] is negligible.
 
-                for(k = p - 2; k >= -1; k--)
+                for(k = p - 2; k >= 0; k--)
                 {
-                    if(k == -1)
-                    {
-                        break;
-                    }
-
                     if(Math.Abs(e[k]) <= eps * (Math.Abs(s[k]) + Math.Abs(s[k + 1])))
                     {
                         e[k] = 0.0;
@@ -398,7 +401,7 @@ namespace MathNet.Numerics.LinearAlgebra
 
                 if(k == p - 2)
                 {
-                    kase = 4;
+                    step = IterationStep.Convergence;
                 }
                 else
                 {
@@ -420,27 +423,27 @@ namespace MathNet.Numerics.LinearAlgebra
 
                     if(ks == k)
                     {
-                        kase = 3;
+                        step = IterationStep.QR;
                     }
                     else if(ks == p - 1)
                     {
-                        kase = 1;
+                        step = IterationStep.DeflateNeglible;
                     }
                     else
                     {
-                        kase = 2;
+                        step = IterationStep.SplitAtNeglible;
                         k = ks;
                     }
                 }
 
                 k++;
 
-                // Perform the task indicated by kase.
+                // Perform the task indicated by 'step'.
 
-                switch(kase)
+                switch(step)
                 {
                     // Deflate negligible s(p).
-                    case 1:
+                    case IterationStep.DeflateNeglible:
                         {
                             double f = e[p - 2];
                             e[p - 2] = 0.0;
@@ -472,7 +475,7 @@ namespace MathNet.Numerics.LinearAlgebra
                         break;
 
                     // Split at negligible s(k)
-                    case 2:
+                    case IterationStep.SplitAtNeglible:
                         {
                             double f = e[k - 1];
                             e[k - 1] = 0.0;
@@ -499,7 +502,7 @@ namespace MathNet.Numerics.LinearAlgebra
                         break;
 
                     // Perform one qr step.
-                    case 3:
+                    case IterationStep.QR:
                         {
                             // Calculate the shift.
 
@@ -582,9 +585,7 @@ namespace MathNet.Numerics.LinearAlgebra
                         break;
 
                     // Convergence.
-
-
-                    case 4:
+                    case IterationStep.Convergence:
                         {
                             // Make the singular values positive.
 
