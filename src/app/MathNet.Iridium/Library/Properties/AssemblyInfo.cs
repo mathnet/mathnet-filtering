@@ -44,11 +44,11 @@ using System.Security;
 [assembly: RegistryPermission(SecurityAction.RequestRefuse, Unrestricted=true)]
 
 // NOTE (ruegg, 2008-11-11): The following 5 permissions have been commented out because they're not supported by mono yet
-//[assembly: System.Net.SocketPermission(SecurityAction.RequestRefuse, Unrestricted=true)]
-//[assembly: System.Net.WebPermission(SecurityAction.RequestRefuse, Unrestricted=true)]
-//[assembly: System.Net.DnsPermission(SecurityAction.RequestRefuse, Unrestricted=true)]
-//[assembly: System.Net.Mail.SmtpPermission(SecurityAction.RequestRefuse, Unrestricted=true)]
-//[assembly: System.Net.NetworkInformation.NetworkInformationPermission(SecurityAction.RequestRefuse, Unrestricted=true)]
+////[assembly: System.Net.SocketPermission(SecurityAction.RequestRefuse, Unrestricted = true)]
+////[assembly: System.Net.WebPermission(SecurityAction.RequestRefuse, Unrestricted = true)]
+////[assembly: System.Net.DnsPermission(SecurityAction.RequestRefuse, Unrestricted = true)]
+////[assembly: System.Net.Mail.SmtpPermission(SecurityAction.RequestRefuse, Unrestricted = true)]
+////[assembly: System.Net.NetworkInformation.NetworkInformationPermission(SecurityAction.RequestRefuse, Unrestricted = true)]
 
 [assembly: AllowPartiallyTrustedCallers]
 

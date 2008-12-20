@@ -97,11 +97,13 @@ namespace MathNet.Numerics
             )
         {
             int newOrder = copy.Order;
+
             Complex[] newCoeff = new Complex[SizeOfOrder(newOrder)];
             for(int i = 0; i < newCoeff.Length; i++)
             {
                 newCoeff[i].Real = copy[i];
             }
+
             this.order = newOrder;
             this.coefficients = newCoeff;
         }
@@ -255,31 +257,31 @@ namespace MathNet.Numerics
             return polynomial1.Equals(polynomial2);
         }
 
-        ///// <summary>
-        ///// Check whether two polynomials have the same coefficients.
-        ///// </summary>
-        //public static
-        //bool
-        //operator ==(
-        //    ComplexPolynomial polynomial1,
-        //    Polynomial polynomial2
-        //    )
-        //{
-        //    return polynomial1.Equals(polynomial2);
-        //}
+        /////// <summary>
+        /////// Check whether two polynomials have the same coefficients.
+        /////// </summary>
+        ////public static
+        ////bool
+        ////operator ==(
+        ////    ComplexPolynomial polynomial1,
+        ////    Polynomial polynomial2
+        ////    )
+        ////{
+        ////    return polynomial1.Equals(polynomial2);
+        ////}
 
-        ///// <summary>
-        ///// Check whether two polynomials have the same coefficients.
-        ///// </summary>
-        //public static
-        //bool
-        //operator ==(
-        //    Polynomial polynomial1,
-        //    ComplexPolynomial polynomial2
-        //    )
-        //{
-        //    return polynomial2.Equals(polynomial1);
-        //}
+        /////// <summary>
+        /////// Check whether two polynomials have the same coefficients.
+        /////// </summary>
+        ////public static
+        ////bool
+        ////operator ==(
+        ////    Polynomial polynomial1,
+        ////    ComplexPolynomial polynomial2
+        ////    )
+        ////{
+        ////    return polynomial2.Equals(polynomial1);
+        ////}
 
         /// <summary>
         /// Check whether two polynomials have different coefficients.
@@ -294,31 +296,31 @@ namespace MathNet.Numerics
             return !polynomial1.Equals(polynomial2);
         }
 
-        ///// <summary>
-        ///// Check whether two polynomials have different coefficients.
-        ///// </summary>
-        //public static
-        //bool
-        //operator !=(
-        //    ComplexPolynomial polynomial1,
-        //    Polynomial polynomial2
-        //    )
-        //{
-        //    return !polynomial1.Equals(polynomial2);
-        //}
+        /////// <summary>
+        /////// Check whether two polynomials have different coefficients.
+        /////// </summary>
+        ////public static
+        ////bool
+        ////operator !=(
+        ////    ComplexPolynomial polynomial1,
+        ////    Polynomial polynomial2
+        ////    )
+        ////{
+        ////    return !polynomial1.Equals(polynomial2);
+        ////}
 
-        ///// <summary>
-        ///// Check whether two polynomials have different coefficients.
-        ///// </summary>
-        //public static
-        //bool
-        //operator !=(
-        //    Polynomial polynomial1,
-        //    ComplexPolynomial polynomial2
-        //    )
-        //{
-        //    return !polynomial2.Equals(polynomial1);
-        //}
+        /////// <summary>
+        /////// Check whether two polynomials have different coefficients.
+        /////// </summary>
+        ////public static
+        ////bool
+        ////operator !=(
+        ////    Polynomial polynomial1,
+        ////    ComplexPolynomial polynomial2
+        ////    )
+        ////{
+        ////    return !polynomial2.Equals(polynomial1);
+        ////}
 
         /// <summary>
         /// Check wether a polynomial is bigger than another polynomial.

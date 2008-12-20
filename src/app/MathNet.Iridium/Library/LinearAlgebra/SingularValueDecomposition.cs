@@ -68,9 +68,16 @@ namespace MathNet.Numerics.LinearAlgebra
 
         private enum IterationStep
         {
+            /// <summary>if s[p] and e[k-1] are negligible and k&lt;p.</summary>
             DeflateNeglible,
+
+            /// <summary>if s[k] is negligible and k&lt;p.</summary>
             SplitAtNeglible,
+
+            /// <summary>if e[k-1] is negligible, k&lt;p, and s[k], ..., s[p] are not negligible.</summary>
             QR,
+
+            /// <summary>if e[p-1] is negligible.</summary>
             Convergence
         }
 

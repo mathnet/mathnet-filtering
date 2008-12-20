@@ -146,6 +146,7 @@ namespace MathNet.Numerics.Properties
         {
             return string.Format("{0} must be greater than or equal to {1}.", what, lowerBound);
         }
+
         internal static string
         ArgumentOutOfRangeGreaterEqual(string what, string lowerBound)
         {
@@ -277,6 +278,5 @@ namespace MathNet.Numerics.Properties
         {
             get { return "This special case is not supported yet (but is planned)."; }
         }
-
     }
 }
