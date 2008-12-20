@@ -369,7 +369,6 @@ namespace MathNet.Numerics.LinearAlgebra
                 throw new ArgumentNullException("rowVector");
             }
 
-            int columns = rowVector.Length;
             double[][] newData = new double[1][];
 
             newData[0] = rowVector.CopyToArray();
@@ -434,7 +433,6 @@ namespace MathNet.Numerics.LinearAlgebra
             }
 
             int rows = rowVectors.Count;
-            int columns = rowVectors[0].Length;
             double[][] newData = new double[rows][];
 
             for(int i = 0; i < rows; i++)

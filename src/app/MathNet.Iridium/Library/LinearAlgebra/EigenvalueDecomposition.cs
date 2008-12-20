@@ -72,7 +72,7 @@ namespace MathNet.Numerics.LinearAlgebra
 
         OnDemandComputation<Matrix> _blockDiagonalOnDemand;
         OnDemandComputation<Matrix> _eigenVectorsOnDemand;
-        OnDemandComputation<ComplexVector> _eigenValuesOnDemand;
+        //OnDemandComputation<ComplexVector> _eigenValuesOnDemand;
 
         /// <summary>
         /// Check for symmetry, then construct the eigenvalue decomposition
@@ -223,22 +223,22 @@ namespace MathNet.Numerics.LinearAlgebra
         InitOnDemandComputations()
         {
             _blockDiagonalOnDemand = new OnDemandComputation<Matrix>(ComputeBlockDiagonalMatrix);
-            _eigenValuesOnDemand = new OnDemandComputation<ComplexVector>(ComputeEigenValues);
+            //_eigenValuesOnDemand = new OnDemandComputation<ComplexVector>(ComputeEigenValues);
             _eigenVectorsOnDemand = new OnDemandComputation<Matrix>(ComputeEigentVectors);
         }
 
-        ComplexVector
-        ComputeEigenValues()
-        {
-            Complex[] eigenvalues = new Complex[n];
+        //ComplexVector
+        //ComputeEigenValues()
+        //{
+        //    Complex[] eigenvalues = new Complex[n];
 
-            for(int i = 0; i < eigenvalues.Length; i++)
-            {
-                eigenvalues[i] = new Complex(d[i], e[i]);
-            }
+        //    for(int i = 0; i < eigenvalues.Length; i++)
+        //    {
+        //        eigenvalues[i] = new Complex(d[i], e[i]);
+        //    }
 
-            return new ComplexVector(eigenvalues);
-        }
+        //    return new ComplexVector(eigenvalues);
+        //}
 
         Matrix
         ComputeBlockDiagonalMatrix()

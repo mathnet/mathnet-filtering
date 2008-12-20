@@ -358,7 +358,6 @@ namespace MathNet.Numerics.LinearAlgebra
             }
 
             int rows = rowVectors.Count;
-            int columns = rowVectors[0].Length;
             Complex[][] newData = new Complex[rows][];
 
             for(int i = 0; i < rows; i++)

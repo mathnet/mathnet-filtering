@@ -441,7 +441,7 @@ namespace MathNet.Numerics.Statistics
 
                     // Loop for finding the optimal boundary of the last bucket
                     // ('j+1' is the index of the first value in the last bucket)
-                    for(int j = (k - 1), avg = (k - 1); j < i; j++)
+                    for(int j = (k - 1); j < i; j++)
                     {
                         double currentCost = optimalCost[j, k - 1] +
                             (values[i] - values[j + 1]) * (i - j);
@@ -524,7 +524,7 @@ namespace MathNet.Numerics.Statistics
 
                     // Loop for finding the optimal boundary of the last bucket
                     // ('j+1' is the index of the first value in the last bucket)
-                    for(int j = (k - 1), avg = (k - 1); j < i; j++)
+                    for(int j = (k - 1); j < i; j++)
                     {
                         double currentCost = optimalCost[j, k - 1] +
                             (values[i] - values[j + 1]) * (values[i] - values[j + 1]) * (i - j);
