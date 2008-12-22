@@ -197,8 +197,8 @@ namespace MathNet.Numerics.Transformations
                         double re = samples[odd];
                         double im = samples[odd + 1];
 
-                        double tmpr = re * uR - im * uI;
-                        double tmpi = re * uI + im * uR;
+                        double tmpr = (re * uR) - (im * uI);
+                        double tmpi = (re * uI) + (im * uR);
 
                         re = samples[even];
                         im = samples[even + 1];
@@ -252,8 +252,8 @@ namespace MathNet.Numerics.Transformations
                             double re = samples[odd];
                             double im = samples[odd + 1];
 
-                            double tmpr = re * uR - im * uI;
-                            double tmpi = re * uI + im * uR;
+                            double tmpr = (re * uR) - (im * uI);
+                            double tmpi = (re * uI) + (im * uR);
 
                             re = samples[even];
                             im = samples[even + 1];
@@ -421,12 +421,12 @@ namespace MathNet.Numerics.Transformations
                     realBackward[i] = uRealBw;
                     imagBackward[i] = uImagBw;
 
-                    uwI = uImagFw * wRreal - uRealFw * wImag;
-                    uRealFw = uRealFw * wRreal + uImagFw * wImag;
+                    uwI = (uImagFw * wRreal) - (uRealFw * wImag);
+                    uRealFw = (uRealFw * wRreal) + (uImagFw * wImag);
                     uImagFw = uwI;
 
-                    uwI = uImagBw * wRreal + uRealBw * wImag;
-                    uRealBw = uRealBw * wRreal - uImagBw * wImag;
+                    uwI = (uImagBw * wRreal) + (uRealBw * wImag);
+                    uRealBw = (uRealBw * wRreal) - (uImagBw * wImag);
                     uImagBw = uwI;
                 }
 

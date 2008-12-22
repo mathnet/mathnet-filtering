@@ -272,7 +272,7 @@ namespace MathNet.Numerics.RandomSources
                 throw new ArgumentException(Properties.LocalStrings.ArgumentRangeLessEqual("minValue", "maxValue", "Double.MaxValue"));
             }
 
-            return minValue + _generator.NextDouble() * range;
+            return minValue + (_generator.NextDouble() * range);
         }
 
         /// <summary>

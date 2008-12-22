@@ -199,7 +199,7 @@ namespace MathNet.Numerics.Interpolation
             closestIndex = Math.Max(_samples.Locate(t), 0);
             int ret = Math.Min(
                 Math.Max(
-                    closestIndex - (_effectiveOrder - 1) / 2,
+                    closestIndex - ((_effectiveOrder - 1) / 2),
                     0
                     ),
                 _samples.Count - _effectiveOrder

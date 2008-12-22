@@ -151,8 +151,8 @@ namespace MathNet.Numerics.Interpolation.Algorithms
 
             for(int i = 1; i < t.Length; i++)
             {
-                double temps = sa - (alpha * sa - beta * ca);
-                double tempc = ca - (alpha * ca + beta * sa);
+                double temps = sa - ((alpha * sa) - (beta * ca));
+                double tempc = ca - ((alpha * ca) + (beta * sa));
                 sa = temps;
                 ca = tempc;
                 sign = -sign;
@@ -245,7 +245,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
             double[] nodes = new double[numberOfPoints];
             for(int i = 0; i < numberOfPoints; i++)
             {
-                nodes[i] = transformSummand + transformFactor * Math.Cos(i * angleFactor);
+                nodes[i] = transformSummand + (transformFactor * Math.Cos(i * angleFactor));
             }
 
             return nodes;

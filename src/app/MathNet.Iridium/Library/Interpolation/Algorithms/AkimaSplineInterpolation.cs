@@ -158,11 +158,11 @@ namespace MathNet.Numerics.Interpolation.Algorithms
             {
                 if(!Number.AlmostZero(w[i - 1]) || !Number.AlmostZero(w[i + 1]))
                 {
-                    d[i] = (w[i + 1] * diff[i - 1] + w[i - 1] * diff[i]) / (w[i + 1] + w[i - 1]);
+                    d[i] = ((w[i + 1] * diff[i - 1]) + (w[i - 1] * diff[i])) / (w[i + 1] + w[i - 1]);
                 }
                 else
                 {
-                    d[i] = ((tt[i + 1] - tt[i]) * diff[i - 1] + (tt[i] - tt[i - 1]) * diff[i]) / (tt[i + 1] - tt[i - 1]);
+                    d[i] = (((tt[i + 1] - tt[i]) * diff[i - 1]) + ((tt[i] - tt[i - 1]) * diff[i])) / (tt[i + 1] - tt[i - 1]);
                 }
             }
 
@@ -249,9 +249,9 @@ namespace MathNet.Numerics.Interpolation.Algorithms
             t = t - t0;
             t1 = t1 - t0;
             t2 = t2 - t0;
-            double a = (x2 - x0 - t2 / t1 * (x1 - x0)) / (t2 * t2 - t1 * t2);
-            double b = (x1 - x0 - a * t1 * t1) / t1;
-            return 2 * a * t + b;
+            double a = (x2 - x0 - (t2 / t1 * (x1 - x0))) / ((t2 * t2) - (t1 * t2));
+            double b = (x1 - x0 - (a * t1 * t1)) / t1;
+            return (2 * a * t) + b;
         }
     }
 }

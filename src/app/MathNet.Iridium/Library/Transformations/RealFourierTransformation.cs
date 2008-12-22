@@ -322,10 +322,10 @@ namespace MathNet.Numerics.Transformations
                 h2r = 0.5 * (complex[j + 1] + complex[length + 1 - j]);
                 h2i = -0.5 * (complex[j] - complex[length - j]);
 
-                fftReal[i] = h1r + wr * h2r + wi * h2i;
-                fftImag[i] = h1i + wr * h2i - wi * h2r;
-                fftReal[numSamples - i] = h1r - wr * h2r - wi * h2i;
-                fftImag[numSamples - i] = -h1i + wr * h2i - wi * h2r;
+                fftReal[i] = h1r + (wr * h2r) + (wi * h2i);
+                fftImag[i] = h1i + (wr * h2i) - (wi * h2r);
+                fftReal[numSamples - i] = h1r - (wr * h2r) - (wi * h2i);
+                fftImag[numSamples - i] = -h1i + (wr * h2i) - (wi * h2r);
 
                 // For consistency and completeness we also provide the
                 // negative spectrum, even though it's redundant in the real case.
@@ -334,8 +334,8 @@ namespace MathNet.Numerics.Transformations
                 fftReal[length - i] = fftReal[i];
                 fftImag[length - i] = -fftImag[i];
 
-                wr = (wtemp = wr) * wpr - wi * wpi + wr;
-                wi = wi * wpr + wtemp * wpi + wi;
+                wr = ((wtemp = wr) * wpr) - (wi * wpi) + wr;
+                wi = (wi * wpr) + (wtemp * wpi) + wi;
             }
         }
 
@@ -387,13 +387,13 @@ namespace MathNet.Numerics.Transformations
                 h2r = -0.5 * (fftImag[i] + fftImag[numSamples - i]);
                 h2i = 0.5 * (fftReal[i] - fftReal[numSamples - i]);
 
-                samples[j] = h1r + wr * h2r + wi * h2i;
-                samples[j + 1] = h1i + wr * h2i - wi * h2r;
-                samples[length - j] = h1r - wr * h2r - wi * h2i;
-                samples[length + 1 - j] = -h1i + wr * h2i - wi * h2r;
+                samples[j] = h1r + (wr * h2r) + (wi * h2i);
+                samples[j + 1] = h1i + (wr * h2i) - (wi * h2r);
+                samples[length - j] = h1r - (wr * h2r) - (wi * h2i);
+                samples[length + 1 - j] = -h1i + (wr * h2i) - (wi * h2r);
 
-                wr = (wtemp = wr) * wpr - wi * wpi + wr;
-                wi = wi * wpr + wtemp * wpi + wi;
+                wr = ((wtemp = wr) * wpr) - (wi * wpi) + wr;
+                wi = (wi * wpr) + (wtemp * wpi) + wi;
             }
 
             // Transform odd and even vectors (packed as one complex vector)

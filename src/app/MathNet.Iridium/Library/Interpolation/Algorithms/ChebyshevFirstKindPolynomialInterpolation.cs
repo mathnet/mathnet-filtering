@@ -133,8 +133,8 @@ namespace MathNet.Numerics.Interpolation.Algorithms
             _transformFactor = 2.0 / (b - a);
 
             // trigonometric recurrence
-            double a0 = Math.PI / (2 * (x.Count - 1) + 2);
-            double delta = 2 * Math.PI / (2 * (x.Count - 1) + 2);
+            double a0 = Math.PI / ((2 * (x.Count - 1)) + 2);
+            double delta = 2 * Math.PI / ((2 * (x.Count - 1)) + 2);
             double alpha = Math.Sin(delta / 2);
             alpha = 2 * alpha * alpha;
             double beta = Math.Sin(delta);
@@ -150,8 +150,8 @@ namespace MathNet.Numerics.Interpolation.Algorithms
             w[0] = sa;
             for(int i = 1; i < t.Length; i++)
             {
-                double temps = sa - (alpha * sa - beta * ca);
-                double tempc = ca - (alpha * ca + beta * sa);
+                double temps = sa - ((alpha * sa) - (beta * ca));
+                double tempc = ca - ((alpha * ca) + (beta * sa));
                 sa = temps;
                 ca = tempc;
                 sign = -sign;
@@ -237,12 +237,12 @@ namespace MathNet.Numerics.Interpolation.Algorithms
 
             double transformSummand = 0.5 * (a + b);
             double transformFactor = (b - a) / 2.0;
-            double angleFactor = Math.PI / (2 * (numberOfPoints - 1) + 2);
+            double angleFactor = Math.PI / ((2 * (numberOfPoints - 1)) + 2);
 
             double[] nodes = new double[numberOfPoints];
             for(int i = 0; i < numberOfPoints; i++)
             {
-                nodes[i] = transformSummand + transformFactor * Math.Cos((2 * i + 1) * angleFactor);
+                nodes[i] = transformSummand + (transformFactor * Math.Cos(((2 * i) + 1) * angleFactor));
             }
 
             return nodes;

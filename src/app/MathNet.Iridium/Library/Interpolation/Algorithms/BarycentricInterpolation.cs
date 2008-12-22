@@ -197,13 +197,13 @@ namespace MathNet.Numerics.Interpolation.Algorithms
                 if(i != j)
                 {
                     double v = s * _w[i] / (t - _t[i]);
-                    s1 = s1 + v * _x[i];
+                    s1 = s1 + (v * _x[i]);
                     s2 = s2 + v;
                 }
                 else
                 {
                     double v = _w[i];
-                    s1 = s1 + v * _x[i];
+                    s1 = s1 + (v * _x[i]);
                     s2 = s2 + v;
                 }
             }

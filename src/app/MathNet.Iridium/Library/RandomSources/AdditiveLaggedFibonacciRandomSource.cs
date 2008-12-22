@@ -540,7 +540,7 @@ namespace MathNet.Numerics.RandomSources
 
             // The shift operation and extra int cast before the first multiplication give better performance.
             // See comment in NextDouble().
-            return minValue + (double)(int)(x >> 1) * IntToDoubleMultiplier * range;
+            return minValue + ((double)(int)(x >> 1) * IntToDoubleMultiplier * range);
         }
 
         /// <summary>

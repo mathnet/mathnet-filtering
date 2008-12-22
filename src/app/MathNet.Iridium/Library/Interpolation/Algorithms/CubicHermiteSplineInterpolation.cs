@@ -173,8 +173,8 @@ namespace MathNet.Numerics.Interpolation.Algorithms
                 double delta3 = delta * delta2;
                 c[j] = x[i];
                 c[j + 1] = d[i];
-                c[j + 2] = (3 * (x[i + 1] - x[i]) - 2 * d[i] * delta - d[i + 1] * delta) / delta2;
-                c[j + 3] = (2 * (x[i] - x[i + 1]) + d[i] * delta + d[i + 1] * delta) / delta3;
+                c[j + 2] = (3 * (x[i + 1] - x[i]) - (2 * d[i] * delta) - (d[i + 1] * delta)) / delta2;
+                c[j + 3] = (2 * (x[i] - x[i + 1]) + (d[i] * delta) + (d[i + 1] * delta)) / delta3;
             }
 
             _spline.Init(t, c);

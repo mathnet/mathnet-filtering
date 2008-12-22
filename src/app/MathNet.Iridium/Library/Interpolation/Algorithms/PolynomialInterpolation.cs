@@ -158,7 +158,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
                     double hp = t - _t[i + level];
                     double ho = _t[i] - t;
                     double den = _t[i] - _t[i + level];
-                    x[i] = (hp * x[i] + ho * x[i + 1]) / den;
+                    x[i] = ((hp * x[i]) + (ho * x[i + 1])) / den;
                 }
             }
 
@@ -193,9 +193,9 @@ namespace MathNet.Numerics.Interpolation.Algorithms
                     double hp = t - _t[i + level];
                     double ho = _t[i] - t;
                     double den = _t[i] - _t[i + level];
-                    d2x[i] = (hp * d2x[i] + ho * d2x[i + 1] + 2 * dx[i] - 2 * dx[i + 1]) / den;
-                    dx[i] = (hp * dx[i] + x[i] + ho * dx[i + 1] - x[i + 1]) / den;
-                    x[i] = (hp * x[i] + ho * x[i + 1]) / den;
+                    d2x[i] = ((hp * d2x[i]) + (ho * d2x[i + 1]) + (2 * dx[i]) - (2 * dx[i + 1])) / den;
+                    dx[i] = ((hp * dx[i]) + x[i] + (ho * dx[i + 1]) - x[i + 1]) / den;
+                    x[i] = ((hp * x[i]) + (ho * x[i + 1])) / den;
                 }
             }
 

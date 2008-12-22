@@ -274,7 +274,7 @@ namespace MathNet.Numerics.RandomSources
             _mt[0] = _seed & 0xffffffffU;
             for(_mti = 1; _mti < N; _mti++)
             {
-                _mt[_mti] = (1812433253U * (_mt[_mti - 1] ^ (_mt[_mti - 1] >> 30)) + _mti);
+                _mt[_mti] = (1812433253U * (_mt[_mti - 1] ^ (_mt[_mti - 1] >> 30))) + _mti;
 
                 // See Knuth TAOCP Vol2. 3rd Ed. P.106 for multiplier.
                 // In the previous versions, MSBs of the seed affect only MSBs of the array mt[].
@@ -725,7 +725,7 @@ namespace MathNet.Numerics.RandomSources
 
             // The shift operation and extra int cast before the first multiplication give better performance.
             // See comment in NextDouble().
-            return minValue + (double)(int)(y >> 1) * IntToDoubleMultiplier * range;
+            return minValue + ((double)(int)(y >> 1) * IntToDoubleMultiplier * range);
         }
 
         /// <summary>

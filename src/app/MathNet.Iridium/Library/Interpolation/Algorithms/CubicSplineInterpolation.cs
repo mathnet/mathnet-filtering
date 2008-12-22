@@ -212,7 +212,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
                     a1[0] = 0;
                     a2[0] = 2;
                     a3[0] = 1;
-                    b[0] = 3 * (xx[1] - xx[0]) / (tt[1] - tt[0]) - 0.5 * leftBoundary * (tt[1] - tt[0]);
+                    b[0] = 3 * ((xx[1] - xx[0]) / (tt[1] - tt[0])) - (0.5 * leftBoundary * (tt[1] - tt[0]));
                     break;
                 default:
                     throw new NotSupportedException(Properties.LocalStrings.InvalidLeftBoundaryCondition);
@@ -224,7 +224,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
                 a1[i] = tt[i + 1] - tt[i];
                 a2[i] = 2 * (tt[i + 1] - tt[i - 1]);
                 a3[i] = tt[i] - tt[i - 1];
-                b[i] = 3 * (xx[i] - xx[i - 1]) / (tt[i] - tt[i - 1]) * (tt[i + 1] - tt[i]) + 3 * (xx[i + 1] - xx[i]) / (tt[i + 1] - tt[i]) * (tt[i] - tt[i - 1]);
+                b[i] = (3 * (xx[i] - xx[i - 1]) / (tt[i] - tt[i - 1]) * (tt[i + 1] - tt[i])) + (3 * (xx[i + 1] - xx[i]) / (tt[i + 1] - tt[i]) * (tt[i] - tt[i - 1]));
             }
 
             // Right Boundary
@@ -246,7 +246,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
                     a1[n - 1] = 1;
                     a2[n - 1] = 2;
                     a3[n - 1] = 0;
-                    b[n - 1] = 3 * (xx[n - 1] - xx[n - 2]) / (tt[n - 1] - tt[n - 2]) + 0.5 * rightBoundary * (tt[n - 1] - tt[n - 2]);
+                    b[n - 1] = (3 * (xx[n - 1] - xx[n - 2]) / (tt[n - 1] - tt[n - 2])) + (0.5 * rightBoundary * (tt[n - 1] - tt[n - 2]));
                     break;
                 default:
                     throw new NotSupportedException(Properties.LocalStrings.InvalidRightBoundaryCondition);
@@ -326,14 +326,14 @@ namespace MathNet.Numerics.Interpolation.Algorithms
             for(int k = 1; k < a.Length; k++)
             {
                 double t = a[k] / b[k - 1];
-                b[k] = b[k] - t * c[k - 1];
-                d[k] = d[k] - t * d[k - 1];
+                b[k] = b[k] - (t * c[k - 1]);
+                d[k] = d[k] - (t * d[k - 1]);
             }
 
             x[x.Length - 1] = d[d.Length - 1] / b[b.Length - 1];
             for(int k = x.Length - 2; k >= 0; k--)
             {
-                x[k] = (d[k] - c[k] * x[k + 1]) / b[k];
+                x[k] = (d[k] - (c[k] * x[k + 1])) / b[k];
             }
 
             return x;
