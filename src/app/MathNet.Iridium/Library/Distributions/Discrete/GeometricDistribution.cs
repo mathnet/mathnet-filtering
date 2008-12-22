@@ -108,8 +108,8 @@ namespace MathNet.Numerics.Distributions
 
         #region Construction
         /// <summary>
-        /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
-        /// as underlying random number generator.
+        /// Initializes a new instance of the GeometricDistribution class,
+        /// using a <see cref="SystemRandomSource"/> as underlying random number generator.
         /// </summary>
         public
         GeometricDistribution()
@@ -119,8 +119,8 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Initializes a new instance, using the specified <see cref="RandomSource"/>
-        /// as underlying random number generator.
+        /// Initializes a new instance of the GeometricDistribution class,
+        /// using the specified <see cref="RandomSource"/> as underlying random number generator.
         /// </summary>
         /// <param name="random">A <see cref="RandomSource"/> object.</param>
         /// <exception cref="ArgumentNullException">
@@ -136,8 +136,8 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
-        /// as underlying random number generator.
+        /// Initializes a new instance of the GeometricDistribution class,
+        /// using a <see cref="SystemRandomSource"/> as underlying random number generator.
         /// </summary>
         public
         GeometricDistribution(

@@ -68,7 +68,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
         CubicHermiteSplineInterpolation _hermiteSpline;
 
         /// <summary>
-        /// Create an interpolation algorithm instance.
+        /// Initializes a new instance of the AkimaSplineInterpolation class.
         /// </summary>
         public
         AkimaSplineInterpolation()

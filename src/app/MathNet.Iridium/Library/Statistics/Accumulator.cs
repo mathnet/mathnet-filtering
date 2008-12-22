@@ -66,7 +66,7 @@ namespace MathNet.Numerics.Statistics
         private int count;
 
         /// <summary>
-        /// Creates an empty <c>Accumulator</c>.
+        /// Initializes a new instance of the Accumulator class.
         /// </summary>
         public Accumulator()
         {
@@ -74,7 +74,7 @@ namespace MathNet.Numerics.Statistics
         }
 
         /// <summary>
-        /// Creates an <c>Accumulator</c> that contains the provided values.
+        /// Initializes a new instance of the Accumulator class that contains the provided values.
         /// </summary>
         public Accumulator(double[] values)
         {
@@ -83,7 +83,7 @@ namespace MathNet.Numerics.Statistics
         }
 
         /// <summary>
-        /// Creates an <c>Accumulator</c> that contains the provided values.
+        /// Initializes a new instance of the Accumulator class that contains the provided values.
         /// </summary>
         [Obsolete("This method is obsolete, please use the generic version instead: Accumulator(IEnumerable<double>)", false)]
         public Accumulator(ICollection values)
@@ -93,7 +93,7 @@ namespace MathNet.Numerics.Statistics
         }
 
         /// <summary>
-        /// Creates an <c>Accumulator</c> that contains the provided values.
+        /// Initializes a new instance of the Accumulator class that contains the provided values.
         /// </summary>
         public Accumulator(IEnumerable<double> values)
         {
@@ -258,7 +258,7 @@ namespace MathNet.Numerics.Statistics
                     throw new InvalidOperationException(Properties.LocalStrings.InvalidOperationAccumulatorEmpty);
                 }
 
-                return (sum / count);
+                return sum / count;
             }
         }
 
@@ -274,7 +274,7 @@ namespace MathNet.Numerics.Statistics
                     throw new InvalidOperationException(Properties.LocalStrings.InvalidOperationAccumulatorEmpty);
                 }
 
-                return (squaredSum / count);
+                return squaredSum / count;
             }
         }
 
@@ -291,7 +291,7 @@ namespace MathNet.Numerics.Statistics
                 }
 
                 double mean = this.Mean;
-                return (squaredSum - mean * mean * count) / (count - 1);
+                return (squaredSum - (mean * mean * count)) / (count - 1);
             }
         }
 

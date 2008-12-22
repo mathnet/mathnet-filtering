@@ -73,7 +73,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
         double _transformFactor;
 
         /// <summary>
-        /// Create an interpolation algorithm instance.
+        /// Initializes a new instance of the ChebyshevFirstKindPolynomialInterpolation class.
         /// </summary>
         public
         ChebyshevFirstKindPolynomialInterpolation()

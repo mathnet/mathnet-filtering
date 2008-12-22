@@ -37,13 +37,16 @@ namespace MathNet.Numerics.LinearAlgebra
     [Serializable]
     public class CholeskyDecomposition
     {
-        /// <summary>Array for internal storage of decomposition.</summary>
-        Matrix _l;
-
         /// <summary>Symmetric and positive definite flag.</summary>
         readonly bool _isSymmetricPositiveDefinite;
 
-        /// <summary>Cholesky algorithm for symmetric and positive definite matrix.</summary>
+        /// <summary>Array for internal storage of decomposition.</summary>
+        Matrix _l;
+
+        /// <summary>
+        /// Initializes a new instance of the CholeskyDecomposition class,
+        /// which provides the cholesky algorithm for symmetric and positive definite matrix.
+        /// </summary>
         /// <param name="m">Square, symmetric matrix.</param>
         /// <returns>Structure to access L and isspd flag.</returns>
         public

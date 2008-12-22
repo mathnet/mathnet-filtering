@@ -45,7 +45,7 @@ namespace MathNet.Numerics.Statistics
         bool areBucketsSorted;
 
         /// <summary>
-        /// Constructs an empty <c>Histogram</c>.
+        /// Initializes a new instance of the Histogram class.
         /// </summary>
         public Histogram()
         {
@@ -226,8 +226,8 @@ namespace MathNet.Numerics.Statistics
                 }
 
                 optimalCost[i, 0] =
-                    prefixSum[i + 1] - 2 * prefixSum[avg + 1]
-                    + (2 * avg - i + 1) * (prefixSum[i + 1] / (i + 1));
+                    prefixSum[i + 1] - (2 * prefixSum[avg + 1])
+                    + ((2 * avg) - i + 1) * (prefixSum[i + 1] / (i + 1));
             }
 
             // "One value per bucket" histograms initialization
@@ -259,9 +259,12 @@ namespace MathNet.Numerics.Statistics
                             avg++;
                         }
 
-                        double currentCost = optimalCost[j, k - 1] +
-                            prefixSum[i + 1] + prefixSum[j + 1] - 2 * prefixSum[avg + 1]
-                            + (2 * avg - i - j) * (prefixSum[i + 1] - prefixSum[j + 1]) / (i - j);
+                        double currentCost =
+                            optimalCost[j, k - 1]
+                            + prefixSum[i + 1]
+                            + prefixSum[j + 1]
+                            - (2 * prefixSum[avg + 1])
+                            + ((2 * avg - i - j) * (prefixSum[i + 1] - prefixSum[j + 1]) / (i - j));
 
                         if(currentCost < optimalCost[i, k])
                         {
@@ -328,7 +331,7 @@ namespace MathNet.Numerics.Statistics
             for(int i = 0; i < values.Length; i++)
             {
                 prefixSum[i + 1] = prefixSum[i] + values[i];
-                sqPrefixSum[i + 1] = sqPrefixSum[i] + values[i] * values[i];
+                sqPrefixSum[i + 1] = sqPrefixSum[i] + (values[i] * values[i]);
             }
 
             // "One bucket" histograms initialization
@@ -617,7 +620,7 @@ namespace MathNet.Numerics.Statistics
         double depth;
 
         /// <summary>
-        /// Create a new Bucket.
+        /// Initializes a new instance of the Bucket class.
         /// </summary>
         public Bucket(double lowerBound, double upperBound)
         {
@@ -631,7 +634,7 @@ namespace MathNet.Numerics.Statistics
         }
 
         /// <summary>
-        /// Create a new Bucket.
+        /// Initializes a new instance of the Bucket class.
         /// </summary>
         public Bucket(double lowerBound, double upperBound, double depth)
         {
@@ -641,7 +644,8 @@ namespace MathNet.Numerics.Statistics
         }
 
         /// <summary>
-        /// Deep copy constructor.
+        /// Initializes a new instance of the Bucket class
+        /// by deep copy from an existing bucket.
         /// </summary>
         private Bucket(Bucket bucket)
         {

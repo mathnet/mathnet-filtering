@@ -35,7 +35,7 @@ namespace MathNet.Numerics.Transformations
         TransformationConvention _convention;
 
         /// <summary>
-        /// Construct a complex fourier transformation instance.
+        /// Initializes a new instance of the ComplexFourierTransformation class.
         /// </summary>
         public
         ComplexFourierTransformation()
@@ -45,7 +45,8 @@ namespace MathNet.Numerics.Transformations
         }
 
         /// <summary>
-        /// Construct a complex fourier transformation instance with a given convention.
+        /// Initializes a new instance of the ComplexFourierTransformation class
+        /// with a given convention.
         /// </summary>
         /// <param name="convention">Fourier Transformation Convention</param>
         public

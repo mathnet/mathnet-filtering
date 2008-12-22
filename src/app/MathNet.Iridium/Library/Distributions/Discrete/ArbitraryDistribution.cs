@@ -29,23 +29,25 @@ namespace MathNet.Numerics.Distributions
     /// Non-uniform discrete random distribution.
     /// </summary>
     /// <remarks>
-    /// <p>The class <c>ArbitraryDistribution</c> provides integers 
-    /// deviates for any arbitrary (finite) distribution.</p>
-    /// 
+    /// <para>
+    /// The class <c>ArbitraryDistribution</c> provides integers 
+    /// deviates for any arbitrary (finite) distribution.
+    /// </para>
     /// <code>
     /// double[] distribution = {0.25, 0.25, 0.5};
     /// ArbitraryDistribution gen = new ArbitraryDistribution(0, distribution);
-    /// 
     /// // Pr(x = 0) = 0.25, Pr(x = 1) = 0.25, Pr(x = 2) = 0.5
     /// int x = gen.NextInt32();
     /// </code>
-    /// 
-    /// <p>The probability <c>Pr(x)</c> for any integer <c>x</c>
-    /// is proportional to <c>ArbitraryDistribution.ProbabilityMass(x)</c>.</p>
-    /// 
-    /// <p>See the <a href="http://cgm.cs.mcgill.ca/~luc/chapter_three.pdf">
+    /// <para>
+    /// The probability <c>Pr(x)</c> for any integer <c>x</c>
+    /// is proportional to <c>ArbitraryDistribution.ProbabilityMass(x)</c>.
+    /// </para>
+    /// <para>
+    /// See the <a href="http://cgm.cs.mcgill.ca/~luc/chapter_three.pdf">
     /// chapter three</a> of the book <i>Non-uniform variate Generation</i>
-    /// from Luc Devroye.</p>
+    /// from Luc Devroye.
+    /// </para>
     /// </remarks>
     public sealed class ArbitraryDistribution : DiscreteDistribution
     {
@@ -57,8 +59,8 @@ namespace MathNet.Numerics.Distributions
 
         #region Construction
         /// <summary>
-        /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
-        /// as underlying random number generator.
+        /// Initializes a new instance of the ArbitraryDistribution class, 
+        /// using a <see cref="SystemRandomSource"/> as underlying random number generator.
         /// </summary>
         public
         ArbitraryDistribution()
@@ -68,8 +70,8 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Initializes a new instance, using the specified <see cref="RandomSource"/>
-        /// as underlying random number generator.
+        /// Initializes a new instance of the ArbitraryDistribution class, 
+        /// using the specified <see cref="RandomSource"/> as underlying random number generator.
         /// </summary>
         /// <param name="random">A <see cref="RandomSource"/> object.</param>
         /// <exception cref="ArgumentNullException">
@@ -85,8 +87,8 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
-        /// as underlying random number generator.
+        /// Initializes a new instance of the ArbitraryDistribution class, 
+        /// using a <see cref="SystemRandomSource"/> as underlying random number generator.
         /// </summary>
         public
         ArbitraryDistribution(

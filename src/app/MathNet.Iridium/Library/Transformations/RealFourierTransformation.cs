@@ -35,7 +35,7 @@ namespace MathNet.Numerics.Transformations
         TransformationConvention _convention;
 
         /// <summary>
-        /// Construct a real fourier transformation instance.
+        /// Initializes a new instance of the RealFourierTransformation class.
         /// </summary>
         public
         RealFourierTransformation()
@@ -45,7 +45,8 @@ namespace MathNet.Numerics.Transformations
         }
 
         /// <summary>
-        /// Construct a real fourier transformation instance with a given convention.
+        /// Initializes a new instance of the RealFourierTransformation class
+        /// with a given convention.
         /// </summary>
         /// <param name="convention">Fourier Transformation convention</param>
         public

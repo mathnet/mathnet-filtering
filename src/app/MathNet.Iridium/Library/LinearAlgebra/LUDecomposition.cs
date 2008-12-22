@@ -43,13 +43,13 @@ namespace MathNet.Numerics.LinearAlgebra
     [Serializable]
     public class LUDecomposition
     {
+        readonly int _rowCount;
+        readonly int _columnCount;
+
         /// <summary>
         /// Array for internal storage of decomposition.
         /// </summary>
         double[][] LU;
-
-        readonly int _rowCount;
-        readonly int _columnCount;
 
         /// <summary>
         /// Pivot sign.
@@ -70,7 +70,7 @@ namespace MathNet.Numerics.LinearAlgebra
         OnDemandComputation<double> _determinantOnDemand;
 
         /// <summary>
-        /// LU Decomposition
+        /// Initializes a new instance of the LUDecomposition class.
         /// </summary>
         /// <param name="A">Rectangular matrix</param>
         /// <returns>Structure to access L, U and piv.</returns>

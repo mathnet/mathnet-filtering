@@ -75,7 +75,8 @@ namespace MathNet.Numerics.LinearAlgebra
         ////OnDemandComputation<ComplexVector> _eigenValuesOnDemand;
 
         /// <summary>
-        /// Check for symmetry, then construct the eigenvalue decomposition
+        /// Initializes a new instance of the EigenvalueDecomposition class,
+        /// which ccheck the matrix for symmetry and then construct the eigenvalue decomposition.
         /// </summary>
         /// <remarks>Provides access to D and V</remarks>
         /// <param name="Arg">Square matrix</param>
@@ -142,8 +143,8 @@ namespace MathNet.Numerics.LinearAlgebra
         }
 
         /// <summary>
-        /// Constructs the eigenvalue decomposition from a symmetrical, 
-        /// tridiagonal matrix.
+        /// Initializes a new instance of the EigenvalueDecomposition class,
+        /// by decomposing symmetrical, tridiagonal matrices.
         /// </summary>
         public
         EigenvalueDecomposition(
@@ -1158,7 +1159,7 @@ namespace MathNet.Numerics.LinearAlgebra
                     }
                     else
                     {
-                        cdiv(0.0, -H[n - 1][n], H[n - 1][n - 1] - p, q);
+                        ComplexScalarDivide(0.0, -H[n - 1][n], H[n - 1][n - 1] - p, q);
                         H[n - 1][n - 1] = cdivr;
                         H[n - 1][n] = cdivi;
                     }
@@ -1189,7 +1190,7 @@ namespace MathNet.Numerics.LinearAlgebra
                             l = i;
                             if(e[i] == 0.0)
                             {
-                                cdiv(-ra, -sa, w, q);
+                                ComplexScalarDivide(-ra, -sa, w, q);
                                 H[i][n - 1] = cdivr;
                                 H[i][n] = cdivi;
                             }
@@ -1208,7 +1209,7 @@ namespace MathNet.Numerics.LinearAlgebra
                                     vr = eps * norm * (Math.Abs(w) + Math.Abs(q) + Math.Abs(x) + Math.Abs(y) + Math.Abs(z));
                                 }
 
-                                cdiv(x * r - z * ra + q * sa, x * s - z * sa - q * ra, vr, vi);
+                                ComplexScalarDivide(x * r - z * ra + q * sa, x * s - z * sa - q * ra, vr, vi);
                                 H[i][n - 1] = cdivr;
                                 H[i][n] = cdivi;
                                 if(Math.Abs(x) > (Math.Abs(z) + Math.Abs(q)))
@@ -1218,7 +1219,7 @@ namespace MathNet.Numerics.LinearAlgebra
                                 }
                                 else
                                 {
-                                    cdiv(-r - y * H[i][n - 1], -s - y * H[i][n], z, q);
+                                    ComplexScalarDivide(-r - y * H[i][n - 1], -s - y * H[i][n], z, q);
                                     H[i + 1][n - 1] = cdivr;
                                     H[i + 1][n] = cdivi;
                                 }
@@ -1274,7 +1275,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// Complex scalar division.
         /// </summary>
         void
-        cdiv(
+        ComplexScalarDivide(
             double xr,
             double xi,
             double yr,

@@ -40,7 +40,8 @@ namespace MathNet.Numerics.Interpolation.Algorithms
         int _effectiveOrder;
 
         /// <summary>
-        /// Create a polynomial interpolation algorithm with full order.
+        /// Initializes a new instance of the LimitedOrderPolynomialInterpolation class.
+        /// with full order.
         /// </summary>
         public
         LimitedOrderPolynomialInterpolation()
@@ -50,7 +51,8 @@ namespace MathNet.Numerics.Interpolation.Algorithms
         }
 
         /// <summary>
-        /// Create a polynomial interpolation algorithm with the given maximum order.
+        /// Initializes a new instance of the LimitedOrderPolynomialInterpolation class.
+        /// with the given maximum order.
         /// </summary>
         public
         LimitedOrderPolynomialInterpolation(

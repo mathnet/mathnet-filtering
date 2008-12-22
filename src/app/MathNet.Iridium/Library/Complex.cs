@@ -33,36 +33,40 @@ namespace MathNet.Numerics
     /// Complex numbers class.
     /// </summary>
     /// <remarks>
-    /// <p>The class <c>Complex</c> provides all elementary operations
+    /// <p>
+    /// The class <c>Complex</c> provides all elementary operations
     /// on complex numbers. All the operators <c>+</c>, <c>-</c>,
     /// <c>*</c>, <c>/</c>, <c>==</c>, <c>!=</c> are defined in the
     /// canonical way. Additional complex trigonometric functions such 
     /// as <see cref="Complex.Cosine"/>, ... 
     /// are also provided. Note that the <c>Complex</c> structures 
     /// has two special constant values <see cref="Complex.NaN"/> and 
-    /// <see cref="Complex.Infinity"/>.</p>
-    /// 
-    /// <p>In order to avoid possible ambiguities resulting from a 
+    /// <see cref="Complex.Infinity"/>.
+    /// </p>
+    /// <p>
+    /// In order to avoid possible ambiguities resulting from a 
     /// <c>Complex(double, double)</c> constructor, the static methods 
     /// <see cref="Complex.FromRealImaginary"/> and <see cref="Complex.FromModulusArgument"/>
-    /// are provided instead.</p>
-    /// 
+    /// are provided instead.
+    /// </p>
     /// <code>
     /// Complex x = Complex.FromRealImaginary(1d, 2d);
     /// Complex y = Complex.FromModulusArgument(1d, Math.Pi);
     /// Complex z = (x + y) / (x - y);
     /// </code>
-    /// 
-    /// <p>Since there is no canonical order among the complex numbers,
+    /// <p>
+    /// Since there is no canonical order among the complex numbers,
     /// <c>Complex</c> does not implement <c>IComparable</c> but several
     /// lexicographic <c>IComparer</c> implementations are provided, see 
     /// <see cref="Complex.RealImaginaryComparer"/>,
     /// <see cref="Complex.ModulusArgumentComparer"/> and
-    /// <see cref="Complex.ArgumentModulusComparer"/>.</p>
-    /// 
-    /// <p>For mathematical details about complex numbers, please
+    /// <see cref="Complex.ArgumentModulusComparer"/>.
+    /// </p>
+    /// <p>
+    /// For mathematical details about complex numbers, please
     /// have a look at the <a href="http://en.wikipedia.org/wiki/Complex_number">
-    /// Wikipedia</a></p>
+    /// Wikipedia</a>
+    /// </p>
     /// </remarks>
     public struct Complex : IEquatable<Complex>, IComparable<Complex>
     {
@@ -152,8 +156,8 @@ namespace MathNet.Numerics
         #region Constructors and Constants
 
         /// <summary>
-        /// Constructs a <c>Complex</c> from its real
-        /// and imaginary parts.
+        /// Initializes a new instance of the Complex struct 
+        /// from its real and imaginary parts.
         /// </summary>
         public
         Complex(
@@ -433,7 +437,7 @@ namespace MathNet.Numerics
         {
             get
             {
-                return Math.Sqrt(real * real + imag * imag);
+                return Math.Sqrt((real * real) + (imag * imag));
             }
 
             set
@@ -461,7 +465,7 @@ namespace MathNet.Numerics
                     }
                     else
                     {
-                        double factor = value / Math.Sqrt(real * real + imag * imag);
+                        double factor = value / Math.Sqrt((real * real) + (imag * imag));
                         real *= factor;
                         imag *= factor;
                     }
@@ -484,7 +488,7 @@ namespace MathNet.Numerics
         {
             get
             {
-                return real * real + imag * imag;
+                return (real * real) + (imag * imag);
             }
 
             set
@@ -512,7 +516,7 @@ namespace MathNet.Numerics
                     }
                     else
                     {
-                        double factor = value / (real * real + imag * imag);
+                        double factor = value / ((real * real) + (imag * imag));
                         real *= factor;
                         imag *= factor;
                     }
@@ -827,7 +831,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static Complex operator *(Complex multiplicand, Complex multiplier)
         {
-            return new Complex(multiplicand.real * multiplier.real - multiplicand.imag * multiplier.imag, multiplicand.real * multiplier.imag + multiplicand.imag * multiplier.real);
+            return new Complex((multiplicand.real * multiplier.real) - (multiplicand.imag * multiplier.imag), (multiplicand.real * multiplier.imag) + (multiplicand.imag * multiplier.real));
         }
 
         /// <summary>
@@ -857,7 +861,10 @@ namespace MathNet.Numerics
             }
 
             double z2mod = divisor.ModulusSquared;
-            return new Complex((dividend.real * divisor.real + dividend.imag * divisor.imag) / z2mod, (dividend.imag * divisor.real - dividend.real * divisor.imag) / z2mod);
+            return new Complex(
+                ((dividend.real * divisor.real) + (dividend.imag * divisor.imag)) / z2mod,
+                ((dividend.imag * divisor.real) - (dividend.real * divisor.imag)) / z2mod
+                );
         }
 
         /// <summary>
@@ -950,7 +957,7 @@ namespace MathNet.Numerics
 
             double cosr = Trig.Cosine(real);
             double sinhi = Trig.HyperbolicSine(imag);
-            double denom = cosr * cosr + sinhi * sinhi;
+            double denom = (cosr * cosr) + (sinhi * sinhi);
 
             return new Complex(
                 Trig.Sine(real) * cosr / denom,
@@ -972,7 +979,7 @@ namespace MathNet.Numerics
 
             double sinr = Trig.Sine(real);
             double sinhi = Trig.HyperbolicSine(imag);
-            double denom = sinr * sinr + sinhi * sinhi;
+            double denom = (sinr * sinr) + (sinhi * sinhi);
 
             return new Complex(
                 sinr * Trig.Cosine(real) / denom,
@@ -994,7 +1001,7 @@ namespace MathNet.Numerics
 
             double cosr = Trig.Cosine(real);
             double sinhi = Trig.HyperbolicSine(imag);
-            double denom = cosr * cosr + sinhi * sinhi;
+            double denom = (cosr * cosr) + (sinhi * sinhi);
 
             return new Complex(
                 cosr * Trig.HyperbolicCosine(imag) / denom,
@@ -1016,7 +1023,7 @@ namespace MathNet.Numerics
 
             double sinr = Trig.Sine(real);
             double sinhi = Trig.HyperbolicSine(imag);
-            double denom = sinr * sinr + sinhi * sinhi;
+            double denom = (sinr * sinr) + (sinhi * sinhi);
 
             return new Complex(
                 sinr * Trig.HyperbolicCosine(imag) / denom,
@@ -1035,7 +1042,7 @@ namespace MathNet.Numerics
         Complex
         InverseSine()
         {
-            return -Complex.I * ((1 - this.Square()).SquareRoot() + Complex.I * this).NaturalLogarithm();
+            return -Complex.I * ((1 - this.Square()).SquareRoot() + (Complex.I * this)).NaturalLogarithm();
         }
 
         /// <summary>
@@ -1045,7 +1052,7 @@ namespace MathNet.Numerics
         Complex
         InverseCosine()
         {
-            return -Complex.I * (this + Complex.I * (1 - this.Square()).SquareRoot()).NaturalLogarithm();
+            return -Complex.I * (this + (Complex.I * (1 - this.Square()).SquareRoot())).NaturalLogarithm();
         }
 
         /// <summary>
@@ -1067,7 +1074,7 @@ namespace MathNet.Numerics
         InverseCotangent()
         {
             Complex iz = new Complex(-imag, real); // I*this
-            return new Complex(0, 0.5) * ((1 + iz).NaturalLogarithm() - (1 - iz).NaturalLogarithm()) + Math.PI / 2;
+            return (new Complex(0, 0.5) * ((1 + iz).NaturalLogarithm() - (1 - iz).NaturalLogarithm())) + (Math.PI / 2);
         }
 
         /// <summary>
@@ -1078,7 +1085,7 @@ namespace MathNet.Numerics
         InverseSecant()
         {
             Complex inv = 1 / this;
-            return -Complex.I * (inv + Complex.I * (1 - inv.Square()).SquareRoot()).NaturalLogarithm();
+            return -Complex.I * (inv + (Complex.I * (1 - inv.Square()).SquareRoot())).NaturalLogarithm();
         }
 
         /// <summary>
@@ -1089,7 +1096,7 @@ namespace MathNet.Numerics
         InverseCosecant()
         {
             Complex inv = 1 / this;
-            return -Complex.I * (Complex.I * inv + (1 - inv.Square()).SquareRoot()).NaturalLogarithm();
+            return -Complex.I * ((Complex.I * inv) + (1 - inv.Square()).SquareRoot()).NaturalLogarithm();
         }
 
         #endregion
@@ -1146,7 +1153,7 @@ namespace MathNet.Numerics
 
             double cosi = Trig.Cosine(imag);
             double sinhr = Trig.HyperbolicSine(real);
-            double denom = cosi * cosi + sinhr * sinhr;
+            double denom = (cosi * cosi) + (sinhr * sinhr);
 
             return new Complex(
                 Trig.HyperbolicCosine(real) * sinhr / denom,
@@ -1168,7 +1175,7 @@ namespace MathNet.Numerics
 
             double sini = Trig.Sine(imag);
             double sinhr = Trig.HyperbolicSine(real);
-            double denom = sini * sini + sinhr * sinhr;
+            double denom = (sini * sini) + (sinhr * sinhr);
 
             return new Complex(
                 sinhr * Trig.HyperbolicCosine(real) / denom,
@@ -1229,7 +1236,7 @@ namespace MathNet.Numerics
         Complex
         InverseHyperbolicCosine()
         {
-            return (this + (this - 1).SquareRoot() * (this + 1).SquareRoot()).NaturalLogarithm();
+            return (this + ((this - 1).SquareRoot() * (this + 1).SquareRoot())).NaturalLogarithm();
         }
 
         /// <summary>
@@ -1260,7 +1267,7 @@ namespace MathNet.Numerics
         InverseHyperbolicSecant()
         {
             Complex inv = 1 / this;
-            return (inv + (inv - 1).SquareRoot() * (inv + 1).SquareRoot()).NaturalLogarithm();
+            return (inv + ((inv - 1).SquareRoot() * (inv + 1).SquareRoot())).NaturalLogarithm();
         }
 
         /// <summary>
@@ -1378,7 +1385,7 @@ namespace MathNet.Numerics
             }
 
             return new Complex(
-                real * real - imag * imag,
+                (real * real) - (imag * imag),
                 2 * real * imag
                 );
         }
@@ -1397,7 +1404,7 @@ namespace MathNet.Numerics
 
             double mod = Modulus;
 
-            if(imag > 0 || imag == 0 && real < 0)
+            if(imag > 0 || (imag == 0 && real < 0))
             {
                 return new Complex(
                     Constants.Sqrt1_2 * Math.Sqrt(mod + real),

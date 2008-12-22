@@ -95,17 +95,20 @@ namespace MathNet.Numerics.Distributions
     /// <summary>
     /// Pseudo-random generation of poisson distributed deviates.
     /// </summary>
-    /// 
     /// <remarks> 
-    /// <para>For details about this distribution, see 
+    /// <para>
+    /// For details about this distribution, see 
     /// <a href="http://en.wikipedia.org/wiki/Poisson_distribution">
-    /// Wikipedia - Poisson distribution</a>.</para>
-    /// 
-    /// <para>For details of the algorithm, see
+    /// Wikipedia - Poisson distribution</a>.
+    /// </para>
+    /// <para>
+    /// For details of the algorithm, see
     /// <a href="http://www.lkn.ei.tum.de/lehre/scn/cncl/doc/html/cncl_toc.html">
-    /// Communication Networks Class Library (TU München)</a></para>
-    ///
-    /// <para>pdf: f(x) = exp(-l)*l^x/x!; l = lambda</para>
+    /// Communication Networks Class Library (TU München)</a>
+    /// </para>
+    /// <para>
+    /// pdf: f(x) = exp(-l)*l^x/x!; l = lambda
+    /// </para>
     /// </remarks>
     public sealed class PoissonDistribution : DiscreteDistribution
     {
@@ -114,8 +117,8 @@ namespace MathNet.Numerics.Distributions
 
         #region construction
         /// <summary>
-        /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
-        /// as underlying random number generator.
+        /// Initializes a new instance of the PoissonDistribution class,
+        /// using a <see cref="SystemRandomSource"/> as underlying random number generator.
         /// </summary>
         public
         PoissonDistribution()
@@ -125,8 +128,8 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Initializes a new instance, using the specified <see cref="RandomSource"/>
-        /// as underlying random number generator.
+        /// Initializes a new instance of the PoissonDistribution class,
+        /// using the specified <see cref="RandomSource"/> as underlying random number generator.
         /// </summary>
         /// <param name="random">A <see cref="RandomSource"/> object.</param>
         /// <exception cref="ArgumentNullException">
@@ -142,8 +145,8 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
-        /// as underlying random number generator.
+        /// Initializes a new instance of the PoissonDistribution class,
+        /// using a <see cref="SystemRandomSource"/> as underlying random number generator.
         /// </summary>
         public
         PoissonDistribution(

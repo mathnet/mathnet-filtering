@@ -72,7 +72,7 @@ namespace MathNet.Numerics.Interpolation
             )
         {
             _samples = samples;
-            _samples.SampleAltered += samples_SampleAltered;
+            _samples.SampleAltered += OnSampleAltered;
             _algorithm = new PolynomialInterpolationAlgorithm(); 
         }
 
@@ -123,7 +123,7 @@ namespace MathNet.Numerics.Interpolation
             )
         {
             _samples = samples;
-            _samples.SampleAltered += samples_SampleAltered;
+            _samples.SampleAltered += OnSampleAltered;
             _algorithm = SelectAlgorithm(mode);
         }
 
@@ -158,7 +158,7 @@ namespace MathNet.Numerics.Interpolation
             )
         {
             _samples = samples;
-            _samples.SampleAltered += samples_SampleAltered;
+            _samples.SampleAltered += OnSampleAltered;
             _algorithm = SelectAlgorithm(mode);
             _algorithm.MaximumOrder = maximumOrder;
         }
@@ -195,7 +195,7 @@ namespace MathNet.Numerics.Interpolation
             )
         {
             _samples = samples;
-            _samples.SampleAltered += samples_SampleAltered;
+            _samples.SampleAltered += OnSampleAltered;
             _algorithm = algorithm;
         }
 
@@ -292,7 +292,7 @@ namespace MathNet.Numerics.Interpolation
         }
 
         void
-        samples_SampleAltered(
+        OnSampleAltered(
             object sender,
             SampleList.SampleAlteredEventArgs e
             )

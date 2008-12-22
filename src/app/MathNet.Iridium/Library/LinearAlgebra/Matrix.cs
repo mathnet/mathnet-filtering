@@ -108,7 +108,8 @@ namespace MathNet.Numerics.LinearAlgebra
         #region Data -> Matrix: Constructors and static constructive methods
 
         /// <summary>
-        /// Construct an m-by-n matrix of zeros.
+        /// Initializes a new instance of the Matrix class,
+        /// for an m-by-n matrix of zeros.
         /// </summary>
         /// <param name="m">Number of rows.</param>
         /// <param name="n">Number of columns.</param>
@@ -126,7 +127,8 @@ namespace MathNet.Numerics.LinearAlgebra
         }
 
         /// <summary>
-        /// Constructs a m-by-m square matrix.
+        /// Initializes a new instance of the Matrix class,
+        /// for an m-by-m square matrix.
         /// </summary>
         /// <param name="m">Size of the square matrix.</param>
         /// <param name="s">Diagonal value.</param>
@@ -151,7 +153,8 @@ namespace MathNet.Numerics.LinearAlgebra
         }
 
         /// <summary>
-        /// Construct an m-by-n constant matrix.
+        /// Initializes a new instance of the Matrix class,
+        /// for an m-by-n constant matrix.
         /// </summary>
         /// <param name="m">Number of rows.</param>
         /// <param name="n">Number of columns.</param>
@@ -182,8 +185,8 @@ namespace MathNet.Numerics.LinearAlgebra
         }
 
         /// <summary>
-        /// Constructs a matrix from a jagged 2-D array,
-        /// directly using the provided array as internal data structure.
+        /// Initializes a new instance of the Matrix class
+        /// from a jagged 2-D array, directly using the provided array as internal data structure.
         /// </summary>
         /// <param name="A">Two-dimensional jagged array of doubles.</param>
         /// <exception cref="System.ArgumentException">All rows must have the same length.</exception>
@@ -201,8 +204,8 @@ namespace MathNet.Numerics.LinearAlgebra
         }
 
         /// <summary>
-        /// Constructs a matrix from a 2-D array by deep-copying
-        /// the provided array to the internal data structure.
+        /// Initializes a new instance of the Matrix class
+        /// from a 2-D array by deep-copying the provided array to the internal data structure.
         /// </summary>
         /// <param name="A">Two-dimensional array of doubles.</param>
         [Obsolete("Use 'Matrix.Create(double[,])' or 'new Matrix(double[][])' instead")]
@@ -231,7 +234,8 @@ namespace MathNet.Numerics.LinearAlgebra
         }
 
         /// <summary>
-        /// Construct a matrix from a one-dimensional packed array
+        /// Initializes a new instance of the Matrix class
+        /// from a one-dimensional packed array.
         /// </summary>
         /// <param name="vals">One-dimensional array of doubles, packed by columns (ala Fortran).</param>
         /// <param name="m">Number of rows.</param>

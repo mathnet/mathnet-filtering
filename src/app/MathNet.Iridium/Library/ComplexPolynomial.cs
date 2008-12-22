@@ -39,7 +39,8 @@ namespace MathNet.Numerics
         int order;
 
         /// <summary>
-        /// Create a new polynomial by order
+        /// Initializes a new instance of the ComplexPolynomial class
+        /// of the provided order.
         /// </summary>
         /// <param name="order">The highest power. Example: 2*x^3+x-3 has order 3.</param>
         public
@@ -52,7 +53,8 @@ namespace MathNet.Numerics
         }
 
         /// <summary>
-        /// Create a new polynomial by coefficients
+        /// Initializes a new instance of the ComplexPolynomial class
+        /// with the provided coefficients.
         /// </summary>
         /// <param name="coefficients">The complex coefficients vector. The coefficient index denotes the related power (c[0]*x^0+c[1]*x^1+..)</param>
         public
@@ -70,7 +72,8 @@ namespace MathNet.Numerics
         }
 
         /// <summary>
-        /// Create a new complex polynomial by copy from a complex polynomial
+        /// Initializes a new instance of the ComplexPolynomial class
+        /// by deep copy from an existing polynomial.
         /// </summary>
         /// <param name="copy">A complex polynomial to copy from.</param>
         public
@@ -88,7 +91,8 @@ namespace MathNet.Numerics
         }
 
         /// <summary>
-        /// Create a new complex polynomial by copy from a real polynomial
+        /// Initializes a new instance of the ComplexPolynomial class
+        /// by deep copy from an existing real polynomial.
         /// </summary>
         /// <param name="copy">A real polynomial to copy from.</param>
         public
@@ -1060,7 +1064,7 @@ namespace MathNet.Numerics
 
             for(int j = order - 1; j >= 1; j--)
             {
-                coefficients[j] = coefficients[j - 1] - c0 * coefficients[j];
+                coefficients[j] = coefficients[j - 1] - (c0 * coefficients[j]);
             }
 
             coefficients[0] *= -c0;
@@ -1084,7 +1088,7 @@ namespace MathNet.Numerics
 
             for(int j = order - 1; j >= 1; j--)
             {
-                coefficients[j] = coefficients[j - 1] - c0 * coefficients[j];
+                coefficients[j] = coefficients[j - 1] - (c0 * coefficients[j]);
             }
 
             coefficients[0] *= -c0;
@@ -1351,7 +1355,7 @@ namespace MathNet.Numerics
                 return new ComplexPolynomial(
                     new Complex[] {
                         leftCoefficients[offset] * rightCoefficients[offset],
-                        leftCoefficients[offset] * rightCoefficients[offset + 1] + leftCoefficients[offset + 1] * rightCoefficients[offset],
+                        (leftCoefficients[offset] * rightCoefficients[offset + 1]) + (leftCoefficients[offset + 1] * rightCoefficients[offset]),
                         leftCoefficients[offset + 1] * rightCoefficients[offset + 1]
                     });
             }
@@ -1444,7 +1448,7 @@ namespace MathNet.Numerics
             Complex ret = coefficients[order];
             for(int j = order - 1; j >= 0; j--)
             {
-                ret = ret * value + coefficients[j];
+                ret = (ret * value) + coefficients[j];
             }
 
             return ret;
@@ -1468,8 +1472,8 @@ namespace MathNet.Numerics
             derivative = 0d;
             for(int j = order - 1; j >= 0; j--)
             {
-                derivative = derivative * value + ret;
-                ret = ret * value + coefficients[j];
+                derivative = (derivative * value) + ret;
+                ret = (ret * value) + coefficients[j];
             }
 
             return ret;
@@ -1498,10 +1502,10 @@ namespace MathNet.Numerics
                 len = Math.Min(derivativeOrderMax, coefficients.Length - 1 - i);
                 for(int j = len; j >= 1; j--)
                 {
-                    ret[j] = ret[j] * value + ret[j - 1];
+                    ret[j] = (ret[j] * value) + ret[j - 1];
                 }
 
-                ret[0] = ret[0] * value + coefficients[i];
+                ret[0] = (ret[0] * value) + coefficients[i];
             }
 
             double factorial = 1.0;
@@ -1558,7 +1562,7 @@ namespace MathNet.Numerics
                         }
                     }
 
-                    if(!Number.AlmostEqual(realCoeff, 1) && !Number.AlmostEqual(realCoeff, -1) || i == 0)
+                    if(i == 0 || (!Number.AlmostEqual(realCoeff, 1) && !Number.AlmostEqual(realCoeff, -1)))
                     {
                         builder.Append(Math.Abs(realCoeff));
                     }

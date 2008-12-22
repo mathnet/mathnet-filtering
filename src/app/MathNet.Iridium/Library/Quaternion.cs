@@ -42,7 +42,7 @@ namespace MathNet.Numerics
         readonly double qarg; // polar notation
 
         /// <summary>
-        /// Create a quarternion.
+        /// Initializes a new instance of the Quaternion struct.
         /// </summary>
         public
         Quaternion(
@@ -62,7 +62,7 @@ namespace MathNet.Numerics
         }
 
         /// <summary>
-        /// Create a quarternion.
+        /// Initializes a new instance of the Quaternion struct.
         /// </summary>
         internal
         Quaternion(

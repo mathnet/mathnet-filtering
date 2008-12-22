@@ -40,7 +40,8 @@ namespace MathNet.Numerics.Interpolation.Algorithms
         int _effectiveOrder;
 
         /// <summary>
-        /// Create a rational interpolation algorithm with full order.
+        /// Initializes a new instance of the LimitedOrderRationalInterpolation class.
+        /// with full order.
         /// </summary>
         public
         LimitedOrderRationalInterpolation()
@@ -50,7 +51,8 @@ namespace MathNet.Numerics.Interpolation.Algorithms
         }
 
         /// <summary>
-        /// Create a rational interpolation algorithm with the given order.
+        /// Initializes a new instance of the LimitedOrderRationalInterpolation class.
+        /// with the given order.
         /// </summary>
         public
         LimitedOrderRationalInterpolation(

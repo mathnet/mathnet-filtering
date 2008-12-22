@@ -30,20 +30,24 @@ namespace MathNet.Numerics.Distributions
     /// <summary>
     /// Pseudo-random generation of normal distributed deviates.
     /// </summary>
-    /// 
     /// <remarks> 
-    /// <para>For details about this distribution, see 
+    /// <para>
+    /// For details about this distribution, see 
     /// <a href="http://en.wikipedia.org/wiki/Normal_distribution">
-    /// Wikipedia - Normal distribution</a>.</para>
-    /// 
-    /// <para>This implementation is based on the <i>Box-Muller</i> algorithm
-    /// for generating random deviates with a normal distribution.</para>
-    /// 
-    /// <para>For details of the algorithm, see
+    /// Wikipedia - Normal distribution</a>.
+    /// </para>
+    /// <para>
+    /// This implementation is based on the <i>Box-Muller</i> algorithm
+    /// for generating random deviates with a normal distribution.
+    /// </para>
+    /// <para>
+    /// For details of the algorithm, see
     /// <a href="http://www.library.cornell.edu/nr/">
-    /// Numerical recipes in C</a> (chapter 7)</para>
-    ///
-    /// <para>pdf: f(x) = 1/(s*sqrt(2*Pi))*exp(-(x-m)^2/(2*s^2)); m = mu (location), s = sigma (scale)</para>
+    /// Numerical recipes in C</a> (chapter 7)
+    /// </para>
+    /// <para>
+    /// pdf: f(x) = 1/(s*sqrt(2*Pi))*exp(-(x-m)^2/(2*s^2)); m = mu (location), s = sigma (scale)
+    /// </para>
     /// </remarks>
     public sealed class NormalDistribution : ContinuousDistribution
     {
@@ -55,8 +59,8 @@ namespace MathNet.Numerics.Distributions
         #region Construction
 
         /// <summary>
-        /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
-        /// as underlying random number generator.
+        /// Initializes a new instance of the NormalDistribution class,
+        /// using a <see cref="SystemRandomSource"/> as underlying random number generator.
         /// </summary>
         public
         NormalDistribution()
@@ -67,8 +71,8 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Initializes a new instance, using the specified <see cref="RandomSource"/>
-        /// as underlying random number generator.
+        /// Initializes a new instance of the NormalDistribution class,
+        /// using the specified <see cref="RandomSource"/> as underlying random number generator.
         /// </summary>
         /// <param name="random">A <see cref="RandomSource"/> object.</param>
         /// <exception cref="ArgumentNullException">
@@ -85,8 +89,8 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
-        /// as underlying random number generator.
+        /// Initializes a new instance of the NormalDistribution class,
+        /// using a <see cref="SystemRandomSource"/> as underlying random number generator.
         /// </summary>
         public
         NormalDistribution(

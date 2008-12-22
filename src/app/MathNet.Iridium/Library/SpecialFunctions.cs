@@ -719,7 +719,7 @@ namespace MathNet.Numerics
             )
         {
             double x, y, ser, temp;
-            double[] coefficient = new double[]{
+            double[] coefficient = new double[] {
                 76.18009172947146,
                 -86.50532032941677,
                 24.01409824083091,
@@ -1158,12 +1158,15 @@ namespace MathNet.Numerics
         /// Returns the inverse error function erf^-1(x).
         /// </summary>
         /// <remarks>
-        /// <p>The algorithm uses a minimax approximation by rational functions
+        /// <para>
+        /// The algorithm uses a minimax approximation by rational functions
         /// and the result has a relative error whose absolute value is less
-        /// than 1.15e-9.</p>
-        /// 
-        /// <p>See the page <see href="http://home.online.no/~pjacklam/notes/invnorm/"/>
-        /// for more details.</p>
+        /// than 1.15e-9.
+        /// </para>
+        /// <para>
+        /// See the page <see href="http://home.online.no/~pjacklam/notes/invnorm/"/>
+        /// for more details.
+        /// </para>
         /// </remarks>
         public static
         double

@@ -45,17 +45,20 @@ namespace MathNet.Numerics.Distributions
     /// <summary>
     /// Pseudo-random generation of exponentially distributed deviates.
     /// </summary>
-    /// 
     /// <remarks> 
-    /// <para>For details about this distribution, see 
+    /// <para>
+    /// For details about this distribution, see 
     /// <a href="http://en.wikipedia.org/wiki/Exponential_distribution">
-    /// Wikipedia - Exponential distribution</a>.</para>
-    /// 
-    /// <para>For details of the algorithm, see
+    /// Wikipedia - Exponential distribution</a>.
+    /// </para>
+    /// <para>
+    /// For details of the algorithm, see
     /// <a href="http://www.library.cornell.edu/nr/">
-    /// Numerical recipes in C</a> (chapter 7)</para>
-    ///
-    /// <para>pdf: f(x) = l*exp(-l*x); l = lambda</para>
+    /// Numerical recipes in C</a> (chapter 7)
+    /// </para>
+    /// <para>
+    /// pdf: f(x) = l*exp(-l*x); l = lambda
+    /// </para>
     /// </remarks>
     public sealed class ExponentialDistribution : ContinuousDistribution
     {
@@ -64,8 +67,8 @@ namespace MathNet.Numerics.Distributions
 
         #region Construction
         /// <summary>
-        /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
-        /// as underlying random number generator.
+        /// Initializes a new instance of the ExponentialDistribution class,
+        /// using a <see cref="SystemRandomSource"/> as underlying random number generator.
         /// </summary>
         public
         ExponentialDistribution()
@@ -75,8 +78,8 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Initializes a new instance, using the specified <see cref="RandomSource"/>
-        /// as underlying random number generator.
+        /// Initializes a new instance of the ExponentialDistribution class,
+        /// using the specified <see cref="RandomSource"/> as underlying random number generator.
         /// </summary>
         /// <param name="random">A <see cref="RandomSource"/> object.</param>
         /// <exception cref="ArgumentNullException">
@@ -92,8 +95,8 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
-        /// as underlying random number generator.
+        /// Initializes a new instance of the ExponentialDistribution class,
+        /// using a <see cref="SystemRandomSource"/> as underlying random number generator.
         /// </summary>
         public
         ExponentialDistribution(

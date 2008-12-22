@@ -36,7 +36,8 @@ namespace MathNet.Numerics
         // TODO: Implement polynomial factorization to normalize rationals
 
         /// <summary>
-        /// Create a new rational by polynomials (directly linked, clone them manually before applying if needed)
+        /// Initializes a new instance of the Rational class,
+        /// by directly referencing the two provided polynomials (no deep copy).
         /// </summary>
         public
         Rational(
@@ -49,7 +50,8 @@ namespace MathNet.Numerics
         }
 
         /// <summary>
-        /// Create a new rational by orders
+        /// Initializes a new instance of the Rational class,
+        /// with the provided numerator and denominator order.
         /// </summary>
         public
         Rational(
@@ -62,7 +64,8 @@ namespace MathNet.Numerics
         }
 
         /// <summary>
-        /// Create a new rational by coefficients
+        /// Initializes a new instance of the Rational class,
+        /// by directly referencing the two provided polynomial coefficients.
         /// </summary>
         public
         Rational(
@@ -75,7 +78,8 @@ namespace MathNet.Numerics
         }
 
         /// <summary>
-        /// Create a new rational by copy
+        /// Initializes a new instance of the Rational class,
+        /// by deep-copy from an existing rational.
         /// </summary>
         /// <param name="copy">A rational to copy from.</param>
         public

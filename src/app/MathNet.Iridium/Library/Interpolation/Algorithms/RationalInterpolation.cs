@@ -39,7 +39,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
         IList<double> _x;
 
         /// <summary>
-        /// Create a neville polynomial interpolation algorithm instance.
+        /// Initializes a new instance of the RationalInterpolation class.
         /// </summary>
         /// <remarks>
         /// This algorithm neither supports differentiation nor interation.

@@ -68,7 +68,8 @@ namespace MathNet.Numerics.LinearAlgebra
         #region Constructors and static constructive methods
 
         /// <summary>
-        /// Constructs an n-dimensional vector of zeros.
+        /// Initializes a new instance of the Vector class,
+        /// for an n-dimensional vector of zeros.
         /// </summary>
         /// <param name="n">Dimensionality of vector.</param>
         public
@@ -81,7 +82,8 @@ namespace MathNet.Numerics.LinearAlgebra
         }
 
         /// <summary>
-        /// Constructs an n-dimensional unit vector for i'th coordinate.
+        /// Initializes a new instance of the Vector class,
+        /// for the n-dimensional unit vector for the i-th dimension.
         /// </summary>
         /// <param name="n">Dimensionality of vector.</param>
         /// <param name="i">Coordinate index.</param>
@@ -97,7 +99,8 @@ namespace MathNet.Numerics.LinearAlgebra
         }
 
         /// <summary>
-        /// Constructs an n-dimensional constant vector.
+        /// Initializes a new instance of the Vector class,
+        /// for the n-dimensional vector where all cells are filled with the provided value.
         /// </summary>
         /// <param name="n">Dimensionality of vector.</param>
         /// <param name="value">Fill the vector with this scalar value.</param>
@@ -116,8 +119,8 @@ namespace MathNet.Numerics.LinearAlgebra
         }
 
         /// <summary>
-        /// Constructs a vector from a 1-D array, directly using
-        /// the provided array as internal data structure.
+        /// Initializes a new instance of the Vector class
+        /// from a 1-D array, directly using the provided array as internal data structure.
         /// </summary>
         /// <param name="components">One-dimensional array of doubles.</param>
         /// <seealso cref="Create"/>
@@ -709,9 +712,9 @@ namespace MathNet.Numerics.LinearAlgebra
             }
 
             Vector product = new Vector(new double[] {
-                u[1]*v[2] - u[2]*v[1],
-                u[2]*v[0] - u[0]*v[2],
-                u[0]*v[1] - u[1]*v[0]
+                u[1] * v[2] - u[2] * v[1],
+                u[2] * v[0] - u[0] * v[2],
+                u[0] * v[1] - u[1] * v[0]
                 });
 
             return product;

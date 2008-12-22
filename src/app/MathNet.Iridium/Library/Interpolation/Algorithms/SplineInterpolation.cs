@@ -73,7 +73,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
         int _n;
 
         /// <summary>
-        /// Create a spline interpolation algorithm instance.
+        /// Initializes a new instance of the SplineInterpolation class.
         /// </summary>
         public
         SplineInterpolation()

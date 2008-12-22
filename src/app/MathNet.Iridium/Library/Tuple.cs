@@ -37,7 +37,7 @@ namespace MathNet.Numerics
         private readonly TSecond _second;
 
         /// <summary>
-        /// Construct a tuple
+        /// Initializes a new instance of the Tuple struct.
         /// </summary>
         /// <param name="first">The first tuple value</param>
         /// <param name="second">The second tuple value</param>

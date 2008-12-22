@@ -31,7 +31,7 @@ namespace MathNet.Numerics
     public sealed class Collection
     {
         /// <summary>
-        /// Preventing the instantiation of the <see cref="Collection"/> class.
+        /// Prevents a default instance of the Collection class from being created.
         /// </summary>
         private Collection()
         {

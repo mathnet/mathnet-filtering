@@ -28,20 +28,24 @@ namespace MathNet.Numerics.Distributions
     /// <summary>
     /// Pseudo-random generation of standard distributed deviates.
     /// </summary>
-    /// 
     /// <remarks> 
-    /// <para>For details about this distribution, see 
+    /// <para
+    /// >For details about this distribution, see 
     /// <a href="http://en.wikipedia.org/wiki/Normal_distribution">
-    /// Wikipedia - Normal distribution</a>.</para>
-    /// 
-    /// <para>This implementation is based on the <i>Box-Muller</i> algorithm
-    /// for generating random deviates with a normal distribution.</para>
-    /// 
-    /// <para>For details of the algorithm, see
+    /// Wikipedia - Normal distribution</a>.
+    /// </para>
+    /// <para>
+    /// This implementation is based on the <i>Box-Muller</i> algorithm
+    /// for generating random deviates with a normal distribution.
+    /// </para>
+    /// <para>
+    /// For details of the algorithm, see
     /// <a href="http://www.library.cornell.edu/nr/">
-    /// Numerical recipes in C</a> (chapter 7)</para>
-    ///
-    /// <para>pdf: f(x) = 1/sqrt(2*Pi)*exp(-x^2/2)</para>
+    /// Numerical recipes in C</a> (chapter 7)
+    /// </para>
+    /// <para>
+    /// pdf: f(x) = 1/sqrt(2*Pi)*exp(-x^2/2)
+    /// </para>
     /// </remarks>
     public sealed class StandardDistribution : ContinuousDistribution
     {
@@ -49,8 +53,8 @@ namespace MathNet.Numerics.Distributions
 
         #region Construction
         /// <summary>
-        /// Initializes a new instance, using a <see cref="SystemRandomSource"/>
-        /// as underlying random number generator.
+        /// Initializes a new instance of the StandardDistribution class,
+        /// using a <see cref="SystemRandomSource"/> as underlying random number generator.
         /// </summary>
         public
         StandardDistribution()
@@ -59,8 +63,8 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Initializes a new instance, using the specified <see cref="RandomSource"/>
-        /// as underlying random number generator.
+        /// Initializes a new instance of the StandardDistribution class,
+        /// using the specified <see cref="RandomSource"/> as underlying random number generator.
         /// </summary>
         /// <param name="random">A <see cref="RandomSource"/> object.</param>
         /// <exception cref="ArgumentNullException">
@@ -201,7 +205,7 @@ namespace MathNet.Numerics.Distributions
                 fac = Math.Sqrt(-2.0 * Math.Log(rsq) / rsq);
 
                 _extraNormal = v1 * fac;
-                return (v2 * fac);
+                return v2 * fac;
             }
         }
         #endregion

@@ -39,7 +39,8 @@ namespace MathNet.Numerics
         int order;
 
         /// <summary>
-        /// Create a new polynomial by order
+        /// Initializes a new instance of the Polynomial class
+        /// of the provided order.
         /// </summary>
         /// <param name="order">The highest power. Example: 2*x^3+x-3 has order 3.</param>
         public
@@ -52,7 +53,8 @@ namespace MathNet.Numerics
         }
 
         /// <summary>
-        /// Create a new polynomial by coefficients
+        /// Initializes a new instance of the Polynomial class
+        /// with the provided coefficients.
         /// </summary>
         /// <param name="coefficients">The coefficients vector. The coefficient index denotes the related power (c[0]*x^0+c[1]*x^1+..)</param>
         public
@@ -70,7 +72,8 @@ namespace MathNet.Numerics
         }
 
         /// <summary>
-        /// Create a new polynomial by copy
+        /// Initializes a new instance of the Polynomial class
+        /// by deep copy from an existing polynomial.
         /// </summary>
         /// <param name="copy">A polynomial to copy from.</param>
         public
@@ -1022,7 +1025,7 @@ namespace MathNet.Numerics
                     }
                 }
 
-                if(!Number.AlmostEqual(coeff, 1) && !Number.AlmostEqual(coeff, -1) || i == 0)
+                if(i == 0 || (!Number.AlmostEqual(coeff, 1) && !Number.AlmostEqual(coeff, -1)))
                 {
                     builder.Append(Math.Abs(coeff));
                 }

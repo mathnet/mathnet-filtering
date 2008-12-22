@@ -56,7 +56,7 @@ namespace MathNet.Numerics
         #region Construction
 
         /// <summary>
-        /// Create a new sample list.
+        /// Initializes a new instance of the SampleList class.
         /// </summary>
         public
         SampleList()
@@ -67,7 +67,7 @@ namespace MathNet.Numerics
         }
 
         /// <summary>
-        /// Create a new sample list.
+        /// Initializes a new instance of the SampleList class.
         /// </summary>
         /// <param name="capacity">initial capacity</param>
         public
@@ -86,7 +86,7 @@ namespace MathNet.Numerics
         }
 
         /// <summary>
-        /// Create a new sample list.
+        /// Initializes a new instance of the SampleList class.
         /// </summary>
         public
         SampleList(
@@ -106,7 +106,7 @@ namespace MathNet.Numerics
         }
 
         /// <summary>
-        /// Create a new sample list.
+        /// Initializes a new instance of the SampleList class.
         /// </summary>
         public
         SampleList(
@@ -126,7 +126,8 @@ namespace MathNet.Numerics
         }
 
         /// <summary>
-        /// Create a new sample list based on a copy of two arrays.
+        /// Initializes a new instance of the SampleList class,
+        /// based on a copy of two arrays.
         /// </summary>
         /// <param name="t">keys t, where x=f(t) or (t,x).</param>
         /// <param name="x">values x, where x=f(t) or (t,x).</param>
@@ -1113,7 +1114,7 @@ namespace MathNet.Numerics
             double t;
 
             /// <summary>
-            /// Instantiate new event arguments.
+            /// Initializes a new instance of the SampleAlteredEventArgs class.
             /// </summary>
             /// <param name="t">The t-value of the x=f(t) or (t,x) samples.</param>
             public SampleAlteredEventArgs(double t)

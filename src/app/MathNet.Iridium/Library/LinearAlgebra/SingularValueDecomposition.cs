@@ -28,16 +28,20 @@ namespace MathNet.Numerics.LinearAlgebra
 {
     /// <summary>Singular Value Decomposition.</summary>
     /// <remarks>
-    /// <p>For an m-by-n matrix A with m >= n, the singular value decomposition 
+    /// <para>
+    /// For an m-by-n matrix A with m >= n, the singular value decomposition 
     /// is an m-by-n orthogonal matrix U, an n-by-n diagonal matrix S, and
-    /// an n-by-n orthogonal matrix V so that A = U*S*V'.</p>
-    ///
-    /// <p>The singular values, sigma[k] = S[k, k], are ordered so that
-    /// sigma[0] >= sigma[1] >= ... >= sigma[n-1].</p>
-    /// 
-    /// <p>The singular value decomposition always exists, so the constructor will
+    /// an n-by-n orthogonal matrix V so that A = U*S*V'.
+    /// </para>
+    /// <para>
+    /// The singular values, sigma[k] = S[k, k], are ordered so that
+    /// sigma[0] >= sigma[1] >= ... >= sigma[n-1].
+    /// </para>
+    /// <para>
+    /// The singular value decomposition always exists, so the constructor will
     /// never fail.  The matrix condition number and the effective numerical
-    /// rank can be computed from this decomposition.</p>
+    /// rank can be computed from this decomposition.
+    /// </para>
     /// </remarks>
     [Serializable]
     public class SingularValueDecomposition
@@ -81,7 +85,9 @@ namespace MathNet.Numerics.LinearAlgebra
             Convergence
         }
 
-        /// <summary>Construct the singular value decomposition.</summary>
+        /// <summary>
+        /// Initializes a new instance of the SingularValueDecomposition class.
+        /// </summary>
         /// <remarks>Provides access to U, S and V.</remarks>
         /// <param name="Arg">Rectangular matrix</param>
         public

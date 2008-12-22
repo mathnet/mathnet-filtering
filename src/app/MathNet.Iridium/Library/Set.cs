@@ -190,7 +190,7 @@ namespace MathNet.Numerics
         ReadOnlySet<T> readonlyWrapper;
 
         /// <summary>
-        /// Create a new set.
+        /// Initializes a new instance of the Set class.
         /// </summary>
         public
         Set()
@@ -198,7 +198,7 @@ namespace MathNet.Numerics
         }
 
         /// <summary>
-        /// Create a new set.
+        /// Initializes a new instance of the Set class.
         /// </summary>
         public
         Set(
@@ -209,7 +209,7 @@ namespace MathNet.Numerics
         }
 
         /// <summary>
-        /// Create a new set.
+        /// Initializes a new instance of the Set class.
         /// </summary>
         public
         Set(
@@ -220,7 +220,7 @@ namespace MathNet.Numerics
         }
 
         /// <summary>
-        /// Create a new set.
+        /// Initializes a new instance of the Set class.
         /// </summary>
         protected
         Set(
@@ -231,7 +231,7 @@ namespace MathNet.Numerics
         }
 
         /// <summary>
-        /// Create a new set.
+        /// Initializes a new instance of the Set class.
         /// </summary>
         public
         Set(
@@ -834,7 +834,7 @@ namespace MathNet.Numerics
             Predicate<T> match
             )
         {
-            return (FindIndex(match) != -1);
+            return FindIndex(match) != -1;
         }
 
         /// <summary>
@@ -1229,7 +1229,7 @@ namespace MathNet.Numerics
         where T : IEquatable<T>
     {
         /// <summary>
-        /// Create a read-only set.
+        /// Initializes a new instance of the ReadOnlySet class.
         /// </summary>
         public
         ReadOnlySet(
@@ -1361,7 +1361,7 @@ namespace MathNet.Numerics
             Predicate<T> match
             )
         {
-            return (FindIndex(match) != -1);
+            return FindIndex(match) != -1;
         }
 
         /// <summary>
@@ -1830,7 +1830,6 @@ namespace MathNet.Numerics
     /// <summary>
     /// Event argument used for notifying about changes in a set.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
     public class SetChangedEventArgs<T> :
         EventArgs
     {

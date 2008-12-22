@@ -73,7 +73,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
         IList<double> _w;
 
         /// <summary>
-        /// Create a barycentric interpolation algorithm instance.
+        /// Initializes a new instance of the BarycentricInterpolation class.
         /// </summary>
         public
         BarycentricInterpolation()

@@ -36,12 +36,15 @@ namespace MathNet.Numerics.Distributions
     /// Pseudo-random generator of Zipf distributed deviates.
     /// </summary>
     /// <remarks>
-    /// <p>The density of the continuous Zipf distribution is defined
+    /// <para>
+    /// The density of the continuous Zipf distribution is defined
     /// on <c>[1, +infinity)</c>, the density is proportional to
-    /// <c>x^s</c> where <c>s &gt; 1</c> is the <i>skew</i>.</p>
-    /// 
-    /// <p>See the <a href="http://en.wikipedia.org/wiki/Zipfs_law">Wikipedia</a>
-    /// for more information about Zipf distribution.</p>
+    /// <c>x^s</c> where <c>s &gt; 1</c> is the <i>skew</i>.
+    /// </para>
+    /// <para>
+    /// See the <a href="http://en.wikipedia.org/wiki/Zipfs_law">Wikipedia</a>
+    /// for more information about Zipf distribution.
+    /// </para>
     /// </remarks>
     public sealed class ZipfDistribution
     {
@@ -50,7 +53,8 @@ namespace MathNet.Numerics.Distributions
         private double skew;
 
         /// <summary>
-        /// Zipfian generator with a default <c>skew</c> equal to <c>2</c>.
+        /// Initializes a new instance of the ZipfDistribution class,
+        /// with a default <c>skew</c> equal to <c>2</c>.
         /// </summary>
         public ZipfDistribution()
         {
@@ -59,7 +63,8 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Zipfian generator with a default <c>skew</c> equal to <c>2</c>.
+        /// Initializes a new instance of the ZipfDistribution class
+        /// with a default <c>skew</c> equal to <c>2</c>.
         /// </summary>
         /// <param name="random">A <see cref="RandomSource"/> object.</param>
         public ZipfDistribution(RandomSource random)
@@ -69,7 +74,8 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Create a zipf distribution with the provided skew.
+        /// Initializes a new instance of the ZipfDistribution class
+        /// with the provided skew.
         /// </summary>
         public ZipfDistribution(double skew)
         {
@@ -83,7 +89,8 @@ namespace MathNet.Numerics.Distributions
         }
 
         /// <summary>
-        /// Create a zipf distribution with the provided skew and seed.
+        /// Initializes a new instance of the ZipfDistribution class
+        /// with the provided skew and seed.
         /// </summary>
         public ZipfDistribution(double skew, int seed)
         {

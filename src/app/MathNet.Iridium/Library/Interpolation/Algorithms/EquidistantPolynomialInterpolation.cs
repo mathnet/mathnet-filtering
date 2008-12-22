@@ -71,7 +71,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
         BarycentricInterpolation _barycentric;
 
         /// <summary>
-        /// Create an interpolation algorithm instance.
+        /// Initializes a new instance of the EquidistantPolynomialInterpolation class.
         /// </summary>
         public
         EquidistantPolynomialInterpolation()
