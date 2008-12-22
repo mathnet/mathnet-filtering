@@ -55,7 +55,6 @@
 
   <!-- Tool Paths -->
   <PropertyGroup>
-    <SubversionPath>$(ToolsPath)subversion\bin\</SubversionPath>
     <NUnitPath>$(ToolsPath)nunit\bin\</NUnitPath>
     <NCoverPath>$(ToolsPath)NCover\</NCoverPath>
     <SimianPath>$(ToolsPath)simian\</SimianPath>
@@ -68,7 +67,7 @@
 
   <!-- Tools -->
   <ItemGroup>
-    <SubversionExe Include="$(SubversionPath)svn.exe" />
+    <SubversionExe Include="svn.exe" />
     <NUnitExe Include="$(NUnitPath)nunit-console.exe" />
     <NCoverExe Include="$(NCoverPath)NCover.Console.exe" />
     <SimianExe Include="$(SimianPath)simian.exe" />
@@ -116,7 +115,6 @@
 
   <Target Name="VerifyPaths" DependsOnTargets="GetPaths">
     <!-- Tools -->
-    <Error Text="Tools: Subversion not found, expected at @(SubversionExe)" Condition="!Exists(@(SubversionExe))" />
     <Error Text="Tools: NUnit not found, expected at @(NUnitExe)" Condition="!Exists(@(NUnitExe))" />
     <Error Text="Tools: NCover not found, expected at @(NCoverExe)" Condition="!Exists(@(NCoverExe))" />
     <Error Text="Tools: Simian not found, expected at @(SimianExe)" Condition="!Exists(@(SimianExe))" />
