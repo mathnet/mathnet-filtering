@@ -564,7 +564,7 @@ namespace MathNet.Numerics
                     );
             }
 
-            Polynomial num = numerator * rational.denominator + rational.numerator * denominator;
+            Polynomial num = (numerator * rational.denominator) + (rational.numerator * denominator);
             Polynomial denom = denominator * rational.denominator;
             return new Rational(num, denom);
         }
@@ -614,7 +614,7 @@ namespace MathNet.Numerics
                     );
             }
 
-            Polynomial num = numerator * rational.denominator - rational.numerator * denominator;
+            Polynomial num = (numerator * rational.denominator) - (rational.numerator * denominator);
             Polynomial denom = denominator * rational.denominator;
             return new Rational(num, denom);
         }

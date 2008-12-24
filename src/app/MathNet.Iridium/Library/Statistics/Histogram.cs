@@ -226,8 +226,9 @@ namespace MathNet.Numerics.Statistics
                 }
 
                 optimalCost[i, 0] =
-                    prefixSum[i + 1] - (2 * prefixSum[avg + 1])
-                    + ((2 * avg) - i + 1) * (prefixSum[i + 1] / (i + 1));
+                    prefixSum[i + 1]
+                    - (2 * prefixSum[avg + 1])
+                    + (((2 * avg) - i + 1) * (prefixSum[i + 1] / (i + 1)));
             }
 
             // "One value per bucket" histograms initialization
@@ -264,7 +265,7 @@ namespace MathNet.Numerics.Statistics
                             + prefixSum[i + 1]
                             + prefixSum[j + 1]
                             - (2 * prefixSum[avg + 1])
-                            + ((2 * avg - i - j) * (prefixSum[i + 1] - prefixSum[j + 1]) / (i - j));
+                            + (((2 * avg) - i - j) * (prefixSum[i + 1] - prefixSum[j + 1]) / (i - j));
 
                         if(currentCost < optimalCost[i, k])
                         {
@@ -337,8 +338,9 @@ namespace MathNet.Numerics.Statistics
             // "One bucket" histograms initialization
             for(int i = 0; i < values.Length; i++)
             {
-                optimalCost[i, 0] = sqPrefixSum[i + 1] -
-                    prefixSum[i + 1] * prefixSum[i + 1] / (i + 1);
+                optimalCost[i, 0] =
+                    sqPrefixSum[i + 1]
+                    - (prefixSum[i + 1] * prefixSum[i + 1] / (i + 1));
             }
 
             // "One value per bucket" histograms initialization
@@ -364,8 +366,11 @@ namespace MathNet.Numerics.Statistics
                     // ('j+1' is the index of the first value in the last bucket)
                     for(int j = (k - 1); j < i; j++)
                     {
-                        double currentCost = optimalCost[j, k - 1] + sqPrefixSum[i + 1] - sqPrefixSum[j + 1]
-                            - (prefixSum[i + 1] - prefixSum[j + 1]) * (prefixSum[i + 1] - prefixSum[j + 1]) / (i - j);
+                        double currentCost =
+                            optimalCost[j, k - 1]
+                            + sqPrefixSum[i + 1]
+                            - sqPrefixSum[j + 1]
+                            - ((prefixSum[i + 1] - prefixSum[j + 1]) * (prefixSum[i + 1] - prefixSum[j + 1]) / (i - j));
 
                         if(currentCost < optimalCost[i, k])
                         {
@@ -446,8 +451,9 @@ namespace MathNet.Numerics.Statistics
                     // ('j+1' is the index of the first value in the last bucket)
                     for(int j = (k - 1); j < i; j++)
                     {
-                        double currentCost = optimalCost[j, k - 1] +
-                            (values[i] - values[j + 1]) * (i - j);
+                        double currentCost =
+                            optimalCost[j, k - 1]
+                            + ((values[i] - values[j + 1]) * (i - j));
 
                         if(currentCost < optimalCost[i, k])
                         {
@@ -529,8 +535,9 @@ namespace MathNet.Numerics.Statistics
                     // ('j+1' is the index of the first value in the last bucket)
                     for(int j = (k - 1); j < i; j++)
                     {
-                        double currentCost = optimalCost[j, k - 1] +
-                            (values[i] - values[j + 1]) * (values[i] - values[j + 1]) * (i - j);
+                        double currentCost =
+                            optimalCost[j, k - 1]
+                            + ((values[i] - values[j + 1]) * (values[i] - values[j + 1]) * (i - j));
 
                         if(currentCost < optimalCost[i, k])
                         {

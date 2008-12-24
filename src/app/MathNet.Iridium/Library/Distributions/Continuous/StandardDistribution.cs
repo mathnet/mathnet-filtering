@@ -162,7 +162,7 @@ namespace MathNet.Numerics.Distributions
             double x
             )
         {
-            return Constants.Sqrt1_2 * Fn.ErfInverse(2.0 * x - 1.0);
+            return Constants.Sqrt1_2 * Fn.ErfInverse((2.0 * x) - 1.0);
         }
         #endregion
 
@@ -195,9 +195,9 @@ namespace MathNet.Numerics.Distributions
                 // We need a non-zero random point inside the unit circle.
                 do
                 {
-                    v1 = 2.0 * this.RandomSource.NextDouble() - 1.0;
-                    v2 = 2.0 * this.RandomSource.NextDouble() - 1.0;
-                    rsq = v1 * v1 + v2 * v2;
+                    v1 = (2.0 * this.RandomSource.NextDouble()) - 1.0;
+                    v2 = (2.0 * this.RandomSource.NextDouble()) - 1.0;
+                    rsq = (v1 * v1) + (v2 * v2);
                 }
                 while(rsq > 1.0 || rsq == 0);
 

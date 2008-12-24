@@ -631,7 +631,7 @@ namespace MathNet.Numerics
 
             for(int j = order - 1; j >= 1; j--)
             {
-                coefficients[j] = coefficients[j - 1] - c0 * coefficients[j];
+                coefficients[j] = coefficients[j - 1] - (c0 * coefficients[j]);
             }
 
             coefficients[0] *= -c0;
@@ -740,7 +740,7 @@ namespace MathNet.Numerics
             {
                 swap = coefficients[i];
                 coefficients[i] = remainder;
-                remainder = swap + c0 * remainder;
+                remainder = swap + (c0 * remainder);
             }
 
             NormalizeOrder();
@@ -839,7 +839,7 @@ namespace MathNet.Numerics
                 return new Polynomial(
                     new double[] {
                         leftCoefficients[offset] * rightCoefficients[offset],
-                        leftCoefficients[offset] * rightCoefficients[offset + 1] + leftCoefficients[offset + 1] * rightCoefficients[offset],
+                        (leftCoefficients[offset] * rightCoefficients[offset + 1]) + (leftCoefficients[offset + 1] * rightCoefficients[offset]),
                         leftCoefficients[offset + 1] * rightCoefficients[offset + 1]
                     });
             }
@@ -920,7 +920,7 @@ namespace MathNet.Numerics
             double ret = coefficients[order];
             for(int j = order - 1; j >= 0; j--)
             {
-                ret = ret * value + coefficients[j];
+                ret = (ret * value) + coefficients[j];
             }
 
             return ret;
@@ -944,8 +944,8 @@ namespace MathNet.Numerics
             derivative = 0d;
             for(int j = order - 1; j >= 0; j--)
             {
-                derivative = derivative * value + ret;
-                ret = ret * value + coefficients[j];
+                derivative = (derivative * value) + ret;
+                ret = (ret * value) + coefficients[j];
             }
 
             return ret;
@@ -974,10 +974,10 @@ namespace MathNet.Numerics
                 len = Math.Min(derivativeOrderMax, coefficients.Length - 1 - i);
                 for(int j = len; j >= 1; j--)
                 {
-                    ret[j] = ret[j] * value + ret[j - 1];
+                    ret[j] = (ret[j] * value) + ret[j - 1];
                 }
 
-                ret[0] = ret[0] * value + coefficients[i];
+                ret[0] = (ret[0] * value) + coefficients[i];
             }
 
             double factorial = 1.0;

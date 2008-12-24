@@ -214,7 +214,7 @@ namespace MathNet.Numerics.Distributions
             get
             {
                 double mean = Mean;
-                return _degreesOfFreedom - mean * mean;
+                return _degreesOfFreedom - (mean * mean);
             }
         }
 
@@ -226,7 +226,7 @@ namespace MathNet.Numerics.Distributions
             get
             {
                 double variance = Variance;
-                return Mean / Math.Pow(variance, 1.5) * (1.0 - 2.0 * variance);
+                return Mean / Math.Pow(variance, 1.5) * (1.0 - (2.0 * variance));
             }
         }
 
@@ -239,7 +239,12 @@ namespace MathNet.Numerics.Distributions
             double x
             )
         {
-            return Math.Exp((1.0 - 0.5 * _degreesOfFreedom) * Constants.Ln2 + (_degreesOfFreedom - 1) * Math.Log(x) - (0.5 * x * x) - _lngammaDegreesOfFreedomHalf);
+            return Math.Exp(
+                ((1.0 - (0.5 * _degreesOfFreedom)) * Constants.Ln2)
+                + ((_degreesOfFreedom - 1) * Math.Log(x))
+                - (0.5 * x * x)
+                - _lngammaDegreesOfFreedomHalf
+                );
         }
 
         /// <summary>

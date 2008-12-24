@@ -564,7 +564,7 @@ namespace MathNet.Numerics
                     );
             }
 
-            ComplexPolynomial num = numerator * rational.denominator + rational.numerator * denominator;
+            ComplexPolynomial num = (numerator * rational.denominator) + (rational.numerator * denominator);
             ComplexPolynomial denom = denominator * rational.denominator;
             return new ComplexRational(num, denom);
         }
@@ -614,7 +614,7 @@ namespace MathNet.Numerics
                     );
             }
 
-            ComplexPolynomial num = numerator * rational.denominator - rational.numerator * denominator;
+            ComplexPolynomial num = (numerator * rational.denominator) - (rational.numerator * denominator);
             ComplexPolynomial denom = denominator * rational.denominator;
             return new ComplexRational(num, denom);
         }

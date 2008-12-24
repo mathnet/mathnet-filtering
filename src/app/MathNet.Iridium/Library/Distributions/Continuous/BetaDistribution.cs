@@ -254,8 +254,8 @@ namespace MathNet.Numerics.Distributions
             )
         {
             return Math.Exp(
-                (_alpha - 1.0) * Math.Log(x)
-                + (_beta - 1.0) * Math.Log(1 - x)
+                ((_alpha - 1.0) * Math.Log(x))
+                + ((_beta - 1.0) * Math.Log(1 - x))
                 - _lnbetaAlphaBeta
                 );
         }

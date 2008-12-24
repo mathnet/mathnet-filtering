@@ -271,7 +271,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 double[] col = new double[_columnCount];
                 for(int j = 0; j < _columnCount; j++)
                 {
-                    col[j] = vals[i + j * _rowCount];
+                    col[j] = vals[i + (j * _rowCount)];
                 }
 
                 _data[i] = col;
@@ -1802,7 +1802,8 @@ namespace MathNet.Numerics.LinearAlgebra
         }
 
         /// <summary>
-        /// Cholesky Decomposition
+        /// Cholesky Decomposition.
+        /// This method will be removed in future versions, please use the CholeskyDecomposition property instead.
         /// </summary>
         /// <seealso cref="CholeskyDecomposition"/>
         [Obsolete("Use the CholeskyDecomposition property instead.")]

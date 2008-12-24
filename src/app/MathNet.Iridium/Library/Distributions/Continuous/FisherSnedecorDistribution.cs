@@ -158,8 +158,8 @@ namespace MathNet.Numerics.Distributions
             _alphabeta = (double)beta / (double)alpha;
 
             _pdfScaleLn =
-                alphaHalf * Math.Log(alpha)
-                + betaHalf * Math.Log(beta)
+                (alphaHalf * Math.Log(alpha))
+                + (betaHalf * Math.Log(beta))
                 - Fn.BetaLn(alphaHalf, betaHalf);
             _pdfExponent1 = alphaHalf - 1.0;
             _pdfExponent2 = -alphaHalf - betaHalf;
@@ -251,7 +251,7 @@ namespace MathNet.Numerics.Distributions
             get
             {
                 int betam2 = _beta - 2;
-                double m = (2 * _alpha + betam2) * Math.Sqrt(8 * (_beta - 4));
+                double m = ((2 * _alpha) + betam2) * Math.Sqrt(8 * (_beta - 4));
                 double n = (_beta - 6) * Math.Sqrt(_alpha * (_alpha + betam2));
                 return m / n;
             }
@@ -282,12 +282,12 @@ namespace MathNet.Numerics.Distributions
             }
 
             double ln1 = Math.Log(x);
-            double ln2 = Math.Log(_alpha * x + _beta);
+            double ln2 = Math.Log((_alpha * x) + _beta);
 
             return Math.Exp(
                 _pdfScaleLn
-                + _pdfExponent1 * ln1
-                + _pdfExponent2 * ln2
+                + (_pdfExponent1 * ln1)
+                + (_pdfExponent2 * ln2)
                 );
         }
 

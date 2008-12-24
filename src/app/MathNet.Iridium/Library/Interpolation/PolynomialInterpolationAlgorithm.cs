@@ -30,6 +30,7 @@ namespace MathNet.Numerics.Interpolation
 {
     /// <summary>
     /// Lagrange Polynomial Interpolation using Neville's Algorithm.
+    /// This class will be removed in future versions, please use the newer interpolation scheme instead.
     /// </summary>
     [Obsolete("Please use Interpolation or directly one of the newer implementation in the Algorithms namespace instead. The direct replacement is LimitedOrderPolynomialInterpolation, but we recommend against using it. This class is obsolete and will be removed in future versions.")]
     public class PolynomialInterpolationAlgorithm :
@@ -40,7 +41,8 @@ namespace MathNet.Numerics.Interpolation
         int _effectiveOrder;
 
         /// <summary>
-        /// Create a polynomial interpolation algorithm with full order.
+        /// Initializes a new instance of the PolynomialInterpolationAlgorithm class
+        /// with full order.
         /// </summary>
         public
         PolynomialInterpolationAlgorithm()
@@ -50,7 +52,8 @@ namespace MathNet.Numerics.Interpolation
         }
 
         /// <summary>
-        /// Create a polynomial interpolation algorithm with the given maximum order.
+        /// Initializes a new instance of the PolynomialInterpolationAlgorithm class
+        /// with the given maximum order.
         /// </summary>
         public
         PolynomialInterpolationAlgorithm(

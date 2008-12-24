@@ -240,12 +240,12 @@ namespace MathNet.Numerics.Interpolation.Algorithms
             for(int i = 0, j = 0; i < low; i++, j += 4)
             {
                 double w = _t[i + 1] - _t[i];
-                result += w * (_c[j] + (w * (_c[j + 1] * 0.5) + (w * ((_c[j + 2] / 3) + (w * _c[j + 3] * 0.25)))));
+                result += w * (_c[j] + ((w * (_c[j + 1] * 0.5)) + (w * ((_c[j + 2] / 3) + (w * _c[j + 3] * 0.25)))));
             }
 
             t = t - _t[low];
             int k = low << 2;
-            return result + t * (_c[k] + (t * (_c[k + 1] * 0.5) + (t * ((_c[k + 2] / 3) + (t * _c[k + 3] * 0.25)))));
+            return result + (t * (_c[k] + ((t * (_c[k + 1] * 0.5)) + (t * (_c[k + 2] / 3)) + (t * _c[k + 3] * 0.25))));
         }
     }
 }

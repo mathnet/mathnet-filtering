@@ -1241,7 +1241,7 @@ namespace MathNet.Numerics
             {
                 swap = coefficients[i];
                 coefficients[i] = remainder;
-                remainder = swap + c0 * remainder;
+                remainder = swap + (c0 * remainder);
             }
 
             NormalizeOrder();

@@ -265,7 +265,7 @@ namespace MathNet.Numerics.Distributions
             double x
             )
         {
-            return _factor * Math.Pow(1.0 + x * x / _degreesOfFreedom, _exponent);
+            return _factor * Math.Pow(1.0 + (x * x / _degreesOfFreedom), _exponent);
         }
 
         /// <summary>
@@ -280,10 +280,10 @@ namespace MathNet.Numerics.Distributions
             double beta = Fn.BetaRegularized(
                 0.5 * _degreesOfFreedom,
                 0.5,
-                _degreesOfFreedom / (_degreesOfFreedom + x * x)
+                _degreesOfFreedom / (_degreesOfFreedom + (x * x))
                 );
 
-            return 0.5 + 0.5 * Math.Sign(x) * (_summand - beta);
+            return 0.5 + (0.5 * Math.Sign(x) * (_summand - beta));
         }
 
         #endregion

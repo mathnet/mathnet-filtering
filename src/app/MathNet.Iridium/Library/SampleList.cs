@@ -187,7 +187,7 @@ namespace MathNet.Numerics
         {
             double cntBefore = _sampleCount[index];
             double cntAfter = _sampleCount[index] = _sampleCount[index] + 1;
-            _sampleX[index] = (_sampleX[index] * cntBefore + x) / cntAfter;
+            _sampleX[index] = ((_sampleX[index] * cntBefore) + x) / cntAfter;
 
             if(SampleAltered != null)
             {

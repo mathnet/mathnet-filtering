@@ -331,7 +331,7 @@ namespace MathNet.Numerics.LinearAlgebra
                     }
 
                     e[i] = scale * g;
-                    h = h - f * g;
+                    h = h - (f * g);
                     d[i - 1] = f - g;
                     for(int j = 0; j < i; j++)
                     {
@@ -344,7 +344,7 @@ namespace MathNet.Numerics.LinearAlgebra
                     {
                         f = d[j];
                         V[j][i] = f;
-                        g = e[j] + V[j][j] * f;
+                        g = e[j] + (V[j][j] * f);
 
                         for(int k = j + 1; k <= i - 1; k++)
                         {
@@ -377,7 +377,7 @@ namespace MathNet.Numerics.LinearAlgebra
 
                         for(int k = j; k <= i - 1; k++)
                         {
-                            V[k][j] -= (f * e[k] + g * d[k]);
+                            V[k][j] -= ((f * e[k]) + (g * d[k]));
                         }
 
                         d[j] = V[i - 1][j];
@@ -529,8 +529,8 @@ namespace MathNet.Numerics.LinearAlgebra
                                 e[i + 1] = s * r;
                                 s = e[i] / r;
                                 c = p / r;
-                                p = c * d[i] - s * g;
-                                d[i + 1] = h + s * (c * g + s * d[i]);
+                                p = (c * d[i]) - (s * g);
+                                d[i + 1] = h + (s * ((c * g) + (s * d[i])));
                             }
 
                             // Accumulate transformation.
@@ -538,8 +538,8 @@ namespace MathNet.Numerics.LinearAlgebra
                             for(int k = 0; k < n; k++)
                             {
                                 h = V[k][i + 1];
-                                V[k][i + 1] = s * V[k][i] + c * h;
-                                V[k][i] = c * V[k][i] - s * h;
+                                V[k][i + 1] = (s * V[k][i]) + (c * h);
+                                V[k][i] = (c * V[k][i]) - (s * h);
                             }
                         }
 
@@ -630,7 +630,7 @@ namespace MathNet.Numerics.LinearAlgebra
                         g = -g;
                     }
 
-                    h = h - ort[m] * g;
+                    h = h - (ort[m] * g);
                     ort[m] = ort[m] - g;
 
                     // Apply Householder similarity transformation
@@ -790,7 +790,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     w = H[n][n - 1] * H[n - 1][n];
                     p = (H[n - 1][n - 1] - H[n][n]) / 2.0;
-                    q = p * p + w;
+                    q = (p * p) + w;
                     z = Math.Sqrt(Math.Abs(q));
                     H[n][n] = H[n][n] + exshift;
                     H[n - 1][n - 1] = H[n - 1][n - 1] + exshift;
@@ -814,7 +814,7 @@ namespace MathNet.Numerics.LinearAlgebra
                         d[n] = d[n - 1];
                         if(z != 0.0)
                         {
-                            d[n] = x - w / z;
+                            d[n] = x - (w / z);
                         }
 
                         e[n - 1] = 0.0;
@@ -823,7 +823,7 @@ namespace MathNet.Numerics.LinearAlgebra
                         s = Math.Abs(x) + Math.Abs(z);
                         p = x / s;
                         q = z / s;
-                        r = Math.Sqrt(p * p + q * q);
+                        r = Math.Sqrt((p * p) + (q * q));
                         p = p / r;
                         q = q / r;
 
@@ -832,8 +832,8 @@ namespace MathNet.Numerics.LinearAlgebra
                         for(int j = n - 1; j < nn; j++)
                         {
                             z = H[n - 1][j];
-                            H[n - 1][j] = q * z + p * H[n][j];
-                            H[n][j] = q * H[n][j] - p * z;
+                            H[n - 1][j] = (q * z) + (p * H[n][j]);
+                            H[n][j] = (q * H[n][j]) - (p * z);
                         }
 
                         // Column modification
@@ -841,8 +841,8 @@ namespace MathNet.Numerics.LinearAlgebra
                         for(int i = 0; i <= n; i++)
                         {
                             z = H[i][n - 1];
-                            H[i][n - 1] = q * z + p * H[i][n];
-                            H[i][n] = q * H[i][n] - p * z;
+                            H[i][n - 1] = (q * z) + (p * H[i][n]);
+                            H[i][n] = (q * H[i][n]) - (p * z);
                         }
 
                         // Accumulate transformations
@@ -850,8 +850,8 @@ namespace MathNet.Numerics.LinearAlgebra
                         for(int i = low; i <= high; i++)
                         {
                             z = V[i][n - 1];
-                            V[i][n - 1] = q * z + p * V[i][n];
-                            V[i][n] = q * V[i][n] - p * z;
+                            V[i][n - 1] = (q * z) + (p * V[i][n]);
+                            V[i][n] = (q * V[i][n]) - (p * z);
                         }
 
                         // Complex pair
@@ -903,7 +903,7 @@ namespace MathNet.Numerics.LinearAlgebra
                     if(iter == 30)
                     {
                         s = (y - x) / 2.0;
-                        s = s * s + w;
+                        s = (s * s) + w;
                         if(s > 0)
                         {
                             s = Math.Sqrt(s);
@@ -912,7 +912,7 @@ namespace MathNet.Numerics.LinearAlgebra
                                 s = -s;
                             }
 
-                            s = x - w / ((y - x) / 2.0 + s);
+                            s = x - (w / (((y - x) / 2.0) + s));
                             for(int i = low; i <= n; i++)
                             {
                                 H[i][i] -= s;
@@ -933,7 +933,7 @@ namespace MathNet.Numerics.LinearAlgebra
                         z = H[m][m];
                         r = x - z;
                         s = y - z;
-                        p = (r * s - w) / H[m + 1][m] + H[m][m + 1];
+                        p = (((r * s) - w) / H[m + 1][m]) + H[m][m + 1];
                         q = H[m + 1][m + 1] - z - r - s;
                         r = H[m + 2][m + 1];
                         s = Math.Abs(p) + Math.Abs(q) + Math.Abs(r);
@@ -988,7 +988,7 @@ namespace MathNet.Numerics.LinearAlgebra
                             break;
                         }
 
-                        s = Math.Sqrt(p * p + q * q + r * r);
+                        s = Math.Sqrt((p * p) + (q * q) + (r * r));
                         if(p < 0)
                         {
                             s = -s;
@@ -1016,16 +1016,16 @@ namespace MathNet.Numerics.LinearAlgebra
 
                             for(int j = k; j < nn; j++)
                             {
-                                p = H[k][j] + q * H[k + 1][j];
+                                p = H[k][j] + (q * H[k + 1][j]);
 
                                 if(notlast)
                                 {
-                                    p = p + r * H[k + 2][j];
-                                    H[k + 2][j] = H[k + 2][j] - p * z;
+                                    p = p + (r * H[k + 2][j]);
+                                    H[k + 2][j] = H[k + 2][j] - (p * z);
                                 }
 
-                                H[k][j] = H[k][j] - p * x;
-                                H[k + 1][j] = H[k + 1][j] - p * y;
+                                H[k][j] = H[k][j] - (p * x);
+                                H[k + 1][j] = H[k + 1][j] - (p * y);
                             }
 
                             // Column modification
@@ -1033,16 +1033,16 @@ namespace MathNet.Numerics.LinearAlgebra
                             for(int i = 0; i <= Math.Min(n, k + 3); i++)
                             {
                                 double[] Hi = H[i];
-                                p = x * Hi[k] + y * Hi[k + 1];
+                                p = (x * Hi[k]) + (y * Hi[k + 1]);
 
                                 if(notlast)
                                 {
-                                    p = p + z * Hi[k + 2];
-                                    Hi[k + 2] = Hi[k + 2] - p * r;
+                                    p = p + (z * Hi[k + 2]);
+                                    Hi[k + 2] = Hi[k + 2] - (p * r);
                                 }
 
                                 Hi[k] = Hi[k] - p;
-                                Hi[k + 1] = Hi[k + 1] - p * q;
+                                Hi[k + 1] = Hi[k + 1] - (p * q);
                             }
 
                             // Accumulate transformations
@@ -1050,16 +1050,16 @@ namespace MathNet.Numerics.LinearAlgebra
                             for(int i = low; i <= high; i++)
                             {
                                 double[] Vi = V[i];
-                                p = x * Vi[k] + y * Vi[k + 1];
+                                p = (x * Vi[k]) + (y * Vi[k + 1]);
 
                                 if(notlast)
                                 {
-                                    p = p + z * Vi[k + 2];
-                                    Vi[k + 2] = Vi[k + 2] - p * r;
+                                    p = p + (z * Vi[k + 2]);
+                                    Vi[k + 2] = Vi[k + 2] - (p * r);
                                 }
 
                                 Vi[k] = Vi[k] - p;
-                                Vi[k + 1] = Vi[k + 1] - p * q;
+                                Vi[k + 1] = Vi[k + 1] - (p * q);
                             }
                         } // (s != 0)
                     } // k loop
@@ -1090,7 +1090,7 @@ namespace MathNet.Numerics.LinearAlgebra
                         r = 0.0;
                         for(int j = l; j <= n; j++)
                         {
-                            r = r + H[i][j] * H[j][n];
+                            r = r + (H[i][j] * H[j][n]);
                         }
 
                         if(e[i] < 0.0)
@@ -1118,16 +1118,16 @@ namespace MathNet.Numerics.LinearAlgebra
                             {
                                 x = H[i][i + 1];
                                 y = H[i + 1][i];
-                                q = (d[i] - p) * (d[i] - p) + e[i] * e[i];
-                                t = (x * s - z * r) / q;
+                                q = ((d[i] - p) * (d[i] - p)) + (e[i] * e[i]);
+                                t = ((x * s) - (z * r)) / q;
                                 H[i][n] = t;
                                 if(Math.Abs(x) > Math.Abs(z))
                                 {
-                                    H[i + 1][n] = (-r - w * t) / x;
+                                    H[i + 1][n] = (-r - (w * t)) / x;
                                 }
                                 else
                                 {
-                                    H[i + 1][n] = (-s - y * t) / z;
+                                    H[i + 1][n] = (-s - (y * t)) / z;
                                 }
                             }
 
@@ -1173,8 +1173,8 @@ namespace MathNet.Numerics.LinearAlgebra
                         sa = 0.0;
                         for(int j = l; j <= n; j++)
                         {
-                            ra = ra + H[i][j] * H[j][n - 1];
-                            sa = sa + H[i][j] * H[j][n];
+                            ra = ra + (H[i][j] * H[j][n - 1]);
+                            sa = sa + (H[i][j] * H[j][n]);
                         }
 
                         w = H[i][i] - p;
@@ -1202,24 +1202,24 @@ namespace MathNet.Numerics.LinearAlgebra
                                 x = H[i][i + 1];
                                 y = H[i + 1][i];
                                 
-                                vr = (d[i] - p) * (d[i] - p) + e[i] * e[i] - q * q;
+                                vr = ((d[i] - p) * (d[i] - p)) + (e[i] * e[i]) - (q * q);
                                 vi = (d[i] - p) * 2.0 * q;
                                 if((vr == 0.0) && (vi == 0.0))
                                 {
                                     vr = eps * norm * (Math.Abs(w) + Math.Abs(q) + Math.Abs(x) + Math.Abs(y) + Math.Abs(z));
                                 }
 
-                                ComplexScalarDivide(x * r - z * ra + q * sa, x * s - z * sa - q * ra, vr, vi);
+                                ComplexScalarDivide((x * r) - (z * ra) + (q * sa), (x * s) - (z * sa) - (q * ra), vr, vi);
                                 H[i][n - 1] = cdivr;
                                 H[i][n] = cdivi;
                                 if(Math.Abs(x) > (Math.Abs(z) + Math.Abs(q)))
                                 {
-                                    H[i + 1][n - 1] = (-ra - w * H[i][n - 1] + q * H[i][n]) / x;
-                                    H[i + 1][n] = (-sa - w * H[i][n] - q * H[i][n - 1]) / x;
+                                    H[i + 1][n - 1] = (-ra - (w * H[i][n - 1]) + (q * H[i][n])) / x;
+                                    H[i + 1][n] = (-sa - (w * H[i][n]) - (q * H[i][n - 1])) / x;
                                 }
                                 else
                                 {
-                                    ComplexScalarDivide(-r - y * H[i][n - 1], -s - y * H[i][n], z, q);
+                                    ComplexScalarDivide(-r - (y * H[i][n - 1]), -s - (y * H[i][n]), z, q);
                                     H[i + 1][n - 1] = cdivr;
                                     H[i + 1][n] = cdivi;
                                 }
@@ -1263,7 +1263,7 @@ namespace MathNet.Numerics.LinearAlgebra
                     z = 0.0;
                     for(int k = low; k <= Math.Min(j, high); k++)
                     {
-                        z = z + V[i][k] * H[k][j];
+                        z = z + (V[i][k] * H[k][j]);
                     }
 
                     V[i][j] = z;
@@ -1288,16 +1288,16 @@ namespace MathNet.Numerics.LinearAlgebra
             if(Math.Abs(yr) > Math.Abs(yi))
             {
                 r = yi / yr;
-                d = yr + r * yi;
-                cdivr = (xr + r * xi) / d;
-                cdivi = (xi - r * xr) / d;
+                d = yr + (r * yi);
+                cdivr = (xr + (r * xi)) / d;
+                cdivi = (xi - (r * xr)) / d;
             }
             else
             {
                 r = yr / yi;
-                d = yi + r * yr;
-                cdivr = (r * xr + xi) / d;
-                cdivi = (r * xi - xr) / d;
+                d = yi + (r * yr);
+                cdivr = ((r * xr) + xi) / d;
+                cdivi = ((r * xi) - xr) / d;
             }
         }
     }

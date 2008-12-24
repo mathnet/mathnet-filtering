@@ -190,7 +190,7 @@ namespace MathNet.Numerics.Distributions
 
             double angle = Constants.Pi_2 * exponent;
             double part1 = skewness * Math.Tan(angle);
-            _factor = Math.Pow(1.0 + part1 * part1, 1.0 / (2.0 * exponent));
+            _factor = Math.Pow(1.0 + (part1 * part1), 1.0 / (2.0 * exponent));
             _theta = (1.0 / exponent) * Math.Atan(skewness * Math.Tan(angle));
         }
 
@@ -353,7 +353,7 @@ namespace MathNet.Numerics.Distributions
             }
             else
             {
-                double part1 = Constants.Pi_2 + _skewness * randTheta;
+                double part1 = Constants.Pi_2 + (_skewness * randTheta);
                 double summand = part1 * Math.Tan(randTheta);
                 double subtrahend = _skewness * Math.Log(Constants.Pi_2 * randW * Math.Cos(randTheta) / part1);
                 return (2.0 / Math.PI) * (summand - subtrahend);

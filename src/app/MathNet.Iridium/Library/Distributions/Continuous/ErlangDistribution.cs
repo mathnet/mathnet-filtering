@@ -217,7 +217,12 @@ namespace MathNet.Numerics.Distributions
             double x
             )
         {
-            return Math.Exp(_shape * Math.Log(_rate) + (_shape - 1) * Math.Log(x) - _rate * x - Fn.FactorialLn(_shape - 1));
+            return Math.Exp(
+                (_shape * Math.Log(_rate))
+                + ((_shape - 1) * Math.Log(x))
+                - (_rate * x)
+                - Fn.FactorialLn(_shape - 1)
+                );
         }
 
         /// <summary>

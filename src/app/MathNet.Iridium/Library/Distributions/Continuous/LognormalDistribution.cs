@@ -216,7 +216,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override double Mean
         {
-            get { return Math.Exp(_mu + 0.5 * _sigma2); }
+            get { return Math.Exp(_mu + (0.5 * _sigma2)); }
         }
 
         /// <summary>
@@ -282,7 +282,7 @@ namespace MathNet.Numerics.Distributions
             double x
             )
         {
-            return Math.Exp(_sigma * Constants.Sqrt2 * Fn.ErfInverse(2.0 * x - 1.0) + _mu);
+            return Math.Exp((_sigma * Constants.Sqrt2 * Fn.ErfInverse((2.0 * x) - 1.0)) + _mu);
         }
         #endregion
 
@@ -295,7 +295,7 @@ namespace MathNet.Numerics.Distributions
         double
         NextDouble()
         {
-            return Math.Exp(_standard.NextDouble() * _sigma + _mu);
+            return Math.Exp((_standard.NextDouble() * _sigma) + _mu);
         }
         #endregion
     }

@@ -226,7 +226,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 Complex[] col = new Complex[_columnCount];
                 for(int j = 0; j < _columnCount; j++)
                 {
-                    col[j] = vals[i + j * _rowCount];
+                    col[j] = vals[i + (j * _rowCount)];
                 }
 
                 _data[i] = col;

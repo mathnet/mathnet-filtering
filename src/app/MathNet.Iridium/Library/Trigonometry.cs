@@ -371,7 +371,7 @@ namespace MathNet.Numerics
             )
         {
             return Math.Log(
-                real + Math.Sqrt(real * real + 1),
+                real + Math.Sqrt((real * real) + 1),
                 Math.E
                 );
         }
@@ -386,7 +386,7 @@ namespace MathNet.Numerics
             )
         {
             return Math.Log(
-                real + Math.Sqrt(real - 1) * Math.Sqrt(real + 1),
+                real + (Math.Sqrt(real - 1) * Math.Sqrt(real + 1)),
                 Math.E
                 );
         }

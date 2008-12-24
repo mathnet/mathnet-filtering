@@ -242,7 +242,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override double Variance
         {
-            get { return (_a * _a + _b * _b + _c * _c - _a * _b - _a * _c - _b * _c) / 18.0; }
+            get { return ((_a * _a) + (_b * _b) + (_c * _c) - (_a * _b) - (_a * _c) - (_b * _c)) / 18.0; }
         }
 
         /// <summary>
@@ -252,8 +252,8 @@ namespace MathNet.Numerics.Distributions
         {
             get
             {
-                double a = Constants.Sqrt2 * (_a + _b - 2 * _c) * (2 * _a - _b - _c) * (_a - 2 * _b + _c);
-                double b = 5.0 * Math.Pow(_a * _a + _b * _b + _c * _c - _a * _b - _a * _c - _b * _c, 1.5);
+                double a = Constants.Sqrt2 * (_a + _b - (2 * _c)) * ((2 * _a) - _b - _c) * (_a - (2 * _b) + _c);
+                double b = 5.0 * Math.Pow((_a * _a) + (_b * _b) + (_c * _c) - (_a * _b) - (_a * _c) - (_b * _c), 1.5);
                 return a / b;
             }
         }
@@ -308,7 +308,7 @@ namespace MathNet.Numerics.Distributions
             if(x < _b)
             {
                 double diff = _b - x;
-                return 1.0 - diff * diff / (_diff * _upperPart);
+                return 1.0 - (diff * diff / (_diff * _upperPart));
             }
 
             return 1.0;
@@ -327,11 +327,11 @@ namespace MathNet.Numerics.Distributions
             double genNum = this.RandomSource.NextDouble();
             if(genNum <= _lowerPart / _diff)
             {
-                return _a + Math.Sqrt(genNum) * this.helper3;
+                return _a + (Math.Sqrt(genNum) * this.helper3);
             }
             else
             {
-                return _b - Math.Sqrt(genNum * _diff - _lowerPart) * this.helper4;
+                return _b - (Math.Sqrt((genNum * _diff) - _lowerPart) * this.helper4);
             }
         }
         #endregion

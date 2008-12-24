@@ -194,7 +194,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override double Median
         {
-            get { return _degreesOfFreedom - 2.0 / 3.0; }
+            get { return _degreesOfFreedom - (2.0 / 3.0); }
         }
 
         /// <summary>
@@ -223,8 +223,8 @@ namespace MathNet.Numerics.Distributions
             )
         {
             return Math.Exp(
-                (-0.5 * _degreesOfFreedom) * Constants.Ln2
-                + (0.5 * _degreesOfFreedom + 1.0) * Math.Log(x)
+                ((-0.5 * _degreesOfFreedom) * Constants.Ln2)
+                + (((0.5 * _degreesOfFreedom) + 1.0) * Math.Log(x))
                 - (0.5 * x)
                 - _lngammaDegreesOfFreedomHalf
                 );

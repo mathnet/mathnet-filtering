@@ -81,13 +81,13 @@ namespace MathNet.Numerics
             if(Math.Abs(a) > Math.Abs(b))
             {
                 double r = b / a;
-                return Math.Abs(a) * Math.Sqrt(1 + r * r);
+                return Math.Abs(a) * Math.Sqrt(1 + (r * r));
             }
 
             if(!Number.AlmostZero(b))
             {
                 double r = a / b;
-                return Math.Abs(b) * Math.Sqrt(1 + r * r);
+                return Math.Abs(b) * Math.Sqrt(1 + (r * r));
             }
 
             return 0d;
@@ -432,11 +432,11 @@ namespace MathNet.Numerics
                 b = rem;
 
                 tmp = m;
-                m = mp - quot * m;
+                m = mp - (quot * m);
                 mp = tmp;
 
                 tmp = n;
-                n = np - quot * n;
+                n = np - (quot * n);
                 np = tmp;
             }
 
@@ -826,7 +826,7 @@ namespace MathNet.Numerics
 
                         if(Math.Abs(del) < Math.Abs(sum) * eps)
                         {
-                            return sum * Math.Exp(-x + a * Math.Log(x) - gln);
+                            return sum * Math.Exp(-x + (a * Math.Log(x)) - gln);
                         }
                     }
                 }
@@ -844,14 +844,14 @@ namespace MathNet.Numerics
                 {
                     double an = -i * (i - a);
                     b += 2.0;
-                    d = an * d + b;
+                    d = (an * d) + b;
 
                     if(Math.Abs(d) < fpmin)
                     {
                         d = fpmin;
                     }
 
-                    c = b + an / c;
+                    c = b + (an / c);
 
                     if(Math.Abs(c) < fpmin)
                     {
@@ -864,7 +864,7 @@ namespace MathNet.Numerics
 
                     if(Math.Abs(del - 1.0) <= eps)
                     {
-                        return 1.0 - Math.Exp(-x + a * Math.Log(x) - gln) * h;
+                        return 1.0 - (Math.Exp(-x + (a * Math.Log(x)) - gln) * h);
                     }
                 }
             }
@@ -928,7 +928,7 @@ namespace MathNet.Numerics
 
                 for(int i = 1; i <= n - 1; i++)
                 {
-                    y = y + 1.0 / i;
+                    y = y + (1.0 / i);
                 }
 
                 y = y - Constants.EulerGamma;
@@ -940,7 +940,7 @@ namespace MathNet.Numerics
 
                 while(s < 10.0)
                 {
-                    w = w + 1.0 / s;
+                    w = w + (1.0 / s);
                     s = s + 1.0;
                 }
 
@@ -948,12 +948,12 @@ namespace MathNet.Numerics
                 {
                     double z = 1.0 / (s * s);
                     double polv = 8.33333333333333333333e-2;
-                    polv = polv * z - 2.10927960927960927961e-2;
-                    polv = polv * z + 7.57575757575757575758e-3;
-                    polv = polv * z - 4.16666666666666666667e-3;
-                    polv = polv * z + 3.96825396825396825397e-3;
-                    polv = polv * z - 8.33333333333333333333e-3;
-                    polv = polv * z + 8.33333333333333333333e-2;
+                    polv = (polv * z) - 2.10927960927960927961e-2;
+                    polv = (polv * z) + 7.57575757575757575758e-3;
+                    polv = (polv * z) - 4.16666666666666666667e-3;
+                    polv = (polv * z) + 3.96825396825396825397e-3;
+                    polv = (polv * z) - 8.33333333333333333333e-3;
+                    polv = (polv * z) + 8.33333333333333333333e-2;
                     y = z * polv;
                 }
                 else
@@ -961,7 +961,7 @@ namespace MathNet.Numerics
                     y = 0.0;
                 }
 
-                y = Math.Log(s) - 0.5 / s - y - w;
+                y = Math.Log(s) - (0.5 / s) - y - w;
             }
 
             if(negative)
@@ -1043,7 +1043,7 @@ namespace MathNet.Numerics
 
             double bt = (x == 0.0 || x == 1.0)
                 ? 0.0
-                : Math.Exp(GammaLn(a + b) - GammaLn(a) - GammaLn(b) + a * Math.Log(x) + b * Math.Log(1.0 - x));
+                : Math.Exp(GammaLn(a + b) - GammaLn(a) - GammaLn(b) + (a * Math.Log(x)) + (b * Math.Log(1.0 - x)));
 
             bool symmetryTransformation = (x >= (a + 1.0) / (a + b + 2.0));
 
@@ -1065,7 +1065,7 @@ namespace MathNet.Numerics
             double qap = a + 1.0;
             double qam = a - 1.0;
             double c = 1.0;
-            double d = 1.0 - qab * x / qap;
+            double d = 1.0 - (qab * x / qap);
 
             if(Math.Abs(d) < fpmin)
             {
@@ -1078,14 +1078,14 @@ namespace MathNet.Numerics
             for(int m = 1, m2 = 2; m <= MaxIterations; m++, m2 += 2)
             {
                 double aa = m * (b - m) * x / ((qam + m2) * (a + m2));
-                d = 1.0 + aa * d;
+                d = 1.0 + (aa * d);
 
                 if(Math.Abs(d) < fpmin)
                 {
                     d = fpmin;
                 }
 
-                c = 1.0 + aa / c;
+                c = 1.0 + (aa / c);
                 if(Math.Abs(c) < fpmin)
                 {
                     c = fpmin;
@@ -1094,14 +1094,14 @@ namespace MathNet.Numerics
                 d = 1.0 / d;
                 h *= d * c;
                 aa = -(a + m) * (qab + m) * x / ((a + m2) * (qap + m2));
-                d = 1.0 + aa * d;
+                d = 1.0 + (aa * d);
 
                 if(Math.Abs(d) < fpmin)
                 {
                     d = fpmin;
                 }
 
-                c = 1.0 + aa / c;
+                c = 1.0 + (aa / c);
 
                 if(Math.Abs(c) < fpmin)
                 {
@@ -1116,7 +1116,7 @@ namespace MathNet.Numerics
                 {
                     if(symmetryTransformation)
                     {
-                        return 1.0 - bt * h / a;
+                        return 1.0 - (bt * h / a);
                     }
 
                     return bt * h / a;
@@ -1191,8 +1191,8 @@ namespace MathNet.Numerics
             if(x < plow)
             {
                 q = Math.Sqrt(-2 * Math.Log(x));
-                return (((((erfinv_c[0] * q + erfinv_c[1]) * q + erfinv_c[2]) * q + erfinv_c[3]) * q + erfinv_c[4]) * q + erfinv_c[5]) /
-                    ((((erfinv_d[0] * q + erfinv_d[1]) * q + erfinv_d[2]) * q + erfinv_d[3]) * q + 1)
+                return ((((((((((erfinv_c[0] * q) + erfinv_c[1]) * q) + erfinv_c[2]) * q) + erfinv_c[3]) * q) + erfinv_c[4]) * q) + erfinv_c[5]) /
+                    ((((((((erfinv_d[0] * q) + erfinv_d[1]) * q) + erfinv_d[2]) * q) + erfinv_d[3]) * q) + 1)
                     * Constants.Sqrt1_2;
             }
 
@@ -1200,16 +1200,16 @@ namespace MathNet.Numerics
             if(phigh < x)
             {
                 q = Math.Sqrt(-2 * Math.Log(1 - x));
-                return -(((((erfinv_c[0] * q + erfinv_c[1]) * q + erfinv_c[2]) * q + erfinv_c[3]) * q + erfinv_c[4]) * q + erfinv_c[5]) /
-                    ((((erfinv_d[0] * q + erfinv_d[1]) * q + erfinv_d[2]) * q + erfinv_d[3]) * q + 1)
+                return -((((((((((erfinv_c[0] * q) + erfinv_c[1]) * q) + erfinv_c[2]) * q) + erfinv_c[3]) * q) + erfinv_c[4]) * q) + erfinv_c[5]) /
+                    ((((((((erfinv_d[0] * q) + erfinv_d[1]) * q) + erfinv_d[2]) * q) + erfinv_d[3]) * q) + 1)
                     * Constants.Sqrt1_2;
             }
 
             // Rational approximation for central region:
             q = x - 0.5;
             double r = q * q;
-            return (((((erfinv_a[0] * r + erfinv_a[1]) * r + erfinv_a[2]) * r + erfinv_a[3]) * r + erfinv_a[4]) * r + erfinv_a[5]) * q /
-                (((((erfinv_b[0] * r + erfinv_b[1]) * r + erfinv_b[2]) * r + erfinv_b[3]) * r + erfinv_b[4]) * r + 1)
+            return ((((((((((erfinv_a[0] * r) + erfinv_a[1]) * r) + erfinv_a[2]) * r) + erfinv_a[3]) * r) + erfinv_a[4]) * r) + erfinv_a[5]) * q /
+                ((((((((((erfinv_b[0] * r) + erfinv_b[1]) * r) + erfinv_b[2]) * r) + erfinv_b[3]) * r) + erfinv_b[4]) * r) + 1)
                 * Constants.Sqrt1_2;
         }
 
@@ -1264,9 +1264,9 @@ namespace MathNet.Numerics
                 double n4 = n2 * n2;
                 return Constants.EulerGamma
                     + Math.Log(n)
-                    + 0.5 / n
-                    - 1.0 / (12.0 * n2)
-                    + 1.0 / (120.0 * n4);
+                    + (0.5 / n)
+                    - (1.0 / (12.0 * n2))
+                    + (1.0 / (120.0 * n4));
             }
 
             return harmonicPrecomp[n];

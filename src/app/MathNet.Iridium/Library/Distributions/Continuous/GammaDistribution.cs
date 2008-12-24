@@ -220,7 +220,12 @@ namespace MathNet.Numerics.Distributions
             double x
             )
         {
-            return Math.Exp((_alpha - 1) * Math.Log(x) - x / _theta - _lngammaAlpha - _alphaLnTheta);
+            return Math.Exp(
+                ((_alpha - 1) * Math.Log(x))
+                - (x / _theta)
+                - _lngammaAlpha
+                - _alphaLnTheta
+                );
         }
 
         /// <summary>

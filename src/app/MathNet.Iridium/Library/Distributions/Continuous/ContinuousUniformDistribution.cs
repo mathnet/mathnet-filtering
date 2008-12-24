@@ -258,7 +258,7 @@ namespace MathNet.Numerics.Distributions
         double
         NextDouble()
         {
-            return _a + this.RandomSource.NextDouble() * _diff;
+            return _a + (this.RandomSource.NextDouble() * _diff);
         }
         #endregion
     }

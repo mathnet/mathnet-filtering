@@ -279,7 +279,7 @@ namespace MathNet.Numerics.Distributions
             double x
             )
         {
-            return _sigma * Constants.Sqrt2 * Fn.ErfInverse(2.0 * x - 1.0) + _mu;
+            return (_sigma * Constants.Sqrt2 * Fn.ErfInverse((2.0 * x) - 1.0)) + _mu;
         }
 
         #endregion
@@ -294,7 +294,7 @@ namespace MathNet.Numerics.Distributions
         double
         NextDouble()
         {
-            return _mu + _standard.NextDouble() * _sigma;
+            return _mu + (_standard.NextDouble() * _sigma);
         }
 
         #endregion

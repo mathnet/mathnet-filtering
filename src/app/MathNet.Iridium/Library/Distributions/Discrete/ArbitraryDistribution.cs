@@ -197,7 +197,7 @@ namespace MathNet.Numerics.Distributions
                 sum += probabilityMass[i];
             }
 
-            return Number.AlmostEqual(1.0, sum, 10 + 2 * probabilityMass.Length);
+            return Number.AlmostEqual(1.0, sum, 10 + (2 * probabilityMass.Length));
         }
         #endregion
 

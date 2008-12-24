@@ -203,7 +203,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override double Skewness
         {
-            get { return (1.0 - 2.0 * _p) / Math.Sqrt(_p * (1.0 - _p) * _n); }
+            get { return (1.0 - (2.0 * _p)) / Math.Sqrt(_p * (1.0 - _p) * _n); }
         }
 
         /// <summary>

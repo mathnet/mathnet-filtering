@@ -183,7 +183,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override double Mean
         {
-            get { return 0.5 * _a + 0.5 * _b; }
+            get { return (0.5 * _a) + (0.5 * _b); }
         }
 
         /// <summary>
@@ -199,7 +199,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override double Variance
         {
-            get { return ((double)_n * _n - 1.0) / 12.0; }
+            get { return (((double)_n * _n) - 1.0) / 12.0; }
         }
 
         /// <summary>

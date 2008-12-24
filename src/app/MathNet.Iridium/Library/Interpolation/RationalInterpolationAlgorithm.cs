@@ -30,6 +30,7 @@ namespace MathNet.Numerics.Interpolation
 {
     /// <summary>
     /// Lagrange Rational Interpolation using Bulirsch &amp; Stoer's Algorithm.
+    /// This class will be removed in future versions, please use the newer interpolation scheme instead.
     /// </summary>
     [Obsolete("Please use Interpolation or directly one of the newer implementation in the Algorithms namespace instead. The direct replacement is LimitedOrderRationalInterpolation. This class is obsolete and will be removed in future versions.")]
     public class RationalInterpolationAlgorithm : IInterpolationAlgorithm
@@ -39,7 +40,8 @@ namespace MathNet.Numerics.Interpolation
         int _effectiveOrder;
 
         /// <summary>
-        /// Create a rational interpolation algorithm with full order.
+        /// Initializes a new instance of the RationalInterpolationAlgorithm class
+        /// with full order.
         /// </summary>
         public
         RationalInterpolationAlgorithm()
@@ -49,7 +51,8 @@ namespace MathNet.Numerics.Interpolation
         }
 
         /// <summary>
-        /// Create a rational interpolation algorithm with the given order.
+        /// Initializes a new instance of the RationalInterpolationAlgorithm class
+        /// with the given order.
         /// </summary>
         public
         RationalInterpolationAlgorithm(

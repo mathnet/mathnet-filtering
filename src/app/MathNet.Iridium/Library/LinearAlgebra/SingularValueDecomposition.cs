@@ -477,8 +477,8 @@ namespace MathNet.Numerics.LinearAlgebra
                                 {
                                     for(int i = 0; i < n; i++)
                                     {
-                                        t = cs * V[i][j] + sn * V[i][p - 1];
-                                        V[i][p - 1] = (-sn) * V[i][j] + cs * V[i][p - 1];
+                                        t = (cs * V[i][j]) + (sn * V[i][p - 1]);
+                                        V[i][p - 1] = ((-sn) * V[i][j]) + (cs * V[i][p - 1]);
                                         V[i][j] = t;
                                     }
                                 }
@@ -504,8 +504,8 @@ namespace MathNet.Numerics.LinearAlgebra
                                 {
                                     for(int i = 0; i < m; i++)
                                     {
-                                        t = cs * U[i][j] + sn * U[i][k - 1];
-                                        U[i][k - 1] = (-sn) * U[i][j] + cs * U[i][k - 1];
+                                        t = (cs * U[i][j]) + (sn * U[i][k - 1]);
+                                        U[i][k - 1] = ((-sn) * U[i][j]) + (cs * U[i][k - 1]);
                                         U[i][j] = t;
                                     }
                                 }
@@ -525,12 +525,12 @@ namespace MathNet.Numerics.LinearAlgebra
                             double epm1 = e[p - 2] / scale;
                             double sk = s[k] / scale;
                             double ek = e[k] / scale;
-                            double b = ((spm1 + sp) * (spm1 - sp) + epm1 * epm1) / 2.0;
+                            double b = (((spm1 + sp) * (spm1 - sp)) + (epm1 * epm1)) / 2.0;
                             double c = (sp * epm1) * (sp * epm1);
                             double shift = 0.0;
                             if((b != 0.0) | (c != 0.0))
                             {
-                                shift = Math.Sqrt(b * b + c);
+                                shift = Math.Sqrt((b * b) + c);
 
                                 if(b < 0.0)
                                 {
@@ -540,7 +540,7 @@ namespace MathNet.Numerics.LinearAlgebra
                                 shift = c / (b + shift);
                             }
 
-                            double f = (sk + sp) * (sk - sp) + shift;
+                            double f = ((sk + sp) * (sk - sp)) + shift;
                             double g = sk * ek;
 
                             // Chase zeros.
@@ -556,8 +556,8 @@ namespace MathNet.Numerics.LinearAlgebra
                                     e[j - 1] = t;
                                 }
 
-                                f = cs * s[j] + sn * e[j];
-                                e[j] = cs * e[j] - sn * s[j];
+                                f = (cs * s[j]) + (sn * e[j]);
+                                e[j] = (cs * e[j]) - (sn * s[j]);
                                 g = sn * s[j + 1];
                                 s[j + 1] = cs * s[j + 1];
 
@@ -565,8 +565,8 @@ namespace MathNet.Numerics.LinearAlgebra
                                 {
                                     for(int i = 0; i < n; i++)
                                     {
-                                        t = cs * V[i][j] + sn * V[i][j + 1];
-                                        V[i][j + 1] = (-sn) * V[i][j] + cs * V[i][j + 1];
+                                        t = (cs * V[i][j]) + (sn * V[i][j + 1]);
+                                        V[i][j + 1] = ((-sn) * V[i][j]) + (cs * V[i][j + 1]);
                                         V[i][j] = t;
                                     }
                                 }
@@ -575,8 +575,8 @@ namespace MathNet.Numerics.LinearAlgebra
                                 cs = f / t;
                                 sn = g / t;
                                 s[j] = t;
-                                f = cs * e[j] + sn * s[j + 1];
-                                s[j + 1] = (-sn) * e[j] + cs * s[j + 1];
+                                f = (cs * e[j]) + (sn * s[j + 1]);
+                                s[j + 1] = ((-sn) * e[j]) + (cs * s[j + 1]);
                                 g = sn * e[j + 1];
                                 e[j + 1] = cs * e[j + 1];
 
@@ -584,8 +584,8 @@ namespace MathNet.Numerics.LinearAlgebra
                                 {
                                     for(int i = 0; i < m; i++)
                                     {
-                                        t = cs * U[i][j] + sn * U[i][j + 1];
-                                        U[i][j + 1] = (-sn) * U[i][j] + cs * U[i][j + 1];
+                                        t = (cs * U[i][j]) + (sn * U[i][j + 1]);
+                                        U[i][j + 1] = ((-sn) * U[i][j]) + (cs * U[i][j + 1]);
                                         U[i][j] = t;
                                     }
                                 }

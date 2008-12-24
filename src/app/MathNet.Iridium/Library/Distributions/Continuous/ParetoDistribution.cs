@@ -242,7 +242,11 @@ namespace MathNet.Numerics.Distributions
             double x
             )
         {
-            return Math.Exp(Math.Log(_shape) + _shape * Math.Log(_location) - (_shape + 1.0) * Math.Log(x));
+            return Math.Exp(
+                Math.Log(_shape)
+                + (_shape * Math.Log(_location))
+                - ((_shape + 1.0) * Math.Log(x))
+                );
         }
 
         /// <summary>

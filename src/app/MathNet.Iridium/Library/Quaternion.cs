@@ -93,10 +93,10 @@ namespace MathNet.Numerics
             double imagZ
             )
         {
-            return imagX * imagX
-                + imagY * imagY
-                + imagZ * imagZ
-                + real * real;
+            return (imagX * imagX)
+                + (imagY * imagY)
+                + (imagZ * imagZ)
+                + (real * real);
         }
         
         static
@@ -504,10 +504,10 @@ namespace MathNet.Numerics
             Quaternion q
             )
         {
-            double ci = +qx * q.qw + qy * q.qz - qz * q.qy + qw * q.qx;
-            double cj = -qx * q.qz + qy * q.qw + qz * q.qx + qw * q.qy;
-            double ck = +qx * q.qy - qy * q.qx + qz * q.qw + qw * q.qz;
-            double cr = -qx * q.qx - qy * q.qy - qz * q.qz + qw * q.qw;
+            double ci = (+qx * q.qw) + (qy * q.qz) - (qz * q.qy) + (qw * q.qx);
+            double cj = (-qx * q.qz) + (qy * q.qw) + (qz * q.qx) + (qw * q.qy);
+            double ck = (+qx * q.qy) - (qy * q.qx) + (qz * q.qw) + (qw * q.qz);
+            double cr = (-qx * q.qx) - (qy * q.qy) - (qz * q.qz) + (qw * q.qw);
             return new Quaternion(cr, ci, cj, ck);
         }
 

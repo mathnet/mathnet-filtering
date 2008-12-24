@@ -212,7 +212,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
                     a1[0] = 0;
                     a2[0] = 2;
                     a3[0] = 1;
-                    b[0] = 3 * ((xx[1] - xx[0]) / (tt[1] - tt[0])) - (0.5 * leftBoundary * (tt[1] - tt[0]));
+                    b[0] = (3 * ((xx[1] - xx[0]) / (tt[1] - tt[0]))) - (0.5 * leftBoundary * (tt[1] - tt[0]));
                     break;
                 default:
                     throw new NotSupportedException(Properties.LocalStrings.InvalidLeftBoundaryCondition);

@@ -232,7 +232,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override int Median
         { // approximation, see Wikipedia
-            get { return (int)Math.Floor(_lambda + 1.0 / 3.0 - 0.2 / _lambda); }
+            get { return (int)Math.Floor(_lambda + (1.0 / 3.0) - (0.2 / _lambda)); }
         }
 
         /// <summary>
@@ -262,7 +262,7 @@ namespace MathNet.Numerics.Distributions
         {
             return Math.Exp(
                 -_lambda
-                + x * Math.Log(_lambda)
+                + (x * Math.Log(_lambda))
                 - Fn.FactorialLn(x)
                 );
         }

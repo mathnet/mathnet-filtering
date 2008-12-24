@@ -49,6 +49,7 @@ namespace MathNet.Numerics.Interpolation
 
     /// <summary>
     /// Interpolation portal for the single dimension case.
+    /// This class will be removed in future versions, please use the newer interpolation scheme instead.
     /// </summary>
     [Obsolete("Please use Interpolation instead. This class is obsolete and will be removed in future versions.")]
     public class InterpolationSingleDimension
@@ -60,7 +61,8 @@ namespace MathNet.Numerics.Interpolation
         #region Construction
 
         /// <summary>
-        /// Initialize the portal with samples from a sample list.
+        /// Initializes a new instance of the InterpolationSingleDimension class,
+        /// with samples from a sample list.
         /// </summary>
         /// <remarks>
         /// Uses the <see cref="PolynomialInterpolationAlgorithm"/>.
@@ -77,7 +79,8 @@ namespace MathNet.Numerics.Interpolation
         }
 
         /// <summary>
-        /// Initialize the portal with samples from points (t, x(t)).
+        /// Initializes a new instance of the InterpolationSingleDimension class,
+        /// with samples from points (t, x(t)).
         /// </summary>
         /// <remarks>
         /// Uses the <see cref="PolynomialInterpolationAlgorithm"/>.
@@ -95,7 +98,8 @@ namespace MathNet.Numerics.Interpolation
         }
 
         /// <summary>
-        /// Initialize the portal with samples from a dictionary.
+        /// Initializes a new instance of the InterpolationSingleDimension class,
+        /// with samples from a dictionary.
         /// </summary>
         /// <remarks>
         /// Uses the <see cref="PolynomialInterpolationAlgorithm"/>.
@@ -112,7 +116,8 @@ namespace MathNet.Numerics.Interpolation
 
 
         /// <summary>
-        /// Initialize the portal with samples from a sample list and selects an algorithm that fits the chosen interpolation mode.
+        /// Initializes a new instance of the InterpolationSingleDimension class,
+        /// with samples from a sample list and selects an algorithm that fits the chosen interpolation mode.
         /// </summary>
         /// <param name="samples">Sample Points.</param>
         /// <param name="mode">Interpolation Mode.</param>
@@ -128,7 +133,8 @@ namespace MathNet.Numerics.Interpolation
         }
 
         /// <summary>
-        /// Initialize the portal with samples from points (t, x(t)) and selects an algorithm that fits the chosen interpolation mode.
+        /// Initializes a new instance of the InterpolationSingleDimension class,
+        /// with samples from points (t, x(t)) and selects an algorithm that fits the chosen interpolation mode.
         /// </summary>
         /// <param name="t">keys t, where x=f(t) or (t,x).</param>
         /// <param name="x">values x, where x=f(t) or (t,x).</param>
@@ -145,7 +151,8 @@ namespace MathNet.Numerics.Interpolation
         }
 
         /// <summary>
-        /// Initialize the portal with samples from a sample list and selects an algorithm that fits the chosen interpolation mode with the given order.
+        /// Initializes a new instance of the InterpolationSingleDimension class,
+        /// with samples from a sample list and selects an algorithm that fits the chosen interpolation mode with the given order.
         /// </summary>
         /// <param name="samples">Sample Points.</param>
         /// <param name="mode">Interpolation Mode.</param>
@@ -164,7 +171,8 @@ namespace MathNet.Numerics.Interpolation
         }
 
         /// <summary>
-        /// Initialize the portal with samples from points (t, x(t)) and selects an algorithm that fits the chosen interpolation mode with the given order.
+        /// Initializes a new instance of the InterpolationSingleDimension class,
+        /// with samples from points (t, x(t)) and selects an algorithm that fits the chosen interpolation mode with the given order.
         /// </summary>
         /// <param name="t">keys t, where x=f(t) or (t,x).</param>
         /// <param name="x">values x, where x=f(t) or (t,x).</param>
@@ -184,7 +192,8 @@ namespace MathNet.Numerics.Interpolation
         }
 
         /// <summary>
-        /// Initialize the portal with samples from a sample list and uses the specified algorithm.
+        /// Initializes a new instance of the InterpolationSingleDimension class,
+        /// with samples from a sample list and uses the specified algorithm.
         /// </summary>
         /// <param name="samples">Sample Points.</param>
         /// <param name="algorithm">Interpolation Algorithm.</param>
@@ -200,7 +209,8 @@ namespace MathNet.Numerics.Interpolation
         }
 
         /// <summary>
-        /// Initialize the portal with samples from points (t, x(t)) and uses the specified algorithm.
+        /// Initializes a new instance of the InterpolationSingleDimension class,
+        /// with samples from points (t, x(t)) and uses the specified algorithm.
         /// </summary>
         /// <param name="t">keys t, where x=f(t) or (t,x).</param>
         /// <param name="x">values x, where x=f(t) or (t,x).</param>

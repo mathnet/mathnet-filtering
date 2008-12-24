@@ -222,7 +222,7 @@ namespace MathNet.Numerics.Distributions
             )
         {
             double a = (x - _location) / _scale;
-            return 1.0 / (Constants.Pi * _scale * (1.0 + a * a));
+            return 1.0 / (Constants.Pi * _scale * (1.0 + (a * a)));
         }
 
         /// <summary>
@@ -234,7 +234,7 @@ namespace MathNet.Numerics.Distributions
             double x
             )
         {
-            return Constants.InvPi * Trig.InverseTangent((x - _location) / _scale) + 0.5;
+            return (Constants.InvPi * Trig.InverseTangent((x - _location) / _scale)) + 0.5;
         }
         #endregion
 
@@ -247,7 +247,7 @@ namespace MathNet.Numerics.Distributions
         double 
         NextDouble()
         {
-            return _location + _scale * Trig.Tangent(Constants.Pi * (this.RandomSource.NextDouble() - 0.5));
+            return _location + (_scale * Trig.Tangent(Constants.Pi * (this.RandomSource.NextDouble() - 0.5)));
         }
         #endregion
     }

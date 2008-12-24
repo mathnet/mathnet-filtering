@@ -228,7 +228,7 @@ namespace MathNet.Numerics.Distributions
                 return 0.5 * Math.Exp((x - _location) / _scale);
             }
 
-            return 1.0 - 0.5 * Math.Exp((_location - x) / _scale);
+            return 1.0 - (0.5 * Math.Exp((_location - x) / _scale));
         }
         #endregion
 
@@ -242,7 +242,7 @@ namespace MathNet.Numerics.Distributions
         NextDouble()
         {
             double rand = 0.5 - this.RandomSource.NextDouble();
-            return _location - _scale * Math.Sign(rand) * Math.Log(2.0 * Math.Abs(rand));
+            return _location - (_scale * Math.Sign(rand) * Math.Log(2.0 * Math.Abs(rand)));
         }
         #endregion
     }

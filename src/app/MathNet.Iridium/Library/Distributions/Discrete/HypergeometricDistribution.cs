@@ -275,7 +275,7 @@ namespace MathNet.Numerics.Distributions
         {
             get
             {
-                double d1 = (_N - 2 * _M) * (_N - 2 * _n) * Math.Sqrt(_N - 1.0);
+                double d1 = (_N - (2 * _M)) * (_N - (2 * _n)) * Math.Sqrt(_N - 1.0);
                 double d2 = (_N - 2) * Math.Sqrt(_n * _M * (_N - _M) * (_N - _n));
                 return d1 / d2;
             }
