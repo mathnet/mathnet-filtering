@@ -1,23 +1,31 @@
-#region Math.NET Iridium (LGPL) by Ruegg
-// Math.NET Iridium, part of the Math.NET Project
-// http://mathnet.opensourcedotnet.info
+//-----------------------------------------------------------------------
+// <copyright file="Constants.cs" company="Math.NET Project">
+//    Copyright (c) 2002-2008, Christoph Rüegg.
+//    All Right Reserved.
+// </copyright>
+// <author>
+//    Christoph Rüegg, http://christoph.ruegg.name
+// </author>
+// <product>
+//    Math.NET Iridium, part of the Math.NET Project.
+//    http://mathnet.opensourcedotnet.info
+// </product>
+// <license type="opensource" name="LGPL" version="2 or later">
+//    This program is free software; you can redistribute it and/or modify
+//    it under the terms of the GNU Lesser General Public License as published 
+//    by the Free Software Foundation; either version 2 of the License, or
+//    any later version.
 //
-// Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
+//    This program is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU Lesser General Public License for more details.
 //
-// This program is free software; you can redistribute it and/or modify
-// it under the terms of the GNU Lesser General Public License as published 
-// by the Free Software Foundation; either version 2 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Lesser General Public License for more details.
-//
-// You should have received a copy of the GNU Lesser General Public 
-// License along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-#endregion
+//    You should have received a copy of the GNU Lesser General Public 
+//    License along with this program; if not, write to the Free Software
+//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// </license>
+//-----------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -50,13 +58,11 @@ namespace MathNet.Numerics
         /// <summary>log[e](pi)</summary>
         public const double LnPi = 1.1447298858494001741434273513530587116472948129153d;
 
-
         /// <summary>1/e</summary>
         public const double InvE = 0.36787944117144232159552377016146086744581113103176d;
 
         /// <summary>sqrt(e)</summary>
         public const double SqrtE = 1.6487212707001281468486507878141635716537761007101d;
-
 
         /// <summary>sqrt(2)</summary>
         public const double Sqrt2 = 1.4142135623730950488016887242096980785696718753769d;
@@ -66,7 +72,6 @@ namespace MathNet.Numerics
 
         /// <summary>sqrt(3)/2</summary>
         public const double HalfSqrt3 = 0.86602540378443864676372317075293618347140262690520d;
-
 
         /// <summary>pi</summary>
         public const double Pi = 3.1415926535897932384626433832795028841971693993751d;
@@ -83,7 +88,6 @@ namespace MathNet.Numerics
         /// <summary>sqrt(2pi)</summary>
         public const double Sqrt2Pi = 2.5066282746310005024157652848110452530069867406099d;
 
-
         /// <summary>1/pi</summary>
         public const double InvPi = 0.31830988618379067153776752674502872406891929148091d;
 
@@ -99,7 +103,6 @@ namespace MathNet.Numerics
         /// <summary>2/sqrt(pi)</summary>
         public const double TwoInvSqrtPi = 1.1283791670955125738961589031215451716881012586580d;
 
-
         /// <summary>(pi)/180 - factor to convert from Degree (deg) to Radians (rad).</summary>
         /// <seealso cref="Trig.DegreeToRadian"/>
         /// <seealso cref="Trig.RadianToDegree"/>
@@ -109,7 +112,6 @@ namespace MathNet.Numerics
         /// <seealso cref="Trig.GradToRadian"/>
         /// <seealso cref="Trig.RadianToGrad"/>
         public const double Grad = 0.015707963267948966192313216916397514420985846996876d;
-
 
         /// <summary>ln(10)/20 - factor to convert from Power Decibel (dB) to Neper (Np). Use this version when the Decibel represent a power gain but the compared values are not powers (e.g. amplitude, current, voltage).</summary>
         /// <seealso cref="Ratios.RatioToPowerDecibel(double)"/>
@@ -122,7 +124,6 @@ namespace MathNet.Numerics
         /// <seealso cref="Ratios.DecibelToRatio"/>
         /// <seealso cref="Ratios.DecibelToValue"/>
         public const double NeutralDecibel = 0.23025850929940456840179914546843642076011014886288d;
-
 
         /// <summary>Catalan constant</summary>
         /// <remarks>Sum(k=0 -> inf){ (-1)^k/(2*k + 1)2 }</remarks>

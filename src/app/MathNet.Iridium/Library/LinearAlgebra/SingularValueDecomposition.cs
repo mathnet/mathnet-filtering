@@ -1,25 +1,36 @@
-#region Math.NET Iridium (LGPL) by Vermorel + Contributors
-// Math.NET Iridium, part of the Math.NET Project
-// http://mathnet.opensourcedotnet.info
+//-----------------------------------------------------------------------
+// <copyright file="SingularValueDecomposition.cs" company="Math.NET Project">
+//    Copyright (c) 2004-2008, Joannes Vermorel, Christoph Rüegg.
+//    All Right Reserved.
+// </copyright>
+// <author>
+//    Joannes Vermorel, http://www.vermorel.com
+//    Christoph Rüegg, http://christoph.ruegg.name
+// </author>
+// <product>
+//    Math.NET Iridium, part of the Math.NET Project.
+//    http://mathnet.opensourcedotnet.info
+// </product>
+// <license type="opensource" name="LGPL" version="2 or later">
+//    This program is free software; you can redistribute it and/or modify
+//    it under the terms of the GNU Lesser General Public License as published 
+//    by the Free Software Foundation; either version 2 of the License, or
+//    any later version.
 //
-// Copyright (c) 2004-2008, Joannes Vermorel, http://www.vermorel.com
+//    This program is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU Lesser General Public License for more details.
 //
-// Contribution: The MathWorks and NIST [2000]
-//
-// This program is free software; you can redistribute it and/or modify
-// it under the terms of the GNU Lesser General Public License as published 
-// by the Free Software Foundation; either version 2 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Lesser General Public License for more details.
-//
-// You should have received a copy of the GNU Lesser General Public 
-// License along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-#endregion
+//    You should have received a copy of the GNU Lesser General Public 
+//    License along with this program; if not, write to the Free Software
+//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// </license>
+// <contribution>
+//    The MathWorks
+//    NIST
+// </contribution>
+//-----------------------------------------------------------------------
 
 using System;
 using System.Diagnostics;
@@ -124,8 +135,10 @@ namespace MathNet.Numerics.LinearAlgebra
             bool wantu = true;
             bool wantv = true;
 
-            // Reduce A to bidiagonal form, storing the diagonal elements
-            // in s and the super-diagonal elements in e.
+            /*
+            Reduce A to bidiagonal form, storing the diagonal elements
+            in s and the super-diagonal elements in e.
+            */
 
             int nct = Math.Min(m - 1, n);
             int nrt = Math.Max(0, Math.Min(n - 2, m));
@@ -133,7 +146,6 @@ namespace MathNet.Numerics.LinearAlgebra
             {
                 if(k < nct)
                 {
-
                     // Compute the transformation for the k-th column and
                     // place the k-th diagonal in s[k].
                     // Compute 2-norm of k-th column without under/overflow.
@@ -166,8 +178,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     if((k < nct) & (s[k] != 0.0))
                     {
-
-                        // Apply the transformation.
+                        /* Apply the transformation */
 
                         double t = 0;
                         for(int i = k; i < m; i++)
@@ -182,17 +193,20 @@ namespace MathNet.Numerics.LinearAlgebra
                         }
                     }
 
-                    // Place the k-th row of A into e for the
-                    // subsequent calculation of the row transformation.
+                    /*
+                    Place the k-th row of A into e for the
+                    subsequent calculation of the row transformation.
+                    */
 
                     e[j] = A[k][j];
                 }
 
                 if(wantu & (k < nct))
                 {
-
-                    // Place the transformation in U for subsequent back
-                    // multiplication.
+                    /*
+                    Place the transformation in U for subsequent back
+                    multiplication.
+                    */
 
                     for(int i = k; i < m; i++)
                     {
@@ -202,7 +216,6 @@ namespace MathNet.Numerics.LinearAlgebra
 
                 if(k < nrt)
                 {
-
                     // Compute the k-th row transformation and place the
                     // k-th super-diagonal in e[k].
                     // Compute 2-norm without under/overflow.
@@ -232,8 +245,7 @@ namespace MathNet.Numerics.LinearAlgebra
 
                     if((k + 1 < m) & (e[k] != 0.0))
                     {
-
-                        // Apply the transformation.
+                        /* Apply the transformation */
 
                         for(int i = k + 1; i < m; i++)
                         {
@@ -260,9 +272,10 @@ namespace MathNet.Numerics.LinearAlgebra
 
                     if(wantv)
                     {
-
-                        // Place the transformation in V for subsequent
-                        // back multiplication.
+                        /*
+                        Place the transformation in V for subsequent
+                        back multiplication.
+                        */
 
                         for(int i = k + 1; i < n; i++)
                         {
@@ -272,7 +285,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 }
             }
 
-            // Set up the final bidiagonal matrix or order p.
+            /* Set up the final bidiagonal matrix or order p. */
 
             int p = Math.Min(n, m + 1);
 
@@ -293,7 +306,7 @@ namespace MathNet.Numerics.LinearAlgebra
 
             e[p - 1] = 0.0;
 
-            // If required, generate U.
+            /* If required, generate U */
 
             if(wantu)
             {
@@ -349,7 +362,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 }
             }
 
-            // If required, generate V.
+            /* If required, generate V */
 
             if(wantv)
             {
@@ -382,7 +395,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 }
             }
 
-            // Main iteration loop for the singular values.
+            /* Main iteration loop for the singular values */
 
             int pp = p - 1;
             int iter = 0;
@@ -392,16 +405,18 @@ namespace MathNet.Numerics.LinearAlgebra
                 int k;
                 IterationStep step;
 
-                // Here is where a test for too many iterations would go.
+                /* Here is where a test for too many iterations would go */
 
-                // This section of the program inspects for
-                // negligible elements in the s and e arrays.  On
-                // completion the variables kase and k are set as follows.
+                /*
+                This section of the program inspects for
+                negligible elements in the s and e arrays.  On
+                completion the variables kase and k are set as follows.
 
-                // DeflateNeglible:  if s[p] and e[k-1] are negligible and k<p
-                // SplitAtNeglible:  if s[k] is negligible and k<p
-                // QR:               if e[k-1] is negligible, k<p, and s[k], ..., s[p] are not negligible.
-                // Convergence:      if e[p-1] is negligible.
+                DeflateNeglible:  if s[p] and e[k-1] are negligible and k<p
+                SplitAtNeglible:  if s[k] is negligible and k<p
+                QR:               if e[k-1] is negligible, k<p, and s[k], ..., s[p] are not negligible.
+                Convergence:      if e[p-1] is negligible.
+                */
 
                 for(k = p - 2; k >= 0; k--)
                 {
@@ -451,7 +466,7 @@ namespace MathNet.Numerics.LinearAlgebra
 
                 k++;
 
-                // Perform the task indicated by 'step'.
+                /* Perform the task indicated by 'step'. */
 
                 switch(step)
                 {
@@ -517,7 +532,7 @@ namespace MathNet.Numerics.LinearAlgebra
                     // Perform one qr step.
                     case IterationStep.QR:
                         {
-                            // Calculate the shift.
+                            /* Calculate the shift */
 
                             double scale = Math.Max(Math.Max(Math.Max(Math.Max(Math.Abs(s[p - 1]), Math.Abs(s[p - 2])), Math.Abs(e[p - 2])), Math.Abs(s[k])), Math.Abs(e[k]));
                             double sp = s[p - 1] / scale;
@@ -543,7 +558,7 @@ namespace MathNet.Numerics.LinearAlgebra
                             double f = ((sk + sp) * (sk - sp)) + shift;
                             double g = sk * ek;
 
-                            // Chase zeros.
+                            /* Chase zeros */
 
                             for(int j = k; j < p - 1; j++)
                             {
@@ -600,7 +615,7 @@ namespace MathNet.Numerics.LinearAlgebra
                     // Convergence.
                     case IterationStep.Convergence:
                         {
-                            // Make the singular values positive.
+                            /* Make the singular values positive */
 
                             if(s[k] <= 0.0)
                             {
@@ -614,7 +629,7 @@ namespace MathNet.Numerics.LinearAlgebra
                                 }
                             }
 
-                            // Order the singular values.
+                            /* Order the singular values */
 
                             while(k < pp)
                             {

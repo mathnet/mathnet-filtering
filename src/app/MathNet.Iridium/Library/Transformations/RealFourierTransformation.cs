@@ -1,23 +1,31 @@
-#region Math.NET Iridium (LGPL) by Ruegg
-// Math.NET Iridium, part of the Math.NET Project
-// http://mathnet.opensourcedotnet.info
+//-----------------------------------------------------------------------
+// <copyright file="RealFourierTransformation.cs" company="Math.NET Project">
+//    Copyright (c) 2002-2008, Christoph Rüegg.
+//    All Right Reserved.
+// </copyright>
+// <author>
+//    Christoph Rüegg, http://christoph.ruegg.name
+// </author>
+// <product>
+//    Math.NET Iridium, part of the Math.NET Project.
+//    http://mathnet.opensourcedotnet.info
+// </product>
+// <license type="opensource" name="LGPL" version="2 or later">
+//    This program is free software; you can redistribute it and/or modify
+//    it under the terms of the GNU Lesser General Public License as published 
+//    by the Free Software Foundation; either version 2 of the License, or
+//    any later version.
 //
-// Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
+//    This program is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU Lesser General Public License for more details.
 //
-// This program is free software; you can redistribute it and/or modify
-// it under the terms of the GNU Lesser General Public License as published 
-// by the Free Software Foundation; either version 2 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Lesser General Public License for more details.
-//
-// You should have received a copy of the GNU Lesser General Public 
-// License along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-#endregion
+//    You should have received a copy of the GNU Lesser General Public 
+//    License along with this program; if not, write to the Free Software
+//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// </license>
+//-----------------------------------------------------------------------
 
 using System;
 
@@ -158,7 +166,7 @@ namespace MathNet.Numerics.Transformations
             int numSamples = samples1.Length;
             int length = numSamples << 1;
 
-            // Pack together to one complex vector
+            /* Pack together to one complex vector */
 
             double[] complex = new double[length];
             for(int i = 0, j = 0; i < numSamples; i++, j += 2)
@@ -167,11 +175,11 @@ namespace MathNet.Numerics.Transformations
                 complex[j + 1] = samples2[i];
             }
 
-            // Transform complex vector
+            /* Transform complex vector */
 
             _fft.DiscreteFourierTransform(complex, true, _convention);
 
-            // Reconstruct data for the two vectors by using symmetries
+            /* Reconstruct data for the two vectors by using symmetries */
 
             fftReal1 = new double[numSamples];
             fftImag1 = new double[numSamples];
@@ -236,7 +244,7 @@ namespace MathNet.Numerics.Transformations
             int numSamples = fftReal1.Length;
             int length = numSamples << 1;
 
-            // Pack together to one complex vector
+            /* Pack together to one complex vector */
 
             double[] complex = new double[length];
             for(int i = 0, j = 0; i < numSamples; i++, j += 2)
@@ -245,11 +253,11 @@ namespace MathNet.Numerics.Transformations
                 complex[j + 1] = fftImag1[i] + fftReal2[i];
             }
 
-            // Transform complex vector
+            /* Transform complex vector */
 
             _fft.DiscreteFourierTransform(complex, false, _convention);
 
-            // Reconstruct data for the two vectors
+            /* Reconstruct data for the two vectors */
 
             samples1 = new double[numSamples];
             samples2 = new double[numSamples];
@@ -298,7 +306,7 @@ namespace MathNet.Numerics.Transformations
 
             _fft.DiscreteFourierTransform(complex, true, _convention);
 
-            // Reconstruct data for the two vectors by using symmetries
+            /* Reconstruct data for the two vectors by using symmetries */
 
             double theta = Constants.Pi / numSamples;
             double wtemp = Trig.Sine(0.5 * theta);
@@ -396,7 +404,7 @@ namespace MathNet.Numerics.Transformations
                 wi = (wi * wpr) + (wtemp * wpi) + wi;
             }
 
-            // Transform odd and even vectors (packed as one complex vector)
+            /* Transform odd and even vectors (packed as one complex vector) */
 
             _fft.DiscreteFourierTransform(samples, false, _convention);
         }
@@ -429,7 +437,7 @@ namespace MathNet.Numerics.Transformations
                 }
             }
 
-            // TODO: Implement real version (at the moment this is just a wrapper to the complex version)!
+            /* TODO: Implement real version (at the moment this is just a wrapper to the complex version)! */
 
             double[] samplePairs = new double[samples.Length << 1];
             for(int i = 0, j = 0; i < samples.Length; i++, j += 2)
@@ -475,7 +483,7 @@ namespace MathNet.Numerics.Transformations
                 }
             }
 
-            // TODO: Implement real version (at the moment this is just a wrapper to the complex version)!
+            /* TODO: Implement real version (at the moment this is just a wrapper to the complex version)! */
 
             double[] samplePairs = new double[fftReal.Length << 1];
             for(int i = 0, j = 0; i < fftReal.Length; i++, j += 2)

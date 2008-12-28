@@ -1,27 +1,31 @@
-#region Math.NET Iridium (LGPL) by Ruegg
-// Math.NET Iridium, part of the Math.NET Project
-// http://mathnet.opensourcedotnet.info
+//-----------------------------------------------------------------------
+// <copyright file="Natural.cs" company="Math.NET Project">
+//    Copyright (c) 2002-2008, Christoph Rüegg.
+//    All Right Reserved.
+// </copyright>
+// <author>
+//    Christoph Rüegg, http://christoph.ruegg.name
+// </author>
+// <product>
+//    Math.NET Iridium, part of the Math.NET Project.
+//    http://mathnet.opensourcedotnet.info
+// </product>
+// <license type="opensource" name="LGPL" version="2 or later">
+//    This program is free software; you can redistribute it and/or modify
+//    it under the terms of the GNU Lesser General Public License as published 
+//    by the Free Software Foundation; either version 2 of the License, or
+//    any later version.
 //
-// Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
+//    This program is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU Lesser General Public License for more details.
 //
-// Partially inpired by
-//   - Microsoft MSR F#
-//   - Modern Computer Algebra 2nd Ed, Gathen J. et al, ISBN 0-521-82646-2
-//
-// This program is free software; you can redistribute it and/or modify
-// it under the terms of the GNU Lesser General Public License as published 
-// by the Free Software Foundation; either version 2 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Lesser General Public License for more details.
-//
-// You should have received a copy of the GNU Lesser General Public 
-// License along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-#endregion
+//    You should have received a copy of the GNU Lesser General Public 
+//    License along with this program; if not, write to the Free Software
+//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// </license>
+//-----------------------------------------------------------------------
 
 /*
  * TODO:
@@ -40,6 +44,7 @@ namespace MathNet.Numerics
     /// <summary>
     /// [STUB] The mathematical set of natural numbers (including zero), supporting an arbitrary number of digits.
     /// </summary>
+    [Obsolete("Please use the BigInteger class as provided by .Net 4 instead.")]
     public class Natural : IEquatable<Natural>, IComparable<Natural>
     {
         const byte _radixBits = 32;
@@ -232,7 +237,6 @@ namespace MathNet.Numerics
             get { return _bound == 0; }
         }
 
-
         #region Addition
 
         /// <summary>
@@ -276,7 +280,7 @@ namespace MathNet.Numerics
 
             for(uint i = 0; i < len; i++)
             {
-                // include len-1, where a[i]=b[i]=0 but carry may be > 0
+                /* include len-1, where a[i]=b[i]=0 but carry may be > 0 */
 
                 ulong sum = (ulong)this[i] + number[i] + carry;
                 carry = 0;
@@ -418,7 +422,7 @@ namespace MathNet.Numerics
             {
                 if(exponent >= _bound)
                 {
-                    // underflow
+                    /* underflow */
 
                     _bound = 0; // set value to zero
                     underflow = true;
@@ -614,11 +618,9 @@ namespace MathNet.Numerics
         ////    if(b.IsZero)
         ////        return new Tuple<Natural, Natural>(Natural.Zero, Natural.Zero);
 
-
         ////}
 
         #endregion
-
 
         #region Equatable, Comparable, Min/Max, Operators
 

@@ -1,26 +1,36 @@
-#region Math.NET Iridium (LGPL) by Vermorel, Ruegg + Contributors
-// Math.NET Iridium, part of the Math.NET Project
-// http://mathnet.opensourcedotnet.info
+//-----------------------------------------------------------------------
+// <copyright file="EigenvalueDecomposition.cs" company="Math.NET Project">
+//    Copyright (c) 2004-2008, Joannes Vermorel, Christoph Rüegg.
+//    All Right Reserved.
+// </copyright>
+// <author>
+//    Joannes Vermorel, http://www.vermorel.com
+//    Christoph Rüegg, http://christoph.ruegg.name
+// </author>
+// <product>
+//    Math.NET Iridium, part of the Math.NET Project.
+//    http://mathnet.opensourcedotnet.info
+// </product>
+// <license type="opensource" name="LGPL" version="2 or later">
+//    This program is free software; you can redistribute it and/or modify
+//    it under the terms of the GNU Lesser General Public License as published 
+//    by the Free Software Foundation; either version 2 of the License, or
+//    any later version.
 //
-// Copyright (c) 2004-2008, Joannes Vermorel, http://www.vermorel.com
-//                          Christoph Rüegg, http://christoph.ruegg.name
+//    This program is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU Lesser General Public License for more details.
 //
-// Contribution: The MathWorks and NIST [2000]
-//
-// This program is free software; you can redistribute it and/or modify
-// it under the terms of the GNU Lesser General Public License as published 
-// by the Free Software Foundation; either version 2 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Lesser General Public License for more details.
-//
-// You should have received a copy of the GNU Lesser General Public 
-// License along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-#endregion
+//    You should have received a copy of the GNU Lesser General Public 
+//    License along with this program; if not, write to the Free Software
+//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// </license>
+// <contribution>
+//    The MathWorks
+//    NIST
+// </contribution>
+//-----------------------------------------------------------------------
 
 using System;
 
@@ -28,7 +38,6 @@ using MathNet.Numerics;
 
 namespace MathNet.Numerics.LinearAlgebra
 {
-
     /// <summary>
     /// Eigenvalues and eigenvectors of a real matrix.
     /// </summary>
@@ -152,7 +161,7 @@ namespace MathNet.Numerics.LinearAlgebra
             double[] e
             )
         {
-            // TODO: unit test missing for EigenvalueDecomposition constructor.
+            /* TODO: unit test missing for EigenvalueDecomposition constructor. */
 
             n = d.Length;
             V = Matrix.CreateMatrixData(n, n);
@@ -279,21 +288,23 @@ namespace MathNet.Numerics.LinearAlgebra
         void
         SymmetricTridiagonalize()
         {
-            // This is derived from the Algol procedures tred2 by
-            // Bowdler, Martin, Reinsch, and Wilkinson, Handbook for
-            // Auto. Comp., Vol.ii-Linear Algebra, and the corresponding
-            // Fortran subroutine in EISPACK.
+            /*
+            This is derived from the Algol procedures tred2 by
+            Bowdler, Martin, Reinsch, and Wilkinson, Handbook for
+            Auto. Comp., Vol.ii-Linear Algebra, and the corresponding
+            Fortran subroutine in EISPACK.
+            */
 
             for(int j = 0; j < n; j++)
             {
                 d[j] = V[n - 1][j];
             }
 
-            // Householder reduction to tridiagonal form.
+            /* Householder reduction to tridiagonal form */
 
             for(int i = n - 1; i > 0; i--)
             {
-                // Scale to avoid under/overflow.
+                /* Scale to avoid under/overflow */
 
                 double scale = 0.0;
                 double h = 0.0;
@@ -315,7 +326,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 }
                 else
                 {
-                    // Generate Householder vector.
+                    /* Generate Householder vector. */
 
                     for(int k = 0; k < i; k++)
                     {
@@ -338,7 +349,7 @@ namespace MathNet.Numerics.LinearAlgebra
                         e[j] = 0.0;
                     }
 
-                    // Apply similarity transformation to remaining columns.
+                    /* Apply similarity transformation to remaining columns */
 
                     for(int j = 0; j < i; j++)
                     {
@@ -388,7 +399,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 d[i] = h;
             }
 
-            // Accumulate transformations.
+            /* Accumulate transformations */
 
             for(int i = 0; i < n - 1; i++)
             {
@@ -439,10 +450,12 @@ namespace MathNet.Numerics.LinearAlgebra
         void
         SymmetricDiagonalize()
         {
-            // This is derived from the Algol procedures tql2, by
-            // Bowdler, Martin, Reinsch, and Wilkinson, Handbook for
-            // Auto. Comp., Vol.ii-Linear Algebra, and the corresponding
-            // Fortran subroutine in EISPACK.
+            /*
+            This is derived from the Algol procedures tql2, by
+            Bowdler, Martin, Reinsch, and Wilkinson, Handbook for
+            Auto. Comp., Vol.ii-Linear Algebra, and the corresponding
+            Fortran subroutine in EISPACK.
+            */
 
             for(int i = 1; i < n; i++)
             {
@@ -456,7 +469,7 @@ namespace MathNet.Numerics.LinearAlgebra
             double eps = Number.PositiveRelativeAccuracy;
             for(int l = 0; l < n; l++)
             {
-                // Find small subdiagonal element
+                /* Find small subdiagonal element */
 
                 tst1 = Math.Max(tst1, Math.Abs(d[l]) + Math.Abs(e[l]));
                 int m = l;
@@ -470,8 +483,10 @@ namespace MathNet.Numerics.LinearAlgebra
                     m++;
                 }
 
-                // If m == l, d[l] is an eigenvalue,
-                // otherwise, iterate.
+                /*
+                If m == l, d[l] is an eigenvalue,
+                otherwise, iterate.
+                */
 
                 if(m > l)
                 {
@@ -480,7 +495,7 @@ namespace MathNet.Numerics.LinearAlgebra
                     {
                         iter = iter + 1; // (Could check iteration count here.)
 
-                        // Compute implicit shift
+                        /* Compute implicit shift */
 
                         double g = d[l];
                         double p = (d[l + 1] - g) / (2.0 * e[l]);
@@ -502,7 +517,7 @@ namespace MathNet.Numerics.LinearAlgebra
 
                         f = f + h;
 
-                        // Implicit QL transformation.
+                        /* Implicit QL transformation */
 
                         p = d[m];
                         double c = 1.0;
@@ -533,7 +548,7 @@ namespace MathNet.Numerics.LinearAlgebra
                                 d[i + 1] = h + (s * ((c * g) + (s * d[i])));
                             }
 
-                            // Accumulate transformation.
+                            /* Accumulate transformation */
 
                             for(int k = 0; k < n; k++)
                             {
@@ -547,7 +562,7 @@ namespace MathNet.Numerics.LinearAlgebra
                         e[l] = s * p;
                         d[l] = c * p;
 
-                        // Check for convergence.
+                        /* Check for convergence */
                     }
                     while(Math.Abs(e[l]) > eps * tst1);
                 }
@@ -556,7 +571,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 e[l] = 0.0;
             }
 
-            // Sort eigenvalues and corresponding vectors.
+            /* Sort eigenvalues and corresponding vectors */
 
             for(int i = 0; i < n - 1; i++)
             {
@@ -591,10 +606,12 @@ namespace MathNet.Numerics.LinearAlgebra
         void
         NonsymmetricReduceToHessenberg()
         {
-            // This is derived from the Algol procedures orthes and ortran,
-            // by Martin and Wilkinson, Handbook for Auto. Comp.,
-            // Vol.ii-Linear Algebra, and the corresponding
-            // Fortran subroutines in EISPACK.
+            /*
+            This is derived from the Algol procedures orthes and ortran,
+            by Martin and Wilkinson, Handbook for Auto. Comp.,
+            Vol.ii-Linear Algebra, and the corresponding
+            Fortran subroutines in EISPACK.
+            */
 
             int low = 0;
             int high = n - 1;
@@ -603,8 +620,7 @@ namespace MathNet.Numerics.LinearAlgebra
 
             for(int m = low + 1; m <= high - 1; m++)
             {
-
-                // Scale column.
+                /* Scale column */
 
                 double scale = 0.0;
                 for(int i = m; i <= high; i++)
@@ -614,8 +630,7 @@ namespace MathNet.Numerics.LinearAlgebra
 
                 if(scale != 0.0)
                 {
-
-                    // Compute Householder transformation.
+                    /* Compute Householder transformation */
 
                     double h = 0.0;
                     for(int i = high; i >= m; i--)
@@ -633,8 +648,10 @@ namespace MathNet.Numerics.LinearAlgebra
                     h = h - (ort[m] * g);
                     ort[m] = ort[m] - g;
 
-                    // Apply Householder similarity transformation
-                    // H = (I-u*u'/h)*H*(I-u*u')/h)
+                    /*
+                    Apply Householder similarity transformation
+                    H = (I-u*u'/h)*H*(I-u*u')/h)
+                    */
 
                     for(int j = m; j < n; j++)
                     {
@@ -671,7 +688,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 }
             }
 
-            // Accumulate transformations (Algol's ortran).
+            /* Accumulate transformations (Algol's ortran) */
 
             for(int i = 0; i < n; i++)
             {
@@ -715,12 +732,14 @@ namespace MathNet.Numerics.LinearAlgebra
         void
         NonsymmetricReduceHessenberToRealSchur()
         {
-            // This is derived from the Algol procedure hqr2,
-            // by Martin and Wilkinson, Handbook for Auto. Comp.,
-            // Vol.ii-Linear Algebra, and the corresponding
-            // Fortran subroutine in EISPACK.
+            /*
+            This is derived from the Algol procedure hqr2,
+            by Martin and Wilkinson, Handbook for Auto. Comp.,
+            Vol.ii-Linear Algebra, and the corresponding
+            Fortran subroutine in EISPACK.
+            */
 
-            // Initialize
+            /* Initialize */
 
             int nn = this.n;
             int n = nn - 1;
@@ -730,7 +749,7 @@ namespace MathNet.Numerics.LinearAlgebra
             double exshift = 0.0;
             double p = 0, q = 0, r = 0, s = 0, z = 0, t, w, x, y;
 
-            // Store roots isolated by balanc and compute matrix norm
+            /* Store roots isolated by balanc and compute matrix norm */
 
             double norm = 0.0;
             for(int i = 0; i < nn; i++)
@@ -747,13 +766,12 @@ namespace MathNet.Numerics.LinearAlgebra
                 }
             }
 
-            // Outer loop over eigenvalue index
+            /* Outer loop over eigenvalue index */
 
             int iter = 0;
             while(n >= low)
             {
-
-                // Look for single small sub-diagonal element
+                /* Look for single small sub-diagonal element */
 
                 int l = n;
                 while(l > low)
@@ -773,8 +791,10 @@ namespace MathNet.Numerics.LinearAlgebra
                     l--;
                 }
 
-                // Check for convergence
-                // One root found
+                /*
+                Check for convergence
+                One root found
+                */
 
                 if(l == n)
                 {
@@ -796,7 +816,7 @@ namespace MathNet.Numerics.LinearAlgebra
                     H[n - 1][n - 1] = H[n - 1][n - 1] + exshift;
                     x = H[n][n];
 
-                    // Real pair
+                    /* Real pair */
 
                     if(q >= 0)
                     {
@@ -827,7 +847,7 @@ namespace MathNet.Numerics.LinearAlgebra
                         p = p / r;
                         q = q / r;
 
-                        // Row modification
+                        /* Row modification */
 
                         for(int j = n - 1; j < nn; j++)
                         {
@@ -836,7 +856,7 @@ namespace MathNet.Numerics.LinearAlgebra
                             H[n][j] = (q * H[n][j]) - (p * z);
                         }
 
-                        // Column modification
+                        /* Column modification */
 
                         for(int i = 0; i <= n; i++)
                         {
@@ -845,7 +865,7 @@ namespace MathNet.Numerics.LinearAlgebra
                             H[i][n] = (q * H[i][n]) - (p * z);
                         }
 
-                        // Accumulate transformations
+                        /* Accumulate transformations */
 
                         for(int i = low; i <= high; i++)
                         {
@@ -871,8 +891,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 }
                 else
                 {
-
-                    // Form shift
+                    /* Form shift */
 
                     x = H[n][n];
                     y = 0.0;
@@ -883,7 +902,7 @@ namespace MathNet.Numerics.LinearAlgebra
                         w = H[n][n - 1] * H[n - 1][n];
                     }
 
-                    // Wilkinson's original ad hoc shift
+                    /* Wilkinson's original ad hoc shift */
 
                     if(iter == 10)
                     {
@@ -898,7 +917,7 @@ namespace MathNet.Numerics.LinearAlgebra
                         w = (-0.4375) * s * s;
                     }
 
-                    // MATLAB's new ad hoc shift
+                    /* MATLAB's new ad hoc shift */
 
                     if(iter == 30)
                     {
@@ -925,7 +944,7 @@ namespace MathNet.Numerics.LinearAlgebra
 
                     iter = iter + 1; // (Could check iteration count here.)
 
-                    // Look for two consecutive small sub-diagonal elements
+                    /* Look for two consecutive small sub-diagonal elements */
 
                     int m = n - 2;
                     while(m >= l)
@@ -963,7 +982,7 @@ namespace MathNet.Numerics.LinearAlgebra
                         }
                     }
 
-                    // Double QR step involving rows l:n and columns m:n
+                    /* Double QR step involving rows l:n and columns m:n */
 
                     for(int k = m; k <= n - 1; k++)
                     {
@@ -1012,7 +1031,7 @@ namespace MathNet.Numerics.LinearAlgebra
                             q = q / p;
                             r = r / p;
 
-                            // Row modification
+                            /* Row modification */
 
                             for(int j = k; j < nn; j++)
                             {
@@ -1028,7 +1047,7 @@ namespace MathNet.Numerics.LinearAlgebra
                                 H[k + 1][j] = H[k + 1][j] - (p * y);
                             }
 
-                            // Column modification
+                            /* Column modification */
 
                             for(int i = 0; i <= Math.Min(n, k + 3); i++)
                             {
@@ -1045,7 +1064,7 @@ namespace MathNet.Numerics.LinearAlgebra
                                 Hi[k + 1] = Hi[k + 1] - (p * q);
                             }
 
-                            // Accumulate transformations
+                            /* Accumulate transformations */
 
                             for(int i = low; i <= high; i++)
                             {
@@ -1066,7 +1085,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 } // check convergence
             } // while (n >= low)
 
-            // Backsubstitute to find vectors of upper triangular form
+            /* Backsubstitute to find vectors of upper triangular form */
 
             if(norm == 0.0)
             {
@@ -1078,7 +1097,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 p = d[n];
                 q = e[n];
 
-                // Real vector
+                /* Real vector */
 
                 if(q == 0.0)
                 {
@@ -1131,7 +1150,7 @@ namespace MathNet.Numerics.LinearAlgebra
                                 }
                             }
 
-                            // Overflow control
+                            /* Overflow control */
 
                             t = Math.Abs(H[i][n]);
                             if((eps * t) * t > 1)
@@ -1150,7 +1169,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     int l = n - 1;
 
-                    // Last vector component imaginary so matrix is triangular
+                    /* Last vector component imaginary so matrix is triangular */
 
                     if(Math.Abs(H[n][n - 1]) > Math.Abs(H[n - 1][n]))
                     {
@@ -1196,8 +1215,7 @@ namespace MathNet.Numerics.LinearAlgebra
                             }
                             else
                             {
-
-                                // Solve complex equations
+                                /* Solve complex equations */
 
                                 x = H[i][i + 1];
                                 y = H[i + 1][i];
@@ -1225,7 +1243,7 @@ namespace MathNet.Numerics.LinearAlgebra
                                 }
                             }
 
-                            // Overflow control
+                            /* Overflow control */
 
                             t = Math.Max(Math.Abs(H[i][n - 1]), Math.Abs(H[i][n]));
                             if((eps * t) * t > 1)
@@ -1241,7 +1259,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 }
             }
 
-            // Vectors of isolated roots
+            /* Vectors of isolated roots */
 
             for(int i = 0; i < nn; i++)
             {
@@ -1254,7 +1272,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 }
             }
 
-            // Back transformation to get eigenvectors of original matrix
+            /* Back transformation to get eigenvectors of original matrix */
 
             for(int j = nn - 1; j >= low; j--)
             {
@@ -1282,7 +1300,7 @@ namespace MathNet.Numerics.LinearAlgebra
             double yi
             )
         {
-            // TODO (cdr, 2008-03-11): Refactor
+            /* TODO (cdr, 2008-03-11): Refactor */
 
             double r, d;
             if(Math.Abs(yr) > Math.Abs(yi))

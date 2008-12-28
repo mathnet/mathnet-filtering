@@ -1,91 +1,35 @@
-#region Math.NET Iridium (LGPL) by Ruegg
-// Math.NET Iridium, part of the Math.NET Project
-// http://mathnet.opensourcedotnet.info
+//-----------------------------------------------------------------------
+// <copyright file="GeometricDistribution.cs" company="Math.NET Project">
+//    Copyright (c) 2002-2008, Christoph Rüegg.
+//    All Right Reserved.
+// </copyright>
+// <author>
+//    Christoph Rüegg, http://christoph.ruegg.name
+// </author>
+// <product>
+//    Math.NET Iridium, part of the Math.NET Project.
+//    http://mathnet.opensourcedotnet.info
+// </product>
+// <license type="opensource" name="LGPL" version="2 or later">
+//    This program is free software; you can redistribute it and/or modify
+//    it under the terms of the GNU Lesser General Public License as published 
+//    by the Free Software Foundation; either version 2 of the License, or
+//    any later version.
 //
-// Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
+//    This program is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU Lesser General Public License for more details.
 //
-// This program is free software; you can redistribute it and/or modify
-// it under the terms of the GNU Lesser General Public License as published 
-// by the Free Software Foundation; either version 2 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Lesser General Public License for more details.
-//
-// You should have received a copy of the GNU Lesser General Public 
-// License along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-#endregion
-#region Derived From: Copyright 2006 Troschütz
-/* 
- * Derived from the Troschuetz.Random Class Library,
- * Copyright © 2006 Stefan Troschütz (stefan@troschuetz.de)
- * 
- * Troschuetz.Random is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA 
- */
-#endregion
-#region Derived From: Copyright 2002 Aachen University of Technology
-// ****************************************************************************
-//
-//   |_|_|_  |_|_    |_    |_|_|_  |_             C O M M U N I C A T I O N
-// |_        |_  |_  |_  |_        |_                       N E T W O R K S
-// |_        |_  |_  |_  |_        |_                             C L A S S
-//   |_|_|_  |_    |_|_    |_|_|_  |_|_|_|_                   L I B R A R Y
-//
-// $Id: Geometric.c,v 1.2 2002/01/14 11:37:33 spee Exp $
-//
-// CNClass: CNGeometric --- CNGeometric distributed random numbers
-//
-// ****************************************************************************
-// Copyright (C) 1992-1996   Communication Networks
-//                           Aachen University of Technology
-//                           D-52056 Aachen
-//                           Germany
-//                           Email: cncl-adm@comnets.rwth-aachen.de
-// ****************************************************************************
-// This file is part of the CN class library. All files marked with
-// this header are free software; you can redistribute it and/or modify
-// it under the terms of the GNU Library General Public License as
-// published by the Free Software Foundation; either version 2 of the
-// License, or (at your option) any later version.  This library is
-// distributed in the hope that it will be useful, but WITHOUT ANY
-// WARRANTY; without even the implied warranty of MERCHANTABILITY or
-// FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Library General Public
-// License for more details.  You should have received a copy of the GNU
-// Library General Public License along with this library; if not, write
-// to the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139,
-// USA.
-// ****************************************************************************
-// original Copyright:
-// -------------------
-// Copyright (C) 1988 Free Software Foundation
-//    written by Dirk Grunwald (grunwald@cs.uiuc.edu)
-// 
-// This file is part of the GNU C++ Library.  This library is free
-// software; you can redistribute it and/or modify it under the terms of
-// the GNU Library General Public License as published by the Free
-// Software Foundation; either version 2 of the License, or (at your
-// option) any later version.  This library is distributed in the hope
-// that it will be useful, but WITHOUT ANY WARRANTY; without even the
-// implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
-// PURPOSE.  See the GNU Library General Public License for more details.
-// You should have received a copy of the GNU Library General Public
-// License along with this library; if not, write to the Free Software
-// Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
-// ****************************************************************************
-#endregion
+//    You should have received a copy of the GNU Lesser General Public 
+//    License along with this program; if not, write to the Free Software
+//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// </license>
+// <contribution>
+//    Troschuetz.Random Class Library, Stefan Troschütz (stefan@troschuetz.de)
+//    CNClass, Aachen University of Technology, Dirk Grunwald (grunwald@cs.uiuc.edu)
+// </contribution>
+//-----------------------------------------------------------------------
 
 using System;
 using MathNet.Numerics.RandomSources;

@@ -1,23 +1,31 @@
-#region Math.NET Iridium (LGPL) by Ruegg
-// Math.NET Iridium, part of the Math.NET Project
-// http://mathnet.opensourcedotnet.info
+//-----------------------------------------------------------------------
+// <copyright file="SiConstants.cs" company="Math.NET Project">
+//    Copyright (c) 2002-2008, Christoph Rüegg.
+//    All Right Reserved.
+// </copyright>
+// <author>
+//    Christoph Rüegg, http://christoph.ruegg.name
+// </author>
+// <product>
+//    Math.NET Iridium, part of the Math.NET Project.
+//    http://mathnet.opensourcedotnet.info
+// </product>
+// <license type="opensource" name="LGPL" version="2 or later">
+//    This program is free software; you can redistribute it and/or modify
+//    it under the terms of the GNU Lesser General Public License as published 
+//    by the Free Software Foundation; either version 2 of the License, or
+//    any later version.
 //
-// Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
+//    This program is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU Lesser General Public License for more details.
 //
-// This program is free software; you can redistribute it and/or modify
-// it under the terms of the GNU Lesser General Public License as published 
-// by the Free Software Foundation; either version 2 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Lesser General Public License for more details.
-//
-// You should have received a copy of the GNU Lesser General Public 
-// License along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-#endregion
+//    You should have received a copy of the GNU Lesser General Public 
+//    License along with this program; if not, write to the Free Software
+//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// </license>
+//-----------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -46,7 +54,6 @@ namespace MathNet.Numerics
         /// <summary>Characteristic Impedance of Vacuum: Z_0 = mu_0*c_0 [Ohm = m^2 kg s^-3 A^-2] (defined, exact; 2007 CODATA)</summary>
         public const double CharacteristicImpedanceVacuum = 376.73031346177065546819840042031930826862350835242;
 
-
         /// <summary>Newtonian Constant of Gravitation: G = 6.67429e-11 [m^3 kg^-1 s^-2] (2007 CODATA)</summary>
         public const double GravitationalConstant = 6.67429e-11;
 
@@ -68,7 +75,6 @@ namespace MathNet.Numerics
         /// <summary>Planck time: t_p = l_p/c_0 [s] (2007 CODATA)</summary>
         public const double PlancksTime = 5.39124e-44;
 
-
         // ELECTROMAGNETIC CONSTANTS
 
         /// <summary>Elementary Electron Charge: e = 1.602176487e-19 [C = A s] (2007 CODATA)</summary>
@@ -80,7 +86,6 @@ namespace MathNet.Numerics
         /// <summary>Conductance Quantum: G_0 = 2*e^2/h [S = m^-2 kg^-1 s^3 A^2] (2007 CODATA)</summary>
         public const double ConductanceQuantum = 7.7480917005e-5;
 
-        
         /// <summary>Josephson Constant: K_J = 2*e/h [Hz V^-1] (2007 CODATA)</summary>
         public const double JosephsonConstant = 483597.891e9;
 
@@ -92,7 +97,6 @@ namespace MathNet.Numerics
 
         /// <summary>Nuclear Magneton: mu_N = e*h_bar/2*m_p [J T^-1] (2007 CODATA)</summary>
         public const double NuclearMagneton = 5.05078324e-27;
-
 
         // ATOMIC AND NUCLEAR CONSTANTS
 
@@ -116,7 +120,6 @@ namespace MathNet.Numerics
 
         /// <summary>Weak Mixin Angle: sin^2(theta_W) [1] (2007 CODATA)</summary>
         public const double WeakMixingAngle = 0.22256;
-
 
         /// <summary>Electron Mass: [kg] (2007 CODATA)</summary>
         public const double ElectronMass = 9.10938215e-31;
@@ -144,7 +147,6 @@ namespace MathNet.Numerics
         /// <summary>Electon G-Factor: [1] (2007 CODATA)</summary>
         public const double ElectronGFactor = -2.0023193043622;
 
-
         /// <summary>Muon Mass: [kg] (2007 CODATA)</summary>
         public const double MuonMass = 1.88353130e-28;
 
@@ -163,7 +165,6 @@ namespace MathNet.Numerics
         /// <summary>Muon G-Factor: [1] (2007 CODATA)</summary>
         public const double MuonGFactor = -2.0023318414;
 
-
         /// <summary>Tau Mass: [kg] (2007 CODATA)</summary>
         public const double TauMass = 3.16777e-27;
 
@@ -175,7 +176,6 @@ namespace MathNet.Numerics
 
         /// <summary>Tau Compton Wavelength: [m] (2007 CODATA)</summary>
         public const double TauComptonWavelength = 0.69772e-15;
-
 
         /// <summary>Proton Mass: [kg] (2007 CODATA)</summary>
         public const double ProtonMass = 1.672621637e-27;
@@ -204,7 +204,6 @@ namespace MathNet.Numerics
         /// <summary>Proton Shielded Gyro-Magnetic Ratio: [s^-1 T^-1] (2007 CODATA)</summary>
         public const double ShieldedProtonGyromagneticRatio = 2.675153362e8;
 
-
         /// <summary>Neutron Mass: [kg] (2007 CODATA)</summary>
         public const double NeutronMass = 1.674927212e-27;
 
@@ -226,7 +225,6 @@ namespace MathNet.Numerics
         /// <summary>Neutron Gyro-Magnetic Ratio: [s^-1 T^-1] (2007 CODATA)</summary>
         public const double NeutronGyromagneticRatio = 1.83247185e8;
 
-
         /// <summary>Deuteron Mass: [kg] (2007 CODATA)</summary>
         public const double DeuteronMass = 3.34358320e-27;
 
@@ -238,7 +236,6 @@ namespace MathNet.Numerics
 
         /// <summary>Deuteron Magnetic Moment: [J T^-1] (2007 CODATA)</summary>
         public const double DeuteronMagneticMoment = 0.433073465e-26;
-
 
         /// <summary>Helion Mass: [kg] (2007 CODATA)</summary>
         public const double HelionMass = 5.00641192e-27;
