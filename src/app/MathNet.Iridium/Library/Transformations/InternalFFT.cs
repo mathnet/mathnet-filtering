@@ -42,14 +42,14 @@ namespace MathNet.Numerics.Transformations
     /// </summary>
     internal sealed class InternalFFT
     {
-        const int maxLength = 1048576;
-        const int minLength = 1;
-        const int maxBits = 20;
-        const int minBits = 0;
+        const int MaxLength = 1048576;
+        const int MinLength = 1;
+        const int MaxBits = 20;
+        const int MinBits = 0;
 
-        int[][] _reversedBitsLookup = new int[maxBits][];
-        double[,][] _realCoefficients = new double[maxBits + 1, 2][];
-        double[,][] _imagCoefficients = new double[maxBits + 1, 2][];
+        int[][] _reversedBitsLookup = new int[MaxBits][];
+        double[,][] _realCoefficients = new double[MaxBits + 1, 2][];
+        double[,][] _imagCoefficients = new double[MaxBits + 1, 2][];
 
         public
         void

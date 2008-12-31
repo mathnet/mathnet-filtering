@@ -119,7 +119,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
             double t
             )
         {
-            const double tiny = 1.0e-25;
+            const double Tiny = 1.0e-25;
             int n = _t.Count;
 
             double[] c = new double[n];
@@ -143,7 +143,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
                 }
 
                 c[i] = _x[i];
-                d[i] = _x[i] + tiny;
+                d[i] = _x[i] + Tiny;
             }
 
             double x = _x[nearestIndex];

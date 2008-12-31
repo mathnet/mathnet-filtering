@@ -162,7 +162,7 @@ namespace MathNet.Numerics.Interpolation
                 throw new InvalidOperationException(Properties.LocalStrings.InvalidOperationNoSamplesProvided);
             }
 
-            const double tiny = 1.0e-15;
+            const double Tiny = 1.0e-15;
             int closestIndex;
             int offset = SuggestOffset(t, out closestIndex);
             double[] c = new double[_effectiveOrder];
@@ -180,7 +180,7 @@ namespace MathNet.Numerics.Interpolation
             for(int i = 0; i < _effectiveOrder; i++)
             {
                 c[i] = _samples.GetX(offset + i);
-                d[i] = c[i] + tiny; // prevent rare zero-over-zero condition
+                d[i] = c[i] + Tiny; // prevent rare zero-over-zero condition
             }
 
             x = _samples.GetX(offset + ns--);

@@ -43,14 +43,14 @@ namespace MathNet.Numerics
 {
     /// <summary>
     /// [STUB] The mathematical set of natural numbers (including zero), supporting an arbitrary number of digits.
+    /// Note, this class will be refactored to use .Net 4's BigInteger as soon as available.
     /// </summary>
-    [Obsolete("Please use the BigInteger class as provided by .Net 4 instead.")]
     public class Natural : IEquatable<Natural>, IComparable<Natural>
     {
-        const byte _radixBits = 32;
-        const ulong _radix = ((ulong)1) << _radixBits;
-        const uint _bound32 = 1; // (uint)Math.Ceiling(32d / _radixBits);
-        const uint _bound64 = 2; // (uint)Math.Ceiling(64d / _radixBits);
+        const byte FixedRadixBits = 32;
+        const ulong FixedRadix = ((ulong)1) << FixedRadixBits;
+        const uint Bound32 = 1; // (uint)Math.Ceiling(32d / _radixBits);
+        const uint Bound64 = 2; // (uint)Math.Ceiling(64d / _radixBits);
 
         uint _bound;
         uint[] _coeff;
@@ -121,7 +121,7 @@ namespace MathNet.Numerics
         [CLSCompliant(false)]
         public ulong Radix
         {
-            get { return _radix; }
+            get { return FixedRadix; }
         }
 
         /// <summary>
@@ -179,7 +179,7 @@ namespace MathNet.Numerics
             ulong number
             )
         {
-            Natural n = new Natural(_bound64);
+            Natural n = new Natural(Bound64);
             n.AddCoefficientInplace(number, 0);
             return n;
         }
@@ -194,7 +194,7 @@ namespace MathNet.Numerics
             uint number
             )
         {
-            Natural n = new Natural(_bound32);
+            Natural n = new Natural(Bound32);
             n.AddCoefficientInplace(number, 0);
             return n;
         }
@@ -285,9 +285,9 @@ namespace MathNet.Numerics
                 ulong sum = (ulong)this[i] + number[i] + carry;
                 carry = 0;
 
-                while(sum >= _radix)
+                while(sum >= FixedRadix)
                 {
-                    sum -= _radix;
+                    sum -= FixedRadix;
                     carry++;
                 }
 
@@ -306,10 +306,10 @@ namespace MathNet.Numerics
         {
             long sum = (long)_coeff[exponent] + (long)coeff;
 
-            while(sum >= (long)_radix)
+            while(sum >= (long)FixedRadix)
             {
                 long r;
-                sum = _coeff[exponent + 1] + Math.DivRem(sum, (long)_radix, out r);
+                sum = _coeff[exponent + 1] + Math.DivRem(sum, (long)FixedRadix, out r);
                 _coeff[exponent++] = (uint)r;
             }
 
@@ -381,7 +381,7 @@ namespace MathNet.Numerics
 
                 while(sum < 0)
                 {
-                    sum += (long)_radix;
+                    sum += (long)FixedRadix;
                     carry++;
                 }
 
@@ -430,8 +430,8 @@ namespace MathNet.Numerics
                 }
 
                 long r;
-                sum = _coeff[exponent + 1] - Math.DivRem(-sum, (long)_radix, out r);
-                _coeff[exponent++] = (r == 0) ? 0 : (uint)(_radix - (ulong)r);
+                sum = _coeff[exponent + 1] - Math.DivRem(-sum, (long)FixedRadix, out r);
+                _coeff[exponent++] = (r == 0) ? 0 : (uint)(FixedRadix - (ulong)r);
             }
 
             _coeff[exponent] = (uint)sum;
@@ -525,7 +525,7 @@ namespace MathNet.Numerics
             uint factor
             )
         {
-            uint len = _bound + _bound32;
+            uint len = _bound + Bound32;
             Natural ret = new Natural(len);
 
             for(uint i = 0; i < _bound; i++)
