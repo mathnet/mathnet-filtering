@@ -45,6 +45,7 @@
     <Compile Include="ComplexMatrixTest.cs" />
     <Compile Include="DistributionTest.cs" />
     <Compile Include="InterpolationTest.cs" />
+    <Compile Include="NumberTheoryTest.cs" />
     <Compile Include="NumericAssert.cs" />
     <Compile Include="SetTest.cs" />
     <Compile Include="ComplexTest.cs" />
