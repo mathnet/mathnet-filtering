@@ -55,8 +55,7 @@ namespace MathNet.Numerics.Interpolation
         IInterpolationMethod
         Create(
             IList<double> points,
-            IList<double> values
-            )
+            IList<double> values)
         {
             RationalPoleFreeInterpolation method = new RationalPoleFreeInterpolation();
             method.Init(points, values);
@@ -77,8 +76,7 @@ namespace MathNet.Numerics.Interpolation
         IInterpolationMethod
         CreatePolynomial(
             IList<double> points,
-            IList<double> values
-            )
+            IList<double> values)
         {
             PolynomialInterpolation method = new PolynomialInterpolation();
             method.Init(points, values);
@@ -99,8 +97,7 @@ namespace MathNet.Numerics.Interpolation
         IInterpolationMethod
         CreateRational(
             IList<double> points,
-            IList<double> values
-            )
+            IList<double> values)
         {
             RationalInterpolation method = new RationalInterpolation();
             method.Init(points, values);
@@ -121,8 +118,7 @@ namespace MathNet.Numerics.Interpolation
         IInterpolationMethod
         CreateLinearSpline(
             IList<double> points,
-            IList<double> values
-            )
+            IList<double> values)
         {
             LinearSplineInterpolation method = new LinearSplineInterpolation();
             method.Init(points, values);
@@ -151,8 +147,7 @@ namespace MathNet.Numerics.Interpolation
             SplineBoundaryCondition leftBoundaryCondition,
             double leftBoundary,
             SplineBoundaryCondition rightBoundaryCondition,
-            double rightBoundary
-            )
+            double rightBoundary)
         {
             CubicSplineInterpolation method = new CubicSplineInterpolation();
             method.Init(
@@ -161,8 +156,7 @@ namespace MathNet.Numerics.Interpolation
                 leftBoundaryCondition,
                 leftBoundary,
                 rightBoundaryCondition,
-                rightBoundary
-                );
+                rightBoundary);
             return method;
         }
 
@@ -181,14 +175,12 @@ namespace MathNet.Numerics.Interpolation
         IInterpolationMethod
         CreateNaturalCubicSpline(
             IList<double> points,
-            IList<double> values
-            )
+            IList<double> values)
         {
             CubicSplineInterpolation method = new CubicSplineInterpolation();
             method.Init(
                 points,
-                values
-                );
+                values);
             return method;
         }
 
@@ -207,8 +199,7 @@ namespace MathNet.Numerics.Interpolation
         IInterpolationMethod
         CreateAkimaCubicSpline(
             IList<double> points,
-            IList<double> values
-            )
+            IList<double> values)
         {
             AkimaSplineInterpolation method = new AkimaSplineInterpolation();
             method.Init(points, values);
@@ -231,8 +222,7 @@ namespace MathNet.Numerics.Interpolation
         CreateOnEquidistantPoints(
             double leftBound,
             double rightBound,
-            IList<double> values
-            )
+            IList<double> values)
         {
             EquidistantPolynomialInterpolation method = new EquidistantPolynomialInterpolation();
             method.Init(leftBound, rightBound, values);
@@ -255,8 +245,7 @@ namespace MathNet.Numerics.Interpolation
         CreateOnChebyshevFirstKindPoints(
             double leftBound,
             double rightBound,
-            IList<double> values
-            )
+            IList<double> values)
         {
             ChebyshevFirstKindPolynomialInterpolation method = new ChebyshevFirstKindPolynomialInterpolation();
             method.Init(leftBound, rightBound, values);
@@ -276,8 +265,7 @@ namespace MathNet.Numerics.Interpolation
         GenerateChebyshevFirstKindSamplePoints(
             double a,
             double b,
-            int numberOfPoints
-            )
+            int numberOfPoints)
         {
             return ChebyshevFirstKindPolynomialInterpolation.GenerateSamplePoints(a, b, numberOfPoints);
         }
@@ -298,8 +286,7 @@ namespace MathNet.Numerics.Interpolation
         CreateOnChebyshevSecondKindPoints(
             double leftBound,
             double rightBound,
-            IList<double> values
-            )
+            IList<double> values)
         {
             ChebyshevSecondKindPolynomialInterpolation method = new ChebyshevSecondKindPolynomialInterpolation();
             method.Init(leftBound, rightBound, values);
@@ -319,8 +306,7 @@ namespace MathNet.Numerics.Interpolation
         GenerateChebyshevSecondKindSamplePoints(
             double a,
             double b,
-            int numberOfPoints
-            )
+            int numberOfPoints)
         {
             return ChebyshevSecondKindPolynomialInterpolation.GenerateSamplePoints(a, b, numberOfPoints);
         }

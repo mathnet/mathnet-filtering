@@ -50,8 +50,7 @@ namespace MathNet.Numerics
         public
         ComplexRational(
             ComplexPolynomial numerator,
-            ComplexPolynomial denominator
-            )
+            ComplexPolynomial denominator)
         {
             this.numerator = numerator.Clone();
             this.denominator = denominator.Clone();
@@ -64,8 +63,7 @@ namespace MathNet.Numerics
         public
         ComplexRational(
             int numeratorOrder,
-            int denominatorOrder
-            )
+            int denominatorOrder)
         {
             numerator = new ComplexPolynomial(numeratorOrder);
             denominator = new ComplexPolynomial(denominatorOrder);
@@ -78,8 +76,7 @@ namespace MathNet.Numerics
         public
         ComplexRational(
             Complex[] numeratorCoefficients,
-            Complex[] denominatorCoefficients
-            )
+            Complex[] denominatorCoefficients)
         {
             numerator = new ComplexPolynomial(numeratorCoefficients);
             denominator = new ComplexPolynomial(denominatorCoefficients);
@@ -91,9 +88,7 @@ namespace MathNet.Numerics
         /// </summary>
         /// <param name="copy">A rational to copy from.</param>
         public
-        ComplexRational(
-            ComplexRational copy
-            )
+        ComplexRational(ComplexRational copy)
         {
             numerator = new ComplexPolynomial(copy.numerator);
             denominator = new ComplexPolynomial(copy.denominator);
@@ -157,8 +152,7 @@ namespace MathNet.Numerics
         bool
         operator ==(
             ComplexRational rational1,
-            ComplexRational rational2
-            )
+            ComplexRational rational2)
         {
             return rational1.Equals(rational2);
         }
@@ -170,8 +164,7 @@ namespace MathNet.Numerics
         bool
         operator !=(
             ComplexRational rational1,
-            ComplexRational rational2
-            )
+            ComplexRational rational2)
         {
             return !rational1.Equals(rational2);
         }
@@ -183,8 +176,7 @@ namespace MathNet.Numerics
         bool
         operator >(
             ComplexRational rational1,
-            ComplexRational rational2
-            )
+            ComplexRational rational2)
         {
             return rational1.CompareTo(rational2) == 1;
         }
@@ -196,8 +188,7 @@ namespace MathNet.Numerics
         bool
         operator <(
             ComplexRational rational1,
-            ComplexRational rational2
-            )
+            ComplexRational rational2)
         {
             return rational1.CompareTo(rational2) == -1;
         }
@@ -209,8 +200,7 @@ namespace MathNet.Numerics
         bool
         operator >=(
             ComplexRational rational1,
-            ComplexRational rational2
-            )
+            ComplexRational rational2)
         {
             int res = rational1.CompareTo(rational2);
             return res == 1 || res == 0;
@@ -223,8 +213,7 @@ namespace MathNet.Numerics
         bool
         operator <=(
             ComplexRational rational1,
-            ComplexRational rational2
-            )
+            ComplexRational rational2)
         {
             int res = rational1.CompareTo(rational2);
             return res == -1 || res == 0;
@@ -237,8 +226,7 @@ namespace MathNet.Numerics
         ComplexRational
         operator +(
             ComplexRational rational1,
-            ComplexRational rational2
-            )
+            ComplexRational rational2)
         {
             return rational1.Add(rational2);
         }
@@ -250,8 +238,7 @@ namespace MathNet.Numerics
         ComplexRational
         operator +(
             ComplexRational rational,
-            ComplexPolynomial polynomial
-            )
+            ComplexPolynomial polynomial)
         {
             ComplexRational ret = new ComplexRational(rational);
             ret.AddInplace(polynomial);
@@ -265,8 +252,7 @@ namespace MathNet.Numerics
         ComplexRational
         operator +(
             ComplexPolynomial polynomial,
-            ComplexRational rational
-            )
+            ComplexRational rational)
         {
             ComplexRational ret = new ComplexRational(rational);
             ret.AddInplace(polynomial);
@@ -280,8 +266,7 @@ namespace MathNet.Numerics
         ComplexRational
         operator +(
             ComplexRational rational,
-            Complex n
-            )
+            Complex n)
         {
             ComplexRational ret = new ComplexRational(rational);
             ret.AddInplace(n);
@@ -295,8 +280,7 @@ namespace MathNet.Numerics
         ComplexRational
         operator +(
             Complex n,
-            ComplexRational rational
-            )
+            ComplexRational rational)
         {
             ComplexRational ret = new ComplexRational(rational);
             ret.AddInplace(n);
@@ -308,9 +292,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         ComplexRational
-        operator +(
-            ComplexRational rational
-            )
+        operator +(ComplexRational rational)
         {
             return rational;
         }
@@ -322,8 +304,7 @@ namespace MathNet.Numerics
         ComplexRational
         operator -(
             ComplexRational rational1,
-            ComplexRational rational2
-            )
+            ComplexRational rational2)
         {
             return rational1.Subtract(rational2);
         }
@@ -335,8 +316,7 @@ namespace MathNet.Numerics
         ComplexRational
         operator -(
             ComplexRational rational,
-            ComplexPolynomial polynomial
-            )
+            ComplexPolynomial polynomial)
         {
             ComplexRational ret = new ComplexRational(rational);
             ret.SubtractInplace(polynomial);
@@ -350,8 +330,7 @@ namespace MathNet.Numerics
         ComplexRational
         operator -(
             ComplexPolynomial polynomial,
-            ComplexRational rational
-            )
+            ComplexRational rational)
         {
             ComplexRational ret = new ComplexRational(rational);
             ret.NegateInplace();
@@ -366,8 +345,7 @@ namespace MathNet.Numerics
         ComplexRational
         operator -(
             ComplexRational rational,
-            double n
-            )
+            double n)
         {
             ComplexRational ret = new ComplexRational(rational);
             ret.SubtractInplace(n);
@@ -381,8 +359,7 @@ namespace MathNet.Numerics
         ComplexRational
         operator -(
             Complex n,
-            ComplexRational rational
-            )
+            ComplexRational rational)
         {
             ComplexRational ret = new ComplexRational(rational);
             ret.NegateInplace();
@@ -395,9 +372,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         ComplexRational
-        operator -(
-            ComplexRational rational
-            )
+        operator -(ComplexRational rational)
         {
             ComplexRational ret = new ComplexRational(rational);
             ret.NegateInplace();
@@ -411,8 +386,7 @@ namespace MathNet.Numerics
         ComplexRational
         operator *(
             ComplexRational rational1,
-            ComplexRational rational2
-            )
+            ComplexRational rational2)
         {
             return rational1.Multiply(rational2);
         }
@@ -424,8 +398,7 @@ namespace MathNet.Numerics
         ComplexRational
         operator *(
             ComplexRational rational,
-            ComplexPolynomial polynomial
-            )
+            ComplexPolynomial polynomial)
         {
             return rational.Multiply(polynomial);
         }
@@ -437,8 +410,7 @@ namespace MathNet.Numerics
         ComplexRational
         operator *(
             ComplexPolynomial polynomial,
-            ComplexRational rational
-            )
+            ComplexRational rational)
         {
             return rational.Multiply(polynomial);
         }
@@ -450,8 +422,7 @@ namespace MathNet.Numerics
         ComplexRational
         operator *(
             ComplexRational rational,
-            Complex n
-            )
+            Complex n)
         {
             ComplexRational ret = new ComplexRational(rational);
             ret.MultiplyInplace(n);
@@ -465,8 +436,7 @@ namespace MathNet.Numerics
         ComplexRational
         operator *(
             Complex n,
-            ComplexRational rational
-            )
+            ComplexRational rational)
         {
             ComplexRational ret = new ComplexRational(rational);
             ret.MultiplyInplace(n);
@@ -480,8 +450,7 @@ namespace MathNet.Numerics
         ComplexRational
         operator /(
             ComplexRational rational1,
-            ComplexRational rational2
-            )
+            ComplexRational rational2)
         {
             return rational1.Divide(rational2);
         }
@@ -493,8 +462,7 @@ namespace MathNet.Numerics
         ComplexRational
         operator /(
             ComplexRational rational,
-            ComplexPolynomial polynomial
-            )
+            ComplexPolynomial polynomial)
         {
             return rational.Divide(polynomial);
         }
@@ -506,8 +474,7 @@ namespace MathNet.Numerics
         ComplexRational
         operator /(
             ComplexPolynomial polynomial,
-            ComplexRational rational
-            )
+            ComplexRational rational)
         {
             ComplexRational ret = rational.Divide(polynomial);
             ret.InvertInplace();
@@ -521,8 +488,7 @@ namespace MathNet.Numerics
         ComplexRational
         operator /(
             ComplexRational rational,
-            double n
-            )
+            double n)
         {
             ComplexRational ret = new ComplexRational(rational);
             ret.DivideInplace(n);
@@ -536,8 +502,7 @@ namespace MathNet.Numerics
         ComplexRational
         operator /(
             double n,
-            ComplexRational rational
-            )
+            ComplexRational rational)
         {
             ComplexRational ret = new ComplexRational(rational);
             ret.InvertInplace();
@@ -555,16 +520,13 @@ namespace MathNet.Numerics
         /// <param name="rational">The rational to add</param>
         public
         ComplexRational
-        Add(
-            ComplexRational rational
-            )
+        Add(ComplexRational rational)
         {
             if(denominator.Equals(rational.denominator))
             {
                 return new ComplexRational(
                     numerator + rational.numerator,
-                    denominator.Clone()
-                    );
+                    denominator.Clone());
             }
 
             ComplexPolynomial num = (numerator * rational.denominator) + (rational.numerator * denominator);
@@ -578,9 +540,7 @@ namespace MathNet.Numerics
         /// <param name="polynomial">The polynomial to add.</param>
         public
         void
-        AddInplace(
-            ComplexPolynomial polynomial
-            )
+        AddInplace(ComplexPolynomial polynomial)
         {
             numerator.AddInplace(denominator * polynomial);
         }
@@ -591,9 +551,7 @@ namespace MathNet.Numerics
         /// <param name="n">The floating point number to add.</param>
         public
         void
-        AddInplace(
-            Complex n
-            )
+        AddInplace(Complex n)
         {
             numerator.AddInplace(denominator * n);
         }
@@ -604,16 +562,13 @@ namespace MathNet.Numerics
         /// <param name="rational">The rational to subtract.</param>
         public
         ComplexRational
-        Subtract(
-            ComplexRational rational
-            )
+        Subtract(ComplexRational rational)
         {
             if(denominator.Equals(rational.denominator))
             {
                 return new ComplexRational(
                     numerator - rational.numerator,
-                    denominator.Clone()
-                    );
+                    denominator.Clone());
             }
 
             ComplexPolynomial num = (numerator * rational.denominator) - (rational.numerator * denominator);
@@ -627,9 +582,7 @@ namespace MathNet.Numerics
         /// <param name="polynomial">The polynomial to subtract.</param>
         public
         void
-        SubtractInplace(
-            ComplexPolynomial polynomial
-            )
+        SubtractInplace(ComplexPolynomial polynomial)
         {
             numerator.SubtractInplace(denominator * polynomial);
         }
@@ -640,9 +593,7 @@ namespace MathNet.Numerics
         /// <param name="n">The floating point number to subtract.</param>
         public
         void
-        SubtractInplace(
-            Complex n
-            )
+        SubtractInplace(Complex n)
         {
             numerator.SubtractInplace(denominator * n);
         }
@@ -663,14 +614,11 @@ namespace MathNet.Numerics
         /// <param name="rational">The rational to multiply with.</param>
         public
         ComplexRational
-        Multiply(
-            ComplexRational rational
-            )
+        Multiply(ComplexRational rational)
         {
             return new ComplexRational(
                 numerator * rational.numerator,
-                denominator * rational.denominator
-                );
+                denominator * rational.denominator);
         }
 
         /// <summary>
@@ -679,14 +627,11 @@ namespace MathNet.Numerics
         /// <param name="polynomial">The polynomial to multiply with.</param>
         public
         ComplexRational
-        Multiply(
-            ComplexPolynomial polynomial
-            )
+        Multiply(ComplexPolynomial polynomial)
         {
             return new ComplexRational(
                 numerator * polynomial,
-                denominator.Clone()
-                );
+                denominator.Clone());
         }
 
         /// <summary>
@@ -695,9 +640,7 @@ namespace MathNet.Numerics
         /// <param name="n">The floating point number to multiply with.</param>
         public
         void
-        MultiplyInplace(
-            Complex n
-            )
+        MultiplyInplace(Complex n)
         {
             numerator.MultiplyInplace(n);
         }
@@ -708,14 +651,11 @@ namespace MathNet.Numerics
         /// <param name="rational">The rational to divide with.</param>
         public
         ComplexRational
-        Divide(
-            ComplexRational rational
-            )
+        Divide(ComplexRational rational)
         {
             return new ComplexRational(
                 numerator * rational.denominator,
-                denominator * rational.numerator
-                );
+                denominator * rational.numerator);
         }
 
         /// <summary>
@@ -724,14 +664,11 @@ namespace MathNet.Numerics
         /// <param name="polynomial">The polynomial to divide with.</param>
         public
         ComplexRational
-        Divide(
-            ComplexPolynomial polynomial
-            )
+        Divide(ComplexPolynomial polynomial)
         {
             return new ComplexRational(
                 numerator.Clone(),
-                denominator * polynomial
-                );
+                denominator * polynomial);
         }
 
         /// <summary>
@@ -740,9 +677,7 @@ namespace MathNet.Numerics
         /// <param name="n">The floating point number to divide with.</param>
         public
         void
-        DivideInplace(
-            Complex n
-            )
+        DivideInplace(Complex n)
         {
             denominator.MultiplyInplace(n);
         }
@@ -769,9 +704,7 @@ namespace MathNet.Numerics
         /// <param name="value">The point where to evaluate the rational</param>
         public
         Complex
-        Evaluate(
-            Complex value
-            )
+        Evaluate(Complex value)
         {
             /*
             TODO: correct Rational.Evaluate implementation
@@ -790,9 +723,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         string
-        ToString(
-            string baseVariable
-            )
+        ToString(string baseVariable)
         {
             return "(" + numerator.ToString(baseVariable) + ")/(" + denominator.ToString(baseVariable) + ")";
         }
@@ -826,9 +757,7 @@ namespace MathNet.Numerics
         /// </summary>
         public override
         bool
-        Equals(
-            object obj
-            )
+        Equals(object obj)
         {
             if(obj == null || !(obj is Rational))
             {
@@ -843,9 +772,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         bool
-        Equals(
-            ComplexRational rational
-                )
+        Equals(ComplexRational rational)
         {
             return numerator.Equals(rational.numerator)
                 && denominator.Equals(rational.denominator);
@@ -858,8 +785,7 @@ namespace MathNet.Numerics
         bool
         Equals(
             ComplexRational rational1,
-            ComplexRational rational2
-            )
+            ComplexRational rational2)
         {
             return rational1.Equals(rational2);
         }
@@ -868,9 +794,7 @@ namespace MathNet.Numerics
         /// Compare this rational to another rational.
         /// </summary>
         int
-        IComparable.CompareTo(
-            object obj
-            )
+        IComparable.CompareTo(object obj)
         {
             if(obj == null)
             {
@@ -890,9 +814,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         int
-        CompareTo(
-            ComplexRational rational
-            )
+        CompareTo(ComplexRational rational)
         {
             int n = numerator.CompareTo(rational.numerator);
             if(n == 0)

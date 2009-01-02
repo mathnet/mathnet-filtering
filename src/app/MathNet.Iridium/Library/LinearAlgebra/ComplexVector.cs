@@ -74,9 +74,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </summary>
         /// <param name="n">Dimensionality of vector.</param>
         public
-        ComplexVector(
-            int n
-            )
+        ComplexVector(int n)
         {
             _length = n;
             _data = new Complex[_length];
@@ -89,10 +87,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="n">Dimensionality of vector.</param>
         /// <param name="i">Coordinate index.</param>
         public
-        ComplexVector(
-            int n,
-            int i
-            )
+        ComplexVector(int n, int i)
         {
             _length = n;
             _data = new Complex[_length];
@@ -108,8 +103,7 @@ namespace MathNet.Numerics.LinearAlgebra
         public
         ComplexVector(
             int n,
-            Complex value
-            )
+            Complex value)
         {
             _length = n;
             _data = new Complex[_length];
@@ -126,9 +120,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="components">One-dimensional array of doubles.</param>
         /// <seealso cref="Create(Complex[])"/>
         public
-        ComplexVector(
-            Complex[] components
-            )
+        ComplexVector(Complex[] components)
         {
             _length = components.Length;
             _data = components;
@@ -140,9 +132,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="components">One-dimensional array of doubles.</param>
         public static
         ComplexVector
-        Create(
-            Complex[] components
-            )
+        Create(Complex[] components)
         {
             if(null == components)
             {
@@ -164,8 +154,7 @@ namespace MathNet.Numerics.LinearAlgebra
         ComplexVector
         Create(
             IList<double> realComponents,
-            IList<double> imagComponents
-            )
+            IList<double> imagComponents)
         {
             if(null == realComponents)
             {
@@ -197,9 +186,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="realComponents">One-dimensional array of doubles representing the real part of the vector.</param>
         public static
         ComplexVector
-        Create(
-            IList<double> realComponents
-            )
+        Create(IList<double> realComponents)
         {
             if(null == realComponents)
             {
@@ -223,9 +210,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="n">Dimensionality of vector.</param>
         public static
         ComplexVector
-        Ones(
-            int n
-            )
+        Ones(int n)
         {
             return new ComplexVector(n, 1.0);
         }
@@ -236,9 +221,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="n">Dimensionality of vector.</param>
         public static
         ComplexVector
-        Zeros(
-            int n
-            )
+        Zeros(int n)
         {
             return new ComplexVector(n);
         }
@@ -250,10 +233,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="i">Coordinate index.</param>
         public static
         ComplexVector
-        BasisVector(
-            int n,
-            int i
-            )
+        BasisVector(int n, int i)
         {
             return new ComplexVector(n, i);
         }
@@ -266,9 +246,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// Returns a reference to the internel data structure.
         /// </summary>
         public static implicit
-        operator Complex[](
-            ComplexVector v
-            )
+        operator Complex[](ComplexVector v)
         {
             return v._data;
         }
@@ -277,9 +255,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// Returns a vector bound directly to a reference of the provided array.
         /// </summary>
         public static implicit
-        operator ComplexVector(
-            Complex[] v
-            )
+        operator ComplexVector(Complex[] v)
         {
             return new ComplexVector(v);
         }
@@ -347,9 +323,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator + (ComplexVector, ComplexVector)"/>
         public
         ComplexVector
-        Add(
-            IVector<Complex> b
-            )
+        Add(IVector<Complex> b)
         {
             CheckMatchingVectorDimensions(this, b);
 
@@ -376,9 +350,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator + (ComplexVector, Vector)"/>
         public
         ComplexVector
-        Add(
-            IVector<double> b
-            )
+        Add(IVector<double> b)
         {
             CheckMatchingVectorDimensions(this, b);
 
@@ -405,9 +377,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator + (ComplexVector, Complex)"/>
         public
         ComplexVector
-        Add(
-            Complex b
-            )
+        Add(Complex b)
         {
             Complex[] v = new Complex[_length];
             for(int i = 0; i < v.Length; i++)
@@ -428,9 +398,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator + (ComplexVector, ComplexVector)"/>
         public
         void
-        AddInplace(
-            IVector<Complex> b
-            )
+        AddInplace(IVector<Complex> b)
         {
             CheckMatchingVectorDimensions(this, b);
 
@@ -450,9 +418,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator + (ComplexVector, Vector)"/>
         public
         void
-        AddInplace(
-            IVector<double> b
-            )
+        AddInplace(IVector<double> b)
         {
             CheckMatchingVectorDimensions(this, b);
 
@@ -472,9 +438,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator + (ComplexVector, Complex)"/>
         public
         void
-        AddInplace(
-            Complex b
-            )
+        AddInplace(Complex b)
         {
             for(int i = 0; i < _length; i++)
             {
@@ -496,9 +460,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator - (ComplexVector, ComplexVector)"/>
         public
         ComplexVector
-        Subtract(
-            IVector<Complex> b
-            )
+        Subtract(IVector<Complex> b)
         {
             CheckMatchingVectorDimensions(this, b);
 
@@ -525,9 +487,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator - (ComplexVector, Vector)"/>
         public
         ComplexVector
-        Subtract(
-            IVector<double> b
-            )
+        Subtract(IVector<double> b)
         {
             CheckMatchingVectorDimensions(this, b);
 
@@ -554,9 +514,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator - (ComplexVector, Complex)"/>
         public
         ComplexVector
-        Subtract(
-            Complex b
-            )
+        Subtract(Complex b)
         {
             Complex[] v = new Complex[_length];
             for(int i = 0; i < v.Length; i++)
@@ -577,9 +535,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator - (ComplexVector, ComplexVector)"/>
         public
         void
-        SubtractInplace(
-            IVector<Complex> b
-            )
+        SubtractInplace(IVector<Complex> b)
         {
             CheckMatchingVectorDimensions(this, b);
 
@@ -599,9 +555,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator - (ComplexVector, Vector)"/>
         public
         void
-        SubtractInplace(
-            IVector<double> b
-            )
+        SubtractInplace(IVector<double> b)
         {
             CheckMatchingVectorDimensions(this, b);
 
@@ -621,9 +575,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator - (ComplexVector, Complex)"/>
         public
         void
-        SubtractInplace(
-            Complex b
-            )
+        SubtractInplace(Complex b)
         {
             for(int i = 0; i < _length; i++)
             {
@@ -724,9 +676,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator * (ComplexVector, Complex)"/>
         public
         ComplexVector
-        Multiply(
-            Complex scalar
-            )
+        Multiply(Complex scalar)
         {
             Complex[] v = new Complex[_length];
             for(int i = 0; i < v.Length; i++)
@@ -747,9 +697,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator * (ComplexVector, Complex)"/>
         public
         void
-        MultiplyInplace(
-            Complex scalar
-            )
+        MultiplyInplace(Complex scalar)
         {
             for(int i = 0; i < _length; i++)
             {
@@ -773,8 +721,7 @@ namespace MathNet.Numerics.LinearAlgebra
         Complex
         ScalarProduct(
             IVector<Complex> u,
-            IVector<Complex> v
-            )
+            IVector<Complex> v)
         {
             CheckMatchingVectorDimensions(u, v);
 
@@ -799,8 +746,7 @@ namespace MathNet.Numerics.LinearAlgebra
         Complex
         ScalarProduct(
             IVector<Complex> u,
-            IVector<double> v
-            )
+            IVector<double> v)
         {
             CheckMatchingVectorDimensions(u, v);
 
@@ -827,9 +773,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator * (ComplexVector, ComplexVector)"/>
         public
         Complex
-        ScalarMultiply(
-            IVector<Complex> b
-            )
+        ScalarMultiply(IVector<Complex> b)
         {
             return ScalarProduct(this, b);
         }
@@ -848,9 +792,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator * (ComplexVector, Vector)"/>
         public
         Complex
-        ScalarMultiply(
-            IVector<double> b
-            )
+        ScalarMultiply(IVector<double> b)
         {
             return ScalarProduct(this, b);
         }
@@ -866,8 +808,7 @@ namespace MathNet.Numerics.LinearAlgebra
         ComplexMatrix
         DyadicProduct(
             IVector<Complex> u,
-            IVector<Complex> v
-            )
+            IVector<Complex> v)
         {
             Complex[][] m = ComplexMatrix.CreateMatrixData(u.Length, v.Length);
             for(int i = 0; i < u.Length; i++)
@@ -891,9 +832,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="DyadicProduct"/>
         public
         ComplexMatrix
-        TensorMultiply(
-            IVector<Complex> b
-            )
+        TensorMultiply(IVector<Complex> b)
         {
             return DyadicProduct(this, b);
         }
@@ -909,8 +848,7 @@ namespace MathNet.Numerics.LinearAlgebra
         ComplexVector
         CrossProduct(
             IVector<Complex> u,
-            IVector<Complex> v
-            )
+            IVector<Complex> v)
         {
             CheckMatchingVectorDimensions(u, v);
             if(3 != u.Length)
@@ -937,9 +875,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="CrossProduct"/>
         public
         ComplexVector
-        CrossMultiply(
-            IVector<Complex> b
-            )
+        CrossMultiply(IVector<Complex> b)
         {
             return CrossProduct(this, b);
         }
@@ -956,8 +892,7 @@ namespace MathNet.Numerics.LinearAlgebra
         ComplexVector
         ArrayProduct(
             IVector<Complex> a,
-            IVector<Complex> b
-            )
+            IVector<Complex> b)
         {
             CheckMatchingVectorDimensions(a, b);
 
@@ -982,8 +917,7 @@ namespace MathNet.Numerics.LinearAlgebra
         ComplexVector
         ArrayProduct(
             IVector<Complex> a,
-            IVector<double> b
-            )
+            IVector<double> b)
         {
             CheckMatchingVectorDimensions(a, b);
 
@@ -1006,9 +940,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="ArrayMultiplyInplace(IVector&lt;Complex&gt;)"/>
         public
         ComplexVector
-        ArrayMultiply(
-            IVector<Complex> b
-            )
+        ArrayMultiply(IVector<Complex> b)
         {
             return ArrayProduct(this, b);
         }
@@ -1023,9 +955,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="ArrayMultiplyInplace(IVector&lt;double&gt;)"/>
         public
         ComplexVector
-        ArrayMultiply(
-            IVector<double> b
-            )
+        ArrayMultiply(IVector<double> b)
         {
             return ArrayProduct(this, b);
         }
@@ -1040,9 +970,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="ArrayMultiply(IVector&lt;Complex&gt;)"/>
         public
         void
-        ArrayMultiplyInplace(
-            IVector<Complex> b
-            )
+        ArrayMultiplyInplace(IVector<Complex> b)
         {
             CheckMatchingVectorDimensions(this, b);
 
@@ -1062,9 +990,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="ArrayMultiply(IVector&lt;double&gt;)"/>
         public
         void
-        ArrayMultiplyInplace(
-            IVector<double> b
-            )
+        ArrayMultiplyInplace(IVector<double> b)
         {
             CheckMatchingVectorDimensions(this, b);
 
@@ -1083,9 +1009,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="ArrayPowerInplace(Complex)"/>
         public
         ComplexVector
-        ArrayPower(
-            Complex exponent
-            )
+        ArrayPower(Complex exponent)
         {
             Complex[] newData = new Complex[_length];
             for(int i = 0; i < newData.Length; i++)
@@ -1105,9 +1029,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="ArrayPower(Complex)"/>
         public
         void
-        ArrayPowerInplace(
-            Complex exponent
-            )
+        ArrayPowerInplace(Complex exponent)
         {
             for(int i = 0; i < _data.Length; i++)
             {
@@ -1127,8 +1049,7 @@ namespace MathNet.Numerics.LinearAlgebra
         ComplexVector
         ArrayQuotient(
             IVector<Complex> a,
-            IVector<Complex> b
-            )
+            IVector<Complex> b)
         {
             CheckMatchingVectorDimensions(a, b);
 
@@ -1153,8 +1074,7 @@ namespace MathNet.Numerics.LinearAlgebra
         ComplexVector
         ArrayQuotient(
             IVector<Complex> a,
-            IVector<double> b
-            )
+            IVector<double> b)
         {
             CheckMatchingVectorDimensions(a, b);
 
@@ -1177,9 +1097,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="ArrayDivideInplace(IVector&lt;Complex&gt;)"/>
         public
         ComplexVector
-        ArrayDivide(
-            IVector<Complex> b
-            )
+        ArrayDivide(IVector<Complex> b)
         {
             return ArrayQuotient(this, b);
         }
@@ -1194,9 +1112,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="ArrayDivideInplace(IVector&lt;double&gt;)"/>
         public
         ComplexVector
-        ArrayDivide(
-            IVector<double> b
-            )
+        ArrayDivide(IVector<double> b)
         {
             return ArrayQuotient(this, b);
         }
@@ -1211,9 +1127,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="ArrayDivide(IVector&lt;Complex&gt;)"/>
         public
         void
-        ArrayDivideInplace(
-            IVector<Complex> b
-            )
+        ArrayDivideInplace(IVector<Complex> b)
         {
             CheckMatchingVectorDimensions(this, b);
 
@@ -1233,9 +1147,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="ArrayDivide(IVector&lt;double&gt;)"/>
         public
         void
-        ArrayDivideInplace(
-            IVector<double> b
-            )
+        ArrayDivideInplace(IVector<double> b)
         {
             CheckMatchingVectorDimensions(this, b);
 
@@ -1254,9 +1166,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="ArrayMapInplace(Converter&lt;Complex,Complex&gt;)"/>
         public
         ComplexVector
-        ArrayMap(
-            Converter<Complex, Complex> mapping
-            )
+        ArrayMap(Converter<Complex, Complex> mapping)
         {
             Complex[] newData = new Complex[_length];
             for(int i = 0; i < newData.Length; i++)
@@ -1276,9 +1186,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="ArrayMap(Converter&lt;Complex,Complex&gt;)"/>
         public
         void
-        ArrayMapInplace(
-            Converter<Complex, Complex> mapping
-            )
+        ArrayMapInplace(Converter<Complex, Complex> mapping)
         {
             for(int i = 0; i < _data.Length; i++)
             {
@@ -1320,8 +1228,7 @@ namespace MathNet.Numerics.LinearAlgebra
         ComplexVector
         operator +(
             ComplexVector u,
-            ComplexVector v
-            )
+            ComplexVector v)
         {
             CheckMatchingVectorDimensions(u, v);
             return u.Add(v);
@@ -1334,8 +1241,7 @@ namespace MathNet.Numerics.LinearAlgebra
         ComplexVector
         operator +(
             ComplexVector complexVector,
-            Vector realVector
-            )
+            Vector realVector)
         {
             CheckMatchingVectorDimensions(complexVector, realVector);
             return complexVector.Add(realVector);
@@ -1348,8 +1254,7 @@ namespace MathNet.Numerics.LinearAlgebra
         ComplexVector
         operator +(
             ComplexVector complexVector,
-            Complex scalar
-            )
+            Complex scalar)
         {
             return complexVector.Add(scalar);
         }
@@ -1361,8 +1266,7 @@ namespace MathNet.Numerics.LinearAlgebra
         ComplexVector
         operator -(
             ComplexVector u,
-            ComplexVector v
-            )
+            ComplexVector v)
         {
             CheckMatchingVectorDimensions(u, v);
             return u.Subtract(v);
@@ -1375,8 +1279,7 @@ namespace MathNet.Numerics.LinearAlgebra
         ComplexVector
         operator -(
             ComplexVector complexVector,
-            Vector realVector
-            )
+            Vector realVector)
         {
             CheckMatchingVectorDimensions(complexVector, realVector);
             return complexVector.Subtract(realVector);
@@ -1389,8 +1292,7 @@ namespace MathNet.Numerics.LinearAlgebra
         ComplexVector
         operator -(
             ComplexVector complexVector,
-            Complex scalar
-            )
+            Complex scalar)
         {
             return complexVector.Subtract(scalar);
         }
@@ -1400,9 +1302,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </summary>
         public static
         ComplexVector
-        operator -(
-            ComplexVector v
-            )
+        operator -(ComplexVector v)
         {
             return v.Negate();
         }
@@ -1414,8 +1314,7 @@ namespace MathNet.Numerics.LinearAlgebra
         ComplexVector
         operator *(
             Complex scalar,
-            ComplexVector vector
-            )
+            ComplexVector vector)
         {
             return vector.Multiply(scalar);
         }
@@ -1427,8 +1326,7 @@ namespace MathNet.Numerics.LinearAlgebra
         ComplexVector
         operator *(
             ComplexVector vector,
-            Complex scalar
-            )
+            Complex scalar)
         {
             return vector.Multiply(scalar);
         }
@@ -1440,8 +1338,7 @@ namespace MathNet.Numerics.LinearAlgebra
         ComplexVector
         operator /(
             ComplexVector vector,
-            Complex scalar
-            )
+            Complex scalar)
         {
             return vector.Multiply(1 / scalar);
         }
@@ -1453,8 +1350,7 @@ namespace MathNet.Numerics.LinearAlgebra
         Complex
         operator *(
             ComplexVector u,
-            ComplexVector v
-            )
+            ComplexVector v)
         {
             return ScalarProduct(u, v);
         }
@@ -1466,8 +1362,7 @@ namespace MathNet.Numerics.LinearAlgebra
         Complex
         operator *(
             ComplexVector u,
-            Vector v
-            )
+            Vector v)
         {
             return ScalarProduct(u, v);
         }
@@ -1481,8 +1376,7 @@ namespace MathNet.Numerics.LinearAlgebra
         void
         CheckMatchingVectorDimensions(
             IVector<Complex> A,
-            IVector<Complex> B
-            )
+            IVector<Complex> B)
         {
             if(null == A)
             {
@@ -1505,8 +1399,7 @@ namespace MathNet.Numerics.LinearAlgebra
         void
         CheckMatchingVectorDimensions(
             IVector<Complex> A,
-            IVector<double> B
-            )
+            IVector<double> B)
         {
             if(null == A)
             {
@@ -1573,9 +1466,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// Index of an element.
         /// </summary>
         int
-        IList<Complex>.IndexOf(
-            Complex item
-            )
+        IList<Complex>.IndexOf(Complex item)
         {
             return Array.IndexOf(_data, item);
         }
@@ -1584,9 +1475,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// True if the vector contains some element.
         /// </summary>
         bool
-        ICollection<Complex>.Contains(
-            Complex item
-            )
+        ICollection<Complex>.Contains(Complex item)
         {
             return Array.IndexOf(_data, item) >= 0;
         }
@@ -1597,8 +1486,7 @@ namespace MathNet.Numerics.LinearAlgebra
         void
         ICollection<Complex>.CopyTo(
             Complex[] array,
-            int arrayIndex
-            )
+            int arrayIndex)
         {
             _data.CopyTo(array, arrayIndex);
         }
@@ -1641,9 +1529,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// Not Supported.
         /// </summary>
         void
-        ICollection<Complex>.Add(
-            Complex item
-            )
+        ICollection<Complex>.Add(Complex item)
         {
             throw new NotSupportedException();
         }
@@ -1654,8 +1540,7 @@ namespace MathNet.Numerics.LinearAlgebra
         void
         IList<Complex>.Insert(
             int index,
-            Complex item
-            )
+            Complex item)
         {
             throw new NotSupportedException();
         }
@@ -1664,9 +1549,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// Not Supported.
         /// </summary>
         bool
-        ICollection<Complex>.Remove(
-            Complex item
-            )
+        ICollection<Complex>.Remove(Complex item)
         {
             throw new NotSupportedException();
         }
@@ -1675,9 +1558,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// Not Supported.
         /// </summary>
         void
-        IList<Complex>.RemoveAt(
-            int index
-            )
+        IList<Complex>.RemoveAt(int index)
         {
             throw new NotSupportedException();
         }

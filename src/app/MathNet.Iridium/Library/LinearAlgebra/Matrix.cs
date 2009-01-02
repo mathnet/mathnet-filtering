@@ -122,10 +122,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="m">Number of rows.</param>
         /// <param name="n">Number of columns.</param>
         public
-        Matrix(
-            int m,
-            int n
-            )
+        Matrix(int m, int n)
         {
             _data = CreateMatrixData(m, n);
             _rowCount = m;
@@ -141,10 +138,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="m">Size of the square matrix.</param>
         /// <param name="s">Diagonal value.</param>
         public
-        Matrix(
-            int m,
-            double s
-            )
+        Matrix(int m, double s)
         {
             _data = new double[m][];
             _rowCount = m;
@@ -171,8 +165,7 @@ namespace MathNet.Numerics.LinearAlgebra
         Matrix(
             int m,
             int n,
-            double s
-            )
+            double s)
         {
             _data = new double[m][];
             _rowCount = m;
@@ -201,9 +194,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="Matrix.Create(double[][])"/>
         /// <seealso cref="Matrix.Create(double[,])"/>
         public
-        Matrix(
-            double[][] A
-            )
+        Matrix(double[][] A)
         {
             _data = A;
             GetRowColumnCount(_data, out _rowCount, out _columnCount);
@@ -219,9 +210,7 @@ namespace MathNet.Numerics.LinearAlgebra
         [Obsolete("Use 'Matrix.Create(double[,])' or 'new Matrix(double[][])' instead")]
         [CLSCompliant(false)]
         public
-        Matrix(
-            double[,] A
-            )
+        Matrix(double[,] A)
         {
             _rowCount = A.GetLength(0);
             _columnCount = A.GetLength(1);
@@ -251,8 +240,7 @@ namespace MathNet.Numerics.LinearAlgebra
         public
         Matrix(
             double[] vals,
-            int m
-            )
+            int m)
         {
             _rowCount = m;
             if(m == 0)
@@ -294,9 +282,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="A">Two-dimensional array of doubles.</param>
         public static
         Matrix
-        Create(
-            double[][] A
-            )
+        Create(double[][] A)
         {
             return new Matrix(CloneMatrixData(A));
         }
@@ -308,9 +294,7 @@ namespace MathNet.Numerics.LinearAlgebra
         [CLSCompliant(false)]
         public static
         Matrix
-        Create(
-            double[,] A
-            )
+        Create(double[,] A)
         {
             int rows = A.GetLength(0);
             int columns = A.GetLength(1);
@@ -341,9 +325,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </remarks>
         public static
         Matrix
-        CreateFromColumn(
-            Vector columnVector
-            )
+        CreateFromColumn(Vector columnVector)
         {
             if(null == columnVector)
             {
@@ -372,9 +354,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </remarks>
         public static
         Matrix
-        CreateFromRow(
-            Vector rowVector
-            )
+        CreateFromRow(Vector rowVector)
         {
             if(null == rowVector)
             {
@@ -393,9 +373,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </summary>
         public static
         Matrix
-        CreateFromColumns(
-            IList<Vector> columnVectors
-            )
+        CreateFromColumns(IList<Vector> columnVectors)
         {
             if(null == columnVectors)
             {
@@ -430,9 +408,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </summary>
         public static
         Matrix
-        CreateFromRows(
-            IList<Vector> rowVectors
-            )
+        CreateFromRows(IList<Vector> rowVectors)
         {
             if(null == rowVectors)
             {
@@ -463,10 +439,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <returns>An m-by-n matrix with ones on the diagonal and zeros elsewhere.</returns>
         public static
         Matrix
-        Identity(
-            int m,
-            int n
-            )
+        Identity(int m, int n)
         {
             double[][] data = new double[m][];
             for(int i = 0; i < m; i++)
@@ -489,9 +462,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="m">Number of rows = Number of columns</param>
         public static
         Matrix
-        Ones(
-            int m
-            )
+        Ones(int m)
         {
             return new Matrix(m, m, 1.0);
         }
@@ -502,9 +473,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="m">Number of rows = Number of columns</param>
         public static
         Matrix
-        Zeros(
-            int m
-            )
+        Zeros(int m)
         {
             return new Matrix(m, m);
         }
@@ -523,8 +492,7 @@ namespace MathNet.Numerics.LinearAlgebra
         Diagonal(
             IVector<double> diagonalVector,
             int m,
-            int n
-            )
+            int n)
         {
             double[][] data = new double[m][];
             for(int i = 0; i < m; i++)
@@ -550,9 +518,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </returns>
         public static
         Matrix
-        Diagonal(
-            IVector<double> diagonalVector
-            )
+        Diagonal(IVector<double> diagonalVector)
         {
             return Diagonal(diagonalVector, diagonalVector.Length, diagonalVector.Length);
         }
@@ -569,8 +535,7 @@ namespace MathNet.Numerics.LinearAlgebra
         Random(
             int m,
             int n,
-            IContinuousGenerator randomDistribution
-            )
+            IContinuousGenerator randomDistribution)
         {
             double[][] data = new double[m][];
             for(int i = 0; i < m; i++)
@@ -596,10 +561,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// random elements in <c>[0, 1)</c> interval.</returns>
         public static
         Matrix
-        Random(
-            int m,
-            int n
-            )
+        Random(int m, int n)
         {
             return Random(m, n, new StandardDistribution());
         }
@@ -651,18 +613,14 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <summary>Implicit convertion to a <c>double[,]</c> array.</summary>
         [Obsolete("Convert to double[][] instead.")]
         public static explicit
-        operator double[,](
-            Matrix m
-            )
+        operator double[,](Matrix m)
         {
             return m.CopyToArray();
         }
 
         /// <summary>Implicit convertion to a <c>double[][]</c> array.</summary>
         public static implicit
-        operator double[][](
-            Matrix m
-            )
+        operator double[][](Matrix m)
         {
             return m._data;
         }
@@ -672,9 +630,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </summary>
         /// <param name="m">Exactly one column expected.</param>
         public static explicit
-        operator double[](
-            Matrix m
-            )
+        operator double[](Matrix m)
         {
             if(m.ColumnCount != 1)
             {
@@ -695,9 +651,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </summary>
         /// <param name="m">1-by-1 Matrix</param>
         public static explicit
-        operator double(
-            Matrix m
-            )
+        operator double(Matrix m)
         {
             if(m.ColumnCount != 1 || m.RowCount != 1)
             {
@@ -719,10 +673,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="n">Number of columns.</param>
         public static
         double[][]
-        CreateMatrixData(
-            int m,
-            int n
-            )
+        CreateMatrixData(int m, int n)
         {
             double[][] data = new double[m][];
             for(int i = 0; i < m; i++)
@@ -738,9 +689,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </summary>
         public static
         double[][]
-        CloneMatrixData(
-            double[][] data
-            )
+        CloneMatrixData(double[][] data)
         {
             int rows, columns;
             GetRowColumnCount(data, out rows, out columns);
@@ -767,8 +716,7 @@ namespace MathNet.Numerics.LinearAlgebra
         GetRowColumnCount(
             double[][] data,
             out int rows,
-            out int columns
-            )
+            out int columns)
         {
             rows = data.Length;
             columns = (rows == 0) ? 0 : data[0].Length;
@@ -783,9 +731,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </summary>
         public
         Vector
-        GetColumnVector(
-            int columnIndex
-            )
+        GetColumnVector(int columnIndex)
         {
             if(columnIndex < 0 || columnIndex >= _columnCount)
             {
@@ -807,9 +753,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </summary>
         public
         Vector
-        GetRowVector(
-            int rowIndex
-            )
+        GetRowVector(int rowIndex)
         {
             if(rowIndex < 0 || rowIndex >= _rowCount)
             {
@@ -829,8 +773,7 @@ namespace MathNet.Numerics.LinearAlgebra
         void
         SetColumnVector(
             IVector<double> columnVector,
-            int columnIndex
-            )
+            int columnIndex)
         {
             if(null == columnVector)
             {
@@ -862,8 +805,7 @@ namespace MathNet.Numerics.LinearAlgebra
         void
         SetRowVector(
             IVector<double> rowVector,
-            int rowIndex
-            )
+            int rowIndex)
         {
             if(null == rowVector)
             {
@@ -900,8 +842,7 @@ namespace MathNet.Numerics.LinearAlgebra
             int i0,
             int i1,
             int j0,
-            int j1
-            )
+            int j1)
         {
             double[][] newData = CreateMatrixData(i1 - i0 + 1, j1 - j0 + 1);
             try
@@ -933,8 +874,7 @@ namespace MathNet.Numerics.LinearAlgebra
         Matrix
         GetMatrix(
             int[] r,
-            int[] c
-            )
+            int[] c)
         {
             double[][] newData = CreateMatrixData(r.Length, c.Length);
             try
@@ -968,8 +908,7 @@ namespace MathNet.Numerics.LinearAlgebra
         GetMatrix(
             int i0,
             int i1,
-            int[] c
-            )
+            int[] c)
         {
             double[][] newData = CreateMatrixData(i1 - i0 + 1, c.Length);
             try
@@ -1003,8 +942,7 @@ namespace MathNet.Numerics.LinearAlgebra
         GetMatrix(
             int[] r,
             int j0,
-            int j1
-            )
+            int j1)
         {
             double[][] newData = CreateMatrixData(r.Length, j1 - j0 + 1);
             try
@@ -1041,8 +979,7 @@ namespace MathNet.Numerics.LinearAlgebra
             int i1,
             int j0,
             int j1,
-            IMatrix<double> X
-            )
+            IMatrix<double> X)
         {
             try
             {
@@ -1074,8 +1011,7 @@ namespace MathNet.Numerics.LinearAlgebra
         SetMatrix(
             int[] r,
             int[] c,
-            IMatrix<double> X
-            )
+            IMatrix<double> X)
         {
             try
             {
@@ -1109,8 +1045,7 @@ namespace MathNet.Numerics.LinearAlgebra
             int[] r,
             int j0,
             int j1,
-            IMatrix<double> X
-            )
+            IMatrix<double> X)
         {
             try
             {
@@ -1144,8 +1079,7 @@ namespace MathNet.Numerics.LinearAlgebra
             int i0,
             int i1,
             int[] c,
-            IMatrix<double> X
-            )
+            IMatrix<double> X)
         {
             try
             {
@@ -1255,9 +1189,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator + (Matrix, Matrix)"/>
         public virtual
         void
-        Add(
-            IMatrix<double> m
-            )
+        Add(IMatrix<double> m)
         {
             CheckMatchingMatrixDimensions(this, m);
 
@@ -1278,9 +1210,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator * (double, Matrix)"/>
         public virtual
         void
-        Multiply(
-            double s
-            )
+        Multiply(double s)
         {
             for(int i = 0; i < _rowCount; i++)
             {
@@ -1302,9 +1232,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <exception cref="ArgumentException">Matrix inner dimensions must agree.</exception>
         public virtual
         void
-        Multiply(
-            double[] diagonal
-            )
+        Multiply(double[] diagonal)
         {
             if(diagonal == null)
             {
@@ -1335,9 +1263,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <exception cref="ArgumentException">Matrix inner dimensions must agree.</exception>
         public
         Matrix
-        Multiply(
-            Matrix B
-            )
+        Multiply(Matrix B)
         {
             if(B == null)
             {
@@ -1383,9 +1309,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator - (Matrix, Matrix)"/>
         public virtual
         void
-        Subtract(
-            IMatrix<double> m
-            )
+        Subtract(IMatrix<double> m)
         {
             CheckMatchingMatrixDimensions(this, m);
 
@@ -1473,9 +1397,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <summary>Gets the transposition of the provided <c>Matrix</c>.</summary>
         public static
         Matrix
-        Transpose(
-            IMatrix<double> m
-            )
+        Transpose(IMatrix<double> m)
         {
             double[][] newData = CreateMatrixData(m.ColumnCount, m.RowCount);
             for(int i = 0; i < m.RowCount; i++)
@@ -1494,8 +1416,7 @@ namespace MathNet.Numerics.LinearAlgebra
         Matrix
         KroneckerProduct(
             Matrix A,
-            Matrix B
-            )
+            Matrix B)
         {
             // Matrix to be created
             Matrix outMat = new Matrix(A.RowCount * B.RowCount, A.ColumnCount * B.ColumnCount);
@@ -1514,8 +1435,7 @@ namespace MathNet.Numerics.LinearAlgebra
                         rowOffset + B.RowCount - 1,
                         colOffset,
                         colOffset + B.RowCount - 1,
-                        partMat
-                        );
+                        partMat);
                 }
             }
 
@@ -1527,9 +1447,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <returns>Kronecker Product of this and the given matrix.</returns>
         public
         Matrix
-        TensorMultiply(
-            Matrix B
-            )
+        TensorMultiply(Matrix B)
         {
             return KroneckerProduct(this, B);
         }
@@ -1547,9 +1465,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="ArrayMultiply(IMatrix&lt;double&gt;, IMatrix&lt;double&gt;)"/>
         public
         void
-        ArrayMultiply(
-            IMatrix<double> m
-            )
+        ArrayMultiply(IMatrix<double> m)
         {
             CheckMatchingMatrixDimensions(this, m);
 
@@ -1575,8 +1491,7 @@ namespace MathNet.Numerics.LinearAlgebra
         Matrix
         ArrayMultiply(
             IMatrix<double> m1,
-            IMatrix<double> m2
-            )
+            IMatrix<double> m2)
         {
             CheckMatchingMatrixDimensions(m1, m2);
 
@@ -1601,9 +1516,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="ArrayDivide(IMatrix&lt;double&gt;, IMatrix&lt;double&gt;)"/>
         public
         void
-        ArrayDivide(
-            IMatrix<double> m
-            )
+        ArrayDivide(IMatrix<double> m)
         {
             CheckMatchingMatrixDimensions(this, m);
 
@@ -1629,8 +1542,7 @@ namespace MathNet.Numerics.LinearAlgebra
         Matrix
         ArrayDivide(
             IMatrix<double> m1,
-            IMatrix<double> m2
-            )
+            IMatrix<double> m2)
         {
             CheckMatchingMatrixDimensions(m1, m2);
 
@@ -1652,9 +1564,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="ArrayPower(IMatrix&lt;double&gt;, double)"/>
         public
         void
-        ArrayPower(
-            double exponent
-            )
+        ArrayPower(double exponent)
         {
             for(int i = 0; i < _rowCount; i++)
             {
@@ -1675,8 +1585,7 @@ namespace MathNet.Numerics.LinearAlgebra
         Matrix
         ArrayPower(
             IMatrix<double> m,
-            double exponent
-            )
+            double exponent)
         {
             double[][] newData = CreateMatrixData(m.RowCount, m.ColumnCount);
             for(int i = 0; i < m.RowCount; i++)
@@ -1696,9 +1605,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="ArrayMap(IMatrix&lt;double&gt;, Converter&lt;double, double&gt;)"/>
         public
         void
-        ArrayMap(
-            Converter<double, double> mapping
-            )
+        ArrayMap(Converter<double, double> mapping)
         {
             for(int i = 0; i < _rowCount; i++)
             {
@@ -1719,8 +1626,7 @@ namespace MathNet.Numerics.LinearAlgebra
         Matrix
         ArrayMap(
             IMatrix<double> m,
-            Converter<double, double> mapping
-            )
+            Converter<double, double> mapping)
         {
             double[][] newData = CreateMatrixData(m.RowCount, m.ColumnCount);
             for(int i = 0; i < m.RowCount; i++)
@@ -1857,9 +1763,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <exception cref="InvalidOperationException">Matrix rank is deficient.</exception>
         public virtual
         Matrix
-        Solve(
-            Matrix B
-            )
+        Solve(Matrix B)
         {
             // square case:
             if(_rowCount == _columnCount)
@@ -1894,9 +1798,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </remarks>
         public
         Vector
-        Solve(
-            Vector b
-            )
+        Solve(Vector b)
         {
             // Redirect to matrix version (until LU and QR directly support vectors).
             Matrix mb = Matrix.CreateFromColumn(b);
@@ -1912,9 +1814,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <exception cref="InvalidOperationException">Matrix rank is deficient.</exception>
         public virtual
         Matrix
-        SolveRobust(
-            Matrix B
-            )
+        SolveRobust(Matrix B)
         {
             if(_rowCount == _columnCount)
             {
@@ -1986,9 +1886,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <returns>solution if A is square, least squares solution otherwise.</returns>
         public virtual
         Matrix
-        SolveTranspose(
-            Matrix B
-            )
+        SolveTranspose(Matrix B)
         {
             return Transpose(this).Solve(Transpose(B));
         }
@@ -2088,8 +1986,7 @@ namespace MathNet.Numerics.LinearAlgebra
         Matrix
         operator +(
             Matrix m1,
-            Matrix m2
-            )
+            Matrix m2)
         {
             CheckMatchingMatrixDimensions(m1, m2);
 
@@ -2110,8 +2007,7 @@ namespace MathNet.Numerics.LinearAlgebra
         Matrix
         operator -(
             Matrix m1,
-            Matrix m2
-            )
+            Matrix m2)
         {
             CheckMatchingMatrixDimensions(m1, m2);
 
@@ -2130,9 +2026,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <summary>Negation of a matrix</summary>
         public static
         Matrix
-        operator -(
-            Matrix m1
-            )
+        operator -(Matrix m1)
         {
             double[][] newData = CreateMatrixData(m1.RowCount, m1.ColumnCount);
             for(int i = 0; i < m1.RowCount; i++)
@@ -2152,8 +2046,7 @@ namespace MathNet.Numerics.LinearAlgebra
         Matrix
         operator *(
             Matrix m1,
-            Matrix m2
-            )
+            Matrix m2)
         {
             if(m2.RowCount != m1.ColumnCount)
             {
@@ -2183,8 +2076,7 @@ namespace MathNet.Numerics.LinearAlgebra
         Matrix
         operator *(
             double s,
-            Matrix m
-            )
+            Matrix m)
         {
             double[][] newData = CreateMatrixData(m.RowCount, m.ColumnCount);
             for(int i = 0; i < m.RowCount; i++)
@@ -2203,8 +2095,7 @@ namespace MathNet.Numerics.LinearAlgebra
         Matrix
         operator *(
             Matrix m,
-            double s
-            )
+            double s)
         {
             return s * m;
         }
@@ -2218,8 +2109,7 @@ namespace MathNet.Numerics.LinearAlgebra
         void
         CheckMatchingMatrixDimensions(
             IMatrix<double> A,
-            IMatrix<double> B
-            )
+            IMatrix<double> B)
         {
             if(A.RowCount != B.RowCount || A.ColumnCount != B.ColumnCount)
             {
@@ -2252,8 +2142,7 @@ namespace MathNet.Numerics.LinearAlgebra
         AlmostEqual(
             Matrix X,
             Matrix Y,
-            double relativeAccuracy
-            )
+            double relativeAccuracy)
         {
             return Number.AlmostEqualNorm(X.Norm1(), Y.Norm1(), (X - Y).Norm1(), relativeAccuracy);
         }
@@ -2265,8 +2154,7 @@ namespace MathNet.Numerics.LinearAlgebra
         bool
         AlmostEqual(
             Matrix X,
-            Matrix Y
-            )
+            Matrix Y)
         {
             return Number.AlmostEqualNorm(X.Norm1(), Y.Norm1(), (X - Y).Norm1(), 10 * Number.DefaultRelativeAccuracy);
         }

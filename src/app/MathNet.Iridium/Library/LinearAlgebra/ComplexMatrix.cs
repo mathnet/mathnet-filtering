@@ -105,10 +105,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="m">Number of rows.</param>
         /// <param name="n">Number of columns.</param>
         public
-        ComplexMatrix(
-            int m,
-            int n
-            )
+        ComplexMatrix(int m, int n)
         {
             _data = CreateMatrixData(m, n);
             _rowCount = m;
@@ -126,8 +123,7 @@ namespace MathNet.Numerics.LinearAlgebra
         public
         ComplexMatrix(
             int m,
-            Complex s
-            )
+            Complex s)
         {
             _data = new Complex[m][];
             _rowCount = m;
@@ -154,8 +150,7 @@ namespace MathNet.Numerics.LinearAlgebra
         ComplexMatrix(
             int m,
             int n,
-            Complex s
-            )
+            Complex s)
         {
             _data = new Complex[m][];
             _rowCount = m;
@@ -184,9 +179,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="ComplexMatrix.Create(Complex[][])"/>
         /// <seealso cref="ComplexMatrix.Create(Complex[,])"/>
         public
-        ComplexMatrix(
-            Complex[][] A
-            )
+        ComplexMatrix(Complex[][] A)
         {
             _data = A;
             GetRowColumnCount(_data, out _rowCount, out _columnCount);
@@ -204,8 +197,7 @@ namespace MathNet.Numerics.LinearAlgebra
         public
         ComplexMatrix(
             Complex[] vals,
-            int m
-            )
+            int m)
         {
             _rowCount = m;
             if(m == 0)
@@ -247,9 +239,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="A">Two-dimensional array of complex numbers.</param>
         public static
         ComplexMatrix
-        Create(
-            Complex[][] A
-            )
+        Create(Complex[][] A)
         {
             return new ComplexMatrix(CloneMatrixData(A));
         }
@@ -261,9 +251,7 @@ namespace MathNet.Numerics.LinearAlgebra
         [CLSCompliant(false)]
         public static
         ComplexMatrix
-        Create(
-            Complex[,] A
-            )
+        Create(Complex[,] A)
         {
             int rows = A.GetLength(0);
             int columns = A.GetLength(1);
@@ -289,9 +277,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="realMatrix">The real matrix to copy from.</param>
         public static
         ComplexMatrix
-        Create(
-            IMatrix<double> realMatrix
-            )
+        Create(IMatrix<double> realMatrix)
         {
             int rows = realMatrix.RowCount;
             int columns = realMatrix.ColumnCount;
@@ -316,9 +302,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </summary>
         public static
         ComplexMatrix
-        CreateFromColumns(
-            IList<ComplexVector> columnVectors
-            )
+        CreateFromColumns(IList<ComplexVector> columnVectors)
         {
             if(null == columnVectors)
             {
@@ -353,9 +337,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </summary>
         public static
         ComplexMatrix
-        CreateFromRows(
-            IList<ComplexVector> rowVectors
-            )
+        CreateFromRows(IList<ComplexVector> rowVectors)
         {
             if(null == rowVectors)
             {
@@ -386,10 +368,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <returns>An m-by-n matrix with ones on the diagonal and zeros elsewhere.</returns>
         public static
         ComplexMatrix
-        Identity(
-            int m,
-            int n
-            )
+        Identity(int m, int n)
         {
             Complex[][] data = new Complex[m][];
             for(int i = 0; i < m; i++)
@@ -420,8 +399,7 @@ namespace MathNet.Numerics.LinearAlgebra
         Diagonal(
             IVector<Complex> diagonalVector,
             int m,
-            int n
-            )
+            int n)
         {
             Complex[][] data = new Complex[m][];
             for(int i = 0; i < m; i++)
@@ -447,9 +425,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </returns>
         public static
         ComplexMatrix
-        Diagonal(
-            IVector<Complex> diagonalVector
-            )
+        Diagonal(IVector<Complex> diagonalVector)
         {
             return Diagonal(diagonalVector, diagonalVector.Length, diagonalVector.Length);
         }
@@ -460,9 +436,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="m">Number of rows = Number of columns</param>
         public static
         ComplexMatrix
-        Ones(
-            int m
-            )
+        Ones(int m)
         {
             return new ComplexMatrix(m, m, Complex.One);
         }
@@ -473,9 +447,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="m">Number of rows = Number of columns</param>
         public static
         ComplexMatrix
-        Zeros(
-            int m
-            )
+        Zeros(int m)
         {
             return new ComplexMatrix(m, m);
         }
@@ -492,8 +464,7 @@ namespace MathNet.Numerics.LinearAlgebra
         Random(
             int m,
             int n,
-            IContinuousGenerator randomDistribution
-            )
+            IContinuousGenerator randomDistribution)
         {
             Complex[][] data = new Complex[m][];
             for(int i = 0; i < m; i++)
@@ -503,8 +474,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     col[j] = Complex.Random(
                         randomDistribution,
-                        randomDistribution
-                        );
+                        randomDistribution);
                 }
 
                 data[i] = col;
@@ -525,8 +495,7 @@ namespace MathNet.Numerics.LinearAlgebra
         RandomReal(
             int m,
             int n,
-            IContinuousGenerator realRandomDistribution
-            )
+            IContinuousGenerator realRandomDistribution)
         {
             Complex[][] data = new Complex[m][];
             for(int i = 0; i < m; i++)
@@ -536,8 +505,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     col[j] = new Complex(
                         realRandomDistribution.NextDouble(),
-                        0d
-                        );
+                        0d);
                 }
 
                 data[i] = col;
@@ -560,8 +528,7 @@ namespace MathNet.Numerics.LinearAlgebra
             int m,
             int n,
             IContinuousGenerator modulusRandomDistribution,
-            IContinuousGenerator argumentRandomDistribution
-            )
+            IContinuousGenerator argumentRandomDistribution)
         {
             Complex[][] data = new Complex[m][];
             for(int i = 0; i < m; i++)
@@ -571,8 +538,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 {
                     col[j] = Complex.RandomPolar(
                         modulusRandomDistribution,
-                        argumentRandomDistribution
-                        );
+                        argumentRandomDistribution);
                 }
 
                 data[i] = col;
@@ -593,8 +559,7 @@ namespace MathNet.Numerics.LinearAlgebra
         RandomUnitCircle(
             int m,
             int n,
-            IContinuousGenerator argumentRandomDistribution
-            )
+            IContinuousGenerator argumentRandomDistribution)
         {
             Complex[][] data = new Complex[m][];
             for(int i = 0; i < m; i++)
@@ -603,8 +568,7 @@ namespace MathNet.Numerics.LinearAlgebra
                 for(int j = 0; j < n; j++)
                 {
                     col[j] = Complex.RandomUnitCircle(
-                        argumentRandomDistribution
-                        );
+                        argumentRandomDistribution);
                 }
 
                 data[i] = col;
@@ -659,9 +623,7 @@ namespace MathNet.Numerics.LinearAlgebra
 
         /// <summary>Implicit convertion to a <c>Complex[][]</c> array.</summary>
         public static implicit
-        operator Complex[][](
-            ComplexMatrix m
-            )
+        operator Complex[][](ComplexMatrix m)
         {
             return m._data;
         }
@@ -671,9 +633,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </summary>
         /// <param name="m">Exactly one column expected.</param>
         public static explicit
-        operator Complex[](
-            ComplexMatrix m
-            )
+        operator Complex[](ComplexMatrix m)
         {
             if(m.ColumnCount != 1)
             {
@@ -694,9 +654,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </summary>
         /// <param name="m">1-by-1 Matrix</param>
         public static explicit
-        operator Complex(
-            ComplexMatrix m
-            )
+        operator Complex(ComplexMatrix m)
         {
             if(m.ColumnCount != 1 || m.RowCount != 1)
             {
@@ -719,10 +677,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="n">Number of columns.</param>
         public static
         Complex[][]
-        CreateMatrixData(
-            int m,
-            int n
-            )
+        CreateMatrixData(int m, int n)
         {
             Complex[][] data = new Complex[m][];
             for(int i = 0; i < m; i++)
@@ -738,9 +693,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </summary>
         public static
         Complex[][]
-        CloneMatrixData(
-            Complex[][] data
-            )
+        CloneMatrixData(Complex[][] data)
         {
             int rows, columns;
             GetRowColumnCount(data, out rows, out columns);
@@ -767,8 +720,7 @@ namespace MathNet.Numerics.LinearAlgebra
         GetRowColumnCount(
             Complex[][] data,
             out int rows,
-            out int columns
-            )
+            out int columns)
         {
             rows = data.Length;
             columns = (rows == 0) ? 0 : data[0].Length;
@@ -783,9 +735,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </summary>
         public
         ComplexVector
-        GetColumnVector(
-            int columnIndex
-            )
+        GetColumnVector(int columnIndex)
         {
             if(columnIndex < 0 || columnIndex >= _columnCount)
             {
@@ -807,9 +757,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </summary>
         public
         ComplexVector
-        GetRowVector(
-            int rowIndex
-            )
+        GetRowVector(int rowIndex)
         {
             if(rowIndex < 0 || rowIndex >= _rowCount)
             {
@@ -829,8 +777,7 @@ namespace MathNet.Numerics.LinearAlgebra
         void
         SetColumnVector(
             IVector<Complex> columnVector,
-            int columnIndex
-            )
+            int columnIndex)
         {
             if(null == columnVector)
             {
@@ -862,8 +809,7 @@ namespace MathNet.Numerics.LinearAlgebra
         void
         SetRowVector(
             IVector<Complex> rowVector,
-            int rowIndex
-            )
+            int rowIndex)
         {
             if(null == rowVector)
             {
@@ -900,8 +846,7 @@ namespace MathNet.Numerics.LinearAlgebra
             int i0,
             int i1,
             int j0,
-            int j1
-            )
+            int j1)
         {
             Complex[][] newData = CreateMatrixData(i1 - i0 + 1, j1 - j0 + 1);
             try
@@ -933,8 +878,7 @@ namespace MathNet.Numerics.LinearAlgebra
         ComplexMatrix
         GetMatrix(
             int[] r,
-            int[] c
-            )
+            int[] c)
         {
             Complex[][] newData = CreateMatrixData(r.Length, c.Length);
             try
@@ -968,8 +912,7 @@ namespace MathNet.Numerics.LinearAlgebra
         GetMatrix(
             int i0,
             int i1,
-            int[] c
-            )
+            int[] c)
         {
             Complex[][] newData = CreateMatrixData(i1 - i0 + 1, c.Length);
             try
@@ -1003,8 +946,7 @@ namespace MathNet.Numerics.LinearAlgebra
         GetMatrix(
             int[] r,
             int j0,
-            int j1
-            )
+            int j1)
         {
             Complex[][] newData = CreateMatrixData(r.Length, j1 - j0 + 1);
             try
@@ -1041,8 +983,7 @@ namespace MathNet.Numerics.LinearAlgebra
             int i1,
             int j0,
             int j1,
-            IMatrix<Complex> X
-            )
+            IMatrix<Complex> X)
         {
             try
             {
@@ -1074,8 +1015,7 @@ namespace MathNet.Numerics.LinearAlgebra
         SetMatrix(
             int[] r,
             int[] c,
-            IMatrix<Complex> X
-            )
+            IMatrix<Complex> X)
         {
             try
             {
@@ -1109,8 +1049,7 @@ namespace MathNet.Numerics.LinearAlgebra
             int[] r,
             int j0,
             int j1,
-            IMatrix<Complex> X
-            )
+            IMatrix<Complex> X)
         {
             try
             {
@@ -1144,8 +1083,7 @@ namespace MathNet.Numerics.LinearAlgebra
             int i0,
             int i1,
             int[] c,
-            IMatrix<Complex> X
-            )
+            IMatrix<Complex> X)
         {
             try
             {
@@ -1209,9 +1147,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator + (ComplexMatrix, ComplexMatrix)"/>
         public
         ComplexMatrix
-        Add(
-            IMatrix<Complex> b
-            )
+        Add(IMatrix<Complex> b)
         {
             CheckMatchingMatrixDimensions(this, b);
 
@@ -1245,9 +1181,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator + (ComplexMatrix, Matrix)"/>
         public
         ComplexMatrix
-        Add(
-            IMatrix<double> b
-            )
+        Add(IMatrix<double> b)
         {
             CheckMatchingMatrixDimensions(this, b);
 
@@ -1281,9 +1215,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator + (ComplexMatrix, Complex)"/>
         public
         ComplexMatrix
-        Add(
-            Complex b
-            )
+        Add(Complex b)
         {
             Complex[][] newData = new Complex[_rowCount][];
             for(int i = 0; i < newData.Length; i++)
@@ -1312,9 +1244,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator + (ComplexMatrix, ComplexMatrix)"/>
         public
         void
-        AddInplace(
-            IMatrix<Complex> b
-            )
+        AddInplace(IMatrix<Complex> b)
         {
             CheckMatchingMatrixDimensions(this, b);
 
@@ -1340,9 +1270,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator + (ComplexMatrix, Matrix)"/>
         public
         void
-        AddInplace(
-            IMatrix<double> b
-            )
+        AddInplace(IMatrix<double> b)
         {
             CheckMatchingMatrixDimensions(this, b);
 
@@ -1368,9 +1296,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator + (ComplexMatrix, Complex)"/>
         public
         void
-        AddInplace(
-            Complex b
-            )
+        AddInplace(Complex b)
         {
             for(int i = 0; i < _rowCount; i++)
             {
@@ -1397,9 +1323,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator - (ComplexMatrix, ComplexMatrix)"/>
         public
         ComplexMatrix
-        Subtract(
-            IMatrix<Complex> b
-            )
+        Subtract(IMatrix<Complex> b)
         {
             CheckMatchingMatrixDimensions(this, b);
 
@@ -1433,9 +1357,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator - (ComplexMatrix, Matrix)"/>
         public
         ComplexMatrix
-        Subtract(
-            IMatrix<double> b
-            )
+        Subtract(IMatrix<double> b)
         {
             CheckMatchingMatrixDimensions(this, b);
 
@@ -1469,9 +1391,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator - (ComplexMatrix, Complex)"/>
         public
         ComplexMatrix
-        Subtract(
-            Complex b
-            )
+        Subtract(Complex b)
         {
             Complex[][] newData = new Complex[_rowCount][];
             for(int i = 0; i < newData.Length; i++)
@@ -1500,9 +1420,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator - (ComplexMatrix, ComplexMatrix)"/>
         public
         void
-        SubtractInplace(
-            IMatrix<Complex> b
-            )
+        SubtractInplace(IMatrix<Complex> b)
         {
             CheckMatchingMatrixDimensions(this, b);
 
@@ -1528,9 +1446,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator - (ComplexMatrix, Matrix)"/>
         public
         void
-        SubtractInplace(
-            IMatrix<double> b
-            )
+        SubtractInplace(IMatrix<double> b)
         {
             CheckMatchingMatrixDimensions(this, b);
 
@@ -1556,9 +1472,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator - (ComplexMatrix, Complex)"/>
         public
         void
-        SubtractInplace(
-            Complex b
-            )
+        SubtractInplace(Complex b)
         {
             for(int i = 0; i < _rowCount; i++)
             {
@@ -1675,9 +1589,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <exception cref="ArgumentException">Matrix inner dimensions must agree.</exception>
         public
         ComplexMatrix
-        Multiply(
-            IMatrix<Complex> b
-            )
+        Multiply(IMatrix<Complex> b)
         {
             if(null == b)
             {
@@ -1755,9 +1667,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <exception cref="ArgumentException">Matrix inner dimensions must agree.</exception>
         public
         ComplexMatrix
-        Multiply(
-            IMatrix<double> b
-            )
+        Multiply(IMatrix<double> b)
         {
             if(null == b)
             {
@@ -1807,9 +1717,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <exception cref="ArgumentException">Matrix inner dimensions must agree.</exception>
         public
         ComplexMatrix
-        Multiply(
-            Complex b
-            )
+        Multiply(Complex b)
         {
             Complex[][] newData = new Complex[_rowCount][];
             for(int i = 0; i < newData.Length; i++)
@@ -1840,9 +1748,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <exception cref="ArgumentException">Matrix inner dimensions must agree.</exception>
         public
         void
-        MultiplyInplace(
-            IMatrix<Complex> b
-            )
+        MultiplyInplace(IMatrix<Complex> b)
         {
             if(null == b)
             {
@@ -1894,9 +1800,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <exception cref="ArgumentException">Matrix inner dimensions must agree.</exception>
         public
         void
-        MultiplyInplace(
-            IMatrix<double> b
-            )
+        MultiplyInplace(IMatrix<double> b)
         {
             if(null == b)
             {
@@ -1946,9 +1850,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator * (ComplexMatrix, Complex)"/>
         public
         void
-        MultiplyInplace(
-            Complex b
-            )
+        MultiplyInplace(Complex b)
         {
             for(int i = 0; i < _rowCount; i++)
             {
@@ -1976,9 +1878,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <exception cref="ArgumentException">Matrix inner dimensions must agree.</exception>
         public
         ComplexVector
-        MultiplyRightColumn(
-            IVector<Complex> b
-            )
+        MultiplyRightColumn(IVector<Complex> b)
         {
             if(null == b)
             {
@@ -2021,9 +1921,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <exception cref="ArgumentException">Matrix inner dimensions must agree.</exception>
         public
         ComplexVector
-        MultiplyRightColumn(
-            IVector<double> b
-            )
+        MultiplyRightColumn(IVector<double> b)
         {
             if(null == b)
             {
@@ -2064,9 +1962,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </remarks>
         public
         ComplexMatrix
-        MultiplyLeftDiagonal(
-            IVector<Complex> diagonal
-            )
+        MultiplyLeftDiagonal(IVector<Complex> diagonal)
         {
             if(null == diagonal)
             {
@@ -2108,9 +2004,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </remarks>
         public
         ComplexMatrix
-        MultiplyLeftDiagonal(
-            IVector<double> diagonal
-            )
+        MultiplyLeftDiagonal(IVector<double> diagonal)
         {
             if(null == diagonal)
             {
@@ -2149,9 +2043,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </remarks>
         public
         void
-        MultiplyLeftDiagonalInplace(
-            IVector<Complex> diagonal
-            )
+        MultiplyLeftDiagonalInplace(IVector<Complex> diagonal)
         {
             if(null == diagonal)
             {
@@ -2186,9 +2078,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </remarks>
         public
         void
-        MultiplyLeftDiagonalInplace(
-            IVector<double> diagonal
-            )
+        MultiplyLeftDiagonalInplace(IVector<double> diagonal)
         {
             if(null == diagonal)
             {
@@ -2226,9 +2116,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </remarks>
         public
         ComplexMatrix
-        MultiplyRightDiagonal(
-            IVector<Complex> diagonal
-            )
+        MultiplyRightDiagonal(IVector<Complex> diagonal)
         {
             if(null == diagonal)
             {
@@ -2269,9 +2157,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </remarks>
         public
         ComplexMatrix
-        MultiplyRightDiagonal(
-            IVector<double> diagonal
-            )
+        MultiplyRightDiagonal(IVector<double> diagonal)
         {
             if(null == diagonal)
             {
@@ -2309,9 +2195,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </remarks>
         public
         void
-        MultiplyRightDiagonalInplace(
-            IVector<Complex> diagonal
-            )
+        MultiplyRightDiagonalInplace(IVector<Complex> diagonal)
         {
             if(null == diagonal)
             {
@@ -2345,9 +2229,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </remarks>
         public
         void
-        MultiplyRightDiagonalInplace(
-            IVector<double> diagonal
-            )
+        MultiplyRightDiagonalInplace(IVector<double> diagonal)
         {
             if(null == diagonal)
             {
@@ -2491,9 +2373,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </returns>
         public
         ComplexMatrix
-        TensorMultiply(
-            ComplexMatrix B
-            )
+        TensorMultiply(ComplexMatrix B)
         {
             return KroneckerProduct(this, B);
         }
@@ -2505,8 +2385,7 @@ namespace MathNet.Numerics.LinearAlgebra
         ComplexMatrix
         KroneckerProduct(
             ComplexMatrix A,
-            ComplexMatrix B
-            )
+            ComplexMatrix B)
         {
             // Matrix to be created
             ComplexMatrix outMat = new ComplexMatrix(A.RowCount * B.RowCount, A.ColumnCount * B.ColumnCount);
@@ -2525,8 +2404,7 @@ namespace MathNet.Numerics.LinearAlgebra
                         rowOffset + B.RowCount - 1,
                         colOffset,
                         colOffset + B.RowCount - 1,
-                        partMat
-                        );
+                        partMat);
                 }
             }
 
@@ -2547,9 +2425,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="ArrayMultiplyInplace(IMatrix&lt;Complex&gt;)"/>
         public
         ComplexMatrix
-        ArrayMultiply(
-            IMatrix<Complex> b
-            )
+        ArrayMultiply(IMatrix<Complex> b)
         {
             CheckMatchingMatrixDimensions(this, b);
 
@@ -2579,9 +2455,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="ArrayMultiplyInplace(IMatrix&lt;double&gt;)"/>
         public
         ComplexMatrix
-        ArrayMultiply(
-            IMatrix<double> b
-            )
+        ArrayMultiply(IMatrix<double> b)
         {
             CheckMatchingMatrixDimensions(this, b);
 
@@ -2611,9 +2485,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="ArrayMultiply(IMatrix&lt;Complex&gt;)"/>
         public
         void
-        ArrayMultiplyInplace(
-            IMatrix<Complex> b
-            )
+        ArrayMultiplyInplace(IMatrix<Complex> b)
         {
             CheckMatchingMatrixDimensions(this, b);
 
@@ -2639,9 +2511,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="ArrayMultiply(IMatrix&lt;Complex&gt;)"/>
         public
         void
-        ArrayMultiplyInplace(
-            IMatrix<double> b
-            )
+        ArrayMultiplyInplace(IMatrix<double> b)
         {
             CheckMatchingMatrixDimensions(this, b);
 
@@ -2667,9 +2537,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="ArrayDivideInplace(IMatrix&lt;Complex&gt;)"/>
         public
         ComplexMatrix
-        ArrayDivide(
-            IMatrix<Complex> b
-            )
+        ArrayDivide(IMatrix<Complex> b)
         {
             CheckMatchingMatrixDimensions(this, b);
 
@@ -2699,9 +2567,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="ArrayDivideInplace(IMatrix&lt;double&gt;)"/>
         public
         ComplexMatrix
-        ArrayDivide(
-            IMatrix<double> b
-            )
+        ArrayDivide(IMatrix<double> b)
         {
             CheckMatchingMatrixDimensions(this, b);
 
@@ -2731,9 +2597,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="ArrayDivide(IMatrix&lt;Complex&gt;)"/>
         public
         void
-        ArrayDivideInplace(
-            IMatrix<Complex> b
-            )
+        ArrayDivideInplace(IMatrix<Complex> b)
         {
             CheckMatchingMatrixDimensions(this, b);
 
@@ -2759,9 +2623,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="ArrayMultiply(IMatrix&lt;Complex&gt;)"/>
         public
         void
-        ArrayDivideInplace(
-            IMatrix<double> b
-            )
+        ArrayDivideInplace(IMatrix<double> b)
         {
             CheckMatchingMatrixDimensions(this, b);
 
@@ -2787,9 +2649,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="ArrayPowerInplace(Complex)"/>
         public
         ComplexMatrix
-        ArrayPower(
-            Complex exponent
-            )
+        ArrayPower(Complex exponent)
         {
             Complex[][] newData = new Complex[_rowCount][];
             for(int i = 0; i < newData.Length; i++)
@@ -2817,9 +2677,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="ArrayPower(Complex)"/>
         public
         void
-        ArrayPowerInplace(
-            Complex exponent
-            )
+        ArrayPowerInplace(Complex exponent)
         {
             for(int i = 0; i < _data.Length; i++)
             {
@@ -2843,9 +2701,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="ArrayMapInplace(Converter&lt;Complex,Complex&gt;)"/>
         public
         ComplexMatrix
-        ArrayMap(
-            Converter<Complex, Complex> mapping
-            )
+        ArrayMap(Converter<Complex, Complex> mapping)
         {
             Complex[][] newData = new Complex[_rowCount][];
             for(int i = 0; i < newData.Length; i++)
@@ -2873,9 +2729,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="ArrayMap(Converter&lt;Complex,Complex&gt;)"/>
         public
         void
-        ArrayMapInplace(
-            Converter<Complex, Complex> mapping
-            )
+        ArrayMapInplace(Converter<Complex, Complex> mapping)
         {
             for(int i = 0; i < _data.Length; i++)
             {
@@ -2900,8 +2754,7 @@ namespace MathNet.Numerics.LinearAlgebra
         ComplexMatrix
         operator +(
             ComplexMatrix m1,
-            ComplexMatrix m2
-            )
+            ComplexMatrix m2)
         {
             CheckMatchingMatrixDimensions(m1, m2);
             return m1.Add(m2);
@@ -2914,8 +2767,7 @@ namespace MathNet.Numerics.LinearAlgebra
         ComplexMatrix
         operator +(
             ComplexMatrix m1,
-            Matrix m2
-            )
+            Matrix m2)
         {
             CheckMatchingMatrixDimensions(m1, m2);
             return m1.Add(m2);
@@ -2928,8 +2780,7 @@ namespace MathNet.Numerics.LinearAlgebra
         ComplexMatrix
         operator +(
             ComplexMatrix m1,
-            Complex scalar
-            )
+            Complex scalar)
         {
             return m1.Add(scalar);
         }
@@ -2941,8 +2792,7 @@ namespace MathNet.Numerics.LinearAlgebra
         ComplexMatrix
         operator +(
             Complex scalar,
-            ComplexMatrix m2
-            )
+            ComplexMatrix m2)
         {
             return m2.Add(scalar);
         }
@@ -2954,8 +2804,7 @@ namespace MathNet.Numerics.LinearAlgebra
         ComplexMatrix
         operator -(
             ComplexMatrix m1,
-            ComplexMatrix m2
-            )
+            ComplexMatrix m2)
         {
             CheckMatchingMatrixDimensions(m1, m2);
             return m1.Subtract(m2);
@@ -2968,8 +2817,7 @@ namespace MathNet.Numerics.LinearAlgebra
         ComplexMatrix
         operator -(
             ComplexMatrix m1,
-            Matrix m2
-            )
+            Matrix m2)
         {
             CheckMatchingMatrixDimensions(m1, m2);
             return m1.Subtract(m2);
@@ -2982,8 +2830,7 @@ namespace MathNet.Numerics.LinearAlgebra
         ComplexMatrix
         operator -(
             ComplexMatrix m1,
-            Complex scalar
-            )
+            Complex scalar)
         {
             return m1.Subtract(scalar);
         }
@@ -2993,9 +2840,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </summary>
         public static
         ComplexMatrix
-        operator -(
-            ComplexMatrix m1
-            )
+        operator -(ComplexMatrix m1)
         {
             return m1.Negate();
         }
@@ -3008,8 +2853,7 @@ namespace MathNet.Numerics.LinearAlgebra
         ComplexMatrix
         operator *(
             ComplexMatrix m1,
-            ComplexMatrix m2
-            )
+            ComplexMatrix m2)
         {
             return m1.Multiply(m2);
         }
@@ -3022,8 +2866,7 @@ namespace MathNet.Numerics.LinearAlgebra
         ComplexMatrix
         operator *(
             ComplexMatrix m1,
-            Matrix m2
-            )
+            Matrix m2)
         {
             return m1.Multiply(m2);
         }
@@ -3035,8 +2878,7 @@ namespace MathNet.Numerics.LinearAlgebra
         ComplexMatrix
         operator *(
             Complex s,
-            ComplexMatrix m
-            )
+            ComplexMatrix m)
         {
             return m.Multiply(s);
         }
@@ -3048,8 +2890,7 @@ namespace MathNet.Numerics.LinearAlgebra
         ComplexMatrix
         operator *(
             ComplexMatrix m,
-            Complex s
-            )
+            Complex s)
         {
             return m.Multiply(s);
         }
@@ -3062,8 +2903,7 @@ namespace MathNet.Numerics.LinearAlgebra
         ComplexVector
         operator *(
             ComplexMatrix m1,
-            ComplexVector v2
-            )
+            ComplexVector v2)
         {
             return m1.MultiplyRightColumn(v2);
         }
@@ -3076,8 +2916,7 @@ namespace MathNet.Numerics.LinearAlgebra
         ComplexVector
         operator *(
             ComplexMatrix m1,
-            Vector v2
-            )
+            Vector v2)
         {
             return m1.MultiplyRightColumn(v2);
         }
@@ -3093,8 +2932,7 @@ namespace MathNet.Numerics.LinearAlgebra
         void
         CheckMatchingMatrixDimensions(
             IMatrix<Complex> A,
-            IMatrix<Complex> B
-            )
+            IMatrix<Complex> B)
         {
             if(A.RowCount != B.RowCount || A.ColumnCount != B.ColumnCount)
             {
@@ -3109,8 +2947,7 @@ namespace MathNet.Numerics.LinearAlgebra
         void
         CheckMatchingMatrixDimensions(
             IMatrix<Complex> A,
-            IMatrix<double> B
-            )
+            IMatrix<double> B)
         {
             if(A.RowCount != B.RowCount || A.ColumnCount != B.ColumnCount)
             {

@@ -52,9 +52,7 @@ namespace MathNet.Numerics
         /// </summary>
         /// <param name="order">The highest power. Example: 2*x^3+x-3 has order 3.</param>
         public
-        Polynomial(
-            int order
-            )
+        Polynomial(int order)
         {
             this.order = order;
             this.coefficients = new double[SizeOfOrder(order)];
@@ -66,17 +64,14 @@ namespace MathNet.Numerics
         /// </summary>
         /// <param name="coefficients">The coefficients vector. The coefficient index denotes the related power (c[0]*x^0+c[1]*x^1+..)</param>
         public
-        Polynomial(
-            double[] coefficients
-            )
+        Polynomial(double[] coefficients)
         {
             this.order = FindOrder(coefficients);
             this.coefficients = new double[SizeOfOrder(order)];
             Array.Copy(
                 coefficients,
                 this.coefficients,
-                Math.Min(this.coefficients.Length, coefficients.Length)
-                );
+                Math.Min(this.coefficients.Length, coefficients.Length));
         }
 
         /// <summary>
@@ -85,26 +80,21 @@ namespace MathNet.Numerics
         /// </summary>
         /// <param name="copy">A polynomial to copy from.</param>
         public
-        Polynomial(
-            Polynomial copy
-            )
+        Polynomial(Polynomial copy)
         {
             this.order = copy.order;
             this.coefficients = new double[copy.coefficients.Length];
             Array.Copy(
                 copy.coefficients,
                 this.coefficients,
-                Math.Min(this.coefficients.Length, copy.coefficients.Length)
-                );
+                Math.Min(this.coefficients.Length, copy.coefficients.Length));
         }
 
         #region Size
 
         static
         int
-        SizeOfOrder(
-            int order
-            )
+        SizeOfOrder(int order)
         {
             return 1 << (int)Math.Ceiling(Math.Log(order + 1, 2));
         }
@@ -119,9 +109,7 @@ namespace MathNet.Numerics
         ////}
 
         void
-        ResizeOptimalForOrder(
-            int order
-            )
+        ResizeOptimalForOrder(int order)
         {
             int bestSize = SizeOfOrder(order);
             if(bestSize == coefficients.Length)
@@ -133,15 +121,12 @@ namespace MathNet.Numerics
             Array.Copy(
                 this.coefficients,
                 newCoeffs,
-                Math.Min(this.coefficients.Length, newCoeffs.Length)
-                );
+                Math.Min(this.coefficients.Length, newCoeffs.Length));
             coefficients = newCoeffs;
         }
         
         void
-        EnsureSupportForOrder(
-            int order
-            )
+        EnsureSupportForOrder(int order)
         {
             if(coefficients.Length <= order)
             {
@@ -170,9 +155,7 @@ namespace MathNet.Numerics
         }
 
         int
-        FindOrder(
-            double[] coeff
-            )
+        FindOrder(double[] coeff)
         {
             int o = coeff.Length - 1;
             while(coeff[o] == 0d && order > 0)
@@ -250,8 +233,7 @@ namespace MathNet.Numerics
         bool
         operator ==(
             Polynomial polynomial1,
-            Polynomial polynomial2
-            )
+            Polynomial polynomial2)
         {
             return polynomial1.Equals(polynomial2);
         }
@@ -263,8 +245,7 @@ namespace MathNet.Numerics
         bool
         operator !=(
             Polynomial polynomial1,
-            Polynomial polynomial2
-            )
+            Polynomial polynomial2)
         {
             return !polynomial1.Equals(polynomial2);
         }
@@ -276,8 +257,7 @@ namespace MathNet.Numerics
         bool
         operator >(
             Polynomial polynomial1,
-            Polynomial polynomial2
-            )
+            Polynomial polynomial2)
         {
             return polynomial1.CompareTo(polynomial2) == 1;
         }
@@ -289,8 +269,7 @@ namespace MathNet.Numerics
         bool
         operator <(
             Polynomial polynomial1,
-            Polynomial polynomial2
-            )
+            Polynomial polynomial2)
         {
             return polynomial1.CompareTo(polynomial2) == -1;
         }
@@ -302,8 +281,7 @@ namespace MathNet.Numerics
         bool
         operator >=(
             Polynomial polynomial1,
-            Polynomial polynomial2
-            )
+            Polynomial polynomial2)
         {
             int res = polynomial1.CompareTo(polynomial2);
             return res == 1 || res == 0;
@@ -316,8 +294,7 @@ namespace MathNet.Numerics
         bool
         operator <=(
             Polynomial polynomial1,
-            Polynomial polynomial2
-            )
+            Polynomial polynomial2)
         {
             int res = polynomial1.CompareTo(polynomial2);
             return res == -1 || res == 0;
@@ -330,8 +307,7 @@ namespace MathNet.Numerics
         Polynomial
         operator +(
             Polynomial polynomial1,
-            Polynomial polynomial2
-            )
+            Polynomial polynomial2)
         {
             Polynomial ret = new Polynomial(polynomial1);
             ret.AddInplace(polynomial2);
@@ -345,8 +321,7 @@ namespace MathNet.Numerics
         Polynomial
         operator +(
             Polynomial polynomial,
-            double n
-            )
+            double n)
         {
             Polynomial ret = new Polynomial(polynomial);
             ret.AddInplace(n);
@@ -360,8 +335,7 @@ namespace MathNet.Numerics
         Polynomial
         operator +(
             double n,
-            Polynomial polynomial
-            )
+            Polynomial polynomial)
         {
             Polynomial ret = new Polynomial(polynomial);
             ret.AddInplace(n);
@@ -373,9 +347,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         Polynomial
-        operator +(
-            Polynomial polynomial
-            )
+        operator +(Polynomial polynomial)
         {
             return polynomial;
         }
@@ -387,8 +359,7 @@ namespace MathNet.Numerics
         Polynomial
         operator -(
             Polynomial polynomial1,
-            Polynomial polynomial2
-            )
+            Polynomial polynomial2)
         {
             Polynomial ret = new Polynomial(polynomial1);
             ret.SubtractInplace(polynomial2);
@@ -402,8 +373,7 @@ namespace MathNet.Numerics
         Polynomial
         operator -(
             Polynomial polynomial,
-            double n
-            )
+            double n)
         {
             Polynomial ret = new Polynomial(polynomial);
             ret.SubtractInplace(n);
@@ -417,8 +387,7 @@ namespace MathNet.Numerics
         Polynomial
         operator -(
             double n,
-            Polynomial polynomial
-            )
+            Polynomial polynomial)
         {
             Polynomial ret = new Polynomial(polynomial);
             ret.NegateInplace();
@@ -431,9 +400,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         Polynomial
-        operator -(
-            Polynomial polynomial
-            )
+        operator -(Polynomial polynomial)
         {
             Polynomial ret = new Polynomial(polynomial);
             ret.NegateInplace();
@@ -447,8 +414,7 @@ namespace MathNet.Numerics
         Polynomial
         operator *(
             Polynomial polynomial1,
-            Polynomial polynomial2
-            )
+            Polynomial polynomial2)
         {
             return polynomial1.Multiply(polynomial2);
         }
@@ -460,8 +426,7 @@ namespace MathNet.Numerics
         Polynomial
         operator *(
             Polynomial polynomial,
-            double n
-            )
+            double n)
         {
             Polynomial ret = new Polynomial(polynomial);
             ret.MultiplyInplace(n);
@@ -475,8 +440,7 @@ namespace MathNet.Numerics
         Polynomial
         operator *(
             double n,
-            Polynomial polynomial
-            )
+            Polynomial polynomial)
         {
             Polynomial ret = new Polynomial(polynomial);
             ret.MultiplyInplace(n);
@@ -494,8 +458,7 @@ namespace MathNet.Numerics
         Polynomial
         operator /(
             Polynomial polynomial,
-            double n
-            )
+            double n)
         {
             Polynomial ret = new Polynomial(polynomial);
             ret.DivideInplace(n);
@@ -510,9 +473,7 @@ namespace MathNet.Numerics
         /// <remarks>This method operates inplace and thus alters this instance.</remarks>
         public
         void
-        AddInplace(
-            Polynomial polynomial
-            )
+        AddInplace(Polynomial polynomial)
         {
             EnsureSupportForOrder(polynomial.Order);
             int len = Math.Min(order, polynomial.order) + 1;
@@ -526,9 +487,7 @@ namespace MathNet.Numerics
         /// <remarks>This method operates inplace and thus alters this instance.</remarks>
         public
         void
-        AddInplace(
-            double n
-            )
+        AddInplace(double n)
         {
             this[0] += n;
         }
@@ -537,9 +496,7 @@ namespace MathNet.Numerics
         /// <remarks>This method operates inplace and thus alters this instance.</remarks>
         public
         void
-        SubtractInplace(
-            Polynomial polynomial
-            )
+        SubtractInplace(Polynomial polynomial)
         {
             EnsureSupportForOrder(polynomial.Order);
             int len = Math.Min(order, polynomial.order) + 1;
@@ -553,9 +510,7 @@ namespace MathNet.Numerics
         /// <remarks>This method operates inplace and thus alters this instance.</remarks>
         public
         void
-        SubtractInplace(
-            double n
-            )
+        SubtractInplace(double n)
         {
             this[0] -= n;
         }
@@ -578,9 +533,7 @@ namespace MathNet.Numerics
         /// <remarks>This method operates inplace and thus alters this instance.</remarks>
         public
         void
-        MultiplyInplace(
-            double c0
-            )
+        MultiplyInplace(double c0)
         {
             for(int i = 0; i < coefficients.Length; i++)
             {
@@ -594,9 +547,7 @@ namespace MathNet.Numerics
         /// <remarks>This method operates inplace and thus alters this instance.</remarks>
         public
         void
-        MultiplyShiftInplace(
-            int n
-            )
+        MultiplyShiftInplace(int n)
         {
             if(n <= 0)
             {
@@ -625,9 +576,7 @@ namespace MathNet.Numerics
         /// <remarks>This method operates inplace and thus alters this instance.</remarks>
         public
         void
-        MultiplySyntheticInplace(
-            double c0
-            )
+        MultiplySyntheticInplace(double c0)
         {
             EnsureSupportForOrder(order + 1);
             order++;
@@ -649,8 +598,7 @@ namespace MathNet.Numerics
         void
         MultiplyLinearInplace(
             double c0,
-            double c1
-            )
+            double c1)
         {
             if(Number.AlmostZero(c1))
             {
@@ -669,9 +617,7 @@ namespace MathNet.Numerics
         /// <remarks>This method operates inplace and thus alters this instance.</remarks>
         public
         void
-        DivideInplace(
-            double c0
-            )
+        DivideInplace(double c0)
         {
             if(Number.AlmostZero(c0))
             {
@@ -693,8 +639,7 @@ namespace MathNet.Numerics
         void
         DivideShiftInplace(
             int n,
-            out double[] remainder
-            )
+            out double[] remainder)
         {
             if(n <= 0)
             {
@@ -734,8 +679,7 @@ namespace MathNet.Numerics
         void
         DivideSyntheticInplace(
             double c0,
-            out double remainder
-            )
+            out double remainder)
         {
             double swap;
             remainder = coefficients[order];
@@ -759,8 +703,7 @@ namespace MathNet.Numerics
         DivideLinearInplace(
             double c0,
             double c1,
-            out double remainder
-            )
+            out double remainder)
         {
             if(Number.AlmostZero(c1))
             {
@@ -786,9 +729,7 @@ namespace MathNet.Numerics
         /// </remarks>
         public
         Polynomial
-        Multiply(
-            Polynomial polynomial
-            )
+        Multiply(Polynomial polynomial)
         {
             int orderMin = Math.Min(Order, polynomial.Order);
 
@@ -806,8 +747,7 @@ namespace MathNet.Numerics
                     this.order,
                     polynomial.order,
                     SizeOfOrder(orderMax),
-                    0
-                    );
+                    0);
             }
 
             // Direct multipliction (slow for large orders but faster for smaller ones)
@@ -830,8 +770,7 @@ namespace MathNet.Numerics
             int leftOrder,
             int rightOrder,
             int n,
-            int offset
-            )
+            int offset)
         {
             if(n == 1)
             {
@@ -862,8 +801,7 @@ namespace MathNet.Numerics
                 n - 1,
                 n - 1,
                 n,
-                offset
-                );
+                offset);
 
             Polynomial FG1 = MultiplyKaratsuba(
                 leftCoefficients,
@@ -871,8 +809,7 @@ namespace MathNet.Numerics
                 Math.Max(leftOrder - n, 0),
                 Math.Max(rightOrder - n, 0),
                 n,
-                offset + n
-                );
+                offset + n);
 
             Polynomial FFGG = MultiplyKaratsuba(
                 FF,
@@ -880,8 +817,7 @@ namespace MathNet.Numerics
                 n - 1,
                 n - 1,
                 n,
-                0
-                );
+                0);
 
             FFGG.SubtractInplace(FG0);
             FFGG.SubtractInplace(FG1);
@@ -899,9 +835,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         Rational
-        Divide(
-            Polynomial polynomial
-            )
+        Divide(Polynomial polynomial)
         {
             return new Rational(Clone(), polynomial.Clone());
         }
@@ -917,9 +851,7 @@ namespace MathNet.Numerics
         /// <returns>The real result.</returns>
         public
         double
-        Evaluate(
-            double value
-            )
+        Evaluate(double value)
         {
             double ret = coefficients[order];
             for(int j = order - 1; j >= 0; j--)
@@ -941,8 +873,7 @@ namespace MathNet.Numerics
         double
         Evaluate(
             double value,
-            out double derivative
-            )
+            out double derivative)
         {
             double ret = coefficients[order];
             derivative = 0d;
@@ -966,8 +897,7 @@ namespace MathNet.Numerics
         double[]
         Evaluate(
             double value,
-            int derivativeOrderMax
-            )
+            int derivativeOrderMax)
         {
             double[] ret = new double[derivativeOrderMax + 1];
             ret[0] = coefficients[order];
@@ -1003,9 +933,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         string
-        ToString(
-            string baseVariable
-            )
+        ToString(string baseVariable)
         {
             StringBuilder builder = new StringBuilder();
             for(int i = Order; i >= 0; i--)
@@ -1083,9 +1011,7 @@ namespace MathNet.Numerics
         /// </summary>
         public override
         bool
-        Equals(
-            object obj
-            )
+        Equals(object obj)
         {
             Polynomial p = obj as Polynomial;
             return p == null ? false : Equals(p);
@@ -1096,9 +1022,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         bool
-        Equals(
-            Polynomial polynomial
-            )
+        Equals(Polynomial polynomial)
         {
             return CompareTo(polynomial) == 0;
         }
@@ -1110,8 +1034,7 @@ namespace MathNet.Numerics
         bool
         Equals(
             Polynomial polynomial1,
-            Polynomial polynomial2
-            )
+            Polynomial polynomial2)
         {
             if(polynomial1 == null)
             {
@@ -1126,9 +1049,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         int
-        CompareTo(
-            object obj
-            )
+        CompareTo(object obj)
         {
             if(obj == null)
             {
@@ -1148,9 +1069,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         int
-        CompareTo(
-            Polynomial polynomial
-            )
+        CompareTo(Polynomial polynomial)
         {
             int i = this.Order;
             int j = polynomial.Order;

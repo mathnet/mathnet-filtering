@@ -56,8 +56,7 @@ namespace MathNet.Numerics
             double real,
             double imagX,
             double imagY,
-            double imagZ
-            )
+            double imagZ)
         {
             qx = imagX;
             qy = imagY;
@@ -79,8 +78,7 @@ namespace MathNet.Numerics
             double imagZ,
             double abs,
             double norm,
-            double arg
-            )
+            double arg)
         {
             qx = imagX;
             qy = imagY;
@@ -97,8 +95,7 @@ namespace MathNet.Numerics
             double real,
             double imagX,
             double imagY,
-            double imagZ
-            )
+            double imagZ)
         {
             return (imagX * imagX)
                 + (imagY * imagY)
@@ -112,8 +109,7 @@ namespace MathNet.Numerics
             double real,
             double imagX,
             double imagY, 
-            double imagZ
-            )
+            double imagZ)
         {
             double abs = Math.Sqrt(ToNorm(real, imagX, imagY, imagZ));
             return new Quaternion(
@@ -123,8 +119,7 @@ namespace MathNet.Numerics
                 imagZ / abs,
                 1, // abs
                 1, // norm
-                Math.Acos(real / abs) // arg
-                );
+                Math.Acos(real / abs)); // arg
         }
 
         #region Accessors
@@ -251,9 +246,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         Quaternion
-        operator +(
-            Quaternion q
-            )
+        operator +(Quaternion q)
         {
             return q;
         }
@@ -263,9 +256,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         Quaternion
-        operator -(
-            Quaternion q
-            )
+        operator -(Quaternion q)
         {
             return q.Negate();
         }
@@ -277,8 +268,7 @@ namespace MathNet.Numerics
         Quaternion
         operator +(
             Quaternion q1,
-            Quaternion q2
-            )
+            Quaternion q2)
         {
             return q1.Add(q2);
         }
@@ -290,8 +280,7 @@ namespace MathNet.Numerics
         Quaternion
         operator +(
             Quaternion q1,
-            double d
-            )
+            double d)
         {
             return q1.Add(d);
         }
@@ -303,8 +292,7 @@ namespace MathNet.Numerics
         Quaternion
         operator -(
             Quaternion q1,
-            Quaternion q2
-            )
+            Quaternion q2)
         {
             return q1.Subtract(q2);
         }
@@ -316,8 +304,7 @@ namespace MathNet.Numerics
         Quaternion
         operator -(
             Quaternion q1,
-            double d
-            )
+            double d)
         {
             return q1.Subtract(d);
         }
@@ -329,8 +316,7 @@ namespace MathNet.Numerics
         Quaternion
         operator *(
             Quaternion q1,
-            Quaternion q2
-            )
+            Quaternion q2)
         {
             return q1.Multiply(q2);
         }
@@ -342,8 +328,7 @@ namespace MathNet.Numerics
         Quaternion
         operator *(
             Quaternion q1,
-            double d
-            )
+            double d)
         {
             return q1.Multiply(d);
         }
@@ -355,8 +340,7 @@ namespace MathNet.Numerics
         Quaternion
         operator /(
             Quaternion q1,
-            Quaternion q2
-            )
+            Quaternion q2)
         {
             return q1.Divide(q2);
         }
@@ -368,8 +352,7 @@ namespace MathNet.Numerics
         Quaternion
         operator /(
             Quaternion q1,
-            double d
-            )
+            double d)
         {
             return q1.Divide(d);
         }
@@ -381,8 +364,7 @@ namespace MathNet.Numerics
         Quaternion
         operator ^(
             Quaternion q1,
-            Quaternion q2
-            )
+            Quaternion q2)
         {
             return q1.Pow(q2);
         }
@@ -394,8 +376,7 @@ namespace MathNet.Numerics
         Quaternion
         operator ^(
             Quaternion q1,
-            double d
-            )
+            double d)
         {
             return q1.Pow(d);
         }
@@ -404,9 +385,7 @@ namespace MathNet.Numerics
         /// Convert a floating point number to a quaternion.
         /// </summary>
         public static implicit
-        operator Quaternion(
-            double d
-            )
+        operator Quaternion(double d)
         {
             return new Quaternion(d, 0, 0, 0);
         }
@@ -420,16 +399,13 @@ namespace MathNet.Numerics
         /// </summary>
         public
         Quaternion
-        Add(
-            Quaternion q
-            )
+        Add(Quaternion q)
         {
             return new Quaternion(
                 qw + q.qw,
                 qx + q.qx,
                 qy + q.qy,
-                qz + q.qz
-                );
+                qz + q.qz);
         }
 
         /// <summary>
@@ -437,16 +413,13 @@ namespace MathNet.Numerics
         /// </summary>
         public
         Quaternion
-        Add(
-            double r
-            )
+        Add(double r)
         {
             return new Quaternion(
                 qw + r,
                 qx,
                 qy,
-                qz
-                );
+                qz);
         }
 
         /// <summary>
@@ -454,16 +427,13 @@ namespace MathNet.Numerics
         /// </summary>
         public
         Quaternion
-        Subtract(
-            Quaternion q
-            )
+        Subtract(Quaternion q)
         {
             return new Quaternion(
                 qw - q.qw,
                 qx - q.qx,
                 qy - q.qy,
-                qz - q.qz
-                );
+                qz - q.qz);
         }
 
         /// <summary>
@@ -471,16 +441,13 @@ namespace MathNet.Numerics
         /// </summary>
         public
         Quaternion
-        Subtract(
-            double r
-            )
+        Subtract(double r)
         {
             return new Quaternion(
                 qw - r,
                 qx,
                 qy,
-                qz
-                );
+                qz);
         }
 
         /// <summary>
@@ -497,8 +464,7 @@ namespace MathNet.Numerics
                 -qz,
                 qabs, // abs
                 qnorm, // norm
-                Math.PI - qarg // arg
-                );
+                Math.PI - qarg); // arg
         }
 
         /// <summary>
@@ -506,9 +472,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         Quaternion
-        Multiply(
-            Quaternion q
-            )
+        Multiply(Quaternion q)
         {
             double ci = (+qx * q.qw) + (qy * q.qz) - (qz * q.qy) + (qw * q.qx);
             double cj = (-qx * q.qz) + (qy * q.qw) + (qz * q.qx) + (qw * q.qy);
@@ -522,16 +486,13 @@ namespace MathNet.Numerics
         /// </summary>
         public
         Quaternion
-        Multiply(
-            double d
-            )
+        Multiply(double d)
         {
             return new Quaternion(
                 d * qw,
                 d * qx,
                 d * qy,
-                d * qz
-                );
+                d * qz);
         }
 
         /// <summary>
@@ -542,9 +503,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         Quaternion
-        Divide(
-            Quaternion q
-            )
+        Divide(Quaternion q)
         {
             return Multiply(q.Inverse());
         }
@@ -559,16 +518,13 @@ namespace MathNet.Numerics
         /// </remarks>
         public
         Quaternion
-        Divide(
-            double d
-            )
+        Divide(double d)
         {
             return new Quaternion(
                 qw / d,
                 qx / d,
                 qy / d,
-                qz / d
-                );
+                qz / d);
         }
 
         /// <summary>
@@ -584,16 +540,14 @@ namespace MathNet.Numerics
                     qw,
                     -qx,
                     -qy,
-                    -qz
-                    );
+                    -qz);
             }
             
             return new Quaternion(
                 qw / qnorm,
                 -qx / qnorm,
                 -qy / qnorm,
-                -qz / qnorm
-                );
+                -qz / qnorm);
         }
 
         /// <summary>
@@ -603,8 +557,7 @@ namespace MathNet.Numerics
         double
         Distance(
             Quaternion a,
-            Quaternion b
-            )
+            Quaternion b)
         {
             return a.Subtract(b).Abs;
         }
@@ -623,8 +576,7 @@ namespace MathNet.Numerics
                 -qz,
                 qabs,
                 qnorm,
-                qarg
-                );
+                qarg);
         }
         
         #endregion
@@ -636,9 +588,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         Quaternion
-        Log(
-            double lbase
-            )
+        Log(double lbase)
         {
             return Ln().Divide(Math.Log(lbase));
         }
@@ -680,9 +630,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         Quaternion
-        Pow(
-            double power
-            )
+        Pow(double power)
         {
             double arg = power * qarg;
             return UnitVector().Multiply(Math.Sin(arg)).Add(Math.Cos(arg)).Multiply(Math.Pow(qw, power));
@@ -693,9 +641,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         Quaternion
-        Pow(
-            Quaternion power
-            )
+        Pow(Quaternion power)
         {
             return power.Multiply(Ln()).Exp();
         }
@@ -743,9 +689,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         int
-        CompareTo(
-            object obj
-            )
+        CompareTo(object obj)
         {
             // TODO: Implement
             throw new NotImplementedException();

@@ -48,10 +48,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        Variations(
-            int n,
-            int k
-            )
+        Variations(int n, int k)
         {
             if(k < 0 || n < 0 || k > n)
             {
@@ -66,10 +63,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        VariationsWithRepetition(
-            int n,
-            int k
-            )
+        VariationsWithRepetition(int n, int k)
         {
             if(k < 0 || n < 0)
             {
@@ -84,10 +78,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        Combinations(
-            int n,
-            int k
-            )
+        Combinations(int n, int k)
         {
             return Fn.BinomialCoefficient(n, k);
         }
@@ -97,10 +88,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        CombinationsWithRepetition(
-            int n,
-            int k
-            )
+        CombinationsWithRepetition(int n, int k)
         {
             if(k < 0 || n < 0 || (n == 0 && k > 0))
             {
@@ -121,9 +109,7 @@ namespace MathNet.Numerics
         /// <param name="n">Number of (distinguishable) elements in the set.</param>
         public static
         double
-        Permutations(
-            int n
-            )
+        Permutations(int n)
         {
             return Fn.Factorial(n);
         }
@@ -154,8 +140,7 @@ namespace MathNet.Numerics
             public
             IndexedValue(
                 int index,
-                double value
-                )
+                double value)
             {
                 this.Index = index;
                 this.Value = value;
@@ -164,8 +149,7 @@ namespace MathNet.Numerics
             public
             int
             CompareTo(
-                IndexedValue other
-                )
+                IndexedValue other)
             {
                 return this.Value.CompareTo(other.Value);
             }
@@ -175,9 +159,7 @@ namespace MathNet.Numerics
         /// <returns>An array of length <c>N</c> that contains (in any order) the integers of the interval <c>[0, N)</c>.</returns>
         public static
         int[]
-        RandomPermutation(
-            int n
-            )
+        RandomPermutation(int n)
         {
             if(n < 0)
             {
@@ -207,9 +189,7 @@ namespace MathNet.Numerics
         /// <returns>boolean array of length <c>N</c>, for each item true if it is selected.</returns>
         public static
         bool[]
-        RandomCombination(
-            int n
-            )
+        RandomCombination(int n)
         {
             bool[] ret = new bool[n];
             for(int i = 0; i < ret.Length; i++)
@@ -224,10 +204,7 @@ namespace MathNet.Numerics
         /// <returns>boolean array of length <c>N</c>, for each item true if it is selected.</returns>
         public static
         bool[]
-        RandomCombination(
-            int n,
-            int k
-            )
+        RandomCombination(int n, int k)
         {
             bool[] selection = new bool[n];
             if(k * 3 < n) 
@@ -263,10 +240,7 @@ namespace MathNet.Numerics
         /// <returns>integer array of length <c>N</c>, for each item the number of times it was selected.</returns>
         public static
         int[]
-        RandomCombinationWithRepetition(
-            int n,
-            int k
-            )
+        RandomCombinationWithRepetition(int n, int k)
         {
             int[] ret = new int[n];
             for(int i = 0; i < k; i++)
@@ -281,10 +255,7 @@ namespace MathNet.Numerics
         /// <returns>An array of length <c>K</c> that contains the indices of the selections as integers of the interval <c>[0, N)</c>.</returns>
         public static
         int[]
-        RandomVariation(
-            int n,
-            int k
-            )
+        RandomVariation(int n, int k)
         {
             int[] selection = new int[k];
             int[] permutation = RandomPermutation(n);
@@ -300,10 +271,7 @@ namespace MathNet.Numerics
         /// <returns>An array of length <c>K</c> that contains the indices of the selections as integers of the interval <c>[0, N)</c>.</returns>
         public static
         int[]
-        RandomVariationWithRepetition(
-            int n,
-            int k
-            )
+        RandomVariationWithRepetition(int n, int k)
         {
             int[] ret = new int[k];
             for(int i = 0; i < ret.Length; i++)
@@ -332,8 +300,7 @@ namespace MathNet.Numerics
         void
         RandomShuffle<T>(
             IList<T> source,
-            IList<T> target
-            )
+            IList<T> target)
         {
             int len = Math.Min(source.Count, target.Count);
             int[] permutation = RandomPermutation(len);
@@ -353,9 +320,7 @@ namespace MathNet.Numerics
         /// <param name="array">The data list to shuffle.</param>
         public static
         void
-        RandomShuffle<T>(
-            IList<T> array
-            )
+        RandomShuffle<T>(IList<T> array)
         {
             T[] arrayCopy = new T[array.Count];
             array.CopyTo(arrayCopy, 0);
@@ -372,8 +337,7 @@ namespace MathNet.Numerics
         T[]
         RandomSubsetVariation<T>(
             IList<T> array,
-            int numberToSelect
-            )
+            int numberToSelect)
         {
             T[] ret = new T[numberToSelect];
             int[] indices = RandomVariation(array.Count, numberToSelect);
@@ -395,8 +359,7 @@ namespace MathNet.Numerics
         T[]
         RandomSubsetVariationWithRepetition<T>(
             IList<T> array,
-            int numberToSelect
-            )
+            int numberToSelect)
         {
             T[] ret = new T[numberToSelect];
             int[] indices = RandomVariationWithRepetition(array.Count, numberToSelect);
@@ -418,8 +381,7 @@ namespace MathNet.Numerics
         T[]
         RandomSubsetCombination<T>(
             IList<T> array,
-            int numberToSelect
-            )
+            int numberToSelect)
         {
             T[] ret = new T[numberToSelect];
             bool[] filter = RandomCombination(array.Count, numberToSelect);
@@ -444,8 +406,7 @@ namespace MathNet.Numerics
         T[]
         RandomSubsetCombinationWithRepetition<T>(
             IList<T> array,
-            int numberToSelect
-            )
+            int numberToSelect)
         {
             T[] ret = new T[numberToSelect];
             int[] filter = RandomCombinationWithRepetition(array.Count, numberToSelect);

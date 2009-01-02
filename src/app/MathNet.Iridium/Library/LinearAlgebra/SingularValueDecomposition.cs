@@ -102,9 +102,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <remarks>Provides access to U, S and V.</remarks>
         /// <param name="Arg">Rectangular matrix</param>
         public
-        SingularValueDecomposition(
-            Matrix Arg
-            )
+        SingularValueDecomposition(Matrix Arg)
         {
             transpose = (Arg.RowCount < Arg.ColumnCount);
 

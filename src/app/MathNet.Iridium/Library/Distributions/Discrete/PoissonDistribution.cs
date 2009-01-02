@@ -80,9 +80,7 @@ namespace MathNet.Numerics.Distributions
         /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
         public
-        PoissonDistribution(
-            RandomSource random
-            )
+        PoissonDistribution(RandomSource random)
             : base(random)
         {
             SetDistributionParameters(1.0);
@@ -93,9 +91,7 @@ namespace MathNet.Numerics.Distributions
         /// using a <see cref="SystemRandomSource"/> as underlying random number generator.
         /// </summary>
         public
-        PoissonDistribution(
-            double lambda
-            )
+        PoissonDistribution(double lambda)
             : base()
         {
             SetDistributionParameters(lambda);
@@ -117,9 +113,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public
         void
-        SetDistributionParameters(
-            double lambda
-            )
+        SetDistributionParameters(double lambda)
         {
             if(!IsValidParameterSet(lambda))
             {
@@ -138,9 +132,7 @@ namespace MathNet.Numerics.Distributions
         /// </returns>
         public static
         bool
-        IsValidParameterSet(
-            double lambda
-            )
+        IsValidParameterSet(double lambda)
         {
             return lambda > 0.0;
         }
@@ -200,15 +192,12 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        ProbabilityMass(
-            int x
-            )
+        ProbabilityMass(int x)
         {
             return Math.Exp(
                 -_lambda
                 + (x * Math.Log(_lambda))
-                - Fn.FactorialLn(x)
-                );
+                - Fn.FactorialLn(x));
         }
 
         /// <summary>
@@ -216,9 +205,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        CumulativeDistribution(
-            double x
-            )
+        CumulativeDistribution(double x)
         {
             return 1.0 - Fn.GammaRegularized(x + 1, _lambda);
         }

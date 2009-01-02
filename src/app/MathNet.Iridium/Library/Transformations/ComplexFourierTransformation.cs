@@ -58,9 +58,7 @@ namespace MathNet.Numerics.Transformations
         /// </summary>
         /// <param name="convention">Fourier Transformation Convention</param>
         public
-        ComplexFourierTransformation(
-            TransformationConvention convention
-            )
+        ComplexFourierTransformation(TransformationConvention convention)
         {
             _fft = new InternalFFT();
             _convention = convention;
@@ -85,8 +83,7 @@ namespace MathNet.Numerics.Transformations
         double[]
         GenerateTimeScale(
             double sampleRate,
-            int numberOfSamplePairs
-            )
+            int numberOfSamplePairs)
         {
             double[] scale = new double[numberOfSamplePairs];
             double t = 0, step = 1.0 / sampleRate;
@@ -108,8 +105,7 @@ namespace MathNet.Numerics.Transformations
         double[]
         GenerateFrequencyScale(
             double sampleRate,
-            int numberOfSamplePairs
-            )
+            int numberOfSamplePairs)
         {
             double[] scale = new double[numberOfSamplePairs];
             double f = 0, step = sampleRate / numberOfSamplePairs;
@@ -138,9 +134,7 @@ namespace MathNet.Numerics.Transformations
         /// <param name="samplePairs">Complex samples (even = real, odd = imaginary). Length must be a power of two.</param>
         public
         void
-        TransformForward(
-            double[] samplePairs
-            )
+        TransformForward(double[] samplePairs)
         {
             if(Fn.CeilingToPowerOf2(samplePairs.Length) != samplePairs.Length)
             {
@@ -161,9 +155,7 @@ namespace MathNet.Numerics.Transformations
         /// </remarks>
         public
         void
-        TransformForward(
-            Complex[] samples
-            )
+        TransformForward(Complex[] samples)
         {
             if(Fn.CeilingToPowerOf2(samples.Length) != samples.Length)
             {
@@ -192,9 +184,7 @@ namespace MathNet.Numerics.Transformations
         /// <param name="samplePairs">Complex samples (even = real, odd = imaginary). Length must be a power of two.</param>
         public
         void
-        TransformBackward(
-            double[] samplePairs
-            )
+        TransformBackward(double[] samplePairs)
         {
             if(Fn.CeilingToPowerOf2(samplePairs.Length) != samplePairs.Length)
             {
@@ -215,9 +205,7 @@ namespace MathNet.Numerics.Transformations
         /// </remarks>
         public
         void
-        TransformBackward(
-            Complex[] samples
-            )
+        TransformBackward(Complex[] samples)
         {
             if(Fn.CeilingToPowerOf2(samples.Length) != samples.Length)
             {
@@ -252,8 +240,7 @@ namespace MathNet.Numerics.Transformations
         void
         TransformForward(
             double[] samplePairs,
-            params int[] dimensionLengths
-            )
+            params int[] dimensionLengths)
         {
             for(int i = 0; i < dimensionLengths.Length; i++)
             {
@@ -282,8 +269,7 @@ namespace MathNet.Numerics.Transformations
         void
         TransformForward(
             Complex[] samples,
-            params int[] dimensionLengths
-            )
+            params int[] dimensionLengths)
         {
             for(int i = 0; i < dimensionLengths.Length; i++)
             {
@@ -320,8 +306,7 @@ namespace MathNet.Numerics.Transformations
         void
         TransformBackward(
             double[] samplePairs,
-            params int[] dimensionLengths
-            )
+            params int[] dimensionLengths)
         {
             for(int i = 0; i < dimensionLengths.Length; i++)
             {
@@ -350,8 +335,7 @@ namespace MathNet.Numerics.Transformations
         void
         TransformBackward(
             Complex[] samples,
-            params int[] dimensionLengths
-            )
+            params int[] dimensionLengths)
         {
             for(int i = 0; i < dimensionLengths.Length; i++)
             {

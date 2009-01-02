@@ -73,9 +73,7 @@ namespace MathNet.Numerics.Distributions
         /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
         public
-        GammaDistribution(
-            RandomSource random
-            )
+        GammaDistribution(RandomSource random)
             : base(random)
         {
             SetDistributionParameters(1.0, 1.0);
@@ -88,8 +86,7 @@ namespace MathNet.Numerics.Distributions
         public
         GammaDistribution(
             double alpha,
-            double theta
-            )
+            double theta)
             : base()
         {
             SetDistributionParameters(alpha, theta);
@@ -122,8 +119,7 @@ namespace MathNet.Numerics.Distributions
         void
         SetDistributionParameters(
             double alpha,
-            double theta
-            )
+            double theta)
         {
             if(!IsValidParameterSet(alpha, theta))
             {
@@ -148,8 +144,7 @@ namespace MathNet.Numerics.Distributions
         bool
         IsValidParameterSet(
             double alpha,
-            double theta
-            )
+            double theta)
         {
             return (alpha > 0) && (theta > 0);
         }
@@ -209,16 +204,13 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        ProbabilityDensity(
-            double x
-            )
+        ProbabilityDensity(double x)
         {
             return Math.Exp(
                 ((_alpha - 1) * Math.Log(x))
                 - (x / _theta)
                 - _lngammaAlpha
-                - _alphaLnTheta
-                );
+                - _alphaLnTheta);
         }
 
         /// <summary>
@@ -226,9 +218,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        CumulativeDistribution(
-            double x
-            )
+        CumulativeDistribution(double x)
         {
             return Fn.GammaRegularized(_alpha, x / _theta);
         }

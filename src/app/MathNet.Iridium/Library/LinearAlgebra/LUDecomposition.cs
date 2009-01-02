@@ -84,9 +84,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="A">Rectangular matrix</param>
         /// <returns>Structure to access L, U and piv.</returns>
         public
-        LUDecomposition(
-            Matrix A
-            )
+        LUDecomposition(Matrix A)
         {
             /* TODO: it is usually considered as a poor practice to execute algorithms within a constructor */
 
@@ -258,9 +256,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <exception cref="System.SystemException">Matrix is singular.</exception>
         public
         Matrix
-        Solve(
-            Matrix B
-            )
+        Solve(Matrix B)
         {
             if(B.RowCount != _rowCount)
             {

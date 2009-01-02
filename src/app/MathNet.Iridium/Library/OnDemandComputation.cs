@@ -40,9 +40,7 @@ namespace MathNet.Numerics
         bool _isValid;
 
         internal
-        OnDemandComputation(
-            OnDemandCompute<T> compute
-            )
+        OnDemandComputation(OnDemandCompute<T> compute)
         {
             _compute = compute;
         }

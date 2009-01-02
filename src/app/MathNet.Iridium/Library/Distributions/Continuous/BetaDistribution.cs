@@ -75,9 +75,7 @@ namespace MathNet.Numerics.Distributions
         /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
         public
-        BetaDistribution(
-            RandomSource random
-            )
+        BetaDistribution(RandomSource random)
             : base(random)
         {
             _gammaAlpha = new GammaDistribution(random);
@@ -92,8 +90,7 @@ namespace MathNet.Numerics.Distributions
         public
         BetaDistribution(
             double alpha,
-            double beta
-            )
+            double beta)
             : base()
         {
             _gammaAlpha = new GammaDistribution(this.RandomSource);
@@ -147,8 +144,7 @@ namespace MathNet.Numerics.Distributions
         void
         SetDistributionParameters(
             double alpha,
-            double beta
-            )
+            double beta)
         {
             if(!IsValidParameterSet(alpha, beta))
             {
@@ -172,8 +168,7 @@ namespace MathNet.Numerics.Distributions
         bool
         IsValidParameterSet(
             double alpha,
-            double beta
-            )
+            double beta)
         {
             return alpha > 0.0 && beta > 0.0;
         }
@@ -242,15 +237,12 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        ProbabilityDensity(
-            double x
-            )
+        ProbabilityDensity(double x)
         {
             return Math.Exp(
                 ((_alpha - 1.0) * Math.Log(x))
                 + ((_beta - 1.0) * Math.Log(1 - x))
-                - _lnbetaAlphaBeta
-                );
+                - _lnbetaAlphaBeta);
         }
 
         /// <summary>
@@ -258,9 +250,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        CumulativeDistribution(
-            double x
-            )
+        CumulativeDistribution(double x)
         {
             return Fn.BetaRegularized(_alpha, _beta, x);
         }

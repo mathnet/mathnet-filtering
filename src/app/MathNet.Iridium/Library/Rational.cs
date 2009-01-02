@@ -50,8 +50,7 @@ namespace MathNet.Numerics
         public
         Rational(
             Polynomial numerator,
-            Polynomial denominator
-            )
+            Polynomial denominator)
         {
             this.numerator = numerator.Clone();
             this.denominator = denominator.Clone();
@@ -64,8 +63,7 @@ namespace MathNet.Numerics
         public
         Rational(
             int numeratorOrder,
-            int denominatorOrder
-            )
+            int denominatorOrder)
         {
             numerator = new Polynomial(numeratorOrder);
             denominator = new Polynomial(denominatorOrder);
@@ -78,8 +76,7 @@ namespace MathNet.Numerics
         public
         Rational(
             double[] numeratorCoefficients,
-            double[] denominatorCoefficients
-            )
+            double[] denominatorCoefficients)
         {
             numerator = new Polynomial(numeratorCoefficients);
             denominator = new Polynomial(denominatorCoefficients);
@@ -91,9 +88,7 @@ namespace MathNet.Numerics
         /// </summary>
         /// <param name="copy">A rational to copy from.</param>
         public
-        Rational(
-            Rational copy
-            )
+        Rational(Rational copy)
         {
             numerator = new Polynomial(copy.numerator);
             denominator = new Polynomial(copy.denominator);
@@ -157,8 +152,7 @@ namespace MathNet.Numerics
         bool
         operator ==(
             Rational rational1,
-            Rational rational2
-            )
+            Rational rational2)
         {
             return rational1.Equals(rational2);
         }
@@ -170,8 +164,7 @@ namespace MathNet.Numerics
         bool
         operator !=(
             Rational rational1,
-            Rational rational2
-            )
+            Rational rational2)
         {
             return !rational1.Equals(rational2);
         }
@@ -183,8 +176,7 @@ namespace MathNet.Numerics
         bool
         operator >(
             Rational rational1,
-            Rational rational2
-            )
+            Rational rational2)
         {
             return rational1.CompareTo(rational2) == 1;
         }
@@ -196,8 +188,7 @@ namespace MathNet.Numerics
         bool
         operator <(
             Rational rational1,
-            Rational rational2
-            )
+            Rational rational2)
         {
             return rational1.CompareTo(rational2) == -1;
         }
@@ -209,8 +200,7 @@ namespace MathNet.Numerics
         bool
         operator >=(
             Rational rational1,
-            Rational rational2
-            )
+            Rational rational2)
         {
             int res = rational1.CompareTo(rational2);
             return res == 1 || res == 0;
@@ -223,8 +213,7 @@ namespace MathNet.Numerics
         bool
         operator <=(
             Rational rational1,
-            Rational rational2
-            )
+            Rational rational2)
         {
             int res = rational1.CompareTo(rational2);
             return res == -1 || res == 0;
@@ -237,8 +226,7 @@ namespace MathNet.Numerics
         Rational
         operator +(
             Rational rational1,
-            Rational rational2
-            )
+            Rational rational2)
         {
             return rational1.Add(rational2);
         }
@@ -250,8 +238,7 @@ namespace MathNet.Numerics
         Rational
         operator +(
             Rational rational,
-            Polynomial polynomial
-            )
+            Polynomial polynomial)
         {
             Rational ret = new Rational(rational);
             ret.AddInplace(polynomial);
@@ -265,8 +252,7 @@ namespace MathNet.Numerics
         Rational
         operator +(
             Polynomial polynomial,
-            Rational rational
-            )
+            Rational rational)
         {
             Rational ret = new Rational(rational);
             ret.AddInplace(polynomial);
@@ -280,8 +266,7 @@ namespace MathNet.Numerics
         Rational
         operator +(
             Rational rational,
-            double n
-            )
+            double n)
         {
             Rational ret = new Rational(rational);
             ret.AddInplace(n);
@@ -295,8 +280,7 @@ namespace MathNet.Numerics
         Rational
         operator +(
             double n,
-            Rational rational
-            )
+            Rational rational)
         {
             Rational ret = new Rational(rational);
             ret.AddInplace(n);
@@ -308,9 +292,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         Rational
-        operator +(
-            Rational rational
-            )
+        operator +(Rational rational)
         {
             return rational;
         }
@@ -322,8 +304,7 @@ namespace MathNet.Numerics
         Rational
         operator -(
             Rational rational1,
-            Rational rational2
-            )
+            Rational rational2)
         {
             return rational1.Subtract(rational2);
         }
@@ -335,8 +316,7 @@ namespace MathNet.Numerics
         Rational
         operator -(
             Rational rational,
-            Polynomial polynomial
-            )
+            Polynomial polynomial)
         {
             Rational ret = new Rational(rational);
             ret.SubtractInplace(polynomial);
@@ -350,8 +330,7 @@ namespace MathNet.Numerics
         Rational
         operator -(
             Polynomial polynomial,
-            Rational rational
-            )
+            Rational rational)
         {
             Rational ret = new Rational(rational);
             ret.NegateInplace();
@@ -366,8 +345,7 @@ namespace MathNet.Numerics
         Rational
         operator -(
             Rational rational,
-            double n
-            )
+            double n)
         {
             Rational ret = new Rational(rational);
             ret.SubtractInplace(n);
@@ -381,8 +359,7 @@ namespace MathNet.Numerics
         Rational
         operator -(
             double n,
-            Rational rational
-            )
+            Rational rational)
         {
             Rational ret = new Rational(rational);
             ret.NegateInplace();
@@ -395,9 +372,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         Rational
-        operator -(
-            Rational rational
-            )
+        operator -(Rational rational)
         {
             Rational ret = new Rational(rational);
             ret.NegateInplace();
@@ -411,8 +386,7 @@ namespace MathNet.Numerics
         Rational
         operator *(
             Rational rational1,
-            Rational rational2
-            )
+            Rational rational2)
         {
             return rational1.Multiply(rational2);
         }
@@ -424,8 +398,7 @@ namespace MathNet.Numerics
         Rational
         operator *(
             Rational rational,
-            Polynomial polynomial
-            )
+            Polynomial polynomial)
         {
             return rational.Multiply(polynomial);
         }
@@ -437,8 +410,7 @@ namespace MathNet.Numerics
         Rational
         operator *(
             Polynomial polynomial,
-            Rational rational
-            )
+            Rational rational)
         {
             return rational.Multiply(polynomial);
         }
@@ -450,8 +422,7 @@ namespace MathNet.Numerics
         Rational
         operator *(
             Rational rational,
-            double n
-            )
+            double n)
         {
             Rational ret = new Rational(rational);
             ret.MultiplyInplace(n);
@@ -465,8 +436,7 @@ namespace MathNet.Numerics
         Rational
         operator *(
             double n,
-            Rational rational
-            )
+            Rational rational)
         {
             Rational ret = new Rational(rational);
             ret.MultiplyInplace(n);
@@ -480,8 +450,7 @@ namespace MathNet.Numerics
         Rational
         operator /(
             Rational rational1,
-            Rational rational2
-            )
+            Rational rational2)
         {
             return rational1.Divide(rational2);
         }
@@ -493,8 +462,7 @@ namespace MathNet.Numerics
         Rational
         operator /(
             Rational rational,
-            Polynomial polynomial
-            )
+            Polynomial polynomial)
         {
             return rational.Divide(polynomial);
         }
@@ -506,8 +474,7 @@ namespace MathNet.Numerics
         Rational
         operator /(
             Polynomial polynomial,
-            Rational rational
-            )
+            Rational rational)
         {
             Rational ret = rational.Divide(polynomial);
             ret.InvertInplace();
@@ -521,8 +488,7 @@ namespace MathNet.Numerics
         Rational
         operator /(
             Rational rational,
-            double n
-            )
+            double n)
         {
             Rational ret = new Rational(rational);
             ret.DivideInplace(n);
@@ -536,8 +502,7 @@ namespace MathNet.Numerics
         Rational
         operator /(
             double n,
-            Rational rational
-            )
+            Rational rational)
         {
             Rational ret = new Rational(rational);
             ret.InvertInplace();
@@ -555,16 +520,13 @@ namespace MathNet.Numerics
         /// <param name="rational">The rational to add</param>
         public
         Rational
-        Add(
-            Rational rational
-            )
+        Add(Rational rational)
         {
             if(denominator.Equals(rational.denominator))
             {
                 return new Rational(
                     numerator + rational.numerator,
-                    denominator.Clone()
-                    );
+                    denominator.Clone());
             }
 
             Polynomial num = (numerator * rational.denominator) + (rational.numerator * denominator);
@@ -578,9 +540,7 @@ namespace MathNet.Numerics
         /// <param name="polynomial">The polynomial to add.</param>
         public
         void
-        AddInplace(
-            Polynomial polynomial
-            )
+        AddInplace(Polynomial polynomial)
         {
             numerator.AddInplace(denominator * polynomial);
         }
@@ -591,9 +551,7 @@ namespace MathNet.Numerics
         /// <param name="n">The floating point number to add.</param>
         public
         void
-        AddInplace(
-            double n
-            )
+        AddInplace(double n)
         {
             numerator.AddInplace(denominator * n);
         }
@@ -604,16 +562,13 @@ namespace MathNet.Numerics
         /// <param name="rational">The rational to subtract.</param>
         public
         Rational
-        Subtract(
-            Rational rational
-            )
+        Subtract(Rational rational)
         {
             if(denominator.Equals(rational.denominator))
             {
                 return new Rational(
                     numerator - rational.numerator,
-                    denominator.Clone()
-                    );
+                    denominator.Clone());
             }
 
             Polynomial num = (numerator * rational.denominator) - (rational.numerator * denominator);
@@ -627,9 +582,7 @@ namespace MathNet.Numerics
         /// <param name="polynomial">The polynomial to subtract.</param>
         public
         void
-        SubtractInplace(
-            Polynomial polynomial
-            )
+        SubtractInplace(Polynomial polynomial)
         {
             numerator.SubtractInplace(denominator * polynomial);
         }
@@ -640,9 +593,7 @@ namespace MathNet.Numerics
         /// <param name="n">The floating point number to subtract.</param>
         public
         void
-        SubtractInplace(
-            double n
-            )
+        SubtractInplace(double n)
         {
             numerator.SubtractInplace(denominator * n);
         }
@@ -663,14 +614,11 @@ namespace MathNet.Numerics
         /// <param name="rational">The rational to multiply with.</param>
         public
         Rational
-        Multiply(
-            Rational rational
-            )
+        Multiply(Rational rational)
         {
             return new Rational(
                 numerator * rational.numerator,
-                denominator * rational.denominator
-                );
+                denominator * rational.denominator);
         }
 
         /// <summary>
@@ -679,14 +627,11 @@ namespace MathNet.Numerics
         /// <param name="polynomial">The polynomial to multiply with.</param>
         public
         Rational
-        Multiply(
-            Polynomial polynomial
-            )
+        Multiply(Polynomial polynomial)
         {
             return new Rational(
                 numerator * polynomial,
-                denominator.Clone()
-                );
+                denominator.Clone());
         }
 
         /// <summary>
@@ -695,9 +640,7 @@ namespace MathNet.Numerics
         /// <param name="n">The floating point number to multiply with.</param>
         public
         void
-        MultiplyInplace(
-            double n
-            )
+        MultiplyInplace(double n)
         {
             numerator.MultiplyInplace(n);
         }
@@ -708,14 +651,11 @@ namespace MathNet.Numerics
         /// <param name="rational">The rational to divide with.</param>
         public
         Rational
-        Divide(
-            Rational rational
-            )
+        Divide(Rational rational)
         {
             return new Rational(
                 numerator * rational.denominator,
-                denominator * rational.numerator
-                );
+                denominator * rational.numerator);
         }
 
         /// <summary>
@@ -724,14 +664,11 @@ namespace MathNet.Numerics
         /// <param name="polynomial">The polynomial to divide with.</param>
         public
         Rational
-        Divide(
-            Polynomial polynomial
-            )
+        Divide(Polynomial polynomial)
         {
             return new Rational(
                 numerator.Clone(),
-                denominator * polynomial
-                );
+                denominator * polynomial);
         }
 
         /// <summary>
@@ -740,9 +677,7 @@ namespace MathNet.Numerics
         /// <param name="n">The floating point number to divide with.</param>
         public
         void
-        DivideInplace(
-            double n
-            )
+        DivideInplace(double n)
         {
             denominator.MultiplyInplace(n);
         }
@@ -769,9 +704,7 @@ namespace MathNet.Numerics
         /// <param name="value">The point where to evaluate the rational</param>
         public
         double
-        Evaluate(
-            double value
-            )
+        Evaluate(double value)
         {
             /*
             TODO: correct Rational.Evaluate implementation
@@ -790,9 +723,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         string
-        ToString(
-            string baseVariable
-            )
+        ToString(string baseVariable)
         {
             return "(" + numerator.ToString(baseVariable) + ")/(" + denominator.ToString(baseVariable) + ")";
         }
@@ -826,9 +757,7 @@ namespace MathNet.Numerics
         /// </summary>
         public override
         bool
-        Equals(
-            object obj
-            )
+        Equals(object obj)
         {
             if(obj == null || !(obj is Rational))
             {
@@ -843,9 +772,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         bool
-        Equals(
-            Rational rational
-                )
+        Equals(Rational rational)
         {
             return numerator.Equals(rational.numerator)
                 && denominator.Equals(rational.denominator);
@@ -858,8 +785,7 @@ namespace MathNet.Numerics
         bool
         Equals(
             Rational rational1,
-            Rational rational2
-            )
+            Rational rational2)
         {
             return rational1.Equals(rational2);
         }
@@ -868,9 +794,7 @@ namespace MathNet.Numerics
         /// Compare this rational to another rational.
         /// </summary>
         int
-        IComparable.CompareTo(
-            object obj
-            )
+        IComparable.CompareTo(object obj)
         {
             if(obj == null)
             {
@@ -890,9 +814,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         int
-        CompareTo(
-            Rational rational
-            )
+        CompareTo(Rational rational)
         {
             int n = numerator.CompareTo(rational.numerator);
             if(n == 0)

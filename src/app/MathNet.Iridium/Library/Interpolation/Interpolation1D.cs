@@ -77,9 +77,7 @@ namespace MathNet.Numerics.Interpolation
         /// </remarks>
         /// <param name="samples">Sample Points.</param>
         public
-        InterpolationSingleDimension(
-            SampleList samples
-            )
+        InterpolationSingleDimension(SampleList samples)
         {
             _samples = samples;
             _samples.SampleAltered += OnSampleAltered;
@@ -98,8 +96,7 @@ namespace MathNet.Numerics.Interpolation
         public
         InterpolationSingleDimension(
             double[] t,
-            double[] x
-            )
+            double[] x)
         {
             _samples = new SampleList(t, x);
             _algorithm = new PolynomialInterpolationAlgorithm();
@@ -114,9 +111,7 @@ namespace MathNet.Numerics.Interpolation
         /// </remarks>
         /// <param name="samples">Sample Points.</param>
         public
-        InterpolationSingleDimension(
-            IDictionary samples
-            )
+        InterpolationSingleDimension(IDictionary samples)
         {
             _samples = new SampleList(samples);
             _algorithm = new PolynomialInterpolationAlgorithm();
@@ -131,8 +126,7 @@ namespace MathNet.Numerics.Interpolation
         public
         InterpolationSingleDimension(
             SampleList samples,
-            InterpolationMode mode
-            )
+            InterpolationMode mode)
         {
             _samples = samples;
             _samples.SampleAltered += OnSampleAltered;
@@ -150,8 +144,7 @@ namespace MathNet.Numerics.Interpolation
         InterpolationSingleDimension(
             double[] t,
             double[] x,
-            InterpolationMode mode
-            )
+            InterpolationMode mode)
         {
             _samples = new SampleList(t, x);
             _algorithm = SelectAlgorithm(mode);
@@ -168,8 +161,7 @@ namespace MathNet.Numerics.Interpolation
         InterpolationSingleDimension(
             SampleList samples,
             InterpolationMode mode,
-            int maximumOrder
-            )
+            int maximumOrder)
         {
             _samples = samples;
             _samples.SampleAltered += OnSampleAltered;
@@ -190,8 +182,7 @@ namespace MathNet.Numerics.Interpolation
             double[] t,
             double[] x,
             InterpolationMode mode,
-            int maximumOrder
-            )
+            int maximumOrder)
         {
             _samples = new SampleList(t, x);
             _algorithm = SelectAlgorithm(mode);
@@ -207,8 +198,7 @@ namespace MathNet.Numerics.Interpolation
         public
         InterpolationSingleDimension(
             SampleList samples,
-            IInterpolationAlgorithm algorithm
-            )
+            IInterpolationAlgorithm algorithm)
         {
             _samples = samples;
             _samples.SampleAltered += OnSampleAltered;
@@ -226,8 +216,7 @@ namespace MathNet.Numerics.Interpolation
         InterpolationSingleDimension(
             double[] t,
             double[] x,
-            IInterpolationAlgorithm algorithm
-            )
+            IInterpolationAlgorithm algorithm)
         {
             _samples = new SampleList(t, x);
             _algorithm = algorithm;
@@ -239,9 +228,7 @@ namespace MathNet.Numerics.Interpolation
         /// <param name="mode">Interpolation Mode.</param>
         protected virtual
         IInterpolationAlgorithm
-        SelectAlgorithm(
-            InterpolationMode mode
-            )
+        SelectAlgorithm(InterpolationMode mode)
         {
             switch(mode)
             {
@@ -263,9 +250,7 @@ namespace MathNet.Numerics.Interpolation
         /// </summary>
         public
         double
-        Evaluate(
-            double t
-            )
+        Evaluate(double t)
         {
             if(_dirty)
             {
@@ -288,8 +273,7 @@ namespace MathNet.Numerics.Interpolation
         double
         Evaluate(
             double t,
-            out double errorEstimation
-            )
+            out double errorEstimation)
         {
             if(_dirty)
             {
@@ -311,8 +295,7 @@ namespace MathNet.Numerics.Interpolation
         void
         OnSampleAltered(
             object sender,
-            SampleList.SampleAlteredEventArgs e
-            )
+            SampleList.SampleAlteredEventArgs e)
         {
             _dirty = true; // require new preparation
         }

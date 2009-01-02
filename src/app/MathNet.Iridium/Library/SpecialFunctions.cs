@@ -49,8 +49,7 @@ namespace MathNet.Numerics
         double
         Hypot(
             double a,
-            double b
-            )
+            double b)
         {
             if(Math.Abs(a) > Math.Abs(b))
             {
@@ -75,8 +74,7 @@ namespace MathNet.Numerics
         long
         IntPow(
             long radix,
-            uint exponent
-            )
+            uint exponent)
         {
             // TODO: investigate for a better solution
             return (long)Math.Round(Math.Pow(radix, exponent));
@@ -90,9 +88,7 @@ namespace MathNet.Numerics
         /// <exception cref="ArgumentOutOfRangeException"/>
         public static
         int
-        IntPow2(
-            int exponent
-            )
+        IntPow2(int exponent)
         {
             if(exponent < 0 || exponent >= 31)
             {
@@ -107,9 +103,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         int
-        IntLog2(
-            int x
-            )
+        IntLog2(int x)
         {
             if(x <= 65536)
             {
@@ -275,9 +269,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         int
-        CeilingToPowerOf2(
-            int value
-            )
+        CeilingToPowerOf2(int value)
         {
             return value <= 0
                 ? 0
@@ -289,9 +281,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         int
-        FloorToPowerOf2(
-            int value
-            )
+        FloorToPowerOf2(int value)
         {
             int log = IntLog2(value);
 
@@ -314,10 +304,7 @@ namespace MathNet.Numerics
         /// <returns>gcd(a,b)</returns>
         public static
         long
-        Gcd(
-            long a,
-            long b
-            )
+        Gcd(long a, long b)
         {
             long rem;
 
@@ -337,9 +324,7 @@ namespace MathNet.Numerics
         /// <returns>gcd(list of integers)</returns>
         public static
         long
-        Gcd(
-            IList<long> integers
-            )
+        Gcd(IList<long> integers)
         {
             if(null == integers)
             {
@@ -367,9 +352,7 @@ namespace MathNet.Numerics
         /// <returns>gcd(list of integers)</returns>
         public static
         long
-        Gcd(
-            params long[] integers
-            )
+        Gcd(params long[] integers)
         {
             return Gcd((IList<long>)integers);
         }
@@ -392,8 +375,7 @@ namespace MathNet.Numerics
             long a,
             long b,
             out long x,
-            out long y
-            )
+            out long y)
         {
             long rem, quot, tmp;
             long mp = 1, np = 0, m = 0, n = 1;
@@ -434,10 +416,7 @@ namespace MathNet.Numerics
         /// <returns>lcm(a,b)</returns>
         public static
         long
-        Lcm(
-            long a,
-            long b
-            )
+        Lcm(long a, long b)
         {
             if((a == 0) || (b == 0))
             {
@@ -453,9 +432,7 @@ namespace MathNet.Numerics
         /// <returns>lcm(list of integers)</returns>
         public static
         long
-        Lcm(
-            IList<long> integers
-            )
+        Lcm(IList<long> integers)
         {
             if(null == integers)
             {
@@ -483,9 +460,7 @@ namespace MathNet.Numerics
         /// <returns>lcm(list of integers)</returns>
         public static
         long
-        Lcm(
-            params long[] integers
-            )
+        Lcm(params long[] integers)
         {
             return Lcm((IList<long>)integers);
         }
@@ -500,9 +475,7 @@ namespace MathNet.Numerics
         /// <remarks>sinc(x) = sin(pi * x) / (pi * x)</remarks>
         public static
         double
-        Sinc(
-            double x
-            )
+        Sinc(double x)
         {
             if(double.IsNaN(x))
             {
@@ -535,9 +508,7 @@ namespace MathNet.Numerics
         /// <returns>A value ln(value!) for value > 0</returns>
         public static
         double
-        FactorialLn(
-            int value
-            )
+        FactorialLn(int value)
         {
             if(value < 0)
             {
@@ -581,9 +552,7 @@ namespace MathNet.Numerics
         /// </remarks>
         public static
         double
-        Factorial(
-            int value
-            )
+        Factorial(int value)
         {
             if(value < 0)
             {
@@ -647,10 +616,7 @@ namespace MathNet.Numerics
         /// </remarks>
         public static
         double
-        BinomialCoefficient(
-            int n,
-            int k
-            )
+        BinomialCoefficient(int n, int k)
         {
             if(k < 0 || n < 0 || k > n)
             {
@@ -665,10 +631,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        BinomialCoefficientLn(
-            int n,
-            int k
-            )
+        BinomialCoefficientLn(int n, int k)
         {
             if(k < 0 || n < 0 || k > n)
             {
@@ -688,9 +651,7 @@ namespace MathNet.Numerics
         /// <returns>A value ln|Gamma(value))| for value &gt; 0</returns>
         public static
         double
-        GammaLn(
-            double value
-            )
+        GammaLn(double value)
         {
             double x, y, ser, temp;
             double[] coefficient = new double[] {
@@ -722,9 +683,7 @@ namespace MathNet.Numerics
         /// <returns>A value Gamma(value) for value != 0,-1,-2,...</returns>
         public static
         double
-        Gamma(
-            double value
-            )
+        Gamma(double value)
         {
             if(value > 0.0)
             {
@@ -748,10 +707,7 @@ namespace MathNet.Numerics
         [Obsolete("Renamed to GammaRegularized; Hence please migrate to GammaRegularized.")]
         public static
         double
-        IncompleteGammaRegularized(
-            double a,
-            double x
-            )
+        IncompleteGammaRegularized(double a, double x)
         {
             return GammaRegularized(a, x);
         }
@@ -762,10 +718,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        GammaRegularized(
-            double a,
-            double x
-            )
+        GammaRegularized(double a, double x)
         {
             const int MaxIterations = 100;
             double eps = Number.RelativeAccuracy;
@@ -856,9 +809,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        Digamma(
-            double x
-            )
+        Digamma(double x)
         {
             double y = 0;
             double nz = 0.0;
@@ -956,10 +907,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        Beta(
-            double z,
-            double w
-            )
+        Beta(double z, double w)
         {
             return Math.Exp(GammaLn(z) + GammaLn(w) - GammaLn(z + w));
         }
@@ -970,10 +918,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        BetaLn(
-            double z,
-            double w
-            )
+        BetaLn(double z, double w)
         {
             return GammaLn(z) + GammaLn(w) - GammaLn(z + w);
         }
@@ -987,8 +932,7 @@ namespace MathNet.Numerics
         IncompleteBetaRegularized(
             double a,
             double b,
-            double x
-            )
+            double x)
         {
             return BetaRegularized(a, b, x);
         }
@@ -1002,8 +946,7 @@ namespace MathNet.Numerics
         BetaRegularized(
             double a,
             double b,
-            double x
-            )
+            double x)
         {
             if(a < 0.0 || b < 0.0)
             {
@@ -1109,9 +1052,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        Erf(
-            double x
-            )
+        Erf(double x)
         {
             if(double.IsNegativeInfinity(x))
             {
@@ -1144,9 +1085,7 @@ namespace MathNet.Numerics
         /// </remarks>
         public static
         double
-        ErfInverse(
-            double x
-            )
+        ErfInverse(double x)
         {
             if(x < -1.0 || x > 1.0)
             {
@@ -1223,9 +1162,7 @@ namespace MathNet.Numerics
         /// </remarks>
         public static
         double
-        HarmonicNumber(
-            int n
-            )
+        HarmonicNumber(int n)
         {
             if(n < 0)
             {

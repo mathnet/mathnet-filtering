@@ -92,8 +92,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
         void
         Init(
             IList<double> t,
-            IList<double> x
-            )
+            IList<double> x)
         {
             if(null == t)
             {
@@ -122,9 +121,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
         /// <seealso cref="Differentiate"/>
         public
         double
-        Interpolate(
-            double t
-            )
+        Interpolate(double t)
         {
             double[] x = new double[_x.Count];
             _x.CopyTo(x, 0);
@@ -155,8 +152,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
         Differentiate(
             double t,
             out double first,
-            out double second
-            )
+            out double second)
         {
             double[] x = new double[_x.Count];
             _x.CopyTo(x, 0);
@@ -190,9 +186,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
         /// <seealso cref="SupportsIntegration"/>
         public
         double
-        Integrate(
-            double t
-            )
+        Integrate(double t)
         {
             throw new NotSupportedException();
         }

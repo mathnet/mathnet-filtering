@@ -113,9 +113,7 @@ namespace MathNet.Numerics.RandomSources
         /// If a negative number is specified, the absolute value of the number is used. 
         /// </param>
         public
-        AdditiveLaggedFibonacciRandomSource(
-            int seed
-            )
+        AdditiveLaggedFibonacciRandomSource(int seed)
             : this((uint)Math.Abs(seed))
         {
         }
@@ -128,9 +126,7 @@ namespace MathNet.Numerics.RandomSources
         /// </param>
         [CLSCompliant(false)]
         public
-        AdditiveLaggedFibonacciRandomSource(
-            uint seed
-            )
+        AdditiveLaggedFibonacciRandomSource(uint seed)
         {
             _seed = seed;
             _shortLag = 418;
@@ -147,9 +143,7 @@ namespace MathNet.Numerics.RandomSources
         /// </returns>
         public
         bool
-        IsValidShortLag(
-            int value
-            )
+        IsValidShortLag(int value)
         {
             return value > 0;
         }
@@ -163,9 +157,7 @@ namespace MathNet.Numerics.RandomSources
         /// </returns>
         public
         bool
-        IsValidLongLag(
-            int value
-            )
+        IsValidLongLag(int value)
         {
             return value > _shortLag;
         }
@@ -302,17 +294,14 @@ namespace MathNet.Numerics.RandomSources
         /// </exception>
         public override
         int
-        Next(
-            int maxValue
-            )
+        Next(int maxValue)
         {
             if(maxValue < 0)
             {
                 throw new ArgumentOutOfRangeException(
                     "maxValue",
                     maxValue,
-                    Properties.LocalStrings.ArgumentOutOfRangeGreaterEqual("maxValue", 0)
-                    );
+                    Properties.LocalStrings.ArgumentOutOfRangeGreaterEqual("maxValue", 0));
             }
 
             // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
@@ -349,18 +338,14 @@ namespace MathNet.Numerics.RandomSources
         /// </exception>
         public override
         int
-        Next(
-            int minValue,
-            int maxValue
-            )
+        Next(int minValue, int maxValue)
         {
             if(minValue > maxValue)
             {
                 throw new ArgumentOutOfRangeException(
                     "maxValue",
                     maxValue,
-                    Properties.LocalStrings.ArgumentOutOfRangeGreaterEqual("maxValue", "minValue")
-                    );
+                    Properties.LocalStrings.ArgumentOutOfRangeGreaterEqual("maxValue", "minValue"));
             }
 
             // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
@@ -431,17 +416,14 @@ namespace MathNet.Numerics.RandomSources
         /// </exception>
         public override
         double
-        NextDouble(
-            double maxValue
-            )
+        NextDouble(double maxValue)
         {
             if(maxValue < 0.0)
             {
                 throw new ArgumentOutOfRangeException(
                     "maxValue",
                     maxValue,
-                    Properties.LocalStrings.ArgumentOutOfRangeGreaterEqual("maxValue", 0)
-                    );
+                    Properties.LocalStrings.ArgumentOutOfRangeGreaterEqual("maxValue", 0));
             }
 
             // Its faster to explicitly calculate the unsigned random number than simply call NextUInt().
@@ -486,18 +468,14 @@ namespace MathNet.Numerics.RandomSources
         /// </exception>
         public override
         double
-        NextDouble(
-            double minValue,
-            double maxValue
-            )
+        NextDouble(double minValue, double maxValue)
         {
             if(minValue > maxValue)
             {
                 throw new ArgumentOutOfRangeException(
                     "maxValue",
                     maxValue,
-                    Properties.LocalStrings.ArgumentOutOfRangeGreaterEqual("maxValue", "minValue")
-                    );
+                    Properties.LocalStrings.ArgumentOutOfRangeGreaterEqual("maxValue", "minValue"));
             }
 
             double range = maxValue - minValue;
@@ -567,9 +545,7 @@ namespace MathNet.Numerics.RandomSources
         /// </exception>
         public override
         void
-        NextBytes(
-            byte[] buffer
-            )
+        NextBytes(byte[] buffer)
         {
             if(buffer == null)
             {

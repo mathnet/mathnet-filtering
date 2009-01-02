@@ -205,9 +205,7 @@ namespace MathNet.Numerics
         /// Initializes a new instance of the Set class.
         /// </summary>
         public
-        Set(
-            IEnumerable<T> initial
-            )
+        Set(IEnumerable<T> initial)
         {
             AddRange(initial);
         }
@@ -216,9 +214,7 @@ namespace MathNet.Numerics
         /// Initializes a new instance of the Set class.
         /// </summary>
         public
-        Set(
-            params T[] initial
-            )
+        Set(params T[] initial)
         {
             AddRange(initial);
         }
@@ -227,9 +223,7 @@ namespace MathNet.Numerics
         /// Initializes a new instance of the Set class.
         /// </summary>
         protected
-        Set(
-            IList<T> innerList
-            )
+        Set(IList<T> innerList)
             : base(innerList)
         {
         }
@@ -238,9 +232,7 @@ namespace MathNet.Numerics
         /// Initializes a new instance of the Set class.
         /// </summary>
         public
-        Set(
-            int initialCount
-            )
+        Set(int initialCount)
         {
             T defnull = default(T);
             for(int i = 0; i < initialCount; i++)
@@ -266,9 +258,7 @@ namespace MathNet.Numerics
         /// </summary>
         protected virtual
         ReadOnlySet<T>
-        CreateNewReadOnlyWrapper(
-            IList<T> list
-            )
+        CreateNewReadOnlyWrapper(IList<T> list)
         {
             return new ReadOnlySet<T>(list);
         }
@@ -329,9 +319,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         void
-        AddRange(
-            IEnumerable<T> range
-            )
+        AddRange(IEnumerable<T> range)
         {
             foreach(T item in range)
             {
@@ -344,9 +332,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         void
-        AddDistinct(
-            T item
-            )
+        AddDistinct(T item)
         {
             if(!Contains(item))
             {
@@ -359,9 +345,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         void
-        AddRangeDistinct(
-            IEnumerable<T> range
-            )
+        AddRangeDistinct(IEnumerable<T> range)
         {
             foreach(T item in range)
             {
@@ -399,9 +383,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         void
-        ReplaceRange(
-            IEnumerable<T> range
-            )
+        ReplaceRange(IEnumerable<T> range)
         {
             int i = 0;
             foreach(T item in range)
@@ -417,8 +399,7 @@ namespace MathNet.Numerics
         void
         InsertItem(
             int index,
-            T item
-            )
+            T item)
         {
             EventHandler<SetChangedEventArgs<T>> handler = OnSetChanged;
             if(handler == null)
@@ -441,9 +422,7 @@ namespace MathNet.Numerics
         /// </summary>
         protected override
         void
-        RemoveItem(
-            int index
-            )
+        RemoveItem(int index)
         {
             EventHandler<SetChangedEventArgs<T>> handler = OnSetChanged;
             if(handler == null)
@@ -468,8 +447,7 @@ namespace MathNet.Numerics
         void
         SetItem(
             int index,
-            T item
-            )
+            T item)
         {
             EventHandler<SetChangedEventArgs<T>> handler = OnSetChanged;
             if(handler == null)
@@ -493,9 +471,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         bool
-        IsSubset(
-            IEnumerable<T> c
-            )
+        IsSubset(IEnumerable<T> c)
         {
             foreach(T item in c)
             {
@@ -513,9 +489,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         bool
-        IsSuperset(
-            IEnumerable<T> c
-            )
+        IsSuperset(IEnumerable<T> c)
         {
             Dictionary<T, object> table = new Dictionary<T, object>();
 
@@ -544,9 +518,7 @@ namespace MathNet.Numerics
         /// <remarks>Ingnores duplicate elements.</remarks>
         public
         bool
-        HasEqualElements(
-            IEnumerable<T> c
-            )
+        HasEqualElements(IEnumerable<T> c)
         {
             /* TODO: quite inelegant, find better algorithm. */
 
@@ -585,9 +557,7 @@ namespace MathNet.Numerics
         /// <remarks>Not distinct: the resulting collection may contain several identical elements.</remarks>
         public
         Set<T>
-        Concatenate(
-            IEnumerable<T> c
-            )
+        Concatenate(IEnumerable<T> c)
         {
             return Concatenate(this, c);
         }
@@ -597,9 +567,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         void
-        ConcatenateInplace(
-            IEnumerable<T> c
-            )
+        ConcatenateInplace(IEnumerable<T> c)
         {
             AddRange(c);
         }
@@ -613,8 +581,7 @@ namespace MathNet.Numerics
         Set<T>
         Concatenate(
             IEnumerable<T> c1,
-            IEnumerable<T> c2
-            )
+            IEnumerable<T> c2)
         {
             Set<T> s = new Set<T>(c1);
             s.AddRange(c2);
@@ -631,9 +598,7 @@ namespace MathNet.Numerics
         /// <remarks>Distinct: the resulting collection may not contain several identical elements.</remarks>
         public
         Set<T>
-        Union(
-            IEnumerable<T> c
-            )
+        Union(IEnumerable<T> c)
         {
             return Union(this, c);
         }
@@ -643,9 +608,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         void
-        UnionInplace(
-            IEnumerable<T> c
-            )
+        UnionInplace(IEnumerable<T> c)
         {
             RemoveDuplicates();
             AddRangeDistinct(c);
@@ -660,8 +623,7 @@ namespace MathNet.Numerics
         Set<T>
         Union(
             IEnumerable<T> c1,
-            IEnumerable<T> c2
-            )
+            IEnumerable<T> c2)
         {
             Set<T> s = new Set<T>();
             s.AddRangeDistinct(c1);
@@ -679,9 +641,7 @@ namespace MathNet.Numerics
         /// <remarks>Distinct: the resulting collection may not contain several identical elements.</remarks>
         public
         Set<T>
-        Intersect(
-            IEnumerable<T> c
-            )
+        Intersect(IEnumerable<T> c)
         {
             return Intersect(this, c);
         }
@@ -691,9 +651,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         void
-        IntersectInplace(
-            IEnumerable<T> c
-            )
+        IntersectInplace(IEnumerable<T> c)
         {
             Dictionary<T, object> table = new Dictionary<T, object>();
 
@@ -723,8 +681,7 @@ namespace MathNet.Numerics
         Set<T>
         Intersect(
             IEnumerable<T> c1,
-            IEnumerable<T> c2
-            )
+            IEnumerable<T> c2)
         {
             Dictionary<T, object> table = new Dictionary<T, object>();
             foreach(T item in c1)
@@ -757,9 +714,7 @@ namespace MathNet.Numerics
         /// <remarks>Not distinct: the resulting collection may contain several identical elements.</remarks>
         public
         Set<T>
-        Subtract(
-            IEnumerable<T> c
-            )
+        Subtract(IEnumerable<T> c)
         {
             return Subtract(this, c);
         }
@@ -769,9 +724,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         void
-        SubtractInplace(
-            IEnumerable<T> c
-            )
+        SubtractInplace(IEnumerable<T> c)
         {
             Dictionary<T, object> table = new Dictionary<T, object>();
 
@@ -801,8 +754,7 @@ namespace MathNet.Numerics
         Set<T>
         Subtract(
             IEnumerable<T> c1,
-            IEnumerable<T> c2
-            )
+            IEnumerable<T> c2)
         {
             Dictionary<T, object> table = new Dictionary<T, object>();
             foreach(T item in c2)
@@ -834,9 +786,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         bool
-        Exists(
-            Predicate<T> match
-            )
+        Exists(Predicate<T> match)
         {
             return FindIndex(match) != -1;
         }
@@ -848,8 +798,7 @@ namespace MathNet.Numerics
         bool
         Exists(
             Predicate<T> match,
-            out T foundItem
-            )
+            out T foundItem)
         {
             int idx = FindIndex(match);
             if(idx == -1)
@@ -869,9 +818,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         bool
-        TrueForAll(
-            Predicate<T> match
-            )
+        TrueForAll(Predicate<T> match)
         {
             if(match == null)
             {
@@ -894,9 +841,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         void
-        ForEach(
-            Action<T> action
-            )
+        ForEach(Action<T> action)
         {
             if(action == null)
             {
@@ -916,9 +861,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         T
-        Find(
-            Predicate<T> match
-            )
+        Find(Predicate<T> match)
         {
             if(match == null)
             {
@@ -941,9 +884,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         int
-        FindIndex(
-            Predicate<T> match
-            )
+        FindIndex(Predicate<T> match)
         {
             return FindIndex(0, Count, match);
         }
@@ -955,8 +896,7 @@ namespace MathNet.Numerics
         int
         FindIndex(
             int startIndex,
-            Predicate<T> match
-            )
+            Predicate<T> match)
         {
             return FindIndex(startIndex, Count - startIndex, match);
         }
@@ -969,8 +909,7 @@ namespace MathNet.Numerics
         FindIndex(
             int startIndex,
             int count,
-            Predicate<T> match
-            )
+            Predicate<T> match)
         {
             if(startIndex > Count)
             {
@@ -1004,9 +943,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         T
-        FindLast(
-            Predicate<T> match
-            )
+        FindLast(Predicate<T> match)
         {
             if(match == null)
             {
@@ -1029,9 +966,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         int
-        FindLastIndex(
-            Predicate<T> match
-            )
+        FindLastIndex(Predicate<T> match)
         {
             return FindLastIndex(Count - 1, Count, match);
         }
@@ -1043,8 +978,7 @@ namespace MathNet.Numerics
         int
         FindLastIndex(
             int startIndex,
-            Predicate<T> match
-            )
+            Predicate<T> match)
         {
             return FindLastIndex(startIndex, startIndex + 1, match);
         }
@@ -1057,8 +991,7 @@ namespace MathNet.Numerics
         FindLastIndex(
             int startIndex,
             int count,
-            Predicate<T> match
-            )
+            Predicate<T> match)
         {
             if(startIndex >= Count)
             {
@@ -1092,9 +1025,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         int
-        LastIndexOf(
-            T item
-            )
+        LastIndexOf(T item)
         {
             for(int i = Count - 1; i >= 0; i--)
             {
@@ -1112,9 +1043,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         Set<T>
-        FindAll(
-            Predicate<T> match
-            )
+        FindAll(Predicate<T> match)
         {
             if(match == null)
             {
@@ -1141,9 +1070,7 @@ namespace MathNet.Numerics
         /// <returns>The number of removed items.</returns>
         public
         int
-        RemoveAll(
-            Predicate<T> match
-            )
+        RemoveAll(Predicate<T> match)
         {
             int cnt = 0;
             for(int i = Count - 1; i >= 0; i--)
@@ -1167,9 +1094,8 @@ namespace MathNet.Numerics
         /// </summary>
         public
         Set<TOutput>
-        ConvertAll<TOutput>(
-            Converter<T, TOutput> convert
-            ) where TOutput : IEquatable<TOutput>
+        ConvertAll<TOutput>(Converter<T, TOutput> convert)
+            where TOutput : IEquatable<TOutput>
         {
             Set<TOutput> ret = new Set<TOutput>();
 
@@ -1200,9 +1126,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         void
-        Sort(
-            IComparer<T> comparer
-            )
+        Sort(IComparer<T> comparer)
         {
             Sorting.Sort(Items, comparer);
         }
@@ -1215,8 +1139,7 @@ namespace MathNet.Numerics
         Sort(
             int index,
             int count,
-            IComparer<T> comparer
-            )
+            IComparer<T> comparer)
         {
             Sorting.Sort(Items, index, count, comparer);
         }
@@ -1236,9 +1159,8 @@ namespace MathNet.Numerics
         /// Initializes a new instance of the ReadOnlySet class.
         /// </summary>
         public
-        ReadOnlySet(
-            IList<T> list
-            ) : base(list)
+        ReadOnlySet(IList<T> list)
+            : base(list)
         {
         }
 
@@ -1271,9 +1193,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         bool
-        IsSubset(
-            IEnumerable<T> c
-            )
+        IsSubset(IEnumerable<T> c)
         {
             foreach(T item in c)
             {
@@ -1291,9 +1211,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         bool
-        IsSuperset(
-            IEnumerable<T> c
-            )
+        IsSuperset(IEnumerable<T> c)
         {
             Dictionary<T, object> table = new Dictionary<T, object>();
 
@@ -1322,9 +1240,7 @@ namespace MathNet.Numerics
         /// <remarks>Ingnores duplicate elements.</remarks>
         public
         bool
-        HasEqualElements(
-            IEnumerable<T> c
-            )
+        HasEqualElements(IEnumerable<T> c)
         {
             /* TODO: quite inelegant, find better algorithm. */
 
@@ -1361,9 +1277,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         bool
-        Exists(
-            Predicate<T> match
-            )
+        Exists(Predicate<T> match)
         {
             return FindIndex(match) != -1;
         }
@@ -1375,8 +1289,7 @@ namespace MathNet.Numerics
         bool
         Exists(
             Predicate<T> match,
-            out T foundItem
-            )
+            out T foundItem)
         {
             int idx = FindIndex(match);
             if(idx == -1)
@@ -1396,9 +1309,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         bool
-        TrueForAll(
-            Predicate<T> match
-            )
+        TrueForAll(Predicate<T> match)
         {
             if(match == null)
             {
@@ -1421,9 +1332,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         void
-        ForEach(
-            Action<T> action
-            )
+        ForEach(Action<T> action)
         {
             if(action == null)
             {
@@ -1443,9 +1352,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         T
-        Find(
-            Predicate<T> match
-            )
+        Find(Predicate<T> match)
         {
             if(match == null)
             {
@@ -1468,9 +1375,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         int
-        FindIndex(
-            Predicate<T> match
-            )
+        FindIndex(Predicate<T> match)
         {
             return FindIndex(0, Count, match);
         }
@@ -1482,8 +1387,7 @@ namespace MathNet.Numerics
         int
         FindIndex(
             int startIndex,
-            Predicate<T> match
-            )
+            Predicate<T> match)
         {
             return FindIndex(startIndex, Count - startIndex, match);
         }
@@ -1496,8 +1400,7 @@ namespace MathNet.Numerics
         FindIndex(
             int startIndex,
             int count,
-            Predicate<T> match
-            )
+            Predicate<T> match)
         {
             if(startIndex > Count)
             {
@@ -1531,9 +1434,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         T
-        FindLast(
-            Predicate<T> match
-            )
+        FindLast(Predicate<T> match)
         {
             if(match == null)
             {
@@ -1556,9 +1457,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         int
-        FindLastIndex(
-            Predicate<T> match
-            )
+        FindLastIndex(Predicate<T> match)
         {
             return FindLastIndex(Count - 1, Count, match);
         }
@@ -1570,8 +1469,7 @@ namespace MathNet.Numerics
         int
         FindLastIndex(
             int startIndex,
-            Predicate<T> match
-            )
+            Predicate<T> match)
         {
             return FindLastIndex(startIndex, startIndex + 1, match);
         }
@@ -1584,8 +1482,7 @@ namespace MathNet.Numerics
         FindLastIndex(
             int startIndex,
             int count,
-            Predicate<T> match
-            )
+            Predicate<T> match)
         {
             if(startIndex >= Count)
             {
@@ -1619,9 +1516,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         int
-        LastIndexOf(
-            T item
-            )
+        LastIndexOf(T item)
         {
             for(int i = Count - 1; i >= 0; i--)
             {
@@ -1639,9 +1534,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         Set<T>
-        FindAll(
-            Predicate<T> match
-            )
+        FindAll(Predicate<T> match)
         {
             if(match == null)
             {
@@ -1674,9 +1567,7 @@ namespace MathNet.Numerics
         /// </remarks>
         /// <exception cref="NotSupportedException" />
         void
-        ISet<T>.AddRange(
-            IEnumerable<T> range
-            )
+        ISet<T>.AddRange(IEnumerable<T> range)
         {
             throw new NotSupportedException();
         }
@@ -1689,9 +1580,7 @@ namespace MathNet.Numerics
         /// </remarks>
         /// <exception cref="NotSupportedException" />
         void
-        ISet<T>.AddDistinct(
-            T item
-            )
+        ISet<T>.AddDistinct(T item)
         {
             throw new NotSupportedException();
         }
@@ -1704,9 +1593,7 @@ namespace MathNet.Numerics
         /// </remarks>
         /// <exception cref="NotSupportedException" />
         void
-        ISet<T>.AddRangeDistinct(
-            IEnumerable<T> range
-            )
+        ISet<T>.AddRangeDistinct(IEnumerable<T> range)
         {
             throw new NotSupportedException();
         }
@@ -1732,9 +1619,7 @@ namespace MathNet.Numerics
         /// </remarks>
         /// <exception cref="NotSupportedException" />
         int
-        ISet<T>.RemoveAll(
-            Predicate<T> match
-            )
+        ISet<T>.RemoveAll(Predicate<T> match)
         {
             throw new NotSupportedException();
         }
@@ -1760,9 +1645,7 @@ namespace MathNet.Numerics
         /// </remarks>
         /// <exception cref="NotSupportedException" />
         void
-        ISet<T>.Sort(
-            IComparer<T> comparer
-            )
+        ISet<T>.Sort(IComparer<T> comparer)
         {
             throw new NotSupportedException();
         }
@@ -1778,8 +1661,7 @@ namespace MathNet.Numerics
         ISet<T>.Sort(
             int index,
             int count,
-            IComparer<T> comparer
-            )
+            IComparer<T> comparer)
         {
             throw new NotSupportedException();
         }
@@ -1793,9 +1675,8 @@ namespace MathNet.Numerics
         /// </summary>
         public
         Set<TOutput>
-        ConvertAll<TOutput>(
-            Converter<T, TOutput> convert
-            ) where TOutput : IEquatable<TOutput>
+        ConvertAll<TOutput>(Converter<T, TOutput> convert)
+            where TOutput : IEquatable<TOutput>
         {
             Set<TOutput> ret = new Set<TOutput>();
 
@@ -1846,8 +1727,7 @@ namespace MathNet.Numerics
             SetElementOperation op,
             T element,
             int indexBefore,
-            int indexAfter
-            )
+            int indexAfter)
         {
             this.op = op;
             this.element = element;
@@ -1866,8 +1746,7 @@ namespace MathNet.Numerics
         Moved(
             T element,
             int indexBefore,
-            int indexAfter
-            )
+            int indexAfter)
         {
             return new SetChangedEventArgs<T>(SetElementOperation.Moved, element, indexBefore, indexAfter);
         }
@@ -1881,8 +1760,7 @@ namespace MathNet.Numerics
         SetChangedEventArgs<T>
         Added(
             T element,
-            int index
-            )
+            int index)
         {
             return new SetChangedEventArgs<T>(SetElementOperation.Added, element, -1, index);
         }
@@ -1896,8 +1774,7 @@ namespace MathNet.Numerics
         SetChangedEventArgs<T>
         Removed(
             T element,
-            int index
-            )
+            int index)
         {
             return new SetChangedEventArgs<T>(SetElementOperation.Removed, element, index, -1);
         }

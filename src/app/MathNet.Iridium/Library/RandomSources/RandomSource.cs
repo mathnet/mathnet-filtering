@@ -67,9 +67,7 @@ namespace MathNet.Numerics.RandomSources
         /// </returns>
         public abstract
         int
-        Next(
-            int maxValue
-            );
+        Next(int maxValue);
 
         /// <summary>
         /// Returns a random number within the specified range. 
@@ -88,10 +86,7 @@ namespace MathNet.Numerics.RandomSources
         /// </returns>
         public abstract
         int
-        Next(
-            int minValue,
-            int maxValue
-            );
+        Next(int minValue, int maxValue);
 
         /// <summary>
         /// Returns a nonnegative floating point random number less than 1.0.
@@ -117,9 +112,7 @@ namespace MathNet.Numerics.RandomSources
         /// </returns>
         public abstract
         double
-        NextDouble(
-            double maxValue
-            );
+        NextDouble(double maxValue);
 
         /// <summary>
         /// Returns a floating point random number within the specified range. 
@@ -142,10 +135,7 @@ namespace MathNet.Numerics.RandomSources
         /// </returns>
         public abstract
         double
-        NextDouble(
-            double minValue,
-            double maxValue
-            );
+        NextDouble(double minValue, double maxValue);
 
         /// <summary>
         /// Returns a random Boolean value.
@@ -168,9 +158,7 @@ namespace MathNet.Numerics.RandomSources
         /// <param name="buffer">An array of bytes to contain random numbers.</param>
         public abstract
         void
-        NextBytes(
-            byte[] buffer
-            );
+        NextBytes(byte[] buffer);
 
         /// <summary>
         /// Resets the random number generator, so that it produces the same random number sequence again.

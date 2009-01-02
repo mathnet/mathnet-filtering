@@ -79,9 +79,7 @@ namespace MathNet.Numerics
         /// </summary>
         /// <param name="capacity">initial capacity</param>
         public
-        SampleList(
-            int capacity
-            )
+        SampleList(int capacity)
         {
             if(capacity < 0)
             {
@@ -97,9 +95,7 @@ namespace MathNet.Numerics
         /// Initializes a new instance of the SampleList class.
         /// </summary>
         public
-        SampleList(
-            IDictionary d
-            )
+        SampleList(IDictionary d)
             : this((d != null) ? d.Count : 16)
         {
             if(null == d)
@@ -117,9 +113,7 @@ namespace MathNet.Numerics
         /// Initializes a new instance of the SampleList class.
         /// </summary>
         public
-        SampleList(
-            IDictionary d, int capacity
-            )
+        SampleList(IDictionary d, int capacity)
             : this((d != null) ? (capacity >= d.Count ? capacity : d.Count) : 16)
         {
             if(null == d)
@@ -143,8 +137,7 @@ namespace MathNet.Numerics
         public
         SampleList(
             IList<double> t,
-            IList<double> x
-            )
+            IList<double> x)
             : this((t != null) ? t.Count : 0)
         {
             if(null == t)
@@ -176,9 +169,7 @@ namespace MathNet.Numerics
         /// Doubles the capacity. Do not use this method directly, use <see cref="Add"/> instead.
         /// </summary>
         void
-        EnsureCapacity(
-            int min
-            )
+        EnsureCapacity(int min)
         {
             int capacitySuggestion = (_sampleCount.Length < 8) ? 16 : (_sampleCount.Length << 1);
             this.Capacity = (capacitySuggestion < min) ? min : capacitySuggestion;
@@ -188,10 +179,7 @@ namespace MathNet.Numerics
         /// Append a sample to existing samples. Do not use this method directly, use <see cref="Add"/> instead.
         /// </summary>
         void
-        AppendMean(
-            int index,
-            double x
-            )
+        AppendMean(int index, double x)
         {
             double cntBefore = _sampleCount[index];
             double cntAfter = _sampleCount[index] = _sampleCount[index] + 1;
@@ -210,8 +198,7 @@ namespace MathNet.Numerics
         Insert(
             int index,
             double t,
-            double x
-            )
+            double x)
         {
             if(_size == _sampleCount.Length)
             {
@@ -243,10 +230,7 @@ namespace MathNet.Numerics
         /// <param name="x">value x, where x=f(t) or (t,x).</param>
         public virtual
         void
-        Add(
-            double t,
-            double x
-            )
+        Add(double t, double x)
         {
             int index = Locate(t);
             if(index > 0 && Number.AlmostEqual(_sampleT[index], t))
@@ -268,9 +252,7 @@ namespace MathNet.Numerics
         /// </summary>
         public virtual
         void
-        RemoveAt(
-            int index
-            )
+        RemoveAt(int index)
         {
             double t = _sampleT[index];
 
@@ -300,9 +282,7 @@ namespace MathNet.Numerics
         /// </summary>
         public virtual
         void
-        Remove(
-            double t
-            )
+        Remove(double t)
         {
             int index = IndexOfT(t);
             if(index >= 0)
@@ -330,9 +310,7 @@ namespace MathNet.Numerics
         /// The index of the sample with a key exactly equal to t.
         /// </summary>
         int
-        IndexOfT(
-            double t
-            )
+        IndexOfT(double t)
         {
             int index = Locate(t);
             if(Number.AlmostEqual(_sampleT[index], t))
@@ -352,9 +330,7 @@ namespace MathNet.Numerics
         /// The index of the first sample with a value exactly equal to x.
         /// </summary>
         int
-        IndexOfX(
-            double x
-            )
+        IndexOfX(double x)
         {
             return Array.IndexOf(_sampleX, x, 0, _size);
         }
@@ -364,10 +340,7 @@ namespace MathNet.Numerics
         /// Do not use this to add a sample to the list!
         /// </summary>
         void
-        SetX(
-            double t,
-            double x
-            )
+        SetX(double t, double x)
         {
             int index = Locate(t);
             if(Number.AlmostEqual(_sampleT[index], t))
@@ -407,9 +380,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         double
-        GetT(
-            int index
-            )
+        GetT(int index)
         {
             return _sampleT[index];
         }
@@ -419,9 +390,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         double
-        GetX(
-            int index
-            )
+        GetX(int index)
         {
             return _sampleX[index];
         }
@@ -436,9 +405,7 @@ namespace MathNet.Numerics
         /// <returns>The lower bound index of the interval, -1 or Size-1 if out of bounds.</returns>
         public
         int
-        Locate(
-            double t
-            )
+        Locate(double t)
         {
             return LocateBisection(t, -1, _size);
         }
@@ -450,10 +417,7 @@ namespace MathNet.Numerics
         /// <returns>The lower bound index of the interval, -1 or Size-1 if out of bounds.</returns>
         public
         int
-        Locate(
-            double t,
-            int nearIndex
-            )
+        Locate(double t, int nearIndex)
         {
             if(nearIndex < 0 || nearIndex > _size - 1)
             {
@@ -524,8 +488,7 @@ namespace MathNet.Numerics
         LocateBisection(
             double t,
             int lowerIndex,
-            int upperIndex
-            )
+            int upperIndex)
         {
             int midpointIndex;
 
@@ -654,8 +617,7 @@ namespace MathNet.Numerics
         void
         ICollection.CopyTo(
             Array array,
-            int index
-            )
+            int index)
         {
             if(array == null || array.Rank != 1)
             {
@@ -724,9 +686,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         bool
-        ContainsT(
-            double t
-            )
+        ContainsT(double t)
         {
             return IndexOfT(t) != -1;
         }
@@ -736,9 +696,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         bool
-        ContainsX(
-            double x
-            )
+        ContainsX(double x)
         {
             return IndexOfX(x) != -1;
         }
@@ -746,16 +704,13 @@ namespace MathNet.Numerics
         void 
         IDictionary.Add(
             object key,
-            object value
-            )
+            object value)
         {
             Add(Convert.ToDouble(key), Convert.ToDouble(value));
         }
 
         void 
-        IDictionary.Remove(
-            object key
-            )
+        IDictionary.Remove(object key)
         {
             Remove(Convert.ToDouble(key));
         }

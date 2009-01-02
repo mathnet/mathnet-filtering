@@ -49,9 +49,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        RatioToNeper(
-            double ratio
-            )
+        RatioToNeper(double ratio)
         {
             return Math.Log(ratio);
         }
@@ -63,8 +61,7 @@ namespace MathNet.Numerics
         double
         RatioToNeper(
             double value,
-            double baseValue
-            )
+            double baseValue)
         {
             return Math.Log(value) - Math.Log(baseValue);
         }
@@ -74,9 +71,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        NeperToRatio(
-            double neper
-            )
+        NeperToRatio(double neper)
         {
             return Math.Exp(neper);
         }
@@ -88,8 +83,7 @@ namespace MathNet.Numerics
         double
         NeperToValue(
             double neper,
-            double baseValue
-            )
+            double baseValue)
         {
             return Math.Exp(neper) * baseValue;
         }
@@ -103,9 +97,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        RatioToDecibel(
-            double ratio
-            )
+        RatioToDecibel(double ratio)
         {
             return 10 * Math.Log10(ratio);
         }
@@ -117,8 +109,7 @@ namespace MathNet.Numerics
         double
         RatioToDecibel(
             double value,
-            double baseValue
-            )
+            double baseValue)
         {
             return 10 * (Math.Log10(value) - Math.Log10(baseValue));
         }
@@ -128,9 +119,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        DecibelToRatio(
-            double decibel
-            )
+        DecibelToRatio(double decibel)
         {
             return Math.Pow(10, 0.1 * decibel);
         }
@@ -142,8 +131,7 @@ namespace MathNet.Numerics
         double
         DecibelToValue(
             double decibel,
-            double baseValue
-            )
+            double baseValue)
         {
             return Math.Pow(10, 0.1 * decibel) * baseValue;
         }
@@ -160,9 +148,7 @@ namespace MathNet.Numerics
         /// </remarks>
         public static
         double
-        RatioToPowerDecibel(
-            double ratio
-            )
+        RatioToPowerDecibel(double ratio)
         {
             return 20 * Math.Log10(ratio);
         }
@@ -177,8 +163,7 @@ namespace MathNet.Numerics
         double
         RatioToPowerDecibel(
             double value,
-            double baseValue
-            )
+            double baseValue)
         {
             return 20 * (Math.Log10(value) - Math.Log10(baseValue));
         }
@@ -191,9 +176,7 @@ namespace MathNet.Numerics
         /// </remarks>
         public static
         double
-        PowerDecibelToRatio(
-            double decibel
-            )
+        PowerDecibelToRatio(double decibel)
         {
             return Math.Pow(10, 0.05 * decibel);
         }
@@ -208,8 +191,7 @@ namespace MathNet.Numerics
         double
         PowerDecibelToValue(
             double decibel,
-            double baseValue
-            )
+            double baseValue)
         {
             return Math.Pow(10, 0.05 * decibel) * baseValue;
         }
@@ -226,9 +208,7 @@ namespace MathNet.Numerics
         /// </remarks>
         public static
         double
-        PowerDecibelToNeper(
-            double decibel
-            )
+        PowerDecibelToNeper(double decibel)
         {
             return decibel * Constants.PowerDecibel;
         }
@@ -241,9 +221,7 @@ namespace MathNet.Numerics
         /// </remarks>
         public static
         double
-        NeperToPowerDecibel(
-            double neper
-            )
+        NeperToPowerDecibel(double neper)
         {
             return neper / Constants.PowerDecibel;
         }
@@ -253,9 +231,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        DecibelToNeper(
-            double decibel
-            )
+        DecibelToNeper(double decibel)
         {
             return decibel * Constants.NeutralDecibel;
         }
@@ -265,9 +241,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        NeperToDecibel(
-            double neper
-            )
+        NeperToDecibel(double neper)
         {
             return neper / Constants.NeutralDecibel;
         }

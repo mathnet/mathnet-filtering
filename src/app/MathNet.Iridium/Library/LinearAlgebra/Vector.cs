@@ -79,9 +79,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </summary>
         /// <param name="n">Dimensionality of vector.</param>
         public
-        Vector(
-            int n
-            )
+        Vector(int n)
         {
             _length = n;
             _data = new double[_length];
@@ -94,10 +92,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="n">Dimensionality of vector.</param>
         /// <param name="i">Coordinate index.</param>
         public
-        Vector(
-            int n,
-            int i
-            )
+        Vector(int n, int i)
         {
             _length = n;
             _data = new double[_length];
@@ -111,10 +106,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="n">Dimensionality of vector.</param>
         /// <param name="value">Fill the vector with this scalar value.</param>
         public
-        Vector(
-            int n,
-            double value
-            )
+        Vector(int n, double value)
         {
             _length = n;
             _data = new double[_length];
@@ -131,9 +123,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="components">One-dimensional array of doubles.</param>
         /// <seealso cref="Create"/>
         public
-        Vector(
-            double[] components
-            )
+        Vector(double[] components)
         {
             _length = components.Length;
             _data = components;
@@ -145,9 +135,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="components">One-dimensional array of doubles.</param>
         public static
         Vector
-        Create(
-            double[] components
-            )
+        Create(double[] components)
         {
             if(null == components)
             {
@@ -173,8 +161,7 @@ namespace MathNet.Numerics.LinearAlgebra
         Vector
         Random(
             int n,
-            IContinuousGenerator randomDistribution
-            )
+            IContinuousGenerator randomDistribution)
         {
             double[] data = new double[n];
             for(int i = 0; i < data.Length; i++)
@@ -195,9 +182,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </returns>
         public static
         Vector
-        Random(
-            int n
-            )
+        Random(int n)
         {
             return Random(n, new RandomSources.SystemRandomSource());
         }
@@ -208,9 +193,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="n">Dimensionality of vector.</param>
         public static
         Vector
-        Ones(
-            int n
-            )
+        Ones(int n)
         {
             return new Vector(n, 1.0);
         }
@@ -221,9 +204,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="n">Dimensionality of vector.</param>
         public static
         Vector
-        Zeros(
-            int n
-            )
+        Zeros(int n)
         {
             return new Vector(n);
         }
@@ -235,10 +216,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="i">Coordinate index.</param>
         public static
         Vector
-        BasisVector(
-            int n,
-            int i
-            )
+        BasisVector(int n, int i)
         {
             return new Vector(n, i);
         }
@@ -251,9 +229,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// Returns a reference to the internel data structure.
         /// </summary>
         public static implicit
-        operator double[](
-            Vector v
-            )
+        operator double[](Vector v)
         {
             return v._data;
         }
@@ -262,9 +238,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// Returns a vector bound directly to a reference of the provided array.
         /// </summary>
         public static implicit
-        operator Vector(
-            double[] v
-            )
+        operator Vector(double[] v)
         {
             return new Vector(v);
         }
@@ -332,9 +306,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator + (Vector, Vector)"/>
         public
         Vector
-        Add(
-            IVector<double> b
-            )
+        Add(IVector<double> b)
         {
             CheckMatchingVectorDimensions(this, b);
 
@@ -361,9 +333,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator + (Vector, double)"/>
         public
         Vector
-        Add(
-            double b
-            )
+        Add(double b)
         {
             double[] v = new double[_length];
             for(int i = 0; i < v.Length; i++)
@@ -384,9 +354,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator + (Vector, Vector)"/>
         public
         void
-        AddInplace(
-            IVector<double> b
-            )
+        AddInplace(IVector<double> b)
         {
             CheckMatchingVectorDimensions(this, b);
 
@@ -406,9 +374,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator + (Vector, double)"/>
         public
         void
-        AddInplace(
-            double b
-            )
+        AddInplace(double b)
         {
             for(int i = 0; i < _data.Length; i++)
             {
@@ -430,9 +396,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator - (Vector, Vector)"/>
         public
         Vector
-        Subtract(
-            IVector<double> b
-            )
+        Subtract(IVector<double> b)
         {
             CheckMatchingVectorDimensions(this, b);
 
@@ -459,9 +423,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator - (Vector, double)"/>
         public
         Vector
-        Subtract(
-            double b
-            )
+        Subtract(double b)
         {
             double[] v = new double[_length];
             for(int i = 0; i < v.Length; i++)
@@ -482,9 +444,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator - (Vector, Vector)"/>
         public
         void
-        SubtractInplace(
-            IVector<double> b
-            )
+        SubtractInplace(IVector<double> b)
         {
             CheckMatchingVectorDimensions(this, b);
 
@@ -504,9 +464,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator - (Vector, double)"/>
         public
         void
-        SubtractInplace(
-            double b
-            )
+        SubtractInplace(double b)
         {
             for(int i = 0; i < _data.Length; i++)
             {
@@ -570,9 +528,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator * (Vector, double)"/>
         public
         Vector
-        Scale(
-            double scalar
-            )
+        Scale(double scalar)
         {
             double[] v = new double[_length];
             for(int i = 0; i < v.Length; i++)
@@ -593,9 +549,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator * (Vector, double)"/>
         public
         void
-        ScaleInplace(
-            double scalar
-            )
+        ScaleInplace(double scalar)
         {
             for(int i = 0; i < _length; i++)
             {
@@ -619,8 +573,7 @@ namespace MathNet.Numerics.LinearAlgebra
         double
         ScalarProduct(
             IVector<double> u,
-            IVector<double> v
-            )
+            IVector<double> v)
         {
             CheckMatchingVectorDimensions(u, v);
 
@@ -647,9 +600,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="operator * (Vector, Vector)"/>
         public
         double
-        ScalarMultiply(
-            IVector<double> b
-            )
+        ScalarMultiply(IVector<double> b)
         {
             return ScalarProduct(this, b);
         }
@@ -665,8 +616,7 @@ namespace MathNet.Numerics.LinearAlgebra
         Matrix
         DyadicProduct(
             IVector<double> u,
-            IVector<double> v
-            )
+            IVector<double> v)
         {
             double[][] m = Matrix.CreateMatrixData(u.Length, v.Length);
             for(int i = 0; i < u.Length; i++)
@@ -690,9 +640,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="DyadicProduct"/>
         public
         Matrix
-        TensorMultiply(
-            IVector<double> b
-            )
+        TensorMultiply(IVector<double> b)
         {
             return DyadicProduct(this, b);
         }
@@ -708,8 +656,7 @@ namespace MathNet.Numerics.LinearAlgebra
         Vector
         CrossProduct(
             IVector<double> u,
-            IVector<double> v
-            )
+            IVector<double> v)
         {
             CheckMatchingVectorDimensions(u, v);
             if(3 != u.Length)
@@ -736,9 +683,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="CrossProduct"/>
         public
         Vector
-        CrossMultiply(
-            IVector<double> b
-            )
+        CrossMultiply(IVector<double> b)
         {
             return CrossProduct(this, b);
         }
@@ -755,8 +700,7 @@ namespace MathNet.Numerics.LinearAlgebra
         Vector
         ArrayProduct(
             IVector<double> a,
-            IVector<double> b
-            )
+            IVector<double> b)
         {
             CheckMatchingVectorDimensions(a, b);
 
@@ -779,9 +723,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="ArrayMultiplyInplace"/>
         public
         Vector
-        ArrayMultiply(
-            IVector<double> b
-            )
+        ArrayMultiply(IVector<double> b)
         {
             return ArrayProduct(this, b);
         }
@@ -796,9 +738,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="ArrayMultiply"/>
         public
         void
-        ArrayMultiplyInplace(
-            IVector<double> b
-            )
+        ArrayMultiplyInplace(IVector<double> b)
         {
             CheckMatchingVectorDimensions(this, b);
 
@@ -820,8 +760,7 @@ namespace MathNet.Numerics.LinearAlgebra
         Vector
         ArrayQuotient(
             IVector<double> a,
-            IVector<double> b
-            )
+            IVector<double> b)
         {
             CheckMatchingVectorDimensions(a, b);
 
@@ -844,9 +783,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="ArrayDivideInplace"/>
         public
         Vector
-        ArrayDivide(
-            IVector<double> b
-            )
+        ArrayDivide(IVector<double> b)
         {
             return ArrayQuotient(this, b);
         }
@@ -861,9 +798,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <seealso cref="ArrayDivide"/>
         public
         void
-        ArrayDivideInplace(
-            IVector<double> b
-            )
+        ArrayDivideInplace(IVector<double> b)
         {
             CheckMatchingVectorDimensions(this, b);
 
@@ -942,9 +877,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </returns>
         public
         double
-        NormP(
-            int p
-            )
+        NormP(int p)
         {
             if(1 > p)
             {
@@ -1016,8 +949,7 @@ namespace MathNet.Numerics.LinearAlgebra
         Vector
         operator +(
             Vector u,
-            Vector v
-            )
+            Vector v)
         {
             CheckMatchingVectorDimensions(u, v);
             return u.Add(v);
@@ -1030,8 +962,7 @@ namespace MathNet.Numerics.LinearAlgebra
         Vector
         operator +(
             Vector vector,
-            double scalar
-            )
+            double scalar)
         {
             return vector.Add(scalar);
         }
@@ -1043,8 +974,7 @@ namespace MathNet.Numerics.LinearAlgebra
         Vector
         operator +(
             double scalar,
-            Vector vector
-            )
+            Vector vector)
         {
             return vector.Add(scalar);
         }
@@ -1056,8 +986,7 @@ namespace MathNet.Numerics.LinearAlgebra
         Vector
         operator -(
             Vector u,
-            Vector v
-            )
+            Vector v)
         {
             CheckMatchingVectorDimensions(u, v);
             return u.Subtract(v);
@@ -1070,8 +999,7 @@ namespace MathNet.Numerics.LinearAlgebra
         Vector
         operator -(
             Vector vector,
-            double scalar
-            )
+            double scalar)
         {
             return vector.Subtract(scalar);
         }
@@ -1081,9 +1009,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// </summary>
         public static
         Vector
-        operator -(
-            Vector v
-            )
+        operator -(Vector v)
         {
             return v.Negate();
         }
@@ -1095,8 +1021,7 @@ namespace MathNet.Numerics.LinearAlgebra
         Vector
         operator *(
             double scalar,
-            Vector vector
-            )
+            Vector vector)
         {
             return vector.Scale(scalar);
         }
@@ -1108,8 +1033,7 @@ namespace MathNet.Numerics.LinearAlgebra
         Vector
         operator *(
             Vector vector,
-            double scalar
-            )
+            double scalar)
         {
             return vector.Scale(scalar);
         }
@@ -1121,8 +1045,7 @@ namespace MathNet.Numerics.LinearAlgebra
         Vector
         operator /(
             Vector vector,
-            double scalar
-            )
+            double scalar)
         {
             return vector.Scale(1 / scalar);
         }
@@ -1134,8 +1057,7 @@ namespace MathNet.Numerics.LinearAlgebra
         double
         operator *(
             Vector u,
-            Vector v
-            )
+            Vector v)
         {
             return ScalarProduct(u, v);
         }
@@ -1149,8 +1071,7 @@ namespace MathNet.Numerics.LinearAlgebra
         void
         CheckMatchingVectorDimensions(
             IVector<double> A,
-            IVector<double> B
-            )
+            IVector<double> B)
         {
             if(null == A)
             {
@@ -1193,8 +1114,7 @@ namespace MathNet.Numerics.LinearAlgebra
         AlmostEqual(
             Vector u,
             Vector v,
-            double relativeAccuracy
-            )
+            double relativeAccuracy)
         {
             return Number.AlmostEqualNorm(u.Norm1(), v.Norm1(), (u - v).Norm1(), relativeAccuracy);
         }
@@ -1206,8 +1126,7 @@ namespace MathNet.Numerics.LinearAlgebra
         bool
         AlmostEqual(
             Vector u,
-            Vector v
-            )
+            Vector v)
         {
             return Number.AlmostEqualNorm(u.Norm1(), v.Norm1(), (u - v).Norm1(), 10 * Number.DefaultRelativeAccuracy);
         }
@@ -1244,9 +1163,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// Index of an element.
         /// </summary>
         int
-        IList<double>.IndexOf(
-            double item
-            )
+        IList<double>.IndexOf(double item)
         {
             return Array.IndexOf(_data, item);
         }
@@ -1255,9 +1172,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// True if the vector contains some element.
         /// </summary>
         bool
-        ICollection<double>.Contains(
-            double item
-            )
+        ICollection<double>.Contains(double item)
         {
             return Array.IndexOf(_data, item) >= 0;
         }
@@ -1268,8 +1183,7 @@ namespace MathNet.Numerics.LinearAlgebra
         void
         ICollection<double>.CopyTo(
             double[] array,
-            int arrayIndex
-            )
+            int arrayIndex)
         {
             _data.CopyTo(array, arrayIndex);
         }
@@ -1312,9 +1226,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// Not Supported.
         /// </summary>
         void
-        ICollection<double>.Add(
-            double item
-            )
+        ICollection<double>.Add(double item)
         {
             throw new NotSupportedException();
         }
@@ -1323,10 +1235,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// Not Supported.
         /// </summary>
         void
-        IList<double>.Insert(
-            int index,
-            double item
-            )
+        IList<double>.Insert(int index, double item)
         {
             throw new NotSupportedException();
         }
@@ -1335,9 +1244,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// Not Supported.
         /// </summary>
         bool
-        ICollection<double>.Remove(
-            double item
-            )
+        ICollection<double>.Remove(double item)
         {
             throw new NotSupportedException();
         }
@@ -1346,9 +1253,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// Not Supported.
         /// </summary>
         void
-        IList<double>.RemoveAt(
-            int index
-            )
+        IList<double>.RemoveAt(int index)
         {
             throw new NotSupportedException();
         }

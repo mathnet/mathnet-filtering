@@ -60,9 +60,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <param name="m">Square, symmetric matrix.</param>
         /// <returns>Structure to access L and isspd flag.</returns>
         public
-        CholeskyDecomposition(
-            Matrix m
-            )
+        CholeskyDecomposition(Matrix m)
         {
             if(m.RowCount != m.ColumnCount)
             {
@@ -139,9 +137,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <exception cref="System.InvalidOperationException">Matrix is not symmetric positive definite.</exception>
         public
         Vector
-        Solve(
-            Vector b
-            )
+        Solve(Vector b)
         {
             if(b.Length != _l.RowCount)
             {
@@ -191,9 +187,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <exception cref="System.InvalidOperationException">Matrix is not symmetric positive definite.</exception>
         public
         Matrix
-        Solve(
-            Matrix B
-            )
+        Solve(Matrix B)
         {
             if(B.RowCount != _l.RowCount)
             {

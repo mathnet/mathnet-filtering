@@ -79,9 +79,7 @@ namespace MathNet.Numerics.Distributions
         /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
         public
-        ExponentialDistribution(
-            RandomSource random
-            )
+        ExponentialDistribution(RandomSource random)
             : base(random)
         {
             SetDistributionParameters(1.0);
@@ -92,9 +90,7 @@ namespace MathNet.Numerics.Distributions
         /// using a <see cref="SystemRandomSource"/> as underlying random number generator.
         /// </summary>
         public
-        ExponentialDistribution(
-            double rate
-            )
+        ExponentialDistribution(double rate)
             : base()
         {
             SetDistributionParameters(rate);
@@ -116,9 +112,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public
         void
-        SetDistributionParameters(
-            double rate
-            )
+        SetDistributionParameters(double rate)
         {
             if(!IsValidParameterSet(rate))
             {
@@ -137,9 +131,7 @@ namespace MathNet.Numerics.Distributions
         /// </returns>
         public static
         bool
-        IsValidParameterSet(
-            double rate
-            )
+        IsValidParameterSet(double rate)
         {
             return rate > 0.0;
         }
@@ -199,9 +191,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        ProbabilityDensity(
-            double x
-            )
+        ProbabilityDensity(double x)
         {
             return _rate * Math.Exp(-_rate * x);
         }
@@ -211,9 +201,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        CumulativeDistribution(
-            double x
-            )
+        CumulativeDistribution(double x)
         {
             return 1.0 - Math.Exp(-_rate * x);
         }

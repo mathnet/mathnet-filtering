@@ -55,17 +55,13 @@ namespace MathNet.Numerics
         uint _bound;
         uint[] _coeff;
 
-        Natural(
-            uint bound
-            )
+        Natural(uint bound)
         {
             ////_bound = 0; // bound;
             _coeff = new uint[bound];
         }
 
-        Natural(
-            uint[] coeff
-            )
+        Natural(uint[] coeff)
         {
             _coeff = coeff;
             _bound = (uint)coeff.LongLength;
@@ -74,8 +70,7 @@ namespace MathNet.Numerics
 
         Natural(
             uint bound,
-            uint[] coeff
-            )
+            uint[] coeff)
         {
             _coeff = coeff;
             _bound = Math.Min(bound, (uint)coeff.LongLength);
@@ -147,9 +142,7 @@ namespace MathNet.Numerics
         /// </summary>
         /// <param name="requiredBound">The bound that has to be supported.</param>
         void
-        ExtendCapacity(
-            uint requiredBound
-            )
+        ExtendCapacity(uint requiredBound)
         {
             if(requiredBound > _coeff.LongLength)
             {
@@ -175,9 +168,7 @@ namespace MathNet.Numerics
         [CLSCompliant(false)]
         public static
         Natural
-        From(
-            ulong number
-            )
+        From(ulong number)
         {
             Natural n = new Natural(Bound64);
             n.AddCoefficientInplace(number, 0);
@@ -190,9 +181,7 @@ namespace MathNet.Numerics
         [CLSCompliant(false)]
         public static
         Natural
-        From(
-            uint number
-            )
+        From(uint number)
         {
             Natural n = new Natural(Bound32);
             n.AddCoefficientInplace(number, 0);
@@ -246,8 +235,7 @@ namespace MathNet.Numerics
         Natural
         operator +(
             Natural a,
-            Natural b
-            )
+            Natural b)
         {
             return a.Add(b);
         }
@@ -257,9 +245,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         Natural
-        Add(
-            Natural number
-            )
+        Add(Natural number)
         {
             return Add(number, 0);
         }
@@ -272,8 +258,7 @@ namespace MathNet.Numerics
         Natural
         Add(
             Natural number,
-            uint carry
-            )
+            uint carry)
         {
             uint len = 1 + Math.Max(_bound, number._bound);
             Natural ret = new Natural(len);
@@ -301,8 +286,7 @@ namespace MathNet.Numerics
         void
         AddCoefficientInplace(
             ulong coeff,
-            uint exponent
-            )
+            uint exponent)
         {
             long sum = (long)_coeff[exponent] + (long)coeff;
 
@@ -328,8 +312,7 @@ namespace MathNet.Numerics
         Natural
         operator -(
             Natural a,
-            Natural b
-            )
+            Natural b)
         {
             return a.Subtract(b);
         }
@@ -339,9 +322,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         Natural
-        Subtract(
-            Natural number
-            )
+        Subtract(Natural number)
         {
             bool underflow;
             return Subtract(number, 0, out underflow);
@@ -354,8 +335,7 @@ namespace MathNet.Numerics
         Natural
         Subtract(
             Natural number,
-            out bool underflow
-            )
+            out bool underflow)
         {
             return Subtract(number, 0, out underflow);
         }
@@ -369,8 +349,7 @@ namespace MathNet.Numerics
         Subtract(
             Natural number,
             uint carry,
-            out bool underflow
-            )
+            out bool underflow)
         {
             uint len = Math.Max(_bound, number._bound);
             Natural ret = new Natural(len);
@@ -402,8 +381,7 @@ namespace MathNet.Numerics
         void
         SubtractCoefficientInplace(
             ulong coeff,
-            uint exponent
-            )
+            uint exponent)
         {
             bool underflow;
             SubtractCoefficientInplace(coeff, exponent, out underflow);
@@ -413,8 +391,7 @@ namespace MathNet.Numerics
         SubtractCoefficientInplace(
             ulong coeff,
             uint exponent,
-            out bool underflow
-            )
+            out bool underflow)
         {
             long sum = (long)_coeff[exponent] - (long)coeff;
 
@@ -447,9 +424,7 @@ namespace MathNet.Numerics
         /// Multiplies this number with the <seealso cref="Radix"/> to the power of the given exponent (fast shifting operation)
         /// </summary>
         Natural
-        ShiftUp(
-            uint exponent
-            )
+        ShiftUp(uint exponent)
         {
             uint len = _bound + exponent;
             Natural ret = new Natural(len);
@@ -467,9 +442,7 @@ namespace MathNet.Numerics
         /// </summary>
         /// <param name="exponent">The exponent to raise the power to.</param>
         Natural
-        ShiftDown(
-            uint exponent
-            )
+        ShiftDown(uint exponent)
         {
             if(exponent >= _bound)
             {
@@ -491,9 +464,7 @@ namespace MathNet.Numerics
         /// Set all coefficients of exponents higher than or equal to the given exponent to zero.
         /// </summary>
         Natural
-        Restrict(
-            uint exponent
-            )
+        Restrict(uint exponent)
         {
             return new Natural(exponent, _coeff);
         }
@@ -509,8 +480,7 @@ namespace MathNet.Numerics
         Natural
         operator *(
             Natural a,
-            Natural b
-            )
+            Natural b)
         {
             return a.Multiply(b);
         }
@@ -521,9 +491,7 @@ namespace MathNet.Numerics
         [CLSCompliant(false)]
         public
         Natural
-        Multiply(
-            uint factor
-            )
+        Multiply(uint factor)
         {
             uint len = _bound + Bound32;
             Natural ret = new Natural(len);
@@ -542,9 +510,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         Natural
-        Multiply(
-            Natural number
-            )
+        Multiply(Natural number)
         {
             if(Math.Max(_bound, number._bound) < 12)
             {
@@ -558,9 +524,7 @@ namespace MathNet.Numerics
         /// Multiplies two small naturals with the school book algorithm; O(n^2)
         /// </summary>
         Natural
-        MultiplySmall(
-            Natural number
-            )
+        MultiplySmall(Natural number)
         {
             uint len = _bound + number._bound + 2;
             Natural ret = new Natural(len);
@@ -582,9 +546,7 @@ namespace MathNet.Numerics
         /// Could be extended with FFT based algorithms by Schönhage/Strassen in future versions; O(nlognloglogn).
         /// </summary>
         Natural
-        MultiplyLarge(
-            Natural number
-            )
+        MultiplyLarge(Natural number)
         {
             uint len = Math.Max(_bound, number._bound);
             uint k = (uint)Math.Ceiling(0.5 * len);
@@ -629,9 +591,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         bool
-        Equals(
-            Natural other
-            )
+        Equals(Natural other)
         {
             if(_bound != other._bound)
             {
@@ -654,9 +614,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         int
-        CompareTo(
-            Natural other
-            )
+        CompareTo(Natural other)
         {
             if(_bound < other._bound)
             {
@@ -691,8 +649,7 @@ namespace MathNet.Numerics
         bool
         operator <(
             Natural a,
-            Natural b
-            )
+            Natural b)
         {
             return a.CompareTo(b) == -1;
         }
@@ -704,8 +661,7 @@ namespace MathNet.Numerics
         bool
         operator >(
             Natural a,
-            Natural b
-            )
+            Natural b)
         {
             return a.CompareTo(b) == 1;
         }
@@ -717,8 +673,7 @@ namespace MathNet.Numerics
         bool
         operator <=(
             Natural a,
-            Natural b
-            )
+            Natural b)
         {
             return a.CompareTo(b) != 1;
         }
@@ -730,8 +685,7 @@ namespace MathNet.Numerics
         bool
         operator >=(
             Natural a,
-            Natural b
-            )
+            Natural b)
         {
             return a.CompareTo(b) != -1;
         }
@@ -743,8 +697,7 @@ namespace MathNet.Numerics
         Natural
         Min(
             Natural a,
-            Natural b
-            )
+            Natural b)
         {
             return a.CompareTo(b) == -1 ? a : b;
         }
@@ -756,8 +709,7 @@ namespace MathNet.Numerics
         Natural
         Max(
             Natural a,
-            Natural b
-            )
+            Natural b)
         {
             return a.CompareTo(b) == -1 ? b : a;
         }

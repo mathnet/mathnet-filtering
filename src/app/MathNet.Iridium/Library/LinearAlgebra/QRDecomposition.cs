@@ -94,9 +94,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <remarks>Provides access to R, the Householder vectors and computes Q.</remarks>
         /// <param name="A">Rectangular matrix</param>
         public
-        QRDecomposition(
-            Matrix A
-            )
+        QRDecomposition(Matrix A)
         {
             // TODO: it is usually considered as a poor practice to execute algorithms within a constructor.
 
@@ -220,9 +218,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <exception cref="System.SystemException"> Matrix is rank deficient.</exception>
         public
         Matrix
-        Solve(
-            Matrix B
-            )
+        Solve(Matrix B)
         {
             if(B.RowCount != M)
             {

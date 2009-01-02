@@ -74,9 +74,7 @@ namespace MathNet.Numerics.Distributions
         /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
         public
-        StableDistribution(
-            RandomSource random
-            )
+        StableDistribution(RandomSource random)
             : base(random)
         {
             SetDistributionParameters(0.0, 1.0, 1.0, 0.0);
@@ -96,8 +94,7 @@ namespace MathNet.Numerics.Distributions
             double location,
             double scale,
             double exponent,
-            double skewness
-            )
+            double skewness)
             : base()
         {
             SetDistributionParameters(location, scale, exponent, skewness);
@@ -183,8 +180,7 @@ namespace MathNet.Numerics.Distributions
             double location,
             double scale,
             double exponent,
-            double skewness
-            )
+            double skewness)
         {
             if(!IsValidParameterSet(location, scale, exponent, skewness))
             {
@@ -218,8 +214,7 @@ namespace MathNet.Numerics.Distributions
             double location,
             double scale,
             double exponent,
-            double skewness
-            )
+            double skewness)
         {
             return scale >= 0
                 && skewness <= 1.0
@@ -320,9 +315,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        ProbabilityDensity(
-            double x
-            )
+        ProbabilityDensity(double x)
         {
             throw new NotSupportedException(); // not supported yet
         }
@@ -332,9 +325,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        CumulativeDistribution(
-            double x
-            )
+        CumulativeDistribution(double x)
         {
             throw new NotSupportedException(); // not supported yet
         }

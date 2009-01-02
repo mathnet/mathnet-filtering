@@ -69,9 +69,7 @@ namespace MathNet.Numerics.Distributions
         /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
         public
-        CauchyLorentzDistribution(
-            RandomSource random
-            )
+        CauchyLorentzDistribution(RandomSource random)
             : base(random)
         {
             SetDistributionParameters(0.0, 1.0);
@@ -84,8 +82,7 @@ namespace MathNet.Numerics.Distributions
         public
         CauchyLorentzDistribution(
             double location,
-            double scale
-            )
+            double scale)
             : base()
         {
             SetDistributionParameters(location, scale);
@@ -118,8 +115,7 @@ namespace MathNet.Numerics.Distributions
         void
         SetDistributionParameters(
             double location,
-            double scale
-            )
+            double scale)
         {
             if(!IsValidParameterSet(location, scale))
             {
@@ -140,8 +136,7 @@ namespace MathNet.Numerics.Distributions
         bool
         IsValidParameterSet(
             double location,
-            double scale
-            )
+            double scale)
         {
             return scale > 0;
         }
@@ -210,9 +205,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        ProbabilityDensity(
-            double x
-            )
+        ProbabilityDensity(double x)
         {
             double a = (x - _location) / _scale;
             return 1.0 / (Constants.Pi * _scale * (1.0 + (a * a)));
@@ -223,9 +216,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        CumulativeDistribution(
-            double x
-            )
+        CumulativeDistribution(double x)
         {
             return (Constants.InvPi * Trig.InverseTangent((x - _location) / _scale)) + 0.5;
         }

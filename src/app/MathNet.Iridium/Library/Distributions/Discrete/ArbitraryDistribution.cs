@@ -86,9 +86,7 @@ namespace MathNet.Numerics.Distributions
         /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
         public
-        ArbitraryDistribution(
-            RandomSource random
-            )
+        ArbitraryDistribution(RandomSource random)
             : base(random)
         {
             SetDistributionParameters(0, 1.0);
@@ -101,8 +99,7 @@ namespace MathNet.Numerics.Distributions
         public
         ArbitraryDistribution(
             int offset,
-            params double[] probabilityMass
-            )
+            params double[] probabilityMass)
             : base()
         {
             SetDistributionParameters(offset, probabilityMass);
@@ -141,8 +138,7 @@ namespace MathNet.Numerics.Distributions
         void
         SetDistributionParameters(
             int offset,
-            params double[] probabilityMass
-            )
+            params double[] probabilityMass)
         {
             if(!IsValidParameterSet(offset, probabilityMass))
             {
@@ -191,8 +187,7 @@ namespace MathNet.Numerics.Distributions
         bool
         IsValidParameterSet(
             int offset,
-            params double[] probabilityMass
-            )
+            params double[] probabilityMass)
         {
             if(null == probabilityMass)
             {
@@ -266,9 +261,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        ProbabilityMass(
-            int x
-            )
+        ProbabilityMass(int x)
         {
             if(x < _first || x > _last)
             {
@@ -283,9 +276,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        CumulativeDistribution(
-            double x
-            )
+        CumulativeDistribution(double x)
         {
             if(x < _first)
             {

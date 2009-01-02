@@ -65,9 +65,7 @@ namespace MathNet.Numerics.Distributions
         ///     <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
         protected
-        ContinuousDistribution(
-            RandomSource random
-            )
+        ContinuousDistribution(RandomSource random)
         {
             if(random == null)
             {
@@ -90,18 +88,14 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public abstract
         double
-        ProbabilityDensity(
-            double x
-            );
+        ProbabilityDensity(double x);
 
         /// <summary>
         /// Continuous cumulative distribution function (cdf) of this probability distribution.
         /// </summary>
         public abstract
         double
-        CumulativeDistribution(
-            double x
-            );
+        CumulativeDistribution(double x);
 
         /// <summary>
         /// Resets the random number distribution, so that it produces the same random number sequence again.

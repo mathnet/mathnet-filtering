@@ -90,9 +90,7 @@ namespace MathNet.Numerics.LinearAlgebra
         /// <remarks>Provides access to D and V</remarks>
         /// <param name="Arg">Square matrix</param>
         public
-        EigenvalueDecomposition(
-            Matrix Arg
-            )
+        EigenvalueDecomposition(Matrix Arg)
         {
             double[][] A = Arg;
             n = Arg.ColumnCount;
@@ -158,8 +156,7 @@ namespace MathNet.Numerics.LinearAlgebra
         public
         EigenvalueDecomposition(
             double[] d,
-            double[] e
-            )
+            double[] e)
         {
             /* TODO: unit test missing for EigenvalueDecomposition constructor. */
 
@@ -1297,8 +1294,7 @@ namespace MathNet.Numerics.LinearAlgebra
             double xr,
             double xi,
             double yr,
-            double yi
-            )
+            double yi)
         {
             /* TODO (cdr, 2008-03-11): Refactor */
 

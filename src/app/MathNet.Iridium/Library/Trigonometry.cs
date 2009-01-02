@@ -43,9 +43,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        DegreeToRadian(
-            double degree
-            )
+        DegreeToRadian(double degree)
         {
             return degree * Constants.Degree;
         }
@@ -55,9 +53,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        RadianToDegree(
-            double radian
-            )
+        RadianToDegree(double radian)
         {
             return radian / Constants.Degree;
         }
@@ -67,9 +63,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        GradToRadian(
-            double newgrad
-            )
+        GradToRadian(double newgrad)
         {
             return newgrad * Constants.Grad;
         }
@@ -79,9 +73,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        RadianToGrad(
-            double radian
-            )
+        RadianToGrad(double radian)
         {
             return radian / Constants.Grad;
         }
@@ -91,9 +83,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        DegreeToGrad(
-            double degree
-            )
+        DegreeToGrad(double degree)
         {
             return degree / 9 * 10;
         }
@@ -103,9 +93,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        GradToDegree(
-            double newgrad
-            )
+        GradToDegree(double newgrad)
         {
             return newgrad / 10 * 9;
         }
@@ -119,9 +107,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        Sine(
-            double radian
-            )
+        Sine(double radian)
         {
             return Math.Sin(radian);
         }
@@ -131,9 +117,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        Cosine(
-            double radian
-            )
+        Cosine(double radian)
         {
             return Math.Cos(radian);
         }
@@ -143,9 +127,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        Tangent(
-            double radian
-            )
+        Tangent(double radian)
         {
             return Math.Tan(radian);
         }
@@ -155,9 +137,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        Cotangent(
-            double radian
-            )
+        Cotangent(double radian)
         {
             return 1 / Math.Tan(radian);
         }
@@ -167,9 +147,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        Secant(
-            double radian
-            )
+        Secant(double radian)
         {
             return 1 / Math.Cos(radian);
         }
@@ -179,9 +157,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        Cosecant(
-            double radian
-            )
+        Cosecant(double radian)
         {
             return 1 / Math.Sin(radian);
         }
@@ -195,9 +171,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        InverseSine(
-            double real
-            )
+        InverseSine(double real)
         {
             return Math.Asin(real);
         }
@@ -207,9 +181,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        InverseCosine(
-            double real
-            )
+        InverseCosine(double real)
         {
             return Math.Acos(real);
         }
@@ -219,9 +191,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        InverseTangent(
-            double real
-            )
+        InverseTangent(double real)
         {
             return Math.Atan(real);
         }
@@ -235,8 +205,7 @@ namespace MathNet.Numerics
         double
         InverseTangentFromRational(
             double nominator,
-            double denominator
-            )
+            double denominator)
         {
             return Math.Atan2(nominator, denominator);
         }
@@ -246,9 +215,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        InverseCotangent(
-            double real
-            )
+        InverseCotangent(double real)
         {
             return Math.Atan(1 / real);
         }
@@ -258,9 +225,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        InverseSecant(
-            double real
-            )
+        InverseSecant(double real)
         {
             return Math.Acos(1 / real);
         }
@@ -270,9 +235,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        InverseCosecant(
-            double real
-            )
+        InverseCosecant(double real)
         {
             return Math.Asin(1 / real);
         }
@@ -286,9 +249,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        HyperbolicSine(
-            double radian
-            )
+        HyperbolicSine(double radian)
         {
             // NOT SUPPORTED BY COMPACT FRAMEWORK!!???
             // return Math.Sinh(x)
@@ -300,9 +261,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        HyperbolicCosine(
-            double radian
-            )
+        HyperbolicCosine(double radian)
         {
             // NOT SUPPORTED BY COMPACT FRAMEWORK!!???
             // return Math.Cosh(x);
@@ -314,9 +273,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        HyperbolicTangent(
-            double radian
-            )
+        HyperbolicTangent(double radian)
         {
             // NOT SUPPORTED BY COMPACT FRAMEWORK!!???
             // return Math.Tanh(x);
@@ -330,9 +287,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        HyperbolicCotangent(
-            double radian
-            )
+        HyperbolicCotangent(double radian)
         {
             // NOT SUPPORTED BY COMPACT FRAMEWORK!!???
             // return 1/Math.Tanh(x);
@@ -346,9 +301,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        HyperbolicSecant(
-            double radian
-            )
+        HyperbolicSecant(double radian)
         {
             return 1 / HyperbolicCosine(radian);
         }
@@ -358,9 +311,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        HyperbolicCosecant(
-            double radian
-            )
+        HyperbolicCosecant(double radian)
         {
             return 1 / HyperbolicSine(radian);
         }
@@ -374,14 +325,11 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        InverseHyperbolicSine(
-            double real
-            )
+        InverseHyperbolicSine(double real)
         {
             return Math.Log(
                 real + Math.Sqrt((real * real) + 1),
-                Math.E
-                );
+                Math.E);
         }
 
         /// <summary>
@@ -389,14 +337,11 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        InverseHyperbolicCosine(
-            double real
-            )
+        InverseHyperbolicCosine(double real)
         {
             return Math.Log(
                 real + (Math.Sqrt(real - 1) * Math.Sqrt(real + 1)),
-                Math.E
-                );
+                Math.E);
         }
 
         /// <summary>
@@ -404,14 +349,11 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        InverseHyperbolicTangent(
-            double real
-            )
+        InverseHyperbolicTangent(double real)
         {
             return 0.5 * Math.Log(
                 (1 + real) / (1 - real),
-                Math.E
-                );
+                Math.E);
         }
 
         /// <summary>
@@ -419,14 +361,11 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        InverseHyperbolicCotangent(
-            double real
-            )
+        InverseHyperbolicCotangent(double real)
         {
             return 0.5 * Math.Log(
                 (real + 1) / (real - 1),
-                Math.E
-                );
+                Math.E);
         }
 
         /// <summary>
@@ -434,9 +373,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        InverseHyperbolicSecant(
-            double real
-            )
+        InverseHyperbolicSecant(double real)
         {
             return InverseHyperbolicCosine(1 / real);
         }
@@ -446,9 +383,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         double
-        InverseHyperbolicCosecant(
-            double real
-            )
+        InverseHyperbolicCosecant(double real)
         {
             return InverseHyperbolicSine(1 / real);
         }

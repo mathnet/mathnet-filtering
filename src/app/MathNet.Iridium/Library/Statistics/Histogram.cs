@@ -292,8 +292,7 @@ namespace MathNet.Numerics.Statistics
                 histogram.Add(new Bucket(
                     values[lastBucketIndex[index, k]],
                     values[index],
-                    index - lastBucketIndex[index, k] + 1
-                    ));
+                    index - lastBucketIndex[index, k] + 1));
 
                 index = lastBucketIndex[index, k] - 1;
             }
@@ -396,8 +395,7 @@ namespace MathNet.Numerics.Statistics
                 histogram.Add(new Bucket(
                     values[lastBucketIndex[index, k]],
                     values[index],
-                    index - lastBucketIndex[index, k] + 1
-                    ));
+                    index - lastBucketIndex[index, k] + 1));
 
                 index = lastBucketIndex[index, k] - 1;
             }
@@ -479,8 +477,7 @@ namespace MathNet.Numerics.Statistics
                 histogram.Add(new Bucket(
                     values[lastBucketIndex[index, k]],
                     values[index],
-                    index - lastBucketIndex[index, k] + 1
-                    ));
+                    index - lastBucketIndex[index, k] + 1));
 
                 index = lastBucketIndex[index, k] - 1;
             }
@@ -563,8 +560,7 @@ namespace MathNet.Numerics.Statistics
                 histogram.Add(new Bucket(
                     values[lastBucketIndex[index, k]],
                     values[index],
-                    index - lastBucketIndex[index, k] + 1
-                    ));
+                    index - lastBucketIndex[index, k] + 1));
 
                 index = lastBucketIndex[index, k] - 1;
             }
@@ -640,8 +636,7 @@ namespace MathNet.Numerics.Statistics
         {
             Debug.Assert(
                 lowerBound <= upperBound,
-                "lowerBound should be smaller than the upperBound."
-                );
+                "lowerBound should be smaller than the upperBound.");
 
             this.lowerBound = lowerBound;
             this.upperBound = upperBound;
@@ -721,8 +716,7 @@ namespace MathNet.Numerics.Statistics
             Debug.Assert(
                 this.upperBound <= bucket.lowerBound
                 || this.lowerBound >= bucket.upperBound,
-                "Could not compare two intersecting buckets."
-                );
+                "Could not compare two intersecting buckets.");
 
             if(Number.AlmostZero(this.Width) && Number.AlmostZero(bucket.Width)
                 && Number.AlmostEqual(this.lowerBound, bucket.lowerBound))

@@ -74,9 +74,7 @@ namespace MathNet.Numerics.Distributions
         /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
         public
-        StudentsTDistribution(
-            RandomSource random
-            )
+        StudentsTDistribution(RandomSource random)
             : base(random)
         {
             _standardDistribution = new StandardDistribution(RandomSource);
@@ -90,9 +88,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         /// <param name="degreesOfFreedom">nu-parameter</param>
         public
-        StudentsTDistribution(
-            int degreesOfFreedom
-            )
+        StudentsTDistribution(int degreesOfFreedom)
             : base()
         {
             _standardDistribution = new StandardDistribution(RandomSource);
@@ -138,9 +134,7 @@ namespace MathNet.Numerics.Distributions
         /// <param name="degreesOfFreedom">nu-parameter</param>
         public
         void
-        SetDistributionParameters(
-            int degreesOfFreedom
-            )
+        SetDistributionParameters(int degreesOfFreedom)
         {
             if(!IsValidParameterSet(degreesOfFreedom))
             {
@@ -169,9 +163,7 @@ namespace MathNet.Numerics.Distributions
         /// <param name="degreesOfFreedom">nu-parameter</param>
         public static
         bool
-        IsValidParameterSet(
-            int degreesOfFreedom
-            )
+        IsValidParameterSet(int degreesOfFreedom)
         {
             return degreesOfFreedom > 0;
         }
@@ -269,9 +261,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        ProbabilityDensity(
-            double x
-            )
+        ProbabilityDensity(double x)
         {
             return _factor * Math.Pow(1.0 + (x * x / _degreesOfFreedom), _exponent);
         }
@@ -281,15 +271,12 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        CumulativeDistribution(
-            double x
-            )
+        CumulativeDistribution(double x)
         {
             double beta = Fn.BetaRegularized(
                 0.5 * _degreesOfFreedom,
                 0.5,
-                _degreesOfFreedom / (_degreesOfFreedom + (x * x))
-                );
+                _degreesOfFreedom / (_degreesOfFreedom + (x * x)));
 
             return 0.5 + (0.5 * Math.Sign(x) * (_summand - beta));
         }

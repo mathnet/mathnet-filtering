@@ -56,8 +56,7 @@ namespace MathNet.Numerics.Transformations
         DiscreteFourierTransform(
             double[] samples,
             bool forward,
-            TransformationConvention convention
-            )
+            TransformationConvention convention)
         {
             ReorderSamples(samples);
             DanielsonLanczosTransform(samples, forward, convention);
@@ -70,8 +69,7 @@ namespace MathNet.Numerics.Transformations
             double[] samples,
             int[] dimensions,
             bool forward,
-            TransformationConvention convention
-            )
+            TransformationConvention convention)
         {
             int rank = dimensions.Length;
             int n, nprev = 1, step, stride;
@@ -98,9 +96,7 @@ namespace MathNet.Numerics.Transformations
         /// <param name="samples">Complex samples (even = real, odd = imaginary). Length must be a power of two.</param>
         internal
         void
-        ReorderSamples(
-            double[] samples
-            )
+        ReorderSamples(double[] samples)
         {
             int numSamplePairs = samples.Length >> 1;
             int[] reversedBits = ReverseBits(Fn.IntLog2(numSamplePairs));
@@ -133,8 +129,7 @@ namespace MathNet.Numerics.Transformations
         ReorderSamplesMultiDim(
             double[] samples,
             int stride,
-            int step
-            )
+            int step)
         {
             int numSamplePairs = stride / step;
             int[] reversedBits = ReverseBits(Fn.IntLog2(numSamplePairs));
@@ -176,8 +171,7 @@ namespace MathNet.Numerics.Transformations
         DanielsonLanczosTransform(
             double[] samples,
             bool forward,
-            TransformationConvention convention
-            )
+            TransformationConvention convention)
         {
             int levels = Fn.IntLog2(samples.Length >> 1);
 
@@ -229,8 +223,7 @@ namespace MathNet.Numerics.Transformations
             int stride,
             int step,
             bool forward,
-            TransformationConvention convention
-            )
+            TransformationConvention convention)
         {
             int levels = Fn.IntLog2(stride / step);
 
@@ -285,8 +278,7 @@ namespace MathNet.Numerics.Transformations
         Rescale(
             double[] samples,
             bool forward,
-            TransformationConvention convention
-            )
+            TransformationConvention convention)
         {
             if((convention & TransformationConvention.NoScaling) > 0)
             {
@@ -319,9 +311,7 @@ namespace MathNet.Numerics.Transformations
         /// </summary>
         internal
         int[]
-        ReverseBits(
-            int numberOfBits
-            )
+        ReverseBits(int numberOfBits)
         {
             ////Debug.Assert(numberOfBits >= minBits);
             ////Debug.Assert(numberOfBits <= maxBits);
@@ -359,8 +349,7 @@ namespace MathNet.Numerics.Transformations
         double[]
         RealCosineCoefficients(
             int level,
-            bool forward
-            )
+            bool forward)
         {
             if(_realCoefficients[level, 0] == null)
             {
@@ -378,8 +367,7 @@ namespace MathNet.Numerics.Transformations
         double[]
         ImaginarySineCoefficients(
             int level,
-            bool forward
-            )
+            bool forward)
         {
             if(_imagCoefficients[level, 0] == null)
             {
@@ -393,9 +381,7 @@ namespace MathNet.Numerics.Transformations
         /// Evaluates complex rotation coefficients if not already available.
         /// </summary>
         void
-        BuildCoefficientsForLevels(
-            int levels
-            )
+        BuildCoefficientsForLevels(int levels)
         {
             if(_realCoefficients[levels, 0] != null)
             {
@@ -449,9 +435,7 @@ namespace MathNet.Numerics.Transformations
 
         public
         double[]
-        ExtendToPowerOf2Length(
-            double[] samples
-            )
+        ExtendToPowerOf2Length(double[] samples)
         {
             int newlen = Fn.CeilingToPowerOf2(samples.Length);
             double[] ret = new double[newlen];

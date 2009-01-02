@@ -87,8 +87,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
         void
         Init(
             IList<double> t,
-            IList<double> x
-            )
+            IList<double> x)
         {
             Init(t, x, 3);
         }
@@ -107,8 +106,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
         Init(
             IList<double> t,
             IList<double> x,
-            int order
-            )
+            int order)
         {
             if(null == t)
             {
@@ -206,9 +204,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
         /// <returns>Interpolated value x(t).</returns>
         public
         double
-        Interpolate(
-            double t
-            )
+        Interpolate(double t)
         {
             return _barycentric.Interpolate(t);
         }
@@ -225,8 +221,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
         Differentiate(
             double t,
             out double first,
-            out double second
-            )
+            out double second)
         {
             return _barycentric.Differentiate(t, out first, out second);
         }
@@ -239,9 +234,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
         /// <seealso cref="SupportsIntegration"/>
         public
         double
-        Integrate(
-            double t
-            )
+        Integrate(double t)
         {
             return _barycentric.Integrate(t);
         }

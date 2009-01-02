@@ -86,9 +86,7 @@ namespace MathNet.Numerics.Distributions
         /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
         public
-        NormalDistribution(
-            RandomSource random
-            )
+        NormalDistribution(RandomSource random)
             : base(random)
         {
             _standard = new StandardDistribution(random);
@@ -102,8 +100,7 @@ namespace MathNet.Numerics.Distributions
         public
         NormalDistribution(
             double mu,
-            double sigma
-            )
+            double sigma)
             : base()
         {
             _standard = new StandardDistribution(this.RandomSource);
@@ -157,8 +154,7 @@ namespace MathNet.Numerics.Distributions
         void
         SetDistributionParameters(
             double mu,
-            double sigma
-            )
+            double sigma)
         {
             if(!IsValidParameterSet(mu, sigma))
             {
@@ -179,8 +175,7 @@ namespace MathNet.Numerics.Distributions
         bool
         IsValidParameterSet(
             double mu,
-            double sigma
-            )
+            double sigma)
         {
             return sigma > 0.0;
         }
@@ -191,9 +186,7 @@ namespace MathNet.Numerics.Distributions
         /// <param name="samples">Samples of this distribution.</param>
         public
         void
-        EstimateDistributionParameters(
-            IEnumerable<double> samples
-            )
+        EstimateDistributionParameters(IEnumerable<double> samples)
         {
             Accumulator accumulator = new Accumulator(samples);
             SetDistributionParameters(accumulator.Mean, accumulator.Sigma);
@@ -256,9 +249,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        ProbabilityDensity(
-            double x
-            )
+        ProbabilityDensity(double x)
         {
             double xmu = x - _mu;
             return Constants.InvSqrt2Pi / _sigma * Math.Exp(xmu * xmu / (-2.0 * _sigma * _sigma));
@@ -269,9 +260,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        CumulativeDistribution(
-            double x
-            )
+        CumulativeDistribution(double x)
         {
             return 0.5 * (1.0 + Fn.Erf((x - _mu) / (_sigma * Constants.Sqrt2)));
         }
@@ -282,9 +271,7 @@ namespace MathNet.Numerics.Distributions
         /// <seealso cref="NormalDistribution.CumulativeDistribution"/>
         public
         double
-        InverseCumulativeDistribution(
-            double x
-            )
+        InverseCumulativeDistribution(double x)
         {
             return (_sigma * Constants.Sqrt2 * Fn.ErfInverse((2.0 * x) - 1.0)) + _mu;
         }

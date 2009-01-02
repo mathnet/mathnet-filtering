@@ -65,9 +65,7 @@ namespace MathNet.Numerics.Interpolation
         /// with the given maximum order.
         /// </summary>
         public
-        PolynomialInterpolationAlgorithm(
-            int maximumOrder
-            )
+        PolynomialInterpolationAlgorithm(int maximumOrder)
         {
             _maximumOrder = maximumOrder;
             _effectiveOrder = -1;
@@ -78,9 +76,7 @@ namespace MathNet.Numerics.Interpolation
         /// </summary>
         public
         void
-        Prepare(
-            SampleList samples
-            )
+        Prepare(SampleList samples)
         {
             if(null == samples)
             {
@@ -140,9 +136,7 @@ namespace MathNet.Numerics.Interpolation
         /// </summary>
         public
         double
-        Interpolate(
-            double t
-            )
+        Interpolate(double t)
         {
             double error;
             return Interpolate(t, out error);
@@ -155,8 +149,7 @@ namespace MathNet.Numerics.Interpolation
         double
         Interpolate(
             double t,
-            out double error
-            )
+            out double error)
         {
             if(null == _samples)
             {
@@ -205,17 +198,14 @@ namespace MathNet.Numerics.Interpolation
         int
         SuggestOffset(
             double t,
-            out int closestIndex
-            )
+            out int closestIndex)
         {
             closestIndex = Math.Max(_samples.Locate(t), 0);
             int ret = Math.Min(
                 Math.Max(
                     closestIndex - ((_effectiveOrder - 1) / 2),
-                    0
-                    ),
-                _samples.Count - _effectiveOrder
-                );
+                    0),
+                _samples.Count - _effectiveOrder);
 
             if(closestIndex < (_samples.Count - 1))
             {
@@ -236,9 +226,7 @@ namespace MathNet.Numerics.Interpolation
         /// </summary>
         public
         double
-        Extrapolate(
-            double t
-            )
+        Extrapolate(double t)
         {
             return Interpolate(t);
         }

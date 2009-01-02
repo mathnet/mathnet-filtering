@@ -70,9 +70,7 @@ namespace MathNet.Numerics.Distributions
         /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
         public
-        ParetoDistribution(
-            RandomSource random
-            )
+        ParetoDistribution(RandomSource random)
             : base(random)
         {
             SetDistributionParameters(1.0, 1.0);
@@ -85,8 +83,7 @@ namespace MathNet.Numerics.Distributions
         public
         ParetoDistribution(
             double location,
-            double shape
-            )
+            double shape)
             : base()
         {
             SetDistributionParameters(location, shape);
@@ -119,8 +116,7 @@ namespace MathNet.Numerics.Distributions
         void
         SetDistributionParameters(
             double location,
-            double shape
-            )
+            double shape)
         {
             if(!IsValidParameterSet(location, shape))
             {
@@ -142,8 +138,7 @@ namespace MathNet.Numerics.Distributions
         bool
         IsValidParameterSet(
             double location,
-            double shape
-            )
+            double shape)
         {
             return location > 0.0 && shape > 0.0;
         }
@@ -231,15 +226,12 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        ProbabilityDensity(
-            double x
-            )
+        ProbabilityDensity(double x)
         {
             return Math.Exp(
                 Math.Log(_shape)
                 + (_shape * Math.Log(_location))
-                - ((_shape + 1.0) * Math.Log(x))
-                );
+                - ((_shape + 1.0) * Math.Log(x)));
         }
 
         /// <summary>
@@ -247,9 +239,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        CumulativeDistribution(
-            double x
-            )
+        CumulativeDistribution(double x)
         {
             return 1.0 - Math.Pow(_location / x, _shape);
         }

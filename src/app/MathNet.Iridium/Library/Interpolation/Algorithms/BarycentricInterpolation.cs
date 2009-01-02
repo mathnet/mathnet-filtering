@@ -87,8 +87,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
         Init(
             IList<double> t,
             IList<double> x,
-            IList<double> w
-            )
+            IList<double> w)
         {
             if(null == t)
             {
@@ -132,9 +131,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
         /// <returns>Interpolated value x(t).</returns>
         public
         double
-        Interpolate(
-            double t
-            )
+        Interpolate(double t)
         {
             /*
             First, decide: should we use "safe" formula (guarded
@@ -203,8 +200,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
         Differentiate(
             double t,
             out double first,
-            out double second
-            )
+            out double second)
         {
             throw new NotSupportedException();
         }
@@ -217,9 +213,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
         /// <seealso cref="SupportsIntegration"/>
         public
         double
-        Integrate(
-            double t
-            )
+        Integrate(double t)
         {
             throw new NotSupportedException();
         }

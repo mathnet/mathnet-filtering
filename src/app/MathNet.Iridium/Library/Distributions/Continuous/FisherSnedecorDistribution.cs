@@ -75,9 +75,7 @@ namespace MathNet.Numerics.Distributions
         /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
         public
-        FisherSnedecorDistribution(
-            RandomSource random
-            )
+        FisherSnedecorDistribution(RandomSource random)
             : base(random)
         {
             _chiSquaredAlpha = new ChiSquareDistribution(random);
@@ -92,8 +90,7 @@ namespace MathNet.Numerics.Distributions
         public
         FisherSnedecorDistribution(
             int alpha,
-            int beta
-            )
+            int beta)
             : base()
         {
             _chiSquaredAlpha = new ChiSquareDistribution(this.RandomSource);
@@ -147,8 +144,7 @@ namespace MathNet.Numerics.Distributions
         void
         SetDistributionParameters(
             int alpha,
-            int beta
-            )
+            int beta)
         {
             if(!IsValidParameterSet(alpha, beta))
             {
@@ -183,8 +179,7 @@ namespace MathNet.Numerics.Distributions
         bool
         IsValidParameterSet(
             int alpha,
-            int beta
-            )
+            int beta)
         {
             return alpha > 0 && beta > 0;
         }
@@ -270,9 +265,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        ProbabilityDensity(
-            double x
-            )
+        ProbabilityDensity(double x)
         {
             if(Number.AlmostEqual(0.0, x))
             {
@@ -295,8 +288,7 @@ namespace MathNet.Numerics.Distributions
             return Math.Exp(
                 _pdfScaleLn
                 + (_pdfExponent1 * ln1)
-                + (_pdfExponent2 * ln2)
-                );
+                + (_pdfExponent2 * ln2));
         }
 
         /// <summary>
@@ -304,9 +296,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        CumulativeDistribution(
-            double x
-            )
+        CumulativeDistribution(double x)
         {
             double xa = _alpha * x;
             double m = xa / (xa + _beta);

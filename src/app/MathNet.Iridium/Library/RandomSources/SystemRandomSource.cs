@@ -82,9 +82,7 @@ namespace MathNet.Numerics.RandomSources
         /// If a negative number is specified, the absolute value of the number is used. 
         /// </param>
         public
-        SystemRandomSource(
-            int seed
-            )
+        SystemRandomSource(int seed)
         {
             _seed = Math.Abs(seed);
             ResetGenerator();
@@ -133,9 +131,7 @@ namespace MathNet.Numerics.RandomSources
         /// </exception>
         public override
         int
-        Next(
-            int maxValue
-            )
+        Next(int maxValue)
         {
             return _generator.Next(maxValue);
         }
@@ -161,10 +157,7 @@ namespace MathNet.Numerics.RandomSources
         /// </exception>
         public override
         int
-        Next(
-            int minValue,
-            int maxValue
-            )
+        Next(int minValue, int maxValue)
         {
             return _generator.Next(minValue, maxValue);
         }
@@ -199,17 +192,14 @@ namespace MathNet.Numerics.RandomSources
         /// </exception>
         public override
         double
-        NextDouble(
-            double maxValue
-            )
+        NextDouble(double maxValue)
         {
             if(maxValue < 0)
             {
                 throw new ArgumentOutOfRangeException(
                     "maxValue",
                     maxValue,
-                    Properties.LocalStrings.ArgumentOutOfRangeGreaterEqual("maxValue", 0)
-                    );
+                    Properties.LocalStrings.ArgumentOutOfRangeGreaterEqual("maxValue", 0));
             }
 
             return _generator.NextDouble() * maxValue;
@@ -244,18 +234,14 @@ namespace MathNet.Numerics.RandomSources
         /// </exception>
         public override
         double
-        NextDouble(
-            double minValue,
-            double maxValue
-            )
+        NextDouble(double minValue, double maxValue)
         {
             if(minValue > maxValue)
             {
                 throw new ArgumentOutOfRangeException(
                     "maxValue",
                     maxValue,
-                    Properties.LocalStrings.ArgumentOutOfRangeGreaterEqual("maxValue", "minValue")
-                    );
+                    Properties.LocalStrings.ArgumentOutOfRangeGreaterEqual("maxValue", "minValue"));
             }
 
             double range = maxValue - minValue;
@@ -307,9 +293,7 @@ namespace MathNet.Numerics.RandomSources
         /// </exception>
         public override
         void
-        NextBytes(
-            byte[] buffer
-            )
+        NextBytes(byte[] buffer)
         {
             _generator.NextBytes(buffer);
         }

@@ -68,9 +68,7 @@ namespace MathNet.Numerics.Distributions
         /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
         public
-        LaplaceDistribution(
-            RandomSource random
-            )
+        LaplaceDistribution(RandomSource random)
             : base(random)
         {
             SetDistributionParameters(0.0, 1.0);
@@ -83,8 +81,7 @@ namespace MathNet.Numerics.Distributions
         public
         LaplaceDistribution(
             double location,
-            double scale
-            )
+            double scale)
             : base()
         {
             SetDistributionParameters(location, scale);
@@ -117,8 +114,7 @@ namespace MathNet.Numerics.Distributions
         void
         SetDistributionParameters(
             double location,
-            double scale
-            )
+            double scale)
         {
             if(!IsValidParameterSet(location, scale))
             {
@@ -139,8 +135,7 @@ namespace MathNet.Numerics.Distributions
         bool
         IsValidParameterSet(
             double location,
-            double scale
-            )
+            double scale)
         {
             return scale > 0;
         }
@@ -200,9 +195,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        ProbabilityDensity(
-            double x
-            )
+        ProbabilityDensity(double x)
         {
             return 1.0 / (2.0 * _scale) * Math.Exp(-Math.Abs(x - _location) / _scale);
         }
@@ -212,9 +205,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        CumulativeDistribution(
-            double x
-            )
+        CumulativeDistribution(double x)
         {
             if(x < _location)
             {

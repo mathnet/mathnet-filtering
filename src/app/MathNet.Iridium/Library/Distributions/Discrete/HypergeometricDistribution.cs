@@ -72,9 +72,7 @@ namespace MathNet.Numerics.Distributions
         /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
         public
-        HypergeometricDistribution(
-            RandomSource random
-            )
+        HypergeometricDistribution(RandomSource random)
             : base(random)
         {
             SetDistributionParameters(2, 1, 1);
@@ -88,8 +86,7 @@ namespace MathNet.Numerics.Distributions
         HypergeometricDistribution(
             int populationSize,
             int favoredItems,
-            int numberOfSamples
-            )
+            int numberOfSamples)
             : base()
         {
             SetDistributionParameters(populationSize, favoredItems, numberOfSamples);
@@ -132,8 +129,7 @@ namespace MathNet.Numerics.Distributions
         SetDistributionParameters(
             int populationSize,
             int favoredItems,
-            int numberOfSamples
-            )
+            int numberOfSamples)
         {
             if(!IsValidParameterSet(populationSize, favoredItems, numberOfSamples))
             {
@@ -157,8 +153,7 @@ namespace MathNet.Numerics.Distributions
         IsValidParameterSet(
             int populationSize,
             int favoredItems,
-            int numberOfSamples
-            )
+            int numberOfSamples)
         {
             return populationSize >= 0
                 && favoredItems >= 0
@@ -230,15 +225,12 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        ProbabilityMass(
-            int x
-            )
+        ProbabilityMass(int x)
         {
             return Math.Exp(
                 Fn.BinomialCoefficientLn(_M, x)
                 + Fn.BinomialCoefficientLn(_N - _M, _n - x)
-                - Fn.BinomialCoefficientLn(_N, _n)
-                );
+                - Fn.BinomialCoefficientLn(_N, _n));
         }
 
         /// <summary>
@@ -246,9 +238,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        CumulativeDistribution(
-            double x
-            )
+        CumulativeDistribution(double x)
         {
             double cdf;
             double pdf;

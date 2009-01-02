@@ -73,9 +73,7 @@ namespace MathNet.Numerics
         /// <seealso cref="PositiveEpsilonOf(double)"/>
         public static
         double
-        EpsilonOf(
-            double value
-            )
+        EpsilonOf(double value)
         {
             if(double.IsInfinity(value) || double.IsNaN(value))
             {
@@ -106,9 +104,7 @@ namespace MathNet.Numerics
         /// <seealso cref="EpsilonOf(double)"/>
         public static
         double
-        PositiveEpsilonOf(
-            double value
-            )
+        PositiveEpsilonOf(double value)
         {
             return 2 * EpsilonOf(value);
         }
@@ -122,9 +118,7 @@ namespace MathNet.Numerics
         /// </remarks>
         public static
         double
-        Increment(
-            double value
-            )
+        Increment(double value)
         {
             if(double.IsInfinity(value) || double.IsNaN(value))
             {
@@ -164,9 +158,7 @@ namespace MathNet.Numerics
         /// </remarks>
         public static
         double
-        Decrement(
-            double value
-            )
+        Decrement(double value)
         {
             if(double.IsInfinity(value) || double.IsNaN(value))
             {
@@ -204,8 +196,7 @@ namespace MathNet.Numerics
         ulong
         NumbersBetween(
             double a,
-            double b
-            )
+            double b)
         {
             if(double.IsNaN(a) || double.IsInfinity(a))
             {
@@ -231,9 +222,7 @@ namespace MathNet.Numerics
         [CLSCompliant(false)]
         public static
         ulong
-        ToLexicographicalOrderedUInt64(
-            double value
-            )
+        ToLexicographicalOrderedUInt64(double value)
         {
             long signed64 = BitConverter.DoubleToInt64Bits(value);
             ulong unsigned64 = (ulong)signed64;
@@ -248,9 +237,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         long
-        ToLexicographicalOrderedInt64(
-            double value
-            )
+        ToLexicographicalOrderedInt64(double value)
         {
             long signed64 = BitConverter.DoubleToInt64Bits(value);
 
@@ -265,9 +252,7 @@ namespace MathNet.Numerics
         [CLSCompliant(false)]
         public static
         ulong
-        SignedMagnitudeToTwosComplementUInt64(
-            long value
-            )
+        SignedMagnitudeToTwosComplementUInt64(long value)
         {
             return (value >= 0)
                 ? (ulong)value
@@ -279,9 +264,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         long
-        SignedMagnitudeToTwosComplementInt64(
-            long value
-            )
+        SignedMagnitudeToTwosComplementInt64(long value)
         {
             return (value >= 0)
                 ? value
@@ -299,8 +282,7 @@ namespace MathNet.Numerics
         AlmostEqual(
             double a,
             double b,
-            int maxNumbersBetween
-            )
+            int maxNumbersBetween)
         {
             return AlmostEqual(a, b, (ulong)maxNumbersBetween);
         }
@@ -317,8 +299,7 @@ namespace MathNet.Numerics
         AlmostEqual(
             double a,
             double b,
-            ulong maxNumbersBetween
-            )
+            ulong maxNumbersBetween)
         {
             if(maxNumbersBetween < 0)
             {
@@ -365,8 +346,7 @@ namespace MathNet.Numerics
             double a,
             double b,
             double diff,
-            double relativeAccuracy
-            )
+            double relativeAccuracy)
         {
             if((a == 0 && Math.Abs(b) < relativeAccuracy)
                 || (b == 0 && Math.Abs(a) < relativeAccuracy))
@@ -392,8 +372,7 @@ namespace MathNet.Numerics
         AlmostEqualNorm(
             double a,
             double b,
-            double diff
-            )
+            double diff)
         {
             return AlmostEqualNorm(a, b, diff, DefaultRelativeAccuracy);
         }
@@ -413,8 +392,7 @@ namespace MathNet.Numerics
         AlmostEqual(
             double a,
             double b,
-            double relativeAccuracy
-            )
+            double relativeAccuracy)
         {
             return AlmostEqualNorm(a, b, a - b, relativeAccuracy);
         }
@@ -432,8 +410,7 @@ namespace MathNet.Numerics
         bool
         AlmostEqual(
             double a,
-            double b
-            )
+            double b)
         {
             return AlmostEqualNorm(a, b, a - b, DefaultRelativeAccuracy);
         }
@@ -451,8 +428,7 @@ namespace MathNet.Numerics
         bool
         AlmostEqual(
             double[] x,
-            double[] y
-            )
+            double[] y)
         {
             if(x.Length != y.Length)
             {
@@ -482,8 +458,7 @@ namespace MathNet.Numerics
         bool
         AlmostZero(
             double a,
-            double absoluteAccuracy
-            )
+            double absoluteAccuracy)
         {
             return Math.Abs(a) < absoluteAccuracy;
         }
@@ -497,9 +472,7 @@ namespace MathNet.Numerics
         /// </returns>
         public static
         bool
-        AlmostZero(
-            double a
-            )
+        AlmostZero(double a)
         {
             return Math.Abs(a) < DefaultRelativeAccuracy;
         }
@@ -514,8 +487,7 @@ namespace MathNet.Numerics
         double
         CoerceZero(
             double a,
-            double absoluteAccuracy
-            )
+            double absoluteAccuracy)
         {
             if(Math.Abs(a) < absoluteAccuracy)
             {
@@ -532,9 +504,7 @@ namespace MathNet.Numerics
         /// <returns>Zero if |<paramref name="a"/>| is smaller than 10*2^(-52) = 0.22e-14, <paramref name="a"/> otherwise.</returns>
         public static
         double
-        CoerceZero(
-            double a
-            )
+        CoerceZero(double a)
         {
             if(Math.Abs(a) < DefaultRelativeAccuracy)
             {

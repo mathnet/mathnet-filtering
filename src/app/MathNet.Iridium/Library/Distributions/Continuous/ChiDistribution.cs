@@ -72,9 +72,7 @@ namespace MathNet.Numerics.Distributions
         /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
         public
-        ChiDistribution(
-            RandomSource random
-            )
+        ChiDistribution(RandomSource random)
             : base(random)
         {
             _standard = new StandardDistribution(random);
@@ -86,9 +84,7 @@ namespace MathNet.Numerics.Distributions
         /// using a <see cref="SystemRandomSource"/> as underlying random number generator.
         /// </summary>
         public
-        ChiDistribution(
-            int degreesOfFreedom
-            )
+        ChiDistribution(int degreesOfFreedom)
             : base()
         {
             _standard = new StandardDistribution(this.RandomSource);
@@ -129,9 +125,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public
         void
-        SetDistributionParameters(
-            int degreesOfFreedom
-            )
+        SetDistributionParameters(int degreesOfFreedom)
         {
             if(!IsValidParameterSet(degreesOfFreedom))
             {
@@ -151,9 +145,7 @@ namespace MathNet.Numerics.Distributions
         /// </returns>
         public static
         bool
-        IsValidParameterSet(
-            int degreesOfFreedom
-            )
+        IsValidParameterSet(int degreesOfFreedom)
         {
             return degreesOfFreedom > 0.0;
         }
@@ -228,16 +220,13 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        ProbabilityDensity(
-            double x
-            )
+        ProbabilityDensity(double x)
         {
             return Math.Exp(
                 ((1.0 - (0.5 * _degreesOfFreedom)) * Constants.Ln2)
                 + ((_degreesOfFreedom - 1) * Math.Log(x))
                 - (0.5 * x * x)
-                - _lngammaDegreesOfFreedomHalf
-                );
+                - _lngammaDegreesOfFreedomHalf);
         }
 
         /// <summary>
@@ -245,9 +234,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        CumulativeDistribution(
-            double x
-            )
+        CumulativeDistribution(double x)
         {
             return Fn.GammaRegularized(0.5 * _degreesOfFreedom, 0.5 * x * x);
         }

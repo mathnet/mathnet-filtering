@@ -69,9 +69,7 @@ namespace MathNet.Numerics.Distributions
         /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
         public
-        BinomialDistribution(
-            RandomSource random
-            )
+        BinomialDistribution(RandomSource random)
             : base(random)
         {
             SetDistributionParameters(0.5, 1);
@@ -84,8 +82,7 @@ namespace MathNet.Numerics.Distributions
         public
         BinomialDistribution(
             double probabilityOfSuccess,
-            int numberOfTrials
-            )
+            int numberOfTrials)
             : base()
         {
             SetDistributionParameters(probabilityOfSuccess, numberOfTrials);
@@ -119,8 +116,7 @@ namespace MathNet.Numerics.Distributions
         void
         SetDistributionParameters(
             double probabilityOfSuccess,
-            int numberOfTrials
-            )
+            int numberOfTrials)
         {
             if(!IsValidParameterSet(probabilityOfSuccess, numberOfTrials))
             {
@@ -142,8 +138,7 @@ namespace MathNet.Numerics.Distributions
         bool
         IsValidParameterSet(
             double probabilityOfSuccess,
-            int numberOfTrials
-            )
+            int numberOfTrials)
         {
             return (probabilityOfSuccess >= 0.0 && probabilityOfSuccess <= 1.0)
                 && (numberOfTrials >= 0);
@@ -204,9 +199,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        ProbabilityMass(
-            int x
-            )
+        ProbabilityMass(int x)
         {
             return Fn.BinomialCoefficient(_n, x) * Math.Pow(_p, x) * Math.Pow(1 - _p, _n - x);
         }
@@ -216,9 +209,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        CumulativeDistribution(
-            double x
-            )
+        CumulativeDistribution(double x)
         {
             return Fn.BetaRegularized(_n - x, x + 1, 1 - _p);
         }

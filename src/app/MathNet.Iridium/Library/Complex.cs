@@ -168,10 +168,7 @@ namespace MathNet.Numerics
         /// from its real and imaginary parts.
         /// </summary>
         public
-        Complex(
-            double real,
-            double imag
-            )
+        Complex(double real, double imag)
         {
             this.real = real;
             this.imag = imag;
@@ -183,10 +180,7 @@ namespace MathNet.Numerics
         /// </summary>
         public static
         Complex
-        FromRealImaginary(
-            double real,
-            double imag
-            )
+        FromRealImaginary(double real, double imag)
         {
             return new Complex(real, imag);
         }
@@ -199,24 +193,19 @@ namespace MathNet.Numerics
         /// <param name="argument">Real number.</param>
         public static
         Complex
-        FromModulusArgument(
-            double modulus,
-            double argument
-            )
+        FromModulusArgument(double modulus, double argument)
         {
             if(modulus < 0d)
             {
                 throw new ArgumentOutOfRangeException(
                     "modulus",
                     modulus,
-                    Properties.LocalStrings.ArgumentNotNegative
-                    );
+                    Properties.LocalStrings.ArgumentNotNegative);
             }
 
             return new Complex(
                 modulus * Math.Cos(argument),
-                modulus * Math.Sin(argument)
-                );
+                modulus * Math.Sin(argument));
         }
 
         /// <summary>
@@ -228,13 +217,11 @@ namespace MathNet.Numerics
         Complex
         Random(
             IContinuousGenerator realRandomDistribution,
-            IContinuousGenerator imagRandomDistribution
-            )
+            IContinuousGenerator imagRandomDistribution)
         {
             return new Complex(
                 realRandomDistribution.NextDouble(),
-                imagRandomDistribution.NextDouble()
-                );
+                imagRandomDistribution.NextDouble());
         }
 
         /// <summary>
@@ -243,14 +230,11 @@ namespace MathNet.Numerics
         /// <param name="randomDistribution">Continuous random distribution or source for the real and imaginary parts.</param>
         public static
         Complex
-        Random(
-            IContinuousGenerator randomDistribution
-            )
+        Random(IContinuousGenerator randomDistribution)
         {
             return new Complex(
                 randomDistribution.NextDouble(),
-                randomDistribution.NextDouble()
-                );
+                randomDistribution.NextDouble());
         }
 
         /// <summary>
@@ -262,13 +246,11 @@ namespace MathNet.Numerics
         Complex
         RandomPolar(
             IContinuousGenerator modulusRandomDistribution,
-            IContinuousGenerator argumentRandomDistribution
-            )
+            IContinuousGenerator argumentRandomDistribution)
         {
             return FromModulusArgument(
                 modulusRandomDistribution.NextDouble(),
-                argumentRandomDistribution.NextDouble()
-                );
+                argumentRandomDistribution.NextDouble());
         }
 
         /// <summary>
@@ -277,14 +259,11 @@ namespace MathNet.Numerics
         /// <param name="argumentRandomDistribution">Continuous random distribution or source for the argument.</param>
         public static
         Complex
-        RandomUnitCircle(
-            IContinuousGenerator argumentRandomDistribution
-            )
+        RandomUnitCircle(IContinuousGenerator argumentRandomDistribution)
         {
             return FromModulusArgument(
                 1d,
-                argumentRandomDistribution.NextDouble()
-                );
+                argumentRandomDistribution.NextDouble());
         }
 
         /// <summary>
@@ -454,8 +433,7 @@ namespace MathNet.Numerics
                     throw new ArgumentOutOfRangeException(
                         "value",
                         value,
-                        Properties.LocalStrings.ArgumentNotNegative
-                        );
+                        Properties.LocalStrings.ArgumentNotNegative);
                 }
 
                 if(double.IsInfinity(value))
@@ -505,8 +483,7 @@ namespace MathNet.Numerics
                     throw new ArgumentOutOfRangeException(
                         "value",
                         value,
-                        Properties.LocalStrings.ArgumentNotNegative
-                        );
+                        Properties.LocalStrings.ArgumentNotNegative);
                 }
 
                 if(double.IsInfinity(value))
@@ -632,9 +609,7 @@ namespace MathNet.Numerics
         /// </summary>
         public override
         bool
-        Equals(
-            object obj
-            )
+        Equals(object obj)
         {
             return (obj is Complex) && this.Equals((Complex)obj);
         }
@@ -644,9 +619,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         bool
-        Equals(
-            Complex other
-            )
+        Equals(Complex other)
         {
             return !IsNaN
                 && !other.IsNaN
@@ -659,9 +632,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         bool
-        AlmostEquals(
-            Complex other
-            )
+        AlmostEquals(Complex other)
         {
             return !IsNaN
                 && !other.IsNaN
@@ -676,8 +647,7 @@ namespace MathNet.Numerics
         bool
         AlmostEquals(
             Complex other,
-            double relativeAccuracy
-            )
+            double relativeAccuracy)
         {
             return !IsNaN
                 && !other.IsNaN
@@ -704,9 +674,7 @@ namespace MathNet.Numerics
         /// <param name="other">The complex number to compare with.</param>
         public
         int
-        CompareTo(
-            Complex other
-            )
+        CompareTo(Complex other)
         {
             int res = Real.CompareTo(other.Real);
             if(res != 0)
@@ -870,8 +838,7 @@ namespace MathNet.Numerics
             double z2mod = divisor.ModulusSquared;
             return new Complex(
                 ((dividend.real * divisor.real) + (dividend.imag * divisor.imag)) / z2mod,
-                ((dividend.imag * divisor.real) - (dividend.real * divisor.imag)) / z2mod
-                );
+                ((dividend.imag * divisor.real) - (dividend.real * divisor.imag)) / z2mod);
         }
 
         /// <summary>
@@ -927,8 +894,7 @@ namespace MathNet.Numerics
 
             return new Complex(
                 Trig.Sine(real) * Trig.HyperbolicCosine(imag),
-                Trig.Cosine(real) * Trig.HyperbolicSine(imag)
-                );
+                Trig.Cosine(real) * Trig.HyperbolicSine(imag));
         }
 
         /// <summary>
@@ -945,8 +911,7 @@ namespace MathNet.Numerics
 
             return new Complex(
                 Trig.Cosine(real) * Trig.HyperbolicCosine(imag),
-                -Trig.Sine(real) * Trig.HyperbolicSine(imag)
-                );
+                -Trig.Sine(real) * Trig.HyperbolicSine(imag));
         }
 
         /// <summary>
@@ -967,8 +932,7 @@ namespace MathNet.Numerics
 
             return new Complex(
                 Trig.Sine(real) * cosr / denom,
-                sinhi * Trig.HyperbolicCosine(imag) / denom
-                );
+                sinhi * Trig.HyperbolicCosine(imag) / denom);
         }
 
         /// <summary>
@@ -989,8 +953,7 @@ namespace MathNet.Numerics
 
             return new Complex(
                 sinr * Trig.Cosine(real) / denom,
-                -sinhi * Trig.HyperbolicCosine(imag) / denom
-                );
+                -sinhi * Trig.HyperbolicCosine(imag) / denom);
         }
 
         /// <summary>
@@ -1011,8 +974,7 @@ namespace MathNet.Numerics
 
             return new Complex(
                 cosr * Trig.HyperbolicCosine(imag) / denom,
-                Trig.Sine(real) * sinhi / denom
-                );
+                Trig.Sine(real) * sinhi / denom);
         }
 
         /// <summary>
@@ -1033,8 +995,7 @@ namespace MathNet.Numerics
 
             return new Complex(
                 sinr * Trig.HyperbolicCosine(imag) / denom,
-                -Trig.Cosine(real) * sinhi / denom
-                );
+                -Trig.Cosine(real) * sinhi / denom);
         }
 
         #endregion
@@ -1123,8 +1084,7 @@ namespace MathNet.Numerics
 
             return new Complex(
                 Trig.HyperbolicSine(real) * Trig.Cosine(imag),
-                Trig.HyperbolicCosine(real) * Trig.Sine(imag)
-                );
+                Trig.HyperbolicCosine(real) * Trig.Sine(imag));
         }
 
         /// <summary>
@@ -1141,8 +1101,7 @@ namespace MathNet.Numerics
 
             return new Complex(
                 Trig.HyperbolicCosine(real) * Trig.Cosine(imag),
-                Trig.HyperbolicSine(real) * Trig.Sine(imag)
-                );
+                Trig.HyperbolicSine(real) * Trig.Sine(imag));
         }
 
         /// <summary>
@@ -1163,8 +1122,7 @@ namespace MathNet.Numerics
 
             return new Complex(
                 Trig.HyperbolicCosine(real) * sinhr / denom,
-                cosi * Trig.Sine(imag) / denom
-                );
+                cosi * Trig.Sine(imag) / denom);
         }
 
         /// <summary>
@@ -1185,8 +1143,7 @@ namespace MathNet.Numerics
 
             return new Complex(
                 sinhr * Trig.HyperbolicCosine(real) / denom,
-                sini * Trig.Cosine(imag) / denom
-                );
+                sini * Trig.Cosine(imag) / denom);
         }
 
         /// <summary>
@@ -1306,8 +1263,7 @@ namespace MathNet.Numerics
 
             return new Complex(
                 exp * Trig.Cosine(imag),
-                exp * Trig.Sine(imag)
-                );
+                exp * Trig.Sine(imag));
         }
 
         /// <summary>
@@ -1324,8 +1280,7 @@ namespace MathNet.Numerics
 
             return new Complex(
                 0.5d * Math.Log(ModulusSquared),
-                Argument
-                );
+                Argument);
         }
 
         /// <summary>
@@ -1333,9 +1288,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         Complex
-        Power(
-            Complex exponent
-            )
+        Power(Complex exponent)
         {
             if(IsZero)
             {
@@ -1370,9 +1323,7 @@ namespace MathNet.Numerics
         /// </summary>
         public
         Complex
-        Root(
-            Complex rootexponent
-            )
+        Root(Complex rootexponent)
         {
             return Power(1 / rootexponent);
         }
@@ -1391,8 +1342,7 @@ namespace MathNet.Numerics
 
             return new Complex(
                 (real * real) - (imag * imag),
-                2 * real * imag
-                );
+                2 * real * imag);
         }
 
         /// <summary>
@@ -1413,14 +1363,12 @@ namespace MathNet.Numerics
             {
                 return new Complex(
                     Constants.Sqrt1_2 * Math.Sqrt(mod + real),
-                    Constants.Sqrt1_2 * Math.Sqrt(mod - real)
-                    );
+                    Constants.Sqrt1_2 * Math.Sqrt(mod - real));
             }
 
             return new Complex(
                 Constants.Sqrt1_2 * Math.Sqrt(mod + real),
-                -Constants.Sqrt1_2 * Math.Sqrt(mod - real)
-                );
+                -Constants.Sqrt1_2 * Math.Sqrt(mod - real));
         }
 
         #endregion
@@ -1542,8 +1490,7 @@ namespace MathNet.Numerics
             public
             ComplexParser(
                 string complex,
-                NumberFormatInfo numberFormat
-                )
+                NumberFormatInfo numberFormat)
             {
                 this.numberFormat = numberFormat;
                 this.source = complex.ToLower().Trim();
@@ -1729,14 +1676,11 @@ namespace MathNet.Numerics
                 return double.Parse(
                     sb.ToString(),
                     NumberStyles.AllowDecimalPoint | NumberStyles.AllowExponent | NumberStyles.AllowLeadingSign,
-                    numberFormat
-                    );
+                    numberFormat);
             }
 
             void
-            ScanInteger(
-                StringBuilder sb
-                )
+            ScanInteger(StringBuilder sb)
             {
                 sb.Append(Consume());
                 while(IsNumber(LookAheadCharacterOrNull) || IsGroup(LookAheadCharacterOrNull))
@@ -1763,78 +1707,60 @@ namespace MathNet.Numerics
             #region Indicators
 
             bool
-            IsNotWhiteSpace(
-                char c
-                )
+            IsNotWhiteSpace(char c)
             {
                 return IsNumber(c) || IsDecimal(c) || IsE(c) || IsI(c) || IsSign(c) || IsMult(c);
             }
             
             static
             bool
-            IsNumber(
-                char c
-                )
+            IsNumber(char c)
             {
                 // TODO: consider using numberFormat.NativeDigits
                 return c >= '0' && c <= '9';
             }
             
             bool
-            IsDecimal(
-                char c
-                )
+            IsDecimal(char c)
             {
                 return numberFormat.NumberDecimalSeparator.Equals(c.ToString());
             }
 
             bool
-            IsGroup(
-                char c
-                )
+            IsGroup(char c)
             {
                 return numberFormat.NumberGroupSeparator.Equals(c.ToString());
             }
 
             static
             bool
-            IsE(
-                char c
-                )
+            IsE(char c)
             {
                 return c == 'e';
             }
 
             static
             bool
-            IsI(
-                char c
-                )
+            IsI(char c)
             {
                 return c == 'i' || c == 'j';
             }
 
             bool
-            IsSign(
-                char c
-                )
+            IsSign(char c)
             {
                 return numberFormat.PositiveSign.Equals(c.ToString()) || numberFormat.NegativeSign.Equals(c.ToString());
             }
 
             bool
-            IsNegativeSign(
-                char c
-                )
+            IsNegativeSign(char c)
             {
                 return numberFormat.NegativeSign.Equals(c.ToString());
             }
 
             static
             bool
-            IsMult(
-                char c
-                )
+            IsMult(char c)
             {
                 return c == '*';
             }

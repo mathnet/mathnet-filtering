@@ -46,9 +46,7 @@ namespace MathNet.Numerics.Interpolation
         /// <seealso cref="Differentiate"/>
         /// <seealso cref="Integrate"/>
         double
-        Interpolate(
-            double t
-            );
+        Interpolate(double t);
 
         /// <summary>
         /// True if the alorithm supports differentiation.
@@ -71,8 +69,7 @@ namespace MathNet.Numerics.Interpolation
         Differentiate(
             double t,
             out double first,
-            out double second
-            );
+            out double second);
 
         /// <summary>
         /// True if the alorithm supports integration.
@@ -90,8 +87,6 @@ namespace MathNet.Numerics.Interpolation
         /// <returns>Interpolated definite integeral over the interval [a,t].</returns>
         /// <seealso cref="SupportsIntegration"/>
         double
-        Integrate(
-            double t
-            );
+        Integrate(double t);
     }
 }

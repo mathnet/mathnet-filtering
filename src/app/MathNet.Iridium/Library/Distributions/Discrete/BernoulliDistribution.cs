@@ -68,9 +68,7 @@ namespace MathNet.Numerics.Distributions
         /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
         public
-        BernoulliDistribution(
-            RandomSource random
-            )
+        BernoulliDistribution(RandomSource random)
             : base(random)
         {
             SetDistributionParameters(0.5);
@@ -81,9 +79,7 @@ namespace MathNet.Numerics.Distributions
         /// using a <see cref="SystemRandomSource"/> as underlying random number generator.
         /// </summary>
         public
-        BernoulliDistribution(
-            double probabilityOfSuccess
-            )
+        BernoulliDistribution(double probabilityOfSuccess)
             : base()
         {
             SetDistributionParameters(probabilityOfSuccess);
@@ -105,9 +101,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public
         void
-        SetDistributionParameters(
-            double probabilityOfSuccess
-            )
+        SetDistributionParameters(double probabilityOfSuccess)
         {
             if(!IsValidParameterSet(probabilityOfSuccess))
             {
@@ -125,9 +119,7 @@ namespace MathNet.Numerics.Distributions
         /// </returns>
         public static
         bool
-        IsValidParameterSet(
-            double probabilityOfSuccess
-            )
+        IsValidParameterSet(double probabilityOfSuccess)
         {
             return probabilityOfSuccess >= 0.0 && probabilityOfSuccess <= 1.0;
         }
@@ -194,9 +186,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        ProbabilityMass(
-            int x
-            )
+        ProbabilityMass(int x)
         {
             if(x == 1)
             {
@@ -216,9 +206,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        CumulativeDistribution(
-            double x
-            )
+        CumulativeDistribution(double x)
         {
             if(x < 0)
             {

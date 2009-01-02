@@ -81,8 +81,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
         void
         Init(
             IList<double> t,
-            IList<double> x
-            )
+            IList<double> x)
         {
             if(null == t)
             {
@@ -161,9 +160,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
         /// <returns>Interpolated value x(t).</returns>
         public
         double
-        Interpolate(
-            double t
-            )
+        Interpolate(double t)
         {
             return _hermiteSpline.Interpolate(t);
         }
@@ -180,8 +177,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
         Differentiate(
             double t,
             out double first,
-            out double second
-            )
+            out double second)
         {
             return _hermiteSpline.Differentiate(t, out first, out second);
         }
@@ -194,9 +190,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
         /// <seealso cref="SupportsIntegration"/>
         public
         double
-        Integrate(
-            double t
-            )
+        Integrate(double t)
         {
             return _hermiteSpline.Integrate(t);
         }
@@ -220,8 +214,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
             double t1,
             double x1,
             double t2,
-            double x2
-            )
+            double x2)
         {
             // TODO: Optimization potential, but keep numeric stability in mind!
             t = t - t0;

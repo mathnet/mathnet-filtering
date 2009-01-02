@@ -79,9 +79,7 @@ namespace MathNet.Numerics.Distributions
         /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
         public
-        StandardDistribution(
-            RandomSource random
-            )
+        StandardDistribution(RandomSource random)
             : base(random)
         {
         }
@@ -141,9 +139,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        ProbabilityDensity(
-            double x
-            )
+        ProbabilityDensity(double x)
         {
             return Constants.InvSqrt2Pi * Math.Exp(x * x / -2.0);
         }
@@ -153,9 +149,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        CumulativeDistribution(
-            double x
-            )
+        CumulativeDistribution(double x)
         {
             return 0.5 * (1.0 + Fn.Erf(x * Constants.Sqrt1_2));
         }
@@ -166,9 +160,7 @@ namespace MathNet.Numerics.Distributions
         /// <seealso cref="StandardDistribution.CumulativeDistribution"/>
         public
         double
-        InverseCumulativeDistribution(
-            double x
-            )
+        InverseCumulativeDistribution(double x)
         {
             return Constants.Sqrt1_2 * Fn.ErfInverse((2.0 * x) - 1.0);
         }

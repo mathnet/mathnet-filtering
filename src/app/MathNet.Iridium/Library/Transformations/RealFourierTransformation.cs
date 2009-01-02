@@ -58,9 +58,7 @@ namespace MathNet.Numerics.Transformations
         /// </summary>
         /// <param name="convention">Fourier Transformation convention</param>
         public
-        RealFourierTransformation(
-            TransformationConvention convention
-            )
+        RealFourierTransformation(TransformationConvention convention)
         {
             _fft = new InternalFFT();
             _convention = convention;
@@ -85,8 +83,7 @@ namespace MathNet.Numerics.Transformations
         double[]
         GenerateTimeScale(
             double sampleRate,
-            int numberOfSamples
-            )
+            int numberOfSamples)
         {
             double[] scale = new double[numberOfSamples];
             double t = 0, step = 1.0 / sampleRate;
@@ -108,8 +105,7 @@ namespace MathNet.Numerics.Transformations
         double[]
         GenerateFrequencyScale(
             double sampleRate,
-            int numberOfSamples
-            )
+            int numberOfSamples)
         {
             double[] scale = new double[numberOfSamples];
             double f = 0, step = sampleRate / numberOfSamples;
@@ -150,8 +146,7 @@ namespace MathNet.Numerics.Transformations
             out double[] fftReal1,
             out double[] fftImag1,
             out double[] fftReal2,
-            out double[] fftImag2
-            )
+            out double[] fftImag2)
         {
             if(samples1.Length != samples2.Length)
             {
@@ -228,8 +223,7 @@ namespace MathNet.Numerics.Transformations
             double[] fftReal2,
             double[] fftImag2,
             out double[] samples1,
-            out double[] samples2
-            )
+            out double[] samples2)
         {
             if(fftReal1.Length != fftImag1.Length || fftReal2.Length != fftImag2.Length || fftReal1.Length != fftReal2.Length)
             {
@@ -283,8 +277,7 @@ namespace MathNet.Numerics.Transformations
         TransformForward(
             double[] samples,
             out double[] fftReal,
-            out double[] fftImag
-            )
+            out double[] fftImag)
         {
             if(Fn.CeilingToPowerOf2(samples.Length) != samples.Length)
             {
@@ -356,8 +349,7 @@ namespace MathNet.Numerics.Transformations
         TransformBackward(
             double[] fftReal,
             double[] fftImag,
-            out double[] samples
-            )
+            out double[] samples)
         {
             if(fftReal.Length != fftImag.Length)
             {
@@ -426,8 +418,7 @@ namespace MathNet.Numerics.Transformations
             double[] samples,
             out double[] fftReal,
             out double[] fftImag,
-            params int[] dimensionLengths
-            )
+            params int[] dimensionLengths)
         {
             for(int i = 0; i < dimensionLengths.Length; i++)
             {
@@ -467,8 +458,7 @@ namespace MathNet.Numerics.Transformations
             double[] fftReal,
             double[] fftImag,
             out double[] samples,
-            params int[] dimensionLengths
-            )
+            params int[] dimensionLengths)
         {
             if(fftReal.Length != fftImag.Length)
             {

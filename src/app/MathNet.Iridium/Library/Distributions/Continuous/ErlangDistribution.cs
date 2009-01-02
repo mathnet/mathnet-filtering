@@ -70,9 +70,7 @@ namespace MathNet.Numerics.Distributions
         /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
         public
-        ErlangDistribution(
-            RandomSource random
-            )
+        ErlangDistribution(RandomSource random)
             : base(random)
         {
             SetDistributionParameters(1, 1.0);
@@ -85,8 +83,7 @@ namespace MathNet.Numerics.Distributions
         public
         ErlangDistribution(
             int shape,
-            double rate
-            )
+            double rate)
             : base()
         {
             SetDistributionParameters(shape, rate);
@@ -119,8 +116,7 @@ namespace MathNet.Numerics.Distributions
         void
         SetDistributionParameters(
             int shape,
-            double rate
-            )
+            double rate)
         {
             if(!IsValidParameterSet(shape, rate))
             {
@@ -142,8 +138,7 @@ namespace MathNet.Numerics.Distributions
         bool
         IsValidParameterSet(
             int shape,
-            double rate
-            )
+            double rate)
         {
             return shape > 0 && rate > 0.0;
         }
@@ -206,16 +201,13 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        ProbabilityDensity(
-            double x
-            )
+        ProbabilityDensity(double x)
         {
             return Math.Exp(
                 (_shape * Math.Log(_rate))
                 + ((_shape - 1) * Math.Log(x))
                 - (_rate * x)
-                - Fn.FactorialLn(_shape - 1)
-                );
+                - Fn.FactorialLn(_shape - 1));
         }
 
         /// <summary>
@@ -223,9 +215,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        CumulativeDistribution(
-            double x
-            )
+        CumulativeDistribution(double x)
         {
             return Fn.GammaRegularized(_shape, _rate * x);
         }

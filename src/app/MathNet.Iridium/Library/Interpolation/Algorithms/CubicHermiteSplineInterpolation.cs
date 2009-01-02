@@ -86,8 +86,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
         Init(
             IList<double> t,
             IList<double> x,
-            IList<double> d
-            )
+            IList<double> d)
         {
             if(null == t)
             {
@@ -139,8 +138,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
         InitInternal(
             double[] t,
             double[] x,
-            double[] d
-            )
+            double[] d)
         {
             double[] c = new double[4 * (t.Length - 1)];
 
@@ -165,9 +163,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
         /// <returns>Interpolated value x(t).</returns>
         public
         double
-        Interpolate(
-            double t
-            )
+        Interpolate(double t)
         {
             return _spline.Interpolate(t);
         }
@@ -184,8 +180,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
         Differentiate(
             double t,
             out double first,
-            out double second
-            )
+            out double second)
         {
             return _spline.Differentiate(t, out first, out second);
         }
@@ -198,9 +193,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
         /// <seealso cref="SupportsIntegration"/>
         public
         double
-        Integrate(
-            double t
-            )
+        Integrate(double t)
         {
             return _spline.Integrate(t);
         }

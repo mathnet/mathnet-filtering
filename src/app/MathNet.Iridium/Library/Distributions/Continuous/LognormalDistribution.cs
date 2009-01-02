@@ -74,9 +74,7 @@ namespace MathNet.Numerics.Distributions
         /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
         public
-        LognormalDistribution(
-            RandomSource random
-            )
+        LognormalDistribution(RandomSource random)
             : base(random)
         {
             _standard = new StandardDistribution(random);
@@ -90,8 +88,7 @@ namespace MathNet.Numerics.Distributions
         public
         LognormalDistribution(
             double mu,
-            double sigma
-            )
+            double sigma)
             : base()
         {
             _standard = new StandardDistribution(this.RandomSource);
@@ -143,8 +140,7 @@ namespace MathNet.Numerics.Distributions
         void
         SetDistributionParameters(
             double mu,
-            double sigma
-            )
+            double sigma)
         {
             if(!IsValidParameterSet(mu, sigma))
             {
@@ -166,8 +162,7 @@ namespace MathNet.Numerics.Distributions
         bool
         IsValidParameterSet(
             double mu,
-            double sigma
-            )
+            double sigma)
         {
             return sigma > 0.0;
         }
@@ -231,9 +226,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        ProbabilityDensity(
-            double x
-            )
+        ProbabilityDensity(double x)
         {
             double a = (Math.Log(x) - _mu) / _sigma;
             return Math.Exp(-0.5 * a * a) / (x * _sigma * Constants.Sqrt2Pi);
@@ -244,9 +237,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        CumulativeDistribution(
-            double x
-            )
+        CumulativeDistribution(double x)
         {
             return 0.5 * (1.0 + Fn.Erf((Math.Log(x) - _mu) / (_sigma * Constants.Sqrt2)));
         }
@@ -257,9 +248,7 @@ namespace MathNet.Numerics.Distributions
         /// <seealso cref="LognormalDistribution.CumulativeDistribution"/>
         public
         double
-        InverseCumulativeDistribution(
-            double x
-            )
+        InverseCumulativeDistribution(double x)
         {
             return Math.Exp((_sigma * Constants.Sqrt2 * Fn.ErfInverse((2.0 * x) - 1.0)) + _mu);
         }

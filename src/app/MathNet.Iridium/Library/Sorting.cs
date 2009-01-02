@@ -44,9 +44,7 @@ namespace MathNet.Numerics
         /// <param name="keys">List to sort.</param>
         public static
         void
-        Sort<T>(
-            IList<T> keys
-            )
+        Sort<T>(IList<T> keys)
         {
             Sort(keys, Comparer<T>.Default);
         }
@@ -60,8 +58,7 @@ namespace MathNet.Numerics
         void
         Sort<TKey, TItem>(
             IList<TKey> keys,
-            IList<TItem> items
-            )
+            IList<TItem> items)
         {
             Sort(keys, items, Comparer<TKey>.Default);
         }
@@ -77,8 +74,7 @@ namespace MathNet.Numerics
         Sort<TKey, TItem1, TItem2>(
             IList<TKey> keys,
             IList<TItem1> items1,
-            IList<TItem2> items2
-            )
+            IList<TItem2> items2)
         {
             Sort(keys, items1, items2, Comparer<TKey>.Default);
         }
@@ -94,8 +90,7 @@ namespace MathNet.Numerics
         Sort<T>(
             IList<T> keys,
             int index,
-            int count
-            )
+            int count)
         {
             Sort(keys, index, count, Comparer<T>.Default);
         }
@@ -109,8 +104,7 @@ namespace MathNet.Numerics
         void
         Sort<T>(
             IList<T> keys,
-            IComparer<T> comparer
-            )
+            IComparer<T> comparer)
         {
             if(null == keys)
             {
@@ -169,8 +163,7 @@ namespace MathNet.Numerics
         Sort<TKey, TItem>(
             IList<TKey> keys,
             IList<TItem> items,
-            IComparer<TKey> comparer
-            )
+            IComparer<TKey> comparer)
         {
             if(null == keys)
             {
@@ -213,8 +206,7 @@ namespace MathNet.Numerics
             IList<TKey> keys,
             IList<TItem1> items1,
             IList<TItem2> items2,
-            IComparer<TKey> comparer
-            )
+            IComparer<TKey> comparer)
         {
             if(null == keys)
             {
@@ -253,8 +245,7 @@ namespace MathNet.Numerics
             IList<T> keys,
             int index,
             int count,
-            IComparer<T> comparer
-            )
+            IComparer<T> comparer)
         {
             if(null == keys)
             {
@@ -318,8 +309,7 @@ namespace MathNet.Numerics
             IList<T> keys,
             IComparer<T> comparer,
             int left,
-            int right
-            )
+            int right)
         {
             do
             {
@@ -400,8 +390,7 @@ namespace MathNet.Numerics
             IList<TItems> items,
             IComparer<T> comparer,
             int left,
-            int right
-            )
+            int right)
         {
             do
             {
@@ -487,8 +476,7 @@ namespace MathNet.Numerics
             IList<TItems2> items2,
             IComparer<T> comparer,
             int left,
-            int right
-            )
+            int right)
         {
             do
             {
@@ -575,8 +563,7 @@ namespace MathNet.Numerics
         Swap<T>(
             IList<T> keys,
             int a,
-            int b
-            )
+            int b)
         {
             T local = keys[a];
             keys[a] = keys[b];

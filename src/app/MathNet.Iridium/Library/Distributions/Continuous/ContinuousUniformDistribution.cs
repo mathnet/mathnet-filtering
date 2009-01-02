@@ -70,9 +70,7 @@ namespace MathNet.Numerics.Distributions
         /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
         public
-        ContinuousUniformDistribution(
-            RandomSource random
-            )
+        ContinuousUniformDistribution(RandomSource random)
             : base(random)
         {
             SetDistributionParameters(0.0, 1.0);
@@ -85,8 +83,7 @@ namespace MathNet.Numerics.Distributions
         public
         ContinuousUniformDistribution(
             double lowerLimit,
-            double upperLimit
-            )
+            double upperLimit)
             : base()
         {
             SetDistributionParameters(lowerLimit, upperLimit);
@@ -123,8 +120,7 @@ namespace MathNet.Numerics.Distributions
         void
         SetDistributionParameters(
             double lowerLimit,
-            double upperLimit
-            )
+            double upperLimit)
         {
             if(!IsValidParameterSet(lowerLimit, upperLimit))
             {
@@ -146,8 +142,7 @@ namespace MathNet.Numerics.Distributions
         bool
         IsValidParameterSet(
             double lowerLimit,
-            double upperLimit
-            )
+            double upperLimit)
         {
             return lowerLimit <= upperLimit;
         }
@@ -207,9 +202,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        ProbabilityDensity(
-            double x
-            )
+        ProbabilityDensity(double x)
         {
             if(_a <= x && x <= _b)
             {
@@ -224,9 +217,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        CumulativeDistribution(
-            double x
-            )
+        CumulativeDistribution(double x)
         {
             if(x < _a)
             {

@@ -72,9 +72,7 @@ namespace MathNet.Numerics.Distributions
         /// <paramref name="random"/> is NULL (<see langword="Nothing"/> in Visual Basic).
         /// </exception>
         public
-        TriangularDistribution(
-            RandomSource random
-            )
+        TriangularDistribution(RandomSource random)
             : base(random)
         {
             SetDistributionParameters(0.0, 1.0, 0.5);
@@ -88,8 +86,7 @@ namespace MathNet.Numerics.Distributions
         TriangularDistribution(
             double lowerLimit,
             double upperLimit,
-            double center
-            )
+            double center)
             : base()
         {
             SetDistributionParameters(lowerLimit, upperLimit, center);
@@ -138,8 +135,7 @@ namespace MathNet.Numerics.Distributions
         SetDistributionParameters(
             double lowerLimit,
             double upperLimit,
-            double center
-            )
+            double center)
         {
             if(!IsValidParameterSet(lowerLimit, upperLimit, center))
             {
@@ -168,8 +164,7 @@ namespace MathNet.Numerics.Distributions
         IsValidParameterSet(
             double lowerLimit,
             double upperLimit,
-            double center
-            )
+            double center)
         {
             return lowerLimit < upperLimit && lowerLimit <= center && center <= upperLimit;
         }
@@ -242,9 +237,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        ProbabilityDensity(
-            double x
-            )
+        ProbabilityDensity(double x)
         {
             if(x <= _a)
             {
@@ -269,9 +262,7 @@ namespace MathNet.Numerics.Distributions
         /// </summary>
         public override
         double
-        CumulativeDistribution(
-            double x
-            )
+        CumulativeDistribution(double x)
         {
             if(x <= _a)
             {

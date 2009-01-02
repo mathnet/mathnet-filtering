@@ -64,9 +64,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
         /// with the given order.
         /// </summary>
         public
-        LimitedOrderRationalInterpolation(
-            int maximumOrder
-            )
+        LimitedOrderRationalInterpolation(int maximumOrder)
         {
             _maximumOrder = maximumOrder;
             _effectiveOrder = -1;
@@ -143,8 +141,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
         void
         Init(
             IList<double> t,
-            IList<double> x
-            )
+            IList<double> x)
         {
             Init(new SampleList(t, x));
         }
@@ -155,9 +152,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
         /// <param name="samples">Sample points t and values x(t).</param>
         public
         void
-        Init(
-            SampleList samples
-            )
+        Init(SampleList samples)
         {
             if(null == samples)
             {
@@ -175,9 +170,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
         /// <returns>Interpolated value x(t).</returns>
         public
         double
-        Interpolate(
-            double t
-            )
+        Interpolate(double t)
         {
             if(null == _samples)
             {
@@ -232,17 +225,14 @@ namespace MathNet.Numerics.Interpolation.Algorithms
         int
         SuggestOffset(
             double t,
-            out int closestIndex
-            )
+            out int closestIndex)
         {
             closestIndex = Math.Max(_samples.Locate(t), 0);
             int ret = Math.Min(
                 Math.Max(
                     closestIndex - ((_effectiveOrder - 1) / 2),
-                    0
-                    ),
-                _samples.Count - _effectiveOrder
-                );
+                    0),
+                _samples.Count - _effectiveOrder);
 
             if(closestIndex < (_samples.Count - 1))
             {
@@ -270,8 +260,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
         Differentiate(
             double t,
             out double first,
-            out double second
-            )
+            out double second)
         {
             throw new NotSupportedException();
         }
@@ -284,9 +273,7 @@ namespace MathNet.Numerics.Interpolation.Algorithms
         /// <seealso cref="SupportsIntegration"/>
         public
         double
-        Integrate(
-            double t
-            )
+        Integrate(double t)
         {
             throw new NotSupportedException();
         }
