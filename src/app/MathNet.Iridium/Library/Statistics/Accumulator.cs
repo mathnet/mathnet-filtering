@@ -1,9 +1,10 @@
 //-----------------------------------------------------------------------
 // <copyright file="Accumulator.cs" company="Math.NET Project">
-//    Copyright (c) 2004-2008, Joannes Vermorel.
+//    Copyright (c) 2004-2008, Christoph Rüegg, Joannes Vermorel.
 //    All Right Reserved.
 // </copyright>
 // <author>
+//    Christoph Rüegg, http://christoph.ruegg.name
 //    Joannes Vermorel, http://www.vermorel.com
 // </author>
 // <product>
@@ -38,14 +39,19 @@ namespace MathNet.Numerics.Statistics
     /// statistical moments and their derivatives.
     /// </summary>
     /// <remarks>
-    /// <p>The <c>Accumulator</c> provides memory efficient online algorithms
+    /// <para>
+    /// The <c>Accumulator</c> provides memory efficient online algorithms
     /// to compute the first statistical moments (mean, variance) and their
-    /// derivatives (sigma, error estimate).</p>
-    /// <p>The memory required by the accumulator is <c>O(1)</c> independent
+    /// derivatives (sigma, error estimate).
+    /// </para>
+    /// <para>
+    /// The memory required by the accumulator is <c>O(1)</c> independent
     /// from the distribution size. All methods are executed in a <c>O(1)</c>
     /// computational time.
-    /// </p>
-    /// <p>The <c>Accumulator</c> is not thread safe.</p>
+    /// </para>
+    /// <para>
+    /// The <c>Accumulator</c> is not thread safe.
+    /// </para>
     /// </remarks>
     public class Accumulator
     {
@@ -73,12 +79,16 @@ namespace MathNet.Numerics.Statistics
         /// </summary>
         private int count;
 
+        // Variables required for numerically more stable way of computing the mean and variance:
+        private double mean;
+        private double varianceSum;
+
         /// <summary>
         /// Initializes a new instance of the Accumulator class.
         /// </summary>
         public Accumulator()
         {
-            this.Clear();
+            Clear();
         }
 
         /// <summary>
@@ -86,8 +96,8 @@ namespace MathNet.Numerics.Statistics
         /// </summary>
         public Accumulator(double[] values)
         {
-            this.Clear();
-            this.AddRange(values);
+            Clear();
+            AddRange(values);
         }
 
         /// <summary>
@@ -96,8 +106,8 @@ namespace MathNet.Numerics.Statistics
         [Obsolete("This method is obsolete, please use the generic version instead: Accumulator(IEnumerable<double>)", false)]
         public Accumulator(ICollection values)
         {
-            this.Clear();
-            this.AddRange(values);
+            Clear();
+            AddRange(values);
         }
 
         /// <summary>
@@ -105,8 +115,8 @@ namespace MathNet.Numerics.Statistics
         /// </summary>
         public Accumulator(IEnumerable<double> values)
         {
-            this.Clear();
-            this.AddRange(values);
+            Clear();
+            AddRange(values);
         }
 
         #region Add/Remove Samples
@@ -117,7 +127,20 @@ namespace MathNet.Numerics.Statistics
         {
             sum += value;
             squaredSum += value * value;
+
             count++;
+
+            if(count == 1)
+            {
+                mean = value;
+                varianceSum = 0;
+            }
+            else
+            {
+                double meanPrevious = mean;
+                mean = meanPrevious + (value - meanPrevious) / count;
+                varianceSum = varianceSum + (value - meanPrevious) * (value - mean);
+            }
         }
 
         /// <summary>
@@ -127,7 +150,7 @@ namespace MathNet.Numerics.Statistics
         {
             for(int i = 0; i < values.Length; i++)
             {
-                this.Add(values[i]);
+                Add(values[i]);
             }
         }
 
@@ -144,7 +167,7 @@ namespace MathNet.Numerics.Statistics
                     throw new ArgumentException(Properties.LocalStrings.ArgumentTypeMismatch);
                 }
 
-                this.Add((double)obj);
+                Add((double)obj);
             }
         }
 
@@ -164,9 +187,11 @@ namespace MathNet.Numerics.Statistics
         /// </summary>
         public void Clear()
         {
-            this.sum = 0d;
-            this.squaredSum = 0d;
-            this.count = 0;
+            sum = 0;
+            squaredSum = 0;
+            mean = 0;
+            varianceSum = 0;
+            count = 0;
         }
 
         /// <summary>
@@ -187,6 +212,11 @@ namespace MathNet.Numerics.Statistics
 
             sum -= value;
             squaredSum -= value * value;
+
+            double meanPrevious = mean;
+            mean = ((meanPrevious * count) - value) / (count - 1);
+            varianceSum = varianceSum - (value - mean) * (value - meanPrevious);
+
             count--;
         }
 
@@ -197,7 +227,7 @@ namespace MathNet.Numerics.Statistics
         {
             for(int i = 0; i < values.Length; i++)
             {
-                this.Remove(values[i]);
+                Remove(values[i]);
             }
         }
 
@@ -214,7 +244,7 @@ namespace MathNet.Numerics.Statistics
                     throw new ArgumentException(Properties.LocalStrings.ArgumentTypeMismatch);
                 }
 
-                this.Remove((double)obj);
+                Remove((double)obj);
             }
         }
 
@@ -266,7 +296,7 @@ namespace MathNet.Numerics.Statistics
                     throw new InvalidOperationException(Properties.LocalStrings.InvalidOperationAccumulatorEmpty);
                 }
 
-                return sum / count;
+                return mean;
             }
         }
 
@@ -298,8 +328,7 @@ namespace MathNet.Numerics.Statistics
                     throw new InvalidOperationException(Properties.LocalStrings.InvalidOperationAccumulatorEmpty);
                 }
 
-                double mean = this.Mean;
-                return (squaredSum - (mean * mean * count)) / (count - 1);
+                return varianceSum / (count - 1);
             }
         }
 
@@ -310,7 +339,7 @@ namespace MathNet.Numerics.Statistics
         {
             get
             {
-                return Math.Sqrt(this.Variance);
+                return Math.Sqrt(Variance);
             }
         }
 

@@ -57,6 +57,7 @@
     <Compile Include="FftTest.cs" />
     <Compile Include="NumberTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StatisticsTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\app\MathNet.Iridium\Library\Iridium.csproj">
