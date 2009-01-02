@@ -1,23 +1,31 @@
-#region Math.NET Iridium (LGPL) by Ruegg
-// Math.NET Iridium, part of the Math.NET Project
-// http://mathnet.opensourcedotnet.info
+//-----------------------------------------------------------------------
+// <copyright file="DistributionTest.cs" company="Math.NET Project">
+//    Copyright (c) 2002-2009, Christoph Rüegg.
+//    All Right Reserved.
+// </copyright>
+// <author>
+//    Christoph Rüegg, http://christoph.ruegg.name
+// </author>
+// <product>
+//    Math.NET Iridium, part of the Math.NET Project.
+//    http://mathnet.opensourcedotnet.info
+// </product>
+// <license type="opensource" name="LGPL" version="2 or later">
+//    This program is free software; you can redistribute it and/or modify
+//    it under the terms of the GNU Lesser General Public License as published 
+//    by the Free Software Foundation; either version 2 of the License, or
+//    any later version.
 //
-// Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
+//    This program is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU Lesser General Public License for more details.
 //
-// This program is free software; you can redistribute it and/or modify
-// it under the terms of the GNU Lesser General Public License as published 
-// by the Free Software Foundation; either version 2 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Lesser General Public License for more details.
-//
-// You should have received a copy of the GNU Lesser General Public 
-// License along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-#endregion
+//    You should have received a copy of the GNU Lesser General Public 
+//    License along with this program; if not, write to the Free Software
+//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// </license>
+//-----------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -45,6 +53,7 @@ namespace Iridium.Test
             _shape = new int[buckets];
         }
 
+        /// <summary>Create a min-max distribution shape</summary>
         /// <param name="buckets">number of buckets.</param>
         /// <param name="min">inclusive minimum.</param>
         /// <param name="max">exclusive maximum.</param>
@@ -57,25 +66,34 @@ namespace Iridium.Test
         {
             double bucket = (value + _offset) * _scale;
             if(bucket < 0)
+            {
                 _underflow++;
+            }
             else if(bucket >= _buckets)
+            {
                 _overflow++;
+            }
             else
+            {
                 _shape[(int)bucket]++;
+            }
         }
 
         public int Underflow
         {
             get { return _underflow; }
         }
+
         public int Overflow
         {
             get { return _overflow; }
         }
+
         public int this[int bucket]
         {
             get { return _shape[bucket]; }
         }
+
         public int BucketCount
         {
             get { return _buckets; }
@@ -105,9 +123,14 @@ namespace Iridium.Test
 
         private void TestContinuousDistributionShape(
             ContinuousDistribution distribution,
-            double min, double max,
-            double[] expectedShape, double expectedUnderflow, double expectedOverflow,
-            int avgSamplesPerBucket, double absoluteAccuracy, string message)
+            double min,
+            double max,
+            double[] expectedShape,
+            double expectedUnderflow,
+            double expectedOverflow,
+            int avgSamplesPerBucket,
+            double absoluteAccuracy,
+            string message)
         {
             DistributionShape shape = DistributionShape.CreateMinMax(expectedShape.Length, min, max);
             int sampleCount = expectedShape.Length * avgSamplesPerBucket;
@@ -115,6 +138,7 @@ namespace Iridium.Test
             {
                 shape.Push(distribution.NextDouble());
             }
+
             double scale = 1.0 / (avgSamplesPerBucket * expectedShape.Length);
             Assert.AreEqual(expectedUnderflow, shape.Underflow * scale, absoluteAccuracy, message + " Underflow");
             Assert.AreEqual(expectedOverflow, shape.Overflow * scale, absoluteAccuracy, message + " Overflow");
@@ -126,9 +150,12 @@ namespace Iridium.Test
 
         private void TestContinuousDistributionShapeMatchesCumulativeDensity(
             ContinuousDistribution distribution,
-            double min, double max,
-            int numberOfBuckets, int avgSamplesPerBucket,
-            double absoluteAccuracy, string message)
+            double min,
+            double max,
+            int numberOfBuckets,
+            int avgSamplesPerBucket,
+            double absoluteAccuracy,
+            string message)
         {
             double[] shape = new double[numberOfBuckets];
             double bucketWidth = (max - min) / numberOfBuckets;
@@ -142,11 +169,19 @@ namespace Iridium.Test
                 shape[i] = current - previous;
                 previous = current;
             }
+
             double overflow = 1 - previous;
             
-            TestContinuousDistributionShape(distribution, min, max,
-                shape, underflow, overflow,
-                avgSamplesPerBucket, absoluteAccuracy, message);
+            TestContinuousDistributionShape(
+                distribution,
+                min,
+                max,
+                shape,
+                underflow,
+                overflow,
+                avgSamplesPerBucket,
+                absoluteAccuracy,
+                message);
         }
 
         [Test]
@@ -154,11 +189,21 @@ namespace Iridium.Test
         {
             TestContinuousDistributionShapeMatchesCumulativeDensity(
                 new ContinuousUniformDistribution(0.0, 1.0),
-                0.0, 1.0, 5, 100000, 0.01, "ContinuousUniform(0.0,1.0)");
+                0.0,
+                1.0,
+                5,
+                100000,
+                0.01,
+                "ContinuousUniform(0.0,1.0)");
 
             TestContinuousDistributionShapeMatchesCumulativeDensity(
                 new ContinuousUniformDistribution(-2.0, 2.0),
-                -2.0, 2.0, 10, 100000, 0.01, "ContinuousUniform(-2.0,2.0)");
+                -2.0,
+                2.0,
+                10,
+                100000,
+                0.01,
+                "ContinuousUniform(-2.0,2.0)");
         }
 
         [Test]
@@ -166,7 +211,12 @@ namespace Iridium.Test
         {
             TestContinuousDistributionShapeMatchesCumulativeDensity(
                 new TriangularDistribution(2.0, 4.0, 2.5),
-                2.0, 4.0, 10, 100000, 0.01, "TriangularDistribution(2.0,4.0,2.5)");
+                2.0,
+                4.0,
+                10,
+                100000,
+                0.01,
+                "TriangularDistribution(2.0,4.0,2.5)");
         }
 
         [Test]
@@ -174,15 +224,30 @@ namespace Iridium.Test
         {
             TestContinuousDistributionShapeMatchesCumulativeDensity(
                 new StandardDistribution(),
-                -2.0, 2.0, 10, 100000, 0.01, "StandardDistribution()");
+                -2.0,
+                2.0,
+                10,
+                100000,
+                0.01,
+                "StandardDistribution()");
 
             TestContinuousDistributionShapeMatchesCumulativeDensity(
                 new NormalDistribution(-5.0, 2.0),
-                -9.0, -1.0, 10, 100000, 0.01, "NormalDistribution(-5.0,2.0)");
+                -9.0,
+                -1.0,
+                10,
+                100000,
+                0.01,
+                "NormalDistribution(-5.0,2.0)");
 
             TestContinuousDistributionShapeMatchesCumulativeDensity(
                 new LognormalDistribution(1.0, 0.5),
-                0.0, 8.0, 10, 100000, 0.01, "LognormalDistribution(1.0,0.5)");
+                0.0,
+                8.0,
+                10,
+                100000,
+                0.01,
+                "LognormalDistribution(1.0,0.5)");
         }
 
         [Test]
@@ -190,7 +255,12 @@ namespace Iridium.Test
         {
             TestContinuousDistributionShapeMatchesCumulativeDensity(
                 new ExponentialDistribution(0.75),
-                0.0, 7.0, 10, 100000, 0.01, "ExponentialDistribution(0.75)");
+                0.0,
+                7.0,
+                10,
+                100000,
+                0.01,
+                "ExponentialDistribution(0.75)");
         }
 
         [Test]
@@ -198,11 +268,21 @@ namespace Iridium.Test
         {
             TestContinuousDistributionShapeMatchesCumulativeDensity(
                 new GammaDistribution(2.0, 2.0),
-                0.0, 12.0, 10, 100000, 0.01, "GammaDistribution(2.0,2.0)");
+                0.0,
+                12.0,
+                10,
+                100000,
+                0.01,
+                "GammaDistribution(2.0,2.0)");
 
             TestContinuousDistributionShapeMatchesCumulativeDensity(
                 new BetaDistribution(2.0, 5.0),
-                0.0, 1.0, 10, 100000, 0.01, "BetaDistribution(2.0,5.0)");
+                0.0,
+                1.0,
+                10,
+                100000,
+                0.01,
+                "BetaDistribution(2.0,5.0)");
         }
 
         [Test]
@@ -210,7 +290,12 @@ namespace Iridium.Test
         {
             TestContinuousDistributionShapeMatchesCumulativeDensity(
                 new LaplaceDistribution(4.0, 1.5),
-                0.0, 8.0, 10, 100000, 0.01, "LaplaceDistribution(4.0,1.5)");
+                0.0,
+                8.0,
+                10,
+                100000,
+                0.01,
+                "LaplaceDistribution(4.0,1.5)");
         }
 
         [Test]
@@ -218,11 +303,21 @@ namespace Iridium.Test
         {
             TestContinuousDistributionShapeMatchesCumulativeDensity(
                 new ChiDistribution(3),
-                0.0, 8.0, 10, 100000, 0.01, "ChiDistribution(3)");
+                0.0,
+                8.0,
+                10,
+                100000,
+                0.01,
+                "ChiDistribution(3)");
 
             TestContinuousDistributionShapeMatchesCumulativeDensity(
                 new ChiSquareDistribution(2),
-                0.0, 8.0, 10, 100000, 0.01, "ChiSquareDistribution(2)");
+                0.0,
+                8.0,
+                10,
+                100000,
+                0.01,
+                "ChiSquareDistribution(2)");
         }
 
         [Test]
@@ -230,7 +325,12 @@ namespace Iridium.Test
         {
             TestContinuousDistributionShapeMatchesCumulativeDensity(
                 new ParetoDistribution(1.0, 2.0),
-                1.0, 4.0, 10, 100000, 0.01, "ParetoDistribution(1.0,2.0)");
+                1.0,
+                4.0,
+                10,
+                100000,
+                0.01,
+                "ParetoDistribution(1.0,2.0)");
         }
 
         [Test]
@@ -238,7 +338,12 @@ namespace Iridium.Test
         {
             TestContinuousDistributionShapeMatchesCumulativeDensity(
                 new CauchyLorentzDistribution(1.0, 0.5),
-                0.0, 3.0, 10, 100000, 0.01, "CauchyLorentzDistribution(1.0,0.5)");
+                0.0,
+                3.0,
+                10,
+                100000,
+                0.01,
+                "CauchyLorentzDistribution(1.0,0.5)");
         }
 
         [Test]
@@ -246,7 +351,12 @@ namespace Iridium.Test
         {
             TestContinuousDistributionShapeMatchesCumulativeDensity(
                 new ErlangDistribution(2, 2.0),
-                0.0, 10.0, 10, 100000, 0.01, "ErlangDistribution(2,2.0)");
+                0.0,
+                10.0,
+                10,
+                100000,
+                0.01,
+                "ErlangDistribution(2,2.0)");
         }
 
         [Test]
@@ -254,7 +364,12 @@ namespace Iridium.Test
         {
             TestContinuousDistributionShapeMatchesCumulativeDensity(
                 new FisherSnedecorDistribution(10, 5),
-                0.0, 3.0, 10, 100000, 0.01, "FisherSnedecorDistribution(10,5)");
+                0.0,
+                3.0,
+                10,
+                100000,
+                0.01,
+                "FisherSnedecorDistribution(10,5)");
 
             FisherSnedecorDistribution d = new FisherSnedecorDistribution(100, 100);
 
@@ -292,7 +407,12 @@ namespace Iridium.Test
         {
             TestContinuousDistributionShapeMatchesCumulativeDensity(
                 new StudentsTDistribution(2),
-                -2.0, 5.0, 10, 100000, 0.01, "StudentsTDistribution(2)");
+                -2.0,
+                5.0,
+                10,
+                100000,
+                0.01,
+                "StudentsTDistribution(2)");
 
             StudentsTDistribution d = new StudentsTDistribution(2);
 

@@ -1,23 +1,31 @@
-#region Math.NET Iridium (LGPL) by Ruegg
-// Math.NET Iridium, part of the Math.NET Project
-// http://mathnet.opensourcedotnet.info
+//-----------------------------------------------------------------------
+// <copyright file="FftTest.cs" company="Math.NET Project">
+//    Copyright (c) 2002-2009, Christoph Rüegg.
+//    All Right Reserved.
+// </copyright>
+// <author>
+//    Christoph Rüegg, http://christoph.ruegg.name
+// </author>
+// <product>
+//    Math.NET Iridium, part of the Math.NET Project.
+//    http://mathnet.opensourcedotnet.info
+// </product>
+// <license type="opensource" name="LGPL" version="2 or later">
+//    This program is free software; you can redistribute it and/or modify
+//    it under the terms of the GNU Lesser General Public License as published 
+//    by the Free Software Foundation; either version 2 of the License, or
+//    any later version.
 //
-// Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
+//    This program is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU Lesser General Public License for more details.
 //
-// This program is free software; you can redistribute it and/or modify
-// it under the terms of the GNU Lesser General Public License as published 
-// by the Free Software Foundation; either version 2 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Lesser General Public License for more details.
-//
-// You should have received a copy of the GNU Lesser General Public 
-// License along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-#endregion
+//    You should have received a copy of the GNU Lesser General Public 
+//    License along with this program; if not, write to the Free Software
+//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// </license>
+//-----------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -42,14 +50,19 @@ namespace Iridium.Test
         {
             int len = samples.Length;
             for(int i = 1; i < samples.Length; i++)
+            {
                 NumericAssert.AreAlmostEqual(samples[i], samples[len - i], "Real Even in Time Space");
+            }
         }
 
         public static void RealTestTimeOdd(double[] samples)
         {
             int len = samples.Length;
             for(int i = 1; i < samples.Length; i++)
+            {
                 NumericAssert.AreAlmostEqual(samples[i], -samples[len - i], "Real Odd in Time Space");
+            }
+
             NumericAssert.AreAlmostEqual(0.0, samples[0], "Real Odd in Time Space: Periodic Continuation");
         }
 
@@ -71,6 +84,7 @@ namespace Iridium.Test
                 NumericAssert.AreAlmostEqual(samples[i], -samples[len - i], "Complex Odd in Time Space: Real Part");
                 NumericAssert.AreAlmostEqual(samples[i + 1], -samples[len + 1 - i], "Complex Odd in Time Space: Imaginary Part");
             }
+
             NumericAssert.AreAlmostEqual(0.0, samples[0], "Complex Odd in Time Space: Real Part: Periodic Continuation");
             NumericAssert.AreAlmostEqual(0.0, samples[1], "Complex Odd in Time Space: Imaginary Part: Periodic Continuation");
         }
@@ -93,6 +107,7 @@ namespace Iridium.Test
                 Assert.AreEqual(samples[i + 2], -samples[len - 2 - i], 0.00000001, "Complex Odd in Frequency Space: Real Part");
                 Assert.AreEqual(samples[i + 3], -samples[len - 1 - i], 0.00000001, "Complex Odd in Frequency Space: Imaginary Part");
             }
+
             NumericAssert.AreAlmostEqual(0.0, samples[0], "Complex Odd in Frequency Space: Real Part: Periodic Continuation (No DC)");
             NumericAssert.AreAlmostEqual(0.0, samples[1], "Complex Odd in Frequency Space: Imaginary Part: Periodic Continuation (No DC)");
         }
@@ -100,13 +115,17 @@ namespace Iridium.Test
         public static void ComplexTestRealZero(double[] samples)
         {
             for(int i = 0; i < samples.Length; i += 2)
-                NumericAssert.AreAlmostEqual(0, samples[i], "Complex: Zero Real Part"); ;
+            {
+                NumericAssert.AreAlmostEqual(0, samples[i], "Complex: Zero Real Part");
+            }
         }
 
         public static void ComplexTestImagZero(double[] samples)
         {
             for(int i = 1; i < samples.Length; i += 2)
+            {
                 NumericAssert.AreAlmostEqual(0, samples[i], "Complex: Zero Imaginary Part");
+            }
         }
         #endregion
 
@@ -121,7 +140,7 @@ namespace Iridium.Test
         [Test]
         public void Complex_Symmetry_RealEven_RealEven()
         {
-            // h(t) real-valued even <=> H(f) real-valued even-with-offset
+            /* h(t) real-valued even <=> H(f) real-valued even-with-offset */
 
             int numSamples = 32;
             int length = 2 * numSamples;
@@ -131,7 +150,7 @@ namespace Iridium.Test
             for(int i = 0; i < length; i += 2)
             {
                 double z = (double)(i - numSamples) / numSamples;
-                data[i] = 1.0 / (z * z + 1.0);
+                data[i] = 1.0 / ((z * z) + 1.0);
                 data[i + 1] = 0.0;
             }
 
@@ -164,7 +183,7 @@ namespace Iridium.Test
         [Test]
         public void Complex_Symmetry_ImaginaryEven_ImaginaryEven()
         {
-            // h(t) imaginary-valued even <=> H(f) imaginary-valued even-with-offset
+            /* h(t) imaginary-valued even <=> H(f) imaginary-valued even-with-offset */
 
             int numSamples = 32;
             int length = 2 * numSamples;
@@ -175,7 +194,7 @@ namespace Iridium.Test
             {
                 double z = (double)(i - numSamples) / numSamples;
                 data[i] = 0.0;
-                data[i + 1] = 1.0 / (z * z + 1.0);
+                data[i + 1] = 1.0 / ((z * z) + 1.0);
             }
 
             ComplexTestTimeEven(data);
@@ -191,23 +210,23 @@ namespace Iridium.Test
             samples_f = fft(samples_t)
             */
 
-            Assert.AreEqual(25.128, data[0 * 2 + 1], 0.001, "MATLAB 1");
-            Assert.AreEqual(-3.623, data[1 * 2 + 1], 0.001, "MATLAB 2");
-            Assert.AreEqual(-0.31055, data[2 * 2 + 1], 0.00001, "MATLAB 3");
+            Assert.AreEqual(25.128, data[(0 * 2) + 1], 0.001, "MATLAB 1");
+            Assert.AreEqual(-3.623, data[(1 * 2) + 1], 0.001, "MATLAB 2");
+            Assert.AreEqual(-0.31055, data[(2 * 2) + 1], 0.00001, "MATLAB 3");
 
-            Assert.AreEqual(-0.050611, data[6 * 2 + 1], 0.000001, "MATLAB 7");
-            Assert.AreEqual(-0.03882, data[7 * 2 + 1], 0.00001, "MATLAB 8");
-            Assert.AreEqual(-0.031248, data[8 * 2 + 1], 0.000001, "MATLAB 9");
+            Assert.AreEqual(-0.050611, data[(6 * 2) + 1], 0.000001, "MATLAB 7");
+            Assert.AreEqual(-0.03882, data[(7 * 2) + 1], 0.00001, "MATLAB 8");
+            Assert.AreEqual(-0.031248, data[(8 * 2) + 1], 0.000001, "MATLAB 9");
 
-            Assert.AreEqual(-0.017063, data[13 * 2 + 1], 0.000001, "MATLAB 14");
-            Assert.AreEqual(-0.016243, data[14 * 2 + 1], 0.000001, "MATLAB 15");
-            Assert.AreEqual(-0.015777, data[15 * 2 + 1], 0.000001, "MATLAB 16");
+            Assert.AreEqual(-0.017063, data[(13 * 2) + 1], 0.000001, "MATLAB 14");
+            Assert.AreEqual(-0.016243, data[(14 * 2) + 1], 0.000001, "MATLAB 15");
+            Assert.AreEqual(-0.015777, data[(15 * 2) + 1], 0.000001, "MATLAB 16");
         }
 
         [Test]
         public void Complex_Symmetry_RealOdd_ImaginaryEven()
         {
-            // h(t) real-valued odd <=> H(f) imaginary-valued odd-with-offset
+            /* h(t) real-valued odd <=> H(f) imaginary-valued odd-with-offset */
 
             int numSamples = 32;
             int length = 2 * numSamples;
@@ -217,9 +236,10 @@ namespace Iridium.Test
             for(int i = 0; i < length; i += 2)
             {
                 double z = (double)(i - numSamples) / numSamples;
-                data[i] = z / (z * z + 1.0);
+                data[i] = z / ((z * z) + 1.0);
                 data[i + 1] = 0.0;
             }
+
             data[0] = 0.0; // periodic continuation; force odd
 
             ComplexTestTimeOdd(data);
@@ -236,23 +256,23 @@ namespace Iridium.Test
             samples_f = fft(samples_t)
             */
 
-            Assert.AreEqual(0, data[0 * 2 + 1], 0.001, "MATLAB 1");
-            Assert.AreEqual(7.4953, data[1 * 2 + 1], 0.0001, "MATLAB 2");
-            Assert.AreEqual(2.4733, data[2 * 2 + 1], 0.0001, "MATLAB 3");
+            Assert.AreEqual(0, data[(0 * 2) + 1], 0.001, "MATLAB 1");
+            Assert.AreEqual(7.4953, data[(1 * 2) + 1], 0.0001, "MATLAB 2");
+            Assert.AreEqual(2.4733, data[(2 * 2) + 1], 0.0001, "MATLAB 3");
 
-            Assert.AreEqual(0.75063, data[6 * 2 + 1], 0.00001, "MATLAB 7");
-            Assert.AreEqual(0.61071, data[7 * 2 + 1], 0.00001, "MATLAB 8");
-            Assert.AreEqual(0.50097, data[8 * 2 + 1], 0.00001, "MATLAB 9");
+            Assert.AreEqual(0.75063, data[(6 * 2) + 1], 0.00001, "MATLAB 7");
+            Assert.AreEqual(0.61071, data[(7 * 2) + 1], 0.00001, "MATLAB 8");
+            Assert.AreEqual(0.50097, data[(8 * 2) + 1], 0.00001, "MATLAB 9");
 
-            Assert.AreEqual(0.15183, data[13 * 2 + 1], 0.00001, "MATLAB 14");
-            Assert.AreEqual(0.099557, data[14 * 2 + 1], 0.000001, "MATLAB 15");
-            Assert.AreEqual(0.049294, data[15 * 2 + 1], 0.000001, "MATLAB 16");
+            Assert.AreEqual(0.15183, data[(13 * 2) + 1], 0.00001, "MATLAB 14");
+            Assert.AreEqual(0.099557, data[(14 * 2) + 1], 0.000001, "MATLAB 15");
+            Assert.AreEqual(0.049294, data[(15 * 2) + 1], 0.000001, "MATLAB 16");
         }
 
         [Test]
         public void Complex_Symmetry_ImaginaryOdd_RealEven()
         {
-            // h(t) imaginary-valued odd <=> H(f) real-valued odd-with-offset
+            /* h(t) imaginary-valued odd <=> H(f) real-valued odd-with-offset */
 
             int numSamples = 32;
             int length = 2 * numSamples;
@@ -263,8 +283,9 @@ namespace Iridium.Test
             {
                 double z = (double)(i - numSamples) / numSamples;
                 data[i] = 0.0;
-                data[i + 1] = z / (z * z + 1.0);
+                data[i + 1] = z / ((z * z) + 1.0);
             }
+
             data[1] = 0.0; // periodic continuation; force odd
 
             ComplexTestTimeOdd(data);
@@ -305,9 +326,10 @@ namespace Iridium.Test
             for(int i = 0; i < length; i += 2)
             {
                 double z = (double)(i - numSamples) / numSamples;
-                data[i] = 1.0 / (z * z + 1.0);
-                data[i + 1] = z / (z * z + 1.0);
+                data[i] = 1.0 / ((z * z) + 1.0);
+                data[i + 1] = z / ((z * z) + 1.0);
             }
+
             data[1] = 0.0; // periodic continuation; force odd
 
             cft.Convention = TransformationConvention.Matlab;
@@ -348,8 +370,8 @@ namespace Iridium.Test
             for(int i = 0; i < length; i += 2)
             {
                 double z = (double)(i - numSamples) / numSamples;
-                Assert.AreEqual(1.0 / (z * z + 1.0), data[i], 0.00001, "Inv: Real: " + i.ToString());
-                Assert.AreEqual(i == 0 ? 0.0 : z / (z * z + 1.0), data[i+1], 0.00001, "Inv: Imag: " + i.ToString());
+                Assert.AreEqual(1.0 / ((z * z) + 1.0), data[i], 0.00001, "Inv: Real: " + i.ToString());
+                Assert.AreEqual(i == 0 ? 0.0 : z / ((z * z) + 1.0), data[i + 1], 0.00001, "Inv: Imag: " + i.ToString());
             }
         }
         #endregion
@@ -367,9 +389,10 @@ namespace Iridium.Test
             for(int i = 0; i < numSamples; i++)
             {
                 double z = (double)(i - half) / half;
-                dataEven[i] = 1.0 / (z * z + 1.0);
-                dataOdd[i] = z / (z * z + 1.0);
+                dataEven[i] = 1.0 / ((z * z) + 1.0);
+                dataOdd[i] = z / ((z * z) + 1.0);
             }
+
             dataOdd[0] = 0.0; // periodic continuation; force odd
 
             RealTestTimeEven(dataEven);
@@ -378,8 +401,7 @@ namespace Iridium.Test
             double[] evenReal, evenImag, oddReal, oddImag;
 
             rft.Convention = TransformationConvention.Matlab;
-            rft.TransformForward(dataEven, dataOdd,
-                out evenReal, out evenImag, out oddReal, out oddImag);
+            rft.TransformForward(dataEven, dataOdd, out evenReal, out evenImag, out oddReal, out oddImag);
 
             /* Compare EVEN With MATLAB:
             samples_t = 1.0 ./ (([-16:1:15] ./ 16) .^ 2 + 1.0)
@@ -437,9 +459,10 @@ namespace Iridium.Test
             for(int i = 0; i < numSamples; i++)
             {
                 double z = (double)(i - half) / half;
-                dataEven[i] = 1.0 / (z * z + 1.0);
-                dataOdd[i] = z / (z * z + 1.0);
+                dataEven[i] = 1.0 / ((z * z) + 1.0);
+                dataOdd[i] = z / ((z * z) + 1.0);
             }
+
             dataOdd[0] = 0.0; // periodic continuation; force odd
 
             RealTestTimeEven(dataEven);
@@ -449,13 +472,11 @@ namespace Iridium.Test
 
             // Forward Transform
             rft.Convention = TransformationConvention.Default;
-            rft.TransformForward(dataEven, dataOdd,
-                out evenReal, out evenImag, out oddReal, out oddImag);
+            rft.TransformForward(dataEven, dataOdd, out evenReal, out evenImag, out oddReal, out oddImag);
 
             // Backward Transform
             double[] dataEven2, dataOdd2;
-            rft.TransformBackward(evenReal, evenImag, oddReal, oddImag,
-                out dataEven2, out dataOdd2);
+            rft.TransformBackward(evenReal, evenImag, oddReal, oddImag, out dataEven2, out dataOdd2);
 
             // Compare with original samples
             for(int i = 0; i < numSamples; i += 2)
@@ -477,9 +498,10 @@ namespace Iridium.Test
             for(int i = 0; i < numSamples; i++)
             {
                 double z = (double)(i - half) / half;
-                dataEven[i] = 1.0 / (z * z + 1.0);
-                dataOdd[i] = z / (z * z + 1.0);
+                dataEven[i] = 1.0 / ((z * z) + 1.0);
+                dataOdd[i] = z / ((z * z) + 1.0);
             }
+
             dataOdd[0] = 0.0; // periodic continuation; force odd
 
             RealTestTimeEven(dataEven);
@@ -547,9 +569,10 @@ namespace Iridium.Test
             for(int i = 0; i < numSamples; i++)
             {
                 double z = (double)(i - half) / half;
-                dataEven[i] = 1.0 / (z * z + 1.0);
-                dataOdd[i] = z / (z * z + 1.0);
+                dataEven[i] = 1.0 / ((z * z) + 1.0);
+                dataOdd[i] = z / ((z * z) + 1.0);
             }
+
             dataOdd[0] = 0.0; // periodic continuation; force odd
 
             RealTestTimeEven(dataEven);
@@ -596,9 +619,10 @@ namespace Iridium.Test
             for(int i = 0; i < length; i += 2)
             {
                 double z = (double)(i - numSamples) / numSamples;
-                data[i] = 1.0 / (z * z + 1.0);
-                data[i + 1] = z / (z * z + 1.0);
+                data[i] = 1.0 / ((z * z) + 1.0);
+                data[i + 1] = z / ((z * z) + 1.0);
             }
+
             data[1] = 0.0; // periodic continuation; force odd
 
             cft.Convention = TransformationConvention.Matlab;
@@ -639,8 +663,8 @@ namespace Iridium.Test
             for(int i = 0; i < length; i += 2)
             {
                 double z = (double)(i - numSamples) / numSamples;
-                Assert.AreEqual(1.0 / (z * z + 1.0), data[i], 0.00001, "Inv: Real: " + i.ToString());
-                Assert.AreEqual(i == 0 ? 0.0 : z / (z * z + 1.0), data[i + 1], 0.00001, "Inv: Imag: " + i.ToString());
+                Assert.AreEqual(1.0 / ((z * z) + 1.0), data[i], 0.00001, "Inv: Real: " + i.ToString());
+                Assert.AreEqual(i == 0 ? 0.0 : z / ((z * z) + 1.0), data[i + 1], 0.00001, "Inv: Imag: " + i.ToString());
             }
         }
 
@@ -658,6 +682,7 @@ namespace Iridium.Test
                 data[i] = i;
                 data[i + 1] = numSamples - i;
             }
+
             data[1] = 0.0; // periodic continuation; force odd
 
             cft.Convention = TransformationConvention.Matlab;
@@ -669,13 +694,13 @@ namespace Iridium.Test
             */
 
             Assert.AreEqual(12, data[0 * 2], 0.000001, "MATLAB 1");
-            Assert.AreEqual(0, data[0 * 2 + 1], 0.000001, "MATLAB 1b");
+            Assert.AreEqual(0, data[(0 * 2) + 1], 0.000001, "MATLAB 1b");
             Assert.AreEqual(-4, data[1 * 2], 0.000001, "MATLAB 2");
-            Assert.AreEqual(0, data[1 * 2 + 1], 0.000001, "MATLAB 2b");
+            Assert.AreEqual(0, data[(1 * 2) + 1], 0.000001, "MATLAB 2b");
             Assert.AreEqual(-8, data[2 * 2], 0.000001, "MATLAB 3");
-            Assert.AreEqual(4, data[2 * 2 + 1], 0.000001, "MATLAB 3b");
+            Assert.AreEqual(4, data[(2 * 2) + 1], 0.000001, "MATLAB 3b");
             Assert.AreEqual(0, data[3 * 2], 0.000001, "MATLAB 4");
-            Assert.AreEqual(-4, data[3 * 2 + 1], 0.000001, "MATLAB 4b");
+            Assert.AreEqual(-4, data[(3 * 2) + 1], 0.000001, "MATLAB 4b");
 
             cft.TransformBackward(data, dims);
 
@@ -722,41 +747,41 @@ namespace Iridium.Test
             */
 
             Assert.AreEqual(4032, data[0 * 2], 1, "MATLAB 1");
-            Assert.AreEqual(0, data[0 * 2 + 1], 1, "MATLAB 2b");
+            Assert.AreEqual(0, data[(0 * 2) + 1], 1, "MATLAB 2b");
 
             Assert.AreEqual(-64, data[1 * 2], 1, "MATLAB 2");
-            Assert.AreEqual(154.51, data[1 * 2 + 1], 1, "MATLAB 2b");
+            Assert.AreEqual(154.51, data[(1 * 2) + 1], 1, "MATLAB 2b");
             Assert.AreEqual(-64, data[2 * 2], 1, "MATLAB 3");
-            Assert.AreEqual(64, data[2 * 2 + 1], 1, "MATLAB 3b");
+            Assert.AreEqual(64, data[(2 * 2) + 1], 1, "MATLAB 3b");
             Assert.AreEqual(-64, data[6 * 2], 1, "MATLAB 7");
-            Assert.AreEqual(-64, data[6 * 2 + 1], 1, "MATLAB 7b");
+            Assert.AreEqual(-64, data[(6 * 2) + 1], 1, "MATLAB 7b");
             Assert.AreEqual(-64, data[7 * 2], 1, "MATLAB 8");
-            Assert.AreEqual(-154.51, data[7 * 2 + 1], 1, "MATLAB 8b");
+            Assert.AreEqual(-154.51, data[(7 * 2) + 1], 1, "MATLAB 8b");
 
             Assert.AreEqual(-512, data[8 * 2], 1, "MATLAB 9");
-            Assert.AreEqual(512, data[8 * 2 + 1], 1, "MATLAB 9b");
+            Assert.AreEqual(512, data[(8 * 2) + 1], 1, "MATLAB 9b");
 
             Assert.AreEqual(0, data[9 * 2], 1, "MATLAB 10");
-            Assert.AreEqual(0, data[9 * 2 + 1], 1, "MATLAB 10b");
+            Assert.AreEqual(0, data[(9 * 2) + 1], 1, "MATLAB 10b");
             Assert.AreEqual(0, data[15 * 2], 1, "MATLAB 16");
-            Assert.AreEqual(0, data[15 * 2 + 1], 1, "MATLAB 16b");
+            Assert.AreEqual(0, data[(15 * 2) + 1], 1, "MATLAB 16b");
 
             Assert.AreEqual(-512, data[16 * 2], 1, "MATLAB 17");
-            Assert.AreEqual(0, data[16 * 2 + 1], 1, "MATLAB 17b");
+            Assert.AreEqual(0, data[(16 * 2) + 1], 1, "MATLAB 17b");
 
             Assert.AreEqual(-512, data[24 * 2], 1, "MATLAB 25");
-            Assert.AreEqual(-512, data[24 * 2 + 1], 1, "MATLAB 25b");
+            Assert.AreEqual(-512, data[(24 * 2) + 1], 1, "MATLAB 25b");
 
             Assert.AreEqual(-2048, data[32 * 2], 1, "MATLAB 33");
-            Assert.AreEqual(0, data[32 * 2 + 1], 1, "MATLAB 33b");
+            Assert.AreEqual(0, data[(32 * 2) + 1], 1, "MATLAB 33b");
 
             Assert.AreEqual(0, data[33 * 2], 1, "MATLAB 34");
-            Assert.AreEqual(0, data[33 * 2 + 1], 1, "MATLAB 34b");
+            Assert.AreEqual(0, data[(33 * 2) + 1], 1, "MATLAB 34b");
             Assert.AreEqual(0, data[39 * 2], 1, "MATLAB 40");
-            Assert.AreEqual(0, data[39 * 2 + 1], 1, "MATLAB 40b");
+            Assert.AreEqual(0, data[(39 * 2) + 1], 1, "MATLAB 40b");
 
             Assert.AreEqual(0, data[56 * 2], 1, "MATLAB 57");
-            Assert.AreEqual(0, data[56 * 2 + 1], 1, "MATLAB 57b");
+            Assert.AreEqual(0, data[(56 * 2) + 1], 1, "MATLAB 57b");
 
             cft.TransformBackward(data, dims);
 
@@ -780,7 +805,7 @@ namespace Iridium.Test
             for(int i = 0; i < numSamples; i++)
             {
                 double z = (double)(i - half) / half;
-                dataEven[i] = 1.0 / (z * z + 1.0);
+                dataEven[i] = 1.0 / ((z * z) + 1.0);
             }
 
             RealTestTimeEven(dataEven);
@@ -799,6 +824,7 @@ namespace Iridium.Test
             // This time do a round trip check, too:
             double[] dataEven2;
             rft.TransformBackward(evenReal, evenImag, out dataEven2);
+
             // Compare with original samples
             for(int i = 0; i < numSamples; i += 2)
             {
@@ -817,7 +843,7 @@ namespace Iridium.Test
             for(int i = 0; i < numSamples; i++)
             {
                 double z = (double)(i - half) / half;
-                dataEven[i] = 1.0 / (z * z + 1.0);
+                dataEven[i] = 1.0 / ((z * z) + 1.0);
             }
 
             RealTestTimeEven(dataEven);
@@ -836,6 +862,7 @@ namespace Iridium.Test
             // This time do a round trip check, too:
             double[] dataEven2;
             rft.TransformBackward(evenReal, evenImag, out dataEven2);
+
             // Compare with original samples
             for(int i = 0; i < numSamples; i += 2)
             {
@@ -854,7 +881,7 @@ namespace Iridium.Test
             for(int i = 0; i < numSamples; i++)
             {
                 double z = (double)(i - half) / half;
-                dataEven[i] = 1.0 / (z * z + 1.0);
+                dataEven[i] = 1.0 / ((z * z) + 1.0);
             }
 
             RealTestTimeEven(dataEven);
@@ -873,6 +900,7 @@ namespace Iridium.Test
             // This time do a round trip check, too:
             double[] dataEven2;
             rft.TransformBackward(evenReal, evenImag, out dataEven2);
+
             // Compare with original samples
             for(int i = 0; i < numSamples; i += 2)
             {
@@ -891,7 +919,7 @@ namespace Iridium.Test
             for(int i = 0; i < numSamples; i++)
             {
                 double z = (double)(i - half) / half;
-                dataEven[i] = 1.0 / (z * z + 1.0);
+                dataEven[i] = 1.0 / ((z * z) + 1.0);
             }
 
             RealTestTimeEven(dataEven);
@@ -910,6 +938,7 @@ namespace Iridium.Test
             // This time do a round trip check, too:
             double[] dataEven2;
             rft.TransformBackward(evenReal, evenImag, out dataEven2);
+
             // Compare with original samples
             for(int i = 0; i < numSamples; i += 2)
             {
@@ -928,7 +957,7 @@ namespace Iridium.Test
             for(int i = 0; i < numSamples; i++)
             {
                 double z = (double)(i - half) / half;
-                dataEven[i] = 1.0 / (z * z + 1.0);
+                dataEven[i] = 1.0 / ((z * z) + 1.0);
             }
 
             RealTestTimeEven(dataEven);
@@ -947,6 +976,7 @@ namespace Iridium.Test
             // This time do a round trip check, too:
             double[] dataEven2;
             rft.TransformBackward(evenReal, evenImag, out dataEven2);
+
             // Compare with original samples
             for(int i = 0; i < numSamples; i += 2)
             {
@@ -956,7 +986,7 @@ namespace Iridium.Test
 
         [Test]
         public void Stress_SingleReal_262144()
-        {//1048576
+        {
             int numSamples = 262144;
             int half = numSamples >> 1;
 
@@ -965,7 +995,7 @@ namespace Iridium.Test
             for(int i = 0; i < numSamples; i++)
             {
                 double z = (double)(i - half) / half;
-                dataEven[i] = 1.0 / (z * z + 1.0);
+                dataEven[i] = 1.0 / ((z * z) + 1.0);
             }
 
             RealTestTimeEven(dataEven);
@@ -984,6 +1014,7 @@ namespace Iridium.Test
             // This time do a round trip check, too:
             double[] dataEven2;
             rft.TransformBackward(evenReal, evenImag, out dataEven2);
+
             // Compare with original samples
             for(int i = 0; i < numSamples; i += 2)
             {
@@ -1002,7 +1033,7 @@ namespace Iridium.Test
             for(int i = 0; i < numSamples; i++)
             {
                 double z = (double)(i - half) / half;
-                dataEven[i] = 1.0 / (z * z + 1.0);
+                dataEven[i] = 1.0 / ((z * z) + 1.0);
             }
 
             RealTestTimeEven(dataEven);
@@ -1021,6 +1052,7 @@ namespace Iridium.Test
             // This time do a round trip check, too:
             double[] dataEven2;
             rft.TransformBackward(evenReal, evenImag, out dataEven2);
+
             // Compare with original samples
             for(int i = 0; i < numSamples; i += 2)
             {
@@ -1028,41 +1060,43 @@ namespace Iridium.Test
             }
         }
 
-        //[Test]
-        //public void Stress_SingleReal_2097152()
-        //{
-        //    int numSamples = 2097152;
-        //    int half = numSamples >> 1;
+        /*
+        [Test]
+        public void Stress_SingleReal_2097152()
+        {
+            int numSamples = 2097152;
+            int half = numSamples >> 1;
 
-        //    double[] dataEven = new double[numSamples];
+            double[] dataEven = new double[numSamples];
 
-        //    for(int i = 0; i < numSamples; i++)
-        //    {
-        //        double z = (double)(i - half) / half;
-        //        dataEven[i] = 1.0 / (z * z + 1.0);
-        //    }
+            for(int i = 0; i < numSamples; i++)
+            {
+                double z = (double)(i - half) / half;
+                dataEven[i] = 1.0 / (z * z + 1.0);
+            }
 
-        //    RealTestTimeEven(dataEven);
+            RealTestTimeEven(dataEven);
 
-        //    double[] evenReal = new double[0], evenImag = new double[0];
+            double[] evenReal = new double[0], evenImag = new double[0];
 
-        //    rft.Convention = TransformationConvention.Default;
+            rft.Convention = TransformationConvention.Default;
 
-        //    MyStopwatch.MethodToTime m = delegate
-        //    {
-        //        rft.TransformForward(dataEven, out evenReal, out evenImag);
-        //    };
-        //    Console.Write("FFT Time (ms) for " + numSamples.ToString() + ": ");
-        //    MyStopwatch.Time(m);
+            MyStopwatch.MethodToTime m = delegate
+            {
+                rft.TransformForward(dataEven, out evenReal, out evenImag);
+            };
+            Console.Write("FFT Time (ms) for " + numSamples.ToString() + ": ");
+            MyStopwatch.Time(m);
 
-        //    // This time do a round trip check, too:
-        //    double[] dataEven2;
-        //    rft.TransformBackward(evenReal, evenImag, out dataEven2);
-        //    // Compare with original samples
-        //    for(int i = 0; i < numSamples; i += 2)
-        //    {
-        //        Assert.AreEqual(dataEven[i], dataEven2[i], 0.00001, "Inv: " + i.ToString());
-        //    }
-        //}
+            // This time do a round trip check, too:
+            double[] dataEven2;
+            rft.TransformBackward(evenReal, evenImag, out dataEven2);
+            // Compare with original samples
+            for(int i = 0; i < numSamples; i += 2)
+            {
+                Assert.AreEqual(dataEven[i], dataEven2[i], 0.00001, "Inv: " + i.ToString());
+            }
+        }
+        */
     }
 }

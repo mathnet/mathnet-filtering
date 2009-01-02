@@ -194,6 +194,18 @@ namespace MathNet.Numerics.Properties
         }
 
         internal static string
+        ArgumentEven
+        {
+            get { return "Value must be even."; }
+        }
+
+        internal static string
+        ArgumentOdd
+        {
+            get { return "Value must be odd."; }
+        }
+
+        internal static string
         ArgumentRangeLessEqual(string left, string right, string range)
         {
             return string.Format("The range between {0} and {1} must be less than or equal to {2}.", left, right, range);

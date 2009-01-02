@@ -1,23 +1,31 @@
-#region Math.NET Iridium (LGPL) by Ruegg
-// Math.NET Iridium, part of the Math.NET Project
-// http://mathnet.opensourcedotnet.info
+//-----------------------------------------------------------------------
+// <copyright file="SortingTest.cs" company="Math.NET Project">
+//    Copyright (c) 2002-2009, Christoph Rüegg.
+//    All Right Reserved.
+// </copyright>
+// <author>
+//    Christoph Rüegg, http://christoph.ruegg.name
+// </author>
+// <product>
+//    Math.NET Iridium, part of the Math.NET Project.
+//    http://mathnet.opensourcedotnet.info
+// </product>
+// <license type="opensource" name="LGPL" version="2 or later">
+//    This program is free software; you can redistribute it and/or modify
+//    it under the terms of the GNU Lesser General Public License as published 
+//    by the Free Software Foundation; either version 2 of the License, or
+//    any later version.
 //
-// Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
+//    This program is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU Lesser General Public License for more details.
 //
-// This program is free software; you can redistribute it and/or modify
-// it under the terms of the GNU Lesser General Public License as published 
-// by the Free Software Foundation; either version 2 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Lesser General Public License for more details.
-//
-// You should have received a copy of the GNU Lesser General Public 
-// License along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-#endregion
+//    You should have received a copy of the GNU Lesser General Public 
+//    License along with this program; if not, write to the Free Software
+//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// </license>
+//-----------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -36,12 +44,12 @@ namespace Iridium.Test
         [Test]
         public void TestRandomTupleArraySorting()
         {
-            const int len = 0x1 << 10;
+            const int Len = 0x1 << 10;
             SystemRandomSource random = new SystemRandomSource();
 
-            int[] keys = new int[len];
-            int[] items = new int[len];
-            int[] keysCopy = new int[len];
+            int[] keys = new int[Len];
+            int[] items = new int[Len];
+            int[] keysCopy = new int[Len];
 
             for(int i = 0; i < keys.Length; i++)
             {
@@ -57,6 +65,7 @@ namespace Iridium.Test
                 Assert.IsTrue(keys[i] >= keys[i - 1], "Sort Order - " + i.ToString());
                 Assert.AreEqual(-keys[i], items[i], "Items Permutation - " + i.ToString());
             }
+
             for(int i = 0; i < keysCopy.Length; i++)
             {
                 Assert.IsTrue(Array.IndexOf(keys, keysCopy[i]) >= 0, "All keys still there - " + i.ToString());
@@ -66,14 +75,14 @@ namespace Iridium.Test
         [Test]
         public void TestRandomTupleListSorting()
         {
-            const int len = 0x1 << 10;
+            const int Len = 0x1 << 10;
             SystemRandomSource random = new SystemRandomSource();
 
-            List<int> keys = new List<int>(len);
-            List<int> items = new List<int>(len);
-            int[] keysCopy = new int[len];
+            List<int> keys = new List<int>(Len);
+            List<int> items = new List<int>(Len);
+            int[] keysCopy = new int[Len];
 
-            for(int i = 0; i < len; i++)
+            for(int i = 0; i < Len; i++)
             {
                 int value = random.Next();
                 keys.Add(value);
@@ -83,11 +92,12 @@ namespace Iridium.Test
 
             Sorting.Sort(keys, items);
 
-            for(int i = 1; i < len; i++)
+            for(int i = 1; i < Len; i++)
             {
                 Assert.IsTrue(keys[i] >= keys[i - 1], "Sort Order - " + i.ToString());
                 Assert.AreEqual(-keys[i], items[i], "Items Permutation - " + i.ToString());
             }
+
             for(int i = 0; i < keysCopy.Length; i++)
             {
                 Assert.IsTrue(keys.IndexOf(keysCopy[i]) >= 0, "All keys still there - " + i.ToString());
@@ -97,13 +107,13 @@ namespace Iridium.Test
         [Test]
         public void TestRandomTripleArraySorting()
         {
-            const int len = 0x1 << 10;
+            const int Len = 0x1 << 10;
             SystemRandomSource random = new SystemRandomSource();
 
-            int[] keys = new int[len];
-            int[] items1 = new int[len];
-            int[] items2 = new int[len];
-            int[] keysCopy = new int[len];
+            int[] keys = new int[Len];
+            int[] items1 = new int[Len];
+            int[] items2 = new int[Len];
+            int[] keysCopy = new int[Len];
 
             for(int i = 0; i < keys.Length; i++)
             {
@@ -121,6 +131,7 @@ namespace Iridium.Test
                 Assert.AreEqual(-keys[i], items1[i], "Items1 Permutation - " + i.ToString());
                 Assert.AreEqual(keys[i] >> 2, items2[i], "Items2 Permutation - " + i.ToString());
             }
+
             for(int i = 0; i < keysCopy.Length; i++)
             {
                 Assert.IsTrue(Array.IndexOf(keys, keysCopy[i]) >= 0, "All keys still there - " + i.ToString());
@@ -130,12 +141,12 @@ namespace Iridium.Test
         [Test]
         public void TestAppliedSetSorting()
         {
-            const int len = 0x1 << 10;
+            const int Len = 0x1 << 10;
             SystemRandomSource random = new SystemRandomSource();
 
             Set<int> set = new Set<int>();
 
-            for(int i = 0; i < len; i++)
+            for(int i = 0; i < Len; i++)
             {
                 set.Add(random.Next());
             }

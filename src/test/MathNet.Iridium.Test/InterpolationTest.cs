@@ -1,23 +1,31 @@
-#region Math.NET Iridium (LGPL) by Ruegg
-// Math.NET Iridium, part of the Math.NET Project
-// http://mathnet.opensourcedotnet.info
+//-----------------------------------------------------------------------
+// <copyright file="InterpolationTest.cs" company="Math.NET Project">
+//    Copyright (c) 2002-2009, Christoph Rüegg.
+//    All Right Reserved.
+// </copyright>
+// <author>
+//    Christoph Rüegg, http://christoph.ruegg.name
+// </author>
+// <product>
+//    Math.NET Iridium, part of the Math.NET Project.
+//    http://mathnet.opensourcedotnet.info
+// </product>
+// <license type="opensource" name="LGPL" version="2 or later">
+//    This program is free software; you can redistribute it and/or modify
+//    it under the terms of the GNU Lesser General Public License as published 
+//    by the Free Software Foundation; either version 2 of the License, or
+//    any later version.
 //
-// Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
+//    This program is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU Lesser General Public License for more details.
 //
-// This program is free software; you can redistribute it and/or modify
-// it under the terms of the GNU Lesser General Public License as published 
-// by the Free Software Foundation; either version 2 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Lesser General Public License for more details.
-//
-// You should have received a copy of the GNU Lesser General Public 
-// License along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-#endregion
+//    You should have received a copy of the GNU Lesser General Public 
+//    License along with this program; if not, write to the Free Software
+//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// </license>
+//-----------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -107,8 +115,9 @@ namespace Iridium.Test
             for(int i = 0; i < 4; i++)
             {
                 // verify the generated chebyshev1 points
-                double tt = 2.0 + 2.0 * Math.Cos(Math.PI * 0.1 * (2 * i + 1)); 
+                double tt = 2.0 + (2.0 * Math.Cos(Math.PI * 0.1 * ((2 * i) + 1))); 
                 NumericAssert.AreAlmostEqual(t[i], tt, "Point " + i.ToString());
+
                 // verify the interpolated values exactly at the sample points.
                 NumericAssert.AreAlmostEqual(x[i], method.Interpolate(tt), "A Exact Point " + i.ToString());
             }
@@ -136,8 +145,9 @@ namespace Iridium.Test
             for(int i = 0; i < 4; i++)
             {
                 // verify the generated chebyshev2 points
-                double tt = 2.0 + 2.0 * Math.Cos(Math.PI * i * 0.25); 
+                double tt = 2.0 + (2.0 * Math.Cos(Math.PI * i * 0.25)); 
                 NumericAssert.AreAlmostEqual(t[i], tt, "Point " + i.ToString());
+
                 // verify the interpolated values exactly at the sample points.
                 NumericAssert.AreAlmostEqual(x[i], method.Interpolate(tt), "A Exact Point " + i.ToString());
             }
@@ -156,9 +166,9 @@ namespace Iridium.Test
         [Test]
         public void TestInterpolationMethod_RationalPoleFreeBarycentric()
         {
-            // *************************************************************************************************
-            // 1st: polynomial case (equidistant polynomial generates the same values; rational would have pole)
-            // *************************************************************************************************
+            /**************************************************************************************************
+             1st: polynomial case (equidistant polynomial generates the same values; rational would have pole)
+            **************************************************************************************************/
 
             double[] t = new double[] { -2.0, -1.0, 0.0, 1.0, 2.0 };
             double[] x = new double[] { 1.0, 2.0, -1.0, 0.0, 1.0 };
@@ -184,9 +194,9 @@ namespace Iridium.Test
             NumericAssert.AreAlmostEqual(-4431, method.Interpolate(10.0), 1e-12, "A 10.0");
             NumericAssert.AreAlmostEqual(-5071, method.Interpolate(-10.0), 1e-12, "A -10.0");
 
-            // *****************************************************************************
-            // 2nd: x(t) = 1/(1+t^2), t=-5..5 (polynomial can' t interpolate that function!)
-            // *****************************************************************************
+            /******************************************************************************
+             2nd: x(t) = 1/(1+t^2), t=-5..5 (polynomial can' t interpolate that function!)
+            ******************************************************************************/
 
             t = new double[40];
             x = new double[40];
@@ -194,9 +204,9 @@ namespace Iridium.Test
             double step = 10.0 / 39.0;
             for(int i = 0; i < t.Length; i++)
             {
-                double tt = -5 + i * step;
+                double tt = -5 + (i * step);
                 t[i] = tt;
-                x[i] = 1.0 / (1.0 + tt * tt);
+                x[i] = 1.0 / (1.0 + (tt * tt));
             }
 
             RationalPoleFreeInterpolation methodTyped = (RationalPoleFreeInterpolation)method;

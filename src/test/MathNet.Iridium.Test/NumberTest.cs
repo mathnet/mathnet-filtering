@@ -1,23 +1,31 @@
-#region Math.NET Iridium (LGPL) by Ruegg
-// Math.NET Iridium, part of the Math.NET Project
-// http://mathnet.opensourcedotnet.info
+//-----------------------------------------------------------------------
+// <copyright file="NumberTest.cs" company="Math.NET Project">
+//    Copyright (c) 2002-2009, Christoph Rüegg.
+//    All Right Reserved.
+// </copyright>
+// <author>
+//    Christoph Rüegg, http://christoph.ruegg.name
+// </author>
+// <product>
+//    Math.NET Iridium, part of the Math.NET Project.
+//    http://mathnet.opensourcedotnet.info
+// </product>
+// <license type="opensource" name="LGPL" version="2 or later">
+//    This program is free software; you can redistribute it and/or modify
+//    it under the terms of the GNU Lesser General Public License as published 
+//    by the Free Software Foundation; either version 2 of the License, or
+//    any later version.
 //
-// Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
+//    This program is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU Lesser General Public License for more details.
 //
-// This program is free software; you can redistribute it and/or modify
-// it under the terms of the GNU Lesser General Public License as published 
-// by the Free Software Foundation; either version 2 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Lesser General Public License for more details.
-//
-// You should have received a copy of the GNU Lesser General Public 
-// License along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-#endregion
+//    You should have received a copy of the GNU Lesser General Public 
+//    License along with this program; if not, write to the Free Software
+//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// </license>
+//-----------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -114,7 +122,6 @@ namespace Iridium.Test
             Assert.IsTrue(double.IsNaN(Number.EpsilonOf(double.NaN)), "L");
             Assert.IsTrue(double.IsNaN(Number.EpsilonOf(double.PositiveInfinity)), "M");
             Assert.IsTrue(double.IsNaN(Number.EpsilonOf(double.NegativeInfinity)), "N");
-
         }
 
         [Test]
@@ -167,8 +174,8 @@ namespace Iridium.Test
             Assert.AreEqual(3, Number.NumbersBetween(double.Epsilon, -2 * double.Epsilon), "I");
 
             double test = Math.PI * 1e+150;
-            Assert.AreEqual(10, Number.NumbersBetween(test, test + 10 * Number.EpsilonOf(test)), "J");
-            Assert.AreEqual(10, Number.NumbersBetween(test, test - 10 * Number.EpsilonOf(test)), "K");
+            Assert.AreEqual(10, Number.NumbersBetween(test, test + (10 * Number.EpsilonOf(test))), "J");
+            Assert.AreEqual(10, Number.NumbersBetween(test, test - (10 * Number.EpsilonOf(test))), "K");
 
             Assert.AreEqual(450359962737, Number.NumbersBetween(1.0001, 1.0002), "L");
             Assert.AreEqual(54975582, Number.NumbersBetween(10000.0001, 10000.0002), "M");
@@ -194,9 +201,9 @@ namespace Iridium.Test
             Assert.IsFalse(Number.AlmostEqual(0.0, 0.0 + double.Epsilon, 0), "E");
             Assert.IsTrue(Number.AlmostEqual(0.0, 0.0 + double.Epsilon, 1), "F");
 
-            Assert.IsFalse(Number.AlmostEqual(max, max - 2 * Number.EpsilonOf(max), 0), "G");
-            Assert.IsFalse(Number.AlmostEqual(max, max - 2 * Number.EpsilonOf(max), 1), "H");
-            Assert.IsTrue(Number.AlmostEqual(max, max - 2 * Number.EpsilonOf(max), 2), "I");
+            Assert.IsFalse(Number.AlmostEqual(max, max - (2 * Number.EpsilonOf(max)), 0), "G");
+            Assert.IsFalse(Number.AlmostEqual(max, max - (2 * Number.EpsilonOf(max)), 1), "H");
+            Assert.IsTrue(Number.AlmostEqual(max, max - (2 * Number.EpsilonOf(max)), 2), "I");
 
             Assert.IsTrue(Convert.ToDouble("3.170404", format) == 3.170404, "J");
             Assert.IsFalse(Convert.ToDouble("4.170404", format) == 4.170404, "K");

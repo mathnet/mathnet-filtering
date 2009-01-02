@@ -1,23 +1,31 @@
-#region Math.NET Iridium (LGPL) by Ruegg
-// Math.NET Iridium, part of the Math.NET Project
-// http://mathnet.opensourcedotnet.info
+//-----------------------------------------------------------------------
+// <copyright file="LinearAlgebra.Test.cs" company="Math.NET Project">
+//    Copyright (c) 2002-2009, Christoph Rüegg.
+//    All Right Reserved.
+// </copyright>
+// <author>
+//    Christoph Rüegg, http://christoph.ruegg.name
+// </author>
+// <product>
+//    Math.NET Iridium, part of the Math.NET Project.
+//    http://mathnet.opensourcedotnet.info
+// </product>
+// <license type="opensource" name="LGPL" version="2 or later">
+//    This program is free software; you can redistribute it and/or modify
+//    it under the terms of the GNU Lesser General Public License as published 
+//    by the Free Software Foundation; either version 2 of the License, or
+//    any later version.
 //
-// Copyright (c) 2002-2008, Christoph Rüegg, http://christoph.ruegg.name
+//    This program is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU Lesser General Public License for more details.
 //
-// This program is free software; you can redistribute it and/or modify
-// it under the terms of the GNU Lesser General Public License as published 
-// by the Free Software Foundation; either version 2 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Lesser General Public License for more details.
-//
-// You should have received a copy of the GNU Lesser General Public 
-// License along with this program; if not, write to the Free Software
-// Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-#endregion
+//    You should have received a copy of the GNU Lesser General Public 
+//    License along with this program; if not, write to the Free Software
+//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+// </license>
+//-----------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
@@ -33,20 +41,25 @@ namespace Iridium.Test
     /// <summary>TestMatrix tests the functionality of the 
     /// Matrix class and associated decompositions.</summary>
     /// <remarks>
+    /// <para>
     /// Detailed output is provided indicating the functionality being tested
     /// and whether the functionality is correctly implemented. Exception handling
-    /// is also tested.<br/>
-    /// 
+    /// is also tested.
+    /// </para>
+    /// <para>
     /// The test is designed to run to completion and give a summary of any implementation errors
     /// encountered. The final output should be:
+    /// </para>
     /// <BLOCKQUOTE><PRE><CODE>
     /// TestMatrix completed.
     /// Total errors reported: n1
     /// Total warning reported: n2
     /// </CODE></PRE></BLOCKQUOTE>
+    /// <para>
     /// If the test does not run to completion, this indicates that there is a 
     /// substantial problem within the implementation that was not anticipated in the test design.  
     /// The stopping point should give an indication of where the problem exists.
+    /// </para>
     /// </remarks>
     [TestFixture]
     public class LinearAlgebraTests
@@ -58,9 +71,9 @@ namespace Iridium.Test
         {
             Matrix A = Matrix.Create(
                 new double[3, 4] {
-                    {1, 2, 3, 4},
-                    {3, 4, 5, 6},
-                    {5, 6, 7, 8}
+                    { 1, 2, 3, 4 },
+                    { 3, 4, 5, 6 },
+                    { 5, 6, 7, 8 }
                     });
 
             double[] diagonal = new double[3] { 0, 1, 2 };
@@ -78,27 +91,26 @@ namespace Iridium.Test
         [Test]
         public void MultiplyByMatrix()
         {
-
             Matrix A = Matrix.Create(
                 new double[3, 4] {
-                    {10, -61, -8, -29},
-                    {95, 11, -49, -47},
-                    {40, -81, 91, 68}
+                    { 10, -61, -8, -29 },
+                    { 95, 11, -49, -47 },
+                    { 40, -81, 91, 68 }
                     });
 
             Matrix B = Matrix.Create(
                 new double[4, 2] {
-                    {72, 37},
-                    {-23, 87},
-                    {44, 29},
-                    {98, -23}
+                    { 72, 37 },
+                    { -23, 87 },
+                    { 44, 29 },
+                    { 98, -23 }
                     });
 
             Matrix C = Matrix.Create(
                 new double[3, 2] {
-                    {-1071, -4502},
-                    { -175, 4132},
-                    {15411, -4492}
+                    { -1071, -4502 },
+                    {  -175, 4132 },
+                    { 15411, -4492 }
                     });
 
             Matrix P = A.Multiply(B);
@@ -107,35 +119,35 @@ namespace Iridium.Test
             Assert.AreEqual(C.RowCount, P.RowCount, "#A01 Invalid row count in linear product.");
 
             for(int i = 0; i < C.RowCount; i++)
+            {
                 for(int j = 0; j < C.ColumnCount; j++)
                 {
                     Assert.AreEqual(C[i, j], P[i, j], "#A02 Unexpected product value.");
                 }
+            }
         }
-
 
         [Test]
         public void SolveRobust()
         {
-
             Matrix A1 = Matrix.Create(
                 new double[6, 2] {
-                    {1, 1},
-                    {1, 2},
-                    {1, 2},
-                    {1, -1},
-                    {0, 1},
-                    {2, 1}
+                    { 1, 1 },
+                    { 1, 2 },
+                    { 1, 2 },
+                    { 1, -1 },
+                    { 0, 1 },
+                    { 2, 1 }
                     });
 
             Matrix B1 = Matrix.Create(
                 new double[6, 1] {
-                    {2},
-                    {2},
-                    {2},
-                    {2},
-                    {2},
-                    {2}
+                    { 2 },
+                    { 2 },
+                    { 2 },
+                    { 2 },
+                    { 2 },
+                    { 2 }
                     });
 
             Matrix X1 = A1.SolveRobust(B1);
@@ -144,25 +156,24 @@ namespace Iridium.Test
             Assert.AreEqual(1.2, X1[0, 0], 1.0e-3, "#A00 Unexpected robust regression result.");
             Assert.AreEqual(0.4, X1[1, 0], 1.0e-3, "#A01 Unexpected robust regression result.");
 
-
             Matrix A2 = Matrix.Create(
                 new double[6, 3] {
-                    {2, -1, 2},
-                    {3, 2, 0},
-                    {1, 2, 4},
-                    {1, -1, -1},
-                    {0, 1, 2},
-                    {2, 1, 1}
+                    { 2, -1, 2 },
+                    { 3, 2, 0 },
+                    { 1, 2, 4 },
+                    { 1, -1, -1 },
+                    { 0, 1, 2 },
+                    { 2, 1, 1 }
                     });
 
             Matrix B2 = Matrix.Create(
                 new double[6, 1] {
-                    {0},
-                    {4},
-                    {2},
-                    {-3},
-                    {2},
-                    {1}
+                    { 0 },
+                    { 4 },
+                    { 2 },
+                    { -3 },
+                    { 2 },
+                    { 1 }
                     });
 
             Matrix X2 = A2.SolveRobust(B2);
@@ -172,33 +183,32 @@ namespace Iridium.Test
             Assert.AreEqual(1.0, X2[1, 0], 1.0e-3, "#A03 Unexpected robust regression result.");
             Assert.AreEqual(-0.167, X2[2, 0], 1.0e-3, "#A04 Unexpected robust regression result.");
 
-
             Matrix A3 = Matrix.Create(
                 new double[10, 4] {
-                    {-8, -29, 95, 11},
-                    {-47, 40, -81, 91},
-                    {-10, 31, -51, 77},
-                    {1, 1, 55, -28},
-                    {30, -27, -15, -59},
-                    {72, -87, 47, -90},
-                    {92, -91, -88, -48},
-                    {-28, 5, 13, -10},
-                    {71, 16, 83, 9 },
-                    {-83, 98, -48, -19}
+                    { -8, -29, 95, 11 },
+                    { -47, 40, -81, 91 },
+                    { -10, 31, -51, 77 },
+                    { 1, 1, 55, -28 },
+                    { 30, -27, -15, -59 },
+                    { 72, -87, 47, -90 },
+                    { 92, -91, -88, -48 },
+                    { -28, 5, 13, -10 },
+                    { 71, 16, 83, 9 },
+                    { -83, 98, -48, -19 }
                     });
 
             Matrix B3 = Matrix.Create(
                 new double[10, 1] {
-                    {-49},
-                    {68},
-                    {95},
-                    {16},
-                    {-96},
-                    {43},
-                    {53},
-                    {-82},
-                    {-60},
-                    {62}
+                    { -49 },
+                    { 68 },
+                    { 95 },
+                    { 16 },
+                    { -96 },
+                    { 43 },
+                    { 53 },
+                    { -82 },
+                    { -60 },
+                    { 62 }
                     });
 
             Matrix X3 = A3.SolveRobust(B3);
@@ -223,12 +233,17 @@ namespace Iridium.Test
                 SingularValueDecomposition svd = matrix.SingularValueDecomposition;
 
                 Matrix U = svd.LeftSingularVectors;
-                Matrix Vt = svd.RightSingularVectors; Vt.Transpose();
+                Matrix Vt = svd.RightSingularVectors;
+                Vt.Transpose();
                 Matrix product = U * svd.S * Vt;
 
                 for(int i = 0; i < matrix.RowCount; i++)
+                {
                     for(int j = 0; j < matrix.ColumnCount; j++)
+                    {
                         NumericAssert.AreAlmostEqual(matrix[i, j], product[i, j], 1e-10, "#A00");
+                    }
+                }
             }
         }
 
@@ -267,17 +282,19 @@ namespace Iridium.Test
             double sumofdiagonals = 15;
             double sumofsquares = 650;
 
-            #region Testing constructors and constructor-like methods
+            /***** Testing constructors and constructor-like methods *****/
 
-            // Constructors and constructor-like methods:
-            // double[], int
-            // double[,]  
-            // int, int
-            // int, int, double
-            // int, int, double[,]
-            // Create(double[,])
-            // Random(int,int)
-            // Identity(int)
+            /* 
+            Constructors and constructor-like methods:
+             double[], int
+             double[,]  
+             int, int
+             int, int, double
+             int, int, double[,]
+             Create(double[,])
+             Random(int,int)
+             Identity(int)
+            */
 
             try
             {
@@ -285,7 +302,10 @@ namespace Iridium.Test
                 A = new Matrix(columnwise, invalidld);
                 Assert.Fail("Catch invalid length in packed constructor: exception not thrown for invalid input");
             }
-            catch(ArgumentException) { }
+            catch(ArgumentException)
+            {
+                // expected case, nothing to do.
+            }
 
             A = new Matrix(columnwise, validld);
             B = new Matrix(avals);
@@ -302,9 +322,7 @@ namespace Iridium.Test
             I = new Matrix(ivals);
             NumericAssert.AreAlmostEqual(I, Matrix.Identity(3, 4), "Identity");
 
-            #endregion
-
-            #region Testing access methods
+            /***** Testing access methods *****/
 
             // Access Methods:
             // getColumnDimension()
@@ -337,41 +355,49 @@ namespace Iridium.Test
             Assert.AreNotSame(barray, avals, "getArrayCopy");
             NumericAssert.AreAlmostEqual(new Matrix(barray), B, "getArrayCopy II");
 
-            //            double[] bpacked = B.ColumnPackedCopy;
-            //            try
-            //            {
-            //                check(bpacked, columnwise);
-            //                try_success("getColumnPackedCopy... ", "");
-            //            }
-            //            catch (System.SystemException e)
-            //            {
-            //                errorCount = try_failure(errorCount, "getColumnPackedCopy... ", "data not successfully (deep) copied by columns");
-            //                System.Console.Out.WriteLine(e.Message);
-            //            }
-            //            bpacked = B.RowPackedCopy;
-            //            try
-            //            {
-            //                check(bpacked, rowwise);
-            //                try_success("getRowPackedCopy... ", "");
-            //            }
-            //            catch (System.SystemException e)
-            //            {
-            //                errorCount = try_failure(errorCount, "getRowPackedCopy... ", "data not successfully (deep) copied by rows");
-            //                System.Console.Out.WriteLine(e.Message);
-            //            }
+            ////double[] bpacked = B.ColumnPackedCopy;
+            ////try
+            ////{
+            ////    check(bpacked, columnwise);
+            ////    try_success("getColumnPackedCopy... ", "");
+            ////}
+            ////catch(System.SystemException e)
+            ////{
+            ////    errorCount = try_failure(errorCount, "getColumnPackedCopy... ", "data not successfully (deep) copied by columns");
+            ////    System.Console.Out.WriteLine(e.Message);
+            ////}
+            ////bpacked = B.RowPackedCopy;
+            ////try
+            ////{
+            ////    check(bpacked, rowwise);
+            ////    try_success("getRowPackedCopy... ", "");
+            ////}
+            ////catch(System.SystemException e)
+            ////{
+            ////    errorCount = try_failure(errorCount, "getRowPackedCopy... ", "data not successfully (deep) copied by rows");
+            ////    System.Console.Out.WriteLine(e.Message);
+            ////}
 
             try
             {
                 tmp = B[B.RowCount, B.ColumnCount - 1];
                 Assert.Fail("get(int,int): OutOfBoundsException expected but not thrown");
             }
-            catch(IndexOutOfRangeException) { }
+            catch(IndexOutOfRangeException)
+            {
+                // expected case, nothing to do.
+            }
+
             try
             {
                 tmp = B[B.RowCount - 1, B.ColumnCount];
                 Assert.Fail("get(int,int): OutOfBoundsException expected but not thrown II");
             }
-            catch(IndexOutOfRangeException) { }
+            catch(IndexOutOfRangeException)
+            {
+                // expected case, nothing to do.
+            }
+
             Assert.AreEqual(B[B.RowCount - 1, B.ColumnCount - 1], avals[B.RowCount - 1][B.ColumnCount - 1], "get(int,int)");
 
             SUB = new Matrix(subavals);
@@ -380,13 +406,20 @@ namespace Iridium.Test
                 M = B.GetMatrix(ib, ie + B.RowCount + 1, jb, je);
                 Assert.Fail("GetMatrix(int,int,int,int): IndexOutOfBoundsException expected but not thrown");
             }
-            catch(IndexOutOfRangeException) { }
+            catch(IndexOutOfRangeException)
+            {
+                // expected case, nothing to do.
+            }
+
             try
             {
                 M = B.GetMatrix(ib, ie, jb, je + B.ColumnCount + 1);
                 Assert.Fail("GetMatrix(int,int,int,int): IndexOutOfBoundsException expected but not thrown II");
             }
-            catch(IndexOutOfRangeException) { }
+            catch(IndexOutOfRangeException)
+            {
+                // expected case, nothing to do.
+            }
 
             M = B.GetMatrix(ib, ie, jb, je);
             NumericAssert.AreAlmostEqual(SUB, M, "GetMatrix(int,int,int,int)");
@@ -396,13 +429,20 @@ namespace Iridium.Test
                 M = B.GetMatrix(ib, ie, badcolumnindexset);
                 Assert.Fail("GetMatrix(int,int,int[]): IndexOutOfBoundsException expected but not thrown");
             }
-            catch(IndexOutOfRangeException) { }
+            catch(IndexOutOfRangeException)
+            {
+                // expected case, nothing to do.
+            }
+
             try
             {
                 M = B.GetMatrix(ib, ie + B.RowCount + 1, columnindexset);
                 Assert.Fail("GetMatrix(int,int,int[]): IndexOutOfBoundsException expected but not thrown II");
             }
-            catch(IndexOutOfRangeException) { }
+            catch(IndexOutOfRangeException)
+            {
+                // expected case, nothing to do.
+            }
 
             M = B.GetMatrix(ib, ie, columnindexset);
             NumericAssert.AreAlmostEqual(SUB, M, "GetMatrix(int,int,int[])");
@@ -412,13 +452,20 @@ namespace Iridium.Test
                 M = B.GetMatrix(badrowindexset, jb, je);
                 Assert.Fail("GetMatrix(int[],int,int): IndexOutOfBoundsException expected but not thrown");
             }
-            catch(IndexOutOfRangeException) { }
+            catch(IndexOutOfRangeException)
+            {
+                // expected case, nothing to do.
+            }
+
             try
             {
                 M = B.GetMatrix(rowindexset, jb, je + B.ColumnCount + 1);
                 Assert.Fail("GetMatrix(int[],int,int): IndexOutOfBoundsException expected but not thrown II");
             }
-            catch(IndexOutOfRangeException) { }
+            catch(IndexOutOfRangeException)
+            {
+                // expected case, nothing to do.
+            }
 
             M = B.GetMatrix(rowindexset, jb, je);
             NumericAssert.AreAlmostEqual(SUB, M, "GetMatrix(int[],int,int)");
@@ -428,13 +475,20 @@ namespace Iridium.Test
                 M = B.GetMatrix(badrowindexset, columnindexset);
                 Assert.Fail("GetMatrix(int[],int[]): IndexOutOfBoundsException expected but not thrown");
             }
-            catch(IndexOutOfRangeException) { }
+            catch(IndexOutOfRangeException)
+            {
+                // expected case, nothing to do.
+            }
+
             try
             {
                 M = B.GetMatrix(rowindexset, badcolumnindexset);
                 Assert.Fail("GetMatrix(int[],int[]): IndexOutOfBoundsException expected but not thrown II");
             }
-            catch(IndexOutOfRangeException) { }
+            catch(IndexOutOfRangeException)
+            {
+                // expected case, nothing to do.
+            }
 
             M = B.GetMatrix(rowindexset, columnindexset);
             NumericAssert.AreAlmostEqual(SUB, M, "GetMatrix(int[],int[])");
@@ -445,13 +499,20 @@ namespace Iridium.Test
                 B[B.RowCount, B.ColumnCount - 1] = 0.0;
                 Assert.Fail("set(int,int,double): IndexOutOfBoundsException expected but not thrown");
             }
-            catch(IndexOutOfRangeException) { }
+            catch(IndexOutOfRangeException)
+            {
+                // expected case, nothing to do.
+            }
+
             try
             {
                 B[B.RowCount - 1, B.ColumnCount] = 0.0;
                 Assert.Fail("set(int,int,double): IndexOutOfBoundsException expected but not thrown II");
             }
-            catch(IndexOutOfRangeException) { }
+            catch(IndexOutOfRangeException)
+            {
+                // expected case, nothing to do.
+            }
 
             B[ib, jb] = 0.0;
             tmp = B[ib, jb];
@@ -463,13 +524,20 @@ namespace Iridium.Test
                 B.SetMatrix(ib, ie + B.RowCount + 1, jb, je, M);
                 Assert.Fail("SetMatrix(int,int,int,int,Matrix): IndexOutOfBoundsException expected but not thrown");
             }
-            catch(IndexOutOfRangeException) { }
+            catch(IndexOutOfRangeException)
+            {
+                // expected case, nothing to do.
+            }
+
             try
             {
                 B.SetMatrix(ib, ie, jb, je + B.ColumnCount + 1, M);
                 Assert.Fail("SetMatrix(int,int,int,int,Matrix): IndexOutOfBoundsException expected but not thrown II");
             }
-            catch(IndexOutOfRangeException) { }
+            catch(IndexOutOfRangeException)
+            {
+                // expected case, nothing to do.
+            }
 
             B.SetMatrix(ib, ie, jb, je, M);
             NumericAssert.AreAlmostEqual(M - B.GetMatrix(ib, ie, jb, je), M, "SetMatrix(int,int,int,int,Matrix)");
@@ -479,13 +547,20 @@ namespace Iridium.Test
                 B.SetMatrix(ib, ie + B.RowCount + 1, columnindexset, M);
                 Assert.Fail("SetMatrix(int,int,int[],Matrix): IndexOutOfBoundsException expected but not thrown");
             }
-            catch(IndexOutOfRangeException) { }
+            catch(IndexOutOfRangeException)
+            {
+                // expected case, nothing to do.
+            }
+
             try
             {
                 B.SetMatrix(ib, ie, badcolumnindexset, M);
                 Assert.Fail("SetMatrix(int,int,int[],Matrix): IndexOutOfBoundsException expected but not thrown II");
             }
-            catch(IndexOutOfRangeException) { }
+            catch(IndexOutOfRangeException)
+            {
+                // expected case, nothing to do.
+            }
 
             B.SetMatrix(ib, ie, columnindexset, M);
             NumericAssert.AreAlmostEqual(M - B.GetMatrix(ib, ie, columnindexset), M, "SetMatrix(int,int,int[],Matrix)");
@@ -495,13 +570,20 @@ namespace Iridium.Test
                 B.SetMatrix(rowindexset, jb, je + B.ColumnCount + 1, M);
                 Assert.Fail("SetMatrix(int[],int,int,Matrix): IndexOutOfBoundsException expected but not thrown");
             }
-            catch(IndexOutOfRangeException) { }
+            catch(IndexOutOfRangeException)
+            {
+                // expected case, nothing to do.
+            }
+
             try
             {
                 B.SetMatrix(badrowindexset, jb, je, M);
                 Assert.Fail("SetMatrix(int[],int,int,Matrix): IndexOutOfBoundsException expected but not thrown II");
             }
-            catch(IndexOutOfRangeException) { }
+            catch(IndexOutOfRangeException)
+            {
+                // expected case, nothing to do.
+            }
 
             B.SetMatrix(rowindexset, jb, je, M);
             NumericAssert.AreAlmostEqual(M - B.GetMatrix(rowindexset, jb, je), M, "SetMatrix(int[],int,int,Matrix)");
@@ -512,33 +594,40 @@ namespace Iridium.Test
                 B.SetMatrix(rowindexset, badcolumnindexset, M);
                 Assert.Fail("SetMatrix(int[],int[],Matrix): IndexOutOfBoundsException expected but not thrown");
             }
-            catch(IndexOutOfRangeException) { }
+            catch(IndexOutOfRangeException)
+            {
+                // expected case, nothing to do.
+            }
+
             try
             {
                 B.SetMatrix(badrowindexset, columnindexset, M);
                 Assert.Fail("SetMatrix(int[],int[],Matrix): IndexOutOfBoundsException expected but not thrown");
             }
-            catch(IndexOutOfRangeException) { }
+            catch(IndexOutOfRangeException)
+            {
+                // expected case, nothing to do.
+            }
 
             B.SetMatrix(rowindexset, columnindexset, M);
             NumericAssert.AreAlmostEqual(M - B.GetMatrix(rowindexset, columnindexset), M, "SetMatrix(int[],int[],Matrix)");
 
-            #endregion
+            /***** Testing array-like methods *****/
 
-            #region Testing array-like methods
-
-            // Array-like methods:
-            // Subtract
-            // SubtractEquals
-            // Add
-            // AddEquals
-            // ArrayLeftDivide
-            // ArrayLeftDivideEquals
-            // ArrayRightDivide
-            // ArrayRightDivideEquals
-            // arrayTimes
-            // ArrayMultiplyEquals
-            // uminus
+            /*
+            Array-like methods:
+             Subtract
+             SubtractEquals
+             Add
+             AddEquals
+             ArrayLeftDivide
+             ArrayLeftDivideEquals
+             ArrayRightDivide
+             ArrayRightDivideEquals
+             arrayTimes
+             ArrayMultiplyEquals
+             uminus
+            */
 
             S = new Matrix(columnwise, nonconformld);
             R = Matrix.Random(A.RowCount, A.ColumnCount);
@@ -548,7 +637,11 @@ namespace Iridium.Test
                 S = A - S;
                 Assert.Fail("Subtract conformance check: nonconformance not raised");
             }
-            catch(ArgumentException) { }
+            catch(ArgumentException)
+            {
+                // expected case, nothing to do.
+            }
+
             Assert.AreEqual((A - R).Norm1(), 0.0, "Subtract: difference of identical Matrices is nonzero,\nSubsequent use of Subtract should be suspect");
 
             A = R.Clone();
@@ -559,7 +652,11 @@ namespace Iridium.Test
                 A.Subtract(S);
                 Assert.Fail("SubtractEquals conformance check: nonconformance not raised");
             }
-            catch(ArgumentException) { }
+            catch(ArgumentException)
+            {
+                // expected case, nothing to do.
+            }
+
             Assert.AreEqual((A - Z).Norm1(), 0.0, "SubtractEquals: difference of identical Matrices is nonzero,\nSubsequent use of Subtract should be suspect");
 
             A = R.Clone();
@@ -570,7 +667,11 @@ namespace Iridium.Test
                 S = A + S;
                 Assert.Fail("Add conformance check: nonconformance not raised");
             }
-            catch(ArgumentException) { }
+            catch(ArgumentException)
+            {
+                // expected case, nothing to do.
+            }
+
             NumericAssert.AreAlmostEqual(C + B, A, "Add");
 
             C = A - B;
@@ -580,7 +681,11 @@ namespace Iridium.Test
                 A.Add(S);
                 Assert.Fail("AddEquals conformance check: nonconformance not raised");
             }
-            catch(ArgumentException) { }
+            catch(ArgumentException)
+            {
+                // expected case, nothing to do.
+            }
+
             NumericAssert.AreAlmostEqual(C, A, "AddEquals");
 
             A = ((Matrix)R.Clone());
@@ -594,7 +699,10 @@ namespace Iridium.Test
                 Matrix.ArrayDivide(A, S);
                 Assert.Fail("ArrayRightDivide conformance check: nonconformance not raised");
             }
-            catch(ArgumentException) { }
+            catch(ArgumentException)
+            {
+                // expected case, nothing to do.
+            }
 
             C = Matrix.ArrayDivide(A, R);
             NumericAssert.AreAlmostEqual(C, O, "ArrayRightDivide");
@@ -603,7 +711,10 @@ namespace Iridium.Test
                 A.ArrayDivide(S);
                 Assert.Fail("ArrayRightDivideEquals conformance check: nonconformance not raised");
             }
-            catch(ArgumentException) { }
+            catch(ArgumentException)
+            {
+                // expected case, nothing to do.
+            }
 
             A.ArrayDivide(R);
             NumericAssert.AreAlmostEqual(A, O, "ArrayRightDivideEquals");
@@ -615,7 +726,10 @@ namespace Iridium.Test
                 S = Matrix.ArrayMultiply(A, S);
                 Assert.Fail("arrayTimes conformance check: nonconformance not raised");
             }
-            catch(ArgumentException) { }
+            catch(ArgumentException)
+            {
+                // expected case, nothing to do.
+            }
 
             C = Matrix.ArrayMultiply(A, B);
             C.ArrayDivide(B);
@@ -625,35 +739,38 @@ namespace Iridium.Test
                 A.ArrayMultiply(S);
                 Assert.Fail("ArrayMultiplyEquals conformance check: nonconformance not raised");
             }
-            catch(ArgumentException) { }
+            catch(ArgumentException)
+            {
+                // expected case, nothing to do.
+            }
 
             A.ArrayMultiply(B);
             A.ArrayDivide(B);
             NumericAssert.AreAlmostEqual(A, R, "ArrayMultiplyEquals");
 
-            #endregion
+            /***** Testing linear algebra methods *****/
 
-            #region Testing linear algebra methods
-
-            // LA methods:
-            // Transpose
-            // Multiply
-            // Condition
-            // Rank
-            // Determinant
-            // trace
-            // Norm1
-            // norm2
-            // normF
-            // normInf
-            // Solve
-            // solveTranspose
-            // Inverse
-            // chol
-            // Eigen
-            // lu
-            // qr
-            // svd 
+            /*
+            LA methods:
+             Transpose
+             Multiply
+             Condition
+             Rank
+             Determinant
+             trace
+             Norm1
+             norm2
+             normF
+             normInf
+             Solve
+             solveTranspose
+             Inverse
+             chol
+             Eigen
+             lu
+             qr
+             svd 
+            */
 
             A = new Matrix(columnwise, 3);
             T = new Matrix(tvals);
@@ -717,8 +834,6 @@ namespace Iridium.Test
             D = Eig.BlockDiagonal;
             V = Eig.EigenVectors;
             NumericAssert.AreAlmostEqual(A * V, V * D, "EigenvalueDecomposition (nonsymmetric)");
-
-            #endregion
         }
     }
 }
