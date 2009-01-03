@@ -126,9 +126,10 @@
   </Target>
 
   <Target Name="GetRevisionNumber">
-    <SvnInfo LocalPath="$(MSBuildProjectDirectory)">
+    <SvnVersion LocalPath="$(MSBuildProjectDirectory)">
       <Output TaskParameter="Revision" PropertyName="RevisionNumber" />
-    </SvnInfo>
+    </SvnVersion>
+    <Message Text="Current Subversion Revision: $(RevisionNumber)"/>
   </Target>
 
   <Target Name="PrintEnvironmentInfo">
