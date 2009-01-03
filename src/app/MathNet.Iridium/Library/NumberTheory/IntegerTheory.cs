@@ -42,40 +42,56 @@ namespace MathNet.Numerics.NumberTheory
     public static class IntegerTheory
     {
         /// <summary>
-        /// Find out whether the provided integer is an even number.
+        /// Find out whether the provided 32 bit integer is an even number.
         /// </summary>
         /// <returns>True if and only if it is an even number.</returns>
         public static
         bool
-        IsEven(
-            int number
-            )
+        IsEven(int number)
         {
             return (number & 0x1) == 0x0;
         }
 
         /// <summary>
-        /// Find out whether the provided integer is an odd number.
+        /// Find out whether the provided 64 bit integer is an even number.
+        /// </summary>
+        /// <returns>True if and only if it is an even number.</returns>
+        public static
+        bool
+        IsEven(long number)
+        {
+            return (number & 0x1) == 0x0;
+        }
+
+        /// <summary>
+        /// Find out whether the provided 32 bit integer is an odd number.
         /// </summary>
         /// <returns>True if and only if it is an odd number.</returns>
         public static
         bool
-        IsOdd(
-            int number
-            )
+        IsOdd(int number)
         {
             return (number & 0x1) == 0x1;
         }
 
         /// <summary>
-        /// Find out whether the provided integer is a perfect square, i.e. a square of an integer.
+        /// Find out whether the provided 64 bit integer is an odd number.
+        /// </summary>
+        /// <returns>True if and only if it is an odd number.</returns>
+        public static
+        bool
+        IsOdd(long number)
+        {
+            return (number & 0x1) == 0x1;
+        }
+
+        /// <summary>
+        /// Find out whether the provided 32 bit integer is a perfect square, i.e. a square of an integer.
         /// </summary>
         /// <returns>True if and only if it is a perfect square.</returns>
         public static
         bool
-        IsPerfectSquare(
-            int number
-            )
+        IsPerfectSquare(int number)
         {
             if(number < 0)
             {
@@ -88,13 +104,37 @@ namespace MathNet.Numerics.NumberTheory
                 return false; // return immediately in 6 cases out of 16.
             }
 
-            /*
-             TODO (ruegg, 2009-01-02): Test/benchmark wherher the inverse test performs better:
-             lastHexDigit != 2 && lastHexDigit != 3 && lastHexDigit != 5 && lastHexDigit != 6 && lastHexDigit != 7 && lastHexDigit != 8
-             */
             if(lastHexDigit == 0 || lastHexDigit == 1 || lastHexDigit == 4 || lastHexDigit == 9)
             {
                 int t = (int)Math.Floor(Math.Sqrt(number) + 0.5);
+                return (t * t) == number;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Find out whether the provided 64 bit integer is a perfect square, i.e. a square of an integer.
+        /// </summary>
+        /// <returns>True if and only if it is a perfect square.</returns>
+        public static
+        bool
+        IsPerfectSquare(long number)
+        {
+            if(number < 0)
+            {
+                return false;
+            }
+
+            int lastHexDigit = (int)(number & 0xF);
+            if(lastHexDigit > 9)
+            {
+                return false; // return immediately in 6 cases out of 16.
+            }
+
+            if(lastHexDigit == 0 || lastHexDigit == 1 || lastHexDigit == 4 || lastHexDigit == 9)
+            {
+                long t = (long)Math.Floor(Math.Sqrt(number) + 0.5);
                 return (t * t) == number;
             }
 
