@@ -75,6 +75,17 @@ namespace Iridium.Test
                 Assert.IsFalse(IntegerTheory.IsPerfectSquare((i * i) - 1), i.ToString() + "^2-1 (-)");
                 Assert.IsFalse(IntegerTheory.IsPerfectSquare((i * i) + 1), i.ToString() + "^2+1 (-)");
             }
+
+            // Selected Cases
+            Assert.IsTrue(IntegerTheory.IsPerfectSquare(100000000), "100000000 (+)");
+            Assert.IsFalse(IntegerTheory.IsPerfectSquare(100000001), "100000001 (-)");
+            Assert.IsFalse(IntegerTheory.IsPerfectSquare(99999999), "99999999 (-)");
+            Assert.IsFalse(IntegerTheory.IsPerfectSquare(-4), "-4 (-)");
+            Assert.IsFalse(IntegerTheory.IsPerfectSquare(Int32.MinValue), "Int32.MinValue (-)");
+            Assert.IsFalse(IntegerTheory.IsPerfectSquare(Int32.MaxValue), "Int32.MaxValue (-)");
+            Assert.IsTrue(IntegerTheory.IsPerfectSquare(1), "1 (+)");
+            Assert.IsTrue(IntegerTheory.IsPerfectSquare(0), "0 (+)");
+            Assert.IsFalse(IntegerTheory.IsPerfectSquare(-1), "-1 (-)");
         }
     }
 }
