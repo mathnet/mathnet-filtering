@@ -31,6 +31,7 @@
 //-----------------------------------------------------------------------
 
 using System;
+using System.Collections.Generic;
 
 using MathNet.Numerics.RandomSources;
 
@@ -82,6 +83,32 @@ namespace MathNet.Numerics.Distributions
         public abstract
         double
         NextDouble();
+
+        /// <summary>
+        /// Enumerates over infinitely many floating point random numbers.
+        /// </summary>
+        public
+        IEnumerable<double>
+        EnumerateDoubles()
+        {
+            while(true)
+            {
+                yield return NextDouble();
+            }
+        }
+
+        /// <summary>
+        /// Enumerates over a fixed number of floating point random numbers.
+        /// </summary>
+        public
+        IEnumerable<double>
+        EnumerateDoubles(int count)
+        {
+            for(int i = 0; i < count; i++)
+            {
+                yield return NextDouble();
+            }
+        }
 
         /// <summary>
         /// Continuous probability density function (pdf) of this probability distribution.

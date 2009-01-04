@@ -248,6 +248,13 @@ namespace Iridium.Test
                 100000,
                 0.01,
                 "LognormalDistribution(1.0,0.5)");
+
+            // Test Parameter Estimation
+            NormalDistribution source = new NormalDistribution(4.0, 2.0);
+            NormalDistribution target = new NormalDistribution();
+            target.EstimateDistributionParameters(source.EnumerateDoubles(1000));
+            NumericAssert.AreAlmostEqual(4.0, target.Mu, 0.1, "Normal Parameter Estimation: Mu");
+            NumericAssert.AreAlmostEqual(2.0, target.Sigma, 0.1, "Normal Parameter Estimation: Sigma");
         }
 
         [Test]
@@ -357,6 +364,25 @@ namespace Iridium.Test
                 100000,
                 0.01,
                 "ErlangDistribution(2,2.0)");
+        }
+
+        [Test]
+        public void TestContinuousDistributions_Rayleigh()
+        {
+            TestContinuousDistributionShapeMatchesCumulativeDensity(
+                new RayleighDistribution(2.0),
+                0.0,
+                8.0,
+                10,
+                100000,
+                0.01,
+                "RayleighDistribution(2.0)");
+
+            // Test Parameter Estimation
+            RayleighDistribution source = new RayleighDistribution(4.0);
+            RayleighDistribution target = new RayleighDistribution();
+            target.EstimateDistributionParameters(source.EnumerateDoubles(1000));
+            NumericAssert.AreAlmostEqual(4.0, target.Sigma, 0.1, "Rayleigh Parameter Estimation: Sigma");
         }
 
         [Test]

@@ -138,8 +138,8 @@ namespace MathNet.Numerics.Statistics
             else
             {
                 double meanPrevious = mean;
-                mean = meanPrevious + (value - meanPrevious) / count;
-                varianceSum = varianceSum + (value - meanPrevious) * (value - mean);
+                mean = meanPrevious + ((value - meanPrevious) / count);
+                varianceSum = varianceSum + ((value - meanPrevious) * (value - mean));
             }
         }
 
@@ -215,7 +215,7 @@ namespace MathNet.Numerics.Statistics
 
             double meanPrevious = mean;
             mean = ((meanPrevious * count) - value) / (count - 1);
-            varianceSum = varianceSum - (value - mean) * (value - meanPrevious);
+            varianceSum = varianceSum - ((value - mean) * (value - meanPrevious));
 
             count--;
         }

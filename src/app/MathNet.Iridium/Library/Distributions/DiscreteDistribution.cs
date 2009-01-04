@@ -31,6 +31,7 @@
 //-----------------------------------------------------------------------
 
 using System;
+using System.Collections.Generic;
 
 using MathNet.Numerics.RandomSources;
 
@@ -82,6 +83,32 @@ namespace MathNet.Numerics.Distributions
         public abstract
         int
         NextInt32();
+
+        /// <summary>
+        /// Enumerates over infinitely many integer random numbers.
+        /// </summary>
+        public
+        IEnumerable<int>
+        EnumerateInt32()
+        {
+            while(true)
+            {
+                yield return NextInt32();
+            }
+        }
+
+        /// <summary>
+        /// Enumerates over a fixed number of integer random numbers.
+        /// </summary>
+        public
+        IEnumerable<int>
+        EnumerateInt32(int count)
+        {
+            for(int i = 0; i < count; i++)
+            {
+                yield return NextInt32();
+            }
+        }
 
         /// <summary>
         /// Discrete probability mass function (pmf) of this probability distribution.
