@@ -1,6 +1,6 @@
 //-----------------------------------------------------------------------
 // <copyright file="Matrix.cs" company="Math.NET Project">
-//    Copyright (c) 2004-2008, Joannes Vermorel, Christoph Rüegg.
+//    Copyright (c) 2002-2009, Joannes Vermorel, Christoph Rüegg.
 //    All Right Reserved.
 // </copyright>
 // <author>
@@ -1276,6 +1276,7 @@ namespace MathNet.Numerics.LinearAlgebra
             }
 
             double[][] newData = CreateMatrixData(_rowCount, B.ColumnCount);
+            double[][] bData = B._data;
 
             for(int j = 0; j < B.ColumnCount; j++)
             {
@@ -1283,17 +1284,17 @@ namespace MathNet.Numerics.LinearAlgebra
                 double[] columnB = new double[_columnCount];
                 for(int k = 0; k < _columnCount; k++)
                 {
-                    columnB[k] = B._data[k][j];
+                    columnB[k] = bData[k][j];
                 }
 
                 // making the line-to-column product
                 for(int i = 0; i < _rowCount; i++)
                 {
                     double s = 0;
-
-                    for(int k = 0; k < _columnCount; k++)
+                    double[] datai = _data[i];
+                    for(int k = 0; k < datai.Length; k++)
                     {
-                        s += _data[i][k] * columnB[k];
+                        s += datai[k] * columnB[k];
                     }
 
                     newData[i][j] = s;
@@ -2048,27 +2049,12 @@ namespace MathNet.Numerics.LinearAlgebra
             Matrix m1,
             Matrix m2)
         {
-            if(m2.RowCount != m1.ColumnCount)
+            if(m1 == null)
             {
-                throw new ArgumentException(Properties.LocalStrings.ArgumentMatrixSameDimensions);
+                throw new ArgumentNullException("m1", Properties.LocalStrings.ArgumentNull("m1"));
             }
 
-            double[][] newData = CreateMatrixData(m1.RowCount, m2.ColumnCount);
-            for(int j = 0; j < m2.ColumnCount; j++)
-            {
-                for(int i = 0; i < m1.RowCount; i++)
-                {
-                    double s = 0;
-                    for(int k = 0; k < m1.ColumnCount; k++)
-                    {
-                        s += m1[i, k] * m2[k, j];
-                    }
-
-                    newData[i][j] = s;
-                }
-            }
-
-            return new Matrix(newData);
+            return m1.Multiply(m2);
         }
 
         /// <summary>Multiplication of a matrix by a scalar, C = s*A</summary>
