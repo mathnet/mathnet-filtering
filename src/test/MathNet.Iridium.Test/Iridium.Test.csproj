@@ -44,6 +44,7 @@
     <Compile Include="CombinatoricsTest.cs" />
     <Compile Include="ComplexMatrixTest.cs" />
     <Compile Include="DistributionTest.cs" />
+    <Compile Include="IntegrationTest.cs" />
     <Compile Include="InterpolationTest.cs" />
     <Compile Include="NumberTheoryTest.cs" />
     <Compile Include="NumericAssert.cs" />

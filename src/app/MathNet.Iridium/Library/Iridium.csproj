@@ -80,6 +80,10 @@
     <Compile Include="Distributions\IDiscreteProbabilityDistribution.cs" />
     <Compile Include="Equations\ScalarIterator.cs" />
     <Compile Include="Equations\Solver.cs" />
+    <Compile Include="Integration\Algorithms\DoubleExponentialTransformation.cs" />
+    <Compile Include="Integration\Algorithms\SimpsonRule.cs" />
+    <Compile Include="Integration\Algorithms\TrapeziumRule.cs" />
+    <Compile Include="Integration\Integrate.cs" />
     <Compile Include="Interpolation\Algorithms\AkimaSplineInterpolation.cs" />
     <Compile Include="Interpolation\Algorithms\BarycentricInterpolation.cs" />
     <Compile Include="Interpolation\Algorithms\ChebyshevFirstKindPolynomialInterpolation.cs" />
@@ -146,9 +150,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\mathnet_public.snk" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Integration\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- MATHNET-BEGIN-TESTSIGNING -->

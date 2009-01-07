@@ -254,6 +254,12 @@ namespace MathNet.Numerics.Properties
         }
 
         internal static string
+        ArgumentEnumerableNotEmpty
+        {
+            get { return "Enumerable must provide at least one item."; }
+        }
+
+        internal static string
         FeaturePlannedButNotImplementedYet
         {
             get { return "This feature is not implemented yet (but is planned)."; }

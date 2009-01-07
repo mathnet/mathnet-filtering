@@ -335,7 +335,7 @@ namespace MathNet.Numerics
         /// <param name="a">The first number</param>
         /// <param name="b">The second number</param>
         /// <param name="diff">The difference of the two numbers according to the Norm</param>
-        /// <param name="relativeAccuracy">The relative accuracy required for being almost equal.</param>
+        /// <param name="maximumRelativeError">The relative accuracy required for being almost equal.</param>
         /// <returns>
         /// True if <paramref name="a"/> and <paramref name="b"/> are almost equal up to a maximum
         /// relative error of <paramref name="relativeAccuracy"/>, False otherwise.
@@ -346,15 +346,15 @@ namespace MathNet.Numerics
             double a,
             double b,
             double diff,
-            double relativeAccuracy)
+            double maximumRelativeError)
         {
-            if((a == 0 && Math.Abs(b) < relativeAccuracy)
-                || (b == 0 && Math.Abs(a) < relativeAccuracy))
+            if((a == 0 && Math.Abs(b) < maximumRelativeError)
+                || (b == 0 && Math.Abs(a) < maximumRelativeError))
             {
                 return true;
             }
 
-            return Math.Abs(diff) < relativeAccuracy * Math.Max(Math.Abs(a), Math.Abs(b));
+            return Math.Abs(diff) < maximumRelativeError * Math.Max(Math.Abs(a), Math.Abs(b));
         }
 
         /// <summary>
@@ -382,7 +382,7 @@ namespace MathNet.Numerics
         /// </summary>
         /// <param name="a">The first number</param>
         /// <param name="b">The second number</param>
-        /// <param name="relativeAccuracy">The relative accuracy required for being almost equal.</param>
+        /// <param name="maximumRelativeError">The relative accuracy required for being almost equal.</param>
         /// <returns>
         /// True if <paramref name="a"/> and <paramref name="b"/> are almost equal up to a maximum
         /// relative error of <paramref name="relativeAccuracy"/>, False otherwise.
@@ -392,9 +392,9 @@ namespace MathNet.Numerics
         AlmostEqual(
             double a,
             double b,
-            double relativeAccuracy)
+            double maximumRelativeError)
         {
-            return AlmostEqualNorm(a, b, a - b, relativeAccuracy);
+            return AlmostEqualNorm(a, b, a - b, maximumRelativeError);
         }
 
         /// <summary>
@@ -450,7 +450,7 @@ namespace MathNet.Numerics
         /// True if the given number is almost equal to zero, according to the specified absolute accuracy.
         /// </summary>
         /// <param name="a">The real number to check for being almost zero.</param>
-        /// <param name="absoluteAccuracy">The absolute threshold for <paramref name="a"/> to consider it as zero.</param>
+        /// <param name="maximumAbsoluteError">The absolute threshold for <paramref name="a"/> to consider it as zero.</param>
         /// <returns>
         /// True if |<paramref name="a"/>| is smaller than <paramref name="absoluteAccuracy"/>, False otherwise.
         /// </returns>
@@ -458,9 +458,9 @@ namespace MathNet.Numerics
         bool
         AlmostZero(
             double a,
-            double absoluteAccuracy)
+            double maximumAbsoluteError)
         {
-            return Math.Abs(a) < absoluteAccuracy;
+            return Math.Abs(a) < maximumAbsoluteError;
         }
 
         /// <summary>
@@ -481,15 +481,15 @@ namespace MathNet.Numerics
         /// Forces small numbers near zero to zero, according to the specified absolute accuracy.
         /// </summary>
         /// <param name="a">The real number to coerce to zero, if it is almost zero.</param>
-        /// <param name="absoluteAccuracy">The absolute threshold for <paramref name="a"/> to consider it as zero.</param>
+        /// <param name="maximumAbsoluteError">The absolute threshold for <paramref name="a"/> to consider it as zero.</param>
         /// <returns>Zero if |<paramref name="a"/>| is smaller than <paramref name="absoluteAccuracy"/>, <paramref name="a"/> otherwise.</returns>
         public static
         double
         CoerceZero(
             double a,
-            double absoluteAccuracy)
+            double maximumAbsoluteError)
         {
-            if(Math.Abs(a) < absoluteAccuracy)
+            if(Math.Abs(a) < maximumAbsoluteError)
             {
                 return 0d;
             }

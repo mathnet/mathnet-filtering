@@ -1,6 +1,6 @@
 //-----------------------------------------------------------------------
 // <copyright file="IRealFunction.cs" company="Math.NET Project">
-//    Copyright (c) 2004-2008, Joannes Vermorel.
+//    Copyright (c) 2004-2009, Joannes Vermorel.
 //    All Right Reserved.
 // </copyright>
 // <author>
@@ -31,6 +31,11 @@ using System;
 
 namespace MathNet.Numerics
 {
+    /// <summary>
+    /// Custom function double -> double, to be replaced later with the new generic Func delegate.
+    /// </summary>
+    public delegate double CustomFunction(double parameter);
+
     /// <summary>
     /// The interface <c>IRealFunction</c> defines an interface
     /// of real valued function with one real argument.
