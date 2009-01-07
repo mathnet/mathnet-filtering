@@ -24,6 +24,11 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>true</UseVSHostingProcess>
+    <OutputType>Library</OutputType>
+    <AssemblyName>MathNet.Iridium</AssemblyName>
+    <RootNamespace>MathNet.Numerics</RootNamespace>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -33,6 +38,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>..\..\..\..\build\Release\MathNet.Iridium.xml</DocumentationFile>
+    <OutputType>Library</OutputType>
+    <AssemblyName>MathNet.Iridium</AssemblyName>
+    <DebugSymbols>false</DebugSymbols>
+    <RootNamespace>MathNet.Numerics</RootNamespace>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -164,6 +175,8 @@
     <RootPath>$(MSBuildProjectDirectory)\..\..\..\..\</RootPath>
     <ConfigPath>$(RootPath)config\</ConfigPath>
     <StrongNameTestKeyPrivateFullName>$(ConfigPath)personal_test_private.snk</StrongNameTestKeyPrivateFullName>
+    <ProjectGuid>{26FC15DE-EFDA-403A-8284-1E2A4AE8A9D8}</ProjectGuid>
+    <RootNamespace>MathNet.Numerics</RootNamespace>
   </PropertyGroup>
   <Target Name="TestSign">
     <GetFrameworkSdkPath>
