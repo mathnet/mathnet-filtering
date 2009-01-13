@@ -31,10 +31,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-using MathNet.Numerics.NumberTheory;
-
 namespace MathNet.Numerics.Integration.Algorithms
 {
+    using MathNet.Numerics.NumberTheory;
+
     /// <summary>
     /// Approximation algorithm for definite integrals by Simpson's rule.
     /// </summary>

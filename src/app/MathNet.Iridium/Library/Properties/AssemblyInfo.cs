@@ -32,8 +32,8 @@ using System;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Security.Permissions;
 using System.Security;
+using System.Security.Permissions;
 
 [assembly: AssemblyTitle("Math.NET Iridium: Scientific Numerical Library")]
 [assembly: AssemblyDescription("http://mathnet.opensourcedotnet.info/")]

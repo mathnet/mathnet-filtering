@@ -1,6 +1,6 @@
 //-----------------------------------------------------------------------
 // <copyright file="IMatrix.cs" company="Math.NET Project">
-//    Copyright (c) 2004-2008, Christoph Rüegg.
+//    Copyright (c) 2004-2009, Christoph Rüegg.
 //    All Right Reserved.
 // </copyright>
 // <author>

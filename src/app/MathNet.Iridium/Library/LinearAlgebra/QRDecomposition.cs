@@ -1,6 +1,6 @@
 //-----------------------------------------------------------------------
 // <copyright file="QRDecomposition.cs" company="Math.NET Project">
-//    Copyright (c) 2004-2008, Joannes Vermorel, Christoph Rüegg.
+//    Copyright (c) 2004-2009, Joannes Vermorel, Christoph Rüegg.
 //    All Right Reserved.
 // </copyright>
 // <author>

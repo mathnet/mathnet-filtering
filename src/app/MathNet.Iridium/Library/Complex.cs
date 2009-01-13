@@ -1,6 +1,6 @@
 //-----------------------------------------------------------------------
 // <copyright file="Complex.cs" company="Math.NET Project">
-//    Copyright (c) 2002-2008, Christoph Rüegg, Joannes Vermorel.
+//    Copyright (c) 2002-2009, Christoph Rüegg, Joannes Vermorel.
 //    All Right Reserved.
 // </copyright>
 // <author>
@@ -29,14 +29,14 @@
 //-----------------------------------------------------------------------
 
 using System;
-using System.Text;
-using System.Globalization;  
 using System.Collections;
-
-using MathNet.Numerics.Distributions;
+using System.Globalization;  
+using System.Text;
 
 namespace MathNet.Numerics
 {
+    using MathNet.Numerics.Distributions;
+
     /// <summary>
     /// Complex numbers class.
     /// </summary>

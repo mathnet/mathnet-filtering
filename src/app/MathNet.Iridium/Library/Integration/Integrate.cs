@@ -31,10 +31,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-using MathNet.Numerics.Integration.Algorithms;
-
 namespace MathNet.Numerics.Integration
 {
+    using MathNet.Numerics.Integration.Algorithms;
+
     /// <summary>
     /// Numeric Integration (Quadrature).
     /// </summary>

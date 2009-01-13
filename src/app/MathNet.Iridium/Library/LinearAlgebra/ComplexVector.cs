@@ -1,6 +1,6 @@
 //-----------------------------------------------------------------------
 // <copyright file="ComplexVector.cs" company="Math.NET Project">
-//    Copyright (c) 2004-2008, Christoph Rüegg.
+//    Copyright (c) 2004-2009, Christoph Rüegg.
 //    All Right Reserved.
 // </copyright>
 // <author>
@@ -28,13 +28,13 @@
 //-----------------------------------------------------------------------
 
 using System;
-using System.Text;
 using System.Collections.Generic;
-
-using MathNet.Numerics.Distributions;
+using System.Text;
 
 namespace MathNet.Numerics.LinearAlgebra
 {
+    using MathNet.Numerics.Distributions;
+
     /// <summary>
     /// Complex Vector.
     /// </summary>

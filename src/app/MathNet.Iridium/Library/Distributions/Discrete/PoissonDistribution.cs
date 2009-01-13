@@ -1,6 +1,6 @@
 //-----------------------------------------------------------------------
 // <copyright file="PoissonDistribution.cs" company="Math.NET Project">
-//    Copyright (c) 2002-2008, Christoph Rüegg.
+//    Copyright (c) 2002-2009, Christoph Rüegg.
 //    All Right Reserved.
 // </copyright>
 // <author>
@@ -32,10 +32,11 @@
 //-----------------------------------------------------------------------
 
 using System;
-using MathNet.Numerics.RandomSources;
 
 namespace MathNet.Numerics.Distributions
 {
+    using MathNet.Numerics.RandomSources;
+
     /// <summary>
     /// Pseudo-random generation of poisson distributed deviates.
     /// </summary>

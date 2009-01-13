@@ -1,6 +1,6 @@
 //-----------------------------------------------------------------------
 // <copyright file="ArbitraryDistribution.cs" company="Math.NET Project">
-//    Copyright (c) 2002-2008, Christoph Rüegg, Joannes Vermorel.
+//    Copyright (c) 2002-2009, Christoph Rüegg, Joannes Vermorel.
 //    All Right Reserved.
 // </copyright>
 // <author>
@@ -29,10 +29,11 @@
 //-----------------------------------------------------------------------
 
 using System;
-using MathNet.Numerics.RandomSources;
 
 namespace MathNet.Numerics.Distributions
 {
+    using MathNet.Numerics.RandomSources;
+
     /// <summary>
     /// Non-uniform discrete random distribution.
     /// </summary>

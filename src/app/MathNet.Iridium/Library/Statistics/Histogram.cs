@@ -1,6 +1,6 @@
 //-----------------------------------------------------------------------
 // <copyright file="Histogram.cs" company="Math.NET Project">
-//    Copyright (c) 2004-2008, Joannes Vermorel.
+//    Copyright (c) 2004-2009, Joannes Vermorel.
 //    All Right Reserved.
 // </copyright>
 // <author>

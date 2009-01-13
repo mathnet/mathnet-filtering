@@ -1,6 +1,6 @@
 //-----------------------------------------------------------------------
 // <copyright file="Combinatorics.cs" company="Math.NET Project">
-//    Copyright (c) 2002-2008, Christoph Rüegg, Joannes Vermorel.
+//    Copyright (c) 2002-2009, Christoph Rüegg, Joannes Vermorel.
 //    All Right Reserved.
 // </copyright>
 // <author>
@@ -32,10 +32,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-using MathNet.Numerics.RandomSources;
-
 namespace MathNet.Numerics
 {
+    using MathNet.Numerics.RandomSources;
+
     /// <summary>
     /// Static DoublePrecision Combinatorics Helper Class
     /// </summary>

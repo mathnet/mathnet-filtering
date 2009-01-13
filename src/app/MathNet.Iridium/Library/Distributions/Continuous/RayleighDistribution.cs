@@ -30,10 +30,10 @@
 using System;
 using System.Collections.Generic;
 
-using MathNet.Numerics.RandomSources;
-
 namespace MathNet.Numerics.Distributions
 {
+    using MathNet.Numerics.RandomSources;
+
     /// <summary>
     /// Rayleigh distribution, including density functions and pseudo-random Rayleigh number generation.
     /// </summary>

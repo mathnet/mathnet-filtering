@@ -1,6 +1,6 @@
 //-----------------------------------------------------------------------
 // <copyright file="RandomSource.cs" company="Math.NET Project">
-//    Copyright (c) 2002-2008, Christoph Rüegg.
+//    Copyright (c) 2002-2009, Christoph Rüegg.
 //    All Right Reserved.
 // </copyright>
 // <author>
@@ -31,10 +31,11 @@
 //-----------------------------------------------------------------------
 
 using System;
-using MathNet.Numerics.Distributions;
 
 namespace MathNet.Numerics.RandomSources
 {
+    using MathNet.Numerics.Distributions;
+
     // TODO (cdr, 2008-03-09): Refactor (either interface or share code)
 
     /// <summary>

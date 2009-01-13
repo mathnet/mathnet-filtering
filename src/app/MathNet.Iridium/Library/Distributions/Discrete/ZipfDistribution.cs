@@ -1,6 +1,6 @@
 //-----------------------------------------------------------------------
 // <copyright file="ZipfDistribution.cs" company="Math.NET Project">
-//    Copyright (c) 2004-2008, Joannes Vermorel.
+//    Copyright (c) 2004-2009, Joannes Vermorel.
 //    All Right Reserved.
 // </copyright>
 // <author>
@@ -29,10 +29,10 @@
 
 using System;
 
-using MathNet.Numerics.RandomSources;
-
 namespace MathNet.Numerics.Distributions
 {
+    using MathNet.Numerics.RandomSources;
+
     // TODO: NUnit test for ZipfGenerator
     /* Note: ZipfGenerator seems to returns value that are really
      * big, must check the validity of the formula in use. */

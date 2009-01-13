@@ -33,13 +33,13 @@
 //-----------------------------------------------------------------------
 
 using System;
-using System.Text;
 using System.Collections.Generic;
-
-using MathNet.Numerics.Distributions;
+using System.Text;
 
 namespace MathNet.Numerics.LinearAlgebra
 {
+    using MathNet.Numerics.Distributions;
+
     /// <summary>
     /// Real matrix.
     /// </summary>
