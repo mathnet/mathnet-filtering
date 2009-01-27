@@ -1,6 +1,7 @@
 *.suo
 *.user
 *.Cache
+*private.snk
 bin
 obj
 build

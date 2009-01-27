@@ -118,6 +118,7 @@
       <Output TaskParameter="Include" ItemName="StrongNameExe" />
     </CreateItem>
     <Error Condition="!Exists('@(StrongNameExe)')" Text="Strongname Tool not available." />
+    <Exec Command="$(QUOT)@(StrongNameExe)$(QUOT) -k $(QUOT)$(StrongNameTestKeyPrivateFullName)$(QUOT)" Condition="!Exists($(StrongNameTestKeyPrivateFullName))" />
     <CreateItem Include="$(StrongNameTestKeyPrivateFullName)" Condition="'@(StrongNameTestKeyPrivate)'==''">
       <Output TaskParameter="Include" ItemName="StrongNameTestKeyPrivate" />
     </CreateItem>
