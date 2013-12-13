@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>MathNet.Neodym</id>
-    <version>1</version>
+    <version>1.0</version>
     <title>MathNet signal processing</title>
     <authors>Christoph Ruegg</authors>
     <owners>Christoph Ruegg</owners>
