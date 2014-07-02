@@ -1,4 +1,4 @@
-// <copyright file="FirFilter.cs" company="Math.NET">
+// <copyright file="OnlineFirFilter.cs" company="Math.NET">
 // Math.NET Filtering, part of the Math.NET Project
 // http://filtering.mathdotnet.com
 // http://github.com/mathnet/mathnet-filtering

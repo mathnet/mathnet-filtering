@@ -49,7 +49,7 @@ namespace MathNet.Filtering.Filter.FIR
         {
             double nu = 2d*cutoff/samplingRate; //normalized frequency
             int order = 2*halforder + 1;
-            double[] c = new double[order];
+            var c = new double[order];
             c[halforder] = nu;
             for (int i = 0, n = halforder; i < halforder; i++, n--)
             {
@@ -71,7 +71,7 @@ namespace MathNet.Filtering.Filter.FIR
         {
             double nu = 2d*cutoff/samplingRate; //normalized frequency
             int order = 2*halforder + 1;
-            double[] c = new double[order];
+            var c = new double[order];
             c[halforder] = 1 - nu;
             for (int i = 0, n = halforder; i < halforder; i++, n--)
             {
@@ -95,7 +95,7 @@ namespace MathNet.Filtering.Filter.FIR
             double nu1 = 2d*cutoffLow/samplingRate; //normalized low frequency
             double nu2 = 2d*cutoffHigh/samplingRate; //normalized high frequency
             int order = 2*halforder + 1;
-            double[] c = new double[order];
+            var c = new double[order];
             c[halforder] = nu2 - nu1;
             for (int i = 0, n = halforder; i < halforder; i++, n--)
             {
@@ -119,7 +119,7 @@ namespace MathNet.Filtering.Filter.FIR
             double nu1 = 2d*cutoffLow/samplingRate; //normalized low frequency
             double nu2 = 2d*cutoffHigh/samplingRate; //normalized high frequency
             int order = 2*halforder + 1;
-            double[] c = new double[order];
+            var c = new double[order];
             c[halforder] = 1 - (nu2 - nu1);
             for (int i = 0, n = halforder; i < halforder; i++, n--)
             {

@@ -160,7 +160,7 @@ namespace MathNet.Filtering.Filter.IIR
 
         static double[] BuildCoefficients(double beta, double gamma, double alpha, double mu, double sigma)
         {
-            return new double[]
+            return new[]
             {
                 2d*alpha,
                 2d*gamma,

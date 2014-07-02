@@ -35,20 +35,19 @@ namespace MathNet.Filtering.Filter
     /// </summary>
     public interface IOnlineFilter
     {
-        /// <summary>Process a single sample.</summary>
+        /// <summary>
+        /// Process a single sample.
+        /// </summary>
         double ProcessSample(double sample);
 
-        /// <summary>Process a whole set of samples at once.</summary>
+        /// <summary>
+        /// Process a whole set of samples at once.
+        /// </summary>
         double[] ProcessSamples(double[] samples);
 
-        /// <summary>Reset internal state (not coefficients!).</summary>
+        /// <summary>
+        /// Reset internal state (not coefficients!).
+        /// </summary>
         void Reset();
     }
-
-    /*
-	public interface IOfflineFilter
-	{
-		void Process();
-	}
-	*/
 }
