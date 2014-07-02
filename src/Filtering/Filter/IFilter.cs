@@ -29,21 +29,23 @@
 
 namespace MathNet.Filtering.Filter
 {
-	/// <summary>
-	/// An online filter that allows processing samples just in time.
-	/// Online Filters are always causal.
-	/// </summary>
-	public interface IOnlineFilter
-	{
-		/// <summary>Process a single sample.</summary>
-		double ProcessSample(double sample);
-		/// <summary>Process a whole set of samples at once.</summary>
-		double[] ProcessSamples(double[] samples);
-		/// <summary>Reset internal state (not coefficients!).</summary>
-		void Reset();
-	}
+    /// <summary>
+    /// An online filter that allows processing samples just in time.
+    /// Online Filters are always causal.
+    /// </summary>
+    public interface IOnlineFilter
+    {
+        /// <summary>Process a single sample.</summary>
+        double ProcessSample(double sample);
 
-	/*
+        /// <summary>Process a whole set of samples at once.</summary>
+        double[] ProcessSamples(double[] samples);
+
+        /// <summary>Reset internal state (not coefficients!).</summary>
+        void Reset();
+    }
+
+    /*
 	public interface IOfflineFilter
 	{
 		void Process();

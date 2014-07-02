@@ -38,28 +38,23 @@ namespace MathNet.Filtering.Filter.Utils
     {
         int _offset = 0;
         readonly int _size;
-        double[] _buffer;
+        readonly double[] _buffer;
 
         /// <summary>
         /// Shift Buffer for discrete convolutions.
         /// </summary>
-        public
-        ShiftBuffer(
-            int size
-            )
+        public ShiftBuffer(int size)
         {
             _size = size;
             _buffer = new double[size];
         }
+
         /// <summary>
         /// Shift Buffer for discrete convolutions.
         /// </summary>
-        public
-        ShiftBuffer(
-            double[] buffer
-            )
+        public ShiftBuffer(double[] buffer)
         {
-            if(null == buffer)
+            if (null == buffer)
                 throw new ArgumentNullException("buffer");
 
             _size = buffer.Length;
@@ -69,11 +64,7 @@ namespace MathNet.Filtering.Filter.Utils
         /// <summary>
         /// Add a new sample on top of the buffer and discard the oldest entry (tail).
         /// </summary>
-        public
-        void
-        ShiftAddHead(
-            double sample
-            )
+        public void ShiftAddHead(double sample)
         {
             _offset = (_offset != 0) ? _offset - 1 : _size - 1;
             _buffer[_offset] = sample;
@@ -84,30 +75,26 @@ namespace MathNet.Filtering.Filter.Utils
         /// </summary>
         public double this[int index]
         {
-            get { return _buffer[(_offset + index) % _size]; }
-            set { _buffer[(_offset + index) % _size] = value; }
+            get { return _buffer[(_offset + index)%_size]; }
+            set { _buffer[(_offset + index)%_size] = value; }
         }
 
         /// <summary>
         /// Discrete Convolution. Evaluates the classic MAC operation to another buffer/vector (looped).
         /// </summary>
         /// <returns>The sum of the memberwiese sample products, sum(a[i]*b[i],i=0..size)</returns>
-        public
-        double
-        MultiplyAccumulate(
-            double[] samples
-            )
+        public double MultiplyAccumulate(double[] samples)
         {
-            if(null == samples)
+            if (null == samples)
                 throw new ArgumentNullException("samples");
 
             int len = Math.Min(samples.Length, _size);
             double sum = 0;
             int j = _offset;
-            for(int i = 0; i < len; i++)
+            for (int i = 0; i < len; i++)
             {
-                sum += samples[i] * _buffer[j];
-                j = (j + 1) % _size;
+                sum += samples[i]*_buffer[j];
+                j = (j + 1)%_size;
             }
             return sum;
         }
@@ -116,15 +103,9 @@ namespace MathNet.Filtering.Filter.Utils
         /// Discrete Convolution. Evaluates the classic MAC operation to another buffer/vector (looped).
         /// </summary>
         /// <returns>The sum of the memberwiese sample products, sum(a[i]*b[i],i=0..size)</returns>
-        public
-        double
-        MultiplyAccumulate(
-            double[] samples,
-            int sampleOffset,
-            int count
-            )
+        public double MultiplyAccumulate(double[] samples, int sampleOffset, int count)
         {
-            if(null == samples)
+            if (null == samples)
                 throw new ArgumentNullException("samples");
 
             int end = Math.Min(
@@ -134,10 +115,10 @@ namespace MathNet.Filtering.Filter.Utils
 
             double sum = 0;
             int j = _offset;
-            for(int i = sampleOffset; i < end; i++)
+            for (int i = sampleOffset; i < end; i++)
             {
-                sum += samples[i] * _buffer[j];
-                j = (j + 1) % _size;
+                sum += samples[i]*_buffer[j];
+                j = (j + 1)%_size;
             }
             return sum;
         }
@@ -145,11 +126,9 @@ namespace MathNet.Filtering.Filter.Utils
         /// <summary>
         /// Sets all buffer items to zero.
         /// </summary>
-        public
-        void
-        Reset()
+        public void Reset()
         {
-            for(int i = 0; i < _size; i++)
+            for (int i = 0; i < _size; i++)
             {
                 _buffer[i] = 0;
             }

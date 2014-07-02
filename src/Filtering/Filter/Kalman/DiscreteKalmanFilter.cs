@@ -3,9 +3,9 @@
 // http://mathnet.opensourcedotnet.info
 //
 // Copyright (c) 2008, Matthew Kitchin
-//						
+//
 // This program is free software; you can redistribute it and/or modify
-// it under the terms of the GNU Lesser General Public License as published 
+// it under the terms of the GNU Lesser General Public License as published
 // by the Free Software Foundation; either version 2 of the License, or
 // (at your option) any later version.
 //
@@ -14,7 +14,7 @@
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
 //
-// You should have received a copy of the GNU Lesser General Public 
+// You should have received a copy of the GNU Lesser General Public
 // License along with this program; if not, write to the Free Software
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
@@ -45,16 +45,13 @@ namespace MathNet.Filtering.Filter.Kalman
     public class DiscreteKalmanFilter :
         IKalmanFilter
     {
-
-        #region Public Fields
-
         /// <summary>
         /// The covariance of the current state of the filter. Higher covariances
         /// indicate a lower confidence in the state estimate.
         /// </summary>
         public Matrix<double> Cov
         {
-            get { return this.P; }
+            get { return P; }
         }
 
         /// <summary>
@@ -62,12 +59,8 @@ namespace MathNet.Filtering.Filter.Kalman
         /// </summary>
         public Matrix<double> State
         {
-            get { return this.x; }
+            get { return x; }
         }
-
-        #endregion // Public Fields
-
-        #region Protected Members
 
         /// <summary>
         /// The current state of the system.
@@ -79,10 +72,6 @@ namespace MathNet.Filtering.Filter.Kalman
         /// </summary>
         protected Matrix<double> P;
 
-        #endregion
-
-        #region Constructors
-
         /// <summary>
         /// Creates a new Discrete Time Kalman Filter with the given values for
         /// the initial state and the covariance of that state.
@@ -90,21 +79,13 @@ namespace MathNet.Filtering.Filter.Kalman
         /// <param name="x0">The best estimate of the initial state of the estimate.</param>
         /// <param name="P0">The covariance of the initial state estimate. If unsure
         /// about initial state, set to a large value</param>
-        public
-        DiscreteKalmanFilter(
-            Matrix<double> x0,
-            Matrix<double> P0
-            )
+        public DiscreteKalmanFilter(Matrix<double> x0, Matrix<double> P0)
         {
             KalmanFilter.CheckInitialParameters(x0, P0);
 
-            this.x = x0;
-            this.P = P0;
+            x = x0;
+            P = P0;
         }
-
-        #endregion
-
-        #region Kalman Filter Prediction
 
         /// <summary>
         /// Perform a discrete time prediction of the system state.
@@ -113,16 +94,12 @@ namespace MathNet.Filtering.Filter.Kalman
         /// <exception cref="System.ArgumentException">Thrown when the given state
         /// transition matrix does not have the same number of row/columns as there
         /// are variables in the state vector.</exception>
-        public
-        void
-        Predict(
-            Matrix<double> F
-            )
+        public void Predict(Matrix<double> F)
         {
             KalmanFilter.CheckPredictParameters(F, this);
 
-            this.x = F * this.x;
-            this.P = (F * P * F.Transpose());
+            x = F*x;
+            P = (F*P*F.Transpose());
         }
 
         /// <summary>
@@ -137,18 +114,13 @@ namespace MathNet.Filtering.Filter.Kalman
         /// where there is plant noise. The covariance matrix of the plant noise, in
         /// this case, is a square matrix corresponding to the state transition and
         /// the state of the system.</remarks>
-        public
-        void
-        Predict(
-            Matrix<double> F,
-            Matrix<double> Q
-            )
+        public void Predict(Matrix<double> F, Matrix<double> Q)
         {
             KalmanFilter.CheckPredictParameters(F, Q, this);
 
             // Predict the state
-            this.x = F * x;
-            this.P = (F * P * F.Transpose()) + Q;
+            x = F*x;
+            P = (F*P*F.Transpose()) + Q;
         }
 
         /// <summary>
@@ -165,25 +137,15 @@ namespace MathNet.Filtering.Filter.Kalman
         /// the plant noise affecting the system and the equations that describe
         /// the effect on the system of that plant noise.
         /// </remarks>
-        public
-        void
-        Predict(
-            Matrix<double> F,
-            Matrix<double> G,
-            Matrix<double> Q
-            )
+        public void Predict(Matrix<double> F, Matrix<double> G, Matrix<double> Q)
         {
             KalmanFilter.CheckPredictParameters(F, G, Q, this);
 
             // State prediction
-            this.x = F * x;
+            x = F*x;
             // Covariance update
-            this.P = (F * P * F.Transpose()) + (G * Q * G.Transpose());
+            P = (F*P*F.Transpose()) + (G*Q*G.Transpose());
         }
-
-        #endregion
-
-        #region Kalman Filter Update
 
         /// <summary>
         /// Updates the state of the system based on the given noisy measurements,
@@ -195,13 +157,7 @@ namespace MathNet.Filtering.Filter.Kalman
         /// <param name="R">Covariance of measurements.</param>
         /// <exception cref="System.ArgumentException">Thrown when given matrices
         /// are of the incorrect size.</exception>
-        public
-        void
-        Update(
-            Matrix<double> z,
-            Matrix<double> H,
-            Matrix<double> R
-            )
+        public void Update(Matrix<double> z, Matrix<double> H, Matrix<double> R)
         {
             KalmanFilter.CheckUpdateParameters(z, H, R, this);
 
@@ -209,13 +165,10 @@ namespace MathNet.Filtering.Filter.Kalman
             Matrix<double> Ht = H.Transpose();
             Matrix<double> I = Matrix<double>.Build.DenseIdentity(x.RowCount, x.RowCount);
 
-            Matrix<double> S = (H * P * Ht) + R;          // Measurement covariance
-            Matrix<double> K = P * Ht * S.Inverse();      // Kalman Gain
-            this.P = (I - (K * H)) * P;           // Covariance update
-            this.x = this.x + (K * (z - (H * this.x))); // State update
+            Matrix<double> S = (H*P*Ht) + R; // Measurement covariance
+            Matrix<double> K = P*Ht*S.Inverse(); // Kalman Gain
+            P = (I - (K*H))*P; // Covariance update
+            x = x + (K*(z - (H*x))); // State update
         }
-
-        #endregion
-
     }
 }

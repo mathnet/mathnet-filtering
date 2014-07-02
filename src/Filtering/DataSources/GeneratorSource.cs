@@ -35,8 +35,7 @@ namespace MathNet.Filtering.DataSources
     /// <summary>
     /// Adapter for Iridium continuous (random) generators to Neodym channel sources.
     /// </summary>
-    public class GeneratorSource :
-        IChannelSource
+    public class GeneratorSource : IChannelSource
     {
         readonly IContinuousDistribution _distribution;
 
@@ -44,9 +43,7 @@ namespace MathNet.Filtering.DataSources
         /// Create a sample source from a continuous generator.
         /// </summary>
         public
-        GeneratorSource(
-            IContinuousDistribution distribution
-            )
+            GeneratorSource(IContinuousDistribution distribution)
         {
             _distribution = distribution;
         }
@@ -54,9 +51,7 @@ namespace MathNet.Filtering.DataSources
         /// <summary>
         /// Computes and returns the next sample.
         /// </summary>
-        public
-        double
-        ReadNextSample()
+        public double ReadNextSample()
         {
             return _distribution.Sample();
         }

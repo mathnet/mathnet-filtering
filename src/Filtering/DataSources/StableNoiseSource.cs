@@ -36,8 +36,7 @@ namespace MathNet.Filtering.DataSources
     /// <summary>
     /// Sample source with skew alpha stable distributed samples.
     /// </summary>
-    public class StableNoiseSource :
-        IChannelSource
+    public class StableNoiseSource : IChannelSource
     {
         readonly IContinuousDistribution _distribution;
 
@@ -49,16 +48,9 @@ namespace MathNet.Filtering.DataSources
         /// <param name="scale">c-parameter of the stable distribution</param>
         /// <param name="exponent">alpha-parameter of the stable distribution</param>
         /// <param name="skewness">beta-parameter of the stable distribution</param>
-        public
-        StableNoiseSource(
-            Random uniformWhiteRandomSource,
-            double location,
-            double scale,
-            double exponent,
-            double skewness
-            )
+        public StableNoiseSource(Random uniformWhiteRandomSource, double location, double scale, double exponent, double skewness)
         {
-            _distribution = new Stable(exponent, skewness,scale, location, uniformWhiteRandomSource);
+            _distribution = new Stable(exponent, skewness, scale, location, uniformWhiteRandomSource);
         }
 
         /// <summary>
@@ -68,13 +60,7 @@ namespace MathNet.Filtering.DataSources
         /// <param name="scale">c-parameter of the stable distribution</param>
         /// <param name="exponent">alpha-parameter of the stable distribution</param>
         /// <param name="skewness">beta-parameter of the stable distribution</param>
-        public
-        StableNoiseSource(
-            double location,
-            double scale,
-            double exponent,
-            double skewness
-            )
+        public StableNoiseSource(double location, double scale, double exponent, double skewness)
         {
             _distribution = new Stable(exponent, skewness, scale, location);
         }
@@ -84,11 +70,7 @@ namespace MathNet.Filtering.DataSources
         /// </summary>
         /// <param name="exponent">alpha-parameter of the stable distribution</param>
         /// <param name="skewness">beta-parameter of the stable distribution</param>
-        public
-        StableNoiseSource(
-            double exponent,
-            double skewness
-            )
+        public StableNoiseSource(double exponent, double skewness)
         {
             _distribution = new Stable(exponent, skewness, 1.0, 0.0);
         }
@@ -96,9 +78,7 @@ namespace MathNet.Filtering.DataSources
         /// <summary>
         /// Computes and returns the next sample.
         /// </summary>
-        public
-        double
-        ReadNextSample()
+        public double ReadNextSample()
         {
             return _distribution.Sample();
         }

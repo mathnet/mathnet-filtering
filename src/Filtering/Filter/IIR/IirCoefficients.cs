@@ -45,13 +45,7 @@ namespace MathNet.Filtering.Filter.IIR
         /// <param name="cutoff">Cutoff frequency in samples per unit.</param>
         /// <param name="width">bandwidth in samples per unit.</param>
         /// <returns>The calculated filter coefficients.</returns>
-        public static
-        double[]
-        LowPass(
-            double samplingRate,
-            double cutoff,
-            double width
-            )
+        public static double[] LowPass(double samplingRate, double cutoff, double width)
         {
             double beta, gamma, theta;
 
@@ -68,7 +62,7 @@ namespace MathNet.Filtering.Filter.IIR
             return BuildCoefficients(
                 beta,
                 gamma,
-                (0.5d + beta - gamma) * 0.25d, // alpha
+                (0.5d + beta - gamma)*0.25d, // alpha
                 2, // mu
                 1 // sigma
                 );
@@ -81,13 +75,7 @@ namespace MathNet.Filtering.Filter.IIR
         /// <param name="cutoff">Cutoff frequency in samples per unit.</param>
         /// <param name="width">bandwidth in samples per unit.</param>
         /// <returns>The calculated filter coefficients.</returns>
-        public static
-        double[]
-        HighPass(
-            double samplingRate,
-            double cutoff,
-            double width
-            )
+        public static double[] HighPass(double samplingRate, double cutoff, double width)
         {
             double beta, gamma, theta;
 
@@ -104,7 +92,7 @@ namespace MathNet.Filtering.Filter.IIR
             return BuildCoefficients(
                 beta,
                 gamma,
-                (0.5d + beta + gamma) * 0.25d, // alpha
+                (0.5d + beta + gamma)*0.25d, // alpha
                 -2, // mu
                 1 // sigmas
                 );
@@ -117,13 +105,7 @@ namespace MathNet.Filtering.Filter.IIR
         /// <param name="cutoffLow">Low Cutoff frequency in samples per unit.</param>
         /// <param name="cutoffHigh">High Cutoff frequency in samples per unit.</param>
         /// <returns>The calculated filter coefficients.</returns>
-        public static
-        double[]
-        BandPass(
-            double samplingRate,
-            double cutoffLow,
-            double cutoffHigh
-            )
+        public static double[] BandPass(double samplingRate, double cutoffLow, double cutoffHigh)
         {
             double beta, gamma, theta;
 
@@ -132,7 +114,7 @@ namespace MathNet.Filtering.Filter.IIR
                 out gamma,
                 out theta,
                 samplingRate,
-                (cutoffLow + cutoffHigh) * 0.5d, // cutoff
+                (cutoffLow + cutoffHigh)*0.5d, // cutoff
                 cutoffLow, // lowHalfPower
                 cutoffHigh // highHalfPower
                 );
@@ -140,7 +122,7 @@ namespace MathNet.Filtering.Filter.IIR
             return BuildCoefficients(
                 beta,
                 gamma,
-                (0.5d - beta) * 0.5d, // alpha
+                (0.5d - beta)*0.5d, // alpha
                 0, // mu
                 -1 // sigma
                 );
@@ -153,13 +135,7 @@ namespace MathNet.Filtering.Filter.IIR
         /// <param name="cutoffLow">Low Cutoff frequency in samples per unit.</param>
         /// <param name="cutoffHigh">High Cutoff frequency in samples per unit.</param>
         /// <returns>The calculated filter coefficients.</returns>
-        public static
-        double[]
-        BandStop(
-            double samplingRate,
-            double cutoffLow,
-            double cutoffHigh
-            )
+        public static double[] BandStop(double samplingRate, double cutoffLow, double cutoffHigh)
         {
             double beta, gamma, theta;
 
@@ -168,7 +144,7 @@ namespace MathNet.Filtering.Filter.IIR
                 out gamma,
                 out theta,
                 samplingRate,
-                (cutoffLow + cutoffHigh) * 0.5d, // cutoff
+                (cutoffLow + cutoffHigh)*0.5d, // cutoff
                 cutoffLow, // lowHalfPower
                 cutoffHigh // highHalfPower
                 );
@@ -176,48 +152,31 @@ namespace MathNet.Filtering.Filter.IIR
             return BuildCoefficients(
                 beta,
                 gamma,
-                (0.5d + beta) * 0.5d, // alpha
-                -2 * Math.Cos(theta), // mu
+                (0.5d + beta)*0.5d, // alpha
+                -2*Math.Cos(theta), // mu
                 1 // sigma
                 );
         }
 
-        static
-        double[]
-        BuildCoefficients(
-            double beta,
-            double gamma,
-            double alpha,
-            double mu,
-            double sigma
-            )
+        static double[] BuildCoefficients(double beta, double gamma, double alpha, double mu, double sigma)
         {
-            return new double[] {
+            return new double[]
+            {
                 2d*alpha,
                 2d*gamma,
                 -2d*beta,
                 1,
                 mu,
                 sigma
-                };
+            };
         }
 
-        static
-        void
-        BetaGamma(
-            out double beta,
-            out double gamma,
-            out double theta,
-            double sampling,
-            double cutoff,
-            double lowHalfPower,
-            double highHalfPower
-            )
+        static void BetaGamma(out double beta, out double gamma, out double theta, double sampling, double cutoff, double lowHalfPower, double highHalfPower)
         {
-            double tan = Math.Tan(Math.PI * (highHalfPower - lowHalfPower) / sampling);
-            beta = 0.5d * (1 - tan) / (1 + tan);
-            theta = 2 * Math.PI * cutoff / sampling;
-            gamma = (0.5d + beta) * Math.Cos(theta);
+            double tan = Math.Tan(Math.PI*(highHalfPower - lowHalfPower)/sampling);
+            beta = 0.5d*(1 - tan)/(1 + tan);
+            theta = 2*Math.PI*cutoff/sampling;
+            gamma = (0.5d + beta)*Math.Cos(theta);
         }
 
     }

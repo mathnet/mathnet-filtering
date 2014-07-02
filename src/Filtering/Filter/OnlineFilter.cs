@@ -40,26 +40,18 @@ namespace MathNet.Filtering.Filter
     /// </summary>
     public abstract class OnlineFilter : IOnlineFilter
     {
-        #region LOWPASS FILTER FACTORY
         /// <summary>
         /// Create a filter to remove high frequencies in online processing scenarios.
         /// </summary>
-        public static
-        OnlineFilter
-        CreateLowpass(
-            ImpulseResponse mode,
-            double sampleRate,
-            double cutoffRate,
-            int order
-            )
+        public static OnlineFilter CreateLowpass(ImpulseResponse mode, double sampleRate, double cutoffRate, int order)
         {
-            if(mode == ImpulseResponse.Finite)
+            if (mode == ImpulseResponse.Finite)
             {
                 double[] c = FirCoefficients.LowPass(sampleRate, cutoffRate, order >> 1);
                 return new OnlineFirFilter(c);
             }
 
-            if(mode == ImpulseResponse.Infinite)
+            if (mode == ImpulseResponse.Infinite)
             {
                 // TODO: investigate (bandwidth)
                 double[] c = IirCoefficients.LowPass(sampleRate, cutoffRate, cutoffRate);
@@ -72,13 +64,7 @@ namespace MathNet.Filtering.Filter
         /// <summary>
         /// Create a filter to remove high frequencies in online processing scenarios.
         /// </summary>
-        public static
-        OnlineFilter
-        CreateLowpass(
-            ImpulseResponse mode,
-            double sampleRate,
-            double cutoffRate
-            )
+        public static OnlineFilter CreateLowpass(ImpulseResponse mode, double sampleRate, double cutoffRate)
         {
             return CreateLowpass(
                 mode,
@@ -87,28 +73,19 @@ namespace MathNet.Filtering.Filter
                 mode == ImpulseResponse.Finite ? 64 : 4 // order
                 );
         }
-        #endregion
 
-        #region HIGHPASS FILTER FACTORY
         /// <summary>
         /// Create a filter to remove low frequencies in online processing scenarios.
         /// </summary>
-        public static
-        OnlineFilter
-        CreateHighpass(
-            ImpulseResponse mode,
-            double sampleRate,
-            double cutoffRate,
-            int order
-            )
+        public static OnlineFilter CreateHighpass(ImpulseResponse mode, double sampleRate, double cutoffRate, int order)
         {
-            if(mode == ImpulseResponse.Finite)
+            if (mode == ImpulseResponse.Finite)
             {
                 double[] c = FirCoefficients.HighPass(sampleRate, cutoffRate, order >> 1);
                 return new OnlineFirFilter(c);
             }
 
-            if(mode == ImpulseResponse.Infinite)
+            if (mode == ImpulseResponse.Infinite)
             {
                 // TODO: investigate (bandwidth)
                 double[] c = IirCoefficients.HighPass(sampleRate, cutoffRate, cutoffRate);
@@ -121,13 +98,7 @@ namespace MathNet.Filtering.Filter
         /// <summary>
         /// Create a filter to remove low frequencies in online processing scenarios.
         /// </summary>
-        public static
-        OnlineFilter
-        CreateHighpass(
-            ImpulseResponse mode,
-            double sampleRate,
-            double cutoffRate
-            )
+        public static OnlineFilter CreateHighpass(ImpulseResponse mode, double sampleRate, double cutoffRate)
         {
             return CreateHighpass(
                 mode,
@@ -136,29 +107,19 @@ namespace MathNet.Filtering.Filter
                 mode == ImpulseResponse.Finite ? 64 : 4 // order
                 );
         }
-        #endregion
 
-        #region BANDPASS FILTER FACTORY
         /// <summary>
         /// Create a filter to remove low and high frequencies in online processing scenarios.
         /// </summary>
-        public static
-        OnlineFilter
-        CreateBandpass(
-            ImpulseResponse mode,
-            double sampleRate,
-            double cutoffLowRate,
-            double cutoffHighRate,
-            int order
-            )
+        public static OnlineFilter CreateBandpass(ImpulseResponse mode, double sampleRate, double cutoffLowRate, double cutoffHighRate, int order)
         {
-            if(mode == ImpulseResponse.Finite)
+            if (mode == ImpulseResponse.Finite)
             {
                 double[] c = FirCoefficients.BandPass(sampleRate, cutoffLowRate, cutoffHighRate, order >> 1);
                 return new OnlineFirFilter(c);
             }
 
-            if(mode == ImpulseResponse.Infinite)
+            if (mode == ImpulseResponse.Infinite)
             {
                 double[] c = IirCoefficients.BandPass(sampleRate, cutoffLowRate, cutoffHighRate);
                 return new OnlineIirFilter(c);
@@ -170,14 +131,7 @@ namespace MathNet.Filtering.Filter
         /// <summary>
         /// Create a filter to remove low and high frequencies in online processing scenarios.
         /// </summary>
-        public static
-        OnlineFilter
-        CreateBandpass(
-            ImpulseResponse mode,
-            double sampleRate,
-            double cutoffLowRate,
-            double cutoffHighRate
-            )
+        public static OnlineFilter CreateBandpass(ImpulseResponse mode, double sampleRate, double cutoffLowRate, double cutoffHighRate)
         {
             return CreateBandpass(
                 mode,
@@ -187,29 +141,19 @@ namespace MathNet.Filtering.Filter
                 mode == ImpulseResponse.Finite ? 64 : 4 // order
                 );
         }
-        #endregion
 
-        #region BANDSTOP FILTER FACTORY
         /// <summary>
         /// Create a filter to remove middle (all but low and high) frequencies in online processing scenarios.
         /// </summary>
-        public static
-        OnlineFilter
-        CreateBandstop(
-            ImpulseResponse mode,
-            double sampleRate,
-            double cutoffLowRate,
-            double cutoffHighRate,
-            int order
-            )
+        public static OnlineFilter CreateBandstop(ImpulseResponse mode, double sampleRate, double cutoffLowRate, double cutoffHighRate, int order)
         {
-            if(mode == ImpulseResponse.Finite)
+            if (mode == ImpulseResponse.Finite)
             {
                 double[] c = FirCoefficients.BandStop(sampleRate, cutoffLowRate, cutoffHighRate, order >> 1);
                 return new OnlineFirFilter(c);
             }
 
-            if(mode == ImpulseResponse.Infinite)
+            if (mode == ImpulseResponse.Infinite)
             {
                 double[] c = IirCoefficients.BandStop(sampleRate, cutoffLowRate, cutoffHighRate);
                 return new OnlineIirFilter(c);
@@ -221,14 +165,7 @@ namespace MathNet.Filtering.Filter
         /// <summary>
         /// Create a filter to remove middle (all but low and high) frequencies in online processing scenarios.
         /// </summary>
-        public static
-        OnlineFilter
-        CreateBandstop(
-            ImpulseResponse mode,
-            double sampleRate,
-            double cutoffLowRate,
-            double cutoffHighRate
-            )
+        public static OnlineFilter CreateBandstop(ImpulseResponse mode, double sampleRate, double cutoffLowRate, double cutoffHighRate)
         {
             return CreateBandstop(
                 mode,
@@ -238,9 +175,7 @@ namespace MathNet.Filtering.Filter
                 mode == ImpulseResponse.Finite ? 64 : 4 // order
                 );
         }
-        #endregion
 
-        #region DENOISE FILTER FACTORY
         /// <summary>
         /// Create a filter to remove noise in online processing scenarios.
         /// </summary>
@@ -249,58 +184,42 @@ namespace MathNet.Filtering.Filter
         /// response but also in a longer delay.
         /// </param>
         /// <remarks>The denoise filter is implemented as an unweighted median filter.</remarks>
-        public static
-        OnlineFilter
-        CreateDenoise(
-            int order
-            )
+        public static OnlineFilter CreateDenoise(int order)
         {
             return new OnlineMedianFilter(order);
         }
+
         /// <summary>
         /// Create a filter to remove noise in online processing scenarios.
         /// </summary>
         /// <remarks>The denoise filter is implemented as an unweighted median filter.</remarks>
-        public static
-        OnlineFilter
-        CreateDenoise()
+        public static OnlineFilter CreateDenoise()
         {
             return CreateDenoise(7);
         }
-        #endregion
 
         /// <summary>
         /// Process a single sample.
         /// </summary>
-        public abstract
-        double
-        ProcessSample(
-            double sample
-            );
+        public abstract double ProcessSample(double sample);
 
         /// <summary>
         /// Reset internal state (not coefficients!).
         /// </summary>
-        public abstract
-        void
-        Reset();
+        public abstract void Reset();
 
         /// <summary>
         /// Process a sequence of sample.
         /// </summary>
-        public virtual
-        double[]
-        ProcessSamples(
-            double[] samples
-            )
+        public virtual double[] ProcessSamples(double[] samples)
         {
-            if(null == samples)
+            if (null == samples)
             {
                 return null;
             }
 
             double[] ret = new double[samples.Length];
-            for(int i = 0; i < samples.Length; i++)
+            for (int i = 0; i < samples.Length; i++)
             {
                 ret[i] = ProcessSample(samples[i]);
             }

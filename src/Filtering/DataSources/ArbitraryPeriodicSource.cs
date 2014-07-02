@@ -35,10 +35,9 @@ namespace MathNet.Filtering.DataSources
     /// <summary>
     /// Precomputed periodic sample source
     /// </summary>
-    public class ArbitraryPeriodicSource :
-        IChannelSource
+    public class ArbitraryPeriodicSource : IChannelSource
     {
-        double[] _samples;
+        readonly double[] _samples;
         readonly int _sampleCount;
         readonly int _delay;
         int _nextIndex;
@@ -46,35 +45,27 @@ namespace MathNet.Filtering.DataSources
         /// <summary>
         /// Create a new precomputed periodic sample source
         /// </summary>
-        public
-        ArbitraryPeriodicSource(
-            double[] samples,
-            int indexOffset,
-            int delay
-            )
+        public ArbitraryPeriodicSource(double[] samples, int indexOffset, int delay)
         {
-            if(null == samples)
+            if (null == samples)
                 throw new ArgumentNullException("samples");
-            if(0 == samples.Length)
+            if (0 == samples.Length)
                 throw new ArgumentOutOfRangeException("samples");
-            if(indexOffset < 0 || indexOffset >= samples.Length)
+            if (indexOffset < 0 || indexOffset >= samples.Length)
                 throw new ArgumentOutOfRangeException("indexOffset");
 
             _samples = samples;
             _sampleCount = samples.Length;
             _delay = delay;
 
-            int effectiveDelay = delay % _sampleCount;
-            _nextIndex = (indexOffset - effectiveDelay + _sampleCount) % _sampleCount;
+            int effectiveDelay = delay%_sampleCount;
+            _nextIndex = (indexOffset - effectiveDelay + _sampleCount)%_sampleCount;
         }
 
         /// <summary>
         /// Create a new precomputed periodic sample source
         /// </summary>
-        public
-        ArbitraryPeriodicSource(
-            double[] samples
-            )
+        public ArbitraryPeriodicSource(double[] samples)
             : this(samples, 0, 0)
         {
         }
@@ -82,12 +73,10 @@ namespace MathNet.Filtering.DataSources
         /// <summary>
         /// Computes and returns the next sample.
         /// </summary>
-        public
-        double
-        ReadNextSample()
+        public double ReadNextSample()
         {
             double sample = _samples[_nextIndex];
-            _nextIndex = (_nextIndex + 1) % _sampleCount;
+            _nextIndex = (_nextIndex + 1)%_sampleCount;
             return sample;
         }
 

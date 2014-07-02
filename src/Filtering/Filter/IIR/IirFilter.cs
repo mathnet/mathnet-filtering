@@ -44,29 +44,27 @@ namespace MathNet.Filtering.Filter.IIR
     /// </remarks>
     public class OnlineIirFilter : OnlineFilter
     {
-        double[] _leftCoefficients, _rightCoefficients;
-        double[] _buffer;
+        readonly double[] _leftCoefficients;
+        readonly double[] _rightCoefficients;
+        readonly double[] _buffer;
         readonly int _size, _halfSize;
         int _offset;
 
         /// <summary>
         /// Infinite Impulse Response (IIR) Filter.
         /// </summary>
-        public
-        OnlineIirFilter(
-            double[] coefficients
-            )
+        public OnlineIirFilter(double[] coefficients)
         {
-            if(null == coefficients)
+            if (null == coefficients)
                 throw new ArgumentNullException("coefficients");
-            if((coefficients.Length & 1) != 0)
+            if ((coefficients.Length & 1) != 0)
                 throw new ArgumentException(Resources.ArgumentEvenNumberOfCoefficients, "coefficients");
 
             _size = coefficients.Length;
             _halfSize = _size >> 1;
             _leftCoefficients = new double[_size];
             _rightCoefficients = new double[_size];
-            for(int i = 0; i < _halfSize; i++)
+            for (int i = 0; i < _halfSize; i++)
             {
                 _leftCoefficients[i] = _leftCoefficients[_halfSize + i] = coefficients[i];
                 _rightCoefficients[i] = _rightCoefficients[_halfSize + i] = coefficients[_halfSize + i];
@@ -77,25 +75,21 @@ namespace MathNet.Filtering.Filter.IIR
         /// <summary>
         /// Process a single sample.
         /// </summary>
-        public override
-        double
-        ProcessSample(
-            double sample
-            )
+        public override double ProcessSample(double sample)
         {
-            double un = _leftCoefficients[0] * sample;
-            for(int i = 0, j = _halfSize - _offset + 1; i < _halfSize - 1; i++, j++)
+            double un = _leftCoefficients[0]*sample;
+            for (int i = 0, j = _halfSize - _offset + 1; i < _halfSize - 1; i++, j++)
             {
-                un = _buffer[i] * _leftCoefficients[j];
+                un = _buffer[i]*_leftCoefficients[j];
             }
 
             _offset = (_offset != 0) ? _offset - 1 : _halfSize - 1;
-            _buffer[_offset] = un - _buffer[_offset] * _leftCoefficients[1];
+            _buffer[_offset] = un - _buffer[_offset]*_leftCoefficients[1];
 
             double yn = 0d;
-            for(int i = 0, j = _halfSize - _offset; i < _halfSize; i++, j++)
+            for (int i = 0, j = _halfSize - _offset; i < _halfSize; i++, j++)
             {
-                yn += _buffer[i] * _rightCoefficients[j];
+                yn += _buffer[i]*_rightCoefficients[j];
             }
 
             return yn;
@@ -104,11 +98,9 @@ namespace MathNet.Filtering.Filter.IIR
         /// <summary>
         /// Reset internal state (not coefficients!).
         /// </summary>
-        public override
-        void
-        Reset()
+        public override void Reset()
         {
-            for(int i = 0; i < _buffer.Length; i++)
+            for (int i = 0; i < _buffer.Length; i++)
             {
                 _buffer[i] = 0d;
             }

@@ -39,16 +39,13 @@ namespace MathNet.Filtering.Filter.Utils
     {
         readonly int _len, _mid;
         bool _initialized;
-        LinkedList<double> _ordered;
-        LinkedList<LinkedListNode<double>> _shift;
+        readonly LinkedList<double> _ordered;
+        readonly LinkedList<LinkedListNode<double>> _shift;
 
         /// <summary>
         /// Create an ordered shift buffer.
         /// </summary>
-        public
-        OrderedShiftBuffer(
-            int length
-            )
+        public OrderedShiftBuffer(int length)
         {
             _len = length;
             _mid = length >> 1; // 4 items -> 3rd item; 5 items -> 3rd item; 6 items -> 4th item etc.
@@ -83,26 +80,22 @@ namespace MathNet.Filtering.Filter.Utils
         /// <summary>
         /// Append a single sample to the buffer.
         /// </summary>
-        public
-        void
-        Append(
-            double value
-            )
+        public void Append(double value)
         {
-            LinkedListNode<double> node = new LinkedListNode<double>(value);
+            var node = new LinkedListNode<double>(value);
             _shift.AddFirst(node);
-            if(_initialized)
+            if (_initialized)
             {
                 _ordered.Remove(_shift.Last.Value);
                 _shift.RemoveLast();
             }
-            else if(_shift.Count == _len)
+            else if (_shift.Count == _len)
                 _initialized = true;
 
             LinkedListNode<double> next = _ordered.First;
-            while(next != null)
+            while (next != null)
             {
-                if(value > next.Value)
+                if (value > next.Value)
                 {
                     next = next.Next;
                     continue;
@@ -118,9 +111,7 @@ namespace MathNet.Filtering.Filter.Utils
         /// <summary>
         /// Remove all samples from the buffer.
         /// </summary>
-        public
-        void
-        Clear()
+        public void Clear()
         {
             _initialized = false;
             _shift.Clear();
@@ -136,7 +127,7 @@ namespace MathNet.Filtering.Filter.Utils
             {
                 int mid = _initialized ? _mid : (_ordered.Count >> 1);
                 LinkedListNode<double> next = _ordered.First;
-                for(int i = 0; i < mid; i++)
+                for (int i = 0; i < mid; i++)
                 {
                     next = next.Next;
                 }
@@ -152,7 +143,7 @@ namespace MathNet.Filtering.Filter.Utils
             get
             {
                 LinkedListNode<double> item = _ordered.First;
-                while(item != null)
+                while (item != null)
                 {
                     yield return item.Value;
                     item = item.Next;
@@ -168,7 +159,7 @@ namespace MathNet.Filtering.Filter.Utils
             get
             {
                 LinkedListNode<LinkedListNode<double>> item = _shift.First;
-                while(item != null)
+                while (item != null)
                 {
                     yield return item.Value.Value;
                     item = item.Next;

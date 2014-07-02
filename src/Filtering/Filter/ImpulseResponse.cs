@@ -38,6 +38,7 @@ namespace MathNet.Filtering.Filter
         /// Impulse response always has a finite length of time and are stable, but usually have a long delay.
         /// </summary>
         Finite,
+
         /// <summary>
         /// Impulse response may have an infinite length of time and may be unstable, but usually have only a short delay.
         /// </summary>

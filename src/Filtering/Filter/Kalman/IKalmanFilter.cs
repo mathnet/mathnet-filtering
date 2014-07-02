@@ -3,9 +3,9 @@
 // http://mathnet.opensourcedotnet.info
 //
 // Copyright (c) 2008, Matthew Kitchin
-//						
+//
 // This program is free software; you can redistribute it and/or modify
-// it under the terms of the GNU Lesser General Public License as published 
+// it under the terms of the GNU Lesser General Public License as published
 // by the Free Software Foundation; either version 2 of the License, or
 // (at your option) any later version.
 //
@@ -14,7 +14,7 @@
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Lesser General Public License for more details.
 //
-// You should have received a copy of the GNU Lesser General Public 
+// You should have received a copy of the GNU Lesser General Public
 // License along with this program; if not, write to the Free Software
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
@@ -42,18 +42,12 @@ namespace MathNet.Filtering.Filter.Kalman
         /// <summary>
         /// The covariance of the current state estimate.
         /// </summary>
-        Matrix<double> Cov
-        {
-            get;
-        }
+        Matrix<double> Cov { get; }
 
         /// <summary>
         /// The current best estimate of the state of the system.
         /// </summary>
-        Matrix<double> State
-        {
-            get;
-        }
+        Matrix<double> State { get; }
 
         /// <summary>
         /// Performs a prediction of the next state of the system.
@@ -98,20 +92,15 @@ namespace MathNet.Filtering.Filter.Kalman
         /// <exception cref="System.ArgumentException">Thrown when the x0 matrix is not
         /// a column vector, or when the P0 matrix is not a square matrix of the same order
         /// as the number of state variables.</exception>
-        public static
-        void
-        CheckInitialParameters(
-            Matrix<double> x0,
-            Matrix<double> P0
-            )
+        public static void CheckInitialParameters(Matrix<double> x0, Matrix<double> P0)
         {
             // x0 should be a column vector
-            if(x0.ColumnCount != 1)
+            if (x0.ColumnCount != 1)
                 throw new ArgumentException(Resources.KFStateNotColumnVector, "x0");
             // P0 should be square and of same order as x0
-            if(P0.ColumnCount != P0.RowCount)
+            if (P0.ColumnCount != P0.RowCount)
                 throw new ArgumentException(Resources.KFCovarianceNotSquare, "P0");
-            if(P0.ColumnCount != x0.RowCount)
+            if (P0.ColumnCount != x0.RowCount)
                 throw new ArgumentException(Resources.KFCovarianceIncorrectSize, "P0");
         }
 
@@ -129,23 +118,16 @@ namespace MathNet.Filtering.Filter.Kalman
         /// and rows as Q.</item>
         /// <item>Q is non-square.</item>
         /// </list></exception>
-        public static
-        void
-        CheckPredictParameters(
-            Matrix<double> F,
-            Matrix<double> G,
-            Matrix<double> Q,
-            IKalmanFilter filter
-            )
+        public static void CheckPredictParameters(Matrix<double> F, Matrix<double> G, Matrix<double> Q, IKalmanFilter filter)
         {
             // State transition should be n-by-n matrix (n is number of state variables)
-            if((F.ColumnCount != F.RowCount) || (F.ColumnCount != filter.State.RowCount))
+            if ((F.ColumnCount != F.RowCount) || (F.ColumnCount != filter.State.RowCount))
                 throw new ArgumentException(Resources.KFStateTransitionMalformed, "F");
             // Noise coupling should be n-by-p (p is rows in Q)
-            if((G.RowCount != filter.State.RowCount) || (G.ColumnCount != Q.RowCount))
+            if ((G.RowCount != filter.State.RowCount) || (G.ColumnCount != Q.RowCount))
                 throw new ArgumentException(Resources.KFNoiseCouplingMalformed, "G");
             // Noise covariance should be p-by-p
-            if(Q.ColumnCount != Q.RowCount)
+            if (Q.ColumnCount != Q.RowCount)
                 throw new ArgumentException(Resources.KFNoiseCovarianceMalformed, "Q");
         }
 
@@ -158,18 +140,12 @@ namespace MathNet.Filtering.Filter.Kalman
         /// <exception cref="System.ArgumentException">Thrown when either transition
         /// or process noise matrices are non-square and/or have a number of rows/cols not
         /// equal to the number of state variables for the filter.</exception>
-        public static
-        void
-        CheckPredictParameters(
-            Matrix<double> F,
-            Matrix<double> Q,
-            IKalmanFilter filter
-            )
+        public static void CheckPredictParameters(Matrix<double> F, Matrix<double> Q, IKalmanFilter filter)
         {
             // State transition should be n-by-n matrix (n is number of state variables)
-            if((F.ColumnCount != F.RowCount) || (F.ColumnCount != filter.State.RowCount))
+            if ((F.ColumnCount != F.RowCount) || (F.ColumnCount != filter.State.RowCount))
                 throw new ArgumentException(Resources.KFStateTransitionMalformed, "F");
-            if((Q.ColumnCount != Q.RowCount) || (Q.ColumnCount != filter.State.RowCount))
+            if ((Q.ColumnCount != Q.RowCount) || (Q.ColumnCount != filter.State.RowCount))
                 throw new ArgumentException(Resources.KFSquareNoiseCouplingMalformed, "Q");
         }
 
@@ -181,15 +157,10 @@ namespace MathNet.Filtering.Filter.Kalman
         /// <exception cref="System.ArgumentException">Thrown when the transition
         /// matrix is non-square or does not have the same number of rows/cols as there
         /// are state variables in the given filter.</exception>
-        public static
-        void
-        CheckPredictParameters(
-            Matrix<double> F,
-            IKalmanFilter filter
-            )
+        public static void CheckPredictParameters(Matrix<double> F, IKalmanFilter filter)
         {
             // State transition should be n-by-n matrix (n is number of state variables)
-            if((F.ColumnCount != F.RowCount) || (F.ColumnCount != filter.State.RowCount))
+            if ((F.ColumnCount != F.RowCount) || (F.ColumnCount != filter.State.RowCount))
                 throw new ArgumentException(Resources.KFStateTransitionMalformed, "F");
         }
 
@@ -203,20 +174,13 @@ namespace MathNet.Filtering.Filter.Kalman
         /// <list type="bullet"><item>z is not a column vector.</item>
         /// <item>H does not have same number of rows as z and columns as R.</item>
         /// <item>R is non square.</item></list></exception>
-        public static
-        void
-        CheckUpdateParameters(
-            Matrix<double> z,
-            Matrix<double> H,
-            Matrix<double> R,
-            IKalmanFilter filter
-            )
+        public static void CheckUpdateParameters(Matrix<double> z, Matrix<double> H, Matrix<double> R, IKalmanFilter filter)
         {
-            if(z.ColumnCount != 1)
+            if (z.ColumnCount != 1)
                 throw new ArgumentException(Resources.KFMeasurementVectorMalformed, "z");
-            if((H.RowCount != z.RowCount) || (H.ColumnCount != filter.State.RowCount))
+            if ((H.RowCount != z.RowCount) || (H.ColumnCount != filter.State.RowCount))
                 throw new ArgumentException(Resources.KFMeasureSensitivityMalformed, "H");
-            if((R.ColumnCount != R.RowCount) || (R.ColumnCount != z.RowCount))
+            if ((R.ColumnCount != R.RowCount) || (R.ColumnCount != z.RowCount))
                 throw new ArgumentException(Resources.KFMeasureCovarainceMalformed, "R");
         }
     }

@@ -36,8 +36,7 @@ namespace MathNet.Filtering.DataSources
     /// <summary>
     /// Sample source with independent amplitudes of normal distribution and a flat spectral density.
     /// </summary>
-    public class WhiteGaussianNoiseSource :
-        IChannelSource
+    public class WhiteGaussianNoiseSource : IChannelSource
     {
         readonly IContinuousDistribution _distribution;
 
@@ -47,12 +46,7 @@ namespace MathNet.Filtering.DataSources
         /// <param name="uniformWhiteRandomSource">Uniform white random source.</param>
         /// <param name="mean">mu-parameter of the normal distribution</param>
         /// <param name="standardDeviation">sigma-parameter of the normal distribution</param>
-        public
-        WhiteGaussianNoiseSource(
-            Random uniformWhiteRandomSource,
-            double mean,
-            double standardDeviation
-            )
+        public WhiteGaussianNoiseSource(Random uniformWhiteRandomSource, double mean, double standardDeviation)
         {
             _distribution = new Normal(mean, standardDeviation, uniformWhiteRandomSource);
         }
@@ -62,11 +56,7 @@ namespace MathNet.Filtering.DataSources
         /// </summary>
         /// <param name="mean">mu-parameter of the normal distribution</param>
         /// <param name="standardDeviation">sigma-parameter of the normal distribution</param>
-        public
-        WhiteGaussianNoiseSource(
-            double mean,
-            double standardDeviation
-            )
+        public WhiteGaussianNoiseSource(double mean, double standardDeviation)
         {
             // assuming the default random source is white
             _distribution = new Normal(mean, standardDeviation);
@@ -75,8 +65,7 @@ namespace MathNet.Filtering.DataSources
         /// <summary>
         /// Create a gaussian noise source with standard distributed amplitudes.
         /// </summary>
-        public
-        WhiteGaussianNoiseSource()
+        public WhiteGaussianNoiseSource()
         {
             // assuming the default random source is white
             _distribution = new Normal();
@@ -85,9 +74,7 @@ namespace MathNet.Filtering.DataSources
         /// <summary>
         /// Computes and returns the next sample.
         /// </summary>
-        public
-        double
-        ReadNextSample()
+        public double ReadNextSample()
         {
             return _distribution.Sample();
         }
