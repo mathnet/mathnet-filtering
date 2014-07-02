@@ -21,7 +21,7 @@
 
 using System;
 using MathNet.Numerics.LinearAlgebra;
-using MathNet.SignalProcessing.Properties;
+using MathNet.Filtering.Properties;
 
 namespace MathNet.SignalProcessing.Filter.Kalman
 {

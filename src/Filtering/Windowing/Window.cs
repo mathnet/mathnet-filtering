@@ -20,7 +20,7 @@
 #endregion
 
 using System;
-using MathNet.SignalProcessing.Properties;
+using MathNet.Filtering.Properties;
 
 namespace MathNet.SignalProcessing.Windowing
 {
