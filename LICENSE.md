@@ -1,12 +1,14 @@
-Math.NET Neodym, part of the Math.NET Project
-http://mathnet.opensourcedotnet.info
+Math.NET Filtering License (LGPL)
+=================================
 
-Copyright (c) 2001-2009, Christoph Rüegg,  http://christoph.ruegg.name
+Note: most of the library has been re-licensed as MIT/X11
+but we're not complete yet, so the library itself remains
+available under the strict terms of the LGPL for now.
 
-Available under the terms of the GNU Lesser General Public License (LGPL) v2.1 or later.
+Copyright (c) 2002-2014 Math.NET
 
----------------------------------
 GNU Lesser General Public License
+---------------------------------
 Version 2.1, February 1999
 
 Copyright (C) 1991, 1999 Free Software Foundation, Inc.
