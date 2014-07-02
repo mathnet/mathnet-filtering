@@ -21,7 +21,7 @@
 
 using System;
 
-namespace MathNet.SignalProcessing.DataSources
+namespace MathNet.Filtering.DataSources
 {
     /// <summary>
     /// Generators for sinusidual and theoretical signal vectors. 

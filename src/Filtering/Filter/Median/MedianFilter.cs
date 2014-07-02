@@ -20,11 +20,9 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Text;
-using MathNet.SignalProcessing.Filter.Utils;
+using MathNet.Filtering.Filter.Utils;
 
-namespace MathNet.SignalProcessing.Filter.Median
+namespace MathNet.Filtering.Filter.Median
 {
     /// <summary>
     /// Median-Filters are non-linear filters, returning

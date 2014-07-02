@@ -20,15 +20,14 @@
 #endregion
 
 using System;
-using System.IO;
 using System.Collections.Generic;
-using NUnit.Framework;
+using System.IO;
+using MathNet.Filtering.Filter.Kalman;
 using MathNet.Numerics;
 using MathNet.Numerics.LinearAlgebra;
-using MathNet.Numerics.Distributions;
-using MathNet.SignalProcessing.Filter.Kalman;
+using NUnit.Framework;
 
-namespace Neodym.Test
+namespace MathNet.Filtering.UnitTests
 {
 	[TestFixture]
 	public class KalmanFilterTest

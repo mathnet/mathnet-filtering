@@ -21,7 +21,7 @@
 
 using System;
 
-namespace MathNet.SignalProcessing.Filter.Utils
+namespace MathNet.Filtering.Filter.Utils
 {
     /// <summary>
     /// ShiftBuffer is a circular buffer behaving like a shift register (el. engineering)

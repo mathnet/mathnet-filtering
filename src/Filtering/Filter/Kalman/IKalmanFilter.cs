@@ -20,10 +20,10 @@
 #endregion
 
 using System;
-using MathNet.Numerics.LinearAlgebra;
 using MathNet.Filtering.Properties;
+using MathNet.Numerics.LinearAlgebra;
 
-namespace MathNet.SignalProcessing.Filter.Kalman
+namespace MathNet.Filtering.Filter.Kalman
 {
     /// <summary>
     /// <para>An interface to describe a Kalman Filter. A Kalman filter is a

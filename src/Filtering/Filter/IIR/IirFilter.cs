@@ -22,7 +22,7 @@
 using System;
 using MathNet.Filtering.Properties;
 
-namespace MathNet.SignalProcessing.Filter.IIR
+namespace MathNet.Filtering.Filter.IIR
 {
     /// <summary>
     /// Infinite Impulse Response (FIR) Filters need much

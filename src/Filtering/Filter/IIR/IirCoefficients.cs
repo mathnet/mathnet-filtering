@@ -21,7 +21,7 @@
 
 using System;
 
-namespace MathNet.SignalProcessing.Filter.IIR
+namespace MathNet.Filtering.Filter.IIR
 {
     /// <summary>
     /// IirCoefficients provides basic coefficient evaluation

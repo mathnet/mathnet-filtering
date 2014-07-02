@@ -19,11 +19,7 @@
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MathNet.SignalProcessing.Filter
+namespace MathNet.Filtering.Filter
 {
     /// <summary>
     /// Specifies how a filter will respond to an impulse input.

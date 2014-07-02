@@ -21,7 +21,7 @@
 
 using System;
 
-namespace MathNet.SignalProcessing.Filter.FIR
+namespace MathNet.Filtering.Filter.FIR
 {
     /// <summary>
     /// FirCoefficients provides basic coefficient evaluation

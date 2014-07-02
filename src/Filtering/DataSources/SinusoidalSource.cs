@@ -20,12 +20,9 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Text;
+using MathNet.Filtering.Channel;
 
-using MathNet.SignalProcessing.Channel;
-
-namespace MathNet.SignalProcessing.DataSources
+namespace MathNet.Filtering.DataSources
 {
     /// <summary>
     /// Sinus sample source.

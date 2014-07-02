@@ -21,7 +21,7 @@
 
 using MathNet.Numerics.LinearAlgebra;
 
-namespace MathNet.SignalProcessing.Filter.Kalman
+namespace MathNet.Filtering.Filter.Kalman
 {
     /// <summary>
     /// An alternate form of the Discrete Kalman Filter.

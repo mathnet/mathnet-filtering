@@ -21,13 +21,10 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
-
+using MathNet.Filtering.Filter.Utils;
 using NUnit.Framework;
-using MathNet.SignalProcessing;
-using MathNet.SignalProcessing.Filter.Utils;
 
-namespace Neodym.Test
+namespace MathNet.Filtering.UnitTests
 {
     [TestFixture]
     public class OrderedShiftBufferTest
@@ -35,7 +32,7 @@ namespace Neodym.Test
         [Test]
         public void TestInitialize()
         {
-            OrderedShiftBuffer b = new OrderedShiftBuffer(4);
+            var b = new OrderedShiftBuffer(4);
             Assert.AreEqual(4, b.InitializedCount, "A1");
             Assert.AreEqual(0, b.ActualCount, "A2");
             Assert.AreEqual(false, b.IsInitialized, "A3");
@@ -69,7 +66,7 @@ namespace Neodym.Test
         [Test]
         public void TestMedian()
         {
-            OrderedShiftBuffer b = new OrderedShiftBuffer(3);
+            var b = new OrderedShiftBuffer(3);
 
             try
             {
@@ -101,7 +98,7 @@ namespace Neodym.Test
         [Test]
         public void TestIterators()
         {
-            OrderedShiftBuffer b = new OrderedShiftBuffer(3);
+            var b = new OrderedShiftBuffer(3);
             b.Append(4.0);
             b.Append(1.0);
             b.Append(3.0);

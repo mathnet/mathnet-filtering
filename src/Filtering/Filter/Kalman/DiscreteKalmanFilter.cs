@@ -19,10 +19,9 @@
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
 
-using System;
 using MathNet.Numerics.LinearAlgebra;
 
-namespace MathNet.SignalProcessing.Filter.Kalman
+namespace MathNet.Filtering.Filter.Kalman
 {
     /// <summary>
     /// <para>The <c>DiscreteTimeKalmanFilter</c> is generally used in digital computer

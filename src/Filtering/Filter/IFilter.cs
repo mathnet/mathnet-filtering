@@ -19,9 +19,7 @@
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
 
-using System;
-
-namespace MathNet.SignalProcessing.Filter
+namespace MathNet.Filtering.Filter
 {
 	/// <summary>
 	/// An online filter that allows processing samples just in time.

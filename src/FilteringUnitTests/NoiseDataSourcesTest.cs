@@ -21,12 +21,12 @@
 
 using System;
 using System.Numerics;
+using MathNet.Filtering.Channel;
+using MathNet.Filtering.DataSources;
 using MathNet.Numerics.IntegralTransforms;
 using NUnit.Framework;
-using MathNet.SignalProcessing.DataSources;
-using MathNet.SignalProcessing.Channel;
 
-namespace Neodym.Test
+namespace MathNet.Filtering.UnitTests
 {
     [TestFixture]
     public class NoiseDataSourcesTest

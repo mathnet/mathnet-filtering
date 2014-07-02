@@ -20,10 +20,10 @@
 #endregion
 
 using System;
-using MathNet.SignalProcessing.Channel;
+using MathNet.Filtering.Channel;
 using MathNet.Numerics.Distributions;
 
-namespace MathNet.SignalProcessing.DataSources
+namespace MathNet.Filtering.DataSources
 {
     /// <summary>
     /// Sample source with independent amplitudes of normal distribution and a flat spectral density.

@@ -19,10 +19,9 @@
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
 
-using System;
 using System.Collections.Generic;
 
-namespace MathNet.SignalProcessing.Filter.FIR
+namespace MathNet.Filtering.Filter.FIR
 {
     /// <summary>
     /// Finite Impulse Response (FIR) Filters are based on

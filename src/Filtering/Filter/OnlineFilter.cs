@@ -20,10 +20,11 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Text;
+using MathNet.Filtering.Filter.FIR;
+using MathNet.Filtering.Filter.IIR;
+using MathNet.Filtering.Filter.Median;
 
-namespace MathNet.SignalProcessing.Filter
+namespace MathNet.Filtering.Filter
 {
     /// <summary>
     /// Online filters allow processing incomming samples immediately and hence
@@ -46,15 +47,15 @@ namespace MathNet.SignalProcessing.Filter
         {
             if(mode == ImpulseResponse.Finite)
             {
-                double[] c = FIR.FirCoefficients.LowPass(sampleRate, cutoffRate, order >> 1);
-                return new FIR.OnlineFirFilter(c);
+                double[] c = FirCoefficients.LowPass(sampleRate, cutoffRate, order >> 1);
+                return new OnlineFirFilter(c);
             }
 
             if(mode == ImpulseResponse.Infinite)
             {
                 // TODO: investigate (bandwidth)
-                double[] c = IIR.IirCoefficients.LowPass(sampleRate, cutoffRate, cutoffRate);
-                return new IIR.OnlineIirFilter(c);
+                double[] c = IirCoefficients.LowPass(sampleRate, cutoffRate, cutoffRate);
+                return new OnlineIirFilter(c);
             }
 
             throw new ArgumentException("mode");
@@ -95,15 +96,15 @@ namespace MathNet.SignalProcessing.Filter
         {
             if(mode == ImpulseResponse.Finite)
             {
-                double[] c = FIR.FirCoefficients.HighPass(sampleRate, cutoffRate, order >> 1);
-                return new FIR.OnlineFirFilter(c);
+                double[] c = FirCoefficients.HighPass(sampleRate, cutoffRate, order >> 1);
+                return new OnlineFirFilter(c);
             }
 
             if(mode == ImpulseResponse.Infinite)
             {
                 // TODO: investigate (bandwidth)
-                double[] c = IIR.IirCoefficients.HighPass(sampleRate, cutoffRate, cutoffRate);
-                return new IIR.OnlineIirFilter(c);
+                double[] c = IirCoefficients.HighPass(sampleRate, cutoffRate, cutoffRate);
+                return new OnlineIirFilter(c);
             }
 
             throw new ArgumentException("mode");
@@ -145,14 +146,14 @@ namespace MathNet.SignalProcessing.Filter
         {
             if(mode == ImpulseResponse.Finite)
             {
-                double[] c = FIR.FirCoefficients.BandPass(sampleRate, cutoffLowRate, cutoffHighRate, order >> 1);
-                return new FIR.OnlineFirFilter(c);
+                double[] c = FirCoefficients.BandPass(sampleRate, cutoffLowRate, cutoffHighRate, order >> 1);
+                return new OnlineFirFilter(c);
             }
 
             if(mode == ImpulseResponse.Infinite)
             {
-                double[] c = IIR.IirCoefficients.BandPass(sampleRate, cutoffLowRate, cutoffHighRate);
-                return new IIR.OnlineIirFilter(c);
+                double[] c = IirCoefficients.BandPass(sampleRate, cutoffLowRate, cutoffHighRate);
+                return new OnlineIirFilter(c);
             }
 
             throw new ArgumentException("mode");
@@ -196,14 +197,14 @@ namespace MathNet.SignalProcessing.Filter
         {
             if(mode == ImpulseResponse.Finite)
             {
-                double[] c = FIR.FirCoefficients.BandStop(sampleRate, cutoffLowRate, cutoffHighRate, order >> 1);
-                return new FIR.OnlineFirFilter(c);
+                double[] c = FirCoefficients.BandStop(sampleRate, cutoffLowRate, cutoffHighRate, order >> 1);
+                return new OnlineFirFilter(c);
             }
 
             if(mode == ImpulseResponse.Infinite)
             {
-                double[] c = IIR.IirCoefficients.BandStop(sampleRate, cutoffLowRate, cutoffHighRate);
-                return new IIR.OnlineIirFilter(c);
+                double[] c = IirCoefficients.BandStop(sampleRate, cutoffLowRate, cutoffHighRate);
+                return new OnlineIirFilter(c);
             }
 
             throw new ArgumentException("mode");
@@ -246,7 +247,7 @@ namespace MathNet.SignalProcessing.Filter
             int order
             )
         {
-            return new Median.OnlineMedianFilter(order);
+            return new OnlineMedianFilter(order);
         }
         /// <summary>
         /// Create a filter to remove noise in online processing scenarios.

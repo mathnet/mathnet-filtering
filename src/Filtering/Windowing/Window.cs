@@ -22,7 +22,7 @@
 using System;
 using MathNet.Filtering.Properties;
 
-namespace MathNet.SignalProcessing.Windowing
+namespace MathNet.Filtering.Windowing
 {
     /// <summary>
     /// A windowing/apodization function.

@@ -19,11 +19,9 @@
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
 
-using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace MathNet.SignalProcessing.Filter.Utils
+namespace MathNet.Filtering.Filter.Utils
 {
     /// <summary>
     /// A fixed-sized sorted buffer that behaves like a shift register,

@@ -21,7 +21,7 @@
 
 using System;
 
-namespace MathNet.SignalProcessing.Windowing
+namespace MathNet.Filtering.Windowing
 {
     /// <summary>
     /// Gauss window.

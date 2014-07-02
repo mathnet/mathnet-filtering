@@ -19,10 +19,10 @@
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
 
-using MathNet.SignalProcessing.Channel;
+using MathNet.Filtering.Channel;
 using MathNet.Numerics.Distributions;
 
-namespace MathNet.SignalProcessing.DataSources
+namespace MathNet.Filtering.DataSources
 {
     /// <summary>
     /// Adapter for Iridium continuous (random) generators to Neodym channel sources.

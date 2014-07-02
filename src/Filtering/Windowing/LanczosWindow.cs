@@ -19,7 +19,7 @@
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
 
-namespace MathNet.SignalProcessing.Windowing
+namespace MathNet.Filtering.Windowing
 {
     /// <summary>
     /// Lanczos window.
