@@ -19,13 +19,8 @@
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 using MathNet.SignalProcessing.Channel;
 using MathNet.Numerics.Distributions;
-using MathNet.Numerics.RandomSources;
 
 namespace MathNet.SignalProcessing.DataSources
 {
@@ -35,17 +30,17 @@ namespace MathNet.SignalProcessing.DataSources
     public class GeneratorSource :
         IChannelSource
     {
-        IContinuousGenerator _generator;
+        readonly IContinuousDistribution _distribution;
 
         /// <summary>
         /// Create a sample source from a continuous generator.
         /// </summary>
         public
         GeneratorSource(
-            IContinuousGenerator generator
+            IContinuousDistribution distribution
             )
         {
-            _generator = generator;
+            _distribution = distribution;
         }
 
         /// <summary>
@@ -55,7 +50,7 @@ namespace MathNet.SignalProcessing.DataSources
         double
         ReadNextSample()
         {
-            return _generator.NextDouble();
+            return _distribution.Sample();
         }
 
         /// <summary>

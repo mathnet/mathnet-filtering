@@ -19,49 +19,19 @@
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
 
-using System;
-using MathNet.Numerics;
-
 namespace MathNet.SignalProcessing.Windowing
 {
     /// <summary>
     /// Flat top window.
     /// </summary>
-    public class FlatTopWindow :
-        Window
+    public class FlatTopWindow : Window
     {
-        const double _a = 1.0;
-        const double _b = -1.93;
-        const double _c = 1.29;
-        const double _d = -0.388;
-        const double _e = 0.032;
-
         /// <summary>
         /// Windowing function generator implementation.
         /// </summary>
-        protected override
-        double[]
-        ComputeWindowCore(
-            int width
-            )
+        protected override double[] ComputeWindowCore(int width)
         {
-            int last = width - 1;
-            double f = 2.0 * Math.PI / last;
-            double g = 2.0 * f;
-            double h = 3.0 * f;
-            double k = 4.0 * f;
-            double[] w = new double[width];
-
-            for (int i = 0; i < w.Length; i++)
-            {
-                w[i] = _a
-                    + _b * Math.Cos(f * i)
-                    + _c * Math.Cos(g * i)
-                    + _d * Math.Cos(h * i)
-                    + _e * Math.Cos(k * i);
-            }
-
-            return w;
+            return Numerics.Window.FlatTop(width);
         }
     }
 }

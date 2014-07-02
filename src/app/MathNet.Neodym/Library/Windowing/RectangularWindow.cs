@@ -19,34 +19,19 @@
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
 
-using System;
-using MathNet.Numerics;
-
 namespace MathNet.SignalProcessing.Windowing
 {
     /// <summary>
     /// Uniform rectangular (dirichlet) window.
     /// </summary>
-    public class RectangularWindow :
-        Window
+    public class RectangularWindow : Window
     {
         /// <summary>
         /// Windowing function generator implementation.
         /// </summary>
-        protected override
-        double[]
-        ComputeWindowCore(
-            int width
-            )
+        protected override double[] ComputeWindowCore(int width)
         {
-            double[] w = new double[width];
-
-            for (int i = 0; i < w.Length; i++)
-            {
-                w[i] = 1.0;
-            }
-
-            return w;
+            return Numerics.Window.Dirichlet(width);
         }
     }
 }

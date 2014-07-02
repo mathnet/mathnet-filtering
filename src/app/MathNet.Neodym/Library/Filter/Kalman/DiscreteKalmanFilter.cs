@@ -30,7 +30,7 @@ namespace MathNet.SignalProcessing.Filter.Kalman
     /// when the state of the system and updates are available at discrete points
     /// in time.</para>
     /// <para>This is the most general form of the discrete time Kalman Filter.
-    /// Other, more specialised forms are available if discrete measurements are
+    /// Other, more specialized forms are available if discrete measurements are
     /// available at fixed time intervals.</para>
     /// </summary>
     /// <remarks>This implementation uses the most common form of the discrete time
@@ -53,7 +53,7 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         /// The covariance of the current state of the filter. Higher covariances
         /// indicate a lower confidence in the state estimate.
         /// </summary>
-        public Matrix Cov
+        public Matrix<double> Cov
         {
             get { return this.P; }
         }
@@ -61,7 +61,7 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         /// <summary>
         /// The best estimate of the current state of the system.
         /// </summary>
-        public Matrix State
+        public Matrix<double> State
         {
             get { return this.x; }
         }
@@ -73,12 +73,12 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         /// <summary>
         /// The current state of the system.
         /// </summary>
-        protected Matrix x;
+        protected Matrix<double> x;
 
         /// <summary>
         /// The current covariance of the estimated state of the system.
         /// </summary>
-        protected Matrix P;
+        protected Matrix<double> P;
 
         #endregion
 
@@ -93,8 +93,8 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         /// about initial state, set to a large value</param>
         public
         DiscreteKalmanFilter(
-            Matrix x0,
-            Matrix P0
+            Matrix<double> x0,
+            Matrix<double> P0
             )
         {
             KalmanFilter.CheckInitialParameters(x0, P0);
@@ -117,13 +117,13 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         public
         void
         Predict(
-            Matrix F
+            Matrix<double> F
             )
         {
             KalmanFilter.CheckPredictParameters(F, this);
 
             this.x = F * this.x;
-            this.P = (F * P * Matrix.Transpose(F));
+            this.P = (F * P * F.Transpose());
         }
 
         /// <summary>
@@ -141,15 +141,15 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         public
         void
         Predict(
-            Matrix F,
-            Matrix Q
+            Matrix<double> F,
+            Matrix<double> Q
             )
         {
             KalmanFilter.CheckPredictParameters(F, Q, this);
 
             // Predict the state
             this.x = F * x;
-            this.P = (F * P * Matrix.Transpose(F)) + Q;
+            this.P = (F * P * F.Transpose()) + Q;
         }
 
         /// <summary>
@@ -169,17 +169,17 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         public
         void
         Predict(
-            Matrix F,
-            Matrix G,
-            Matrix Q
+            Matrix<double> F,
+            Matrix<double> G,
+            Matrix<double> Q
             )
         {
             KalmanFilter.CheckPredictParameters(F, G, Q, this);
 
             // State prediction
-            this.x = F * x;      
+            this.x = F * x;
             // Covariance update
-            this.P = (F * P * Matrix.Transpose(F)) + (G * Q * Matrix.Transpose(G));
+            this.P = (F * P * F.Transpose()) + (G * Q * G.Transpose());
         }
 
         #endregion
@@ -199,19 +199,19 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         public
         void
         Update(
-            Matrix z,
-            Matrix H,
-            Matrix R
+            Matrix<double> z,
+            Matrix<double> H,
+            Matrix<double> R
             )
         {
             KalmanFilter.CheckUpdateParameters(z, H, R, this);
 
             // We need to use transpose of H a couple of times.
-            Matrix Ht = Matrix.Transpose(H);
-            Matrix I = Matrix.Identity(x.RowCount, x.RowCount);
+            Matrix<double> Ht = H.Transpose();
+            Matrix<double> I = Matrix<double>.Build.DenseIdentity(x.RowCount, x.RowCount);
 
-            Matrix S = (H * P * Ht) + R;          // Measurement covariance
-            Matrix K = P * Ht * S.Inverse();      // Kalman Gain
+            Matrix<double> S = (H * P * Ht) + R;          // Measurement covariance
+            Matrix<double> K = P * Ht * S.Inverse();      // Kalman Gain
             this.P = (I - (K * H)) * P;           // Covariance update
             this.x = this.x + (K * (z - (H * this.x))); // State update
         }

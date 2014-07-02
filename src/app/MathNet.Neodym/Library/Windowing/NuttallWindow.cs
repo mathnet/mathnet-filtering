@@ -19,46 +19,19 @@
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
 
-using System;
-using MathNet.Numerics;
-
 namespace MathNet.SignalProcessing.Windowing
 {
     /// <summary>
     /// Nuttall window.
     /// </summary>
-    public class NuttallWindow :
-        Window
+    public class NuttallWindow : Window
     {
-        const double _a = 0.355768;
-        const double _b = -0.487396;
-        const double _c = 0.144232;
-        const double _d = -0.012604;
-
         /// <summary>
         /// Windowing function generator implementation.
         /// </summary>
-        protected override
-        double[]
-        ComputeWindowCore(
-            int width
-            )
+        protected override double[] ComputeWindowCore(int width)
         {
-            int last = width - 1;
-            double e = 2.0 * Math.PI / last;
-            double f = 2.0 * e;
-            double g = 3.0 * e;
-            double[] w = new double[width];
-
-            for (int i = 0; i < w.Length; i++)
-            {
-                w[i] = _a
-                    + _b * Math.Cos(e * i)
-                    + _c * Math.Cos(f * i)
-                    + _d * Math.Cos(g * i);
-            }
-
-            return w;
+            return Numerics.Window.Nuttall(width);
         }
     }
 }

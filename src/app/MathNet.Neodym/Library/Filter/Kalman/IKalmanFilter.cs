@@ -42,7 +42,7 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         /// <summary>
         /// The covariance of the current state estimate.
         /// </summary>
-        Matrix Cov
+        Matrix<double> Cov
         {
             get;
         }
@@ -50,7 +50,7 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         /// <summary>
         /// The current best estimate of the state of the system.
         /// </summary>
-        Matrix State
+        Matrix<double> State
         {
             get;
         }
@@ -59,7 +59,7 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         /// Performs a prediction of the next state of the system.
         /// </summary>
         /// <param name="F">The state transition matrix.</param>
-        void Predict(Matrix F);
+        void Predict(Matrix<double> F);
 
         /// <summary>
         /// Perform a prediction of the next state of the system.
@@ -68,7 +68,7 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         /// <param name="G">The linear equations to describe the effect of the noise
         /// on the system.</param>
         /// <param name="Q">The covariance of the noise acting on the system.</param>
-        void Predict(Matrix F, Matrix G, Matrix Q);
+        void Predict(Matrix<double> F, Matrix<double> G, Matrix<double> Q);
 
         /// <summary>
         /// Updates the state estimate and covariance of the system based on the
@@ -78,7 +78,7 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         /// <param name="H">Linear equations to describe relationship between
         /// measurements and state variables.</param>
         /// <param name="R">The covariance matrix of the measurements.</param>
-        void Update(Matrix z, Matrix H, Matrix R);
+        void Update(Matrix<double> z, Matrix<double> H, Matrix<double> R);
 
     }
 
@@ -101,8 +101,8 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         public static
         void
         CheckInitialParameters(
-            Matrix x0,
-            Matrix P0
+            Matrix<double> x0,
+            Matrix<double> P0
             )
         {
             // x0 should be a column vector
@@ -132,9 +132,9 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         public static
         void
         CheckPredictParameters(
-            Matrix F,
-            Matrix G,
-            Matrix Q,
+            Matrix<double> F,
+            Matrix<double> G,
+            Matrix<double> Q,
             IKalmanFilter filter
             )
         {
@@ -161,8 +161,8 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         public static
         void
         CheckPredictParameters(
-            Matrix F,
-            Matrix Q,
+            Matrix<double> F,
+            Matrix<double> Q,
             IKalmanFilter filter
             )
         {
@@ -184,7 +184,7 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         public static
         void
         CheckPredictParameters(
-            Matrix F,
+            Matrix<double> F,
             IKalmanFilter filter
             )
         {
@@ -206,9 +206,9 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         public static
         void
         CheckUpdateParameters(
-            Matrix z,
-            Matrix H,
-            Matrix R,
+            Matrix<double> z,
+            Matrix<double> H,
+            Matrix<double> R,
             IKalmanFilter filter
             )
         {

@@ -19,9 +19,6 @@
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
 
-using System;
-using MathNet.Numerics;
-
 namespace MathNet.SignalProcessing.Windowing
 {
     /// <summary>
@@ -30,30 +27,14 @@ namespace MathNet.SignalProcessing.Windowing
     /// <remarks>
     /// Named after Richard Hamming.
     /// </remarks>
-    public class HammingWindow :
-        Window
+    public class HammingWindow : Window
     {
-        const double _a = 0.53836;
-        const double _b = -0.46164;
-
         /// <summary>
         /// Windowing function generator implementation.
         /// </summary>
-        protected override
-        double[]
-        ComputeWindowCore(
-            int width
-            )
+        protected override double[] ComputeWindowCore(int width)
         {
-            double phaseStep = (2.0 * Math.PI) / (width - 1.0);
-            double[] w = new double[width];
-
-            for (int i = 0; i < w.Length; i++)
-            {
-                w[i] = _a + _b * Math.Cos(i * phaseStep);
-            }
-
-            return w;
+            return Numerics.Window.Hamming(width);
         }
     }
 }

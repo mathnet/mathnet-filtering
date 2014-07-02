@@ -19,43 +19,19 @@
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
 
-using System;
-using MathNet.Numerics;
-
 namespace MathNet.SignalProcessing.Windowing
 {
     /// <summary>
     /// Bartlett-Hann window.
     /// </summary>
-    public class BartlettHannWindow :
-        Window
+    public class BartlettHannWindow : Window
     {
-        const double _a = 0.62;
-        const double _b = -0.48;
-        const double _c = -0.38;
-
         /// <summary>
         /// Windowing function generator implementation.
         /// </summary>
-        protected override
-        double[]
-        ComputeWindowCore(
-            int width
-            )
+        protected override double[] ComputeWindowCore(int width)
         {
-            int last = width - 1;
-            double d = 1.0 / last;
-            double e = 2.0 * Math.PI / last;
-            double[] w = new double[width];
-
-            for (int i = 0; i < w.Length; i++)
-            {
-                w[i] = _a
-                    + _b * Math.Abs(i * d - 0.5)
-                    + _c * Math.Cos(i * e);
-            }
-
-            return w;
+            return Numerics.Window.BartlettHann(width);
         }
     }
 }

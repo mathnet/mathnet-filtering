@@ -19,9 +19,6 @@
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
 
-using System;
-using MathNet.Numerics;
-
 namespace MathNet.SignalProcessing.Windowing
 {
     /// <summary>
@@ -30,27 +27,14 @@ namespace MathNet.SignalProcessing.Windowing
     /// <remarks>
     /// Named after Julius von Hann.
     /// </remarks>
-    public class HannWindow :
-        Window
+    public class HannWindow : Window
     {
         /// <summary>
         /// Windowing function generator implementation.
         /// </summary>
-        protected override
-        double[]
-        ComputeWindowCore(
-            int width
-            )
+        protected override double[] ComputeWindowCore(int width)
         {
-            double phaseStep = (2.0 * Math.PI) / (width - 1.0);
-            double[] w = new double[width];
-
-            for (int i = 0; i < w.Length; i++)
-            {
-                w[i] = 0.5 - 0.5 * Math.Cos(i * phaseStep);
-            }
-
-            return w;
+            return Numerics.Window.Hann(width);
         }
     }
 }

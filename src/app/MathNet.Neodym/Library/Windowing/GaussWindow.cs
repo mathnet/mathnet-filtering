@@ -20,15 +20,13 @@
 #endregion
 
 using System;
-using MathNet.Numerics;
 
 namespace MathNet.SignalProcessing.Windowing
 {
     /// <summary>
     /// Gauss window.
     /// </summary>
-    public class GaussWindow :
-        Window
+    public class GaussWindow : Window
     {
         double _sigma;
 
@@ -65,22 +63,9 @@ namespace MathNet.SignalProcessing.Windowing
         /// <summary>
         /// Windowing function generator implementation.
         /// </summary>
-        protected override
-        double[]
-        ComputeWindowCore(
-            int width
-            )
+        protected override double[] ComputeWindowCore(int width)
         {
-            double a = (width - 1) / 2.0;
-            double[] w = new double[width];
-
-            for (int i = 0; i < w.Length; i++)
-            {
-                double exponent = (i - a) / (_sigma * a);
-                w[i] = Math.Exp(-0.5 * exponent * exponent);
-            }
-
-            return w;
+            return Numerics.Window.Gauss(width, _sigma);
         }
     }
 }

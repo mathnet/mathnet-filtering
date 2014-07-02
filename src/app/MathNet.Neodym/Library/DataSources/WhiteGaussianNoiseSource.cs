@@ -20,12 +20,8 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Text;
-
 using MathNet.SignalProcessing.Channel;
 using MathNet.Numerics.Distributions;
-using MathNet.Numerics.RandomSources;
 
 namespace MathNet.SignalProcessing.DataSources
 {
@@ -35,7 +31,7 @@ namespace MathNet.SignalProcessing.DataSources
     public class WhiteGaussianNoiseSource :
         IChannelSource
     {
-        IContinuousGenerator _distribution;
+        readonly IContinuousDistribution _distribution;
 
         /// <summary>
         /// Create a gaussian noise source with normally distributed amplitudes.
@@ -45,14 +41,12 @@ namespace MathNet.SignalProcessing.DataSources
         /// <param name="standardDeviation">sigma-parameter of the normal distribution</param>
         public
         WhiteGaussianNoiseSource(
-            RandomSource uniformWhiteRandomSource,
+            Random uniformWhiteRandomSource,
             double mean,
             double standardDeviation
             )
         {
-            NormalDistribution gaussian = new NormalDistribution(uniformWhiteRandomSource);
-            gaussian.SetDistributionParameters(mean, standardDeviation);
-            _distribution = gaussian;
+            _distribution = new Normal(mean, standardDeviation, uniformWhiteRandomSource);
         }
 
         /// <summary>
@@ -67,7 +61,7 @@ namespace MathNet.SignalProcessing.DataSources
             )
         {
             // assuming the default random source is white
-            _distribution = new NormalDistribution(mean, standardDeviation);
+            _distribution = new Normal(mean, standardDeviation);
         }
 
         /// <summary>
@@ -77,7 +71,7 @@ namespace MathNet.SignalProcessing.DataSources
         WhiteGaussianNoiseSource()
         {
             // assuming the default random source is white
-            _distribution = new StandardDistribution();
+            _distribution = new Normal();
         }
 
         /// <summary>
@@ -87,7 +81,7 @@ namespace MathNet.SignalProcessing.DataSources
         double
         ReadNextSample()
         {
-            return _distribution.NextDouble();
+            return _distribution.Sample();
         }
 
         /// <summary>

@@ -20,12 +20,8 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
-using System.Text;
-
 using MathNet.SignalProcessing.Channel;
 using MathNet.Numerics.Distributions;
-using MathNet.Numerics.RandomSources;
 
 namespace MathNet.SignalProcessing.DataSources
 {
@@ -35,7 +31,7 @@ namespace MathNet.SignalProcessing.DataSources
     public class StableNoiseSource :
         IChannelSource
     {
-        IContinuousGenerator _distribution;
+        readonly IContinuousDistribution _distribution;
 
         /// <summary>
         /// Create a skew alpha stable noise source.
@@ -47,16 +43,14 @@ namespace MathNet.SignalProcessing.DataSources
         /// <param name="skewness">beta-parameter of the stable distribution</param>
         public
         StableNoiseSource(
-            RandomSource uniformWhiteRandomSource,
+            Random uniformWhiteRandomSource,
             double location,
             double scale,
             double exponent,
             double skewness
             )
         {
-            StableDistribution stable = new StableDistribution(uniformWhiteRandomSource);
-            stable.SetDistributionParameters(location, scale, exponent, skewness);
-            _distribution = stable;
+            _distribution = new Stable(exponent, skewness,scale, location, uniformWhiteRandomSource);
         }
 
         /// <summary>
@@ -74,7 +68,7 @@ namespace MathNet.SignalProcessing.DataSources
             double skewness
             )
         {
-            _distribution = new StableDistribution(location, scale, exponent, skewness);
+            _distribution = new Stable(exponent, skewness, scale, location);
         }
 
         /// <summary>
@@ -88,7 +82,7 @@ namespace MathNet.SignalProcessing.DataSources
             double skewness
             )
         {
-            _distribution = new StableDistribution(0.0, 1.0, exponent, skewness);
+            _distribution = new Stable(exponent, skewness, 1.0, 0.0);
         }
 
         /// <summary>
@@ -98,7 +92,7 @@ namespace MathNet.SignalProcessing.DataSources
         double
         ReadNextSample()
         {
-            return _distribution.NextDouble();
+            return _distribution.Sample();
         }
 
         /// <summary>

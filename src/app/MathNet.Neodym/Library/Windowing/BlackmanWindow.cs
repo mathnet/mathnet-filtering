@@ -19,43 +19,19 @@
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
 
-using System;
-using MathNet.Numerics;
-
 namespace MathNet.SignalProcessing.Windowing
 {
     /// <summary>
     /// Blackman window.
     /// </summary>
-    public class BlackmanWindow :
-        Window
+    public class BlackmanWindow : Window
     {
-        const double _alpha = 0.16;
-        const double _a = 0.5 - 0.5 * _alpha;
-        const double _b = 0.5 * _alpha;
-
         /// <summary>
         /// Windowing function generator implementation.
         /// </summary>
-        protected override
-        double[]
-        ComputeWindowCore(
-            int width
-            )
+        protected override double[] ComputeWindowCore(int width)
         {
-            int last = width - 1;
-            double c = 2.0 * Math.PI / last;
-            double d = 2.0 * c;
-            double[] w = new double[width];
-
-            for (int i = 0; i < w.Length; i++)
-            {
-                w[i] = _a
-                    - 0.5 * Math.Cos(i * c)
-                    + _b * Math.Cos(i * d);
-            }
-
-            return w;
+            return Numerics.Window.Blackman(width);
         }
     }
 }

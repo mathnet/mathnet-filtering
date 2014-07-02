@@ -19,35 +19,19 @@
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
 
-using System;
-using MathNet.Numerics;
-
 namespace MathNet.SignalProcessing.Windowing
 {
     /// <summary>
     /// Lanczos window.
     /// </summary>
-    public class LanczosWindow :
-        Window
+    public class LanczosWindow : Window
     {
         /// <summary>
         /// Windowing function generator implementation.
         /// </summary>
-        protected override
-        double[]
-        ComputeWindowCore(
-            int width
-            )
+        protected override double[] ComputeWindowCore(int width)
         {
-            double phaseStep = 2.0 / (width - 1.0);
-            double[] w = new double[width];
-
-            for (int i = 0; i < w.Length; i++)
-            {
-                w[i] = Fn.Sinc(i * phaseStep - 1.0);
-            }
-
-            return w;
+            return Numerics.Window.Lanczos(width);
         }
     }
 }

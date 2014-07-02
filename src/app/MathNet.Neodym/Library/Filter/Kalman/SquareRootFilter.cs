@@ -44,7 +44,7 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         /// <summary>
         /// The estimate of the current state of the system.
         /// </summary>
-        public Matrix State
+        public Matrix<double> State
         {
             get { return this.x; }
         }
@@ -52,9 +52,9 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         /// <summary>
         /// The covariance of the state estimate.
         /// </summary>
-        public Matrix Cov
+        public Matrix<double> Cov
         {
-            get { return (U * D * Matrix.Transpose(U)); }
+            get { return (U * D * U.Transpose()); }
         }
 
         #endregion // Public fields
@@ -68,14 +68,14 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         /// <param name="P0">Covariance of initial state estimate.</param>
         public
         SquareRootFilter(
-            Matrix x0,
-            Matrix P0
+            Matrix<double> x0,
+            Matrix<double> P0
             )
         {
             KalmanFilter.CheckInitialParameters(x0, P0);
 
             // Decompose the covariance matrix
-            Matrix[] UDU = UDUDecomposition(P0);
+            Matrix<double>[] UDU = UDUDecomposition(P0);
             this.U = UDU[0];
             this.D = UDU[1];
             this.x = x0;
@@ -95,13 +95,13 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         public
         void
         Predict(
-            Matrix F
+            Matrix<double> F
             )
         {
             KalmanFilter.CheckPredictParameters(F, this);
 
-            Matrix tmpG = new Matrix(this.x.RowCount, 1, 0.0d);
-            Matrix tmpQ = new Matrix(1, 1, 1.0d);
+            Matrix<double> tmpG = Matrix<double>.Build.Dense(this.x.RowCount, 1);
+            Matrix<double> tmpQ = Matrix<double>.Build.Dense(1, 1, 1.0d);
             this.Predict(F, tmpG, tmpQ);
         }
 
@@ -116,9 +116,9 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         public
         void
         Predict(
-            Matrix F,
-            Matrix G,
-            Matrix Q
+            Matrix<double> F,
+            Matrix<double> G,
+            Matrix<double> Q
             )
         {
             KalmanFilter.CheckPredictParameters(F, G, Q, this);
@@ -129,19 +129,19 @@ namespace MathNet.SignalProcessing.Filter.Kalman
             // Get all the sized and create storage
             int n = this.x.RowCount;
             int p = G.ColumnCount;
-            Matrix outD = new Matrix(n, n);      // Updated diagonal matrix
-            Matrix outU = Matrix.Identity(n, n); // Updated upper unit triangular
+            Matrix<double> outD = Matrix<double>.Build.Dense(n, n);      // Updated diagonal matrix
+            Matrix<double> outU = Matrix<double>.Build.DenseIdentity(n, n); // Updated upper unit triangular
 
             // Get the UD Decomposition of the process noise matrix
-            Matrix[] UDU = UDUDecomposition(Q);
-            Matrix Uq = UDU[0];
-            Matrix Dq = UDU[1];
+            Matrix<double>[] UDU = UDUDecomposition(Q);
+            Matrix<double> Uq = UDU[0];
+            Matrix<double> Dq = UDU[1];
 
             // Combine it with the noise coupling matrix
-            Matrix Gh = G * Uq;
+            Matrix<double> Gh = G * Uq;
 
             // Convert state transition matrix
-            Matrix PhiU = F * (new Matrix(this.U));
+            Matrix<double> PhiU = F * this.U;
 
             // Ready to go..
             for(int i = n - 1; i >= 0; i--)
@@ -202,24 +202,24 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         public
         void
         Update(
-            Matrix z,
-            Matrix H,
-            Matrix R
+            Matrix<double> z,
+            Matrix<double> H,
+            Matrix<double> R
             )
         {
             // Diagonalise the given covariance matrix R
-            Matrix[] UDU = UDUDecomposition(R);
-            Matrix RU = UDU[0];
-            Matrix RD = UDU[1];
-            Matrix iRU = RU.Inverse();
-            Matrix zh = iRU * z;
-            Matrix Hh = iRU * H;
+            Matrix<double>[] UDU = UDUDecomposition(R);
+            Matrix<double> RU = UDU[0];
+            Matrix<double> RD = UDU[1];
+            Matrix<double> iRU = RU.Inverse();
+            Matrix<double> zh = iRU * z;
+            Matrix<double> Hh = iRU * H;
 
             // Perform a scalar update for each measurement
             for(int i = 0; i < z.RowCount; i++)
             {
                 // Get submatrix of H
-                Matrix subH = Hh.GetMatrix(i, i, 0, Hh.ColumnCount - 1);
+                Matrix<double> subH = Hh.SubMatrix(i, 1, 0, Hh.ColumnCount);
                 this.Update(zh[i, 0], subH, RD[i, i]);
             }
         }
@@ -227,12 +227,12 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         void
         Update(
             double z,
-            Matrix H,
+            Matrix<double> H,
             double R
             )
         {
-            Matrix a = Matrix.Transpose(U) * Matrix.Transpose(H);
-            Matrix b = this.D * a;
+            Matrix<double> a = U.Transpose() * H.Transpose();
+            Matrix<double> b = this.D * a;
             double dz = (z - (H * this.x)[0, 0]);
             double alpha = R;
             double gamma = 1d / alpha;
@@ -260,16 +260,16 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         #region UDU Decomposition
 
         static
-        Matrix[]
+        Matrix<double>[]
         UDUDecomposition(
-            Matrix Arg
+            Matrix<double> Arg
             )
         {
             // Initialise some values
             int n = Arg.RowCount;     // Number of elements in matrix
             double sigma;             // Temporary value
-            double[][] aU = Matrix.CreateMatrixData(n, n);
-            double[][] aD = Matrix.CreateMatrixData(n, n);
+            double[,] aU = new double[n,n];
+            double[,] aD = new double[n, n];
 
             for(int j = n - 1; j >= 0; j--)
             {
@@ -278,24 +278,24 @@ namespace MathNet.SignalProcessing.Filter.Kalman
                     sigma = Arg[i, j];
                     for(int k = j + 1; k < n; k++)
                     {
-                        sigma = sigma - (aU[i][k] * aD[k][k] * aU[j][k]);
+                        sigma = sigma - (aU[i,k] * aD[k,k] * aU[j,k]);
                     }
                     if(i == j)
                     {
-                        aD[j][j] = sigma;
-                        aU[j][j] = 1d;
+                        aD[j,j] = sigma;
+                        aU[j,j] = 1d;
                     }
                     else
                     {
-                        aU[i][j] = sigma / aD[j][j];
+                        aU[i,j] = sigma / aD[j,j];
                     }
                 }
             }
 
             // Create the output... first Matrix is L, next is D
-            Matrix[] outMats = new Matrix[2];
-            outMats[0] = new Matrix(aU);
-            outMats[1] = new Matrix(aD);
+            var outMats = new Matrix<double>[2];
+            outMats[0] = Matrix<double>.Build.DenseOfArray(aU);
+            outMats[1] = Matrix<double>.Build.DenseOfArray(aD);
             return outMats;
         }
 
@@ -306,17 +306,17 @@ namespace MathNet.SignalProcessing.Filter.Kalman
         /// <summary>
         /// Upper unit triangular matrix of decomposed covariance.
         /// </summary>
-        protected Matrix U;
+        protected Matrix<double> U;
 
         /// <summary>
         /// Diagonal matrix of decomposed covariance.
         /// </summary>
-        protected Matrix D;
+        protected Matrix<double> D;
 
         /// <summary>
         /// State estimate of system.
         /// </summary>
-        protected Matrix x;
+        protected Matrix<double> x;
 
         #endregion // Protected Members
     }

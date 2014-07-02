@@ -19,35 +19,19 @@
 // Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #endregion
 
-using System;
-using MathNet.Numerics;
-
 namespace MathNet.SignalProcessing.Windowing
 {
     /// <summary>
     /// Cosine window.
     /// </summary>
-    public class CosineWindow :
-        Window
+    public class CosineWindow : Window
     {
         /// <summary>
         /// Windowing function generator implementation.
         /// </summary>
-        protected override
-        double[]
-        ComputeWindowCore(
-            int width
-            )
+        protected override double[] ComputeWindowCore(int width)
         {
-            double phaseStep = Math.PI / (width - 1.0);
-            double[] w = new double[width];
-
-            for (int i = 0; i < w.Length; i++)
-            {
-                w[i] = Math.Sin(i * phaseStep);
-            }
-
-            return w;
+            return Numerics.Window.Cosine(width);
         }
     }
 }
