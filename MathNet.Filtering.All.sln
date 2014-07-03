@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Filtering", "src\Filtering\Filtering.csproj", "{5B1D0091-5B3B-4F66-A296-3BCF431FCF15}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilteringUnitTests", "src\FilteringUnitTests\FilteringUnitTests.csproj", "{F643F4B3-9190-44AD-B0A5-6045528C5917}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{010B4B67-1891-4822-A345-79AC23B9AA2C}"
+	ProjectSection(SolutionItems) = preProject
+		build.fsx = build.fsx
+		build\MathNet.Filtering.Extension.nuspec = build\MathNet.Filtering.Extension.nuspec
+		build\MathNet.Filtering.nuspec = build\MathNet.Filtering.nuspec
+		build\packages.config = build\packages.config
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Readme", "Readme", "{A253EF4A-4CAF-487B-A552-A9C0E75E8635}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{61E84DAB-716F-4EA7-9BB2-7EFD6939EF74}"
+	ProjectSection(SolutionItems) = preProject
+		docs\content\index.fsx = docs\content\index.fsx
+		docs\tools\templates\template.cshtml = docs\tools\templates\template.cshtml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{4C4EE798-5722-4E45-BDEF-9C5E740A0AD1}"
+	ProjectSection(SolutionItems) = preProject
+		docs\tools\build-docs.fsx = docs\tools\build-docs.fsx
+		docs\tools\packages.config = docs\tools\packages.config
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5B1D0091-5B3B-4F66-A296-3BCF431FCF15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B1D0091-5B3B-4F66-A296-3BCF431FCF15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B1D0091-5B3B-4F66-A296-3BCF431FCF15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B1D0091-5B3B-4F66-A296-3BCF431FCF15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F643F4B3-9190-44AD-B0A5-6045528C5917}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F643F4B3-9190-44AD-B0A5-6045528C5917}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F643F4B3-9190-44AD-B0A5-6045528C5917}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F643F4B3-9190-44AD-B0A5-6045528C5917}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4C4EE798-5722-4E45-BDEF-9C5E740A0AD1} = {010B4B67-1891-4822-A345-79AC23B9AA2C}
+	EndGlobalSection
+EndGlobal

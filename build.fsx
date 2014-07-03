@@ -83,8 +83,8 @@ let filteringPack =
       Description = description + support
       ReleaseNotes = releaseNotes
       Tags = tags
-      Authors = [ "Christoph Ruegg"; "Johan Larsson" ]
-      Dependencies = []
+      Authors = [ "Christoph Ruegg" ]
+      Dependencies = getDependencies "src/Filtering/packages.config"
       Files = [ @"..\..\out\lib\Net35\MathNet.Filtering.*", Some libnet35, None;
                 @"..\..\out\lib\Net40\MathNet.Filtering.*", Some libnet40, None;
                 @"..\..\out\lib\Profile47\MathNet.Filtering.*", Some libpcl47, None;
@@ -214,7 +214,7 @@ let zip zipDir filesDir filesFilter bundle =
 
 Target "Zip" (fun _ ->
     CleanDir "out/packages/Zip"
-    coreBundle |> zip "out/packages/Zip" "out/lib" (fun f -> f.Contains("MathNet.Filtering.")))
+    coreBundle |> zip "out/packages/Zip" "out/lib" (fun f -> f.Contains("MathNet.Filtering.") || f.Contains("MathNet.Numerics.")))
 "Build" ==> "Zip"
 
 
