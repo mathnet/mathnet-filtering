@@ -41,16 +41,13 @@ namespace MathNet.Filtering.Windowing
         /// <summary>
         /// Create a new gauss window.
         /// </summary>
-        public
-        GaussWindow(
-            double sigma
-            )
+        public GaussWindow(double sigma)
         {
             _sigma = sigma;
         }
 
         /// <summary>
-        /// Sigma (standard distribution of the gaussian distribution).
+        /// Sigma (standard distribution of the Gaussian distribution).
         /// </summary>
         /// <exception cref="ArgumentOutOfRangeException"/>
         public double Sigma

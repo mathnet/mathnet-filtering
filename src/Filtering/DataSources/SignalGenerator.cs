@@ -32,7 +32,7 @@ using System;
 namespace MathNet.Filtering.DataSources
 {
     /// <summary>
-    /// Generators for sinusidual and theoretical signal vectors.
+    /// Generators for sinusoidal and theoretical signal vectors.
     /// </summary>
     public static class SignalGenerator
     {
@@ -48,10 +48,12 @@ namespace MathNet.Filtering.DataSources
         {
             double[] data = new double[length];
             double step = frequency/samplingRate*2*Math.PI;
+
             for (int i = 0; i < length; i++)
             {
                 data[i] = amplitude*Math.Sin(phase + i*step);
             }
+
             return data;
         }
 
@@ -65,14 +67,17 @@ namespace MathNet.Filtering.DataSources
         {
             var data = new double[length];
             int cursor;
+
             for (cursor = 0; cursor < offset && cursor < length; cursor++)
             {
                 data[cursor] = 0d;
             }
+
             for (; cursor < length; cursor++)
             {
                 data[cursor] = amplitude;
             }
+
             return data;
         }
 
@@ -86,6 +91,7 @@ namespace MathNet.Filtering.DataSources
         public static double[] Impulse(int offset, int frequency, double amplitude, int length)
         {
             var data = new double[length];
+
             if (frequency <= 0)
             {
                 data[offset] = amplitude;
@@ -98,6 +104,7 @@ namespace MathNet.Filtering.DataSources
                     offset += frequency;
                 }
             }
+
             return data;
         }
     }

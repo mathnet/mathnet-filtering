@@ -55,7 +55,9 @@ namespace MathNet.Filtering.Filter.Utils
         public ShiftBuffer(double[] buffer)
         {
             if (null == buffer)
+            {
                 throw new ArgumentNullException("buffer");
+            }
 
             _size = buffer.Length;
             _buffer = buffer;
@@ -82,44 +84,51 @@ namespace MathNet.Filtering.Filter.Utils
         /// <summary>
         /// Discrete Convolution. Evaluates the classic MAC operation to another buffer/vector (looped).
         /// </summary>
-        /// <returns>The sum of the memberwiese sample products, sum(a[i]*b[i],i=0..size)</returns>
+        /// <returns>The sum of the member-wise sample products, sum(a[i]*b[i],i=0..size)</returns>
         public double MultiplyAccumulate(double[] samples)
         {
             if (null == samples)
+            {
                 throw new ArgumentNullException("samples");
+            }
 
             int len = Math.Min(samples.Length, _size);
             double sum = 0;
             int j = _offset;
+
             for (int i = 0; i < len; i++)
             {
                 sum += samples[i]*_buffer[j];
                 j = (j + 1)%_size;
             }
+
             return sum;
         }
 
         /// <summary>
         /// Discrete Convolution. Evaluates the classic MAC operation to another buffer/vector (looped).
         /// </summary>
-        /// <returns>The sum of the memberwiese sample products, sum(a[i]*b[i],i=0..size)</returns>
+        /// <returns>The sum of the member-wise sample products, sum(a[i]*b[i],i=0..size)</returns>
         public double MultiplyAccumulate(double[] samples, int sampleOffset, int count)
         {
             if (null == samples)
+            {
                 throw new ArgumentNullException("samples");
+            }
 
             int end = Math.Min(
                 Math.Min(samples.Length, _size + sampleOffset),
-                count + sampleOffset
-                );
+                count + sampleOffset);
 
             double sum = 0;
             int j = _offset;
+
             for (int i = sampleOffset; i < end; i++)
             {
                 sum += samples[i]*_buffer[j];
                 j = (j + 1)%_size;
             }
+
             return sum;
         }
 

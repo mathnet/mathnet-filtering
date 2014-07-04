@@ -48,11 +48,19 @@ namespace MathNet.Filtering.DataSources
         public ArbitraryPeriodicSource(double[] samples, int indexOffset, int delay)
         {
             if (null == samples)
+            {
                 throw new ArgumentNullException("samples");
+            }
+
             if (0 == samples.Length)
+            {
                 throw new ArgumentOutOfRangeException("samples");
+            }
+
             if (indexOffset < 0 || indexOffset >= samples.Length)
+            {
                 throw new ArgumentOutOfRangeException("indexOffset");
+            }
 
             _samples = samples;
             _sampleCount = samples.Length;

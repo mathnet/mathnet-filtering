@@ -49,7 +49,7 @@ namespace MathNet.Filtering.Filter.Kalman
         /// </summary>
         public Matrix<double> Cov
         {
-            get { return (U*D*U.Transpose()); }
+            get { return U*D*U.Transpose(); }
         }
 
         /// <summary>
@@ -121,38 +121,48 @@ namespace MathNet.Filtering.Filter.Kalman
             {
                 // Update the i'th diagonal of the covariance matrix
                 double sigma = 0.0d;
+
                 for (int j = 0; j < n; j++)
                 {
                     sigma = sigma + (PhiU[i, j]*PhiU[i, j]*D[j, j]);
                 }
+
                 for (int j = 0; j < p; j++)
                 {
                     sigma = sigma + (Gh[i, j]*Gh[i, j]*Dq[j, j]);
                 }
+
                 outD[i, i] = sigma;
+
                 // Update the i'th row of the upper triangular of covariance
                 for (int j = 0; j < i; j++)
                 {
                     sigma = 0.0d;
+
                     for (int k = 0; k < n; k++)
                     {
                         sigma = sigma + (PhiU[i, k]*D[k, k]*PhiU[j, k]);
                     }
+
                     for (int k = 0; k < p; k++)
                     {
                         sigma = sigma + (Gh[i, k]*Dq[k, k]*Gh[j, k]);
                     }
+
                     outU[j, i] = sigma/outD[i, i];
+
                     for (int k = 0; k < n; k++)
                     {
                         PhiU[j, k] = PhiU[j, k] - (outU[j, i]*PhiU[i, k]);
                     }
+
                     for (int k = 0; k < p; k++)
                     {
                         Gh[j, k] = Gh[j, k] - (outU[j, i]*Gh[i, k]);
                     }
                 }
             }
+
             // Update the covariance
             U = outU;
             D = outD;
@@ -170,7 +180,7 @@ namespace MathNet.Filtering.Filter.Kalman
         /// are of the incorrect size.</exception>
         public void Update(Matrix<double> z, Matrix<double> H, Matrix<double> R)
         {
-            // Diagonalise the given covariance matrix R
+            // Diagonalize the given covariance matrix R
             Matrix<double>[] UDU = UDUDecomposition(R);
             Matrix<double> RU = UDU[0];
             Matrix<double> RD = UDU[1];
@@ -181,7 +191,7 @@ namespace MathNet.Filtering.Filter.Kalman
             // Perform a scalar update for each measurement
             for (int i = 0; i < z.RowCount; i++)
             {
-                // Get submatrix of H
+                // Get sub-matrix of H
                 Matrix<double> subH = Hh.SubMatrix(i, 1, 0, Hh.ColumnCount);
                 Update(zh[i, 0], subH, RD[i, i]);
             }
@@ -191,7 +201,7 @@ namespace MathNet.Filtering.Filter.Kalman
         {
             Matrix<double> a = U.Transpose()*H.Transpose();
             Matrix<double> b = D*a;
-            double dz = (z - (H*x)[0, 0]);
+            double dz = z - (H*x)[0, 0];
             double alpha = R;
             double gamma = 1d/alpha;
 
@@ -202,6 +212,7 @@ namespace MathNet.Filtering.Filter.Kalman
                 double lambda = -a[j, 0]*gamma;
                 gamma = 1d/alpha;
                 D[j, j] = beta*gamma*D[j, j];
+
                 for (int i = 0; i < j; i++)
                 {
                     beta = U[i, j];
@@ -209,13 +220,14 @@ namespace MathNet.Filtering.Filter.Kalman
                     b[i, 0] = b[i, 0] + (b[j, 0]*beta);
                 }
             }
+
             double dzs = gamma*dz;
             x = x + (dzs*b);
         }
 
         static Matrix<double>[] UDUDecomposition(Matrix<double> Arg)
         {
-            // Initialise some values
+            // Initialize some values
             int n = Arg.RowCount; // Number of elements in matrix
             double sigma; // Temporary value
             double[,] aU = new double[n, n];
@@ -226,10 +238,12 @@ namespace MathNet.Filtering.Filter.Kalman
                 for (int i = j; i >= 0; i--)
                 {
                     sigma = Arg[i, j];
+
                     for (int k = j + 1; k < n; k++)
                     {
                         sigma = sigma - (aU[i, k]*aD[k, k]*aU[j, k]);
                     }
+
                     if (i == j)
                     {
                         aD[j, j] = sigma;

@@ -65,7 +65,7 @@ namespace MathNet.Filtering.DataSources
         }
 
         /// <summary>
-        /// Creates a pre-computed sinus sample source with the given parameters and zero mean.
+        /// Creates a precomputed sinus sample source with the given parameters and zero mean.
         /// </summary>
         public static IChannelSource Precompute(int samplesPerPeriod, double amplitude, double phase)
         {
@@ -74,14 +74,13 @@ namespace MathNet.Filtering.DataSources
                 1.0, // frequency
                 phase,
                 amplitude,
-                samplesPerPeriod // length
-                );
+                samplesPerPeriod); // length
 
             return new ArbitraryPeriodicSource(samples);
         }
 
         /// <summary>
-        /// Creates a pre-computed sinus sample source with the given parameters and zero phase and mean.
+        /// Creates a precomputed sinus sample source with the given parameters and zero phase and mean.
         /// </summary>
         public static IChannelSource Precompute(int samplesPerPeriod, double amplitude)
         {
@@ -96,10 +95,12 @@ namespace MathNet.Filtering.DataSources
             double sample = _mean + _amplitude*Math.Sin(_nextPhase);
             _nextPhase += _phaseStep;
             double pi2 = Constants.Pi2;
+
             if (_nextPhase > pi2)
             {
                 _nextPhase -= pi2;
             }
+
             return sample;
         }
 

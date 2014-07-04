@@ -40,12 +40,12 @@ namespace MathNet.Filtering.Filter.IIR
     /// Filter implements the canonic Direct Form II structure.
     /// </summary>
     /// <remarks>
-    /// System Descripton: H(z) = (b0 + b1*z^-1 + b2*z^-2) / (1 + a1*z^-1 + a2*z^-2)
+    /// System Description: H(z) = (b0 + b1*z^-1 + b2*z^-2) / (1 + a1*z^-1 + a2*z^-2)
     /// </remarks>
     public class OnlineIirFilter : OnlineFilter
     {
-        readonly double[] _bCoefficients;
-        readonly double[] _aCoefficients;
+        readonly double[] _b;
+        readonly double[] _a;
         readonly double[] _bufferX;
         readonly double[] _bufferY;
         readonly int _halfSize;
@@ -57,19 +57,26 @@ namespace MathNet.Filtering.Filter.IIR
         public OnlineIirFilter(double[] coefficients)
         {
             if (null == coefficients)
+            {
                 throw new ArgumentNullException("coefficients");
+            }
+
             if ((coefficients.Length & 1) != 0)
+            {
                 throw new ArgumentException(Resources.ArgumentEvenNumberOfCoefficients, "coefficients");
+            }
 
             int size = coefficients.Length;
             _halfSize = size >> 1;
-            _bCoefficients = new double[size];
-            _aCoefficients = new double[size];
+            _b = new double[size];
+            _a = new double[size];
+
             for (int i = 0; i < _halfSize; i++)
             {
-                _bCoefficients[i] = _bCoefficients[_halfSize + i] = coefficients[i];
-                _aCoefficients[i] = _aCoefficients[_halfSize + i] = coefficients[_halfSize + i];
+                _b[i] = _b[_halfSize + i] = coefficients[i];
+                _a[i] = _a[_halfSize + i] = coefficients[_halfSize + i];
             }
+
             _bufferX = new double[size];
             _bufferY = new double[size];
         }
@@ -83,14 +90,17 @@ namespace MathNet.Filtering.Filter.IIR
             _bufferX[_offset] = sample;
             _bufferY[_offset] = 0d;
             double yn = 0d;
+
             for (int i = 0, j = _halfSize - _offset; i < _halfSize; i++, j++)
             {
-                yn += _bufferX[i]*_bCoefficients[j];
+                yn += _bufferX[i]*_b[j];
             }
+
             for (int i = 0, j = _halfSize - _offset; i < _halfSize; i++, j++)
             {
-                yn -= _bufferY[i]*_aCoefficients[j];
+                yn -= _bufferY[i]*_a[j];
             }
+
             _bufferY[_offset] = yn;
             return yn;
         }

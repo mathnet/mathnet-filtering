@@ -56,16 +56,14 @@ namespace MathNet.Filtering.Filter.IIR
                 samplingRate,
                 cutoff,
                 0d, // lowHalfPower
-                width // highHalfPower
-                );
+                width); // highHalfPower
 
             return BuildCoefficients(
                 beta,
                 gamma,
                 (0.5d + beta - gamma)*0.25d, // alpha
                 2, // mu
-                1 // sigma
-                );
+                1); // sigma
         }
 
         /// <summary>
@@ -86,16 +84,14 @@ namespace MathNet.Filtering.Filter.IIR
                 samplingRate,
                 cutoff,
                 0d, // lowHalfPower
-                width // highHalfPower
-                );
+                width); // highHalfPower
 
             return BuildCoefficients(
                 beta,
                 gamma,
                 (0.5d + beta + gamma)*0.25d, // alpha
                 -2, // mu
-                1 // sigmas
-                );
+                1); // sigmas
         }
 
         /// <summary>
@@ -116,16 +112,14 @@ namespace MathNet.Filtering.Filter.IIR
                 samplingRate,
                 (cutoffLow + cutoffHigh)*0.5d, // cutoff
                 cutoffLow, // lowHalfPower
-                cutoffHigh // highHalfPower
-                );
+                cutoffHigh); // highHalfPower
 
             return BuildCoefficients(
                 beta,
                 gamma,
                 (0.5d - beta)*0.5d, // alpha
                 0, // mu
-                -1 // sigma
-                );
+                -1); // sigma
         }
 
         /// <summary>
@@ -146,16 +140,14 @@ namespace MathNet.Filtering.Filter.IIR
                 samplingRate,
                 (cutoffLow + cutoffHigh)*0.5d, // cutoff
                 cutoffLow, // lowHalfPower
-                cutoffHigh // highHalfPower
-                );
+                cutoffHigh); // highHalfPower
 
             return BuildCoefficients(
                 beta,
                 gamma,
                 (0.5d + beta)*0.5d, // alpha
                 -2*Math.Cos(theta), // mu
-                1 // sigma
-                );
+                1); // sigma
         }
 
         static double[] BuildCoefficients(double beta, double gamma, double alpha, double mu, double sigma)
@@ -178,6 +170,5 @@ namespace MathNet.Filtering.Filter.IIR
             theta = 2*Math.PI*cutoff/sampling;
             gamma = (0.5d + beta)*Math.Cos(theta);
         }
-
     }
 }

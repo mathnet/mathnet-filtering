@@ -28,7 +28,7 @@ namespace MathNet.Filtering.Filter.Kalman
     /// <summary>
     /// <para>An interface to describe a Kalman Filter. A Kalman filter is a
     /// recursive solution to the general dynamic estimation problem for the
-    /// important special case of linear system models and gaussian noise.
+    /// important special case of linear system models and Gaussian noise.
     /// </para>
     /// <para>The Kalman Filter uses a predictor-corrector structure, in which
     /// if a measurement of the system is available at time <italic>t</italic>,
@@ -38,7 +38,6 @@ namespace MathNet.Filtering.Filter.Kalman
     /// </summary>
     public interface IKalmanFilter
     {
-
         /// <summary>
         /// The covariance of the current state estimate.
         /// </summary>
@@ -73,7 +72,6 @@ namespace MathNet.Filtering.Filter.Kalman
         /// measurements and state variables.</param>
         /// <param name="R">The covariance matrix of the measurements.</param>
         void Update(Matrix<double> z, Matrix<double> H, Matrix<double> R);
-
     }
 
     /// <summary>
@@ -82,7 +80,6 @@ namespace MathNet.Filtering.Filter.Kalman
     /// </summary>
     internal abstract class KalmanFilter
     {
-
         /// <summary>
         /// Checks that a state vector and covariance matrix are of the correct
         /// dimensions.
@@ -96,12 +93,20 @@ namespace MathNet.Filtering.Filter.Kalman
         {
             // x0 should be a column vector
             if (x0.ColumnCount != 1)
+            {
                 throw new ArgumentException(Resources.KFStateNotColumnVector, "x0");
+            }
+
             // P0 should be square and of same order as x0
             if (P0.ColumnCount != P0.RowCount)
+            {
                 throw new ArgumentException(Resources.KFCovarianceNotSquare, "P0");
+            }
+
             if (P0.ColumnCount != x0.RowCount)
+            {
                 throw new ArgumentException(Resources.KFCovarianceIncorrectSize, "P0");
+            }
         }
 
         /// <summary>
@@ -122,13 +127,21 @@ namespace MathNet.Filtering.Filter.Kalman
         {
             // State transition should be n-by-n matrix (n is number of state variables)
             if ((F.ColumnCount != F.RowCount) || (F.ColumnCount != filter.State.RowCount))
+            {
                 throw new ArgumentException(Resources.KFStateTransitionMalformed, "F");
+            }
+
             // Noise coupling should be n-by-p (p is rows in Q)
             if ((G.RowCount != filter.State.RowCount) || (G.ColumnCount != Q.RowCount))
+            {
                 throw new ArgumentException(Resources.KFNoiseCouplingMalformed, "G");
+            }
+
             // Noise covariance should be p-by-p
             if (Q.ColumnCount != Q.RowCount)
+            {
                 throw new ArgumentException(Resources.KFNoiseCovarianceMalformed, "Q");
+            }
         }
 
         /// <summary>
@@ -144,9 +157,14 @@ namespace MathNet.Filtering.Filter.Kalman
         {
             // State transition should be n-by-n matrix (n is number of state variables)
             if ((F.ColumnCount != F.RowCount) || (F.ColumnCount != filter.State.RowCount))
+            {
                 throw new ArgumentException(Resources.KFStateTransitionMalformed, "F");
+            }
+
             if ((Q.ColumnCount != Q.RowCount) || (Q.ColumnCount != filter.State.RowCount))
+            {
                 throw new ArgumentException(Resources.KFSquareNoiseCouplingMalformed, "Q");
+            }
         }
 
         /// <summary>
@@ -161,7 +179,9 @@ namespace MathNet.Filtering.Filter.Kalman
         {
             // State transition should be n-by-n matrix (n is number of state variables)
             if ((F.ColumnCount != F.RowCount) || (F.ColumnCount != filter.State.RowCount))
+            {
                 throw new ArgumentException(Resources.KFStateTransitionMalformed, "F");
+            }
         }
 
         /// <summary>
@@ -177,11 +197,19 @@ namespace MathNet.Filtering.Filter.Kalman
         public static void CheckUpdateParameters(Matrix<double> z, Matrix<double> H, Matrix<double> R, IKalmanFilter filter)
         {
             if (z.ColumnCount != 1)
+            {
                 throw new ArgumentException(Resources.KFMeasurementVectorMalformed, "z");
+            }
+
             if ((H.RowCount != z.RowCount) || (H.ColumnCount != filter.State.RowCount))
+            {
                 throw new ArgumentException(Resources.KFMeasureSensitivityMalformed, "H");
+            }
+
             if ((R.ColumnCount != R.RowCount) || (R.ColumnCount != z.RowCount))
+            {
                 throw new ArgumentException(Resources.KFMeasureCovarainceMalformed, "R");
+            }
         }
     }
 }

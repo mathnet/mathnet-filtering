@@ -43,20 +43,22 @@ namespace MathNet.Filtering.Filter.FIR
         /// </summary>
         /// <param name="samplingRate">Samples per unit.</param>
         /// <param name="cutoff">Cutoff frequency in samples per unit.</param>
-        /// <param name="halforder">halforder Q, so that Order N = 2*Q+1. Usually between 20 and 150.</param>
+        /// <param name="halforder">half-order Q, so that Order N = 2*Q+1. Usually between 20 and 150.</param>
         /// <returns>The calculated filter coefficients.</returns>
         public static double[] LowPass(double samplingRate, double cutoff, int halforder)
         {
-            double nu = 2d*cutoff/samplingRate; //normalized frequency
+            double nu = 2d*cutoff/samplingRate; // normalized frequency
             int order = 2*halforder + 1;
             var c = new double[order];
             c[halforder] = nu;
+
             for (int i = 0, n = halforder; i < halforder; i++, n--)
             {
                 double npi = n*Math.PI;
                 c[i] = Math.Sin(npi*nu)/npi;
                 c[n + halforder] = c[i];
             }
+
             return c;
         }
 
@@ -65,20 +67,22 @@ namespace MathNet.Filtering.Filter.FIR
         /// </summary>
         /// <param name="samplingRate">Samples per unit.</param>
         /// <param name="cutoff">Cutoff frequency in samples per unit.</param>
-        /// <param name="halforder">halforder Q, so that Order N = 2*Q+1</param>
+        /// <param name="halforder">half-order Q, so that Order N = 2*Q+1</param>
         /// <returns>The calculated filter coefficients.</returns>
         public static double[] HighPass(double samplingRate, double cutoff, int halforder)
         {
-            double nu = 2d*cutoff/samplingRate; //normalized frequency
+            double nu = 2d*cutoff/samplingRate; // normalized frequency
             int order = 2*halforder + 1;
             var c = new double[order];
             c[halforder] = 1 - nu;
+
             for (int i = 0, n = halforder; i < halforder; i++, n--)
             {
                 double npi = n*Math.PI;
                 c[i] = -Math.Sin(npi*nu)/npi;
                 c[n + halforder] = c[i];
             }
+
             return c;
         }
 
@@ -88,21 +92,23 @@ namespace MathNet.Filtering.Filter.FIR
         /// <param name="samplingRate">Samples per unit.</param>
         /// <param name="cutoffLow">Low Cutoff frequency in samples per unit.</param>
         /// <param name="cutoffHigh">High Cutoff frequency in samples per unit.</param>
-        /// <param name="halforder">halforder Q, so that Order N = 2*Q+1</param>
+        /// <param name="halforder">half-order Q, so that Order N = 2*Q+1</param>
         /// <returns>The calculated filter coefficients.</returns>
         public static double[] BandPass(double samplingRate, double cutoffLow, double cutoffHigh, int halforder)
         {
-            double nu1 = 2d*cutoffLow/samplingRate; //normalized low frequency
-            double nu2 = 2d*cutoffHigh/samplingRate; //normalized high frequency
+            double nu1 = 2d*cutoffLow/samplingRate; // normalized low frequency
+            double nu2 = 2d*cutoffHigh/samplingRate; // normalized high frequency
             int order = 2*halforder + 1;
             var c = new double[order];
             c[halforder] = nu2 - nu1;
+
             for (int i = 0, n = halforder; i < halforder; i++, n--)
             {
                 double npi = n*Math.PI;
                 c[i] = (Math.Sin(npi*nu2) - Math.Sin(npi*nu1))/npi;
                 c[n + halforder] = c[i];
             }
+
             return c;
         }
 
@@ -112,21 +118,23 @@ namespace MathNet.Filtering.Filter.FIR
         /// <param name="samplingRate">Samples per unit.</param>
         /// <param name="cutoffLow">Low Cutoff frequency in samples per unit.</param>
         /// <param name="cutoffHigh">High Cutoff frequency in samples per unit.</param>
-        /// <param name="halforder">halforder Q, so that Order N = 2*Q+1</param>
+        /// <param name="halforder">half-order Q, so that Order N = 2*Q+1</param>
         /// <returns>The calculated filter coefficients.</returns>
         public static double[] BandStop(double samplingRate, double cutoffLow, double cutoffHigh, int halforder)
         {
-            double nu1 = 2d*cutoffLow/samplingRate; //normalized low frequency
-            double nu2 = 2d*cutoffHigh/samplingRate; //normalized high frequency
+            double nu1 = 2d*cutoffLow/samplingRate; // normalized low frequency
+            double nu2 = 2d*cutoffHigh/samplingRate; // normalized high frequency
             int order = 2*halforder + 1;
             var c = new double[order];
             c[halforder] = 1 - (nu2 - nu1);
+
             for (int i = 0, n = halforder; i < halforder; i++, n--)
             {
                 double npi = n*Math.PI;
                 c[i] = (Math.Sin(npi*nu1) - Math.Sin(npi*nu2))/npi;
                 c[n + halforder] = c[i];
             }
+
             return c;
         }
     }

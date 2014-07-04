@@ -35,8 +35,8 @@ using MathNet.Filtering.Filter.Median;
 namespace MathNet.Filtering.Filter
 {
     /// <summary>
-    /// Online filters allow processing incomming samples immediately and hence
-    /// provide a nearly-realtime response with a fixed delay.
+    /// Online filters allow processing incoming samples immediately and hence
+    /// provide a nearly real-time response with a fixed delay.
     /// </summary>
     public abstract class OnlineFilter : IOnlineFilter
     {
@@ -70,8 +70,7 @@ namespace MathNet.Filtering.Filter
                 mode,
                 sampleRate,
                 cutoffRate,
-                mode == ImpulseResponse.Finite ? 64 : 4 // order
-                );
+                mode == ImpulseResponse.Finite ? 64 : 4); // order
         }
 
         /// <summary>
@@ -104,8 +103,7 @@ namespace MathNet.Filtering.Filter
                 mode,
                 sampleRate,
                 cutoffRate,
-                mode == ImpulseResponse.Finite ? 64 : 4 // order
-                );
+                mode == ImpulseResponse.Finite ? 64 : 4); // order
         }
 
         /// <summary>
@@ -138,8 +136,7 @@ namespace MathNet.Filtering.Filter
                 sampleRate,
                 cutoffLowRate,
                 cutoffHighRate,
-                mode == ImpulseResponse.Finite ? 64 : 4 // order
-                );
+                mode == ImpulseResponse.Finite ? 64 : 4); // order
         }
 
         /// <summary>
@@ -172,8 +169,7 @@ namespace MathNet.Filtering.Filter
                 sampleRate,
                 cutoffLowRate,
                 cutoffHighRate,
-                mode == ImpulseResponse.Finite ? 64 : 4 // order
-                );
+                mode == ImpulseResponse.Finite ? 64 : 4); // order
         }
 
         /// <summary>
@@ -183,7 +179,7 @@ namespace MathNet.Filtering.Filter
         /// Window Size, should be odd. A larger number results in a smoother
         /// response but also in a longer delay.
         /// </param>
-        /// <remarks>The denoise filter is implemented as an unweighted median filter.</remarks>
+        /// <remarks>The de-noise filter is implemented as an unweighted median filter.</remarks>
         public static OnlineFilter CreateDenoise(int order)
         {
             return new OnlineMedianFilter(order);
@@ -192,7 +188,7 @@ namespace MathNet.Filtering.Filter
         /// <summary>
         /// Create a filter to remove noise in online processing scenarios.
         /// </summary>
-        /// <remarks>The denoise filter is implemented as an unweighted median filter.</remarks>
+        /// <remarks>The de-noise filter is implemented as an unweighted median filter.</remarks>
         public static OnlineFilter CreateDenoise()
         {
             return CreateDenoise(7);
@@ -223,6 +219,7 @@ namespace MathNet.Filtering.Filter
             {
                 ret[i] = ProcessSample(samples[i]);
             }
+
             return ret;
         }
     }

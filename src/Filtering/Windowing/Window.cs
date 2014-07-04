@@ -72,8 +72,7 @@ namespace MathNet.Filtering.Windowing
         /// <summary>
         /// Default constructor
         /// </summary>
-        protected
-        Window()
+        protected Window()
         {
         }
 
@@ -82,18 +81,12 @@ namespace MathNet.Filtering.Windowing
         /// </summary>
         /// <param name="width">window size, guaranteed to be greater than or equal to 2.</param>
         /// <returns>Window coefficients, array with length of 'width'</returns>
-        protected abstract
-        double[]
-        ComputeWindowCore(
-            int width
-            );
+        protected abstract double[] ComputeWindowCore(int width);
 
         /// <summary>
         /// Reset the coefficients, triggering Precompute the next time a coefficient is requested.
         /// </summary>
-        protected
-        void
-        Reset()
+        protected void Reset()
         {
             _coefficients = null;
         }
@@ -102,9 +95,7 @@ namespace MathNet.Filtering.Windowing
         /// Compute the window for the current configuration.
         /// Skipped if the window has already been computed.
         /// </summary>
-        public
-        void
-        Precompute()
+        public void Precompute()
         {
             if (null != _coefficients)
             {
@@ -131,9 +122,7 @@ namespace MathNet.Filtering.Windowing
         /// <summary>
         /// Copy the window coefficients to a double array.
         /// </summary>
-        public
-        double[]
-        CopyToArray()
+        public double[] CopyToArray()
         {
             Precompute();
             double[] data = new double[_width];

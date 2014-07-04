@@ -90,7 +90,9 @@ namespace MathNet.Filtering.Filter.Utils
                 _shift.RemoveLast();
             }
             else if (_shift.Count == _len)
+            {
                 _initialized = true;
+            }
 
             LinkedListNode<double> next = _ordered.First;
             while (next != null)
@@ -131,6 +133,7 @@ namespace MathNet.Filtering.Filter.Utils
                 {
                     next = next.Next;
                 }
+
                 return next.Value;
             }
         }

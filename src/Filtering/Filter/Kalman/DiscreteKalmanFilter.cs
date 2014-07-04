@@ -99,7 +99,7 @@ namespace MathNet.Filtering.Filter.Kalman
             KalmanFilter.CheckPredictParameters(F, this);
 
             x = F*x;
-            P = (F*P*F.Transpose());
+            P = F*P*F.Transpose();
         }
 
         /// <summary>
@@ -143,6 +143,7 @@ namespace MathNet.Filtering.Filter.Kalman
 
             // State prediction
             x = F*x;
+
             // Covariance update
             P = (F*P*F.Transpose()) + (G*Q*G.Transpose());
         }

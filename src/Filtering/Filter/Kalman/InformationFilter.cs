@@ -38,7 +38,7 @@ namespace MathNet.Filtering.Filter.Kalman
         /// </summary>
         public Matrix<double> Cov
         {
-            get { return (J.Inverse()); }
+            get { return J.Inverse(); }
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace MathNet.Filtering.Filter.Kalman
         /// matrix for the information filter, and is quite expensive for large systems.</remarks>
         public Matrix<double> State
         {
-            get { return (J.Inverse()*y); }
+            get { return J.Inverse()*y; }
         }
 
         /// <summary>
@@ -109,6 +109,7 @@ namespace MathNet.Filtering.Filter.Kalman
                 J = cov.Inverse();
                 y = J*state;
             }
+
             I = Matrix<double>.Build.DenseIdentity(state.RowCount, state.RowCount);
         }
 

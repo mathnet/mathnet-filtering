@@ -35,7 +35,7 @@ namespace MathNet.Filtering.Filter.Median
     /// <summary>
     /// Median-Filters are non-linear filters, returning
     /// the median of a sample window as output. Median-Filters
-    /// perform well for denoise-applications where it's
+    /// perform well for de-noise applications where it's
     /// important to not loose sharp steps/edges.
     /// </summary>
     public class OnlineMedianFilter : OnlineFilter
@@ -58,7 +58,7 @@ namespace MathNet.Filtering.Filter.Median
         public override double ProcessSample(double sample)
         {
             _buffer[_offset = (_offset == 0) ? _buffer.Length - 1 : _offset - 1] = sample;
-            _bufferFull |= (_offset == 0);
+            _bufferFull |= _offset == 0;
 
             var data = _bufferFull ? _buffer : _buffer.Skip(_offset);
             return data.Median();
