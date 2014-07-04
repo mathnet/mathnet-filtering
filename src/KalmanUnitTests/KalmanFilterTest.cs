@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using MathNet.Filtering.Kalman;
 using MathNet.Numerics;
 using MathNet.Numerics.LinearAlgebra;
 using NUnit.Framework;
 
-namespace MathNet.Filtering.UnitTests
+namespace MathNet.Filtering.Kalman.UnitTests
 {
 	[TestFixture]
 	public class KalmanFilterTest

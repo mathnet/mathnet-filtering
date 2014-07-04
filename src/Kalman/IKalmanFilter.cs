@@ -20,7 +20,7 @@
 #endregion
 
 using System;
-using MathNet.Filtering.Properties;
+using MathNet.Filtering.Kalman.Properties;
 using MathNet.Numerics.LinearAlgebra;
 
 namespace MathNet.Filtering.Kalman

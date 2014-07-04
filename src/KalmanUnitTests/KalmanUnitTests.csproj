@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F643F4B3-9190-44AD-B0A5-6045528C5917}</ProjectGuid>
+    <ProjectGuid>{0984F405-AA19-4785-A3ED-76B874D42022}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MathNet.Filtering.UnitTests</RootNamespace>
-    <AssemblyName>MathNet.Filtering.UnitTests</AssemblyName>
+    <RootNamespace>MathNet.Filtering.Kalman.UnitTests</RootNamespace>
+    <AssemblyName>MathNet.Filtering.Kalman.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -54,19 +54,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NoiseDataSourcesTest.cs" />
-    <Compile Include="OnlineMedianFilterTest.cs" />
-    <Compile Include="OrderedShiftBufferTest.cs" />
+    <Compile Include="KalmanFilterTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Filtering\Filtering.csproj">
-      <Project>{5b1d0091-5b3b-4f66-a296-3bcf431fcf15}</Project>
-      <Name>Filtering</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\Kalman\Kalman.csproj">
+      <Project>{5f379f05-5688-48d2-9bfe-08e4d54d360f}</Project>
+      <Name>Kalman</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

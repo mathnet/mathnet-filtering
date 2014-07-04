@@ -53,7 +53,6 @@ type Bundle =
       Version: string
       Title: string
       ReleaseNotesFile: string
-      FsLoader: bool
       Packages: Package list }
 
 let release = LoadReleaseNotes "RELEASENOTES.md"
@@ -65,7 +64,8 @@ trace (sprintf " Math.NET Filtering  v%s" packageVersion)
 trace ""
 
 let summary = "Math.NET Filtering, providing methods and algorithms for signal processing and filtering in science, engineering and every day use."
-let description = "Math.NET Filtering. "
+let description = "Math.NET Filtering with finite and infinite impulse response filter design and application, median filtering and other signal processing methods and algorithms. MKL license. "
+let descriptionKalman = "Math.NET Filtering: separate package with Kalman filter only. Cannot currently be included into the main package because of licensing restrictions. LGPL license. "
 let support = "Supports .Net 4.0, .Net 3.5 and Mono on Windows, Linux and Mac; Silverlight 5, WindowsPhone/SL 8, WindowsPhone 8.1 and Windows 8 with PCL Portable Profiles 47 and 344; Android/iOS with Xamarin."
 let tags = "math filter signal FIR IIR median kalman design"
 
@@ -84,20 +84,37 @@ let filteringPack =
       ReleaseNotes = releaseNotes
       Tags = tags
       Authors = [ "Christoph Ruegg" ]
-      Dependencies = getDependencies "src/Filtering/packages.config"
-      Files = [ @"..\..\out\lib\Net35\MathNet.Filtering.*", Some libnet35, None;
-                @"..\..\out\lib\Net40\MathNet.Filtering.*", Some libnet40, None;
-                @"..\..\out\lib\Profile47\MathNet.Filtering.*", Some libpcl47, None;
-                @"..\..\out\lib\Profile344\MathNet.Filtering.*", Some libpcl344, None;
+      Dependencies = getDependencies "src/Filtering/packages.config" |> List.filter (fun (p,_) -> not (p.StartsWith("StyleCop.")))
+      Files = [ @"..\..\out\lib\Net35\MathNet.Filtering.*", Some libnet35, Some @"**\MathNet.Filtering.Kalman.*";
+                @"..\..\out\lib\Net40\MathNet.Filtering.*", Some libnet40, Some @"**\MathNet.Filtering.Kalman.*";
+                @"..\..\out\lib\Net45\MathNet.Filtering.*", Some libnet45, Some @"**\MathNet.Filtering.Kalman.*";
+                @"..\..\out\lib\Profile47\MathNet.Filtering.*", Some libpcl47, Some @"**\MathNet.Filtering.Kalman.*";
+                @"..\..\out\lib\Profile344\MathNet.Filtering.*", Some libpcl344, Some @"**\MathNet.Filtering.Kalman.*";
                 @"..\..\src\Filtering\**\*.cs", Some "src/Common", None ] }
+
+let kalmanPack =
+    { Id = "MathNet.Filtering.Kalman"
+      Version = packageVersion
+      Title = "Math.NET Filtering - Kalman Filter"
+      Summary = summary
+      Description = descriptionKalman + support
+      ReleaseNotes = releaseNotes
+      Tags = tags
+      Authors = [ "Christoph Ruegg" ]
+      Dependencies = getDependencies "src/Filtering/packages.config" |> List.filter (fun (p,_) -> not (p.StartsWith("StyleCop.")))
+      Files = [ @"..\..\out\lib\Net35\MathNet.Filtering.Kalman.*", Some libnet35, None;
+                @"..\..\out\lib\Net40\MathNet.Filtering.Kalman.*", Some libnet40, None;
+                @"..\..\out\lib\Net40\MathNet.Filtering.Kalman.*", Some libnet45, None;
+                @"..\..\out\lib\Profile47\MathNet.Filtering.Kalman.*", Some libpcl47, None;
+                @"..\..\out\lib\Profile344\MathNet.Filtering.Kalman.*", Some libpcl344, None;
+                @"..\..\src\Kalman\**\*.cs", Some "src/Common", None ] }
 
 let coreBundle =
     { Id = filteringPack.Id
       Version = packageVersion
       Title = filteringPack.Title
       ReleaseNotesFile = "RELEASENOTES.md"
-      FsLoader = false
-      Packages = [ filteringPack ] }
+      Packages = [ filteringPack; kalmanPack ] }
 
 
 // --------------------------------------------------------------------------------------
@@ -109,20 +126,17 @@ Target "Start" DoNothing
 Target "Clean" (fun _ ->
     CleanDirs [ "obj" ]
     CleanDirs [ "out/api"; "out/docs"; "out/packages" ]
-    CleanDirs [ "out/lib/Net35"; "out/lib/Net40"; "out/lib/Profile47"; "out/lib/Profile344" ]
-    CleanDirs [ "out/test/Net35"; "out/test/Net40"; "out/test/Profile47"; "out/test/Profile344" ])
+    CleanDirs [ "out/lib/Net35"; "out/lib/Net40"; "out/lib/Net45"; "out/lib/Profile47"; "out/lib/Profile344" ]
+    CleanDirs [ "out/test/Net35"; "out/test/Net40"; "out/test/Net45"; "out/test/Profile47"; "out/test/Profile344" ])
 
 Target "RestorePackages" RestorePackages
 
 Target "ApplyVersion" (fun _ ->
-    let patchAssemblyInfo path assemblyVersion packageVersion =
-        BulkReplaceAssemblyInfoVersions path (fun f ->
-            { f with
-                AssemblyVersion = assemblyVersion
-                AssemblyFileVersion = assemblyVersion
-                AssemblyInformationalVersion = packageVersion })
-    patchAssemblyInfo "src/Filtering" assemblyVersion packageVersion
-    patchAssemblyInfo "src/FilteringUnitTests" assemblyVersion packageVersion)
+    BulkReplaceAssemblyInfoVersions "src" (fun f ->
+        { f with
+            AssemblyVersion = assemblyVersion
+            AssemblyFileVersion = assemblyVersion
+            AssemblyInformationalVersion = packageVersion }))
 
 Target "Prepare" DoNothing
 "Start"
@@ -181,22 +195,9 @@ let provideReadme title releasenotes path =
     |> ConvertTextToWindowsLineBreaks
     |> ReplaceFile (path @@ "readme.txt")
 
-let provideFsLoader includes path =
-    // inspired by FsLab/tpetricek
-    let fullScript = ReadFile "src/FSharp/MathNet.Filtering.fsx" |> Array.ofSeq
-    let startIndex = fullScript |> Seq.findIndex (fun s -> s.Contains "***MathNet.Filtering.fsx***")
-    let extraScript = fullScript .[startIndex + 1 ..] |> List.ofSeq
-    let assemblies = [ "MathNet.Filtering.dll" ]
-    let nowarn = ["#nowarn \"211\""]
-    let references = [ for assembly in assemblies -> sprintf "#r \"%s\"" assembly ]
-    ReplaceFile (path @@ "MathNet.Filtering.fsx") (nowarn @ includes @ references @ extraScript |> toLines)
-
 let provideZipExtraFiles path (bundle:Bundle) =
     provideLicense path
     provideReadme (sprintf "%s v%s" bundle.Title bundle.Version) bundle.ReleaseNotesFile path
-    if bundle.FsLoader then
-        let includes = [ for root in [ ""; "../"; "../../" ] -> sprintf "#I \"%sNet40\"" root ]
-        provideFsLoader includes path
 
 let provideNuGetExtraFiles path (bundle:Bundle) (pack:Package) =
     provideLicense path
@@ -252,14 +253,6 @@ let nugetPack bundle outPath =
         NuGet (updateNuspec pack outPath NugetSymbolPackage.None (withLicenseReadme >> withoutSymbolsSources)) "build/MathNet.Filtering.nuspec"
         CleanDir "obj/NuGet"
 
-let nugetPackExtension bundle outPath =
-    CleanDir "obj/NuGet"
-    for pack in bundle.Packages do
-        provideNuGetExtraFiles "obj/NuGet" bundle pack
-        let withLicenseReadme f = [ "license.txt", None, None; "readme.txt", None, None; ] @ f
-        NuGet (updateNuspec pack outPath NugetSymbolPackage.None withLicenseReadme) "build/MathNet.Filtering.Extension.nuspec"
-        CleanDir "obj/NuGet"
-
 Target "NuGet" (fun _ ->
     CleanDir "out/packages/NuGet"
     if hasBuildParam "all" || hasBuildParam "release" then
@@ -295,7 +288,7 @@ Target "DocsDev" (fun _ ->
 Target "CleanApi" (fun _ -> CleanDirs ["out/api"])
 
 Target "Api" (fun _ ->
-    !! "out/lib/Net40/MathNet.Filtering.dll"
+    !! "out/lib/Net40/MathNet.Filtering.dll" ++ "out/lib/Net40/MathNet.Filtering.Kalman.dll"
     |> Docu (fun p ->
         { p with
             ToolPath = "tools/docu/docu.exe"

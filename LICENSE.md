@@ -1,9 +1,36 @@
-Math.NET Filtering License (LGPL)
-=================================
+Math.NET Filtering License (MIT/X11)
+====================================
 
-Note: most of the library has been re-licensed as MIT/X11
-but we're not complete yet, so the library itself remains
-available under the strict terms of the LGPL for now.
+Copyright (c) 2002-2014 Math.NET
+
+Permission is hereby granted, free of charge, to any person
+obtaining a copy of this software and associated documentation
+files (the "Software"), to deal in the Software without
+restriction, including without limitation the rights to use,
+copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following
+conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
+
+
+Math.NET Filtering - Kalman Filter License (LGPL)
+=================================================
+
+**The LGPL license applies to the Kalman project and MathNet.Filtering.Kalman library/packahe only.**
+
+*Note: we wish to relicense this part to MIT/X11 as well and integrate it back into the main project. Unfortunately we have not managed to contact one of the main contributors yet. If you happen to know how we can get in contact with Matthew Kitchin, please let us know. Thanks.*
 
 Copyright (c) 2002-2014 Math.NET
 
