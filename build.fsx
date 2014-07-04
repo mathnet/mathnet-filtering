@@ -64,7 +64,7 @@ trace (sprintf " Math.NET Filtering  v%s" packageVersion)
 trace ""
 
 let summary = "Math.NET Filtering, providing methods and algorithms for signal processing and filtering in science, engineering and every day use."
-let description = "Math.NET Filtering with finite and infinite impulse response filter design and application, median filtering and other signal processing methods and algorithms. MKL license. "
+let description = "Math.NET Filtering with finite and infinite impulse response filter design and application, median filtering and other signal processing methods and algorithms. MIT license. "
 let descriptionKalman = "Math.NET Filtering: separate package with Kalman filter only. Cannot currently be included into the main package because of licensing restrictions. LGPL license. "
 let support = "Supports .Net 4.0 and Mono on Windows, Linux and Mac."
 let tags = "math filter signal FIR IIR median kalman design"
