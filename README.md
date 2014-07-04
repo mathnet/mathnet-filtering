@@ -14,7 +14,8 @@ Installation Instructions
 
 The recommended way to get Math.NET Filtering is to use NuGet. The following packages are provided and maintained in the public [NuGet Gallery](https://nuget.org/profiles/mathnet/):
 
-- **MathNet.Filtering** - core package, including .Net 4, .Net 3.5 and portable/PCL builds.
+- **MathNet.Filtering** - core package (MIT license)
+- **MathNet.Filtering.Kalman** - Kalman filter (LGPL license - until we can relicense)
 
 Supported Platforms:
 
