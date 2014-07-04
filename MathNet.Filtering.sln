@@ -16,6 +16,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{010B4B67
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Readme", "Readme", "{A253EF4A-4CAF-487B-A552-A9C0E75E8635}"
+	ProjectSection(SolutionItems) = preProject
+		CONTRIBUTING.md = CONTRIBUTING.md
+		CONTRIBUTORS.md = CONTRIBUTORS.md
+		LICENSE.md = LICENSE.md
+		README.md = README.md
+		RELEASENOTES.md = RELEASENOTES.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{61E84DAB-716F-4EA7-9BB2-7EFD6939EF74}"
 	ProjectSection(SolutionItems) = preProject
