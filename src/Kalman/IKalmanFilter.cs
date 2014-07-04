@@ -190,6 +190,7 @@ namespace MathNet.Filtering.Kalman
         /// <param name="z">Measurement matrix.</param>
         /// <param name="H">Measurement sensitivity matrix.</param>
         /// <param name="R">Measurement covariance matrix.</param>
+        /// <param name="filter">Filter being updated.</param>
         /// <exception cref="System.ArgumentException">Thrown when:
         /// <list type="bullet"><item>z is not a column vector.</item>
         /// <item>H does not have same number of rows as z and columns as R.</item>

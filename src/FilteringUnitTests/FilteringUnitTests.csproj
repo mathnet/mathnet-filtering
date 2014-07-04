@@ -56,7 +56,6 @@
   <ItemGroup>
     <Compile Include="NoiseDataSourcesTest.cs" />
     <Compile Include="OnlineMedianFilterTest.cs" />
-    <Compile Include="OrderedShiftBufferTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
