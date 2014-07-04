@@ -1,4 +1,4 @@
-// <copyright file="OnlineFirFilter.cs" company="Math.NET">
+// <copyright file="MedianFilter.cs" company="Math.NET">
 // Math.NET Filtering, part of the Math.NET Project
 // http://filtering.mathdotnet.com
 // http://github.com/mathnet/mathnet-filtering
@@ -27,38 +27,29 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 // </copyright>
 
-using System.Collections.Generic;
+using System.Linq;
+using MathNet.Numerics.Statistics;
 
-namespace MathNet.Filtering.Filter.FIR
+namespace MathNet.Filtering.Median
 {
     /// <summary>
-    /// Finite Impulse Response (FIR) Filters are based on
-    /// fourier series and implemented using a discrete
-    /// convolution equation. FIR Filters are always
-    /// online, stable and causal.
+    /// Median-Filters are non-linear filters, returning
+    /// the median of a sample window as output. Median-Filters
+    /// perform well for de-noise applications where it's
+    /// important to not loose sharp steps/edges.
     /// </summary>
-    /// <remarks>
-    /// System Descripton: H(z) = a0 + a1*z^-1 + a2*z^-2 + ...
-    /// </remarks>
-    public class OnlineFirFilter : OnlineFilter
+    public class OnlineMedianFilter : OnlineFilter
     {
-        readonly double[] _coefficients;
         readonly double[] _buffer;
         int _offset;
-        readonly int _size;
+        bool _bufferFull;
 
         /// <summary>
-        /// Finite Impulse Response (FIR) Filter.
+        /// Create a Median Filter
         /// </summary>
-        public OnlineFirFilter(IList<double> coefficients)
+        public OnlineMedianFilter(int windowSize)
         {
-            _size = coefficients.Count;
-            _buffer = new double[_size];
-            _coefficients = new double[_size << 1];
-            for (int i = 0; i < _size; i++)
-            {
-                _coefficients[i] = _coefficients[_size + i] = coefficients[i];
-            }
+            _buffer = new double[windowSize];
         }
 
         /// <summary>
@@ -66,27 +57,20 @@ namespace MathNet.Filtering.Filter.FIR
         /// </summary>
         public override double ProcessSample(double sample)
         {
-            _offset = (_offset != 0) ? _offset - 1 : _size - 1;
-            _buffer[_offset] = sample;
+            _buffer[_offset = (_offset == 0) ? _buffer.Length - 1 : _offset - 1] = sample;
+            _bufferFull |= _offset == 0;
 
-            double acc = 0;
-            for (int i = 0, j = _size - _offset; i < _size; i++, j++)
-            {
-                acc += _buffer[i]*_coefficients[j];
-            }
-
-            return acc;
+            var data = _bufferFull ? _buffer : _buffer.Skip(_offset);
+            return data.Median();
         }
 
         /// <summary>
-        /// Reset internal state (not coefficients!).
+        /// Reset internal state.
         /// </summary>
         public override void Reset()
         {
-            for (int i = 0; i < _buffer.Length; i++)
-            {
-                _buffer[i] = 0d;
-            }
+            _offset = 0;
+            _bufferFull = false;
         }
     }
 }

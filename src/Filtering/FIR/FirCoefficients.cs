@@ -29,7 +29,7 @@
 
 using System;
 
-namespace MathNet.Filtering.Filter.FIR
+namespace MathNet.Filtering.FIR
 {
     /// <summary>
     /// FirCoefficients provides basic coefficient evaluation

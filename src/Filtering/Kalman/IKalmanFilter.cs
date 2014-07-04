@@ -23,7 +23,7 @@ using System;
 using MathNet.Filtering.Properties;
 using MathNet.Numerics.LinearAlgebra;
 
-namespace MathNet.Filtering.Filter.Kalman
+namespace MathNet.Filtering.Kalman
 {
     /// <summary>
     /// <para>An interface to describe a Kalman Filter. A Kalman filter is a

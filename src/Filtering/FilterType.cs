@@ -1,4 +1,4 @@
-// <copyright file="MedianFilter.cs" company="Math.NET">
+// <copyright file="IFilterFilterType.cs" company="Math.NET">
 // Math.NET Filtering, part of the Math.NET Project
 // http://filtering.mathdotnet.com
 // http://github.com/mathnet/mathnet-filtering
@@ -27,50 +27,26 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 // </copyright>
 
-using System.Linq;
-using MathNet.Numerics.Statistics;
-
-namespace MathNet.Filtering.Filter.Median
+namespace MathNet.Filtering
 {
     /// <summary>
-    /// Median-Filters are non-linear filters, returning
-    /// the median of a sample window as output. Median-Filters
-    /// perform well for de-noise applications where it's
-    /// important to not loose sharp steps/edges.
+    /// Frequency Filter Type
     /// </summary>
-    public class OnlineMedianFilter : OnlineFilter
+    public enum FilterType
     {
-        readonly double[] _buffer;
-        int _offset;
-        bool _bufferFull;
+        /// <summary>LowPass, lets only low frequencies pass.</summary>
+        LowPass,
 
-        /// <summary>
-        /// Create a Median Filter
-        /// </summary>
-        public OnlineMedianFilter(int windowSize)
-        {
-            _buffer = new double[windowSize];
-        }
+        /// <summary>HighPass, lets only high frequencies pass.</summary>
+        HighPass,
 
-        /// <summary>
-        /// Process a single sample.
-        /// </summary>
-        public override double ProcessSample(double sample)
-        {
-            _buffer[_offset = (_offset == 0) ? _buffer.Length - 1 : _offset - 1] = sample;
-            _bufferFull |= _offset == 0;
+        /// <summary>BandPass, lets only frequencies pass that are inside of a band.</summary>
+        BandPass,
 
-            var data = _bufferFull ? _buffer : _buffer.Skip(_offset);
-            return data.Median();
-        }
+        /// <summary>BandStop, lets only frequencies pass that are outside of a band.</summary>
+        BandStop,
 
-        /// <summary>
-        /// Reset internal state.
-        /// </summary>
-        public override void Reset()
-        {
-            _offset = 0;
-            _bufferFull = false;
-        }
+        /// <summary>Other behavior.</summary>
+        Other
     }
 }

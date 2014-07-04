@@ -1,4 +1,4 @@
-// <copyright file="IFilterFilterType.cs" company="Math.NET">
+// <copyright file="IFilter.cs" company="Math.NET">
 // Math.NET Filtering, part of the Math.NET Project
 // http://filtering.mathdotnet.com
 // http://github.com/mathnet/mathnet-filtering
@@ -27,26 +27,27 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 // </copyright>
 
-namespace MathNet.Filtering.Filter
+namespace MathNet.Filtering
 {
     /// <summary>
-    /// Frequency Filter Type
+    /// An online filter that allows processing samples just in time.
+    /// Online Filters are always causal.
     /// </summary>
-    public enum FilterType
+    public interface IOnlineFilter
     {
-        /// <summary>LowPass, lets only low frequencies pass.</summary>
-        LowPass,
+        /// <summary>
+        /// Process a single sample.
+        /// </summary>
+        double ProcessSample(double sample);
 
-        /// <summary>HighPass, lets only high frequencies pass.</summary>
-        HighPass,
+        /// <summary>
+        /// Process a whole set of samples at once.
+        /// </summary>
+        double[] ProcessSamples(double[] samples);
 
-        /// <summary>BandPass, lets only frequencies pass that are inside of a band.</summary>
-        BandPass,
-
-        /// <summary>BandStop, lets only frequencies pass that are outside of a band.</summary>
-        BandStop,
-
-        /// <summary>Other behavior.</summary>
-        Other
+        /// <summary>
+        /// Reset internal state (not coefficients!).
+        /// </summary>
+        void Reset();
     }
 }

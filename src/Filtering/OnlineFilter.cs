@@ -28,11 +28,11 @@
 // </copyright>
 
 using System;
-using MathNet.Filtering.Filter.FIR;
-using MathNet.Filtering.Filter.IIR;
-using MathNet.Filtering.Filter.Median;
+using MathNet.Filtering.FIR;
+using MathNet.Filtering.IIR;
+using MathNet.Filtering.Median;
 
-namespace MathNet.Filtering.Filter
+namespace MathNet.Filtering
 {
     /// <summary>
     /// Online filters allow processing incoming samples immediately and hence

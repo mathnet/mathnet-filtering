@@ -30,7 +30,7 @@
 using System;
 using MathNet.Filtering.Properties;
 
-namespace MathNet.Filtering.Filter.IIR
+namespace MathNet.Filtering.IIR
 {
     /// <summary>
     /// Infinite Impulse Response (FIR) Filters need much

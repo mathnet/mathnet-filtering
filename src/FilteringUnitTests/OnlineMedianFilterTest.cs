@@ -1,4 +1,4 @@
-﻿using MathNet.Filtering.Filter.Median;
+﻿using MathNet.Filtering.Median;
 using NUnit.Framework;
 
 namespace MathNet.Filtering.UnitTests

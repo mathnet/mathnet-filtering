@@ -29,7 +29,7 @@
 
 using System;
 
-namespace MathNet.Filtering.Filter.IIR
+namespace MathNet.Filtering.IIR
 {
     /// <summary>
     /// IirCoefficients provides basic coefficient evaluation

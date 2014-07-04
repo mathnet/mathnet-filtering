@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using MathNet.Filtering.Filter.Kalman;
+using MathNet.Filtering.Kalman;
 using MathNet.Numerics;
 using MathNet.Numerics.LinearAlgebra;
 using NUnit.Framework;

@@ -21,7 +21,7 @@
 
 using MathNet.Numerics.LinearAlgebra;
 
-namespace MathNet.Filtering.Filter.Kalman
+namespace MathNet.Filtering.Kalman
 {
     /// <summary>
     /// <para>The <c>DiscreteTimeKalmanFilter</c> is generally used in digital computer

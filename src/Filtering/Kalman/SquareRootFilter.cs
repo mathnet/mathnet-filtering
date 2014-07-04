@@ -21,7 +21,7 @@
 
 using MathNet.Numerics.LinearAlgebra;
 
-namespace MathNet.Filtering.Filter.Kalman
+namespace MathNet.Filtering.Kalman
 {
     /// <summary>
     /// An alternate form of the discrete time kalman filter, less prone to roundoff

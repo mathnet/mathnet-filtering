@@ -27,7 +27,7 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 // </copyright>
 
-namespace MathNet.Filtering.Filter
+namespace MathNet.Filtering
 {
     /// <summary>
     /// Specifies how a filter will respond to an impulse input.
