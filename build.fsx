@@ -66,7 +66,7 @@ trace ""
 let summary = "Math.NET Filtering, providing methods and algorithms for signal processing and filtering in science, engineering and every day use."
 let description = "Math.NET Filtering with finite and infinite impulse response filter design and application, median filtering and other signal processing methods and algorithms. MKL license. "
 let descriptionKalman = "Math.NET Filtering: separate package with Kalman filter only. Cannot currently be included into the main package because of licensing restrictions. LGPL license. "
-let support = "Supports .Net 4.0, .Net 3.5 and Mono on Windows, Linux and Mac; Silverlight 5, WindowsPhone/SL 8, WindowsPhone 8.1 and Windows 8 with PCL Portable Profiles 47 and 344; Android/iOS with Xamarin."
+let support = "Supports .Net 4.0 and Mono on Windows, Linux and Mac."
 let tags = "math filter signal FIR IIR median kalman design"
 
 let libnet35 = "lib/net35"
@@ -104,7 +104,7 @@ let kalmanPack =
       Dependencies = getDependencies "src/Filtering/packages.config" |> List.filter (fun (p,_) -> not (p.StartsWith("StyleCop.")))
       Files = [ @"..\..\out\lib\Net35\MathNet.Filtering.Kalman.*", Some libnet35, None;
                 @"..\..\out\lib\Net40\MathNet.Filtering.Kalman.*", Some libnet40, None;
-                @"..\..\out\lib\Net40\MathNet.Filtering.Kalman.*", Some libnet45, None;
+                @"..\..\out\lib\Net45\MathNet.Filtering.Kalman.*", Some libnet45, None;
                 @"..\..\out\lib\Profile47\MathNet.Filtering.Kalman.*", Some libpcl47, None;
                 @"..\..\out\lib\Profile344\MathNet.Filtering.Kalman.*", Some libpcl344, None;
                 @"..\..\src\Kalman\**\*.cs", Some "src/Common", None ] }
