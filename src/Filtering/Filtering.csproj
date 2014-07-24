@@ -84,6 +84,9 @@
     <Compile Include="Windowing\LanczosWindow.cs" />
     <Compile Include="Windowing\RectangularWindow.cs" />
     <Compile Include="Windowing\Window.cs" />
+    <Compile Include="Windows\PermanentWindow.cs" />
+    <Compile Include="Windows\VolatileWindow.cs" />
+    <Compile Include="Windows\Window.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
