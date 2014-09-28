@@ -34,6 +34,17 @@ trace header
 // PROJECT INFO
 // --------------------------------------------------------------------------------------
 
+// VERSION OVERVIEW
+
+let release = LoadReleaseNotes "RELEASENOTES.md"
+let buildPart = "0"
+let assemblyVersion = release.AssemblyVersion + "." + buildPart
+let packageVersion = release.NugetVersion
+let releaseNotes = release.Notes |> List.map (fun l -> l.Replace("*","").Replace("`","")) |> toLines
+trace (sprintf " Math.NET Filtering  v%s" packageVersion)
+trace ""
+
+
 // CORE PACKAGES
 
 type Package =
@@ -54,14 +65,6 @@ type Bundle =
       Title: string
       ReleaseNotesFile: string
       Packages: Package list }
-
-let release = LoadReleaseNotes "RELEASENOTES.md"
-let buildPart = "0"
-let assemblyVersion = release.AssemblyVersion + "." + buildPart
-let packageVersion = release.NugetVersion
-let releaseNotes = release.Notes |> List.map (fun l -> l.Replace("*","").Replace("`","")) |> toLines
-trace (sprintf " Math.NET Filtering  v%s" packageVersion)
-trace ""
 
 let summary = "Math.NET Filtering, providing methods and algorithms for signal processing and filtering in science, engineering and every day use."
 let description = "Math.NET Filtering with finite and infinite impulse response filter design and application, median filtering and other signal processing methods and algorithms. MIT license. "
@@ -84,13 +87,15 @@ let filteringPack =
       ReleaseNotes = releaseNotes
       Tags = tags
       Authors = [ "Christoph Ruegg" ]
-      Dependencies = getDependencies "src/Filtering/packages.config" |> List.filter (fun (p,_) -> not (p.StartsWith("StyleCop.")))
-      Files = [ @"..\..\out\lib\Net35\MathNet.Filtering.*", Some libnet35, Some @"**\MathNet.Filtering.Kalman.*";
-                @"..\..\out\lib\Net40\MathNet.Filtering.*", Some libnet40, Some @"**\MathNet.Filtering.Kalman.*";
-                @"..\..\out\lib\Net45\MathNet.Filtering.*", Some libnet45, Some @"**\MathNet.Filtering.Kalman.*";
-                @"..\..\out\lib\Profile47\MathNet.Filtering.*", Some libpcl47, Some @"**\MathNet.Filtering.Kalman.*";
-                @"..\..\out\lib\Profile344\MathNet.Filtering.*", Some libpcl344, Some @"**\MathNet.Filtering.Kalman.*";
-                @"..\..\src\Filtering\**\*.cs", Some "src/Common", None ] }
+      Dependencies =
+        [ "MathNet.Numerics", GetPackageVersion "packages" "MathNet.Numerics" ]
+      Files =
+        [ @"..\..\out\lib\Net35\MathNet.Filtering.*", Some libnet35, Some @"**\MathNet.Filtering.Kalman.*";
+          @"..\..\out\lib\Net40\MathNet.Filtering.*", Some libnet40, Some @"**\MathNet.Filtering.Kalman.*";
+          @"..\..\out\lib\Net45\MathNet.Filtering.*", Some libnet45, Some @"**\MathNet.Filtering.Kalman.*";
+          @"..\..\out\lib\Profile47\MathNet.Filtering.*", Some libpcl47, Some @"**\MathNet.Filtering.Kalman.*";
+          @"..\..\out\lib\Profile344\MathNet.Filtering.*", Some libpcl344, Some @"**\MathNet.Filtering.Kalman.*";
+          @"..\..\src\Filtering\**\*.cs", Some "src/Common", None ] }
 
 let kalmanPack =
     { Id = "MathNet.Filtering.Kalman"
@@ -101,13 +106,15 @@ let kalmanPack =
       ReleaseNotes = releaseNotes
       Tags = tags
       Authors = [ "Christoph Ruegg" ]
-      Dependencies = getDependencies "src/Filtering/packages.config" |> List.filter (fun (p,_) -> not (p.StartsWith("StyleCop.")))
-      Files = [ @"..\..\out\lib\Net35\MathNet.Filtering.Kalman.*", Some libnet35, None;
-                @"..\..\out\lib\Net40\MathNet.Filtering.Kalman.*", Some libnet40, None;
-                @"..\..\out\lib\Net45\MathNet.Filtering.Kalman.*", Some libnet45, None;
-                @"..\..\out\lib\Profile47\MathNet.Filtering.Kalman.*", Some libpcl47, None;
-                @"..\..\out\lib\Profile344\MathNet.Filtering.Kalman.*", Some libpcl344, None;
-                @"..\..\src\Kalman\**\*.cs", Some "src/Common", None ] }
+      Dependencies =
+        [ "MathNet.Numerics", GetPackageVersion "packages" "MathNet.Numerics" ]
+      Files =
+        [ @"..\..\out\lib\Net35\MathNet.Filtering.Kalman.*", Some libnet35, None;
+          @"..\..\out\lib\Net40\MathNet.Filtering.Kalman.*", Some libnet40, None;
+          @"..\..\out\lib\Net45\MathNet.Filtering.Kalman.*", Some libnet45, None;
+          @"..\..\out\lib\Profile47\MathNet.Filtering.Kalman.*", Some libpcl47, None;
+          @"..\..\out\lib\Profile344\MathNet.Filtering.Kalman.*", Some libpcl344, None;
+          @"..\..\src\Kalman\**\*.cs", Some "src/Common", None ] }
 
 let coreBundle =
     { Id = filteringPack.Id
@@ -129,8 +136,6 @@ Target "Clean" (fun _ ->
     CleanDirs [ "out/lib/Net35"; "out/lib/Net40"; "out/lib/Net45"; "out/lib/Profile47"; "out/lib/Profile344" ]
     CleanDirs [ "out/test/Net35"; "out/test/Net40"; "out/test/Net45"; "out/test/Profile47"; "out/test/Profile344" ])
 
-Target "RestorePackages" RestorePackages
-
 Target "ApplyVersion" (fun _ ->
     BulkReplaceAssemblyInfoVersions "src" (fun f ->
         { f with
@@ -141,7 +146,6 @@ Target "ApplyVersion" (fun _ ->
 Target "Prepare" DoNothing
 "Start"
   =?> ("Clean", not (hasBuildParam "incremental"))
-  ==> "RestorePackages"
   ==> "ApplyVersion"
   ==> "Prepare"
 
@@ -222,7 +226,7 @@ Target "Zip" (fun _ ->
 // NUGET
 
 let updateNuspec (pack:Package) outPath symbols updateFiles spec =
-    { spec with ToolPath = "tools/NuGet/NuGet.exe"
+    { spec with ToolPath = "packages/NuGet.CommandLine/tools/NuGet.exe"
                 OutputPath = outPath
                 WorkingDir = "obj/NuGet"
                 Version = pack.Version
@@ -343,7 +347,7 @@ let publishNuGet packageFiles =
             let args = sprintf "push \"%s\"" (FullName file)
             let result =
                 ExecProcess (fun info ->
-                    info.FileName <- "tools/NuGet/NuGet.exe"
+                    info.FileName <- "packages/NuGet.CommandLine/tools/NuGet.exe"
                     info.WorkingDirectory <- FullName "obj/NuGet"
                     info.Arguments <- args) (TimeSpan.FromMinutes 10.)
             if result <> 0 then failwith "Error during NuGet push."
