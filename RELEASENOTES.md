@@ -1,3 +1,7 @@
+### 0.2.0-alpha - 2014-09-28
+* FIR default filter order estimation *~Xiaoshan Huang*
+* Backport experimental windowing functions from Numerics
+
 ### 0.1.1-alpha - 2014-07-04
 * Fix NuGet package metadata
 
