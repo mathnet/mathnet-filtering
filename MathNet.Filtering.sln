@@ -27,7 +27,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Readme", "Readme", "{A253EF
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{61E84DAB-716F-4EA7-9BB2-7EFD6939EF74}"
 	ProjectSection(SolutionItems) = preProject
-		docs\content\Build.fsx = docs\content\Build.fsx
+		docs\content\Build.md = docs\content\Build.md
 		docs\content\index.fsx = docs\content\index.fsx
 		docs\tools\templates\template.cshtml = docs\tools\templates\template.cshtml
 	EndProjectSection
