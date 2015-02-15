@@ -365,8 +365,7 @@ Target "PublishTag" (fun _ -> publishReleaseTag "Math.NET Filtering" "" packageV
 Target "PublishDocs" (fun _ ->
     let repo = "../mathnet-websites"
     Git.Branches.pull repo "origin" "master"
-    CleanDir "../mathnet-websites/filtering/docs"
-    CopyRecursive "out/docs" "../mathnet-websites/filtering/docs" true |> printfn "%A"
+    CopyRecursive "out/docs" "../mathnet-websites/filtering" true |> printfn "%A"
     Git.Staging.StageAll repo
     Git.Commit.Commit repo (sprintf "Filtering: %s docs update" packageVersion)
     Git.Branches.pushBranch repo "origin" "master")

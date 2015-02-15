@@ -6,7 +6,7 @@
 // Binaries that have XML documentation (in a corresponding generated XML file)
 let referenceBinaries = [ "MathNet.Filtering.dll"; "MathNet.Numerics.dll" ]
 // Web site location for the generated documentation
-let website = "http://filtering.mathdotnet.com/docs"
+let website = "http://filtering.mathdotnet.com"
 let githubLink = "http://github.com/mathnet/mathnet-filtering"
 
 // Specify more information about your project
