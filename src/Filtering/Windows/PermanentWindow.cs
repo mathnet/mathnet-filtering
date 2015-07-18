@@ -8,7 +8,7 @@ namespace MathNet.Filtering.Windows
 
     /// <summary>
     /// Window which is remains intact even if it propagates to the next window.
-    /// Still much mor efficient than creating a new buffer for every window,
+    /// Still much more efficient than creating a new buffer for every window,
     /// but somewhat less efficient than the volatile window.
     /// Newest value is the first one at Offset in BufferA, the next older one at Offset+1,
     /// wrapping around at BufferA.Length to BufferB.
