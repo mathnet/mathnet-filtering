@@ -32,6 +32,7 @@ If you do not want to use the official binaries, or if you like to modify, debug
 
 ### How to build with MSBuild/XBuild
 
+    restore.cmd (or restore.sh)
     msbuild MathNet.Filtering.sln            # only build for .Net 4 (main solution)
     msbuild MathNet.Filtering.Net35Only.sln  # only build for .Net 3.5
     msbuild MathNet.Filtering.All.sln        # full build with .Net 4, 3.5 and PCL profiles
