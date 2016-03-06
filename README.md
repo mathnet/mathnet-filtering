@@ -24,6 +24,9 @@ Supported Platforms:
 Building Math.NET Filtering
 ---------------------------
 
+Windows (.Net): [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/swi94lke268vaoq8/branch/master)](https://ci.appveyor.com/project/cdrnet/mathnet-filtering)  
+Linux (Mono): [![Travis Build Status](https://travis-ci.org/mathnet/mathnet-filtering.svg?branch=master)](https://travis-ci.org/mathnet/mathnet-filtering)
+
 If you do not want to use the official binaries, or if you like to modify, debug or contribute, you can compile Math.NET Filtering locally either using Visual Studio or manually with the build scripts.
 
 * The Visual Studio solutions should build out of the box, without any preparation steps or package restores.
