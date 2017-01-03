@@ -1,5 +1,5 @@
 NUGET
-  remote: http://www.nuget.org/api/v2
+  remote: https://www.nuget.org/api/v2
   specs:
     MathNet.Numerics (3.8.0)
       TaskParallelLibrary (>= 1.0.2856.0) - framework: net35
@@ -7,7 +7,7 @@ NUGET
 
 GROUP Build
 NUGET
-  remote: http://www.nuget.org/api/v2
+  remote: https://www.nuget.org/api/v2
   specs:
     FAKE (4.20.0)
     FSharp.Compiler.Service (2.0.0.3)
@@ -31,6 +31,6 @@ NUGET
 
 GROUP Test
 NUGET
-  remote: http://www.nuget.org/api/v2
+  remote: https://www.nuget.org/api/v2
   specs:
     NUnit (3.2.0)

@@ -6,8 +6,8 @@
 // Binaries that have XML documentation (in a corresponding generated XML file)
 let referenceBinaries = [ "MathNet.Filtering.dll"; "MathNet.Numerics.dll" ]
 // Web site location for the generated documentation
-let website = "http://filtering.mathdotnet.com"
-let githubLink = "http://github.com/mathnet/mathnet-filtering"
+let website = "https://filtering.mathdotnet.com"
+let githubLink = "https://github.com/mathnet/mathnet-filtering"
 
 // Specify more information about your project
 let info =
@@ -15,7 +15,7 @@ let info =
     "project-author", "Christoph Ruegg, Johan Larsson"
     "project-summary", "Math.NET Filtering. .Net 4, .Net 3.5, SL5, Win8, WP8, PCL 47 and 136, Mono, Xamarin Android/iOS."
     "project-github", githubLink
-    "project-nuget", "http://nuget.com/packages/MathNet.Filtering" ]
+    "project-nuget", "https://nuget.org/packages/MathNet.Filtering" ]
 
 // --------------------------------------------------------------------------------------
 // For typical project, no changes are needed below

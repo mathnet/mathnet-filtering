@@ -5,7 +5,7 @@
 // | |  | | (_| | |_| | | |_| |\  | |____   | |
 // |_|  |_|\__,_|\__|_| |_(_)_| \_|______|  |_|
 //
-// Math.NET Filtering - http://filtering.mathdotnet.com
+// Math.NET Filtering - https://filtering.mathdotnet.com
 // Copyright (c) Math.NET - Open Source MIT/X11 License
 //
 // FAKE build script, see http://fsharp.github.io/FAKE
