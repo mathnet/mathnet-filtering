@@ -1,6 +1,6 @@
 #region Math.NET Neodym (LGPL) by Christoph Ruegg
 // Math.NET Neodym, part of the Math.NET Project
-// http://mathnet.opensourcedotnet.info
+// https://www.mathdotnet.com
 //
 // Copyright (c) 2008, Matthew Kitchin
 //
