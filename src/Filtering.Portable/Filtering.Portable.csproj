@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AE1EEFED-C906-43B7-AE40-26C39B603F25}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MathNet.Filtering.Portable</RootNamespace>
+    <AssemblyName>MathNet.Filtering.Portable</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile259</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Channel\IChannel.cs" />
+    <Compile Include="DataSources\ArbitraryPeriodicSource.cs" />
+    <Compile Include="DataSources\GeneratorSource.cs" />
+    <Compile Include="DataSources\SignalGenerator.cs" />
+    <Compile Include="DataSources\SinusoidalSource.cs" />
+    <Compile Include="DataSources\StableNoiseSource.cs" />
+    <Compile Include="DataSources\WhiteGaussianNoiseSource.cs" />
+    <Compile Include="FilterType.cs" />
+    <Compile Include="FIR\FirCoefficients.cs" />
+    <Compile Include="FIR\OnlineFirFilter.cs" />
+    <Compile Include="IIR\IirCoefficients.cs" />
+    <Compile Include="IIR\OnlineIirFilter.cs" />
+    <Compile Include="ImpulseResponse.cs" />
+    <Compile Include="IOnlineFilter.cs" />
+    <Compile Include="Median\OnlineMedianFilter.cs" />
+    <Compile Include="OnlineFilter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Windowing\BartlettHannWindow.cs" />
+    <Compile Include="Windowing\BartlettWindow.cs" />
+    <Compile Include="Windowing\BlackmanHarrisWindow.cs" />
+    <Compile Include="Windowing\BlackmanNuttallWindow.cs" />
+    <Compile Include="Windowing\BlackmanWindow.cs" />
+    <Compile Include="Windowing\CosineWindow.cs" />
+    <Compile Include="Windowing\FlatTopWindow.cs" />
+    <Compile Include="Windowing\GaussWindow.cs" />
+    <Compile Include="Windowing\HammingWindow.cs" />
+    <Compile Include="Windowing\HannWindow.cs" />
+    <Compile Include="Windowing\LanczosWindow.cs" />
+    <Compile Include="Windowing\NuttallWindow.cs" />
+    <Compile Include="Windowing\RectangularWindow.cs" />
+    <Compile Include="Windowing\TriangularWindow.cs" />
+    <Compile Include="Windowing\Window.cs" />
+    <Compile Include="Windows\PermanentWindow.cs" />
+    <Compile Include="Windows\VolatileWindow.cs" />
+    <Compile Include="Windows\Window.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="paket.references" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="MathNet.Numerics, Version=3.13.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\MathNet.Numerics.3.13.1\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\MathNet.Numerics.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
