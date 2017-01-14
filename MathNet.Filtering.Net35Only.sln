@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Readme", "Readme", "{C2F37492-38AE-4186-8A7F-17B0B080942C}"
+	ProjectSection(SolutionItems) = preProject
+		CONTRIBUTING.md = CONTRIBUTING.md
+		CONTRIBUTORS.md = CONTRIBUTORS.md
+		LICENSE.md = LICENSE.md
+		README.md = README.md
+		RELEASENOTES.md = RELEASENOTES.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Filtering-Net35", "src\Filtering\Filtering-Net35.csproj", "{1025E8E4-9733-4C08-BDBC-E69E9036C179}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kalman-Net35", "src\Kalman\Kalman-Net35.csproj", "{A56255A2-6A12-4275-A30E-5ACFE7528826}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Release-Signed|Any CPU = Release-Signed|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1025E8E4-9733-4C08-BDBC-E69E9036C179}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1025E8E4-9733-4C08-BDBC-E69E9036C179}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1025E8E4-9733-4C08-BDBC-E69E9036C179}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1025E8E4-9733-4C08-BDBC-E69E9036C179}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1025E8E4-9733-4C08-BDBC-E69E9036C179}.Release-Signed|Any CPU.ActiveCfg = Release|Any CPU
+		{1025E8E4-9733-4C08-BDBC-E69E9036C179}.Release-Signed|Any CPU.Build.0 = Release|Any CPU
+		{A56255A2-6A12-4275-A30E-5ACFE7528826}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A56255A2-6A12-4275-A30E-5ACFE7528826}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A56255A2-6A12-4275-A30E-5ACFE7528826}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A56255A2-6A12-4275-A30E-5ACFE7528826}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A56255A2-6A12-4275-A30E-5ACFE7528826}.Release-Signed|Any CPU.ActiveCfg = Release|Any CPU
+		{A56255A2-6A12-4275-A30E-5ACFE7528826}.Release-Signed|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = src\Numerics\Numerics-Net35.csproj
+	EndGlobalSection
+EndGlobal

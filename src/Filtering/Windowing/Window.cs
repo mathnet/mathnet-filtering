@@ -115,7 +115,7 @@ namespace MathNet.Filtering.Windowing
 
             if (null == _coefficients || _width != _coefficients.Length)
             {
-                throw new ApplicationException(Resources.InvalidWindowFunctionException);
+                throw new Exception(Resources.InvalidWindowFunctionException);
             }
         }
 

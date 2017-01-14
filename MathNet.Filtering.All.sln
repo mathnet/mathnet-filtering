@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Filtering", "src\Filtering\Filtering.csproj", "{5B1D0091-5B3B-4F66-A296-3BCF431FCF15}"
 EndProject
@@ -9,6 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilteringUnitTests", "src\F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{010B4B67-1891-4822-A345-79AC23B9AA2C}"
 	ProjectSection(SolutionItems) = preProject
+		build\build-framework.fsx = build\build-framework.fsx
 		build.fsx = build.fsx
 		build\MathNet.Filtering.nuspec = build\MathNet.Filtering.nuspec
 		build\packages.config = build\packages.config
@@ -26,6 +27,18 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kalman", "src\Kalman\Kalman.csproj", "{5F379F05-5688-48D2-9BFE-08E4D54D360F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KalmanUnitTests", "src\KalmanUnitTests\KalmanUnitTests.csproj", "{0984F405-AA19-4785-A3ED-76B874D42022}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Filtering-Net35", "src\Filtering\Filtering-Net35.csproj", "{1025E8E4-9733-4C08-BDBC-E69E9036C179}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Filtering-Portable259", "src\Filtering\Filtering-Portable259.csproj", "{94EF3613-EF42-4E4C-B5F1-0E51F0E06A7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kalman-Net35", "src\Kalman\Kalman-Net35.csproj", "{A56255A2-6A12-4275-A30E-5ACFE7528826}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kalman-Portable259", "src\Kalman\Kalman-Portable259.csproj", "{21ED9EE9-6939-4968-81BE-6D719B21A96C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Net35", "Net35", "{3E61B79E-0C25-4230-AC38-9BCEEC2F3C25}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Portable259", "Portable259", "{6C4C5FB7-D70B-4106-A9B6-7125320C5E8D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,8 +62,30 @@ Global
 		{0984F405-AA19-4785-A3ED-76B874D42022}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0984F405-AA19-4785-A3ED-76B874D42022}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0984F405-AA19-4785-A3ED-76B874D42022}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1025E8E4-9733-4C08-BDBC-E69E9036C179}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1025E8E4-9733-4C08-BDBC-E69E9036C179}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1025E8E4-9733-4C08-BDBC-E69E9036C179}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1025E8E4-9733-4C08-BDBC-E69E9036C179}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94EF3613-EF42-4E4C-B5F1-0E51F0E06A7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94EF3613-EF42-4E4C-B5F1-0E51F0E06A7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94EF3613-EF42-4E4C-B5F1-0E51F0E06A7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94EF3613-EF42-4E4C-B5F1-0E51F0E06A7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A56255A2-6A12-4275-A30E-5ACFE7528826}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A56255A2-6A12-4275-A30E-5ACFE7528826}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A56255A2-6A12-4275-A30E-5ACFE7528826}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A56255A2-6A12-4275-A30E-5ACFE7528826}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21ED9EE9-6939-4968-81BE-6D719B21A96C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21ED9EE9-6939-4968-81BE-6D719B21A96C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21ED9EE9-6939-4968-81BE-6D719B21A96C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21ED9EE9-6939-4968-81BE-6D719B21A96C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1025E8E4-9733-4C08-BDBC-E69E9036C179} = {3E61B79E-0C25-4230-AC38-9BCEEC2F3C25}
+		{94EF3613-EF42-4E4C-B5F1-0E51F0E06A7D} = {6C4C5FB7-D70B-4106-A9B6-7125320C5E8D}
+		{A56255A2-6A12-4275-A30E-5ACFE7528826} = {3E61B79E-0C25-4230-AC38-9BCEEC2F3C25}
+		{21ED9EE9-6939-4968-81BE-6D719B21A96C} = {6C4C5FB7-D70B-4106-A9B6-7125320C5E8D}
 	EndGlobalSection
 EndGlobal

@@ -1,96 +1,81 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5B1D0091-5B3B-4F66-A296-3BCF431FCF15}</ProjectGuid>
+    <ProjectGuid>{A56255A2-6A12-4275-A30E-5ACFE7528826}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MathNet.Filtering</RootNamespace>
-    <AssemblyName>MathNet.Filtering</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <RootNamespace>MathNet.Filtering.Kalman</RootNamespace>
+    <AssemblyName>MathNet.Filtering.Kalman</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <UpgradeBackupLocation />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>..\..\out\lib\Net40\</OutputPath>
-    <IntermediateOutputPath>..\..\obj\lib\Net40\</IntermediateOutputPath>
-    <BaseIntermediateOutputPath>..\..\obj\lib\Net40\</BaseIntermediateOutputPath>
-    <DocumentationFile>..\..\out\lib\Net40\MathNet.Filtering.xml</DocumentationFile>
+    <OutputPath>..\..\out\lib\Net35\</OutputPath>
+    <IntermediateOutputPath>..\..\obj\lib\Net35\</IntermediateOutputPath>
+    <BaseIntermediateOutputPath>..\..\obj\lib\Net35\</BaseIntermediateOutputPath>
+    <DocumentationFile>..\..\out\lib\Net35\MathNet.Filtering.Kalman.xml</DocumentationFile>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;NET35;NOSYSNUMERICS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <NoWarn>1591</NoWarn>
+    <LangVersion>5</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>..\..\out\lib-debug\Net40\</OutputPath>
-    <IntermediateOutputPath>..\..\obj\lib-debug\Net40\</IntermediateOutputPath>
-    <BaseIntermediateOutputPath>..\..\obj\lib-debug\Net40\</BaseIntermediateOutputPath>
+    <OutputPath>..\..\out\lib-debug\Net35\</OutputPath>
+    <IntermediateOutputPath>..\..\obj\lib-debug\Net35\</IntermediateOutputPath>
+    <BaseIntermediateOutputPath>..\..\obj\lib-debug\Net35\</BaseIntermediateOutputPath>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NET35;NOSYSNUMERICS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisIgnoreGeneratedCode>true</CodeAnalysisIgnoreGeneratedCode>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <LangVersion>5</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Numerics" />
-    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Channel\IChannel.cs" />
-    <Compile Include="Compatibility.cs" />
-    <Compile Include="DataSources\ArbitraryPeriodicSource.cs" />
-    <Compile Include="DataSources\StableNoiseSource.cs" />
-    <Compile Include="DataSources\WhiteGaussianNoiseSource.cs" />
-    <Compile Include="DataSources\GeneratorSource.cs" />
-    <Compile Include="DataSources\SignalGenerator.cs" />
-    <Compile Include="DataSources\SinusoidalSource.cs" />
-    <Compile Include="FilterType.cs" />
-    <Compile Include="FIR\FirCoefficients.cs" />
-    <Compile Include="FIR\OnlineFirFilter.cs" />
-    <Compile Include="IOnlineFilter.cs" />
-    <Compile Include="IIR\IirCoefficients.cs" />
-    <Compile Include="IIR\OnlineIirFilter.cs" />
-    <Compile Include="ImpulseResponse.cs" />
-    <Compile Include="Median\OnlineMedianFilter.cs" />
-    <Compile Include="OnlineFilter.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="**\*.cs" Exclude="Properties\Resources.Designer.cs">
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Windowing\HammingWindow.cs" />
-    <Compile Include="Windowing\HannWindow.cs" />
-    <Compile Include="Windowing\CosineWindow.cs" />
-    <Compile Include="Windowing\BartlettWindow.cs" />
-    <Compile Include="Windowing\GaussWindow.cs" />
-    <Compile Include="Windowing\BartlettHannWindow.cs" />
-    <Compile Include="Windowing\BlackmanWindow.cs" />
-    <Compile Include="Windowing\BlackmanHarrisWindow.cs" />
-    <Compile Include="Windowing\BlackmanNuttallWindow.cs" />
-    <Compile Include="Windowing\FlatTopWindow.cs" />
-    <Compile Include="Windowing\NuttallWindow.cs" />
-    <Compile Include="Windowing\TriangularWindow.cs" />
-    <Compile Include="Windowing\LanczosWindow.cs" />
-    <Compile Include="Windowing\RectangularWindow.cs" />
-    <Compile Include="Windowing\Window.cs" />
-    <Compile Include="Windows\PermanentWindow.cs" />
-    <Compile Include="Windows\VolatileWindow.cs" />
-    <Compile Include="Windows\Window.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <SubType>Designer</SubType>
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="paket.references" />
@@ -108,6 +93,9 @@
     </When>
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.0' Or $(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.1' Or $(TargetFrameworkVersion) == 'v4.5.2' Or $(TargetFrameworkVersion) == 'v4.5.3' Or $(TargetFrameworkVersion) == 'v4.6' Or $(TargetFrameworkVersion) == 'v4.6.1' Or $(TargetFrameworkVersion) == 'v4.6.2' Or $(TargetFrameworkVersion) == 'v4.6.3')">
       <ItemGroup>
+        <Reference Include="System.Numerics">
+          <Paket>True</Paket>
+        </Reference>
         <Reference Include="MathNet.Numerics">
           <HintPath>..\..\packages\MathNet.Numerics\lib\net40\MathNet.Numerics.dll</HintPath>
           <Private>True</Private>
@@ -126,6 +114,9 @@
     </When>
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCore') Or ($(TargetFrameworkIdentifier) == '.NETStandard' And ($(TargetFrameworkVersion) == 'v1.1' Or $(TargetFrameworkVersion) == 'v1.2' Or $(TargetFrameworkVersion) == 'v1.3' Or $(TargetFrameworkVersion) == 'v1.4' Or $(TargetFrameworkVersion) == 'v1.5' Or $(TargetFrameworkVersion) == 'v1.6')) Or ($(TargetFrameworkIdentifier) == '.NETCoreApp' And $(TargetFrameworkVersion) == 'v1.0') Or ($(TargetFrameworkIdentifier) == 'MonoAndroid') Or ($(TargetFrameworkIdentifier) == 'MonoTouch') Or ($(TargetFrameworkIdentifier) == 'Xamarin.iOS') Or ($(TargetFrameworkIdentifier) == 'Xamarin.Mac') Or ($(TargetFrameworkProfile) == 'Profile7') Or ($(TargetFrameworkProfile) == 'Profile44')">
       <ItemGroup>
+        <Reference Include="System.Numerics">
+          <Paket>True</Paket>
+        </Reference>
         <Reference Include="MathNet.Numerics">
           <HintPath>..\..\packages\MathNet.Numerics\lib\portable-net45+netcore45+MonoAndroid1+MonoTouch1\MathNet.Numerics.dll</HintPath>
           <Private>True</Private>
@@ -153,6 +144,9 @@
     </When>
     <When Condition="($(TargetFrameworkIdentifier) == 'Silverlight' And $(TargetFrameworkVersion) == 'v5.0') Or ($(TargetFrameworkProfile) == 'Profile24') Or ($(TargetFrameworkProfile) == 'Profile47')">
       <ItemGroup>
+        <Reference Include="System.Numerics">
+          <Paket>True</Paket>
+        </Reference>
         <Reference Include="MathNet.Numerics">
           <HintPath>..\..\packages\MathNet.Numerics\lib\portable-net45+sl5+netcore45+MonoAndroid1+MonoTouch1\MathNet.Numerics.dll</HintPath>
           <Private>True</Private>

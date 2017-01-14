@@ -67,9 +67,7 @@ let filteringPack =
       Files =
         [ @"..\..\out\lib\Net35\MathNet.Filtering.*", Some libnet35, Some @"**\MathNet.Filtering.Kalman.*";
           @"..\..\out\lib\Net40\MathNet.Filtering.*", Some libnet40, Some @"**\MathNet.Filtering.Kalman.*";
-          @"..\..\out\lib\Net45\MathNet.Filtering.*", Some libnet45, Some @"**\MathNet.Filtering.Kalman.*";
-          @"..\..\out\lib\Profile47\MathNet.Filtering.*", Some libpcl47, Some @"**\MathNet.Filtering.Kalman.*";
-          @"..\..\out\lib\Profile344\MathNet.Filtering.*", Some libpcl344, Some @"**\MathNet.Filtering.Kalman.*";
+          @"..\..\out\lib\Profile259\MathNet.Filtering.*", Some libpcl259, Some @"**\MathNet.Filtering.Kalman.*";
           @"..\..\src\Filtering\**\*.cs", Some "src/Common", None ] }
 
 let kalmanPack =
@@ -87,9 +85,7 @@ let kalmanPack =
       Files =
         [ @"..\..\out\lib\Net35\MathNet.Filtering.Kalman.*", Some libnet35, None;
           @"..\..\out\lib\Net40\MathNet.Filtering.Kalman.*", Some libnet40, None;
-          @"..\..\out\lib\Net45\MathNet.Filtering.Kalman.*", Some libnet45, None;
-          @"..\..\out\lib\Profile47\MathNet.Filtering.Kalman.*", Some libpcl47, None;
-          @"..\..\out\lib\Profile344\MathNet.Filtering.Kalman.*", Some libpcl344, None;
+          @"..\..\out\lib\Profile259\MathNet.Filtering.Kalman.*", Some libpcl259, None;
           @"..\..\src\Kalman\**\*.cs", Some "src/Common", None ] }
 
 let coreBundle =
@@ -108,8 +104,8 @@ Target "Start" DoNothing
 Target "Clean" (fun _ ->
     CleanDirs [ "obj" ]
     CleanDirs [ "out/api"; "out/docs"; "out/packages" ]
-    CleanDirs [ "out/lib/Net35"; "out/lib/Net40"; "out/lib/Net45"; "out/lib/Profile47"; "out/lib/Profile344" ]
-    CleanDirs [ "out/test/Net35"; "out/test/Net40"; "out/test/Net45"; "out/test/Profile47"; "out/test/Profile344" ])
+    CleanDirs [ "out/lib/Net35"; "out/lib/Net40"; "out/lib/Profile259" ]
+    CleanDirs [ "out/test/Net35"; "out/test/Net40"; "out/test/Profile259" ])
 
 Target "ApplyVersion" (fun _ ->
     patchVersionInAssemblyInfo "src/Filtering" filteringRelease
