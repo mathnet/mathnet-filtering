@@ -1,3 +1,6 @@
+### 0.3.0 - 2017-01-14
+* Add .Net 3.5 and Portable Profile 259 builds for broader platform support
+
 ### 0.2.0-alpha - 2014-09-28
 * FIR default filter order estimation *~Xiaoshan Huang*
 * Backport experimental windowing functions from Numerics
