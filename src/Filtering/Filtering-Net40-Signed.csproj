@@ -33,57 +33,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Channel\IChannel.cs" />
-    <Compile Include="Compatibility.cs" />
-    <Compile Include="DataSources\ArbitraryPeriodicSource.cs" />
-    <Compile Include="DataSources\StableNoiseSource.cs" />
-    <Compile Include="DataSources\WhiteGaussianNoiseSource.cs" />
-    <Compile Include="DataSources\GeneratorSource.cs" />
-    <Compile Include="DataSources\SignalGenerator.cs" />
-    <Compile Include="DataSources\SinusoidalSource.cs" />
-    <Compile Include="FilterType.cs" />
-    <Compile Include="FIR\FirCoefficients.cs" />
-    <Compile Include="FIR\OnlineFirFilter.cs" />
-    <Compile Include="IOnlineFilter.cs" />
-    <Compile Include="IIR\IirCoefficients.cs" />
-    <Compile Include="IIR\OnlineIirFilter.cs" />
-    <Compile Include="ImpulseResponse.cs" />
-    <Compile Include="Median\OnlineMedianFilter.cs" />
-    <Compile Include="OnlineFilter.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="**\*.cs" Exclude="Properties\Resources.Designer.cs">
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Windowing\HammingWindow.cs" />
-    <Compile Include="Windowing\HannWindow.cs" />
-    <Compile Include="Windowing\CosineWindow.cs" />
-    <Compile Include="Windowing\BartlettWindow.cs" />
-    <Compile Include="Windowing\GaussWindow.cs" />
-    <Compile Include="Windowing\BartlettHannWindow.cs" />
-    <Compile Include="Windowing\BlackmanWindow.cs" />
-    <Compile Include="Windowing\BlackmanHarrisWindow.cs" />
-    <Compile Include="Windowing\BlackmanNuttallWindow.cs" />
-    <Compile Include="Windowing\FlatTopWindow.cs" />
-    <Compile Include="Windowing\NuttallWindow.cs" />
-    <Compile Include="Windowing\TriangularWindow.cs" />
-    <Compile Include="Windowing\LanczosWindow.cs" />
-    <Compile Include="Windowing\RectangularWindow.cs" />
-    <Compile Include="Windowing\Window.cs" />
-    <Compile Include="Windows\PermanentWindow.cs" />
-    <Compile Include="Windows\VolatileWindow.cs" />
-    <Compile Include="Windows\Window.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <SubType>Designer</SubType>
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="paket.references" />
+    <None Include="Filtering-Net40-Signed.csproj.paket.references" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Choose>
