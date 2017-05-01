@@ -44,6 +44,7 @@ let summary = "Math.NET Filtering, providing methods and algorithms for signal p
 let description = "Math.NET Filtering with finite and infinite impulse response filter design and application, median filtering and other signal processing methods and algorithms. MIT license. "
 let descriptionKalman = "Math.NET Filtering: separate package with Kalman filter only. Cannot currently be included into the main package because of licensing restrictions. LGPL license. "
 let support = "Supports .Net 4.0 and Mono on Windows, Linux and Mac."
+let supportSigned = "Supports .Net 4.0."
 let tags = "math filter signal FIR IIR median kalman design"
 
 let libnet35 = "lib/net35"
@@ -88,11 +89,43 @@ let kalmanPack =
           @"..\..\out\lib\Profile259\MathNet.Filtering.Kalman.*", Some libpcl259, None;
           @"..\..\src\Kalman\**\*.cs", Some "src/Common", None ] }
 
+let filteringSignedPack =
+  { filteringPack with
+      Id = filteringPack.Id + ".Signed"
+      Title = filteringPack.Title + " - Signed Edition"
+      Description = description + supportSigned
+      Tags = filteringPack.Tags + " signed"
+      Dependencies =
+        [ { FrameworkVersion=""
+            Dependencies=[ "MathNet.Numerics.Signed", GetPackageVersion "packages" "MathNet.Numerics.Signed" ] } ]
+      Files =
+        [ @"..\..\out\lib-signed\Net40\MathNet.Filtering.*", Some libnet40, Some @"**\MathNet.Filtering.Kalman.*";
+          @"..\..\src\Filtering\**\*.cs", Some "src/Common", None ] }
+
+let kalmanSignedPack =
+  { kalmanPack with
+      Id = kalmanPack.Id + ".Signed"
+      Title = kalmanPack.Title + " - Signed Edition"
+      Description = descriptionKalman + supportSigned
+      Tags = kalmanPack.Tags + " signed"
+      Dependencies =
+        [ { FrameworkVersion=""
+            Dependencies=[ "MathNet.Numerics.Signed", GetPackageVersion "packages" "MathNet.Numerics.Signed" ] } ]
+      Files =
+        [ @"..\..\out\lib-signed\Net40\MathNet.Filtering.Kalman.*", Some libnet40, None;
+          @"..\..\src\Kalman\**\*.cs", Some "src/Common", None ] }
+
 let coreBundle =
     { Id = filteringPack.Id
       Release = filteringRelease
       Title = filteringPack.Title
       Packages = [ filteringPack; kalmanPack ] }
+
+let coreSignedBundle =
+    { Id = filteringSignedPack.Id
+      Release = filteringRelease
+      Title = filteringSignedPack.Title
+      Packages = [ filteringSignedPack; kalmanSignedPack ] }
 
 
 // --------------------------------------------------------------------------------------
@@ -105,7 +138,8 @@ Target "Clean" (fun _ ->
     CleanDirs [ "obj" ]
     CleanDirs [ "out/api"; "out/docs"; "out/packages" ]
     CleanDirs [ "out/lib/Net35"; "out/lib/Net40"; "out/lib/Profile259" ]
-    CleanDirs [ "out/test/Net35"; "out/test/Net40"; "out/test/Profile259" ])
+    CleanDirs [ "out/test/Net35"; "out/test/Net40"; "out/test/Profile259" ]
+    CleanDirs [ "out/lib-signed/Net40" ])
 
 Target "ApplyVersion" (fun _ ->
     patchVersionInAssemblyInfo "src/Filtering" filteringRelease
@@ -154,7 +188,8 @@ Target "Pack" DoNothing
 
 Target "Zip" (fun _ ->
     CleanDir "out/packages/Zip"
-    coreBundle |> zip "out/packages/Zip" "out/lib" (fun f -> f.Contains("MathNet.Filtering.") || f.Contains("MathNet.Numerics.")))
+    coreBundle |> zip "out/packages/Zip" "out/lib" (fun f -> f.Contains("MathNet.Filtering.") || f.Contains("MathNet.Numerics."))
+    coreSignedBundle |> zip "out/packages/Zip" "out/lib-signed" (fun f -> f.Contains("MathNet.Filtering.") || f.Contains("MathNet.Numerics.")))
 "Build" ==> "Zip" ==> "Pack"
 
 // NUGET
@@ -162,7 +197,8 @@ Target "Zip" (fun _ ->
 Target "NuGet" (fun _ ->
     CleanDir "out/packages/NuGet"
     if hasBuildParam "all" || hasBuildParam "release" then
-        nugetPack coreBundle "out/packages/NuGet")
+        nugetPack coreBundle "out/packages/NuGet"
+        nugetPack coreSignedBundle "out/packages/NuGet")
 "Build" ==> "NuGet" ==> "Pack"
 
 

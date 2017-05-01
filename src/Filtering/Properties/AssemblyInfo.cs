@@ -38,6 +38,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Math.NET Filtering")]
 [assembly: ComVisible(false)]
 [assembly: Guid("4d30d62e-c708-411f-bc68-8da5621fcff7")]
+
+#if !STRONGNAME
 [assembly: InternalsVisibleTo("MathNet.Filtering.UnitTests")]
+#endif
 
 #endif

@@ -24,20 +24,15 @@ using System.Runtime.InteropServices;
 #if PORTABLE
 
 [assembly: AssemblyTitle("Math.NET Filtering - Kalman Filter - Portable Edition")]
-[assembly: InternalsVisibleTo("MathNet.Filtering.UnitTests")]
-[assembly: InternalsVisibleTo("MathNet.Filtering.UnitTests259")]
 
 #elif NET35
 
 [assembly: AssemblyTitle("Math.NET Filtering - Kalman Filter - .Net 3.5 Edition")]
-[assembly: InternalsVisibleTo("MathNet.Filtering.UnitTests")]
-[assembly: InternalsVisibleTo("MathNet.Filtering.UnitTestsNet35")]
 
 #else
 
-[assembly: AssemblyTitle("Math.NET Filtering")]
+[assembly: AssemblyTitle("Math.NET Filtering - Kalman Filter")]
 [assembly: ComVisible(false)]
 [assembly: Guid("DDFDCE89-CCC0-4BE1-8B95-B88E38B7903F")]
-[assembly: InternalsVisibleTo("MathNet.Filtering.UnitTests")]
 
 #endif

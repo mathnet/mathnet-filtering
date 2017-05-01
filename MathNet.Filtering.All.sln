@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Filtering", "src\Filtering\Filtering.csproj", "{5B1D0091-5B3B-4F66-A296-3BCF431FCF15}"
 EndProject
@@ -12,7 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{010B4B67
 		build\build-framework.fsx = build\build-framework.fsx
 		build.fsx = build.fsx
 		build\MathNet.Filtering.nuspec = build\MathNet.Filtering.nuspec
-		build\packages.config = build\packages.config
+		paket.dependencies = paket.dependencies
+		paket.lock = paket.lock
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Readme", "Readme", "{A253EF4A-4CAF-487B-A552-A9C0E75E8635}"
@@ -39,6 +40,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Net35", "Net35", "{3E61B79E-0C25-4230-AC38-9BCEEC2F3C25}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Portable259", "Portable259", "{6C4C5FB7-D70B-4106-A9B6-7125320C5E8D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Net40-Signed", "Net40-Signed", "{029EFB23-3335-40CF-BF1C-A4E2A543D40E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Filtering-Net40-Signed", "src\Filtering\Filtering-Net40-Signed.csproj", "{1936522E-0F9B-4AC5-ADF3-70979C4A514F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kalman-Net40-Signed", "src\Kalman\Kalman-Net40-Signed.csproj", "{65F7DED7-2FCC-4157-8A98-4F82F0FD4F64}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -78,6 +85,12 @@ Global
 		{21ED9EE9-6939-4968-81BE-6D719B21A96C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21ED9EE9-6939-4968-81BE-6D719B21A96C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21ED9EE9-6939-4968-81BE-6D719B21A96C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1936522E-0F9B-4AC5-ADF3-70979C4A514F}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{1936522E-0F9B-4AC5-ADF3-70979C4A514F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1936522E-0F9B-4AC5-ADF3-70979C4A514F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65F7DED7-2FCC-4157-8A98-4F82F0FD4F64}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{65F7DED7-2FCC-4157-8A98-4F82F0FD4F64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65F7DED7-2FCC-4157-8A98-4F82F0FD4F64}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,5 +100,7 @@ Global
 		{94EF3613-EF42-4E4C-B5F1-0E51F0E06A7D} = {6C4C5FB7-D70B-4106-A9B6-7125320C5E8D}
 		{A56255A2-6A12-4275-A30E-5ACFE7528826} = {3E61B79E-0C25-4230-AC38-9BCEEC2F3C25}
 		{21ED9EE9-6939-4968-81BE-6D719B21A96C} = {6C4C5FB7-D70B-4106-A9B6-7125320C5E8D}
+		{1936522E-0F9B-4AC5-ADF3-70979C4A514F} = {029EFB23-3335-40CF-BF1C-A4E2A543D40E}
+		{65F7DED7-2FCC-4157-8A98-4F82F0FD4F64} = {029EFB23-3335-40CF-BF1C-A4E2A543D40E}
 	EndGlobalSection
 EndGlobal
