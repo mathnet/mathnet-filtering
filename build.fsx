@@ -44,7 +44,7 @@ let summary = "Math.NET Filtering, providing methods and algorithms for signal p
 let description = "Math.NET Filtering with finite and infinite impulse response filter design and application, median filtering and other signal processing methods and algorithms. MIT license. "
 let descriptionKalman = "Math.NET Filtering: separate package with Kalman filter only. Cannot currently be included into the main package because of licensing restrictions. LGPL license. "
 let support = "Supports .Net 4.0 and Mono on Windows, Linux and Mac."
-let supportSigned = "Supports .Net 4.0."
+let supportSigned = "Supports .Net 4.0. This package contains strong-named assemblies for legacy use cases."
 let tags = "math filter signal FIR IIR median kalman design"
 
 let libnet35 = "lib/net35"

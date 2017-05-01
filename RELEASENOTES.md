@@ -1,3 +1,6 @@
+### 0.4.0 - 2017-05-01
+* Build: extra *.Signed packages with strong named assemblies for legacy use cases
+
 ### 0.3.0 - 2017-01-14
 * Add .Net 3.5 and Portable Profile 259 builds for broader platform support
 
