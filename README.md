@@ -1,7 +1,7 @@
 Math.NET Filtering
 ==================
 
-Math.NET Filtering is an opensource **geometry library for .Net, Silverlight and Mono**.
+Math.NET Filtering is a **digital signal processing toolkit**, offering an infrastructure for digital filter design, applying those filters to data streams using data converters, as well as digital signal generators..
 
 Supports Mono and .NET 4.0 on Linux, Mac and Windows.
 
