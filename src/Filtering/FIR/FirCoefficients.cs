@@ -28,6 +28,7 @@
 // </copyright>
 
 using System;
+using System.Linq;
 
 namespace MathNet.Filtering.FIR
 {
@@ -75,7 +76,8 @@ namespace MathNet.Filtering.FIR
                 c[i] = Math.Sin(npi*nu)/npi;
                 c[n + halforder] = c[i];
             }
-
+            double s = c.Sum();
+            for (int i = 0; i < c.Length; i++) { c[i] /= s; }
             return c;
         }
 
