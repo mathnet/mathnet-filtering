@@ -40,7 +40,7 @@ namespace MathNet.Filtering.Properties {
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
-#if NET45REFLECTION
+#if NETSTANDARD1_3
                 if (object.ReferenceEquals(resourceMan, null))
                 {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MathNet.Filtering.Properties.Resources", typeof(Resources).GetTypeInfo().Assembly);

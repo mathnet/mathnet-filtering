@@ -38,94 +38,25 @@ let releases = [filteringRelease ]
 traceHeader releases
 
 
-// CORE PACKAGES
+// FILTERING PACKAGES
 
-let summary = "Math.NET Filtering, providing methods and algorithms for signal processing and filtering in science, engineering and every day use."
-let description = "Math.NET Filtering with finite and infinite impulse response filter design and application, median filtering and other signal processing methods and algorithms. MIT license. "
-let descriptionKalman = "Math.NET Filtering: separate package with Kalman filter only. Cannot currently be included into the main package because of licensing restrictions. LGPL license. "
-let support = "Supports .Net 4.0 and Mono on Windows, Linux and Mac."
-let supportSigned = "Supports .Net 4.0. This package contains strong-named assemblies for legacy use cases."
-let tags = "math filter signal FIR IIR median kalman design"
+let filteringZipPackage = zipPackage "MathNet.Filtering" "Math.NET Filtering" filteringRelease false
+let filteringStrongNameZipPackage = zipPackage "MathNet.Filtering.Signed" "Math.NET Filtering" filteringRelease false
 
-let libnet35 = "lib/net35"
-let libnet40 = "lib/net40"
-let libnet45 = "lib/net45"
-let libpcl47 = "lib/portable-net45+sl5+netcore45+MonoAndroid1+MonoTouch1"
-let libpcl344 = "lib/portable-net45+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1"
+let filteringNuGetPackage = nugetPackage "MathNet.Filtering" filteringRelease
+let filteringKalmanNuGetPackage = nugetPackage "MathNet.Filtering.Kalman" filteringRelease
+let filteringStrongNameNuGetPackage = nugetPackage "MathNet.Filtering.Signed" filteringRelease
+let filteringKalmanStrongNameNuGetPackage = nugetPackage "MathNet.Filtering.Kalman.Signed" filteringRelease
 
-let filteringPack =
-    { Id = "MathNet.Filtering"
-      Release = filteringRelease
-      Title = "Math.NET Filtering"
-      Summary = summary
-      Description = description + support
-      Tags = tags
-      Authors = [ "Christoph Ruegg" ]
-      FsLoader = false
-      Dependencies =
-        [ { FrameworkVersion=""
-            Dependencies=[ "MathNet.Numerics", GetPackageVersion "packages" "MathNet.Numerics" ] } ]
-      Files =
-        [ @"..\..\out\lib\Net35\MathNet.Filtering.*", Some libnet35, Some @"**\MathNet.Filtering.Kalman.*";
-          @"..\..\out\lib\Net40\MathNet.Filtering.*", Some libnet40, Some @"**\MathNet.Filtering.Kalman.*";
-          @"..\..\out\lib\Profile259\MathNet.Filtering.*", Some libpcl259, Some @"**\MathNet.Filtering.Kalman.*";
-          @"..\..\src\Filtering\**\*.cs", Some "src/Common", None ] }
+let filteringProject = project "MathNet.Filtering" "src/Filtering/Filtering.csproj" [filteringNuGetPackage; filteringStrongNameNuGetPackage]
+let filteringKalmanProject = project "MathNet.Filtering.Kalman" "src/Kalman/Kalman.csproj" [filteringKalmanNuGetPackage; filteringKalmanStrongNameNuGetPackage]
+let filteringSolution = solution "Filtering" "MathNet.Filtering.sln" [filteringProject; filteringKalmanProject] [filteringZipPackage; filteringStrongNameZipPackage]
 
-let kalmanPack =
-    { Id = "MathNet.Filtering.Kalman"
-      Release = filteringRelease
-      Title = "Math.NET Filtering - Kalman Filter"
-      Summary = summary
-      Description = descriptionKalman + support
-      Tags = tags
-      Authors = [ "Christoph Ruegg" ]
-      FsLoader = false
-      Dependencies =
-        [ { FrameworkVersion=""
-            Dependencies=[ "MathNet.Numerics", GetPackageVersion "packages" "MathNet.Numerics" ] } ]
-      Files =
-        [ @"..\..\out\lib\Net35\MathNet.Filtering.Kalman.*", Some libnet35, None;
-          @"..\..\out\lib\Net40\MathNet.Filtering.Kalman.*", Some libnet40, None;
-          @"..\..\out\lib\Profile259\MathNet.Filtering.Kalman.*", Some libpcl259, None;
-          @"..\..\src\Kalman\**\*.cs", Some "src/Common", None ] }
 
-let filteringSignedPack =
-  { filteringPack with
-      Id = filteringPack.Id + ".Signed"
-      Title = filteringPack.Title + " - Signed Edition"
-      Description = description + supportSigned
-      Tags = filteringPack.Tags + " signed"
-      Dependencies =
-        [ { FrameworkVersion=""
-            Dependencies=[ "MathNet.Numerics.Signed", GetPackageVersion "packages" "MathNet.Numerics.Signed" ] } ]
-      Files =
-        [ @"..\..\out\lib-signed\Net40\MathNet.Filtering.*", Some libnet40, Some @"**\MathNet.Filtering.Kalman.*";
-          @"..\..\src\Filtering\**\*.cs", Some "src/Common", None ] }
+// ALL
 
-let kalmanSignedPack =
-  { kalmanPack with
-      Id = kalmanPack.Id + ".Signed"
-      Title = kalmanPack.Title + " - Signed Edition"
-      Description = descriptionKalman + supportSigned
-      Tags = kalmanPack.Tags + " signed"
-      Dependencies =
-        [ { FrameworkVersion=""
-            Dependencies=[ "MathNet.Numerics.Signed", GetPackageVersion "packages" "MathNet.Numerics.Signed" ] } ]
-      Files =
-        [ @"..\..\out\lib-signed\Net40\MathNet.Filtering.Kalman.*", Some libnet40, None;
-          @"..\..\src\Kalman\**\*.cs", Some "src/Common", None ] }
-
-let coreBundle =
-    { Id = filteringPack.Id
-      Release = filteringRelease
-      Title = filteringPack.Title
-      Packages = [ filteringPack; kalmanPack ] }
-
-let coreSignedBundle =
-    { Id = filteringSignedPack.Id
-      Release = filteringRelease
-      Title = filteringSignedPack.Title
-      Packages = [ filteringSignedPack; kalmanSignedPack ] }
+let allSolutions = [filteringSolution]
+let allProjects = allSolutions |> List.collect (fun s -> s.Projects) |> List.distinct
 
 
 // --------------------------------------------------------------------------------------
@@ -135,17 +66,20 @@ let coreSignedBundle =
 Target "Start" DoNothing
 
 Target "Clean" (fun _ ->
-    CleanDirs [ "obj" ]
-    CleanDirs [ "out/api"; "out/docs"; "out/packages" ]
-    CleanDirs [ "out/lib/Net35"; "out/lib/Net40"; "out/lib/Profile259" ]
-    CleanDirs [ "out/test/Net35"; "out/test/Net40"; "out/test/Profile259" ]
-    CleanDirs [ "out/lib-signed/Net40" ])
+    DeleteDirs (!! "src/**/obj/" ++ "src/**/bin/" )
+    CleanDirs [ "out/api"; "out/docs" ]
+    allSolutions |> List.iter (fun solution -> CleanDirs [ solution.OutputZipDir; solution.OutputNuGetDir; solution.OutputLibDir; solution.OutputLibStrongNameDir ])
+    allSolutions |> List.iter clean)
 
 Target "ApplyVersion" (fun _ ->
-    patchVersionInAssemblyInfo "src/Filtering" filteringRelease
-    patchVersionInAssemblyInfo "src/FilteringUnitTests" filteringRelease
-    patchVersionInAssemblyInfo "src/Kalman" filteringRelease
-    patchVersionInAssemblyInfo "src/KalmanUnitTests" filteringRelease)
+    allProjects |> List.iter patchVersionInProjectFile
+    patchVersionInAssemblyInfo "src/Filtering.Tests" filteringRelease
+    patchVersionInAssemblyInfo "src/Kalman.Tests" filteringRelease)
+
+Target "Restore" (fun _ -> allSolutions |> List.iter restore)
+"Start"
+  =?> ("Clean", not (hasBuildParam "incremental"))
+  ==> "Restore"
 
 Target "Prepare" DoNothing
 "Start"
@@ -154,52 +88,79 @@ Target "Prepare" DoNothing
   ==> "Prepare"
 
 
+
 // --------------------------------------------------------------------------------------
-// BUILD
+// BUILD, SIGN, COLLECT
 // --------------------------------------------------------------------------------------
 
-Target "BuildMain" (fun _ -> build !! "MathNet.Filtering.sln")
-Target "BuildNet35" (fun _ -> build !! "MathNet.Filtering.Net35Only.sln")
-Target "BuildAll" (fun _ -> build !! "MathNet.Filtering.All.sln")
+let fingerprint = "490408de3618bed0a28e68dc5face46e5a3a97dd"
+let timeserver = "http://time.certum.pl/"
 
-Target "Build" DoNothing
-"Prepare"
-  =?> ("BuildNet35", hasBuildParam "net35")
-  =?> ("BuildAll", hasBuildParam "all" || hasBuildParam "release")
-  =?> ("BuildMain", not (hasBuildParam "all" || hasBuildParam "release" || hasBuildParam "net35"))
-  ==> "Build"
+Target "Build" (fun _ ->
+
+    // Strong Name Build (with strong name, without certificate signature)
+    if hasBuildParam "strongname" then
+        CleanDirs (!! "src/**/obj/" ++ "src/**/bin/" )
+        restoreSN filteringSolution
+        buildSN filteringSolution
+        if isWindows && hasBuildParam "sign" then sign fingerprint timeserver filteringSolution
+        collectBinariesSN filteringSolution
+        zip filteringStrongNameZipPackage filteringSolution.OutputZipDir filteringSolution.OutputLibStrongNameDir (fun f -> f.Contains("MathNet.Filtering.") || f.Contains("MathNet.Numerics."))
+        if isWindows then
+            packSN filteringSolution
+            collectNuGetPackages filteringSolution
+
+    // Normal Build (without strong name, with certificate signature)
+    CleanDirs (!! "src/**/obj/" ++ "src/**/bin/" )
+    restore filteringSolution
+    build filteringSolution
+    if isWindows && hasBuildParam "sign" then sign fingerprint timeserver filteringSolution
+    collectBinaries filteringSolution
+    zip filteringZipPackage filteringSolution.OutputZipDir filteringSolution.OutputLibDir (fun f -> f.Contains("MathNet.Filtering.") || f.Contains("MathNet.Numerics."))
+    if isWindows then
+        pack filteringSolution
+        collectNuGetPackages filteringSolution
+
+    // NuGet Sign (all or nothing)
+    if isWindows && hasBuildParam "sign" then signNuGet fingerprint timeserver filteringSolution
+
+    )
+"Prepare" ==> "Build"
 
 
 // --------------------------------------------------------------------------------------
 // TEST
 // --------------------------------------------------------------------------------------
 
-Target "Test" (fun _ -> test !! "out/test/**/*UnitTests*.dll")
-"Build" ==> "Test"
-
-
-// --------------------------------------------------------------------------------------
-// PACKAGES
-// --------------------------------------------------------------------------------------
-
-Target "Pack" DoNothing
-
-// ZIP
-
-Target "Zip" (fun _ ->
-    CleanDir "out/packages/Zip"
-    coreBundle |> zip "out/packages/Zip" "out/lib" (fun f -> f.Contains("MathNet.Filtering.") || f.Contains("MathNet.Numerics."))
-    coreSignedBundle |> zip "out/packages/Zip" "out/lib-signed" (fun f -> f.Contains("MathNet.Filtering.") || f.Contains("MathNet.Numerics.")))
-"Build" ==> "Zip" ==> "Pack"
-
-// NUGET
-
-Target "NuGet" (fun _ ->
-    CleanDir "out/packages/NuGet"
-    if hasBuildParam "all" || hasBuildParam "release" then
-        nugetPack coreBundle "out/packages/NuGet"
-        nugetPack coreSignedBundle "out/packages/NuGet")
-"Build" ==> "NuGet" ==> "Pack"
+let testFiltering framework = test "src/Filtering.Tests" "Filtering.Tests.csproj" framework
+Target "TestFiltering" DoNothing
+Target "TestFilteringCore1.1" (fun _ -> testFiltering "netcoreapp1.1")
+Target "TestFilteringCore2.0" (fun _ -> testFiltering "netcoreapp2.0")
+Target "TestFilteringNET40" (fun _ -> testFiltering "net40")
+Target "TestFilteringNET45" (fun _ -> testFiltering "net45")
+Target "TestFilteringNET461" (fun _ -> testFiltering "net461")
+Target "TestFilteringNET47"  (fun _ -> testFiltering "net47")
+"Build" ==> "TestFilteringCore1.1"
+"Build" ==> "TestFilteringCore2.0" ==> "TestFiltering"
+"Build" =?> ("TestFilteringNET40", isWindows)
+"Build" =?> ("TestFilteringNET45", isWindows)
+"Build" =?> ("TestFilteringNET461", isWindows) ==> "TestFiltering"
+"Build" =?> ("TestFilteringNET47", isWindows)
+let testKalman framework = test "src/Kalman.Tests" "Kalman.Tests.csproj" framework
+Target "TestKalman" DoNothing
+Target "TestKalmanCore1.1" (fun _ -> testKalman "netcoreapp1.1")
+Target "TestKalmanCore2.0" (fun _ -> testKalman "netcoreapp2.0")
+Target "TestKalmanNET45" (fun _ -> testKalman "net45")
+Target "TestKalmanNET461" (fun _ -> testKalman "net461")
+Target "TestKalmanNET47" (fun _ -> testKalman "net47")
+"Build" ==> "TestKalmanCore1.1"
+"Build" ==> "TestKalmanCore2.0" ==> "TestKalman"
+"Build" =?> ("TestKalmanNET45", isWindows)
+"Build" =?> ("TestKalmanNET461", isWindows) ==> "TestKalman"
+"Build" =?> ("TestKalmanNET47", isWindows)
+Target "Test" DoNothing
+"TestFiltering" ==> "Test"
+"TestKalman" ==> "Test"
 
 
 // --------------------------------------------------------------------------------------
@@ -247,7 +208,7 @@ Target "DocsWatch" (fun _ ->
 Target "CleanApi" (fun _ -> CleanDirs ["out/api"])
 
 Target "Api" (fun _ ->
-    !! "out/lib/Net40/MathNet.Filtering.dll" ++ "out/lib/Net40/MathNet.Filtering.Kalman.dll"
+    !! "src/Filtering/bin/Release/net40/MathNet.Filtering.dll" ++ "src/Kalman/bin/Release/net40/MathNet.Filtering.Kalman.dll"
     |> Docu (fun p ->
         { p with
             ToolPath = "tools/docu/docu.exe"
@@ -269,9 +230,9 @@ Target "PublishMirrors" (fun _ -> publishMirrors ())
 Target "PublishDocs" (fun _ -> publishDocs filteringRelease)
 Target "PublishApi" (fun _ -> publishApi filteringRelease)
 
-Target "PublishArchive" (fun _ -> publishArchive "out/packages/Zip" "out/packages/NuGet" [coreBundle; coreSignedBundle])
+Target "PublishArchive" (fun _ -> publishArchive filteringSolution)
 
-Target "PublishNuGet" (fun _ -> !! "out/packages/NuGet/*.nupkg" -- "out/packages/NuGet/*.symbols.nupkg" |> publishNuGet)
+Target "PublishNuGet" (fun _ -> publishNuGet !! (filteringSolution.OutputNuGetDir </> "/*.nupkg"))
 
 Target "Publish" DoNothing
 Dependencies "Publish" [ "PublishTag"; "PublishDocs"; "PublishApi"; "PublishArchive"; "PublishNuGet" ]
@@ -282,6 +243,6 @@ Dependencies "Publish" [ "PublishTag"; "PublishDocs"; "PublishApi"; "PublishArch
 // --------------------------------------------------------------------------------------
 
 Target "All" DoNothing
-Dependencies "All" [ "Pack"; "Docs"; "Api"; "Test" ]
+Dependencies "All" [ "Build"; "Docs"; "Api"; "Test" ]
 
 RunTargetOrDefault "Test"

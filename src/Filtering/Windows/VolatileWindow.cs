@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime;
+using System.Runtime.CompilerServices;
 
 namespace MathNet.Filtering.Windows
 {

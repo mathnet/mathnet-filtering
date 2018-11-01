@@ -1,4 +1,4 @@
-﻿#if (PORTABLE || NET35)
+﻿#if NETSTANDARD1_3
 namespace MathNet.Filtering
 {
     using System;

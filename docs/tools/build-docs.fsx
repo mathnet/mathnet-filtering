@@ -13,7 +13,7 @@ let githubLink = "https://github.com/mathnet/mathnet-filtering"
 let info =
   [ "project-name", "Math.NET Filtering"
     "project-author", "Christoph Ruegg, Johan Larsson"
-    "project-summary", "Math.NET Filtering. .Net 4, .Net 3.5, SL5, Win8, WP8, PCL 47 and 136, Mono, Xamarin Android/iOS."
+    "project-summary", "Math.NET Filtering, providing methods and algorithms for signal processing and filtering in science, engineering and every day use. Supports .Net Framework 4.0 or higher and .Net Standard 1.3 or higher, on Windows, Linux and Mac."
     "project-github", githubLink
     "project-nuget", "https://nuget.org/packages/MathNet.Filtering" ]
 
