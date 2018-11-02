@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2048
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Filtering", "src\Filtering\Filtering.csproj", "{5B1D0091-5B3B-4F66-A296-3BCF431FCF15}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Filtering.Tests", "src\Filtering.Tests\Filtering.Tests.csproj", "{F643F4B3-9190-44AD-B0A5-6045528C5917}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Filtering.Signed", "src\Filtering\Filtering.Signed.csproj", "{5B1D0091-5B3B-4F66-A296-3BCF431FCF15}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{010B4B67-1891-4822-A345-79AC23B9AA2C}"
 	ProjectSection(SolutionItems) = preProject
@@ -35,9 +33,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{61E84DAB-7
 		docs\tools\templates\template.cshtml = docs\tools\templates\template.cshtml
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kalman", "src\Kalman\Kalman.csproj", "{5F379F05-5688-48D2-9BFE-08E4D54D360F}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kalman.Tests", "src\Kalman.Tests\Kalman.Tests.csproj", "{0984F405-AA19-4785-A3ED-76B874D42022}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kalman.Signed", "src\Kalman\Kalman.Signed.csproj", "{5F379F05-5688-48D2-9BFE-08E4D54D360F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,18 +45,10 @@ Global
 		{5B1D0091-5B3B-4F66-A296-3BCF431FCF15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B1D0091-5B3B-4F66-A296-3BCF431FCF15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B1D0091-5B3B-4F66-A296-3BCF431FCF15}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F643F4B3-9190-44AD-B0A5-6045528C5917}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F643F4B3-9190-44AD-B0A5-6045528C5917}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F643F4B3-9190-44AD-B0A5-6045528C5917}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F643F4B3-9190-44AD-B0A5-6045528C5917}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5F379F05-5688-48D2-9BFE-08E4D54D360F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5F379F05-5688-48D2-9BFE-08E4D54D360F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F379F05-5688-48D2-9BFE-08E4D54D360F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F379F05-5688-48D2-9BFE-08E4D54D360F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0984F405-AA19-4785-A3ED-76B874D42022}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0984F405-AA19-4785-A3ED-76B874D42022}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0984F405-AA19-4785-A3ED-76B874D42022}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0984F405-AA19-4785-A3ED-76B874D42022}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

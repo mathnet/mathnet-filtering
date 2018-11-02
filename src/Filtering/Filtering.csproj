@@ -6,11 +6,11 @@
     <AssemblyName>MathNet.Filtering</AssemblyName>
     <RootNamespace>MathNet.Filtering</RootNamespace>
     <IsPackable>true</IsPackable>
-    <PackageId>MathNet.Filtering$(PackageIdSuffix)</PackageId>
+    <PackageId>MathNet.Filtering</PackageId>
     <VersionPrefix>0.4.0</VersionPrefix>
     <VersionSuffix></VersionSuffix>
-    <Title>Math.NET Filtering$(TitleSuffix)</Title>
-    <Description>Math.NET Filtering, providing methods and algorithms for signal processing and filtering in science, engineering and every day use. Supports .Net Framework 4.0 or higher and .Net Standard 1.3 or higher, on Windows, Linux and Mac.$(DescriptionSuffix)</Description>
+    <Title>Math.NET Filtering</Title>
+    <Description>Math.NET Filtering, providing methods and algorithms for signal processing and filtering in science, engineering and every day use. Supports .Net Framework 4.0 or higher and .Net Standard 1.3 or higher, on Windows, Linux and Mac.</Description>
     <PackageReleaseNotes>Build: extra .Signed packages with strong named assemblies for legacy use cases</PackageReleaseNotes>
     <PackageTags>math filter signal FIR IIR median kalman design</PackageTags>
     <IsTool>false</IsTool>

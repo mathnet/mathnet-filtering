@@ -41,21 +41,23 @@ traceHeader releases
 // FILTERING PACKAGES
 
 let filteringZipPackage = zipPackage "MathNet.Filtering" "Math.NET Filtering" filteringRelease false
-let filteringStrongNameZipPackage = zipPackage "MathNet.Filtering.Signed" "Math.NET Filtering" filteringRelease false
-
 let filteringNuGetPackage = nugetPackage "MathNet.Filtering" filteringRelease
 let filteringKalmanNuGetPackage = nugetPackage "MathNet.Filtering.Kalman" filteringRelease
+let filteringProject = project "MathNet.Filtering" "src/Filtering/Filtering.csproj" [filteringNuGetPackage]
+let filteringKalmanProject = project "MathNet.Filtering.Kalman" "src/Kalman/Kalman.csproj" [filteringKalmanNuGetPackage]
+let filteringSolution = solution "Filtering" "MathNet.Filtering.sln" [filteringProject; filteringKalmanProject] [filteringZipPackage]
+
+let filteringStrongNameZipPackage = zipPackage "MathNet.Filtering.Signed" "Math.NET Filtering" filteringRelease false
 let filteringStrongNameNuGetPackage = nugetPackage "MathNet.Filtering.Signed" filteringRelease
 let filteringKalmanStrongNameNuGetPackage = nugetPackage "MathNet.Filtering.Kalman.Signed" filteringRelease
-
-let filteringProject = project "MathNet.Filtering" "src/Filtering/Filtering.csproj" [filteringNuGetPackage; filteringStrongNameNuGetPackage]
-let filteringKalmanProject = project "MathNet.Filtering.Kalman" "src/Kalman/Kalman.csproj" [filteringKalmanNuGetPackage; filteringKalmanStrongNameNuGetPackage]
-let filteringSolution = solution "Filtering" "MathNet.Filtering.sln" [filteringProject; filteringKalmanProject] [filteringZipPackage; filteringStrongNameZipPackage]
+let filteringStrongNameProject = project "MathNet.Filtering" "src/Filtering/Filtering.Signed.csproj" [filteringStrongNameNuGetPackage]
+let filteringKalmanStrongNameProject = project "MathNet.Filtering.Kalman" "src/Kalman/Kalman.Signed.csproj" [filteringKalmanStrongNameNuGetPackage]
+let filteringStrongNameSolution = solution "Filtering" "MathNet.Filtering.Signed.sln" [filteringStrongNameProject; filteringKalmanStrongNameProject] [filteringStrongNameZipPackage]
 
 
 // ALL
 
-let allSolutions = [filteringSolution]
+let allSolutions = [filteringSolution; filteringStrongNameSolution]
 let allProjects = allSolutions |> List.collect (fun s -> s.Projects) |> List.distinct
 
 
@@ -101,14 +103,14 @@ Target "Build" (fun _ ->
     // Strong Name Build (with strong name, without certificate signature)
     if hasBuildParam "strongname" then
         CleanDirs (!! "src/**/obj/" ++ "src/**/bin/" )
-        restoreSN filteringSolution
-        buildSN filteringSolution
-        if isWindows && hasBuildParam "sign" then sign fingerprint timeserver filteringSolution
-        collectBinariesSN filteringSolution
-        zip filteringStrongNameZipPackage filteringSolution.OutputZipDir filteringSolution.OutputLibStrongNameDir (fun f -> f.Contains("MathNet.Filtering.") || f.Contains("MathNet.Numerics."))
+        restoreSN filteringStrongNameSolution
+        buildSN filteringStrongNameSolution
+        if isWindows && hasBuildParam "sign" then sign fingerprint timeserver filteringStrongNameSolution
+        collectBinariesSN filteringStrongNameSolution
+        zip filteringStrongNameZipPackage filteringStrongNameSolution.OutputZipDir filteringStrongNameSolution.OutputLibStrongNameDir (fun f -> f.Contains("MathNet.Filtering.") || f.Contains("MathNet.Numerics."))
         if isWindows then
-            packSN filteringSolution
-            collectNuGetPackages filteringSolution
+            packSN filteringStrongNameSolution
+            collectNuGetPackages filteringStrongNameSolution
 
     // Normal Build (without strong name, with certificate signature)
     CleanDirs (!! "src/**/obj/" ++ "src/**/bin/" )

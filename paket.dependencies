@@ -2,6 +2,7 @@ source https://api.nuget.org/v3/index.json
 storage: packages
 
 nuget MathNet.Numerics ~> 4.6
+nuget MathNet.Numerics.Signed ~> 4.6
 nuget FSharp.Core 4.3.3 redirects:force
 
 // Testing

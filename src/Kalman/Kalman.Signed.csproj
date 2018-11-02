@@ -6,11 +6,11 @@
     <AssemblyName>MathNet.Filtering.Kalman</AssemblyName>
     <RootNamespace>MathNet.Filtering.Kalman</RootNamespace>
     <IsPackable>true</IsPackable>
-    <PackageId>MathNet.Filtering.Kalman</PackageId>
+    <PackageId>MathNet.Filtering.Kalman.Signed</PackageId>
     <VersionPrefix>0.4.0</VersionPrefix>
     <VersionSuffix></VersionSuffix>
-    <Title>Math.NET Filtering Kalman</Title>
-    <Description>Math.NET Filtering, providing methods and algorithms for signal processing and filtering in science, engineering and every day use. Supports .Net Framework 4.0 or higher and .Net Standard 1.3 or higher, on Windows, Linux and Mac.</Description>
+    <Title>Math.NET Filtering Kalman - Strong Name Edition</Title>
+    <Description>Math.NET Filtering, providing methods and algorithms for signal processing and filtering in science, engineering and every day use. Supports .Net Framework 4.0 or higher and .Net Standard 1.3 or higher, on Windows, Linux and Mac. This package contains strong-named assemblies for legacy use cases (not recommended).</Description>
     <PackageReleaseNotes>Build: extra .Signed packages with strong named assemblies for legacy use cases</PackageReleaseNotes>
     <PackageTags>math filter signal FIR IIR median kalman design</PackageTags>
     <IsTool>false</IsTool>
@@ -23,6 +23,9 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <EnableDefaultCompileItems>true</EnableDefaultCompileItems>
     <NoWarn>1701;1702;1705;1591;1573</NoWarn>
+    <SignAssembly>true</SignAssembly>
+    <DelaySign>false</DelaySign>
+    <AssemblyOriginatorKeyFile>..\MathNet.Filtering.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
     <Reference Include="System" />
