@@ -1,3 +1,6 @@
+### 0.5.0 - 2018-11-02
+* Support for .Net Standard
+
 ### 0.4.0 - 2017-05-01
 * Build: extra *.Signed packages with strong named assemblies for legacy use cases
 

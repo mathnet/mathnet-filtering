@@ -232,9 +232,11 @@ Target "PublishMirrors" (fun _ -> publishMirrors ())
 Target "PublishDocs" (fun _ -> publishDocs filteringRelease)
 Target "PublishApi" (fun _ -> publishApi filteringRelease)
 
-Target "PublishArchive" (fun _ -> publishArchive filteringSolution)
+Target "PublishArchive" (fun _ ->
+    publishArchive filteringSolution
+    publishArchive filteringStrongNameSolution)
 
-Target "PublishNuGet" (fun _ -> publishNuGet !! (filteringSolution.OutputNuGetDir </> "/*.nupkg"))
+Target "PublishNuGet" (fun _ -> publishNuGet !! (filteringSolution.OutputNuGetDir </> "*.nupkg"))
 
 Target "Publish" DoNothing
 Dependencies "Publish" [ "PublishTag"; "PublishDocs"; "PublishApi"; "PublishArchive"; "PublishNuGet" ]
