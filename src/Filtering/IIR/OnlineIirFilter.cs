@@ -93,12 +93,12 @@ namespace MathNet.Filtering.IIR
 
             for (int i = 0, j = _halfSize - _offset; i < _halfSize; i++, j++)
             {
-                yn += _bufferX[i]*_b[j];
+                yn += _bufferX[i] * _b[j];
             }
 
             for (int i = 0, j = _halfSize - _offset; i < _halfSize; i++, j++)
             {
-                yn -= _bufferY[i]*_a[j];
+                yn -= _bufferY[i] * _a[j];
             }
 
             _bufferY[_offset] = yn;

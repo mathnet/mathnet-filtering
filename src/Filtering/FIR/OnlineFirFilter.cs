@@ -72,7 +72,7 @@ namespace MathNet.Filtering.FIR
             double acc = 0;
             for (int i = 0, j = _size - _offset; i < _size; i++, j++)
             {
-                acc += _buffer[i]*_coefficients[j];
+                acc += _buffer[i] * _coefficients[j];
             }
 
             return acc;

@@ -61,7 +61,7 @@ namespace MathNet.Filtering.IIR
             return BuildCoefficients(
                 beta,
                 gamma,
-                (0.5d + beta - gamma)*0.25d, // alpha
+                (0.5d + beta - gamma) * 0.25d, // alpha
                 2, // mu
                 1); // sigma
         }
@@ -89,7 +89,7 @@ namespace MathNet.Filtering.IIR
             return BuildCoefficients(
                 beta,
                 gamma,
-                (0.5d + beta + gamma)*0.25d, // alpha
+                (0.5d + beta + gamma) * 0.25d, // alpha
                 -2, // mu
                 1); // sigmas
         }
@@ -110,14 +110,14 @@ namespace MathNet.Filtering.IIR
                 out gamma,
                 out theta,
                 samplingRate,
-                (cutoffLow + cutoffHigh)*0.5d, // cutoff
+                (cutoffLow + cutoffHigh) * 0.5d, // cutoff
                 cutoffLow, // lowHalfPower
                 cutoffHigh); // highHalfPower
 
             return BuildCoefficients(
                 beta,
                 gamma,
-                (0.5d - beta)*0.5d, // alpha
+                (0.5d - beta) * 0.5d, // alpha
                 0, // mu
                 -1); // sigma
         }
@@ -138,15 +138,15 @@ namespace MathNet.Filtering.IIR
                 out gamma,
                 out theta,
                 samplingRate,
-                (cutoffLow + cutoffHigh)*0.5d, // cutoff
+                (cutoffLow + cutoffHigh) * 0.5d, // cutoff
                 cutoffLow, // lowHalfPower
                 cutoffHigh); // highHalfPower
 
             return BuildCoefficients(
                 beta,
                 gamma,
-                (0.5d + beta)*0.5d, // alpha
-                -2*Math.Cos(theta), // mu
+                (0.5d + beta) * 0.5d, // alpha
+                -2 * Math.Cos(theta), // mu
                 1); // sigma
         }
 
@@ -154,9 +154,9 @@ namespace MathNet.Filtering.IIR
         {
             return new[]
             {
-                2d*alpha,
-                2d*gamma,
-                -2d*beta,
+                2d * alpha,
+                2d * gamma,
+                -2d * beta,
                 1,
                 mu,
                 sigma
@@ -165,10 +165,10 @@ namespace MathNet.Filtering.IIR
 
         static void BetaGamma(out double beta, out double gamma, out double theta, double sampling, double cutoff, double lowHalfPower, double highHalfPower)
         {
-            double tan = Math.Tan(Math.PI*(highHalfPower - lowHalfPower)/sampling);
-            beta = 0.5d*(1 - tan)/(1 + tan);
-            theta = 2*Math.PI*cutoff/sampling;
-            gamma = (0.5d + beta)*Math.Cos(theta);
+            double tan = Math.Tan(Math.PI * (highHalfPower - lowHalfPower) / sampling);
+            beta = 0.5d * (1 - tan) / (1 + tan);
+            theta = 2 * Math.PI * cutoff / sampling;
+            gamma = (0.5d + beta) * Math.Cos(theta);
         }
     }
 }

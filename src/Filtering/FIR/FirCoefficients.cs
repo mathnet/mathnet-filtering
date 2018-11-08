@@ -3,7 +3,7 @@
 // http://filtering.mathdotnet.com
 // http://github.com/mathnet/mathnet-filtering
 //
-// Copyright (c) 2009-2014 Math.NET
+// Copyright (c) 2009-2018 Math.NET
 //
 // Permission is hereby granted, free of charge, to any person
 // obtaining a copy of this software and associated documentation
@@ -49,13 +49,12 @@ namespace MathNet.Filtering.FIR
         /// Calculates FIR LowPass Filter Coefficients.
         /// </summary>
         /// <param name="samplingRate">Samples per unit.</param>
-        /// <param name="cutoff">Cutoff frequency in samples per unit.</param>
+        /// <param name="cutoff">Desired cutoff frequency in samples per unit.</param>
+        /// <param name="dcGain">Desired DC gain. Defaults to 1.0.</param>
         /// <param name="halforder">half-order Q, so that Order N = 2*Q+1. 0 for default order.</param>
         /// <returns>The calculated filter coefficients.</returns>
-        public static double[] LowPass(double samplingRate, double cutoff, int halforder = 0)
+        public static double[] LowPass(double samplingRate, double cutoff, double dcGain = 1.0, int halforder = 0)
         {
-            double nu = 2d*cutoff/samplingRate; // normalized frequency
-
             // Default filter order
             if (halforder == 0)
             {
@@ -66,18 +65,27 @@ namespace MathNet.Filtering.FIR
                 halforder = (int)Math.Ceiling(3.3 / (df / samplingRate) / 2);
             }
 
-            int order = 2*halforder + 1;
+            int order = 2 * halforder + 1;
+            double nu = 2d * cutoff / samplingRate; // normalized frequency
+
             var c = new double[order];
             c[halforder] = nu;
 
             for (int i = 0, n = halforder; i < halforder; i++, n--)
             {
-                double npi = n*Math.PI;
-                c[i] = Math.Sin(npi*nu)/npi;
+                double npi = n * Math.PI;
+                c[i] = Math.Sin(npi * nu) / npi;
                 c[n + halforder] = c[i];
             }
-            double s = c.Sum();
-            for (int i = 0; i < c.Length; i++) { c[i] /= s; }
+
+            // Unity gain at DC
+            double actualDcGain = c.Sum();
+            double scaling = dcGain / actualDcGain;
+            for (int i = 0; i < c.Length; i++)
+            {
+                c[i] *= scaling;
+            }
+
             return c;
         }
 
@@ -90,8 +98,6 @@ namespace MathNet.Filtering.FIR
         /// <returns>The calculated filter coefficients.</returns>
         public static double[] HighPass(double samplingRate, double cutoff, int halforder = 0)
         {
-            double nu = 2d*cutoff/samplingRate; // normalized frequency
-
             // Default filter order
             if (halforder == 0)
             {
@@ -102,14 +108,16 @@ namespace MathNet.Filtering.FIR
                 halforder = (int)Math.Ceiling(3.3 / (df / samplingRate) / 2);
             }
 
-            int order = 2*halforder + 1;
+            int order = 2 * halforder + 1;
+            double nu = 2d * cutoff / samplingRate; // normalized frequency
+
             var c = new double[order];
             c[halforder] = 1 - nu;
 
             for (int i = 0, n = halforder; i < halforder; i++, n--)
             {
-                double npi = n*Math.PI;
-                c[i] = -Math.Sin(npi*nu)/npi;
+                double npi = n * Math.PI;
+                c[i] = -Math.Sin(npi * nu) / npi;
                 c[n + halforder] = c[i];
             }
 
@@ -126,9 +134,6 @@ namespace MathNet.Filtering.FIR
         /// <returns>The calculated filter coefficients.</returns>
         public static double[] BandPass(double samplingRate, double cutoffLow, double cutoffHigh, int halforder = 0)
         {
-            double nu1 = 2d*cutoffLow/samplingRate; // normalized low frequency
-            double nu2 = 2d*cutoffHigh/samplingRate; // normalized high frequency
-
             // Default filter order
             if (halforder == 0)
             {
@@ -139,14 +144,17 @@ namespace MathNet.Filtering.FIR
                 halforder = (int)Math.Ceiling(3.3 / (df / samplingRate) / 2);
             }
 
-            int order = 2*halforder + 1;
+            int order = 2 * halforder + 1;
+            double nu1 = 2d * cutoffLow / samplingRate; // normalized low frequency
+            double nu2 = 2d * cutoffHigh / samplingRate; // normalized high frequency
+
             var c = new double[order];
             c[halforder] = nu2 - nu1;
 
             for (int i = 0, n = halforder; i < halforder; i++, n--)
             {
-                double npi = n*Math.PI;
-                c[i] = (Math.Sin(npi*nu2) - Math.Sin(npi*nu1))/npi;
+                double npi = n * Math.PI;
+                c[i] = (Math.Sin(npi * nu2) - Math.Sin(npi * nu1)) / npi;
                 c[n + halforder] = c[i];
             }
 
@@ -163,8 +171,6 @@ namespace MathNet.Filtering.FIR
         /// <returns>The calculated filter coefficients.</returns>
         public static double[] BandStop(double samplingRate, double cutoffLow, double cutoffHigh, int halforder = 0)
         {
-            double nu1 = 2d*cutoffLow/samplingRate; // normalized low frequency
-            double nu2 = 2d*cutoffHigh/samplingRate; // normalized high frequency
 
             // Default filter order
             if (halforder == 0)
@@ -176,14 +182,17 @@ namespace MathNet.Filtering.FIR
                 halforder = (int)Math.Ceiling(3.3 / (df / samplingRate) / 2);
             }
 
-            int order = 2*halforder + 1;
+            int order = 2 * halforder + 1;
+            double nu1 = 2d * cutoffLow / samplingRate; // normalized low frequency
+            double nu2 = 2d * cutoffHigh / samplingRate; // normalized high frequency
+
             var c = new double[order];
             c[halforder] = 1 - (nu2 - nu1);
 
             for (int i = 0, n = halforder; i < halforder; i++, n--)
             {
-                double npi = n*Math.PI;
-                c[i] = (Math.Sin(npi*nu1) - Math.Sin(npi*nu2))/npi;
+                double npi = n * Math.PI;
+                c[i] = (Math.Sin(npi * nu1) - Math.Sin(npi * nu2)) / npi;
                 c[n + halforder] = c[i];
             }
 
