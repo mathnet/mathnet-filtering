@@ -1,3 +1,7 @@
+### 0.6.0 - 2018-11-18
+* FIR LowPass: normalize to unit DC gain *~Jose M González*
+* FIR LowPass: optional desired DC gain argument, defaults to one.
+
 ### 0.5.0 - 2018-11-02
 * Support for .Net Standard
 
