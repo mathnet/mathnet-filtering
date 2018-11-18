@@ -136,27 +136,23 @@ Target "Build" (fun _ ->
 
 let testFiltering framework = test "src/Filtering.Tests" "Filtering.Tests.csproj" framework
 Target "TestFiltering" DoNothing
-Target "TestFilteringCore1.1" (fun _ -> testFiltering "netcoreapp1.1")
-Target "TestFilteringCore2.0" (fun _ -> testFiltering "netcoreapp2.0")
+Target "TestFilteringCore2.1" (fun _ -> testFiltering "netcoreapp2.1")
 Target "TestFilteringNET40" (fun _ -> testFiltering "net40")
 Target "TestFilteringNET45" (fun _ -> testFiltering "net45")
 Target "TestFilteringNET461" (fun _ -> testFiltering "net461")
 Target "TestFilteringNET47"  (fun _ -> testFiltering "net47")
-"Build" ==> "TestFilteringCore1.1"
-"Build" ==> "TestFilteringCore2.0" ==> "TestFiltering"
+"Build" ==> "TestFilteringCore2.1" ==> "TestFiltering"
 "Build" =?> ("TestFilteringNET40", isWindows)
 "Build" =?> ("TestFilteringNET45", isWindows)
 "Build" =?> ("TestFilteringNET461", isWindows) ==> "TestFiltering"
 "Build" =?> ("TestFilteringNET47", isWindows)
 let testKalman framework = test "src/Kalman.Tests" "Kalman.Tests.csproj" framework
 Target "TestKalman" DoNothing
-Target "TestKalmanCore1.1" (fun _ -> testKalman "netcoreapp1.1")
-Target "TestKalmanCore2.0" (fun _ -> testKalman "netcoreapp2.0")
+Target "TestKalmanCore2.1" (fun _ -> testKalman "netcoreapp2.1")
 Target "TestKalmanNET45" (fun _ -> testKalman "net45")
 Target "TestKalmanNET461" (fun _ -> testKalman "net461")
 Target "TestKalmanNET47" (fun _ -> testKalman "net47")
-"Build" ==> "TestKalmanCore1.1"
-"Build" ==> "TestKalmanCore2.0" ==> "TestKalman"
+"Build" ==> "TestKalmanCore2.1" ==> "TestKalman"
 "Build" =?> ("TestKalmanNET45", isWindows)
 "Build" =?> ("TestKalmanNET461", isWindows) ==> "TestKalman"
 "Build" =?> ("TestKalmanNET47", isWindows)

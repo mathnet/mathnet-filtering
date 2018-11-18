@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Filtering.Tests", "src\Filt
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{010B4B67-1891-4822-A345-79AC23B9AA2C}"
 	ProjectSection(SolutionItems) = preProject
+		.travis.yml = .travis.yml
+		appveyor.yml = appveyor.yml
 		docs\tools\build-docs.fsx = docs\tools\build-docs.fsx
 		build\build-framework.fsx = build\build-framework.fsx
 		build.fsx = build.fsx
