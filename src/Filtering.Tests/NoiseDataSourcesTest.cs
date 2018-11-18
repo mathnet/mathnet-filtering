@@ -1,9 +1,11 @@
 using System;
-using System.Numerics;
 using MathNet.Filtering.Channel;
 using MathNet.Filtering.DataSources;
 using MathNet.Numerics.IntegralTransforms;
 using NUnit.Framework;
+
+using Complex = System.Numerics.Complex;
+
 
 namespace MathNet.Filtering.UnitTests
 {
