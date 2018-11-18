@@ -52,7 +52,7 @@ let filteringStrongNameNuGetPackage = nugetPackage "MathNet.Filtering.Signed" fi
 let filteringKalmanStrongNameNuGetPackage = nugetPackage "MathNet.Filtering.Kalman.Signed" filteringRelease
 let filteringStrongNameProject = project "MathNet.Filtering" "src/Filtering/Filtering.Signed.csproj" [filteringStrongNameNuGetPackage]
 let filteringKalmanStrongNameProject = project "MathNet.Filtering.Kalman" "src/Kalman/Kalman.Signed.csproj" [filteringKalmanStrongNameNuGetPackage]
-let filteringStrongNameSolution = solution "Filtering" "MathNet.Filtering.Signed.sln" [filteringStrongNameProject; filteringKalmanStrongNameProject] [filteringStrongNameZipPackage]
+let filteringStrongNameSolution = solution "Filtering.Signed" "MathNet.Filtering.Signed.sln" [filteringStrongNameProject; filteringKalmanStrongNameProject] [filteringStrongNameZipPackage]
 
 
 // ALL
@@ -124,7 +124,7 @@ Target "Build" (fun _ ->
         collectNuGetPackages filteringSolution
 
     // NuGet Sign (all or nothing)
-    if isWindows && hasBuildParam "sign" then signNuGet fingerprint timeserver filteringSolution
+    if isWindows && hasBuildParam "sign" then signNuGet fingerprint timeserver [filteringSolution; filteringStrongNameSolution]
 
     )
 "Prepare" ==> "Build"
@@ -228,11 +228,9 @@ Target "PublishMirrors" (fun _ -> publishMirrors ())
 Target "PublishDocs" (fun _ -> publishDocs filteringRelease)
 Target "PublishApi" (fun _ -> publishApi filteringRelease)
 
-Target "PublishArchive" (fun _ ->
-    publishArchive filteringSolution
-    publishArchive filteringStrongNameSolution)
+Target "PublishArchive" (fun _ -> publishArchives [filteringSolution; filteringStrongNameSolution])
 
-Target "PublishNuGet" (fun _ -> publishNuGet !! (filteringSolution.OutputNuGetDir </> "*.nupkg"))
+Target "PublishNuGet" (fun _ -> publishNuGet [filteringSolution; filteringStrongNameSolution])
 
 Target "Publish" DoNothing
 Dependencies "Publish" [ "PublishTag"; "PublishDocs"; "PublishApi"; "PublishArchive"; "PublishNuGet" ]
