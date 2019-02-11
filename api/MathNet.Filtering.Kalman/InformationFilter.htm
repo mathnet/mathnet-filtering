@@ -1,0 +1,318 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>InformationFilter - Math.NET Filtering Documentation</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link type="text/css" rel="stylesheet" href="../main.css"/>
+    <script type="text/javascript" src="../js/jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.scrollTo-min.js"></script>
+    <script type="text/javascript" src="../js/navigation.js"></script>
+    <script type="text/javascript" src="../js/example.js"></script>
+  </head>
+  <body><div id="namespaces">
+	<h2 class="fixed">Namespaces</h2>
+	<div class="scroll">
+		<ul>
+			<li>
+          <a href="../MathNet.Filtering/index.htm">MathNet.Filtering</a>
+      </li>
+			<li>
+          <a href="../MathNet.Filtering.Channel/index.htm">MathNet.Filtering.Channel</a>
+      </li>
+			<li>
+          <a href="../MathNet.Filtering.DataSources/index.htm">MathNet.Filtering.DataSources</a>
+      </li>
+			<li>
+          <a href="../MathNet.Filtering.FIR/index.htm">MathNet.Filtering.FIR</a>
+      </li>
+			<li>
+          <a href="../MathNet.Filtering.IIR/index.htm">MathNet.Filtering.IIR</a>
+      </li>
+			<li>
+          <a href="../MathNet.Filtering.Kalman/index.htm" class="current">MathNet.Filtering.Kalman</a>
+      </li>
+			<li>
+          <a href="../MathNet.Filtering.Median/index.htm">MathNet.Filtering.Median</a>
+      </li>
+			<li>
+          <a href="../MathNet.Filtering.Windowing/index.htm">MathNet.Filtering.Windowing</a>
+      </li>
+			<li>
+          <a href="../MathNet.Filtering.Windows/index.htm">MathNet.Filtering.Windows</a>
+      </li>
+		</ul>
+	</div>
+</div><div id="types">
+  <h2 class="fixed">Types in MathNet.Filtering.Kalman</h2>
+	<div class="scroll">
+		<ul>
+				<li>
+            <a href="../MathNet.Filtering.Kalman/DiscreteKalmanFilter.htm">DiscreteKalmanFilter</a>
+        </li>
+				<li>
+            <a href="../MathNet.Filtering.Kalman/IKalmanFilter.htm">IKalmanFilter</a>
+        </li>
+				<li>
+            <a href="../MathNet.Filtering.Kalman/InformationFilter.htm" class="current">InformationFilter</a>
+        </li>
+				<li>
+            <a href="../MathNet.Filtering.Kalman/SquareRootFilter.htm">SquareRootFilter</a>
+        </li>
+		</ul>
+	</div>
+</div>
+    <div class="header">
+		<p class="class"><strong>Type</strong> InformationFilter</p>
+		<p><strong>Namespace</strong> MathNet.Filtering.Kalman</p>
+		<p><strong>Interfaces</strong> <a href="../MathNet.Filtering.Kalman/IKalmanFilter.htm">IKalmanFilter</a></p>
+	</div>
+    <div class="sub-header">
+			<div id="summary">An alternate form of the Discrete Kalman Filter. <blockquote class="remarks">
+  The Information filter stores and works with the inverse of the
+covariance matrix. The information filter has a more computationally complex
+prediction, and a less complex update. This makes it suitable for situations
+where large numbers of measurements are used for state estimates, or when
+the state of the system does not need to be known too frequently. 
+</blockquote>
+			</div>
+		
+			<h3 class="section">Constructors</h3>
+			<ul>
+				<li><a href="../MathNet.Filtering.Kalman/InformationFilter.htm#.ctor">InformationFilter</a></li>
+				<li><a href="../MathNet.Filtering.Kalman/InformationFilter.htm#.ctor">InformationFilter</a></li>
+				<li><a href="../MathNet.Filtering.Kalman/InformationFilter.htm#.ctor">InformationFilter</a></li>
+			</ul>
+
+			<h3 class="section">Methods</h3>
+			<ul>
+				<li><a href="../MathNet.Filtering.Kalman/InformationFilter.htm#Equals">Equals</a></li>
+				<li><a href="../MathNet.Filtering.Kalman/InformationFilter.htm#GetHashCode">GetHashCode</a></li>
+				<li><a href="../MathNet.Filtering.Kalman/InformationFilter.htm#GetType">GetType</a></li>
+				<li><a href="../MathNet.Filtering.Kalman/InformationFilter.htm#Predict">Predict</a></li>
+				<li><a href="../MathNet.Filtering.Kalman/InformationFilter.htm#Predict">Predict</a></li>
+				<li><a href="../MathNet.Filtering.Kalman/InformationFilter.htm#Predict">Predict</a></li>
+				<li><a href="../MathNet.Filtering.Kalman/InformationFilter.htm#ToString">ToString</a></li>
+				<li><a href="../MathNet.Filtering.Kalman/InformationFilter.htm#Update">Update</a></li>
+			</ul>
+		
+
+			<h3 class="section">Properties</h3>
+			<ul>
+				<li><a href="../MathNet.Filtering.Kalman/InformationFilter.htm#Cov">Cov</a></li>
+				<li><a href="../MathNet.Filtering.Kalman/InformationFilter.htm#InverseCov">InverseCov</a></li>
+				<li><a href="../MathNet.Filtering.Kalman/InformationFilter.htm#State">State</a></li>
+			</ul>
+		
+	</div>
+	
+	
+	<h3 class="section">Public Constructors</h3>
+	
+	<div id=".ctor" class="method">
+		<h4> <strong>InformationFilter</strong>(<a href="../MathNet.Filtering.Kalman/IKalmanFilter.htm">IKalmanFilter</a> kf)</h4>
+		<div class="content">Creates an Information Filter from a given Kalman Filter. 
+
+
+      <div class="parameters">
+        <h5>Parameters</h5>
+
+          <h6><code><a href="../MathNet.Filtering.Kalman/IKalmanFilter.htm">IKalmanFilter</a></code> kf</h6>
+          <p class="comments">The filter used to derive the information filter. </p>
+      </div>
+
+      
+    </div>
+	</div>
+	<div id=".ctor" class="method">
+		<h4> <strong>InformationFilter</strong>(<span title="MathNet.Numerics.LinearAlgebra.Matrix<double>">Matrix&lt;double&gt;</span> x0, <span title="MathNet.Numerics.LinearAlgebra.Matrix<double>">Matrix&lt;double&gt;</span> P0)</h4>
+		<div class="content">Creates an Information filter with the given initial state. 
+
+
+      <div class="parameters">
+        <h5>Parameters</h5>
+
+          <h6><code><span title="MathNet.Numerics.LinearAlgebra.Matrix<double>">Matrix&lt;double&gt;</span></code> x0</h6>
+          <p class="comments">Initial estimate of state variables. </p>
+          <h6><code><span title="MathNet.Numerics.LinearAlgebra.Matrix<double>">Matrix&lt;double&gt;</span></code> P0</h6>
+          <p class="comments">Covariance of state variable estimates. </p>
+      </div>
+
+      
+    </div>
+	</div>
+	<div id=".ctor" class="method">
+		<h4> <strong>InformationFilter</strong>(<span title="MathNet.Numerics.LinearAlgebra.Matrix<double>">Matrix&lt;double&gt;</span> state, <span title="MathNet.Numerics.LinearAlgebra.Matrix<double>">Matrix&lt;double&gt;</span> cov, <span title="System.bool">bool</span> inverted)</h4>
+		<div class="content">Creates an Information filter specifying whether the covariance and state
+have been 'inverted'. <blockquote class="remarks">
+  This behaves the same as other constructors if the given boolean is false.
+Otherwise, in relation to the given state/covariance should satisfy: 
+</blockquote>
+
+
+      <div class="parameters">
+        <h5>Parameters</h5>
+
+          <h6><code><span title="MathNet.Numerics.LinearAlgebra.Matrix<double>">Matrix&lt;double&gt;</span></code> state</h6>
+          <p class="comments">The initial estimate of the state of the system. </p>
+          <h6><code><span title="MathNet.Numerics.LinearAlgebra.Matrix<double>">Matrix&lt;double&gt;</span></code> cov</h6>
+          <p class="comments">The covariance of the initial state estimate. </p>
+          <h6><code><span title="System.bool">bool</span></code> inverted</h6>
+          <p class="comments">Has covariance/state been converted to information
+filter form? </p>
+      </div>
+
+      
+    </div>
+	</div>
+	
+
+	<h3 class="section">Public Methods</h3>
+	
+	<div id="Equals" class="method">
+		<h4><span title="System.bool">bool</span> <strong>Equals</strong>(<span title="System.object">object</span> obj)</h4>
+		<div class="content">
+
+
+
+      
+    </div>
+	</div>
+	<div id="GetHashCode" class="method">
+		<h4><span title="System.int">int</span> <strong>GetHashCode</strong>()</h4>
+		<div class="content">
+
+
+
+      
+    </div>
+	</div>
+	<div id="GetType" class="method">
+		<h4><span title="System.Type">Type</span> <strong>GetType</strong>()</h4>
+		<div class="content">
+
+
+
+      
+    </div>
+	</div>
+	<div id="Predict" class="method">
+		<h4><span title="System.void">void</span> <strong>Predict</strong>(<span title="MathNet.Numerics.LinearAlgebra.Matrix<double>">Matrix&lt;double&gt;</span> F)</h4>
+		<div class="content">Perform a discrete time prediction of the system state. 
+
+
+      <div class="parameters">
+        <h5>Parameters</h5>
+
+          <h6><code><span title="MathNet.Numerics.LinearAlgebra.Matrix<double>">Matrix&lt;double&gt;</span></code> F</h6>
+          <p class="comments">State transition matrix. </p>
+      </div>
+
+      
+    </div>
+	</div>
+	<div id="Predict" class="method">
+		<h4><span title="System.void">void</span> <strong>Predict</strong>(<span title="MathNet.Numerics.LinearAlgebra.Matrix<double>">Matrix&lt;double&gt;</span> F, <span title="MathNet.Numerics.LinearAlgebra.Matrix<double>">Matrix&lt;double&gt;</span> Q)</h4>
+		<div class="content">Preform a discrete time prediction of the system state. <blockquote class="remarks">
+  Performs a prediction of the next state of the Kalman Filter,
+where there is plant noise. The covariance matrix of the plant noise, in
+this case, is a square matrix corresponding to the state transition and
+the state of the system. 
+</blockquote>
+
+
+      <div class="parameters">
+        <h5>Parameters</h5>
+
+          <h6><code><span title="MathNet.Numerics.LinearAlgebra.Matrix<double>">Matrix&lt;double&gt;</span></code> F</h6>
+          <p class="comments">State transition matrix. </p>
+          <h6><code><span title="MathNet.Numerics.LinearAlgebra.Matrix<double>">Matrix&lt;double&gt;</span></code> Q</h6>
+          <p class="comments">A plant noise covariance matrix. </p>
+      </div>
+
+      
+    </div>
+	</div>
+	<div id="Predict" class="method">
+		<h4><span title="System.void">void</span> <strong>Predict</strong>(<span title="MathNet.Numerics.LinearAlgebra.Matrix<double>">Matrix&lt;double&gt;</span> F, <span title="MathNet.Numerics.LinearAlgebra.Matrix<double>">Matrix&lt;double&gt;</span> G, <span title="MathNet.Numerics.LinearAlgebra.Matrix<double>">Matrix&lt;double&gt;</span> Q)</h4>
+		<div class="content">Perform a discrete time prediction of the system state. <blockquote class="remarks">
+  Performs a prediction of the next state of the Kalman Filter, given
+a description of the dynamic equations of the system, the covariance of
+the plant noise affecting the system and the equations that describe
+the effect on the system of that plant noise. 
+</blockquote>
+
+
+      <div class="parameters">
+        <h5>Parameters</h5>
+
+          <h6><code><span title="MathNet.Numerics.LinearAlgebra.Matrix<double>">Matrix&lt;double&gt;</span></code> F</h6>
+          <p class="comments">State transition matrix. </p>
+          <h6><code><span title="MathNet.Numerics.LinearAlgebra.Matrix<double>">Matrix&lt;double&gt;</span></code> G</h6>
+          <p class="comments">Noise coupling matrix. </p>
+          <h6><code><span title="MathNet.Numerics.LinearAlgebra.Matrix<double>">Matrix&lt;double&gt;</span></code> Q</h6>
+          <p class="comments">Plant noise covariance. </p>
+      </div>
+
+      
+    </div>
+	</div>
+	<div id="ToString" class="method">
+		<h4><span title="System.string">string</span> <strong>ToString</strong>()</h4>
+		<div class="content">
+
+
+
+      
+    </div>
+	</div>
+	<div id="Update" class="method">
+		<h4><span title="System.void">void</span> <strong>Update</strong>(<span title="MathNet.Numerics.LinearAlgebra.Matrix<double>">Matrix&lt;double&gt;</span> z, <span title="MathNet.Numerics.LinearAlgebra.Matrix<double>">Matrix&lt;double&gt;</span> H, <span title="MathNet.Numerics.LinearAlgebra.Matrix<double>">Matrix&lt;double&gt;</span> R)</h4>
+		<div class="content">Updates the state of the system based on the given noisy measurements,
+a description of how those measurements relate to the system, and a
+covariance  <code>Matrix</code>  to describe the noise of the system. 
+
+
+      <div class="parameters">
+        <h5>Parameters</h5>
+
+          <h6><code><span title="MathNet.Numerics.LinearAlgebra.Matrix<double>">Matrix&lt;double&gt;</span></code> z</h6>
+          <p class="comments">The measurements of the system. </p>
+          <h6><code><span title="MathNet.Numerics.LinearAlgebra.Matrix<double>">Matrix&lt;double&gt;</span></code> H</h6>
+          <p class="comments">Measurement model. </p>
+          <h6><code><span title="MathNet.Numerics.LinearAlgebra.Matrix<double>">Matrix&lt;double&gt;</span></code> R</h6>
+          <p class="comments">Covariance of measurements. </p>
+      </div>
+
+      
+    </div>
+	</div>
+	
+  <h3 class="section">Public Properties</h3>
+
+  <div id="Cov" class="method">
+    <h4><span title="MathNet.Numerics.LinearAlgebra.Matrix<double>">Matrix&lt;double&gt;</span> <strong>Cov</strong> get; </h4>
+    <div class="content">The covariance of the current state estimate. 
+      
+    </div>
+  </div>
+  <div id="InverseCov" class="method">
+    <h4><span title="MathNet.Numerics.LinearAlgebra.Matrix<double>">Matrix&lt;double&gt;</span> <strong>InverseCov</strong> get; </h4>
+    <div class="content">The inverse of the covariance of the current state estimate. 
+      
+    </div>
+  </div>
+  <div id="State" class="method">
+    <h4><span title="MathNet.Numerics.LinearAlgebra.Matrix<double>">Matrix&lt;double&gt;</span> <strong>State</strong> get; </h4>
+    <div class="content">The estimate of the state of the system. <blockquote class="remarks">
+  Examination of system state requires an inversion of the covariance
+matrix for the information filter, and is quite expensive for large systems. 
+</blockquote>
+      
+    </div>
+  </div>
+	<div id="footer">
+  <p>Based on v0.6.0.0 of MathNet.Filtering (Math.NET Filtering)</p>
+  <p>Generated by <a href="http://docu.jagregory.com">docu</a></p>
+</div>
+  </body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>SinusoidalSource - Math.NET Filtering Documentation</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link type="text/css" rel="stylesheet" href="../main.css"/>
+    <script type="text/javascript" src="../js/jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.scrollTo-min.js"></script>
+    <script type="text/javascript" src="../js/navigation.js"></script>
+    <script type="text/javascript" src="../js/example.js"></script>
+  </head>
+  <body><div id="namespaces">
+	<h2 class="fixed">Namespaces</h2>
+	<div class="scroll">
+		<ul>
+			<li>
+          <a href="../MathNet.Filtering/index.htm">MathNet.Filtering</a>
+      </li>
+			<li>
+          <a href="../MathNet.Filtering.Channel/index.htm">MathNet.Filtering.Channel</a>
+      </li>
+			<li>
+          <a href="../MathNet.Filtering.DataSources/index.htm" class="current">MathNet.Filtering.DataSources</a>
+      </li>
+			<li>
+          <a href="../MathNet.Filtering.FIR/index.htm">MathNet.Filtering.FIR</a>
+      </li>
+			<li>
+          <a href="../MathNet.Filtering.IIR/index.htm">MathNet.Filtering.IIR</a>
+      </li>
+			<li>
+          <a href="../MathNet.Filtering.Kalman/index.htm">MathNet.Filtering.Kalman</a>
+      </li>
+			<li>
+          <a href="../MathNet.Filtering.Median/index.htm">MathNet.Filtering.Median</a>
+      </li>
+			<li>
+          <a href="../MathNet.Filtering.Windowing/index.htm">MathNet.Filtering.Windowing</a>
+      </li>
+			<li>
+          <a href="../MathNet.Filtering.Windows/index.htm">MathNet.Filtering.Windows</a>
+      </li>
+		</ul>
+	</div>
+</div><div id="types">
+  <h2 class="fixed">Types in MathNet.Filtering.DataSources</h2>
+	<div class="scroll">
+		<ul>
+				<li>
+            <a href="../MathNet.Filtering.DataSources/ArbitraryPeriodicSource.htm">ArbitraryPeriodicSource</a>
+        </li>
+				<li>
+            <a href="../MathNet.Filtering.DataSources/GeneratorSource.htm">GeneratorSource</a>
+        </li>
+				<li>
+            <a href="../MathNet.Filtering.DataSources/SignalGenerator.htm">SignalGenerator</a>
+        </li>
+				<li>
+            <a href="../MathNet.Filtering.DataSources/SinusoidalSource.htm" class="current">SinusoidalSource</a>
+        </li>
+				<li>
+            <a href="../MathNet.Filtering.DataSources/StableNoiseSource.htm">StableNoiseSource</a>
+        </li>
+				<li>
+            <a href="../MathNet.Filtering.DataSources/WhiteGaussianNoiseSource.htm">WhiteGaussianNoiseSource</a>
+        </li>
+		</ul>
+	</div>
+</div>
+    <div class="header">
+		<p class="class"><strong>Type</strong> SinusoidalSource</p>
+		<p><strong>Namespace</strong> MathNet.Filtering.DataSources</p>
+		<p><strong>Interfaces</strong> <a href="../MathNet.Filtering.Channel/IChannelSource.htm">IChannelSource</a></p>
+	</div>
+    <div class="sub-header">
+			<div id="summary">Sinus sample source. 
+			</div>
+		
+			<h3 class="section">Constructors</h3>
+			<ul>
+				<li><a href="../MathNet.Filtering.DataSources/SinusoidalSource.htm#.ctor">SinusoidalSource</a></li>
+				<li><a href="../MathNet.Filtering.DataSources/SinusoidalSource.htm#.ctor">SinusoidalSource</a></li>
+			</ul>
+
+			<h3 class="section">Static Functions</h3>
+			<ul>
+				<li><a href="../MathNet.Filtering.DataSources/SinusoidalSource.htm#Precompute">Precompute</a></li>
+				<li><a href="../MathNet.Filtering.DataSources/SinusoidalSource.htm#Precompute">Precompute</a></li>
+			</ul>
+			<h3 class="section">Methods</h3>
+			<ul>
+				<li><a href="../MathNet.Filtering.DataSources/SinusoidalSource.htm#Equals">Equals</a></li>
+				<li><a href="../MathNet.Filtering.DataSources/SinusoidalSource.htm#GetHashCode">GetHashCode</a></li>
+				<li><a href="../MathNet.Filtering.DataSources/SinusoidalSource.htm#GetType">GetType</a></li>
+				<li><a href="../MathNet.Filtering.DataSources/SinusoidalSource.htm#ReadNextSample">ReadNextSample</a></li>
+				<li><a href="../MathNet.Filtering.DataSources/SinusoidalSource.htm#ToString">ToString</a></li>
+			</ul>
+		
+
+			<h3 class="section">Properties</h3>
+			<ul>
+				<li><a href="../MathNet.Filtering.DataSources/SinusoidalSource.htm#Delay">Delay</a></li>
+			</ul>
+		
+	</div>
+	
+	
+	<h3 class="section">Public Constructors</h3>
+	
+	<div id=".ctor" class="method">
+		<h4> <strong>SinusoidalSource</strong>(<span title="System.double">double</span> samplingRate, <span title="System.double">double</span> frequency, <span title="System.double">double</span> amplitude, <span title="System.double">double</span> phase, <span title="System.double">double</span> mean, <span title="System.int">int</span> delay)</h4>
+		<div class="content">Create a new on-demand sinus sample source with the given parameters. 
+
+
+
+      
+    </div>
+	</div>
+	<div id=".ctor" class="method">
+		<h4> <strong>SinusoidalSource</strong>(<span title="System.double">double</span> samplingRate, <span title="System.double">double</span> frequency, <span title="System.double">double</span> amplitude)</h4>
+		<div class="content">Create a new on-demand sinus sample source with the given parameters an zero phase and mean. 
+
+
+
+      
+    </div>
+	</div>
+	
+	<h3 class="section">Public Static Functions</h3>
+	
+	<div id="Precompute" class="method">
+		<h4><a href="../MathNet.Filtering.Channel/IChannelSource.htm">IChannelSource</a> <strong>Precompute</strong>(<span title="System.int">int</span> samplesPerPeriod, <span title="System.double">double</span> amplitude, <span title="System.double">double</span> phase)</h4>
+		<div class="content">Creates a precomputed sinus sample source with the given parameters and zero mean. 
+
+
+
+      
+    </div>
+	</div>
+	<div id="Precompute" class="method">
+		<h4><a href="../MathNet.Filtering.Channel/IChannelSource.htm">IChannelSource</a> <strong>Precompute</strong>(<span title="System.int">int</span> samplesPerPeriod, <span title="System.double">double</span> amplitude)</h4>
+		<div class="content">Creates a precomputed sinus sample source with the given parameters and zero phase and mean. 
+
+
+
+      
+    </div>
+	</div>
+
+	<h3 class="section">Public Methods</h3>
+	
+	<div id="Equals" class="method">
+		<h4><span title="System.bool">bool</span> <strong>Equals</strong>(<span title="System.object">object</span> obj)</h4>
+		<div class="content">
+
+
+
+      
+    </div>
+	</div>
+	<div id="GetHashCode" class="method">
+		<h4><span title="System.int">int</span> <strong>GetHashCode</strong>()</h4>
+		<div class="content">
+
+
+
+      
+    </div>
+	</div>
+	<div id="GetType" class="method">
+		<h4><span title="System.Type">Type</span> <strong>GetType</strong>()</h4>
+		<div class="content">
+
+
+
+      
+    </div>
+	</div>
+	<div id="ReadNextSample" class="method">
+		<h4><span title="System.double">double</span> <strong>ReadNextSample</strong>()</h4>
+		<div class="content">Computes and returns the next sample. 
+
+
+
+      
+    </div>
+	</div>
+	<div id="ToString" class="method">
+		<h4><span title="System.string">string</span> <strong>ToString</strong>()</h4>
+		<div class="content">
+
+
+
+      
+    </div>
+	</div>
+	
+  <h3 class="section">Public Properties</h3>
+
+  <div id="Delay" class="method">
+    <h4><span title="System.int">int</span> <strong>Delay</strong> get; </h4>
+    <div class="content">Sample delay of this source in relation to the whole system. 
+      
+    </div>
+  </div>
+	<div id="footer">
+  <p>Based on v0.6.0.0 of MathNet.Filtering (Math.NET Filtering)</p>
+  <p>Generated by <a href="http://docu.jagregory.com">docu</a></p>
+</div>
+  </body>
+</html>
