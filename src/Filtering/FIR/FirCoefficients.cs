@@ -83,7 +83,7 @@ namespace MathNet.Filtering.FIR
             double scaling = dcGain / actualDcGain;
             for (int i = 0; i < c.Length; i++)
             {
-                c[i] *= scaling;
+                c[i] /= scaling;
             }
 
             return c;
