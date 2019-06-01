@@ -33,21 +33,21 @@ open BuildFramework
 
 // VERSION OVERVIEW
 
-let filteringRelease = release "Math.NET Filtering" "RELEASENOTES.md"
+let filteringRelease = release "filtering" "Math.NET Filtering" "RELEASENOTES.md"
 let releases = [filteringRelease ]
 traceHeader releases
 
 
 // FILTERING PACKAGES
 
-let filteringZipPackage = zipPackage "MathNet.Filtering" "Math.NET Filtering" filteringRelease false
+let filteringZipPackage = zipPackage "MathNet.Filtering" "Math.NET Filtering" filteringRelease
 let filteringNuGetPackage = nugetPackage "MathNet.Filtering" filteringRelease
 let filteringKalmanNuGetPackage = nugetPackage "MathNet.Filtering.Kalman" filteringRelease
 let filteringProject = project "MathNet.Filtering" "src/Filtering/Filtering.csproj" [filteringNuGetPackage]
 let filteringKalmanProject = project "MathNet.Filtering.Kalman" "src/Kalman/Kalman.csproj" [filteringKalmanNuGetPackage]
 let filteringSolution = solution "Filtering" "MathNet.Filtering.sln" [filteringProject; filteringKalmanProject] [filteringZipPackage]
 
-let filteringStrongNameZipPackage = zipPackage "MathNet.Filtering.Signed" "Math.NET Filtering" filteringRelease false
+let filteringStrongNameZipPackage = zipPackage "MathNet.Filtering.Signed" "Math.NET Filtering" filteringRelease
 let filteringStrongNameNuGetPackage = nugetPackage "MathNet.Filtering.Signed" filteringRelease
 let filteringKalmanStrongNameNuGetPackage = nugetPackage "MathNet.Filtering.Kalman.Signed" filteringRelease
 let filteringStrongNameProject = project "MathNet.Filtering" "src/Filtering/Filtering.Signed.csproj" [filteringStrongNameNuGetPackage]
@@ -136,23 +136,23 @@ Target "Build" (fun _ ->
 
 let testFiltering framework = test "src/Filtering.Tests" "Filtering.Tests.csproj" framework
 Target "TestFiltering" DoNothing
-Target "TestFilteringCore2.1" (fun _ -> testFiltering "netcoreapp2.1")
+Target "TestFilteringCore2.2" (fun _ -> testFiltering "netcoreapp2.2")
 Target "TestFilteringNET40" (fun _ -> testFiltering "net40")
 Target "TestFilteringNET45" (fun _ -> testFiltering "net45")
 Target "TestFilteringNET461" (fun _ -> testFiltering "net461")
 Target "TestFilteringNET47"  (fun _ -> testFiltering "net47")
-"Build" ==> "TestFilteringCore2.1" ==> "TestFiltering"
+"Build" ==> "TestFilteringCore2.2" ==> "TestFiltering"
 "Build" =?> ("TestFilteringNET40", isWindows)
 "Build" =?> ("TestFilteringNET45", isWindows)
 "Build" =?> ("TestFilteringNET461", isWindows) ==> "TestFiltering"
 "Build" =?> ("TestFilteringNET47", isWindows)
 let testKalman framework = test "src/Kalman.Tests" "Kalman.Tests.csproj" framework
 Target "TestKalman" DoNothing
-Target "TestKalmanCore2.1" (fun _ -> testKalman "netcoreapp2.1")
+Target "TestKalmanCore2.2" (fun _ -> testKalman "netcoreapp2.2")
 Target "TestKalmanNET45" (fun _ -> testKalman "net45")
 Target "TestKalmanNET461" (fun _ -> testKalman "net461")
 Target "TestKalmanNET47" (fun _ -> testKalman "net47")
-"Build" ==> "TestKalmanCore2.1" ==> "TestKalman"
+"Build" ==> "TestKalmanCore2.2" ==> "TestKalman"
 "Build" =?> ("TestKalmanNET45", isWindows)
 "Build" =?> ("TestKalmanNET461", isWindows) ==> "TestKalman"
 "Build" =?> ("TestKalmanNET47", isWindows)
@@ -224,7 +224,6 @@ Target "Api" (fun _ ->
 
 Target "PublishTag" (fun _ -> publishReleaseTag "Math.NET Filtering" "" filteringRelease)
 
-Target "PublishMirrors" (fun _ -> publishMirrors ())
 Target "PublishDocs" (fun _ -> publishDocs filteringRelease)
 Target "PublishApi" (fun _ -> publishApi filteringRelease)
 

@@ -15,8 +15,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{010B4B67
 		build\build-framework.fsx = build\build-framework.fsx
 		build.fsx = build.fsx
 		src\Directory.Build.props = src\Directory.Build.props
-		build\MathNet.Filtering.Extensions.nuspec = build\MathNet.Filtering.Extensions.nuspec
-		build\MathNet.Filtering.nuspec = build\MathNet.Filtering.nuspec
 		paket.dependencies = paket.dependencies
 		paket.lock = paket.lock
 	EndProjectSection
