@@ -26,5 +26,8 @@
     <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime.Serialization" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+  </ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>
