@@ -33,7 +33,7 @@ using MathNet.Filtering.Properties;
 namespace MathNet.Filtering.IIR
 {
     /// <summary>
-    /// Infinite Impulse Response (FIR) Filters need much
+    /// Infinite Impulse Response (IIR) Filters need much
     /// less coefficients (and are thus much faster) than
     /// comparable FIR Filters, but are potentially unstable.
     /// IIR Filters are always online and causal. This IIR
