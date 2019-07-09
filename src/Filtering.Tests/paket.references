@@ -15,3 +15,4 @@ System.Runtime.Serialization.Xml framework:netcoreapp1.1,netcoreapp2.0
 System.Runtime.Serialization.Primitives framework:netcoreapp1.1,netcoreapp2.0
 System.Runtime.Serialization.Formatters framework:netcoreapp1.1,netcoreapp2.0
 System.Security.Cryptography.Algorithms framework:netcoreapp1.1,netcoreapp2.0
+System.ValueTuple
