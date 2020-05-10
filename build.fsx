@@ -41,18 +41,22 @@ traceHeader releases
 // FILTERING PACKAGES
 
 let filteringZipPackage = zipPackage "MathNet.Filtering" "Math.NET Filtering" filteringRelease
-let filteringNuGetPackage = nugetPackage "MathNet.Filtering" filteringRelease
-let filteringKalmanNuGetPackage = nugetPackage "MathNet.Filtering.Kalman" filteringRelease
-let filteringProject = project "MathNet.Filtering" "src/Filtering/Filtering.csproj" [filteringNuGetPackage]
-let filteringKalmanProject = project "MathNet.Filtering.Kalman" "src/Kalman/Kalman.csproj" [filteringKalmanNuGetPackage]
-let filteringSolution = solution "Filtering" "MathNet.Filtering.sln" [filteringProject; filteringKalmanProject] [filteringZipPackage]
-
 let filteringStrongNameZipPackage = zipPackage "MathNet.Filtering.Signed" "Math.NET Filtering" filteringRelease
+
+let filteringNuGetPackage = nugetPackage "MathNet.Filtering" filteringRelease
 let filteringStrongNameNuGetPackage = nugetPackage "MathNet.Filtering.Signed" filteringRelease
+
+let filteringKalmanNuGetPackage = nugetPackage "MathNet.Filtering.Kalman" filteringRelease
 let filteringKalmanStrongNameNuGetPackage = nugetPackage "MathNet.Filtering.Kalman.Signed" filteringRelease
+
+let filteringProject = project "MathNet.Filtering" "src/Filtering/Filtering.csproj" [filteringNuGetPackage]
 let filteringStrongNameProject = project "MathNet.Filtering" "src/Filtering/Filtering.Signed.csproj" [filteringStrongNameNuGetPackage]
+
+let filteringKalmanProject = project "MathNet.Filtering.Kalman" "src/Kalman/Kalman.csproj" [filteringKalmanNuGetPackage]
 let filteringKalmanStrongNameProject = project "MathNet.Filtering.Kalman" "src/Kalman/Kalman.Signed.csproj" [filteringKalmanStrongNameNuGetPackage]
-let filteringStrongNameSolution = solution "Filtering.Signed" "MathNet.Filtering.Signed.sln" [filteringStrongNameProject; filteringKalmanStrongNameProject] [filteringStrongNameZipPackage]
+
+let filteringSolution = solution "Filtering" "MathNet.Filtering.sln" [filteringProject; filteringKalmanProject] [filteringZipPackage]
+let filteringStrongNameSolution = solution "Filtering" "MathNet.Filtering.Signed.sln" [filteringStrongNameProject; filteringKalmanStrongNameProject] [filteringStrongNameZipPackage]
 
 
 // ALL
@@ -70,15 +74,14 @@ Target "Start" DoNothing
 Target "Clean" (fun _ ->
     DeleteDirs (!! "src/**/obj/" ++ "src/**/bin/" )
     CleanDirs [ "out/api"; "out/docs" ]
-    allSolutions |> List.iter (fun solution -> CleanDirs [ solution.OutputZipDir; solution.OutputNuGetDir; solution.OutputLibDir; solution.OutputLibStrongNameDir ])
-    allSolutions |> List.iter clean)
+    allSolutions |> List.iter (fun solution -> CleanDirs [ solution.OutputZipDir; solution.OutputNuGetDir; solution.OutputLibDir; solution.OutputLibStrongNameDir ]))
 
 Target "ApplyVersion" (fun _ ->
     allProjects |> List.iter patchVersionInProjectFile
     patchVersionInAssemblyInfo "src/Filtering.Tests" filteringRelease
     patchVersionInAssemblyInfo "src/Kalman.Tests" filteringRelease)
 
-Target "Restore" (fun _ -> allSolutions |> List.iter restore)
+Target "Restore" (fun _ -> allSolutions |> List.iter restoreWeak)
 "Start"
   =?> ("Clean", not (hasBuildParam "incremental"))
   ==> "Restore"
@@ -88,7 +91,6 @@ Target "Prepare" DoNothing
   =?> ("Clean", not (hasBuildParam "incremental"))
   ==> "ApplyVersion"
   ==> "Prepare"
-
 
 
 // --------------------------------------------------------------------------------------
@@ -103,24 +105,24 @@ Target "Build" (fun _ ->
     // Strong Name Build (with strong name, without certificate signature)
     if hasBuildParam "strongname" then
         CleanDirs (!! "src/**/obj/" ++ "src/**/bin/" )
-        restoreSN filteringStrongNameSolution
-        buildSN filteringStrongNameSolution
+        restoreStrong filteringStrongNameSolution
+        buildStrong filteringStrongNameSolution
         if isWindows && hasBuildParam "sign" then sign fingerprint timeserver filteringStrongNameSolution
         collectBinariesSN filteringStrongNameSolution
         zip filteringStrongNameZipPackage filteringStrongNameSolution.OutputZipDir filteringStrongNameSolution.OutputLibStrongNameDir (fun f -> f.Contains("MathNet.Filtering.") || f.Contains("MathNet.Numerics."))
         if isWindows then
-            packSN filteringStrongNameSolution
+            packStrong filteringStrongNameSolution
             collectNuGetPackages filteringStrongNameSolution
 
     // Normal Build (without strong name, with certificate signature)
     CleanDirs (!! "src/**/obj/" ++ "src/**/bin/" )
-    restore filteringSolution
-    build filteringSolution
+    restoreWeak filteringSolution
+    buildWeak filteringSolution
     if isWindows && hasBuildParam "sign" then sign fingerprint timeserver filteringSolution
     collectBinaries filteringSolution
     zip filteringZipPackage filteringSolution.OutputZipDir filteringSolution.OutputLibDir (fun f -> f.Contains("MathNet.Filtering.") || f.Contains("MathNet.Numerics."))
     if isWindows then
-        pack filteringSolution
+        packWeak filteringSolution
         collectNuGetPackages filteringSolution
 
     // NuGet Sign (all or nothing)
@@ -136,23 +138,23 @@ Target "Build" (fun _ ->
 
 let testFiltering framework = test "src/Filtering.Tests" "Filtering.Tests.csproj" framework
 Target "TestFiltering" DoNothing
-Target "TestFilteringCore2.2" (fun _ -> testFiltering "netcoreapp2.2")
+Target "TestFilteringCore3.1" (fun _ -> testFiltering "netcoreapp3.1")
 Target "TestFilteringNET40" (fun _ -> testFiltering "net40")
 Target "TestFilteringNET45" (fun _ -> testFiltering "net45")
 Target "TestFilteringNET461" (fun _ -> testFiltering "net461")
 Target "TestFilteringNET47"  (fun _ -> testFiltering "net47")
-"Build" ==> "TestFilteringCore2.2" ==> "TestFiltering"
+"Build" ==> "TestFilteringCore3.1" ==> "TestFiltering"
 "Build" =?> ("TestFilteringNET40", isWindows)
 "Build" =?> ("TestFilteringNET45", isWindows)
 "Build" =?> ("TestFilteringNET461", isWindows) ==> "TestFiltering"
 "Build" =?> ("TestFilteringNET47", isWindows)
 let testKalman framework = test "src/Kalman.Tests" "Kalman.Tests.csproj" framework
 Target "TestKalman" DoNothing
-Target "TestKalmanCore2.2" (fun _ -> testKalman "netcoreapp2.2")
+Target "TestKalmanCore3.1" (fun _ -> testKalman "netcoreapp3.1")
 Target "TestKalmanNET45" (fun _ -> testKalman "net45")
 Target "TestKalmanNET461" (fun _ -> testKalman "net461")
 Target "TestKalmanNET47" (fun _ -> testKalman "net47")
-"Build" ==> "TestKalmanCore2.2" ==> "TestKalman"
+"Build" ==> "TestKalmanCore3.1" ==> "TestKalman"
 "Build" =?> ("TestKalmanNET45", isWindows)
 "Build" =?> ("TestKalmanNET461", isWindows) ==> "TestKalman"
 "Build" =?> ("TestKalmanNET47", isWindows)
