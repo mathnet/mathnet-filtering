@@ -1,3 +1,6 @@
+### 0.6.1 - 2020-05-10
+* Update dependencies, built with .NET Core SDK 3.1.1
+
 ### 0.6.0 - 2018-11-18
 * FIR LowPass: normalize to unit DC gain *~Jose M González*
 * FIR LowPass: optional desired DC gain argument, defaults to one.
