@@ -4,6 +4,7 @@ storage: packages
 nuget MathNet.Numerics ~> 4.7
 nuget MathNet.Numerics.Signed ~> 4.7
 
+nuget Microsoft.NETFramework.ReferenceAssemblies copy_local:true, framework:net40,net461
 nuget System.ValueTuple lowest_matching, strategy:min, framework:net40,net461,netstandard1.3
 
 // Testing
