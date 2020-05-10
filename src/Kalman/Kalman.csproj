@@ -7,11 +7,12 @@
     <RootNamespace>MathNet.Filtering.Kalman</RootNamespace>
     <IsPackable>true</IsPackable>
     <PackageId>MathNet.Filtering.Kalman$(PackageIdSuffix)</PackageId>
-    <VersionPrefix>0.6.1</VersionPrefix>
+    <VersionPrefix>0.7.0</VersionPrefix>
     <VersionSuffix></VersionSuffix>
     <Title>Math.NET Filtering Kalman$(TitleSuffix)</Title>
     <Description>Math.NET Filtering, providing methods and algorithms for signal processing and filtering in science, engineering and every day use. Supports .Net Framework 4.0 or higher and .Net Standard 1.3 or higher, on Windows, Linux and Mac.$(DescriptionSuffix)</Description>
-    <PackageReleaseNotes>Update dependencies, built with .NET Core SDK 3.1.1</PackageReleaseNotes>
+    <PackageReleaseNotes>Bilinear Transform ~Nico Caprioli
+Butterworth Designer and IIR Coefficients ~Nico Caprioli</PackageReleaseNotes>
     <PackageTags>math filter signal FIR IIR median kalman design</PackageTags>
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>

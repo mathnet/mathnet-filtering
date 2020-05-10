@@ -1,8 +1,12 @@
+### 0.7.0 - 2020-05-10
+* Bilinear Transform *~Nico Caprioli*
+* Butterworth Designer and IIR Coefficients *~Nico Caprioli*
+
 ### 0.6.1 - 2020-05-10
 * Update dependencies, built with .NET Core SDK 3.1.1
 
 ### 0.6.0 - 2018-11-18
-* FIR LowPass: normalize to unit DC gain *~Jose M González*
+* FIR LowPass: normalize to unit DC gain *~Jose M Gonzï¿½lez*
 * FIR LowPass: optional desired DC gain argument, defaults to one.
 
 ### 0.5.0 - 2018-11-02
