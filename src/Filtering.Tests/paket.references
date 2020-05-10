@@ -1,4 +1,5 @@
 MathNet.Numerics
+System.ValueTuple
 Microsoft.NET.Test.Sdk
 NUnit3TestAdapter
 NUnit
