@@ -30,6 +30,7 @@
 using System;
 using System.Linq;
 using System.Numerics;
+using MathNet.Numerics;
 
 namespace MathNet.Filtering.Helpers
 {
@@ -56,15 +57,14 @@ namespace MathNet.Filtering.Helpers
         /// <returns>Polynomial coefficients.</returns>
         internal static Complex[] PolynomialCoefficients(Complex[] roots)
         {
-            var y = Enumerable.Repeat(Complex.Zero, roots.Length + 1).ToArray();
+            Complex[] y = Generate.Repeat(roots.Length + 1, Complex.Zero);
             y[0] = Complex.One;
 
             for (int i = 0; i < roots.Length; i++)
             {
-                var tmp = y.Select(t => t).ToArray();
-                for (int j = 0; j <= i; j++)
+                for (int j = i; j >= 0; j--)
                 {
-                    y[j + 1] -= roots[i] * tmp[j];
+                    y[j + 1] -= roots[i] * y[j];
                 }
             }
 

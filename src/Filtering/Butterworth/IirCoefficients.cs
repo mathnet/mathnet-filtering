@@ -29,16 +29,13 @@
 
 using MathNet.Filtering.TransferFunctions;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Numerics;
+using MathNet.Numerics;
 
 namespace MathNet.Filtering.Butterworth
 {
     public static class IirCoefficients
     {
-        #region Static Methods
-
         /// <summary>
         /// Computes the IIR coefficients for a low-pass Butterworth filter.
         /// </summary>
@@ -48,7 +45,7 @@ namespace MathNet.Filtering.Butterworth
         /// <param name="stopbandAttenuation">Minimum required stopband attenuation.</param>
         /// <returns>IIR coefficients.</returns>
         /// <seealso cref="Designer.LowPass(double, double, double, double)"/>
-        public static (IEnumerable<double> numerator, IEnumerable<double> denominator) LowPass(double passbandFreq, double stopbandFreq, double passbandRipple, double stopbandAttenuation)
+        public static (double[] numerator, double[] denominator) LowPass(double passbandFreq, double stopbandFreq, double passbandRipple, double stopbandAttenuation)
         {
             var (n, wc) = Designer.LowPass(passbandFreq, stopbandFreq, passbandRipple, stopbandAttenuation);
 
@@ -70,7 +67,7 @@ namespace MathNet.Filtering.Butterworth
         /// <param name="stopbandAttenuation">Minimum required stopband attenuation.</param>
         /// <returns>IIR coefficients.</returns>
         /// <seealso cref="Designer.HighPass(double, double, double, double)"/>
-        public static (IEnumerable<double> numerator, IEnumerable<double> denominator) HighPass(double stopbandFreq, double passbandFreq, double passbandRipple, double stopbandAttenuation)
+        public static (double[] numerator, double[] denominator) HighPass(double stopbandFreq, double passbandFreq, double passbandRipple, double stopbandAttenuation)
         {
             var (n, wc) = Designer.HighPass(stopbandFreq, passbandFreq, passbandRipple, stopbandAttenuation);
 
@@ -94,7 +91,7 @@ namespace MathNet.Filtering.Butterworth
         /// <param name="stopbandAttenuation">Minimum required stopband attenuation.</param>
         /// <returns>IIR coefficients.</returns>
         /// <seealso cref="Designer.BandPass(double, double, double, double, double, double)"/>
-        public static (IEnumerable<double> numerator, IEnumerable<double> denominator) BandPass(double lowStopbandFreq, double lowPassbandFreq, double highPassbandFreq, double highStopbandFreq, double passbandRipple, double stopbandAttenuation)
+        public static (double[] numerator, double[] denominator) BandPass(double lowStopbandFreq, double lowPassbandFreq, double highPassbandFreq, double highStopbandFreq, double passbandRipple, double stopbandAttenuation)
         {
             var (n, wc1, wc2) = Designer.BandPass(lowStopbandFreq, lowPassbandFreq, highPassbandFreq, highStopbandFreq, passbandRipple, stopbandAttenuation);
 
@@ -119,7 +116,7 @@ namespace MathNet.Filtering.Butterworth
         /// <param name="stopbandAttenuation">Minimum required stopband attenuation.</param>
         /// <returns>IIR coefficients.</returns>
         /// <seealso cref="Designer.BandStop(double, double, double, double, double, double)"/>
-        public static (IEnumerable<double> numerator, IEnumerable<double> denominator) BandStop(double lowPassbandFreq, double lowStopbandFreq, double highStopbandFreq, double highPassbandFreq, double passbandRipple, double stopbandAttenuation)
+        public static (double[] numerator, double[] denominator) BandStop(double lowPassbandFreq, double lowStopbandFreq, double highStopbandFreq, double highPassbandFreq, double passbandRipple, double stopbandAttenuation)
         {
             var (n, wc1, wc2) = Designer.BandStop(lowPassbandFreq, lowStopbandFreq, highStopbandFreq, highPassbandFreq, passbandRipple, stopbandAttenuation);
 
@@ -142,7 +139,7 @@ namespace MathNet.Filtering.Butterworth
         /// <param name="stopbandAttenuation">Minimum required stopband attenuation.</param>
         /// <returns>IIR coefficients.</returns>
         /// <seealso cref="Designer.Notch(double, double, double, double)"/>
-        public static (IEnumerable<double> numerator, IEnumerable<double> denominator) Notch(double centralFreq, double Q, double passbandRipple, double stopbandAttenuation)
+        public static (double[] numerator, double[] denominator) Notch(double centralFreq, double Q, double passbandRipple, double stopbandAttenuation)
         {
             var (n, wc1, wc2) = Designer.Notch(centralFreq, Q, passbandRipple, stopbandAttenuation);
 
@@ -155,10 +152,6 @@ namespace MathNet.Filtering.Butterworth
 
             return Coefficients(gain, zeros, poles, T);
         }
-
-        #endregion Static Methods
-
-        #region Private Static Methods
 
         /// <summary>
         /// Computes the transfer function for a generic Butterworth filter.
@@ -191,15 +184,14 @@ namespace MathNet.Filtering.Butterworth
         /// <param name="poles">Filter poles list.</param>
         /// <param name="T">Sampling time (inverse of sampling frequency).</param>
         /// <returns>The list of IIR coefficients.</returns>
-        private static (IEnumerable<double> numerator, IEnumerable<double> denominator) Coefficients(double gain, Complex[] zeros, Complex[] poles, double T)
+        private static (double[] numerator, double[] denominator) Coefficients(double gain, Complex[] zeros, Complex[] poles, double T)
         {
             (gain, zeros, poles) = BilinearTransform.Apply(gain, zeros, poles, T);
-            var numerator = Helpers.MathFunctions.PolynomialCoefficients(zeros).Select(num => (num * gain).Real);
-            var denominator = Helpers.MathFunctions.PolynomialCoefficients(poles).Select(den => den.Real);
+
+            double[] numerator = Generate.Map(Helpers.MathFunctions.PolynomialCoefficients(zeros), num => (num * gain).Real);
+            double[] denominator = Generate.Map(Helpers.MathFunctions.PolynomialCoefficients(poles), den => den.Real);
 
             return (numerator, denominator);
         }
-
-        #endregion Private Static Methods
     }
 }
