@@ -49,17 +49,17 @@ namespace MathNet.Filtering.DataSources
         {
             if (null == samples)
             {
-                throw new ArgumentNullException("samples");
+                throw new ArgumentNullException(nameof(samples));
             }
 
             if (0 == samples.Length)
             {
-                throw new ArgumentOutOfRangeException("samples");
+                throw new ArgumentOutOfRangeException(nameof(samples));
             }
 
             if (indexOffset < 0 || indexOffset >= samples.Length)
             {
-                throw new ArgumentOutOfRangeException("indexOffset");
+                throw new ArgumentOutOfRangeException(nameof(indexOffset));
             }
 
             _samples = samples;
@@ -91,9 +91,6 @@ namespace MathNet.Filtering.DataSources
         /// <summary>
         /// Sample delay of this source in relation to the whole system.
         /// </summary>
-        public int Delay
-        {
-            get { return _delay; }
-        }
+        public int Delay => _delay;
     }
 }

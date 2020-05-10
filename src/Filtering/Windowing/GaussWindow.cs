@@ -52,7 +52,7 @@ namespace MathNet.Filtering.Windowing
         /// <exception cref="ArgumentOutOfRangeException"/>
         public double Sigma
         {
-            get { return _sigma; }
+            get => _sigma;
             set
             {
                 if (0.0 > value || 0.5 < value)

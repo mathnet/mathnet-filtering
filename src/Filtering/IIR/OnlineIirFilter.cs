@@ -58,12 +58,12 @@ namespace MathNet.Filtering.IIR
         {
             if (null == coefficients)
             {
-                throw new ArgumentNullException("coefficients");
+                throw new ArgumentNullException(nameof(coefficients));
             }
 
             if ((coefficients.Length & 1) != 0)
             {
-                throw new ArgumentException(Resources.ArgumentEvenNumberOfCoefficients, "coefficients");
+                throw new ArgumentException(Resources.ArgumentEvenNumberOfCoefficients, nameof(coefficients));
             }
 
             int size = coefficients.Length;

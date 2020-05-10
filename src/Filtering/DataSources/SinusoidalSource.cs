@@ -107,9 +107,6 @@ namespace MathNet.Filtering.DataSources
         /// <summary>
         /// Sample delay of this source in relation to the whole system.
         /// </summary>
-        public int Delay
-        {
-            get { return _delay; }
-        }
+        public int Delay => _delay;
     }
 }

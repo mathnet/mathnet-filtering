@@ -59,9 +59,6 @@ namespace MathNet.Filtering.DataSources
         /// <summary>
         /// Sample delay of this source in relation to the whole system. Constant Zero.
         /// </summary>
-        public int Delay
-        {
-            get { return 0; }
-        }
+        public int Delay => 0;
     }
 }
