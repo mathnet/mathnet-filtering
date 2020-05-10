@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>IirCoefficients - Math.NET Filtering Documentation</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link type="text/css" rel="stylesheet" href="../main.css"/>
+    <script type="text/javascript" src="../js/jquery-1.3.2.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.scrollTo-min.js"></script>
+    <script type="text/javascript" src="../js/navigation.js"></script>
+    <script type="text/javascript" src="../js/example.js"></script>
+  </head>
+  <body><div id="namespaces">
+	<h2 class="fixed">Namespaces</h2>
+	<div class="scroll">
+		<ul>
+			<li>
+          <a href="../MathNet.Filtering/index.htm">MathNet.Filtering</a>
+      </li>
+			<li>
+          <a href="../MathNet.Filtering.Butterworth/index.htm" class="current">MathNet.Filtering.Butterworth</a>
+      </li>
+			<li>
+          <a href="../MathNet.Filtering.Channel/index.htm">MathNet.Filtering.Channel</a>
+      </li>
+			<li>
+          <a href="../MathNet.Filtering.DataSources/index.htm">MathNet.Filtering.DataSources</a>
+      </li>
+			<li>
+          <a href="../MathNet.Filtering.FIR/index.htm">MathNet.Filtering.FIR</a>
+      </li>
+			<li>
+          <a href="../MathNet.Filtering.IIR/index.htm">MathNet.Filtering.IIR</a>
+      </li>
+			<li>
+          <a href="../MathNet.Filtering.Kalman/index.htm">MathNet.Filtering.Kalman</a>
+      </li>
+			<li>
+          <a href="../MathNet.Filtering.Median/index.htm">MathNet.Filtering.Median</a>
+      </li>
+			<li>
+          <a href="../MathNet.Filtering.TransferFunctions/index.htm">MathNet.Filtering.TransferFunctions</a>
+      </li>
+			<li>
+          <a href="../MathNet.Filtering.Windowing/index.htm">MathNet.Filtering.Windowing</a>
+      </li>
+			<li>
+          <a href="../MathNet.Filtering.Windows/index.htm">MathNet.Filtering.Windows</a>
+      </li>
+		</ul>
+	</div>
+</div><div id="types">
+  <h2 class="fixed">Types in MathNet.Filtering.Butterworth</h2>
+	<div class="scroll">
+		<ul>
+				<li>
+            <a href="../MathNet.Filtering.Butterworth/Designer.htm">Designer</a>
+        </li>
+				<li>
+            <a href="../MathNet.Filtering.Butterworth/IirCoefficients.htm" class="current">IirCoefficients</a>
+        </li>
+		</ul>
+	</div>
+</div>
+    <div class="header">
+		<p class="class"><strong>Type</strong> IirCoefficients</p>
+		<p><strong>Namespace</strong> MathNet.Filtering.Butterworth</p>
+	</div>
+    <div class="sub-header">
+		
+
+			<h3 class="section">Static Functions</h3>
+			<ul>
+				<li><a href="../MathNet.Filtering.Butterworth/IirCoefficients.htm#BandPass">BandPass</a></li>
+				<li><a href="../MathNet.Filtering.Butterworth/IirCoefficients.htm#BandStop">BandStop</a></li>
+				<li><a href="../MathNet.Filtering.Butterworth/IirCoefficients.htm#HighPass">HighPass</a></li>
+				<li><a href="../MathNet.Filtering.Butterworth/IirCoefficients.htm#LowPass">LowPass</a></li>
+				<li><a href="../MathNet.Filtering.Butterworth/IirCoefficients.htm#Notch">Notch</a></li>
+			</ul>
+		
+
+		
+	</div>
+	
+	
+	
+	<h3 class="section">Public Static Functions</h3>
+	
+	<div id="BandPass" class="method">
+		<h4><span title="System.ValueTuple<Double[], Double[]>">ValueTuple&lt;Double[], Double[]&gt;</span> <strong>BandPass</strong>(<span title="System.double">double</span> lowStopbandFreq, <span title="System.double">double</span> lowPassbandFreq, <span title="System.double">double</span> highPassbandFreq, <span title="System.double">double</span> highStopbandFreq, <span title="System.double">double</span> passbandRipple, <span title="System.double">double</span> stopbandAttenuation)</h4>
+		<div class="content">Computes the IIR coefficients for a band-pass Butterworth filter. 
+
+
+      <div class="parameters">
+        <h5>Parameters</h5>
+
+          <h6><code><span title="System.double">double</span></code> lowStopbandFreq</h6>
+          <p class="comments">Lower stopband corner frequency (in Hz). </p>
+          <h6><code><span title="System.double">double</span></code> lowPassbandFreq</h6>
+          <p class="comments">Lower passband corner frequency (in Hz). </p>
+          <h6><code><span title="System.double">double</span></code> highPassbandFreq</h6>
+          <p class="comments">Higher passband corner frequency (in Hz). </p>
+          <h6><code><span title="System.double">double</span></code> highStopbandFreq</h6>
+          <p class="comments">Higher stopband corner frequency (in Hz). </p>
+          <h6><code><span title="System.double">double</span></code> passbandRipple</h6>
+          <p class="comments">Maximum allowed passband ripple. </p>
+          <h6><code><span title="System.double">double</span></code> stopbandAttenuation</h6>
+          <p class="comments">Minimum required stopband attenuation. </p>
+      </div>
+
+      <div class="return">
+        <h5>Return</h5>
+        <h6><code><span title="System.ValueTuple<Double[], Double[]>">ValueTuple&lt;Double[], Double[]&gt;</span></code></h6>
+        <p>IIR coefficients. </p>
+      </div>
+      
+    </div>
+	</div>
+	<div id="BandStop" class="method">
+		<h4><span title="System.ValueTuple<Double[], Double[]>">ValueTuple&lt;Double[], Double[]&gt;</span> <strong>BandStop</strong>(<span title="System.double">double</span> lowPassbandFreq, <span title="System.double">double</span> lowStopbandFreq, <span title="System.double">double</span> highStopbandFreq, <span title="System.double">double</span> highPassbandFreq, <span title="System.double">double</span> passbandRipple, <span title="System.double">double</span> stopbandAttenuation)</h4>
+		<div class="content">Computes the IIR coefficients for a band-stop Butterworth filter. 
+
+
+      <div class="parameters">
+        <h5>Parameters</h5>
+
+          <h6><code><span title="System.double">double</span></code> lowPassbandFreq</h6>
+          <p class="comments">Lower passband corner frequency (in Hz). </p>
+          <h6><code><span title="System.double">double</span></code> lowStopbandFreq</h6>
+          <p class="comments">Lower stopband corner frequency (in Hz). </p>
+          <h6><code><span title="System.double">double</span></code> highStopbandFreq</h6>
+          <p class="comments">Higher stopband corner frequency (in Hz). </p>
+          <h6><code><span title="System.double">double</span></code> highPassbandFreq</h6>
+          <p class="comments">Higher passband corner frequency (in Hz). </p>
+          <h6><code><span title="System.double">double</span></code> passbandRipple</h6>
+          <p class="comments">Maximum allowed passband ripple. </p>
+          <h6><code><span title="System.double">double</span></code> stopbandAttenuation</h6>
+          <p class="comments">Minimum required stopband attenuation. </p>
+      </div>
+
+      <div class="return">
+        <h5>Return</h5>
+        <h6><code><span title="System.ValueTuple<Double[], Double[]>">ValueTuple&lt;Double[], Double[]&gt;</span></code></h6>
+        <p>IIR coefficients. </p>
+      </div>
+      
+    </div>
+	</div>
+	<div id="HighPass" class="method">
+		<h4><span title="System.ValueTuple<Double[], Double[]>">ValueTuple&lt;Double[], Double[]&gt;</span> <strong>HighPass</strong>(<span title="System.double">double</span> stopbandFreq, <span title="System.double">double</span> passbandFreq, <span title="System.double">double</span> passbandRipple, <span title="System.double">double</span> stopbandAttenuation)</h4>
+		<div class="content">Computes the IIR coefficients for a high-pass Butterworth filter. 
+
+
+      <div class="parameters">
+        <h5>Parameters</h5>
+
+          <h6><code><span title="System.double">double</span></code> stopbandFreq</h6>
+          <p class="comments">Stopband corner frequency (in Hz). </p>
+          <h6><code><span title="System.double">double</span></code> passbandFreq</h6>
+          <p class="comments">Passband corner frequency (in Hz). </p>
+          <h6><code><span title="System.double">double</span></code> passbandRipple</h6>
+          <p class="comments">Maximum allowed passband ripple. </p>
+          <h6><code><span title="System.double">double</span></code> stopbandAttenuation</h6>
+          <p class="comments">Minimum required stopband attenuation. </p>
+      </div>
+
+      <div class="return">
+        <h5>Return</h5>
+        <h6><code><span title="System.ValueTuple<Double[], Double[]>">ValueTuple&lt;Double[], Double[]&gt;</span></code></h6>
+        <p>IIR coefficients. </p>
+      </div>
+      
+    </div>
+	</div>
+	<div id="LowPass" class="method">
+		<h4><span title="System.ValueTuple<Double[], Double[]>">ValueTuple&lt;Double[], Double[]&gt;</span> <strong>LowPass</strong>(<span title="System.double">double</span> passbandFreq, <span title="System.double">double</span> stopbandFreq, <span title="System.double">double</span> passbandRipple, <span title="System.double">double</span> stopbandAttenuation)</h4>
+		<div class="content">Computes the IIR coefficients for a low-pass Butterworth filter. 
+
+
+      <div class="parameters">
+        <h5>Parameters</h5>
+
+          <h6><code><span title="System.double">double</span></code> passbandFreq</h6>
+          <p class="comments">Passband corner frequency (in Hz). </p>
+          <h6><code><span title="System.double">double</span></code> stopbandFreq</h6>
+          <p class="comments">Stopband corner frequency (in Hz). </p>
+          <h6><code><span title="System.double">double</span></code> passbandRipple</h6>
+          <p class="comments">Maximum allowed passband ripple. </p>
+          <h6><code><span title="System.double">double</span></code> stopbandAttenuation</h6>
+          <p class="comments">Minimum required stopband attenuation. </p>
+      </div>
+
+      <div class="return">
+        <h5>Return</h5>
+        <h6><code><span title="System.ValueTuple<Double[], Double[]>">ValueTuple&lt;Double[], Double[]&gt;</span></code></h6>
+        <p>IIR coefficients. </p>
+      </div>
+      
+    </div>
+	</div>
+	<div id="Notch" class="method">
+		<h4><span title="System.ValueTuple<Double[], Double[]>">ValueTuple&lt;Double[], Double[]&gt;</span> <strong>Notch</strong>(<span title="System.double">double</span> centralFreq, <span title="System.double">double</span> Q, <span title="System.double">double</span> passbandRipple, <span title="System.double">double</span> stopbandAttenuation)</h4>
+		<div class="content">Computes the IIR coefficients for a notch Butterworth filter. 
+
+
+      <div class="parameters">
+        <h5>Parameters</h5>
+
+          <h6><code><span title="System.double">double</span></code> centralFreq</h6>
+          <p class="comments">Filter central frequency. </p>
+          <h6><code><span title="System.double">double</span></code> Q</h6>
+          <p class="comments">Quality factor. </p>
+          <h6><code><span title="System.double">double</span></code> passbandRipple</h6>
+          <p class="comments">Maximum allowed passband ripple. </p>
+          <h6><code><span title="System.double">double</span></code> stopbandAttenuation</h6>
+          <p class="comments">Minimum required stopband attenuation. </p>
+      </div>
+
+      <div class="return">
+        <h5>Return</h5>
+        <h6><code><span title="System.ValueTuple<Double[], Double[]>">ValueTuple&lt;Double[], Double[]&gt;</span></code></h6>
+        <p>IIR coefficients. </p>
+      </div>
+      
+    </div>
+	</div>
+
+	
+	<div id="footer">
+  <p>Based on v0.7.0.0 of MathNet.Filtering (Math.NET Filtering)</p>
+  <p>Generated by <a href="http://docu.jagregory.com">docu</a></p>
+</div>
+  </body>
+</html>
