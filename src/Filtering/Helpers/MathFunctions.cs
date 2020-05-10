@@ -36,7 +36,7 @@ namespace MathNet.Filtering.Helpers
     /// <summary>
     /// Collection of mathematical functions used across the project.
     /// </summary>
-    public static class MathFunctions
+    internal static class MathFunctions
     {
         /// <summary>
         /// Computes the warped frequency.

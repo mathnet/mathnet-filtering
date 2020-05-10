@@ -35,7 +35,7 @@ namespace MathNet.Filtering.Helpers
     /// Exposes some common validation rules. Even though those check can be implemented in-place,
     /// it was deemed useful to keep them in a separate file to let the utilizers focus only on their goal.
     /// </summary>
-    public static class Validators
+    internal static class Validators
     {
         /// <summary>
         /// Checks that a double is a finite number.
