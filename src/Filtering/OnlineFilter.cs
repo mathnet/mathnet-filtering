@@ -47,7 +47,7 @@ namespace MathNet.Filtering
         {
             if (mode == ImpulseResponse.Finite)
             {
-                double[] c = FirCoefficients.LowPass(sampleRate, cutoffRate, order >> 1);
+                double[] c = FirCoefficients.LowPass(sampleRate, cutoffRate, halforder: order >> 1);
                 return new OnlineFirFilter(c);
             }
 
