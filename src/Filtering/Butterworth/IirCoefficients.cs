@@ -147,7 +147,7 @@ namespace MathNet.Filtering.Butterworth
             var (gain, zeros, poles) = TransferFunction(n);
 
             wc1 = Helpers.MathFunctions.WarpFrequency(wc1, T);
-            wc1 = Helpers.MathFunctions.WarpFrequency(wc2, T);
+            wc2 = Helpers.MathFunctions.WarpFrequency(wc2, T);
             (gain, zeros, poles) = TransferFunctionTransformer.BandStop(gain, zeros, poles, wc1, wc2);
 
             return Coefficients(gain, zeros, poles, T);

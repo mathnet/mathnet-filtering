@@ -28,7 +28,6 @@
 // </copyright>
 
 using System;
-using System.Linq;
 using System.Numerics;
 using MathNet.Numerics;
 
