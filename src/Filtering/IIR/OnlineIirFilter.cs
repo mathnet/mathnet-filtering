@@ -3,7 +3,7 @@
 // http://filtering.mathdotnet.com
 // http://github.com/mathnet/mathnet-filtering
 //
-// Copyright (c) 2009-2014 Math.NET
+// Copyright (c) 2009-2021 Math.NET
 //
 // Permission is hereby granted, free of charge, to any person
 // obtaining a copy of this software and associated documentation
@@ -40,7 +40,7 @@ namespace MathNet.Filtering.IIR
     /// Filter implements the canonic Direct Form II structure.
     /// </summary>
     /// <remarks>
-    /// System Description: H(z) = (b0 + b1*z^-1 + b2*z^-2) / (1 + a1*z^-1 + a2*z^-2)
+    /// System Description: H(z) = (b0 + b1*z^-1 + b2*z^-2) / (a0 + a1*z^-1 + a2*z^-2)
     /// </remarks>
     public class OnlineIirFilter : OnlineFilter
     {
@@ -54,6 +54,9 @@ namespace MathNet.Filtering.IIR
         /// <summary>
         /// Infinite Impulse Response (IIR) Filter.
         /// </summary>
+        /// <param name="coefficients">Vector of IIR coefficients in the following form: [b0 b1 b2 ... a0 a1 a2 ...]</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="ArgumentException"></exception>
         public OnlineIirFilter(double[] coefficients)
         {
             if (null == coefficients)
@@ -75,6 +78,50 @@ namespace MathNet.Filtering.IIR
             {
                 _b[i] = _b[_halfSize + i] = coefficients[i];
                 _a[i] = _a[_halfSize + i] = coefficients[_halfSize + i];
+            }
+
+            _bufferX = new double[size];
+            _bufferY = new double[size];
+        }
+
+        /// <summary>
+        /// Infinite Impulse Response (IIR) Filter
+        /// </summary>
+        /// <param name="numerator">Numerator coefficients [b0 b1 ...]</param>
+        /// <param name="denominator">Denominator coefficients [a0 a1 ...]</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="ArgumentException"></exception>
+        public OnlineIirFilter(double[] numerator, double[] denominator)
+        {
+            if (null == numerator)
+            {
+                throw new ArgumentNullException(nameof(numerator));
+            }
+            if (null == denominator)
+            {
+                throw new ArgumentNullException(nameof(denominator));
+            }
+            if (denominator.Length != numerator.Length)
+            {
+                throw new ArgumentException(Resources.ArgumentCoefficientLengthMismatch);
+            }
+            if (denominator.Length == 0)
+            {
+                throw new ArgumentException(Resources.ArgumentEmptyCoefficientVector, nameof(denominator));
+            }
+            if (numerator.Length == 0)
+            {
+                throw new ArgumentException(Resources.ArgumentEmptyCoefficientVector, nameof(numerator));
+            }
+
+            _halfSize = denominator.Length;
+            int size = denominator.Length * 2;
+            _b = new double[size];
+            _a = new double[size];
+            for (int i = 0; i < _halfSize; i++)
+            {
+                _b[i] = _b[_halfSize + i] = numerator[i];
+                _a[i] = _a[_halfSize + i] = denominator[i];
             }
 
             _bufferX = new double[size];
