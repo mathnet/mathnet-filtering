@@ -20,6 +20,7 @@
 #endregion
 
 using MathNet.Numerics.LinearAlgebra;
+using System;
 
 namespace MathNet.Filtering.Kalman
 {
@@ -71,6 +72,16 @@ namespace MathNet.Filtering.Kalman
         /// The current covariance of the estimated state of the system.
         /// </summary>
         protected Matrix<double> P;
+        
+        /// <summary>
+        /// Array of index of states that need to be wrapped between +/- Pi  
+        /// </summary>
+        protected int[] wrapStateIndex = new int[0];
+
+        /// <summary>
+        /// Array of index of measurements that need to be wrapped between +/- Pi  
+        /// </summary>
+        protected int[] wrapMeasurementIndex = new int[0];
 
         /// <summary>
         /// Creates a new Discrete Time Kalman Filter with the given values for
@@ -88,6 +99,36 @@ namespace MathNet.Filtering.Kalman
         }
 
         /// <summary>
+        /// Creates a new Discrete Time Kalman Filter with the given values for
+        /// the initial state and the covariance of that state.
+        /// </summary>
+        /// <param name="x0">The best estimate of the initial state of the estimate.</param>
+        /// <param name="P0">The covariance of the initial state estimate. If unsure
+        /// about initial state, set to a large value</param>
+        /// <param name="wrapStateIndex">Array of index of states that need to be wrapped 
+        /// between +/- Pi</param>
+        /// <param name="wrapMeasurementIndex">Array of index of measurements that need to be wrapped 
+        /// between +/- Pi</param>
+        public DiscreteKalmanFilter(Matrix<double> x0, Matrix<double> P0, int[] wrapStateIndex, int[] wrapMeasurementIndex) : this (x0, P0)
+        {
+           this.wrapStateIndex = wrapStateIndex;
+           this.wrapMeasurementIndex = wrapMeasurementIndex;
+        }
+
+        /// <summary>
+        /// Wrap input vector along Index in wrapIndex array
+        /// </summary>
+        protected Matrix<double> Wrap(Matrix<double> input, int[] wrapIndex)
+        {
+            var output = input;
+            foreach(int i in wrapIndex)
+            {
+                output[i,0] = ((input[i,0] + Math.PI) % (2*Math.PI)) - Math.PI;
+            }
+            return output;
+        }
+
+        /// <summary>
         /// Perform a discrete time prediction of the system state.
         /// </summary>
         /// <param name="F">State transition matrix.</param>
@@ -98,7 +139,7 @@ namespace MathNet.Filtering.Kalman
         {
             KalmanFilter.CheckPredictParameters(F, this);
 
-            x = F*x;
+            x = Wrap(F*x, wrapStateIndex);
             P = F*P*F.Transpose();
         }
 
@@ -119,7 +160,7 @@ namespace MathNet.Filtering.Kalman
             KalmanFilter.CheckPredictParameters(F, Q, this);
 
             // Predict the state
-            x = F*x;
+            x = Wrap(F*x, wrapStateIndex);
             P = (F*P*F.Transpose()) + Q;
         }
 
@@ -142,7 +183,7 @@ namespace MathNet.Filtering.Kalman
             KalmanFilter.CheckPredictParameters(F, G, Q, this);
 
             // State prediction
-            x = F*x;
+            x = Wrap(F*x, wrapStateIndex);
 
             // Covariance update
             P = (F*P*F.Transpose()) + (G*Q*G.Transpose());
@@ -169,7 +210,7 @@ namespace MathNet.Filtering.Kalman
             Matrix<double> S = (H*P*Ht) + R; // Measurement covariance
             Matrix<double> K = P*Ht*S.Inverse(); // Kalman Gain
             P = (I - (K*H))*P; // Covariance update
-            x = x + (K*(z - (H*x))); // State update
+            x = Wrap(x + (K*Wrap(z - (H*x), wrapMeasurementIndex)), wrapStateIndex); // State update
         }
     }
 }
