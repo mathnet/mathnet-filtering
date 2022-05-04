@@ -78,6 +78,59 @@ namespace MathNet.Filtering.Kalman.UnitTests
 		}
 
 		[Test]
+		public void TestDiscreteKalmanFilterWrap()
+		{
+			// Test constants
+			double r = 30.0;  // Measurement covariance
+			double T = 20.0;  // Time interval between measurements
+			double q = 0.1;   // Plant noise constant
+			double tol = 0.0001;  // Accuracy tolerance
+
+			// Reference values to test against (generated from a known filter)
+			// Reference Measurements
+			double[] zs = { 0, (Math.PI + 0.1), 2*(Math.PI + 0.1), 3*(Math.PI + 0.1), 4*(Math.PI + 0.1), 5*(Math.PI + 0.1),6*(Math.PI + 0.1)};
+			// Expected position estimates (predictions)
+			double[] posp = {0.2, 0.3-Math.PI, 0.4, 0.5-Math.PI, 0.6};
+			// Expected velocity estimates (predictions)
+			double[] velp = { (Math.PI + 0.1)/T, (Math.PI + 0.1)/T, (Math.PI + 0.1)/T, (Math.PI + 0.1)/T, (Math.PI + 0.1)/T };
+			// Expected position estimates (after measurement update)
+			double[] posu = { 0.2, 0.3-Math.PI, 0.4, 0.5-Math.PI, 0.6 };
+			// Expected velocity estimates (after measurement update)
+			double[] velu = { (Math.PI + 0.1)/T, (Math.PI + 0.1)/T, (Math.PI + 0.1)/T, (Math.PI + 0.1)/T, (Math.PI + 0.1)/T };
+
+			// Initial estimate based on two point differencing
+			double z0 = zs[0];
+			double z1 = zs[1];
+		    Matrix<double> x0 = Matrix<double>.Build.Dense(2, 1, new[] { z1, (z1 - z0)/T });
+		    Matrix<double> P0 = Matrix<double>.Build.Dense(2, 2, new[] { r, r/T, r/T, 2*r/(T*T) });
+			// Setup a DiscreteKalmanFilter to filter
+			DiscreteKalmanFilter dkf = new DiscreteKalmanFilter(x0, P0, new int[] {0}, new int[] {0});
+            Matrix<double> F = Matrix<double>.Build.Dense(2, 2, new[] { 1d, 0d, T, 1 });   // State transition matrix
+            Matrix<double> G = Matrix<double>.Build.Dense(2, 1, new[] { (T * T) / 2d, T });   // Plant noise matrix
+            Matrix<double> Q = Matrix<double>.Build.Dense(1, 1, new[] { q }); // Plant noise variance
+            Matrix<double> R = Matrix<double>.Build.Dense(1, 1, new[] { r }); // Measurement variance matrix
+            Matrix<double> H = Matrix<double>.Build.Dense(1, 2, new[] { 1d, 0d }); // Measurement matrix
+
+			// Test the performance of this filter against the stored data from a proven
+			// Kalman Filter of a one dimenional tracker.
+			for (int i = 2; i < zs.Length; i++)
+			{
+				// Perform the prediction
+				dkf.Predict(F, G, Q);
+				// Test against the prediction state/covariance
+				Assert.IsTrue(dkf.State[0,0].AlmostEqual(posp[i-2], tol), "State Prediction (" + i + ")");
+                Assert.IsTrue(dkf.State[1, 0].AlmostEqual(velp[i-2], tol), "Covariance Prediction (" + i + ")");
+				// Perform the update
+			    Matrix<double> z = Matrix<double>.Build.Dense(1, 1, new[] { zs[i] });
+				dkf.Update(z, H, R);
+				// Test against the update state/covariance
+				// Test against the prediction state/covariance
+                Assert.IsTrue(dkf.State[0, 0].AlmostEqual(posu[i-2], tol), "State Prediction (" + i + ")");
+                Assert.IsTrue(dkf.State[1, 0].AlmostEqual(velu[i-2], tol), "Covariance Prediction (" + i + ")");
+			}
+		}
+
+		[Test]
 		public void TestInformationFilter()
 		{
 			System.Console.WriteLine("Filter 1 - DiscreteKalmanFilter, Filter 2 - InformationFilter");
